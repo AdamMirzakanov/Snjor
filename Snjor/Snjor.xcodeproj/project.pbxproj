@@ -17,6 +17,7 @@
 		664BF2E22BF65D0C00C9D29E /* Navigation + Navigable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2E12BF65D0C00C9D29E /* Navigation + Navigable.swift */; };
 		664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */; };
 		664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */; };
+		664BF2EE2BF6634500C9D29E /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2ED2BF6634500C9D29E /* Coordinatable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		664BF2E12BF65D0C00C9D29E /* Navigation + Navigable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation + Navigable.swift"; sourceTree = "<group>"; };
 		664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation + UIAdaptivePresentationControllerDelegate.swift"; sourceTree = "<group>"; };
 		664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation + UINavigationControllerDelegate.swift"; sourceTree = "<group>"; };
+		664BF2ED2BF6634500C9D29E /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +66,9 @@
 		664BF2BC2BF6472C00C9D29E /* Snjor */ = {
 			isa = PBXGroup;
 			children = (
-				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
 				664BF2C12BF6472C00C9D29E /* ViewController.swift */,
+				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
+				664BF2EB2BF6632400C9D29E /* Coordinators */,
 				664BF2DE2BF65BB400C9D29E /* NavigationCore */,
 				664BF2D32BF64B2C00C9D29E /* Resources */,
 			);
@@ -101,6 +104,22 @@
 				664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */,
 			);
 			path = NavigationCore;
+			sourceTree = "<group>";
+		};
+		664BF2EB2BF6632400C9D29E /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				664BF2EC2BF6633300C9D29E /* Core */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		664BF2EC2BF6633300C9D29E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				664BF2ED2BF6634500C9D29E /* Coordinatable.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +219,7 @@
 				664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
 				664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */,
+				664BF2EE2BF6634500C9D29E /* Coordinatable.swift in Sources */,
 				664BF2E22BF65D0C00C9D29E /* Navigation + Navigable.swift in Sources */,
 				664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */,
 				664BF2DC2BF65B9B00C9D29E /* Navigable.swift in Sources */,
