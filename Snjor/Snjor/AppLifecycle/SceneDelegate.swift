@@ -8,8 +8,14 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  // MARK: - Public Properties
   var window: UIWindow?
 
+  // MARK: - Private Properties
+  private var appCoordinator: AppCoordinator?
+  private var appFactory: AppFactoring?
+
+  // MARK: - Public Methods
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -17,9 +23,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
 
     window = UIWindow(windowScene: windowScene)
-    window?.windowScene = windowScene
-    window?.makeKeyAndVisible()
-    window?.rootViewController = ViewController()
+    appFactory = AppFactory()
+    let navigationController = UINavigationController()
+    let router = Navigation(rootViewController: navigationController)
+
+    appCoordinator = AppCoordinator(
+      navigation: router,
+      window: window,
+      factory: appFactory
+    )
+
+    appCoordinator?.start()
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
