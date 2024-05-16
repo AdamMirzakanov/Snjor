@@ -9,6 +9,7 @@ import UIKit
 
 protocol TabBarItemFactory { }
 
+// MARK: - Default Methods
 extension TabBarItemFactory {
   func makeTabBarItem(
     navigation: Navigable,

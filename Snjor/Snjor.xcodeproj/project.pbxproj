@@ -21,6 +21,7 @@
 		664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */; };
 		664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */; };
 		664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */; };
+		664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlordCoordinator.swift; sourceTree = "<group>"; };
 		664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemFactory.swift; sourceTree = "<group>"; };
+		664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,9 +78,9 @@
 				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
 				664BF2EB2BF6632400C9D29E /* Coordinators */,
 				664BF2DE2BF65BB400C9D29E /* NavigationCore */,
-				664BF2D32BF64B2C00C9D29E /* Resources */,
 				664BF2F82BF67DF000C9D29E /* Screens */,
-				664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */,
+				664BF2FB2BF681DF00C9D29E /* Factories */,
+				664BF2D32BF64B2C00C9D29E /* Resources */,
 			);
 			path = Snjor;
 			sourceTree = "<group>";
@@ -137,6 +139,15 @@
 				664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		664BF2FB2BF681DF00C9D29E /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */,
+				664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +249,7 @@
 				664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */,
 				664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
+				664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */,
 				664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */,
 				664BF2EE2BF6634500C9D29E /* Coordinatable.swift in Sources */,
 				664BF2E22BF65D0C00C9D29E /* Navigation + Navigable.swift in Sources */,
