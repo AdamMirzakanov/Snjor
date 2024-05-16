@@ -49,4 +49,3 @@ extension Navigation: Navigable {
     rootViewController.dismiss(animated: animated)
   }
 }
-

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class Navigation {
+final class Navigation: NSObject {
   // MARK: - Protocol Properties
   var rootViewController: UINavigationController
   var dismissNavigation: (() -> Void)?
@@ -18,5 +18,7 @@ final class Navigation {
   // MARK: - Initializers
   init(rootViewController: UINavigationController) {
     self.rootViewController = rootViewController
+    super.init()
+    rootViewController.presentationController?.delegate = self
   }
 }
