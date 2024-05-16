@@ -24,6 +24,7 @@
 		664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */; };
 		664BF3012BF6999800C9D29E /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */; };
 		664BF3032BF6AD3900C9D29E /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3022BF6AD3900C9D29E /* AppFactory.swift */; };
+		664BF3052BF6AEA300C9D29E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarFactory.swift; sourceTree = "<group>"; };
 		664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		664BF3022BF6AD3900C9D29E /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
+		664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			children = (
 				664BF2EC2BF6633300C9D29E /* Core */,
 				664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */,
+				664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */,
 				664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */,
 				664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */,
+				664BF3052BF6AEA300C9D29E /* AppCoordinator.swift in Sources */,
 				664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */,
 				664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
