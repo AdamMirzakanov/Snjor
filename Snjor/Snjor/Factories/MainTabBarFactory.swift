@@ -13,7 +13,7 @@ protocol MainTabBarFactoring {
 }
 
 struct MainTabBarFactory: MainTabBarFactoring {
-  // MARK: - Protocol Methods
+  // MARK: - Public Methods
   func makeMainTabBarController() -> UITabBarController {
     let mainTabBarController = MainTabBarController()
     return mainTabBarController

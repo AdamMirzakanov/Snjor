@@ -10,10 +10,8 @@ protocol MainTabBarCoordinatorDelegate: AnyObject {
 }
 
 final class MainTabBarCoordinator: Coordinatable {
-  // MARK: - Protocol Properties
-  var navigation: Navigable
-
   // MARK: - Public Properties
+  var navigation: Navigable
   var childCoordinators: [Coordinatable] = []
 
   // MARK: - Private Properties
@@ -31,7 +29,7 @@ final class MainTabBarCoordinator: Coordinatable {
     self.delegate = delegate
   }
 
-  // MARK: - Protocol Methods
+  // MARK: - Public Methods
   func start() {
     let navigationTabBar = factory.makeMainTabBarController()
     navigation.pushViewController(navigationTabBar, animated: false)

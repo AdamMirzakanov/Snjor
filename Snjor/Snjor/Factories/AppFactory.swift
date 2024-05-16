@@ -13,7 +13,7 @@ protocol AppFactoring {
 }
 
 struct AppFactory: AppFactoring {
-  // MARK: - Protocol Methods
+  // MARK: - Public Methods
   func makeMainTabBarCoordinator(
     _ navigation: Navigable,
     delegate: MainTabBarCoordinatorDelegate

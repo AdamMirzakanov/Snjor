@@ -8,7 +8,7 @@
 import UIKit
 
 extension Navigation: Navigable {
-  // MARK: - Protocol Computed Properties
+  // MARK: - Public Computed Properties
   var navigationBar: UINavigationBar {
     rootViewController.navigationBar
   }
@@ -22,7 +22,7 @@ extension Navigation: Navigable {
     }
   }
 
-  // MARK: - Protocol Methods
+  // MARK: - Public Methods
   func present(
     _ viewController: UIViewController,
     animated: Bool
