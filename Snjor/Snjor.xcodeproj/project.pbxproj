@@ -18,6 +18,7 @@
 		664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */; };
 		664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */; };
 		664BF2EE2BF6634500C9D29E /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2ED2BF6634500C9D29E /* Coordinatable.swift */; };
+		664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation + UIAdaptivePresentationControllerDelegate.swift"; sourceTree = "<group>"; };
 		664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation + UINavigationControllerDelegate.swift"; sourceTree = "<group>"; };
 		664BF2ED2BF6634500C9D29E /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlordCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				664BF2ED2BF6634500C9D29E /* Coordinatable.swift */,
+				664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				664BF2C22BF6472C00C9D29E /* ViewController.swift in Sources */,
+				664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */,
 				664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */,
 				664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
