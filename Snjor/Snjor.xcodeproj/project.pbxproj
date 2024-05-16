@@ -16,6 +16,7 @@
 		664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2DF2BF65C5900C9D29E /* Navigation.swift */; };
 		664BF2E22BF65D0C00C9D29E /* Navigation + Navigable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2E12BF65D0C00C9D29E /* Navigation + Navigable.swift */; };
 		664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */; };
+		664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		664BF2DF2BF65C5900C9D29E /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		664BF2E12BF65D0C00C9D29E /* Navigation + Navigable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation + Navigable.swift"; sourceTree = "<group>"; };
 		664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation + UIAdaptivePresentationControllerDelegate.swift"; sourceTree = "<group>"; };
+		664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation + UINavigationControllerDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				664BF2DF2BF65C5900C9D29E /* Navigation.swift */,
 				664BF2E12BF65D0C00C9D29E /* Navigation + Navigable.swift */,
 				664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */,
+				664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */,
 			);
 			path = NavigationCore;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */,
 				664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
+				664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */,
 				664BF2E22BF65D0C00C9D29E /* Navigation + Navigable.swift in Sources */,
 				664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */,
 				664BF2DC2BF65B9B00C9D29E /* Navigable.swift in Sources */,

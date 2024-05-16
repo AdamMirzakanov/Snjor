@@ -20,5 +20,6 @@ final class Navigation: NSObject {
     self.rootViewController = rootViewController
     super.init()
     rootViewController.presentationController?.delegate = self
+    rootViewController.delegate = self
   }
 }
