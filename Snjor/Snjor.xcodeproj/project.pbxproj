@@ -20,6 +20,7 @@
 		664BF2EE2BF6634500C9D29E /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2ED2BF6634500C9D29E /* Coordinatable.swift */; };
 		664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */; };
 		664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */; };
+		664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		664BF2ED2BF6634500C9D29E /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlordCoordinator.swift; sourceTree = "<group>"; };
 		664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				664BF2DE2BF65BB400C9D29E /* NavigationCore */,
 				664BF2D32BF64B2C00C9D29E /* Resources */,
 				664BF2F82BF67DF000C9D29E /* Screens */,
+				664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */,
 			);
 			path = Snjor;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				664BF2C22BF6472C00C9D29E /* ViewController.swift in Sources */,
+				664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */,
 				664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */,
 				664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */,
 				664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */,
