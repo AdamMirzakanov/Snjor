@@ -22,6 +22,7 @@
 		664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */; };
 		664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */; };
 		664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */; };
+		664BF3012BF6999800C9D29E /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemFactory.swift; sourceTree = "<group>"; };
 		664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarFactory.swift; sourceTree = "<group>"; };
+		664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				664BF2EC2BF6633300C9D29E /* Core */,
+				664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
 				664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */,
 				664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */,
+				664BF3012BF6999800C9D29E /* MainTabBarCoordinator.swift in Sources */,
 				664BF2EE2BF6634500C9D29E /* Coordinatable.swift in Sources */,
 				664BF2E22BF65D0C00C9D29E /* Navigation + Navigable.swift in Sources */,
 				664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */,
