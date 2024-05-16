@@ -54,14 +54,30 @@
 		664BF2BC2BF6472C00C9D29E /* Snjor */ = {
 			isa = PBXGroup;
 			children = (
+				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
+				664BF2C12BF6472C00C9D29E /* ViewController.swift */,
+				664BF2D32BF64B2C00C9D29E /* Resources */,
+			);
+			path = Snjor;
+			sourceTree = "<group>";
+		};
+		664BF2D22BF64B0C00C9D29E /* AppLifecycle */ = {
+			isa = PBXGroup;
+			children = (
 				664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */,
 				664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */,
-				664BF2C12BF6472C00C9D29E /* ViewController.swift */,
+			);
+			path = AppLifecycle;
+			sourceTree = "<group>";
+		};
+		664BF2D32BF64B2C00C9D29E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				664BF2C62BF6473000C9D29E /* Assets.xcassets */,
 				664BF2C82BF6473000C9D29E /* LaunchScreen.storyboard */,
 				664BF2CB2BF6473000C9D29E /* Info.plist */,
 			);
-			path = Snjor;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
