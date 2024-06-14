@@ -11,18 +11,18 @@ protocol MainTabBarCoordinatorDelegate: AnyObject {
 
 final class MainTabBarCoordinator: Coordinatable {
   // MARK: - Public Properties
-  var navigation: Navigable
-  var childCoordinators: [Coordinatable] = []
+  var navigation: any Navigable
+  var childCoordinators: [any Coordinatable] = []
 
   // MARK: - Private Properties
-  private let factory: MainTabBarFactory
-  private weak var delegate: MainTabBarCoordinatorDelegate?
+  private let factory: any MainTabBarFactoring
+  private weak var delegate: (any MainTabBarCoordinatorDelegate)?
 
   // MARK: - Initializers
   init(
-    navigation: Navigable,
-    factory: MainTabBarFactory,
-    delegate: MainTabBarCoordinatorDelegate
+    navigation: any Navigable,
+    factory: any MainTabBarFactoring,
+    delegate: any MainTabBarCoordinatorDelegate
   ) {
     self.navigation = navigation
     self.factory = factory
@@ -40,3 +40,6 @@ final class MainTabBarCoordinator: Coordinatable {
     navigationTabBar.viewControllers = childNavigation
   }
 }
+
+// MARK: - OverlordCoordinator
+extension MainTabBarCoordinator: OverlordCoordinator { }

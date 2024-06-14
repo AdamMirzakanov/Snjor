@@ -6,13 +6,13 @@
 //
 
 protocol OverlordCoordinator: AnyObject {
-  var childCoordinators: [Coordinatable] { get set }
+  var childCoordinators: [any Coordinatable] { get set }
 }
 
 // MARK: - Default Methods
 extension OverlordCoordinator {
   func addAndStartChildCoordinator(
-    _ coordinator: Coordinatable?
+    _ coordinator: (any Coordinatable)?
   ) {
     guard let childCoordinator = coordinator else { return }
     childCoordinators.append(childCoordinator)
@@ -20,7 +20,7 @@ extension OverlordCoordinator {
   }
 
   func removeChildCoordinator(
-    _ coordinator: Coordinatable
+    _ coordinator: any Coordinatable
   ) {
     childCoordinators = childCoordinators.filter { $0 !== coordinator }
   }

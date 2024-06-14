@@ -6,6 +6,6 @@
 //
 
 protocol Coordinatable: AnyObject {
-  var navigation: Navigable { get set }
+  var navigation: any Navigable { get set }
   func start()
 }

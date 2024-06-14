@@ -12,7 +12,7 @@ protocol TabBarItemFactory { }
 // MARK: - Default Methods
 extension TabBarItemFactory {
   func makeTabBarItem(
-    navigation: Navigable,
+    navigation: any Navigable,
     title: String,
     systemImageName imageName: String,
     selectedSystemImageName selectedImageName: String

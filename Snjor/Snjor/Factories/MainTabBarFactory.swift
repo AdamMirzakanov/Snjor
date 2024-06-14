@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainTabBarFactoring {
   func makeMainTabBarController() -> UITabBarController
-  func makeChildCoordinators() -> [Coordinatable]
+  func makeChildCoordinators() -> [any Coordinatable]
 }
 
 struct MainTabBarFactory: MainTabBarFactoring {
@@ -19,7 +19,7 @@ struct MainTabBarFactory: MainTabBarFactoring {
     return mainTabBarController
   }
 
-  func makeChildCoordinators() -> [Coordinatable] {
+  func makeChildCoordinators() -> [any Coordinatable] {
     return []
   }
 }

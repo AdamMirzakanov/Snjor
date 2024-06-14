@@ -7,17 +7,17 @@
 
 protocol AppFactoring {
   func makeMainTabBarCoordinator(
-    _ navigation: Navigable,
+    _ navigation: any Navigable,
     delegate: MainTabBarCoordinatorDelegate
-  ) -> Coordinatable
+  ) -> any Coordinatable
 }
 
 struct AppFactory: AppFactoring {
   // MARK: - Public Methods
   func makeMainTabBarCoordinator(
-    _ navigation: Navigable,
-    delegate: MainTabBarCoordinatorDelegate
-  ) -> Coordinatable {
+    _ navigation: any Navigable,
+    delegate: any MainTabBarCoordinatorDelegate
+  ) -> any Coordinatable {
     let factory = MainTabBarFactory()
     let coordinator = MainTabBarCoordinator(
       navigation: navigation,

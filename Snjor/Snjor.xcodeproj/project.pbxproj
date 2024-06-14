@@ -59,6 +59,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		664A511C2C1CE25B003491BA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				664BF2DB2BF65B9B00C9D29E /* Navigable.swift */,
+				664BF2ED2BF6634500C9D29E /* Coordinatable.swift */,
+				664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		664BF2B12BF6472C00C9D29E = {
 			isa = PBXGroup;
 			children = (
@@ -80,7 +90,7 @@
 			children = (
 				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
 				664BF2EB2BF6632400C9D29E /* Coordinators */,
-				664BF2DE2BF65BB400C9D29E /* NavigationCore */,
+				664BF2DE2BF65BB400C9D29E /* Navigation */,
 				664BF2F82BF67DF000C9D29E /* Screens */,
 				664BF2FB2BF681DF00C9D29E /* Factories */,
 				664BF2D32BF64B2C00C9D29E /* Resources */,
@@ -107,35 +117,25 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		664BF2DE2BF65BB400C9D29E /* NavigationCore */ = {
+		664BF2DE2BF65BB400C9D29E /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				664BF2DB2BF65B9B00C9D29E /* Navigable.swift */,
+				664A511C2C1CE25B003491BA /* Core */,
 				664BF2DF2BF65C5900C9D29E /* Navigation.swift */,
 				664BF2E12BF65D0C00C9D29E /* Navigation + Navigable.swift */,
 				664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */,
 				664BF2E52BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift */,
 			);
-			path = NavigationCore;
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		664BF2EB2BF6632400C9D29E /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				664BF2EC2BF6633300C9D29E /* Core */,
 				664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */,
 				664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		664BF2EC2BF6633300C9D29E /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				664BF2ED2BF6634500C9D29E /* Coordinatable.swift */,
-				664BF2F12BF6676E00C9D29E /* OverlordCoordinator.swift */,
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		664BF2F82BF67DF000C9D29E /* Screens */ = {

@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   // MARK: - Private Properties
   private var appCoordinator: AppCoordinator?
-  private var appFactory: AppFactoring?
+  private var appFactory: (any AppFactoring)?
 
   // MARK: - Public Methods
   func scene(
@@ -26,10 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(windowScene: windowScene)
     appFactory = AppFactory()
     let navigationController = UINavigationController()
-    let router = Navigation(rootViewController: navigationController)
+    let navigation = Navigation(rootViewController: navigationController)
 
     appCoordinator = AppCoordinator(
-      navigation: router,
+      navigation: navigation,
       window: window,
       factory: appFactory
     )

@@ -9,16 +9,16 @@ import UIKit
 
 final class AppCoordinator: Coordinatable {
   // MARK: - Public Properties
-  var navigation: Navigable
-  var childCoordinators: [Coordinatable] = []
-  var factory: AppFactoring?
+  var navigation: any Navigable
+  var childCoordinators: [any Coordinatable] = []
+  var factory: (any AppFactoring)?
   var window: UIWindow?
 
   // MARK: - Initializers
   init(
-    navigation: Navigable,
+    navigation: any Navigable,
     window: UIWindow?,
-    factory: AppFactoring?
+    factory: (any AppFactoring)?
   ) {
     self.navigation = navigation
     self.window = window
@@ -30,20 +30,18 @@ final class AppCoordinator: Coordinatable {
     configWindow()
     startSomeCoordinator()
   }
-}
 
-// MARK: - Private Methods
-private extension AppCoordinator {
-  func configWindow() {
+  // MARK: - Private Methods
+  private func configWindow() {
     window?.rootViewController = navigation.rootViewController
     window?.makeKeyAndVisible()
   }
 
-  func startSomeCoordinator() {
+  private func startSomeCoordinator() {
     startMainTabBarCoordinator()
   }
 
-  func startMainTabBarCoordinator() {
+  private func startMainTabBarCoordinator() {
     let mainTabBarCoordinator = factory?.makeMainTabBarCoordinator(
       navigation,
       delegate: self
@@ -51,7 +49,7 @@ private extension AppCoordinator {
     addAndStartChildCoordinator(mainTabBarCoordinator)
   }
 
-  func clearCoordinatorsAndStart() {
+  private func clearCoordinatorsAndStart() {
     navigation.viewControllers = []
     removeAllChildCoordinators()
     startSomeCoordinator()
