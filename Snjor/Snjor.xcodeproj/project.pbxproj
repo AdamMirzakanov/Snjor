@@ -24,6 +24,7 @@
 		664A51492C1DFA7A003491BA /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51482C1DFA7A003491BA /* Authorization.swift */; };
 		664A514E2C1DFE64003491BA /* PrepareParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A514D2C1DFE64003491BA /* PrepareParameters.swift */; };
 		664A51502C1DFEE8003491BA /* PrepareRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A514F2C1DFEE8003491BA /* PrepareRequests.swift */; };
+		664A51522C1DFF61003491BA /* RequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51512C1DFF61003491BA /* RequestController.swift */; };
 		664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */; };
 		664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */; };
 		664BF2C72BF6473000C9D29E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664BF2C62BF6473000C9D29E /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		664A51482C1DFA7A003491BA /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		664A514D2C1DFE64003491BA /* PrepareParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareParameters.swift; sourceTree = "<group>"; };
 		664A514F2C1DFEE8003491BA /* PrepareRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareRequests.swift; sourceTree = "<group>"; };
+		664A51512C1DFF61003491BA /* RequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestController.swift; sourceTree = "<group>"; };
 		664BF2BA2BF6472C00C9D29E /* Snjor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snjor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,7 +130,7 @@
 				664A514C2C1DFE50003491BA /* Request */,
 				664A51302C1DE716003491BA /* Core */,
 				664A513D2C1DEEC0003491BA /* Paging */,
-				664A514A2C1DFB4C003491BA /* URLComponents */,
+				664A514A2C1DFB4C003491BA /* Components */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -154,7 +156,7 @@
 			path = Paging;
 			sourceTree = "<group>";
 		};
-		664A514A2C1DFB4C003491BA /* URLComponents */ = {
+		664A514A2C1DFB4C003491BA /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				664A51422C1DFA38003491BA /* HTTPMethod.swift */,
@@ -162,7 +164,7 @@
 				664A51462C1DFA64003491BA /* Endpoints.swift */,
 				664A51482C1DFA7A003491BA /* Authorization.swift */,
 			);
-			path = URLComponents;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		664A514C2C1DFE50003491BA /* Request */ = {
@@ -170,6 +172,7 @@
 			children = (
 				664A514D2C1DFE64003491BA /* PrepareParameters.swift */,
 				664A514F2C1DFEE8003491BA /* PrepareRequests.swift */,
+				664A51512C1DFF61003491BA /* RequestController.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				664A512D2C1DD737003491BA /* UIImage + Preload.swift in Sources */,
 				664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */,
 				664A513F2C1DEED9003491BA /* Pageable.swift in Sources */,
+				664A51522C1DFF61003491BA /* RequestController.swift in Sources */,
 				664A51412C1DEFA4003491BA /* PagingGenerator.swift in Sources */,
 				664A51452C1DFA50003491BA /* API.swift in Sources */,
 				664A51382C1DE831003491BA /* NetworkService + Requestable.swift in Sources */,
