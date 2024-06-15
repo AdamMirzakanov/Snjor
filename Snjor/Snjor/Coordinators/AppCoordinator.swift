@@ -11,14 +11,14 @@ final class AppCoordinator: Coordinatable {
   // MARK: - Public Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
-  var factory: (any AppFactoring)?
+  var factory: (any AppFactoryDeclarable)?
   var window: UIWindow?
 
   // MARK: - Initializers
   init(
     navigation: any Navigable,
     window: UIWindow?,
-    factory: (any AppFactoring)?
+    factory: (any AppFactoryDeclarable)?
   ) {
     self.navigation = navigation
     self.window = window

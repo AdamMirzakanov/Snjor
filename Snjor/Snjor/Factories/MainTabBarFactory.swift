@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol MainTabBarFactoring {
+protocol MainTabBarFactoryDeclarable {
   func makeMainTabBarController() -> UITabBarController
   func makeChildCoordinators() -> [any Coordinatable]
 }
 
-struct MainTabBarFactory: MainTabBarFactoring {
+struct MainTabBarFactory: MainTabBarFactoryDeclarable {
   // MARK: - Public Methods
   func makeMainTabBarController() -> UITabBarController {
     let mainTabBarController = MainTabBarController()

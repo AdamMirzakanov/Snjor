@@ -89,9 +89,9 @@
 			isa = PBXGroup;
 			children = (
 				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
-				664BF2EB2BF6632400C9D29E /* Coordinators */,
 				664BF2DE2BF65BB400C9D29E /* Navigation */,
 				664BF2F82BF67DF000C9D29E /* Screens */,
+				664BF2EB2BF6632400C9D29E /* Coordinators */,
 				664BF2FB2BF681DF00C9D29E /* Factories */,
 				664BF2D32BF64B2C00C9D29E /* Resources */,
 			);

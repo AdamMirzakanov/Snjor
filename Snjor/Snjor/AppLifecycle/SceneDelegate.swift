@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   // MARK: - Private Properties
   private var appCoordinator: AppCoordinator?
-  private var appFactory: (any AppFactoring)?
+  private var appFactory: (any AppFactoryDeclarable)?
 
   // MARK: - Public Methods
   func scene(
