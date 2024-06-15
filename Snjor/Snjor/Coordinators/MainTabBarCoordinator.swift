@@ -15,13 +15,13 @@ final class MainTabBarCoordinator: Coordinatable {
   var childCoordinators: [any Coordinatable] = []
 
   // MARK: - Private Properties
-  private let factory: any MainTabBarFactoryDeclarable
+  private let factory: any MainTabBarFactoryProtocol
   private weak var delegate: (any MainTabBarCoordinatorDelegate)?
 
   // MARK: - Initializers
   init(
     navigation: any Navigable,
-    factory: any MainTabBarFactoryDeclarable,
+    factory: any MainTabBarFactoryProtocol,
     delegate: any MainTabBarCoordinatorDelegate
   ) {
     self.navigation = navigation

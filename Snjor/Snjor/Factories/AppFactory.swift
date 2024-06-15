@@ -5,14 +5,14 @@
 //  Created by Адам on 17.05.2024.
 //
 
-protocol AppFactoryDeclarable {
+protocol AppFactoryProtocol {
   func makeMainTabBarCoordinator(
     _ navigation: any Navigable,
     delegate: MainTabBarCoordinatorDelegate
   ) -> any Coordinatable
 }
 
-struct AppFactory: AppFactoryDeclarable {
+struct AppFactory: AppFactoryProtocol {
   // MARK: - Public Methods
   func makeMainTabBarCoordinator(
     _ navigation: any Navigable,
