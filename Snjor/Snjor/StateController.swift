@@ -8,5 +8,5 @@
 enum StateController {
   case success
   case loading
-  case fail(error: String)    
+  case fail(error: String)
 }

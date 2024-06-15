@@ -27,6 +27,7 @@
 		664A51522C1DFF61003491BA /* RequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51512C1DFF61003491BA /* RequestController.swift */; };
 		664A51542C1E4095003491BA /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51532C1E4095003491BA /* BaseViewModel.swift */; };
 		664A51562C1E40B2003491BA /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51552C1E40B2003491BA /* StateController.swift */; };
+		664A51582C1E4319003491BA /* MessageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51572C1E4319003491BA /* MessageDisplayable.swift */; };
 		664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */; };
 		664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */; };
 		664BF2C72BF6473000C9D29E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664BF2C62BF6473000C9D29E /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		664A51512C1DFF61003491BA /* RequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestController.swift; sourceTree = "<group>"; };
 		664A51532C1E4095003491BA /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		664A51552C1E40B2003491BA /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
+		664A51572C1E4319003491BA /* MessageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDisplayable.swift; sourceTree = "<group>"; };
 		664BF2BA2BF6472C00C9D29E /* Snjor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snjor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				664BF2D32BF64B2C00C9D29E /* Resources */,
 				664A51532C1E4095003491BA /* BaseViewModel.swift */,
 				664A51552C1E40B2003491BA /* StateController.swift */,
+				664A51572C1E4319003491BA /* MessageDisplayable.swift */,
 			);
 			path = Snjor;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			files = (
 				664A51472C1DFA64003491BA /* Endpoints.swift in Sources */,
 				664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */,
+				664A51582C1E4319003491BA /* MessageDisplayable.swift in Sources */,
 				664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */,
 				664A512D2C1DD737003491BA /* UIImage + Preload.swift in Sources */,
 				664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */,
