@@ -7,9 +7,8 @@
 
 import UIKit
 
-// MARK: - UIImage Extension
+// swiftlint:disable all
 extension UIImage {
-
   // MARK: - Initializers
   convenience init?(
     blurHash: String,
@@ -189,3 +188,4 @@ private func sRGBToLinear<Type: BinaryInteger>(_ value: Type) -> Float {
     return pow((v + 0.055) / 1.055, 2.4)
   }
 }
+// swiftlint:enable all

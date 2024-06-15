@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIColor {
-
   // MARK: - Private Properties
   private var redComponent: CGFloat { return cgColor.components?[0] ?? 0 }
   private var greenComponent: CGFloat { return cgColor.components?[1] ?? 0 }
@@ -16,7 +15,7 @@ extension UIColor {
 
   private var alpha: CGFloat {
     guard let components = cgColor.components else { return 1 }
-    return components[cgColor.numberOfComponents-1]
+    return components[cgColor.numberOfComponents - 1]
   }
 
   private var hexString: String {
@@ -70,4 +69,3 @@ extension UIColor {
     )
   }
 }
-

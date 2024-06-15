@@ -7,8 +7,7 @@
 
 import Foundation
 
-class ImageCache {
-
+enum ImageCache {
   // MARK: - Public Properties
   private static let memoryCapacity: Int = 50.megabytes
   private static let diskCapacity: Int = 100.megabytes
@@ -16,9 +15,11 @@ class ImageCache {
   // MARK: - Public Methods
   static let cache: URLCache = {
     let diskPath = "unsplash"
+    // swiftlint:disable force_unwrapping
     let cachesDirectory = FileManager.default.urls(
       for: .cachesDirectory,
       in: .userDomainMask).first!
+    // swiftlint:enable force_unwrapping
     let cacheURL = cachesDirectory.appendingPathComponent(
       diskPath,
       isDirectory: true
