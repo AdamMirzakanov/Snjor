@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A511E2C1DCE6C003491BA /* ImageCache.swift */; };
 		664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */; };
 		664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */; };
 		664BF2C72BF6473000C9D29E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664BF2C62BF6473000C9D29E /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		664A511E2C1DCE6C003491BA /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		664BF2BA2BF6472C00C9D29E /* Snjor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snjor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		664A511D2C1DCE5B003491BA /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				664A511E2C1DCE6C003491BA /* ImageCache.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		664BF2B12BF6472C00C9D29E = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +98,7 @@
 		664BF2BC2BF6472C00C9D29E /* Snjor */ = {
 			isa = PBXGroup;
 			children = (
+				664A511D2C1DCE5B003491BA /* Storage */,
 				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
 				664BF2DE2BF65BB400C9D29E /* Navigation */,
 				664BF2F82BF67DF000C9D29E /* Screens */,
@@ -250,6 +261,7 @@
 			files = (
 				664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */,
 				664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */,
+				664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */,
 				664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */,
 				664BF3052BF6AEA300C9D29E /* AppCoordinator.swift in Sources */,
 				664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */,
