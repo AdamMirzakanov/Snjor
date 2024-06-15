@@ -31,6 +31,8 @@
 		664A515A2C1E443E003491BA /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51592C1E443E003491BA /* Reusable.swift */; };
 		664A515C2C1E458A003491BA /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A515B2C1E458A003491BA /* Photo.swift */; };
 		664A515F2C1E46A6003491BA /* SearchPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A515E2C1E46A6003491BA /* SearchPhotos.swift */; };
+		664A51632C1E4D31003491BA /* PhotoListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51622C1E4D31003491BA /* PhotoListViewModelProtocol.swift */; };
+		664A51652C1E4D68003491BA /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51642C1E4D68003491BA /* Section.swift */; };
 		664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */; };
 		664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */; };
 		664BF2C72BF6473000C9D29E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664BF2C62BF6473000C9D29E /* Assets.xcassets */; };
@@ -75,6 +77,8 @@
 		664A51592C1E443E003491BA /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		664A515B2C1E458A003491BA /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		664A515E2C1E46A6003491BA /* SearchPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotos.swift; sourceTree = "<group>"; };
+		664A51622C1E4D31003491BA /* PhotoListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewModelProtocol.swift; sourceTree = "<group>"; };
+		664A51642C1E4D68003491BA /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		664BF2BA2BF6472C00C9D29E /* Snjor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snjor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +202,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		664A51602C1E4CDB003491BA /* PhotoList */ = {
+			isa = PBXGroup;
+			children = (
+				664A51612C1E4CFA003491BA /* ViewModel */,
+			);
+			path = PhotoList;
+			sourceTree = "<group>";
+		};
+		664A51612C1E4CFA003491BA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				664A51622C1E4D31003491BA /* PhotoListViewModelProtocol.swift */,
+				664A51642C1E4D68003491BA /* Section.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		664BF2B12BF6472C00C9D29E = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +299,7 @@
 		664BF2F82BF67DF000C9D29E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				664A51602C1E4CDB003491BA /* PhotoList */,
 				664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */,
 			);
 			path = Screens;
@@ -407,6 +429,7 @@
 				664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */,
 				664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				664A51272C1DD3FB003491BA /* UIImage + BlurHash.swift in Sources */,
+				664A51632C1E4D31003491BA /* PhotoListViewModelProtocol.swift in Sources */,
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
 				664A51542C1E4095003491BA /* BaseViewModel.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
@@ -422,6 +445,7 @@
 				664A51502C1DFEE8003491BA /* PrepareRequests.swift in Sources */,
 				664A514E2C1DFE64003491BA /* PrepareParameters.swift in Sources */,
 				664A512B2C1DD5D9003491BA /* UIColor + Extensions.swift in Sources */,
+				664A51652C1E4D68003491BA /* Section.swift in Sources */,
 				664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */,
 				664BF2DC2BF65B9B00C9D29E /* Navigable.swift in Sources */,
 			);
