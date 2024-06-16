@@ -59,6 +59,7 @@
 		667A59982C1EFE4A00FE4985 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */; };
 		667A599A2C1F057A00FE4985 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59992C1F057A00FE4985 /* PhotoView.swift */; };
 		667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A599B2C1F082900FE4985 /* PhotoCell.swift */; };
+		66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		667A59992C1F057A00FE4985 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		667A599B2C1F082900FE4985 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */,
+				66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */,
 				667A59932C1EF9B400FE4985 /* + MessageDisplayable.swift */,
 			);
 			path = Controller;
@@ -492,6 +495,7 @@
 				667A599A2C1F057A00FE4985 /* PhotoView.swift in Sources */,
 				664A51272C1DD3FB003491BA /* UIImage + BlurHash.swift in Sources */,
 				664A51632C1E4D31003491BA /* PhotoListViewModelProtocol.swift in Sources */,
+				66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */,
 				667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */,
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
 				664A51542C1E4095003491BA /* BaseViewModel.swift in Sources */,
