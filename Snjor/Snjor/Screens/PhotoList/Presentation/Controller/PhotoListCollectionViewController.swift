@@ -28,16 +28,16 @@ class PhotoListCollectionViewController: UICollectionViewController {
     self.delegate = delegate
     super.init(collectionViewLayout: layout)
   }
-  
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-  
+
   // MARK: - Private Methods
   private func stateController() {
     viewModel
@@ -53,6 +53,7 @@ class PhotoListCollectionViewController: UICollectionViewController {
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
         }
-      }.store(in: &cancellable)
+      }
+      .store(in: &cancellable)
   }
 }

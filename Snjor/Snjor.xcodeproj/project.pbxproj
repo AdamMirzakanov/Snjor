@@ -56,6 +56,7 @@
 		667A59902C1EF6F500FE4985 /* PhotoListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */; };
 		667A59922C1EF98300FE4985 /* AppLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59912C1EF98300FE4985 /* AppLocalized.swift */; };
 		667A59942C1EF9B400FE4985 /* + MessageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59932C1EF9B400FE4985 /* + MessageDisplayable.swift */; };
+		667A59982C1EFE4A00FE4985 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCollectionViewController.swift; sourceTree = "<group>"; };
 		667A59912C1EF98300FE4985 /* AppLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocalized.swift; sourceTree = "<group>"; };
 		667A59932C1EF9B400FE4985 /* + MessageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ MessageDisplayable.swift"; sourceTree = "<group>"; };
+		667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				664A51372C1DE831003491BA /* NetworkService + Requestable.swift */,
 				664A513B2C1DE8A0003491BA /* HTTPResponseStatus.swift */,
 				664A51392C1DE87E003491BA /* APIError.swift */,
+				667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				664BF3032BF6AD3900C9D29E /* AppFactory.swift in Sources */,
 				664BF3012BF6999800C9D29E /* MainTabBarCoordinator.swift in Sources */,
 				664BF2EE2BF6634500C9D29E /* Coordinatable.swift in Sources */,
+				667A59982C1EFE4A00FE4985 /* ImageDownloader.swift in Sources */,
 				664BF2E22BF65D0C00C9D29E /* Navigation + Navigable.swift in Sources */,
 				664A51432C1DFA38003491BA /* HTTPMethod.swift in Sources */,
 				664A51562C1E40B2003491BA /* StateController.swift in Sources */,
