@@ -53,6 +53,7 @@
 		664BF3052BF6AEA300C9D29E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */; };
 		667A59882C1EE63C00FE4985 /* LoadPhotoListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */; };
 		667A598A2C1EE66A00FE4985 /* LoadPhotoListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */; };
+		667A59902C1EF6F500FE4985 /* PhotoListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoListUseCase.swift; sourceTree = "<group>"; };
 		667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoListRepository.swift; sourceTree = "<group>"; };
+		667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,7 +213,10 @@
 		664A51602C1E4CDB003491BA /* PhotoList */ = {
 			isa = PBXGroup;
 			children = (
+				667A598C2C1EF67800FE4985 /* Presentation */,
 				664A51612C1E4CFA003491BA /* ViewModel */,
+				667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */,
+				667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */,
 			);
 			path = PhotoList;
 			sourceTree = "<group>";
@@ -307,9 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				664A51602C1E4CDB003491BA /* PhotoList */,
-				664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */,
-				667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */,
-				667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */,
+				667A598B2C1EF64300FE4985 /* MainTabBar */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -322,6 +325,38 @@
 				664BF3022BF6AD3900C9D29E /* AppFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		667A598B2C1EF64300FE4985 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		667A598C2C1EF67800FE4985 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				667A598E2C1EF6BA00FE4985 /* Controller */,
+				667A598D2C1EF69700FE4985 /* View */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		667A598D2C1EF69700FE4985 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		667A598E2C1EF6BA00FE4985 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,6 +458,7 @@
 				664BF2F22BF6676E00C9D29E /* OverlordCoordinator.swift in Sources */,
 				664A512D2C1DD737003491BA /* UIImage + Preload.swift in Sources */,
 				664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */,
+				667A59902C1EF6F500FE4985 /* PhotoListCollectionViewController.swift in Sources */,
 				664A513F2C1DEED9003491BA /* Pageable.swift in Sources */,
 				664A51522C1DFF61003491BA /* RequestController.swift in Sources */,
 				664A51412C1DEFA4003491BA /* PagingGenerator.swift in Sources */,
