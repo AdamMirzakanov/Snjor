@@ -30,6 +30,7 @@ class PhotoView: UIView {
     let size = CGSize(width: 32.0, height: 32.0)
     currentPhotoID = photo.id
     waterfallPhotoImageView.image = UIImage(blurHash: photo.blurHash, size: size)
+    downloadImage(with: photo)
   }
 
   func setupImageView() {
@@ -40,5 +41,30 @@ class PhotoView: UIView {
       waterfallPhotoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
       waterfallPhotoImageView.trailingAnchor.constraint(equalTo: trailingAnchor)
     ])
+  }
+
+  // MARK: - Private Methods
+  private func downloadImage(with photo: Photo) {
+    guard let url = photo.urls[.small] else {
+      return
+    }
+    let downloadPhotoID = photo.id
+    imageDownloader.downloadPhoto(with: url) { [weak self] image, isCached in
+      guard let self = self,
+        self.currentPhotoID == downloadPhotoID
+      else { return }
+      if isCached == true {
+        print("Cache")
+        self.waterfallPhotoImageView.image = image
+      } else {
+        print("Internet")
+        UIView.transition(
+          with: self,
+          duration: 0.25,
+          options: [.transitionCrossDissolve]) {
+            self.waterfallPhotoImageView.image = image
+        }
+      }
+    }
   }
 }
