@@ -33,6 +33,7 @@
 		664A515F2C1E46A6003491BA /* SearchPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A515E2C1E46A6003491BA /* SearchPhotos.swift */; };
 		664A51632C1E4D31003491BA /* PhotoListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51622C1E4D31003491BA /* PhotoListViewModelProtocol.swift */; };
 		664A51652C1E4D68003491BA /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51642C1E4D68003491BA /* Section.swift */; };
+		664A51672C1E4E6F003491BA /* PhotoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51662C1E4E6F003491BA /* PhotoListViewModel.swift */; };
 		664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */; };
 		664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */; };
 		664BF2C72BF6473000C9D29E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664BF2C62BF6473000C9D29E /* Assets.xcassets */; };
@@ -50,6 +51,8 @@
 		664BF3012BF6999800C9D29E /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */; };
 		664BF3032BF6AD3900C9D29E /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3022BF6AD3900C9D29E /* AppFactory.swift */; };
 		664BF3052BF6AEA300C9D29E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */; };
+		667A59882C1EE63C00FE4985 /* LoadPhotoListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */; };
+		667A598A2C1EE66A00FE4985 /* LoadPhotoListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +82,7 @@
 		664A515E2C1E46A6003491BA /* SearchPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotos.swift; sourceTree = "<group>"; };
 		664A51622C1E4D31003491BA /* PhotoListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewModelProtocol.swift; sourceTree = "<group>"; };
 		664A51642C1E4D68003491BA /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		664A51662C1E4E6F003491BA /* PhotoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewModel.swift; sourceTree = "<group>"; };
 		664BF2BA2BF6472C00C9D29E /* Snjor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snjor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664BF2BD2BF6472C00C9D29E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		664BF2BF2BF6472C00C9D29E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 		664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		664BF3022BF6AD3900C9D29E /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoListUseCase.swift; sourceTree = "<group>"; };
+		667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoListRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +149,8 @@
 		664A512F2C1DE706003491BA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				664A514C2C1DFE50003491BA /* Request */,
 				664A51302C1DE716003491BA /* Core */,
+				664A514C2C1DFE50003491BA /* Request */,
 				664A513D2C1DEEC0003491BA /* Paging */,
 				664A514A2C1DFB4C003491BA /* Components */,
 			);
@@ -214,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				664A51622C1E4D31003491BA /* PhotoListViewModelProtocol.swift */,
+				664A51662C1E4E6F003491BA /* PhotoListViewModel.swift */,
 				664A51642C1E4D68003491BA /* Section.swift */,
 			);
 			path = ViewModel;
@@ -301,6 +308,8 @@
 			children = (
 				664A51602C1E4CDB003491BA /* PhotoList */,
 				664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */,
+				667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */,
+				667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -420,6 +429,7 @@
 				664A51452C1DFA50003491BA /* API.swift in Sources */,
 				664A51382C1DE831003491BA /* NetworkService + Requestable.swift in Sources */,
 				664A515C2C1E458A003491BA /* Photo.swift in Sources */,
+				664A51672C1E4E6F003491BA /* PhotoListViewModel.swift in Sources */,
 				664A51492C1DFA7A003491BA /* Authorization.swift in Sources */,
 				664A515F2C1E46A6003491BA /* SearchPhotos.swift in Sources */,
 				664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */,
@@ -447,6 +457,8 @@
 				664A512B2C1DD5D9003491BA /* UIColor + Extensions.swift in Sources */,
 				664A51652C1E4D68003491BA /* Section.swift in Sources */,
 				664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */,
+				667A59882C1EE63C00FE4985 /* LoadPhotoListUseCase.swift in Sources */,
+				667A598A2C1EE66A00FE4985 /* LoadPhotoListRepository.swift in Sources */,
 				664BF2DC2BF65B9B00C9D29E /* Navigable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
