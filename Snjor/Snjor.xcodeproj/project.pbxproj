@@ -62,6 +62,7 @@
 		66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */; };
 		66BE9C5B2C1F10680006011A /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C5A2C1F10680006011A /* LayoutConstants.swift */; };
 		66BE9C5D2C1F10A30006011A /* WaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C5C2C1F10A30006011A /* WaterfallLayout.swift */; };
+		66BE9C602C1F13C10006011A /* + WaterfallLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C5F2C1F13C10006011A /* + WaterfallLayoutDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
 		66BE9C5A2C1F10680006011A /* LayoutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
 		66BE9C5C2C1F10A30006011A /* WaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallLayout.swift; sourceTree = "<group>"; };
+		66BE9C5F2C1F13C10006011A /* + WaterfallLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ WaterfallLayoutDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,6 +380,7 @@
 				667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */,
 				66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */,
 				667A59932C1EF9B400FE4985 /* + MessageDisplayable.swift */,
+				66BE9C5F2C1F13C10006011A /* + WaterfallLayoutDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				664A513F2C1DEED9003491BA /* Pageable.swift in Sources */,
 				664A51522C1DFF61003491BA /* RequestController.swift in Sources */,
 				664A51412C1DEFA4003491BA /* PagingGenerator.swift in Sources */,
+				66BE9C602C1F13C10006011A /* + WaterfallLayoutDelegate.swift in Sources */,
 				664A51452C1DFA50003491BA /* API.swift in Sources */,
 				664A51382C1DE831003491BA /* NetworkService + Requestable.swift in Sources */,
 				664A515C2C1E458A003491BA /* Photo.swift in Sources */,
