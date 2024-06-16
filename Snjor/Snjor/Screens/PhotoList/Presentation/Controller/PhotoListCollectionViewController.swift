@@ -12,7 +12,7 @@ protocol PhotoListViewControllerDelegate: AnyObject {
   func didSelect()
 }
 
-class PhotoListCollectionViewController: UICollectionViewController, MessageDisplayable {
+class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - Private Properties
   private(set) var viewModel: any PhotoListViewModelProtocol
   private weak var delegate: (any PhotoListViewControllerDelegate)?
@@ -55,8 +55,4 @@ class PhotoListCollectionViewController: UICollectionViewController, MessageDisp
         }
       }.store(in: &cancellable)
   }
-}
-
-enum AppLocalized {
-  static let error = "Error"
 }
