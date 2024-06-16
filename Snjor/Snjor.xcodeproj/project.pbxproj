@@ -64,6 +64,7 @@
 		66BE9C5D2C1F10A30006011A /* WaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C5C2C1F10A30006011A /* WaterfallLayout.swift */; };
 		66BE9C602C1F13C10006011A /* + WaterfallLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C5F2C1F13C10006011A /* + WaterfallLayoutDelegate.swift */; };
 		66BE9C622C1F150F0006011A /* PhotoListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C612C1F150F0006011A /* PhotoListFactory.swift */; };
+		66BE9C662C1F17870006011A /* PhotoListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C652C1F17860006011A /* PhotoListCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		66BE9C5C2C1F10A30006011A /* WaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallLayout.swift; sourceTree = "<group>"; };
 		66BE9C5F2C1F13C10006011A /* + WaterfallLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ WaterfallLayoutDelegate.swift"; sourceTree = "<group>"; };
 		66BE9C612C1F150F0006011A /* PhotoListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListFactory.swift; sourceTree = "<group>"; };
+		66BE9C652C1F17860006011A /* PhotoListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 			children = (
 				664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */,
 				664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */,
+				66BE9C652C1F17860006011A /* PhotoListCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				66BE9C602C1F13C10006011A /* + WaterfallLayoutDelegate.swift in Sources */,
 				664A51452C1DFA50003491BA /* API.swift in Sources */,
 				664A51382C1DE831003491BA /* NetworkService + Requestable.swift in Sources */,
+				66BE9C662C1F17870006011A /* PhotoListCoordinator.swift in Sources */,
 				664A515C2C1E458A003491BA /* Photo.swift in Sources */,
 				664A51672C1E4E6F003491BA /* PhotoListViewModel.swift in Sources */,
 				664A51492C1DFA7A003491BA /* Authorization.swift in Sources */,
