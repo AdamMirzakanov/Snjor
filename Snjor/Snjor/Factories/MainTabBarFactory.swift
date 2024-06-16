@@ -20,6 +20,16 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
   }
 
   func makeChildCoordinators() -> [any Coordinatable] {
-    return []
+    let photoListCoordinator = makePhotosCoordinator()
+    return [photoListCoordinator]
+  }
+
+  // MARK: - Private Methods
+  private func makePhotosCoordinator() -> any Coordinatable {
+    let factory = PhotoListFactory()
+    let navigationController = UINavigationController()
+    let navigation = Navigation(rootViewController: navigationController)
+    let coordinator = PhotoListCoordinator(factory: factory, navigation: navigation)
+    return coordinator
   }
 }
