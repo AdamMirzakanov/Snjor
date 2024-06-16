@@ -60,6 +60,8 @@
 		667A599A2C1F057A00FE4985 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59992C1F057A00FE4985 /* PhotoView.swift */; };
 		667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A599B2C1F082900FE4985 /* PhotoCell.swift */; };
 		66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */; };
+		66BE9C5B2C1F10680006011A /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C5A2C1F10680006011A /* LayoutConstants.swift */; };
+		66BE9C5D2C1F10A30006011A /* WaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C5C2C1F10A30006011A /* WaterfallLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +120,8 @@
 		667A59992C1F057A00FE4985 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		667A599B2C1F082900FE4985 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
+		66BE9C5A2C1F10680006011A /* LayoutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
+		66BE9C5C2C1F10A30006011A /* WaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				667A598E2C1EF6BA00FE4985 /* Controller */,
+				66BE9C5E2C1F10C30006011A /* Layout */,
 				667A598D2C1EF69700FE4985 /* View */,
 			);
 			path = Presentation;
@@ -375,6 +380,15 @@
 				667A59932C1EF9B400FE4985 /* + MessageDisplayable.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		66BE9C5E2C1F10C30006011A /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				66BE9C5A2C1F10680006011A /* LayoutConstants.swift */,
+				66BE9C5C2C1F10A30006011A /* WaterfallLayout.swift */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,6 +491,7 @@
 				664A512D2C1DD737003491BA /* UIImage + Preload.swift in Sources */,
 				664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */,
 				667A59902C1EF6F500FE4985 /* PhotoListCollectionViewController.swift in Sources */,
+				66BE9C5D2C1F10A30006011A /* WaterfallLayout.swift in Sources */,
 				664A513F2C1DEED9003491BA /* Pageable.swift in Sources */,
 				664A51522C1DFF61003491BA /* RequestController.swift in Sources */,
 				664A51412C1DEFA4003491BA /* PagingGenerator.swift in Sources */,
@@ -500,6 +515,7 @@
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
 				664A51542C1E4095003491BA /* BaseViewModel.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
+				66BE9C5B2C1F10680006011A /* LayoutConstants.swift in Sources */,
 				664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */,
 				664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */,
 				664A51362C1DE804003491BA /* NetworkService.swift in Sources */,
