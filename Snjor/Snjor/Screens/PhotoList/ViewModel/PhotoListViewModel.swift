@@ -46,13 +46,15 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
     }
   }
 
-  func fetchPhoto(at indexPath: IndexPath) -> Photo {
-    return photos[indexPath.item]
-  }
-
-  func loadPhoto(at indexPath: IndexPath) -> Photo {
-    checkAndLoadMorePhotos(at: indexPath)
-    return photos[indexPath.item]
+  func createDataSource(for collectionView: UICollectionView) {
+    dataSource = UICollectionViewDiffableDataSource
+    <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, _ in
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseID, for: indexPath)
+      guard let waterfallCell = cell as? PhotoCell else { return cell }
+      let photo = self.loadPhoto(at: indexPath)
+      waterfallCell.configure(with: photo)
+      return cell
+    }
   }
 
   func applySnapshot() {
@@ -60,7 +62,16 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
     dataSource.apply(snapshot, animatingDifferences: true)
   }
 
+  func fetchPhoto(at indexPath: IndexPath) -> Photo {
+    return photos[indexPath.item]
+  }
+
   // MARK: - Private Methods
+  private func loadPhoto(at indexPath: IndexPath) -> Photo {
+    checkAndLoadMorePhotos(at: indexPath)
+    return photos[indexPath.item]
+  }
+
   private func checkAndLoadMorePhotos(at indexPath: IndexPath) {
     pagingGenerator.checkAndLoadMoreItems(
       item: indexPath.item,
@@ -81,9 +92,6 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
       let newPhotos = photos.filter { !existingPhotoIDs.contains($0.id) }
       pagingGenerator.updateLastPage(itemsCount: photos.count)
       self.photos.append(contentsOf: newPhotos)
-      DispatchQueue.main.async {
-        self.applySnapshot()
-      }
       state.send(.success)
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))

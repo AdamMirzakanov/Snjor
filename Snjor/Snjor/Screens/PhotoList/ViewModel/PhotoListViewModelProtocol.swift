@@ -10,6 +10,6 @@ import UIKit
 protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
   var dataSource: UICollectionViewDiffableDataSource<Section, Photo>? { get set }
   func fetchPhoto(at indexPath: IndexPath) -> Photo
-  func loadPhoto(at indexPath: IndexPath) -> Photo
   func applySnapshot()
+  func createDataSource(for collectionView: UICollectionView)
 }

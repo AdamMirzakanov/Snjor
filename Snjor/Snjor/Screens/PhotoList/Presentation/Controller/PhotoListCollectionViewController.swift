@@ -36,7 +36,7 @@ class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    createDataSource()
+    viewModel.createDataSource(for: collectionView)
     viewModel.viewDidLoad()
     stateController()
   }
@@ -58,19 +58,5 @@ class PhotoListCollectionViewController: UICollectionViewController {
         }
       }
       .store(in: &cancellable)
-  }
-
-  private func createDataSource() {
-    viewModel.dataSource = UICollectionViewDiffableDataSource
-    <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, _  in
-      let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: PhotoCell.reuseID,
-        for: indexPath
-      )
-      guard let waterfallCell = cell as? PhotoCell else { return cell }
-      let photo = self.viewModel.loadPhoto(at: indexPath)
-      waterfallCell.configure(with: photo)
-      return cell
-    }
   }
 }
