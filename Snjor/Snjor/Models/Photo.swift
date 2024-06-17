@@ -15,6 +15,7 @@ struct Photo: Decodable, Hashable {
   let id: String
   let color: UIColor?
   let blurHash: String
+  let user: User
 
   // MARK: - Public Enum
   enum URLKind: String, Decodable, CodingKey {
@@ -33,6 +34,7 @@ struct Photo: Decodable, Hashable {
     case id
     case color
     case blurHash = "blur_hash"
+    case user
   }
 
   // MARK: - Initializers
@@ -44,6 +46,7 @@ struct Photo: Decodable, Hashable {
     height = try container.decode(Int.self, forKey: .height)
     id = try container.decode(String.self, forKey: .id)
     blurHash = try container.decode(String.self, forKey: .blurHash)
+    user = try container.decode(User.self, forKey: .user)
 
     if let hexString = try? container.decode(String.self, forKey: .color) {
       color = UIColor(hexString: hexString)
