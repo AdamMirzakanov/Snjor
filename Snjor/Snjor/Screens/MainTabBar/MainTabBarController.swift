@@ -19,9 +19,21 @@ class MainTabBarController: UITabBarController {
     opacity: 1
   )
 
-  private lazy var collectionButton = getButton(
-    icon: "photo.stack",
+  private lazy var searchButton = getButton(
+    icon: "magnifyingglass",
     tag: 1,
+    action: action
+  )
+
+  private lazy var profileButton = getButton(
+    icon: "person",
+    tag: 2,
+    action: action
+  )
+
+  private lazy var settingButton = getButton(
+    icon: "gearshape",
+    tag: 3,
     action: action
   )
 
@@ -46,7 +58,9 @@ class MainTabBarController: UITabBarController {
     $0.layer.cornerRadius = tabBar.bounds.height / 2
     $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(photoListButton)
-    $0.addArrangedSubview(collectionButton)
+    $0.addArrangedSubview(searchButton)
+    $0.addArrangedSubview(profileButton)
+    $0.addArrangedSubview(settingButton)
     $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
@@ -71,7 +85,7 @@ class MainTabBarController: UITabBarController {
     icon: String,
     tag: Int,
     action: UIAction,
-    opacity: Float = 0.3
+    opacity: Float = 0.4
   ) -> UIButton {
     return {
       $0.setImage(UIImage(systemName: icon), for: .normal)
@@ -83,9 +97,9 @@ class MainTabBarController: UITabBarController {
   }
 
   private func setOpacity(tag: Int) {
-    [photoListButton, collectionButton].forEach { button in
+    [photoListButton, searchButton, profileButton, settingButton].forEach { button in
       if button.tag != tag {
-        button.layer.opacity = 0.3
+        button.layer.opacity = 0.4
       } else {
         button.layer.opacity = 1.0
       }
