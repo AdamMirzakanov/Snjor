@@ -42,7 +42,7 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
   func viewDidLoad() {
     state.send(.loading)
     Task {
-      PrepareParameters.page += 1
+      print(PrepareParameters.page)
       await loadPhotosUseCase()
     }
   }

@@ -9,7 +9,10 @@ typealias Parameters = [String: String]
 
 enum PrepareParameters {
   // MARK: - Public Properties
-  static var page = 0
+  static var page: Int {
+    Int.random(in: 0...10000)
+  }
+
   private static let perPage = 30
 
   // MARK: - Public Methods
