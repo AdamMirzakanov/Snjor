@@ -11,6 +11,7 @@ import Combine
 final class PhotosViewModel: PhotoListViewModelProtocol {
   // MARK: - Public Properties
   var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
+  var refreshControl = UIRefreshControl()
 
   // MARK: - Private Properties
   private var pagingGenerator: any Pageable
@@ -46,6 +47,13 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
     }
   }
 
+  @objc func refreshData() {
+    state.send(.loading)
+    Task {
+      await loadPhotosUseCase()
+    }
+  }
+
   func createDataSource(for collectionView: UICollectionView) {
     dataSource = UICollectionViewDiffableDataSource
     <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, _ in
@@ -64,6 +72,11 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
 
   func fetchPhoto(at indexPath: IndexPath) -> Photo {
     return photos[indexPath.item]
+  }
+
+  func setupRefreshControl(for collectionView: UICollectionView) {
+    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    collectionView.refreshControl = refreshControl
   }
 
   // MARK: - Private Methods
