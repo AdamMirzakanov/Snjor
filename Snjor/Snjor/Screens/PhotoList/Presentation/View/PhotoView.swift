@@ -19,6 +19,16 @@ class PhotoView: UIView {
     return imageView
   }()
 
+  private let gradientView: GradientView = {
+    let gradientView = GradientView()
+    gradientView.translatesAutoresizingMaskIntoConstraints = false
+    gradientView.setColors([
+      GradientView.Color(color: .clear, location: 0),
+      GradientView.Color(color: UIColor(white: 0, alpha: 0.3), location: 1)
+    ])
+    return gradientView
+  }()
+
   // MARK: - Public Methods
   func prepareForReuse() {
     currentPhotoID = nil
@@ -35,7 +45,13 @@ class PhotoView: UIView {
 
   func setupImageView() {
     addSubview(waterfallPhotoImageView)
+    addSubview(gradientView)
     NSLayoutConstraint.activate([
+      gradientView.topAnchor.constraint(equalTo: topAnchor),
+      gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
       waterfallPhotoImageView.topAnchor.constraint(equalTo: topAnchor),
       waterfallPhotoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
       waterfallPhotoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),

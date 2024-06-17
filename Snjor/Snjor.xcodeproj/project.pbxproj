@@ -66,6 +66,7 @@
 		66BE9C622C1F150F0006011A /* PhotoListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C612C1F150F0006011A /* PhotoListFactory.swift */; };
 		66BE9C662C1F17870006011A /* PhotoListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C652C1F17860006011A /* PhotoListCoordinator.swift */; };
 		66BE9C682C1FAB370006011A /* MainTabBarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C672C1FAB370006011A /* MainTabBarConstants.swift */; };
+		66BE9C6F2C2073CF0006011A /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C6E2C2073CF0006011A /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		66BE9C612C1F150F0006011A /* PhotoListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListFactory.swift; sourceTree = "<group>"; };
 		66BE9C652C1F17860006011A /* PhotoListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCoordinator.swift; sourceTree = "<group>"; };
 		66BE9C672C1FAB370006011A /* MainTabBarConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarConstants.swift; sourceTree = "<group>"; };
+		66BE9C6E2C2073CF0006011A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				667A59992C1F057A00FE4985 /* PhotoView.swift */,
+				66BE9C6E2C2073CF0006011A /* GradientView.swift */,
 				667A599B2C1F082900FE4985 /* PhotoCell.swift */,
 			);
 			path = View;
@@ -521,6 +524,7 @@
 				664BF3052BF6AEA300C9D29E /* AppCoordinator.swift in Sources */,
 				66BE9C622C1F150F0006011A /* PhotoListFactory.swift in Sources */,
 				664BF2BE2BF6472C00C9D29E /* AppDelegate.swift in Sources */,
+				66BE9C6F2C2073CF0006011A /* GradientView.swift in Sources */,
 				664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				667A599A2C1F057A00FE4985 /* PhotoView.swift in Sources */,
 				664A51272C1DD3FB003491BA /* UIImage + BlurHash.swift in Sources */,
