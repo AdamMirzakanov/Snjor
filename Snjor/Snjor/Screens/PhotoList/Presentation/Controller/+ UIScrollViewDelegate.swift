@@ -16,9 +16,9 @@ extension PhotoListCollectionViewController {
 //  }
 
   // MARK: - UIScrollViewDelegate
-  override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-    return .bottom
-  }
+//  override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
+//    return .bottom
+//  }
 
 //  override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 //    animateTabBarToPosition(UIScreen.main.bounds.height)

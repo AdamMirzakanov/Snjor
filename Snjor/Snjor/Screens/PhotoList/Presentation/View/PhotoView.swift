@@ -38,7 +38,7 @@ class PhotoView: UIView {
     let gradientView = GradientView()
     gradientView.translatesAutoresizingMaskIntoConstraints = false
     gradientView.setColors([
-      GradientView.Color(color: .clear, location: 0),
+      GradientView.Color(color: .clear, location: 0.7),
       GradientView.Color(color: UIColor(white: 0, alpha: 0.5), location: 1)
     ])
     return gradientView
