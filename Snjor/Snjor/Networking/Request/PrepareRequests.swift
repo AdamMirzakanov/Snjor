@@ -17,7 +17,7 @@ enum PrepareRequests {
   // MARK: - Public Methods
   static func prepareURLRequest(
     path: String,
-    parameters: Parameters
+    parameters: [String: String]
   ) throws -> URLRequest {
     guard let url = prepareURL(
       from: path,
@@ -32,8 +32,8 @@ enum PrepareRequests {
     return request
   }
 
-  static func prepareHeaders() -> Parameters {
-    var headers: Parameters = [:]
+  static func prepareHeaders() -> [String: String] {
+    var headers: [String: String] = [:]
     headers["Authorization"] = "Client-ID \(accessKey.rawValue)"
     return headers
   }
@@ -41,7 +41,7 @@ enum PrepareRequests {
   // MARK: - Private Methods
   private static func prepareURL(
     from path: String,
-    parameters: Parameters
+    parameters: [String: String]
   ) -> URL? {
     let components = prepareURLComponents(
       from: path,
@@ -52,7 +52,7 @@ enum PrepareRequests {
 
   private static func prepareURLComponents(
     from path: String,
-    parameters: Parameters
+    parameters: [String: String]
   ) -> URLComponents {
     var components = URLComponents()
     components.scheme = scheme.rawValue
@@ -62,7 +62,7 @@ enum PrepareRequests {
     return components
   }
 
-  private static func prepareQueryItems(parameters: Parameters) -> [URLQueryItem] {
+  private static func prepareQueryItems(parameters: [String: String]) -> [URLQueryItem] {
     parameters.map { URLQueryItem(
       name: $0.key,
       value: $0.value)

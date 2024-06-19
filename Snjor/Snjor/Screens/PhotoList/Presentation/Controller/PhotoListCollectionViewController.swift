@@ -39,7 +39,7 @@ class PhotoListCollectionViewController: UICollectionViewController {
     viewModel.createDataSource(for: collectionView)
     viewModel.viewDidLoad()
     stateController()
-    viewModel.setupRefreshControl(for: collectionView)
+//    viewModel.setupRefreshControl(for: collectionView)
   }
 
   // MARK: - Private Methods
@@ -52,7 +52,7 @@ class PhotoListCollectionViewController: UICollectionViewController {
         switch state {
         case .success:
           viewModel.applySnapshot()
-          viewModel.refreshControl.endRefreshing()
+//          viewModel.refreshControl.endRefreshing()
         case .loading:
           break
         case .fail(error: let error):

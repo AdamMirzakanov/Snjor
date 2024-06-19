@@ -7,18 +7,17 @@
 
 import UIKit
 
-struct Photo: Decodable, Hashable {
+struct Photo: Codable, Hashable {
   // MARK: - Public Properties
   let width: Int
   let height: Int
   let urls: [URLKind: URL]
   let id: String
-  let color: UIColor?
   let blurHash: String
   let user: User
 
   // MARK: - Public Enum
-  enum URLKind: String, Decodable, CodingKey {
+  enum URLKind: String, Codable, CodingKey {
     case raw
     case full
     case regular
@@ -32,7 +31,6 @@ struct Photo: Decodable, Hashable {
     case height
     case urls
     case id
-    case color
     case blurHash = "blur_hash"
     case user
   }
@@ -48,24 +46,6 @@ struct Photo: Decodable, Hashable {
     blurHash = try container.decode(String.self, forKey: .blurHash)
     user = try container.decode(User.self, forKey: .user)
 
-    if let hexString = try? container.decode(String.self, forKey: .color) {
-      color = UIColor(hexString: hexString)
-    } else {
-      color = nil
-    }
-
-    let urlsContainer = try container.nestedContainer(
-      keyedBy: URLKind.self,
-      forKey: .urls
-    )
-
-    urls = try urlsContainer.allKeys.reduce(into: [:]) { result, key in
-      guard let kind = URLKind(rawValue: key.rawValue) else { return }
-      guard let url = try urlsContainer.decodeIfPresent(
-        URL.self,
-        forKey: key
-      ) else { return }
-      result[kind] = url
-    }
+    urls = try container.decode([URLKind: URL].self, forKey: .urls)
   }
 }

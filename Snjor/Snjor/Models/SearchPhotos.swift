@@ -5,6 +5,6 @@
 //  Created by Адам on 16.06.2024.
 //
 
-struct SearchPhotos: Decodable {
+struct SearchPhotos: Codable {
   let results: [Photo]
 }

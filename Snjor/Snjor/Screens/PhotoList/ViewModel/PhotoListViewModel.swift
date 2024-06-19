@@ -42,17 +42,16 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
   func viewDidLoad() {
     state.send(.loading)
     Task {
-      print(PrepareParameters.page)
       await loadPhotosUseCase()
     }
   }
 
-  @objc func refreshData() {
-    state.send(.loading)
-    Task {
-      await loadPhotosUseCase()
-    }
-  }
+//  @objc func refreshData() {
+//    state.send(.loading)
+//    Task {
+//      await loadPhotosUseCase()
+//    }
+//  }
 
   func createDataSource(for collectionView: UICollectionView) {
     dataSource = UICollectionViewDiffableDataSource
@@ -74,10 +73,10 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
     return photos[indexPath.item]
   }
 
-  func setupRefreshControl(for collectionView: UICollectionView) {
-    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-    collectionView.refreshControl = refreshControl
-  }
+//  func setupRefreshControl(for collectionView: UICollectionView) {
+//    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+//    collectionView.refreshControl = refreshControl
+//  }
 
   // MARK: - Private Methods
   private func loadPhoto(at indexPath: IndexPath) -> Photo {

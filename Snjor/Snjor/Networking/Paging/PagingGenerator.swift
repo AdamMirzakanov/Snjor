@@ -7,7 +7,7 @@
 
 struct PagingGenerator: Pageable {
   // MARK: - Private Properties
-  private var threshold = 19
+  private var threshold = 10
   private(set) var lastPage = false
 
   // MARK: - Public Methods

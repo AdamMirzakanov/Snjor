@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6636E3D22C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6636E3D12C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift */; };
 		664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A511E2C1DCE6C003491BA /* ImageCache.swift */; };
 		664A51272C1DD3FB003491BA /* UIImage + BlurHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51262C1DD3FB003491BA /* UIImage + BlurHash.swift */; };
 		664A512B2C1DD5D9003491BA /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A512A2C1DD5D9003491BA /* UIColor + Extensions.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6636E3D12C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer + Extensions.swift"; sourceTree = "<group>"; };
 		664A511E2C1DCE6C003491BA /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		664A51262C1DD3FB003491BA /* UIImage + BlurHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + BlurHash.swift"; sourceTree = "<group>"; };
 		664A512A2C1DD5D9003491BA /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				664A51262C1DD3FB003491BA /* UIImage + BlurHash.swift */,
 				664A512A2C1DD5D9003491BA /* UIColor + Extensions.swift */,
 				664A512C2C1DD737003491BA /* UIImage + Preload.swift */,
+				6636E3D12C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift */,
 			);
 			name = Utils;
 			path = Storage/Utils;
@@ -545,6 +548,7 @@
 				667A599A2C1F057A00FE4985 /* PhotoView.swift in Sources */,
 				664A51272C1DD3FB003491BA /* UIImage + BlurHash.swift in Sources */,
 				664A51632C1E4D31003491BA /* PhotoListViewModelProtocol.swift in Sources */,
+				6636E3D22C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift in Sources */,
 				66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */,
 				667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */,
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
