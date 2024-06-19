@@ -70,7 +70,7 @@ class MainTabBarController: UITabBarController {
     $0.layer.cornerRadius = customBar.layer.cornerRadius
     $0.clipsToBounds = true
     return $0
-  }(UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial)))
+  }(UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial)))
 
   // MARK: - View Lifecycle
   override func viewDidLoad() {
