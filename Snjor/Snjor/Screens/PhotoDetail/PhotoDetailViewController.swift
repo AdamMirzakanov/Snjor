@@ -32,15 +32,31 @@ class PhotoDetailViewController: UIViewController {
   private let downloadButton: UIButton = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.backgroundColor = .white
-    $0.layer.cornerRadius = 10
-    $0.setTitle("Download", for: .normal)
-    $0.setTitleColor(.black, for: .normal)
-    $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .regular)
-    $0.alpha = 0.5
+    $0.layer.cornerRadius = 8
+    $0.setTitle(" JPEG", for: .normal)
+    $0.setImage(UIImage(systemName: "arrow.down.app.fill"), for: .normal)
+    $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+    $0.tintColor = .darkGray
+    $0.alpha = 0.4
     $0.setContentHuggingPriority(.required, for: .horizontal)
-    $0.widthAnchor.constraint(equalToConstant: 100).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: 74).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: 32).isActive = true
     return $0
   }(UIButton(type: .system))
+
+//  private let downloadButton: UIButton = {
+//    $0.translatesAutoresizingMaskIntoConstraints = false
+//    $0.backgroundColor = .systemBlue
+//    $0.layer.cornerRadius = 8
+//    $0.setTitle(" JPEG", for: .normal)
+//    $0.setImage(UIImage(systemName: "arrow.down.app.fill"), for: .normal)
+//    $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+//    $0.tintColor = .white
+//    $0.setContentHuggingPriority(.required, for: .horizontal)
+//    $0.widthAnchor.constraint(equalToConstant: 74).isActive = true
+//    $0.heightAnchor.constraint(equalToConstant: 32).isActive = true
+//    return $0
+//  }(UIButton(type: .system))
 
   // MARK: -
   private let photoImageView: UIImageView = {
@@ -54,7 +70,7 @@ class PhotoDetailViewController: UIViewController {
     let gradientView = GradientView()
     gradientView.translatesAutoresizingMaskIntoConstraints = false
     gradientView.setColors([
-      GradientView.Color(color: .clear, location: 0.3),
+      GradientView.Color(color: .clear, location: 0.15),
       GradientView.Color(color: UIColor(white: 0, alpha: 1.0), location: 0.7)
     ])
     return gradientView
@@ -123,13 +139,13 @@ class PhotoDetailViewController: UIViewController {
   }(UILabel())
 
   // формат фотографии
-  private lazy var jpegLabel: UILabel = {
-    $0.textColor = .white
-    $0.text = " • JPEG"
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.5
-    return $0
-  }(UILabel())
+//  private lazy var jpegLabel: UILabel = {
+//    $0.textColor = .white
+//    $0.text = "JPEG"
+//    $0.font = .systemFont(ofSize: 15, weight: .medium)
+//    $0.alpha = 0.5
+//    return $0
+//  }(UILabel())
 
   // размер фотографии, например 4MP
   private lazy var mpLabel: UILabel = {
@@ -347,7 +363,7 @@ class PhotoDetailViewController: UIViewController {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .fill
-    $0.spacing = 32
+    $0.spacing = 16
     $0.addArrangedSubview(likesAndDownloadStackView)
     $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(downloadButton)
@@ -365,6 +381,7 @@ class PhotoDetailViewController: UIViewController {
     $0.addArrangedSubview(focalLengthLabel)
     $0.addArrangedSubview(apertureLabel)
     $0.addArrangedSubview(exposureTimeLabel)
+    $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
 
@@ -378,7 +395,7 @@ class PhotoDetailViewController: UIViewController {
     $0.addArrangedSubview(mpLabel)
     $0.addArrangedSubview(sizeLabel)
     $0.addArrangedSubview(mbLabel)
-    $0.addArrangedSubview(jpegLabel)
+    $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
 
@@ -428,8 +445,6 @@ class PhotoDetailViewController: UIViewController {
     return $0
   }(UIStackView())
 
-  // профиль + имя и локация
-  // + дата создания
   private lazy var vStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .vertical
