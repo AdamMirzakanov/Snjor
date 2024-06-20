@@ -56,7 +56,7 @@ class PhotoView: UIView {
     userNameLabel.text = photo.user.displayName
     let size = CGSize(width: 32.0, height: 32.0)
     currentPhotoID = photo.id
-    waterfallPhotoImageView.image = UIImage(blurHash: photo.blurHash, size: size)
+//    waterfallPhotoImageView.image = UIImage(blurHash: photo.blurHash, size: size)
     downloadImage(with: photo)
   }
 
