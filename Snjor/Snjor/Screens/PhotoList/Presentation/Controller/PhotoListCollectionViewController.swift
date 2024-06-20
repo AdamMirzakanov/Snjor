@@ -52,7 +52,7 @@ class PhotoListCollectionViewController: UICollectionViewController {
         switch state {
         case .success:
           viewModel.applySnapshot()
-//          viewModel.refreshControl.endRefreshing()
+          // viewModel.refreshControl.endRefreshing()
         case .loading:
           break
         case .fail(error: let error):

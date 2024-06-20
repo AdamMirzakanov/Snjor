@@ -56,8 +56,17 @@ class PhotoView: UIView {
     userNameLabel.text = photo.user.displayName
     let size = CGSize(width: 32.0, height: 32.0)
     currentPhotoID = photo.id
-//    waterfallPhotoImageView.image = UIImage(blurHash: photo.blurHash, size: size)
-    downloadImage(with: photo)
+
+    if let blurHash = photo.blurHash {
+      waterfallPhotoImageView.image = UIImage(blurHash: blurHash, size: size)
+      // print(blurHash)
+      downloadImage(with: photo)
+    } else {
+      // для этих мест я не стану устанавливать блюр
+      // редкие случаи отсутствия блюра не бросаются в глаза
+      // print(photo.blurHash, photo.user.displayName)
+      downloadImage(with: photo)
+    }
   }
 
   func setupImageView() {
@@ -91,10 +100,10 @@ class PhotoView: UIView {
         self.currentPhotoID == downloadPhotoID
       else { return }
       if isCached == true {
-        print("Cache")
+        //        print("Cache")
         self.waterfallPhotoImageView.image = image
       } else {
-        print("Internet")
+        //        print("Internet")
         UIView.transition(
           with: self,
           duration: 0.25,

@@ -14,7 +14,7 @@ enum PrepareParameters {
 //  }
 
   static var page: Int = 1
-  private static let perPage: Int = 15
+  private static let perPage: Int = 30
 
   // MARK: - Public Methods
   static func preparePhotoParameters() -> Parameters {
