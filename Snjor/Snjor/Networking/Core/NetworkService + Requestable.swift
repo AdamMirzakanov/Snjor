@@ -51,6 +51,7 @@ extension NetworkService: Requestable {
 
   private func decodeResponse<T>(data: Data) throws -> T where T: Decodable {
     let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .convertFromSnakeCase
     let model = try? decoder.decode(T.self, from: data)
     guard let model = model else {
       throw APIError.decodingError
