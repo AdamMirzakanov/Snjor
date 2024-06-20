@@ -46,6 +46,11 @@ final class PhotosViewModel: PhotoListViewModelProtocol {
     }
   }
 
+  func getUrlDetail(itemIndex: Int) -> URL {
+    let photo = photos[itemIndex]
+    return photo.urls[.regular]!
+  }
+
 //  @objc func refreshData() {
 //    state.send(.loading)
 //    Task {

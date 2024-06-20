@@ -11,6 +11,11 @@ import Combine
 protocol PhotoListFactoryProtocol {
   func makeModule(delegate: any PhotoListViewControllerDelegate) -> UIViewController
   func makeTabBarItem(navigation: any Navigable)
+  func mekePhotoDetailCoordinator(
+    url: URL,
+    navigation: any Navigable,
+    overlordCoordinator: any OverlordCoordinator
+  ) -> any Coordinatable
 }
 
 struct PhotoListFactory: PhotoListFactoryProtocol {
@@ -20,14 +25,14 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
   ) -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
     let apiClient = NetworkService()
-    let waterfallPhotoRepository = PhotosRepository(apiClient: apiClient)
+    let photoRepository = PhotosRepository(apiClient: apiClient)
     let lastPageValidationUseCase = PagingGenerator()
-    let loadWaterfallPhotoUseCase = LoadPhotoListUseCase(
-      photoRepository: waterfallPhotoRepository
+    let loadPhotoListUseCase = LoadPhotoListUseCase(
+      photoListRepository: photoRepository
     )
     let viewModel = PhotosViewModel(
       state: state,
-      loadPhotosUseCase: loadWaterfallPhotoUseCase,
+      loadPhotosUseCase: loadPhotoListUseCase,
       pagingGenerator: lastPageValidationUseCase
     )
 
@@ -54,6 +59,20 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
       systemImageName: "photo.on.rectangle",
       selectedSystemImageName: "photo.fill.on.rectangle.fill"
     )
+  }
+
+  func mekePhotoDetailCoordinator(
+    url: URL,
+    navigation: any Navigable,
+    overlordCoordinator: any OverlordCoordinator
+  ) -> any Coordinatable {
+    let factory = PhotoDetailFactory()
+    let coordinator = PhotoDetailCoordinator(
+      factory: factory,
+      navigation: navigation,
+      overlordCoordinator: overlordCoordinator
+    )
+    return coordinator
   }
 }
 

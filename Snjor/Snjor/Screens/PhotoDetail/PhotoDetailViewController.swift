@@ -7,8 +7,12 @@
 
 import UIKit
 import MapKit
+import Combine
+
 // swiftlint:disable all
 class PhotoDetailViewController: UIViewController {
+
+  private var cancellable = Set<AnyCancellable>()
 
 //  private lazy var mapView: MKMapView = {
 //    let mapView = MKMapView()

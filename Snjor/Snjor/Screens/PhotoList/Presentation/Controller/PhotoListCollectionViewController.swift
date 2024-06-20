@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol PhotoListViewControllerDelegate: AnyObject {
-  func didSelect()
+  func didSelect(url: URL)
 }
 
 class PhotoListCollectionViewController: UICollectionViewController {
@@ -60,5 +60,16 @@ class PhotoListCollectionViewController: UICollectionViewController {
         }
       }
       .store(in: &cancellable)
+  }
+}
+
+extension PhotoListCollectionViewController {
+  override func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
+    let itemIndex = indexPath.item
+    let url = viewModel.getUrlDetail(itemIndex: itemIndex)
+    delegate?.didSelect(url: url)
   }
 }

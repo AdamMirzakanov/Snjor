@@ -5,9 +5,12 @@
 //  Created by Адам on 16.06.2024.
 //
 
+import Foundation
+
 final class PhotoListCoordinator: Coordinatable {
   // MARK: - Public Properties
   var navigation: any Navigable
+  var childCoordinators: [any Coordinatable] = []
 
   // MARK: - Private Properties
   private let factory: any PhotoListFactoryProtocol
@@ -31,7 +34,15 @@ final class PhotoListCoordinator: Coordinatable {
 
 // MARK: - PhotosCollectionViewControllerDelegate
 extension PhotoListCoordinator: PhotoListViewControllerDelegate {
-  func didSelect() {
+  func didSelect(url: URL) {
     // code
+    let coordinator = factory.mekePhotoDetailCoordinator(
+      url: url,
+      navigation: navigation,
+      overlordCoordinator: self
+    )
+    addAndStartChildCoordinator(coordinator)
   }
 }
+
+extension PhotoListCoordinator: OverlordCoordinator { }

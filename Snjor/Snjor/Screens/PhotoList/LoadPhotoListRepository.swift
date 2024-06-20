@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PhotoListRepositoryProtocol {
-  func fetchPhotos(request: URLRequest) async throws -> [Photo]
+  func fetchPhotoList(request: URLRequest) async throws -> [Photo]
 }
 
 struct PhotosRepository: PhotoListRepositoryProtocol {
@@ -16,7 +16,7 @@ struct PhotosRepository: PhotoListRepositoryProtocol {
   let apiClient: any Requestable
 
   // MARK: - Public Methods
-  func fetchPhotos(request: URLRequest) async throws -> [Photo] {
+  func fetchPhotoList(request: URLRequest) async throws -> [Photo] {
     return try await apiClient.request(request: request, type: [Photo].self)
   }
 }
