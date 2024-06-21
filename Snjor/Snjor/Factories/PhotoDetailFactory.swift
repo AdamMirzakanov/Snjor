@@ -24,5 +24,4 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
     let module = PhotoDetailViewController()
     return module
   }
-
 }

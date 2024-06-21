@@ -15,7 +15,7 @@ protocol PhotoListViewControllerDelegate: AnyObject {
 class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - Private Properties
   private(set) var viewModel: any PhotoListViewModelProtocol
-  private weak var delegate: (any PhotoListViewControllerDelegate)?
+  weak var delegate: (any PhotoListViewControllerDelegate)?
   private var cancellable = Set<AnyCancellable>()
 
   // MARK: - Initializers
@@ -39,7 +39,7 @@ class PhotoListCollectionViewController: UICollectionViewController {
     viewModel.createDataSource(for: collectionView)
     viewModel.viewDidLoad()
     stateController()
-//    viewModel.setupRefreshControl(for: collectionView)
+    //    viewModel.setupRefreshControl(for: collectionView)
   }
 
   // MARK: - Private Methods
@@ -60,16 +60,5 @@ class PhotoListCollectionViewController: UICollectionViewController {
         }
       }
       .store(in: &cancellable)
-  }
-}
-
-extension PhotoListCollectionViewController {
-  override func collectionView(
-    _ collectionView: UICollectionView,
-    didSelectItemAt indexPath: IndexPath
-  ) {
-    let itemIndex = indexPath.item
-    let url = viewModel.getUrlDetail(itemIndex: itemIndex)
-    delegate?.didSelect(url: url)
   }
 }

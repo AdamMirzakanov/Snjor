@@ -15,13 +15,22 @@ struct Photo: Decodable, Hashable {
   let id: String
   let blurHash: String?
   let user: User
+  let exif: PhotoExif?
+  let links: [LinkKind: URL]
 
   // MARK: - Public Enum
-  enum URLKind: String, Decodable, CodingKey {
+  enum URLKind: String, Decodable {
     case raw
     case full
     case regular
     case small
     case thumb
+  }
+
+  enum LinkKind: String, Decodable {
+    case own = "self"
+    case html
+    case download
+    case downloadLocation
   }
 }
