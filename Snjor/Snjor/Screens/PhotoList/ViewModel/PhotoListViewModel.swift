@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PhotosViewModel: PhotoListViewModelProtocol {
+final class PhotoListViewModel: PhotoListViewModelProtocol {
   // MARK: - Public Properties
   var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   var refreshControl = UIRefreshControl()

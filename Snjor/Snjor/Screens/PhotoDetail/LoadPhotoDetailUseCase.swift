@@ -14,10 +14,11 @@ protocol LoadPhotoDetailUseCaseProtocol {
 struct LoadPhotoDetailUseCase: LoadPhotoDetailUseCaseProtocol {
   // MARK: - Private Properties
   let photoDetailRepository: any PhotoDetailRepositoryProtocol
+  var urlDetail: URL
 
   // MARK: - Public Methods
   func execute() async throws -> Photo {
-    let request = try RequestController.photosURLRequest()
+    let request = URLRequest(url: urlDetail)
     return try await photoDetailRepository.fetchPhoto(request: request)
   }
 }

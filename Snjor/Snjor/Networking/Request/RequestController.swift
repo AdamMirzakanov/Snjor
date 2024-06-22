@@ -15,7 +15,7 @@ enum RequestController {
   private static var searchCollections: Endpoints { .searchCollections }
 
   // MARK: - Public Methods
-  static func photosURLRequest() throws -> URLRequest {
+  static func photoListURLRequest() throws -> URLRequest {
     let path = photos.rawValue
     let parameters = PrepareParameters.preparePhotoParameters()
     let request = try PrepareRequests.prepareURLRequest(
@@ -24,4 +24,5 @@ enum RequestController {
     )
     return request
   }
+ 
 }

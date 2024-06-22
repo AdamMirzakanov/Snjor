@@ -13,7 +13,19 @@ import Combine
 class PhotoDetailViewController: UIViewController {
 
   private var cancellable = Set<AnyCancellable>()
+  private let viewModel: PhotoDetailViewModelProtocol
+  var photo: Photo?
 
+  init(viewModel: PhotoDetailViewModel
+  ) {
+    self.viewModel = viewModel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
 //  private lazy var mapView: MKMapView = {
 //    let mapView = MKMapView()
 //    mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -327,7 +339,7 @@ class PhotoDetailViewController: UIViewController {
     $0.addArrangedSubview(twitterStackView)
     return $0
   }(UIStackView())
-
+ 
   // лайки
   private lazy var likesStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -471,6 +483,38 @@ class PhotoDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    setupUI()
+//    stateController()
+//    viewModel.viewDidLoad()
+    configData()
+  }
+
+//  private func stateController() {
+//    viewModel
+//      .state
+//      .receive(on: RunLoop.main)
+//      .sink { [weak self] state in
+//        guard let self = self else { return }
+//        switch state {
+//        case .success:
+//          self.configData()
+//        case .loading: break
+//
+//        case .fail(error: let error):
+//          self.presentAlert(message: error, title: "Error")
+//        }
+//      }.store(in: &cancellable)
+//  }
+
+  private func configData() {
+    print(#function, photo!.height)
+    if let photo = photo {
+      locationLabel.text = "\(photo.user.location)"
+    }
+  }
+
+  func setupUI() {
+    view.backgroundColor = .systemBackground
     view.addSubview(photoImageView)
     view.addSubview(gradientView)
     view.addSubview(vStackView)
@@ -503,3 +547,5 @@ class PhotoDetailViewController: UIViewController {
     ])
   }
 }
+
+extension PhotoDetailViewController: MessageDisplayable { }

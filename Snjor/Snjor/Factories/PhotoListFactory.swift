@@ -12,7 +12,7 @@ protocol PhotoListFactoryProtocol {
   func makeModule(delegate: any PhotoListViewControllerDelegate) -> UIViewController
   func makeTabBarItem(navigation: any Navigable)
   func mekePhotoDetailCoordinator(
-    url: URL,
+    photo: Photo,
     navigation: any Navigable,
     overlordCoordinator: any OverlordCoordinator
   ) -> any Coordinatable
@@ -30,7 +30,7 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
     let loadPhotoListUseCase = LoadPhotoListUseCase(
       photoListRepository: photoRepository
     )
-    let viewModel = PhotosViewModel(
+    let viewModel = PhotoListViewModel(
       state: state,
       loadPhotosUseCase: loadPhotoListUseCase,
       pagingGenerator: lastPageValidationUseCase
@@ -62,11 +62,11 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
   }
 
   func mekePhotoDetailCoordinator(
-    url: URL,
+    photo: Photo,
     navigation: any Navigable,
     overlordCoordinator: any OverlordCoordinator
   ) -> any Coordinatable {
-    let factory = PhotoDetailFactory()
+    let factory = PhotoDetailFactory(photo: photo)
     let coordinator = PhotoDetailCoordinator(
       factory: factory,
       navigation: navigation,

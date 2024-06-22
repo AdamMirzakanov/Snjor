@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol PhotoListViewControllerDelegate: AnyObject {
-  func didSelect(url: URL)
+  func didSelect(photo: Photo)
 }
 
 class PhotoListCollectionViewController: UICollectionViewController {
@@ -36,9 +36,9 @@ class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    stateController()
     viewModel.createDataSource(for: collectionView)
     viewModel.viewDidLoad()
-    stateController()
     //    viewModel.setupRefreshControl(for: collectionView)
   }
 

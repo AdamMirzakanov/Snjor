@@ -13,7 +13,7 @@ extension PhotoListCollectionViewController {
     didSelectItemAt indexPath: IndexPath
   ) {
     let itemIndex = indexPath.item
-    let url = viewModel.getUrlDetail(itemIndex: itemIndex)
-    delegate?.didSelect(url: url)
+    let photo = viewModel.fetchPhoto(at: indexPath)
+    delegate?.didSelect(photo: photo)
   }
 }
