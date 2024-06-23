@@ -1,5 +1,5 @@
 //
-//  PhotoView.swift
+//  PhotoViewSmallQuality.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoView: UIView {
+class PhotoViewSmallQuality: UIView {
   // MARK: - Private Properties
   private var currentPhotoID: String?
   private var imageDownloader = ImageDownloader()

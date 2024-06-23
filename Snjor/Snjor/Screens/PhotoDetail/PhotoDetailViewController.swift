@@ -13,7 +13,7 @@ import Combine
 class PhotoDetailViewController: UIViewController {
 
   private var cancellable = Set<AnyCancellable>()
-  private let viewModel: PhotoDetailViewModelProtocol
+  private let viewModel: PhotoDetailViewModel
   var photo: Photo?
 
   init(viewModel: PhotoDetailViewModel
@@ -25,7 +25,121 @@ class PhotoDetailViewController: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  // MARK: -
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupUI()
+    fetchPhotoDetails()
+  }
+
+  private func fetchPhotoDetails() {
+    guard let photoID = photo?.id else { return }
+
+    Task {
+      let result = await viewModel.loadPhotoDetailUseCase.execute(id: photoID)
+      switch result {
+      case .success(let success):
+        updateUI(with: success)
+      case .failure(let failure):
+        print("Failed to fetch photo details: \(failure)")
+      }
+    }
+  }
+
+  private let photoView: PhotoViewRegularQuality = {
+    let photoView = PhotoViewRegularQuality()
+    photoView.translatesAutoresizingMaskIntoConstraints = false
+    return photoView
+  }()
   
+  private func updateUI(with photo: Photo) {
+      photoView.setupImageView()
+//      photoView.configure(with: photo)
+//      nameLabel.text = photo.user.displayName
+//      locationLabel.text = photo.user.location
+//      likesLabel.text = String(photo.likes)
+//      downloadsLabel.text = String(Int.random(in: 10...100))
+    print(photo.exif?.model)
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  func setupUI() {
+    view.backgroundColor = .systemBackground
+    view.addSubview(photoView)
+    view.addSubview(gradientView)
+    view.addSubview(vStackView)
+
+    NSLayoutConstraint.activate([
+      gradientView.topAnchor.constraint(equalTo: view.topAnchor),
+      gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+      photoView.topAnchor.constraint(equalTo: view.topAnchor),
+      photoView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -250),
+      photoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      photoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+      vStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+      vStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+
+      // размеры аватарки
+      profileImageView.widthAnchor.constraint(equalToConstant: 54),
+      profileImageView.heightAnchor.constraint(equalToConstant: 54),
+
+      // размеры срединной линии
+      thinMidlWhiteLine.heightAnchor.constraint(equalToConstant: 1),
+      thinMidlWhiteLine.widthAnchor.constraint(equalToConstant: view.frame.width - 32),
+
+      // размеры нижней линии
+      thinBottomWhiteLine.heightAnchor.constraint(equalToConstant: 1),
+      thinBottomWhiteLine.widthAnchor.constraint(equalToConstant: view.frame.width - 32),
+    ])
+  }
+
+
+
+
+
+
+
 //  private lazy var mapView: MKMapView = {
 //    let mapView = MKMapView()
 //    mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -339,7 +453,7 @@ class PhotoDetailViewController: UIViewController {
     $0.addArrangedSubview(twitterStackView)
     return $0
   }(UIStackView())
- 
+
   // лайки
   private lazy var likesStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -478,74 +592,6 @@ class PhotoDetailViewController: UIViewController {
 //    $0.addArrangedSubview(mapView)
     return $0
   }(UIStackView())
-
-  // MARK: -
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    setupUI()
-//    stateController()
-//    viewModel.viewDidLoad()
-    configData()
-  }
-
-//  private func stateController() {
-//    viewModel
-//      .state
-//      .receive(on: RunLoop.main)
-//      .sink { [weak self] state in
-//        guard let self = self else { return }
-//        switch state {
-//        case .success:
-//          self.configData()
-//        case .loading: break
-//
-//        case .fail(error: let error):
-//          self.presentAlert(message: error, title: "Error")
-//        }
-//      }.store(in: &cancellable)
-//  }
-
-  private func configData() {
-    print(#function, photo!.height)
-    if let photo = photo {
-      locationLabel.text = "\(photo.user.location)"
-    }
-  }
-
-  func setupUI() {
-    view.backgroundColor = .systemBackground
-    view.addSubview(photoImageView)
-    view.addSubview(gradientView)
-    view.addSubview(vStackView)
-
-    NSLayoutConstraint.activate([
-      gradientView.topAnchor.constraint(equalTo: view.topAnchor),
-      gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
-      photoImageView.topAnchor.constraint(equalTo: view.topAnchor),
-      photoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      photoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      photoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
-      vStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-      vStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
-
-      // размеры аватарки
-      profileImageView.widthAnchor.constraint(equalToConstant: 54),
-      profileImageView.heightAnchor.constraint(equalToConstant: 54),
-
-      // размеры срединной линии
-      thinMidlWhiteLine.heightAnchor.constraint(equalToConstant: 1),
-      thinMidlWhiteLine.widthAnchor.constraint(equalToConstant: view.frame.width - 32),
-
-      // размеры нижней линии
-      thinBottomWhiteLine.heightAnchor.constraint(equalToConstant: 1),
-      thinBottomWhiteLine.widthAnchor.constraint(equalToConstant: view.frame.width - 32),
-    ])
-  }
 }
 
 extension PhotoDetailViewController: MessageDisplayable { }

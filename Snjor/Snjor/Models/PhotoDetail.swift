@@ -1,0 +1,37 @@
+//
+//  PhotoDetail.swift
+//  Snjor
+//
+//  Created by Адам on 23.06.2024.
+//
+
+import Foundation
+
+struct PhotoDetail: Decodable, Hashable {
+  // MARK: - Public Properties
+  let width: Int
+  let height: Int
+//  let urls: [URLKind: URL]
+  var id: String
+//  let blurHash: String?
+//  let user: User
+//  let likes: Int
+  let exif: PhotoExif?
+//  let links: [LinkKind: URL]
+
+  // MARK: - Public Enum
+//  enum URLKind: String, Decodable {
+//    case raw
+//    case full
+//    case regular
+//    case small
+//    case thumb
+//  }
+//
+//  enum LinkKind: String, Decodable {
+//    case own = "self"
+//    case html
+//    case download
+//    case downloadLocation
+//  }
+}

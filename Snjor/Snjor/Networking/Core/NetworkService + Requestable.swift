@@ -54,8 +54,11 @@ extension NetworkService: Requestable {
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     let model = try? decoder.decode(T.self, from: data)
     guard let model = model else {
+      print(#function, APIError.decodingError)
       throw APIError.decodingError
     }
+//    let json = try JSONSerialization.jsonObject(with: data, options: [])
+//    print("JSON Response: \(json)")
     return model
   }
 }

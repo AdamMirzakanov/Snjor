@@ -15,6 +15,18 @@ enum PrepareRequests {
   private static var accessKey: Authorization { .accessKey }
 
   // MARK: - Public Methods
+  static func prepareInfoURLRequest(path: String, id: String) throws -> URLRequest {
+    var components = URLComponents()
+    components.scheme = scheme.rawValue
+    components.host = host.rawValue
+    components.path = path + id
+    guard let url = components.url else { throw APIError.URLError }
+    var request = URLRequest(url: url)
+    request.httpMethod = httpMethod.rawValue
+    request.allHTTPHeaderFields = prepareHeaders()
+    return request
+  }
+
   static func prepareURLRequest(
     path: String,
     parameters: [String: String]
@@ -30,12 +42,6 @@ enum PrepareRequests {
     request.allHTTPHeaderFields = prepareHeaders()
     request.httpMethod = httpMethod.rawValue
     return request
-  }
-
-  static func prepareHeaders() -> [String: String] {
-    var headers: [String: String] = [:]
-    headers["Authorization"] = "Client-ID \(accessKey.rawValue)"
-    return headers
   }
 
   // MARK: - Private Methods
@@ -67,5 +73,11 @@ enum PrepareRequests {
       name: $0.key,
       value: $0.value)
     }
+  }
+
+  private static func prepareHeaders() -> [String: String] {
+    var headers: [String: String] = [:]
+    headers["Authorization"] = "Client-ID \(accessKey.rawValue)"
+    return headers
   }
 }

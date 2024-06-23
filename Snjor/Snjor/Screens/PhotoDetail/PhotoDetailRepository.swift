@@ -17,6 +17,7 @@ struct PhotoDetailRepository: PhotoDetailRepositoryProtocol {
 
   // MARK: - Public Methods
   func fetchPhoto(request: URLRequest) async throws -> Photo {
-    return try await apiClient.request(request: request, type: Photo.self)
+    let photo = try await apiClient.request(request: request, type: Photo.self)
+    return photo
   }
 }

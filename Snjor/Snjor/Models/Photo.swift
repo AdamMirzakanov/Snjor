@@ -12,9 +12,10 @@ struct Photo: Decodable, Hashable {
   let width: Int
   let height: Int
   let urls: [URLKind: URL]
-  let id: String
+  var id: String
   let blurHash: String?
   let user: User
+  let likes: Int
   let exif: PhotoExif?
   let links: [LinkKind: URL]
 

@@ -7,6 +7,7 @@
 
 enum Endpoints: String {
   case photos = "/photos"
+  case photo = "/photos/"
   case searchPhotos = "/search/photos"
   case topics = "/topics"
   case collections = "/collections"

@@ -6,10 +6,10 @@
 //
 
 struct PhotoExif: Decodable, Hashable {
-  let aperture: String
-  let exposureTime: String
-  let focalLength: String
-  let iso: String
-  let make: String
-  let model: String
+  let aperture: String?
+  let exposureTime: String?
+  let focalLength: String?
+  let iso: Int?
+  let make: String?
+  let model: String?
 }
