@@ -15,6 +15,7 @@ struct Photo: Decodable, Hashable {
   var id: String
   let blurHash: String?
   let user: User
+  let downloads: Int?
   let likes: Int
   let exif: PhotoExif?
   let links: [LinkKind: URL]

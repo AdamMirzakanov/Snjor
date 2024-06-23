@@ -55,11 +55,11 @@ class PhotoDetailViewController: UIViewController {
   
   private func updateUI(with photo: Photo) {
       photoView.setupImageView()
-//      photoView.configure(with: photo)
-//      nameLabel.text = photo.user.displayName
-//      locationLabel.text = photo.user.location
-//      likesLabel.text = String(photo.likes)
-//      downloadsLabel.text = String(Int.random(in: 10...100))
+      photoView.configure(with: photo)
+      nameLabel.text = photo.user.displayName
+      locationLabel.text = photo.user.location
+      likesLabel.text = String(photo.likes)
+//    downloadsLabel.text = String(photo)
     print(photo.exif?.model)
   }
 
