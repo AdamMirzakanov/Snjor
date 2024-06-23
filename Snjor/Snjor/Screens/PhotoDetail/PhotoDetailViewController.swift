@@ -34,10 +34,10 @@ class PhotoDetailViewController: UIViewController {
   }
 
   private func fetchPhotoDetails() {
-    guard let photoID = photo?.id else { return }
+    guard let photoId = photo?.id else { return }
 
     Task {
-      let result = await viewModel.loadPhotoDetailUseCase.execute(id: photoID)
+      let result = await viewModel.loadPhotoDetailUseCase.execute(id: photoId)
       switch result {
       case .success(let success):
         updateUI(with: success)
@@ -54,16 +54,32 @@ class PhotoDetailViewController: UIViewController {
   }()
   
   private func updateUI(with photo: Photo) {
-      photoView.setupImageView()
-      photoView.configure(with: photo)
-      nameLabel.text = photo.user.displayName
-      locationLabel.text = photo.user.location
-      likesLabel.text = String(photo.likes)
-//    downloadsLabel.text = String(photo)
-    print(photo.exif?.model)
+    photoView.setupImageView()
+    photoView.configure(with: photo)
+    nameLabel.text = photo.user.displayName
+    locationLabel.text = photo.user.location
+    likesLabel.text = String(photo.likes)
+    downloadsLabel.text = String(photo.downloads ?? 0)
+    modelLabel.text = photo.exif?.model ?? "-"
+    sizeLabel.text = "\(photo.width) × \(photo.height) "
+    isoLabel.text = "ISO " + "\(photo.exif?.iso ?? 0) • "
+    focalLengthLabel.text = (photo.exif?.focalLength ?? "-") + " mm • "
+    apertureLabel.text = "𝑓 " + "\(photo.exif?.aperture ?? "-") • "
+    exposureTimeLabel.text = (photo.exif?.exposureTime ?? "-") + " s"
+    mpLabel.text = megaPixels()
   }
 
 
+  func totalPixels() -> Int {
+    guard let photo = photo else { return 0 }
+    return photo.width * photo.height
+  }
+
+  func megaPixels() -> String {
+    let totalPixels = self.totalPixels()
+    let megaPixels = totalPixels / 1_000_000
+    return String(megaPixels) + " MP • "
+  }
 
 
 
@@ -221,7 +237,6 @@ class PhotoDetailViewController: UIViewController {
   // имя автора
   private lazy var nameLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "Adam Mirzakanov"
     $0.font = UIFont(name: "Times New Roman Bold", size: 25)
     $0.alpha = 0.9
     return $0
@@ -230,7 +245,6 @@ class PhotoDetailViewController: UIViewController {
   // локация
   private lazy var locationLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "Russia, Nalchik"
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.9
     return $0
@@ -262,7 +276,6 @@ class PhotoDetailViewController: UIViewController {
   // модель фотоаппарата
   private lazy var modelLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "NIKON D800E"
     $0.font = .systemFont(ofSize: 15, weight: .black)
     $0.alpha = 0.9
     return $0
@@ -280,7 +293,6 @@ class PhotoDetailViewController: UIViewController {
   // размер фотографии, например 4MP
   private lazy var mpLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "4 MP • "
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.5
     return $0
@@ -289,16 +301,6 @@ class PhotoDetailViewController: UIViewController {
   // разрешение фотографии
   private lazy var sizeLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "3000 × 4000 px • "
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.5
-    return $0
-  }(UILabel())
-
-  // вес фотографии
-  private lazy var mbLabel: UILabel = {
-    $0.textColor = .white
-    $0.text = "1.3 MB"
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.5
     return $0
@@ -307,7 +309,6 @@ class PhotoDetailViewController: UIViewController {
   // ISO
   private lazy var isoLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "ISO 50 • "
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.5
     return $0
@@ -316,7 +317,6 @@ class PhotoDetailViewController: UIViewController {
   // апертура
   private lazy var apertureLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "𝑓 22 • "
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.5
     return $0
@@ -325,7 +325,6 @@ class PhotoDetailViewController: UIViewController {
   // фокусное расстояние
   private lazy var focalLengthLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "32 mm • "
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.5
     return $0
@@ -334,7 +333,6 @@ class PhotoDetailViewController: UIViewController {
   // выдержка
   private lazy var exposureTimeLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "0.8 s"
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.5
     return $0
@@ -353,7 +351,6 @@ class PhotoDetailViewController: UIViewController {
   // количество лайков
   private lazy var likesLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "10"
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.9
     return $0
@@ -372,7 +369,6 @@ class PhotoDetailViewController: UIViewController {
   // количество скачиваний
   private lazy var downloadsLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "99"
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.9
     return $0
@@ -393,7 +389,6 @@ class PhotoDetailViewController: UIViewController {
   // инстаграмм
   private lazy var instagramUsernameLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "instantgrammer"
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.9
     return $0
@@ -413,7 +408,6 @@ class PhotoDetailViewController: UIViewController {
   // твиттер
   private lazy var twitterUsernameLabel: UILabel = {
     $0.textColor = .white
-    $0.text = "crew"
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.9
     return $0
@@ -446,8 +440,6 @@ class PhotoDetailViewController: UIViewController {
   private lazy var instagramAndtwitterStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .vertical
-//    $0.distribution = .equalSpacing
-//    $0.alignment = .leading
     $0.spacing = 16
     $0.addArrangedSubview(instagramStackView)
     $0.addArrangedSubview(twitterStackView)
@@ -524,7 +516,6 @@ class PhotoDetailViewController: UIViewController {
     $0.spacing = 0
     $0.addArrangedSubview(mpLabel)
     $0.addArrangedSubview(sizeLabel)
-    $0.addArrangedSubview(mbLabel)
     $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
