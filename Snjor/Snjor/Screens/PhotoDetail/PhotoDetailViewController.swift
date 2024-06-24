@@ -39,13 +39,14 @@ class PhotoDetailViewController: UIViewController {
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
+        self.hideSpinner()
         switch state {
         case .success:
           print(viewModel.iso)
           guard let photo = viewModel.photo else { return }
           updateUI(with: photo)
         case .loading:
-          break
+          self.showSpinner()
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
         }
@@ -128,7 +129,4 @@ class PhotoDetailViewController: UIViewController {
 }
 
 extension PhotoDetailViewController: MessageDisplayable { }
-
-extension PhotoDetailViewController {
-  
-}
+extension PhotoDetailViewController: SpinnerDisplayable { }
