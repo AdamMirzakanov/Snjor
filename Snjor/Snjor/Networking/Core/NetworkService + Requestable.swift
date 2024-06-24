@@ -58,7 +58,7 @@ extension NetworkService: Requestable {
       throw APIError.decodingError
     }
 //    let json = try JSONSerialization.jsonObject(with: data, options: [])
-//    print("JSON Response: \(json)")
+//    print(json)
     return model
   }
 }

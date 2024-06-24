@@ -22,6 +22,7 @@ struct User: Decodable, Hashable {
   let totalLikes: Int
   let totalPhotos: Int
   let id: String
+  let social: Social?
 
   // MARK: - Public Enum
   enum ProfileImageSize: String, Decodable {
@@ -52,6 +53,7 @@ struct User: Decodable, Hashable {
     case totalCollections
     case totalLikes
     case totalPhotos
+    case social
   }
 
   // MARK: - Initializers
@@ -70,6 +72,7 @@ struct User: Decodable, Hashable {
     totalCollections = try container.decode(Int.self, forKey: .totalCollections)
     totalLikes = try container.decode(Int.self, forKey: .totalLikes)
     totalPhotos = try container.decode(Int.self, forKey: .totalPhotos)
+    social = try container.decode(Social.self, forKey: .social)
   }
 }
 

@@ -19,6 +19,8 @@ struct Photo: Decodable, Hashable {
   let likes: Int
   let exif: PhotoExif?
   let links: [LinkKind: URL]
+  let instagramUsername: String?
+  let createdAt: String
 
   // MARK: - Public Enum
   enum URLKind: String, Decodable {
