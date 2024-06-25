@@ -37,14 +37,14 @@ class PhotoDetailViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomBar()
+      tabBar.hideCustomTabBar()
     }
   }
-  
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.showCustomBar()
+      tabBar.showCustomTabBar()
     }
   }
 
@@ -62,7 +62,6 @@ class PhotoDetailViewController: UIViewController {
           screenView.updateUI(with: photo)
         case .loading:
           self.showSpinner()
-          print()
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
           self.hideSpinner()
