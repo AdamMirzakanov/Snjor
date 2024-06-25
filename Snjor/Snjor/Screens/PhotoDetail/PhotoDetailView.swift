@@ -45,52 +45,14 @@ class PhotoDetailView: UIView {
     return $0
   }(UILabel())
 
-  private let pinImageView: UIImageView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: "mappin")
-    $0.tintColor = .white
-    $0.alpha = 0.9
-    return $0
-  }(UIImageView())
-
-  private let locationLabel: UILabel = {
-    $0.textColor = .white
-    $0.font = .systemFont(ofSize: 14, weight: .medium)
-    $0.alpha = 0.9
-    return $0
-  }(UILabel())
-
-  private lazy var locationStackView: UIStackView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.axis = .horizontal
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = 4
-    $0.addArrangedSubview(pinImageView)
-    $0.addArrangedSubview(locationLabel)
-    return $0
-  }(UIStackView())
-
-  private lazy var nameAndLocationStackView: UIStackView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.axis = .vertical
-    $0.distribution = .fill
-    $0.alignment = .leading
-    $0.spacing = 8
-    $0.addArrangedSubview(nameLabel)
-    $0.addArrangedSubview(locationStackView)
-    return $0
-  }(UIStackView())
-
-  private lazy var profilePhotoNameLocationStackView: UIStackView = {
+  private lazy var profilePhotoAndNameStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = 16
     $0.addArrangedSubview(profilePhotoImageView)
-    $0.addArrangedSubview(nameAndLocationStackView)
+    $0.addArrangedSubview(nameLabel)
     return $0
   }(UIStackView())
 
@@ -389,7 +351,7 @@ class PhotoDetailView: UIView {
     $0.axis = .vertical
     $0.distribution = .equalSpacing
     $0.spacing = 16
-    $0.addArrangedSubview(profilePhotoNameLocationStackView)
+    $0.addArrangedSubview(profilePhotoAndNameStackView)
     $0.addArrangedSubview(socialStackView)
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitAndDownloadButtonStackView)
@@ -429,7 +391,6 @@ class PhotoDetailView: UIView {
     photoView.setupImageView()
     photoView.configure(with: photo)
     nameLabel.text = photo.user.displayName
-    locationLabel.text = photo.user.location
     likesLabel.text = String(photo.likes)
     downloadsLabel.text = String(photo.downloads ?? 0)
     createdAt(from: photo.createdAt)
