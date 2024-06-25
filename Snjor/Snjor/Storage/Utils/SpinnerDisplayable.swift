@@ -30,13 +30,16 @@ extension SpinnerDisplayable where Self: UIViewController {
   private func addSpinnerIndicatorToContainer(containerView: UIView) {
     let spinner = UIActivityIndicatorView(style: .medium)
     spinner.startAnimating()
+    spinner.color = .systemGray
     containerView.addSubview(spinner)
     spinner.centerXY()
   }
 
   func hideSpinner() {
     if let foundView = parentView.viewWithTag(ViewValues.tagIdentifierSpinner) {
-      foundView.removeFromSuperview()
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+        foundView.removeFromSuperview()
+      }
     }
   }
 
@@ -45,6 +48,6 @@ extension SpinnerDisplayable where Self: UIViewController {
   }
 
   private var parentView: UIView {
-    navigationController?.view ?? view
+    navigationController?.topViewController?.view ?? view
   }
 }

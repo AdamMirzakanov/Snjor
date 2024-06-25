@@ -25,7 +25,7 @@ extension OverlordCoordinator {
     childCoordinators = childCoordinators.filter { $0 !== coordinator }
   }
 
-  func removeAllChildCoordinators() {
+  func clearAllChildCoordinators() {
     childCoordinators = []
   }
 }

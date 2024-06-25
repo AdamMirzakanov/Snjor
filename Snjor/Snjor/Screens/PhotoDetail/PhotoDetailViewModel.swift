@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 protocol PhotoDetailViewModelProtocol: BaseViewModelProtocol {
+  var photo: Photo? { get }
   var name: String { get }
   var location: String { get }
   var model: String { get }

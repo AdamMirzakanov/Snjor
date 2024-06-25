@@ -5,10 +5,6 @@
 //  Created by Адам on 16.05.2024.
 //
 
-protocol MainTabBarCoordinatorDelegate: AnyObject {
-  func didFinish()
-}
-
 final class MainTabBarCoordinator: Coordinatable {
   // MARK: - Public Properties
   var navigation: any Navigable
@@ -16,17 +12,14 @@ final class MainTabBarCoordinator: Coordinatable {
 
   // MARK: - Private Properties
   private let factory: any MainTabBarFactoryProtocol
-  private weak var delegate: (any MainTabBarCoordinatorDelegate)?
 
   // MARK: - Initializers
   init(
     navigation: any Navigable,
-    factory: any MainTabBarFactoryProtocol,
-    delegate: any MainTabBarCoordinatorDelegate
+    factory: any MainTabBarFactoryProtocol
   ) {
     self.navigation = navigation
     self.factory = factory
-    self.delegate = delegate
   }
 
   // MARK: - Public Methods

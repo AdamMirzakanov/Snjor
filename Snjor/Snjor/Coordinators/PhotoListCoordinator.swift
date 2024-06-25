@@ -29,6 +29,8 @@ final class PhotoListCoordinator: Coordinatable {
     let controller = factory.makeModule(delegate: self)
     factory.makeTabBarItem(navigation: navigation)
     navigation.pushViewController(controller, animated: true)
+    // 🟣
+    // navigation.navigationBar.isHidden = true
   }
 }
 

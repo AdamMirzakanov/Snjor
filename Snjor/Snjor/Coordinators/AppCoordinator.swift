@@ -42,24 +42,14 @@ final class AppCoordinator: Coordinatable {
   }
 
   private func startMainTabBarCoordinator() {
-    let mainTabBarCoordinator = factory?.makeMainTabBarCoordinator(
-      navigation,
-      delegate: self
-    )
+    let mainTabBarCoordinator = factory?.makeMainTabBarCoordinator(navigation)
     addAndStartChildCoordinator(mainTabBarCoordinator)
   }
 
   private func clearCoordinatorsAndStart() {
     navigation.viewControllers = []
-    removeAllChildCoordinators()
+    clearAllChildCoordinators()
     startSomeCoordinator()
-  }
-}
-
-// MARK: - MainTabBarCoordinatorDelegate
-extension AppCoordinator: MainTabBarCoordinatorDelegate {
-  func didFinish() {
-    clearCoordinatorsAndStart()
   }
 }
 

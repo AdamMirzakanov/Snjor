@@ -6,23 +6,16 @@
 //
 
 protocol AppFactoryProtocol {
-  func makeMainTabBarCoordinator(
-    _ navigation: any Navigable,
-    delegate: MainTabBarCoordinatorDelegate
-  ) -> any Coordinatable
+  func makeMainTabBarCoordinator(_ navigation: any Navigable) -> any Coordinatable
 }
 
 struct AppFactory: AppFactoryProtocol {
   // MARK: - Public Methods
-  func makeMainTabBarCoordinator(
-    _ navigation: any Navigable,
-    delegate: any MainTabBarCoordinatorDelegate
-  ) -> any Coordinatable {
+  func makeMainTabBarCoordinator(_ navigation: any Navigable) -> any Coordinatable {
     let factory = MainTabBarFactory()
     let coordinator = MainTabBarCoordinator(
       navigation: navigation,
-      factory: factory,
-      delegate: delegate
+      factory: factory
     )
     return coordinator
   }

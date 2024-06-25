@@ -23,6 +23,7 @@ enum RequestController {
       path: path,
       parameters: parameters
     )
+    print(#function, request)
     return request
   }
 
@@ -30,7 +31,7 @@ enum RequestController {
     let path = photo.rawValue
 //    let parameters = PrepareParameters.preparePhotoParameters()
     let request = try PrepareRequests.prepareInfoURLRequest(path: path, id: id)
-    print(request)
+    print(#function, request)
     return request
   }
 

@@ -63,7 +63,6 @@
 		667A599A2C1F057A00FE4985 /* PhotoViewSmallQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59992C1F057A00FE4985 /* PhotoViewSmallQuality.swift */; };
 		667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A599B2C1F082900FE4985 /* PhotoCell.swift */; };
 		66A17F3D2C29AC6C0032767F /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F3C2C29AC6C0032767F /* PhotoDetailView.swift */; };
-		66A17F3F2C29CC020032767F /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F3E2C29CC020032767F /* UIComponents.swift */; };
 		66A17F412C2A0CE80032767F /* SpinnerDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F402C2A0CE80032767F /* SpinnerDisplayable.swift */; };
 		66A17F432C2A0D830032767F /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F422C2A0D830032767F /* UIView + Extension.swift */; };
 		66A17F452C2A0E7C0032767F /* ViewValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F442C2A0E7C0032767F /* ViewValues.swift */; };
@@ -145,7 +144,6 @@
 		667A59992C1F057A00FE4985 /* PhotoViewSmallQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewSmallQuality.swift; sourceTree = "<group>"; };
 		667A599B2C1F082900FE4985 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		66A17F3C2C29AC6C0032767F /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
-		66A17F3E2C29CC020032767F /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		66A17F402C2A0CE80032767F /* SpinnerDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerDisplayable.swift; sourceTree = "<group>"; };
 		66A17F422C2A0D830032767F /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		66A17F442C2A0E7C0032767F /* ViewValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewValues.swift; sourceTree = "<group>"; };
@@ -408,7 +406,6 @@
 				66A17F3C2C29AC6C0032767F /* PhotoDetailView.swift */,
 				66D082492C24E1C1000574A7 /* PhotoDetailViewModel.swift */,
 				66B0C7242C2782710074CE5B /* PhotoViewRegularQuality.swift */,
-				66A17F3E2C29CC020032767F /* UIComponents.swift */,
 				66D082432C24D896000574A7 /* PhotoDetailRepository.swift */,
 				66D082452C24D8D0000574A7 /* LoadPhotoDetailUseCase.swift */,
 			);
@@ -558,7 +555,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				664A515A2C1E443E003491BA /* Reusable.swift in Sources */,
-				66A17F3F2C29CC020032767F /* UIComponents.swift in Sources */,
 				664A51472C1DFA64003491BA /* Endpoints.swift in Sources */,
 				664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */,
 				66D082482C24DA4F000574A7 /* PhotoDetailCoordinator.swift in Sources */,

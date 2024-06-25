@@ -13,11 +13,11 @@ class PhotoViewRegularQuality: UIView {
   private var imageDownloader = ImageDownloader()
 
   private let photoImageView: UIImageView = {
-    let imageView = UIImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.contentMode = .scaleAspectFill
-    return imageView
-  }()
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.contentMode = .scaleAspectFill
+    $0.clipsToBounds = true
+    return $0
+  }(UIImageView())
 
   // MARK: - Public Methods
   func configure(with photo: Photo, showsUsername: Bool = true) {
