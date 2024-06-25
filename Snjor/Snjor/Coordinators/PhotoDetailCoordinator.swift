@@ -29,9 +29,6 @@ final class PhotoDetailCoordinator: Coordinatable {
   // MARK: - Public Methods
   func start() {
     let controller = factory.makeModule()
-    navigation.pushViewController(controller, animated: true) { [weak self] in
-      guard let self = self else { return }
-      self.overlordCoordinator?.removeChildCoordinator(self)
-    }
+    navigation.present(controller, animated: true)
   }
 }

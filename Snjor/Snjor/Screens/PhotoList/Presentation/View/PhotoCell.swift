@@ -9,8 +9,8 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
   // MARK: - Private Properties
-  private let photoView: PhotoViewSmallQuality = {
-    let photoView = PhotoViewSmallQuality()
+  private let photoView: PhotoView = {
+    let photoView = PhotoView()
     photoView.translatesAutoresizingMaskIntoConstraints = false
     return photoView
   }()

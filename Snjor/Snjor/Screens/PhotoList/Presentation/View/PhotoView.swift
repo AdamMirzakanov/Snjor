@@ -1,5 +1,5 @@
 //
-//  PhotoViewSmallQuality.swift
+//  PhotoView.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoViewSmallQuality: UIView {
+class PhotoView: UIView {
   // MARK: - Private Properties
   private var currentPhotoID: String?
   private var imageDownloader = ImageDownloader()
@@ -31,6 +31,8 @@ class PhotoViewSmallQuality: UIView {
   private let waterfallPhotoImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
     return imageView
   }()
 
@@ -54,7 +56,7 @@ class PhotoViewSmallQuality: UIView {
   func configure(with photo: Photo, showsUsername: Bool = true) {
     self.showsUsername = showsUsername
     userNameLabel.text = photo.user.displayName
-    let size = CGSize(width: 32.0, height: 32.0)
+    let size = CGSize(width: 20.0, height: 20.0)
     currentPhotoID = photo.id
 
     if let blurHash = photo.blurHash {
@@ -91,7 +93,7 @@ class PhotoViewSmallQuality: UIView {
 
   // MARK: - Private Methods
   private func downloadImage(with photo: Photo) {
-    guard let url = photo.urls[.small] else {
+    guard let url = photo.urls[.regular] else {
       return
     }
     let downloadPhotoID = photo.id

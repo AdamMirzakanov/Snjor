@@ -40,9 +40,7 @@ class PhotoDetailViewController: UIViewController {
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
-
-          self.hideSpinner()
-        
+        self.hideSpinner()
         switch state {
         case .success:
           guard let photo = viewModel.photo else { return }
@@ -66,9 +64,8 @@ class PhotoDetailViewController: UIViewController {
 
   func setupUI() {
     view.backgroundColor = .systemBackground
-    self.view.addSubview(self.screenView)
     view.addSubview(screenView)
-    
+
     NSLayoutConstraint.activate([
       screenView.topAnchor.constraint(equalTo: view.topAnchor),
       screenView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

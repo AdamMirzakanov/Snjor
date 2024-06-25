@@ -11,10 +11,10 @@ class PhotoDetailView: UIView {
   private let iso860Formatter = ISO8601DateFormatter()
 
   // MARK: - Background
-  private let photoView: PhotoViewRegularQuality = {
+  private let photoView: PhotoView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     return $0
-  }(PhotoViewRegularQuality())
+  }(PhotoView())
 
   private let gradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -314,7 +314,7 @@ class PhotoDetailView: UIView {
   }(UIStackView())
 
   // MARK: - Photo size
-  private let mPxLabel: UILabel = {
+  private let sizeLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(ofSize: 15, weight: .medium)
     $0.alpha = 0.5
@@ -334,7 +334,7 @@ class PhotoDetailView: UIView {
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = 0
-    $0.addArrangedSubview(mPxLabel)
+    $0.addArrangedSubview(sizeLabel)
     $0.addArrangedSubview(pxLabel)
     $0.addArrangedSubview(UIView())
     return $0
@@ -415,12 +415,12 @@ class PhotoDetailView: UIView {
       gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
       photoView.topAnchor.constraint(equalTo: topAnchor),
-      photoView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -250),
+      photoView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150),
       photoView.leadingAnchor.constraint(equalTo: leadingAnchor),
       photoView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
       vStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-      vStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100),
+      vStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
     ])
 
   }
@@ -432,8 +432,10 @@ class PhotoDetailView: UIView {
     locationLabel.text = photo.user.location
     likesLabel.text = String(photo.likes)
     downloadsLabel.text = String(photo.downloads ?? 0)
+    createdAt(from: photo.createdAt)
     guard let exif = photo.exif else { return }
     cameraModelLabel.text = exif.model ?? "Camera model"
+    sizeLabel.text = determineResolutionCategory(width: photo.width, height: photo.height)
     pxLabel.text = "\(photo.width) × \(photo.height)"
     isoLabel.text = "ISO " + "\(photo.exif?.iso ?? 0) • "
     focalLengthLabel.text = (photo.exif?.focalLength ?? "0") + " mm • "
@@ -441,7 +443,6 @@ class PhotoDetailView: UIView {
     exposureTimeLabel.text = (photo.exif?.exposureTime ?? "0/0") + " s"
     instUsernameLabel.text = photo.user.social?.instagramUsername ?? "instagram_username"
     twitUsernameLabel.text = photo.user.social?.twitterUsername ?? "twitter_username"
-    createdAt(from: photo.createdAt)
   }
 
   // MARK: - Private Methods
@@ -452,5 +453,23 @@ class PhotoDetailView: UIView {
     dateFormatter.timeStyle = .short
     let readableDate = dateFormatter.string(from: date)
     createdLabel.text = readableDate
+  }
+
+  func determineResolutionCategory(width: Int, height: Int) -> String {
+    let maxDimension = max(width, height)
+    switch maxDimension {
+    case 7680...:
+      return "8K UHD • "
+    case 3840..<7680:
+      return "4K UHD • "
+    case 2560..<3840:
+      return "2K QHD • "
+    case 1920..<2560:
+      return "Full HD • "
+    case 1280..<1920:
+      return "HD • "
+    default:
+      return "Standard Definition"
+    }
   }
 }
