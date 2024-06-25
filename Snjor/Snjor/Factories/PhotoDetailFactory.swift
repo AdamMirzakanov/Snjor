@@ -31,6 +31,7 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
     // 🟢
     viewModel.photo = photo
     let module = PhotoDetailViewController(viewModel: viewModel)
+//    module.hidesBottomBarWhenPushed = true
     return module
   }
 }

@@ -105,4 +105,18 @@ class MainTabBarController: UITabBarController {
       }
     }
   }
+
+  func hideCustomBar() {
+    UIView.animate(withDuration: 0.8) {
+      self.customBar.transform = CGAffineTransform(translationX: 0, y: self.view.bounds.height)
+      self.blurView.transform = CGAffineTransform(translationX: 0, y: self.view.bounds.height)
+    }
+  }
+
+  func showCustomBar() {
+    UIView.animate(withDuration: 0.8) {
+      self.customBar.transform = .identity
+      self.blurView.transform = .identity
+    }
+  }
 }

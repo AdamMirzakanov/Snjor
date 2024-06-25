@@ -34,6 +34,20 @@ class PhotoDetailViewController: UIViewController {
     viewModel.viewDidLoad()
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.hideCustomBar()
+    }
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.showCustomBar()
+    }
+  }
+
   private func stateController() {
     viewModel
       .state
