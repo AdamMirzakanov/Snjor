@@ -250,8 +250,6 @@ class PhotoDetailView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: "camera.aperture")
     $0.tintColor = .white
-    $0.widthAnchor.constraint(equalToConstant: 24).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: 24).isActive = true
     $0.alpha = 0.9
     return $0
   }(UIImageView())
