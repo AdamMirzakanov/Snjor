@@ -277,7 +277,13 @@ class PhotoDetailView: UIView {
   private let sizeLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.5
+    $0.textAlignment = .center
+    $0.backgroundColor = .darkGray
+    $0.alpha = 0.4
+    $0.layer.cornerRadius = 4.0
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(equalToConstant: 68).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: 22).isActive = true
     return $0
   }(UILabel())
 
@@ -293,7 +299,7 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 0
+    $0.spacing = 8
     $0.addArrangedSubview(sizeLabel)
     $0.addArrangedSubview(pxLabel)
     $0.addArrangedSubview(UIView())
@@ -418,15 +424,15 @@ class PhotoDetailView: UIView {
     let maxDimension = max(width, height)
     switch maxDimension {
     case 7680...:
-      return "8K UHD • "
+      return "8K UHD"
     case 3840..<7680:
-      return "4K UHD • "
+      return "4K UHD"
     case 2560..<3840:
-      return "2K QHD • "
+      return "2K QHD"
     case 1920..<2560:
-      return "Full HD • "
+      return "Full HD"
     case 1280..<1920:
-      return "HD • "
+      return "HD"
     default:
       return "Standard Definition"
     }
