@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 final class PhotoListViewModel: PhotoListViewModelProtocol {
+  
   // MARK: - Public Properties
   var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   var refreshControl = UIRefreshControl()
@@ -16,6 +17,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   // MARK: - Private Properties
   private var pagingGenerator: any Pageable
   private let loadPhotosUseCase: any LoadPhotoListUseCaseProtocol
+  private var imageDataUseCase: any ImageDataUseCaseProtocol
+
   private (set) var state: PassthroughSubject<StateController, Never>
   private var photos: [Photo] = []
   private var photosCount: Int { photos.count }
@@ -31,11 +34,13 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   init(
     state: PassthroughSubject<StateController, Never>,
     loadPhotosUseCase: any LoadPhotoListUseCaseProtocol,
-    pagingGenerator: any Pageable
+    pagingGenerator: any Pageable,
+    imageDataUseCase: any ImageDataUseCaseProtocol
   ) {
     self.state = state
     self.loadPhotosUseCase = loadPhotosUseCase
     self.pagingGenerator = pagingGenerator
+    self.imageDataUseCase = imageDataUseCase
   }
 
   // MARK: - Public Methods
@@ -63,8 +68,10 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, _ in
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseID, for: indexPath)
       guard let waterfallCell = cell as? PhotoCell else { return cell }
-      let photo = self.loadPhoto(at: indexPath)
-      waterfallCell.configure(with: photo)
+//      let photo = self.loadPhoto(at: indexPath)
+//      waterfallCell.configure(with: photo)
+      let viewModelItem = self.getPhotoListViewModelItem(at: indexPath)
+      waterfallCell.configCell(viewModel: viewModelItem)
       return cell
     }
   }
@@ -82,6 +89,22 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
 //    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 //    collectionView.refreshControl = refreshControl
 //  }
+
+  func getPhotoListViewModelItem(at indexPath: IndexPath) -> PhotoListViewModelItem {
+    checkAndLoadMorePhotos(at: indexPath)
+    return makeItemPhotoViewModel(itemIndex: indexPath.item)
+  }
+
+  func makeItemPhotoViewModel(
+    itemIndex: Int
+  ) -> PhotoListViewModelItem {
+    let photo = photos[itemIndex]
+    let itemPhotoViewModel = PhotoListViewModelItem(
+      photo: photo,
+      dataImageUseCase: imageDataUseCase
+    )
+    return itemPhotoViewModel
+  }
 
   // MARK: - Private Methods
   private func loadPhoto(at indexPath: IndexPath) -> Photo {

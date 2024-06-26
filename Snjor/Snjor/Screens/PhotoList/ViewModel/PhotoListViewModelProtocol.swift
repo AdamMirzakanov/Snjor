@@ -14,5 +14,6 @@ protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
   func applySnapshot()
   func createDataSource(for collectionView: UICollectionView)
   func getUrlDetail(itemIndex: Int) -> URL
+  func getPhotoListViewModelItem(at indexPath: IndexPath) -> PhotoListViewModelItem
   //  func setupRefreshControl(for collectionView: UICollectionView)
 }

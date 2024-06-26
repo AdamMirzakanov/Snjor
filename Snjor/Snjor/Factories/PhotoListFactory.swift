@@ -19,6 +19,7 @@ protocol PhotoListFactoryProtocol {
 }
 
 struct PhotoListFactory: PhotoListFactoryProtocol {
+ let appContainer: any AppContainerProtocol
   // MARK: - Public Methods
   func makeModule(
     delegate: any PhotoListViewControllerDelegate
@@ -30,10 +31,12 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
     let loadPhotoListUseCase = LoadPhotoListUseCase(
       photoListRepository: photoRepository
     )
+    let imageDataUseCase = appContainer.getDataImageUseCase()
     let viewModel = PhotoListViewModel(
       state: state,
       loadPhotosUseCase: loadPhotoListUseCase,
-      pagingGenerator: lastPageValidationUseCase
+      pagingGenerator: lastPageValidationUseCase, 
+      imageDataUseCase: imageDataUseCase
     )
 
     let defaultLayout = UICollectionViewLayout()

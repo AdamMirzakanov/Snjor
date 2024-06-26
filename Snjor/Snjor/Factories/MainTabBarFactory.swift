@@ -13,6 +13,7 @@ protocol MainTabBarFactoryProtocol {
 }
 
 struct MainTabBarFactory: MainTabBarFactoryProtocol {
+  let appContainer: any AppContainerProtocol
   // MARK: - Public Methods
   func makeMainTabBarController() -> UITabBarController {
     let mainTabBarController = MainTabBarController()
@@ -26,7 +27,7 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
 
   // MARK: - Private Methods
   private func makePhotosCoordinator() -> any Coordinatable {
-    let factory = PhotoListFactory()
+    let factory = PhotoListFactory(appContainer: appContainer)
     let navigationController = UINavigationController()
     let navigation = Navigation(rootViewController: navigationController)
     let coordinator = PhotoListCoordinator(factory: factory, navigation: navigation)

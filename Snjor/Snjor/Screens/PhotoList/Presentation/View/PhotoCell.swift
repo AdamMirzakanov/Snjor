@@ -9,11 +9,15 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
   // MARK: - Private Properties
-  private let photoView: PhotoView = {
-    let photoView = PhotoView()
-    photoView.translatesAutoresizingMaskIntoConstraints = false
-    return photoView
-  }()
+  private var task: Task<Void, Never>?
+
+  // MARK: - Views
+  let photoImageView: UIImageView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.contentMode = .scaleAspectFill
+    $0.clipsToBounds = true
+    return $0
+  }(UIImageView())
 
   // MARK: - Initializers
   override init(frame: CGRect) {
@@ -28,28 +32,49 @@ class PhotoCell: UICollectionViewCell {
   // MARK: - Override Methods
   override func prepareForReuse() {
     super.prepareForReuse()
-    photoView.prepareForReuse()
+    task?.cancel()
+    photoImageView.image = nil
   }
 
   // MARK: - Public Methods
-  func configure(with photo: Photo) {
-    photoView.configure(with: photo)
+  func configCell(viewModel: PhotoListViewModelItem) {
+    setImage(viewModel: viewModel)
+  }
+
+  func setImage(viewModel: PhotoListViewModelItem) {
+    if let data = viewModel.imageDataFromCache {
+      photoImageView.setImageFromData(data: data)
+      print("из Кэша")
+    } else {
+      task = Task {
+        if let blurHash = viewModel.photo.blurHash {
+          let size = CGSize(width: 20.0, height: 20.0)
+          photoImageView.image = UIImage(blurHash: blurHash, size: size)
+          let dataImage = await viewModel.getImageData()
+          photoImageView.setImageFromData(data: dataImage)
+          print("из Интернета + БлюрХэш")
+        } else {
+          let dataImage = await viewModel.getImageData()
+          photoImageView.setImageFromData(data: dataImage)
+          print("из Интернета без БлюрХэша")
+        }
+      }
+    }
   }
 
   // MARK: - Private Methods
   private func setupPhotoView() {
     contentView.preservesSuperviewLayoutMargins = true
-    contentView.addSubview(photoView)
+    contentView.addSubview(photoImageView)
     setupConstraints()
-    photoView.setupImageView()
   }
 
   private func setupConstraints() {
     NSLayoutConstraint.activate([
-      photoView.topAnchor.constraint(equalTo: contentView.topAnchor),
-      photoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-      photoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      photoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+      photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+      photoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      photoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
     ])
   }
 }
