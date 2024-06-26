@@ -10,35 +10,15 @@ import Combine
 
 protocol PhotoDetailViewModelProtocol: BaseViewModelProtocol {
   var photo: Photo? { get }
-  var name: String { get }
-  var location: String { get }
-  var model: String { get }
-  var width: Int { get }
-  var height: Int { get }
-  var iso: Int { get }
-  var aperture: String { get }
-  var focalLength: String { get }
-  var exposureTime: String { get }
-  var likes: Int { get }
 }
 
 final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   // MARK: - Public Properties
   var state: PassthroughSubject<StateController, Never>
-  var name: String { "\(photo?.user.firstName ?? "-") \(photo?.user.lastName ?? "-")" }
-  var location: String { photo?.user.location ?? "-" }
-  var model: String { photo?.exif?.model ?? "-" }
-  var width: Int { photo?.width ?? 0 }
-  var height: Int { photo?.height ?? 0 }
-  var iso: Int { photo?.exif?.iso ?? 0 }
-  var aperture: String { photo?.exif?.aperture ?? "-" }
-  var focalLength: String { photo?.exif?.focalLength ?? "-" }
-  var exposureTime: String { photo?.exif?.exposureTime ?? "-" }
-  var likes: Int { photo?.user.totalLikes ?? 0 }
+  var photo: Photo?
 
   // MARK: - Private Properties
-  let loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
-  var photo: Photo?
+  private let loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
 
   // MARK: - Initializers
   init(
@@ -59,7 +39,7 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
 
   // MARK: - Private Methods
   private func loadPhotoDetailUseCase() async {
-    guard let photo = photo else { return }
+    guard photo != nil else { return }
     let result = await loadPhotoDetailUseCase.execute()
     updateState(with: result)
   }

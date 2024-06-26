@@ -8,9 +8,7 @@
 import UIKit
 // swiftlint:disable all
 class PhotoDetailView: UIView {
-  private let iso860Formatter = ISO8601DateFormatter()
-
-  // MARK: - Background
+  // MARK: - Background Views
   private let photoView: PhotoView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     return $0
@@ -31,17 +29,16 @@ class PhotoDetailView: UIView {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(named: "profile")
-    $0.layer.cornerRadius = 27
+    $0.layer.cornerRadius = PhotoConstants.profilePhotoCornerRadius
     $0.clipsToBounds = true
-    $0.widthAnchor.constraint(equalToConstant: 54).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: 54).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: PhotoConstants.profilePhotoSize).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: PhotoConstants.profilePhotoSize).isActive = true
     return $0
   }(UIImageView())
 
   private let nameLabel: UILabel = {
     $0.textColor = .white
-    $0.font = UIFont(name: "Times New Roman Bold", size: 25)
-    $0.alpha = 0.9
+    $0.font = UIFont(name: "Times New Roman Bold", size: PhotoConstants.nameFontSize)
     return $0
   }(UILabel())
 
@@ -50,28 +47,26 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 16
+    $0.spacing = PhotoConstants.midlValue
     $0.addArrangedSubview(profilePhotoImageView)
     $0.addArrangedSubview(nameLabel)
     return $0
   }(UIStackView())
 
   // MARK: - Social
-  private let instLogoImageView: UIImageView = {
+  private let instagramLogoImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(named: "inst")
     $0.tintColor = .white
-    $0.alpha = 0.9
-    $0.widthAnchor.constraint(equalToConstant: 17).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: 17).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: PhotoConstants.logoSize).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: PhotoConstants.logoSize).isActive = true
     return $0
   }(UIImageView())
 
-  private let instUsernameLabel: UILabel = {
+  private let instagramUsernameLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.9
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
     return $0
   }(UILabel())
 
@@ -80,9 +75,9 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 10
-    $0.addArrangedSubview(instLogoImageView)
-    $0.addArrangedSubview(instUsernameLabel)
+    $0.spacing = PhotoConstants.defaultValue
+    $0.addArrangedSubview(instagramLogoImageView)
+    $0.addArrangedSubview(instagramUsernameLabel)
     return $0
   }(UIStackView())
 
@@ -91,16 +86,14 @@ class PhotoDetailView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(named: "twit")
     $0.tintColor = .white
-    $0.alpha = 0.9
-    $0.widthAnchor.constraint(equalToConstant: 16).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: 16).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: PhotoConstants.logoSize).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: PhotoConstants.logoSize).isActive = true
     return $0
   }(UIImageView())
 
-  private let twitUsernameLabel: UILabel = {
+  private let twitterUsernameLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.9
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
     return $0
   }(UILabel())
 
@@ -109,16 +102,16 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 10
+    $0.spacing = PhotoConstants.defaultValue
     $0.addArrangedSubview(twitLogoImageView)
-    $0.addArrangedSubview(twitUsernameLabel)
+    $0.addArrangedSubview(twitterUsernameLabel)
     return $0
   }(UIStackView())
 
   private lazy var socialStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .vertical
-    $0.spacing = 16
+    $0.spacing = PhotoConstants.midlValue
     $0.addArrangedSubview(instStackView)
     $0.addArrangedSubview(twitStackView)
     return $0
@@ -128,9 +121,8 @@ class PhotoDetailView: UIView {
   private lazy var firstLine: UIView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.backgroundColor = .white
-    $0.alpha = 0.9
-    $0.heightAnchor.constraint(equalToConstant: 1).isActive = true
-    $0.widthAnchor.constraint(equalToConstant: frame.width - 32).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: PhotoConstants.lineHeightAnchor).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: frame.width - PhotoConstants.longValue).isActive = true
     return $0
   }(UIView())
 
@@ -140,14 +132,12 @@ class PhotoDetailView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: "heart.fill")
     $0.tintColor = .white
-    $0.alpha = 0.9
     return $0
   }(UIImageView())
 
   private let likesLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.9
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
     return $0
   }(UILabel())
 
@@ -156,7 +146,7 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 8
+    $0.spacing = PhotoConstants.defaultValue
     $0.addArrangedSubview(heartImageView)
     $0.addArrangedSubview(likesLabel)
     return $0
@@ -167,14 +157,12 @@ class PhotoDetailView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: "tray.and.arrow.down.fill")
     $0.tintColor = .white
-    $0.alpha = 0.9
     return $0
   }(UIImageView())
 
   private let downloadsLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.9
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
     return $0
   }(UILabel())
 
@@ -183,7 +171,7 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 8
+    $0.spacing = PhotoConstants.defaultValue
     $0.addArrangedSubview(downloadsImageView)
     $0.addArrangedSubview(downloadsLabel)
     return $0
@@ -193,7 +181,7 @@ class PhotoDetailView: UIView {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .equalSpacing
-    $0.spacing = 32
+    $0.spacing = PhotoConstants.longValue
     $0.addArrangedSubview(likesStackView)
     $0.addArrangedSubview(downloadStackView)
     return $0
@@ -202,15 +190,15 @@ class PhotoDetailView: UIView {
   private let downloadButton: UIButton = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.backgroundColor = .white
-    $0.layer.cornerRadius = 8
+    $0.layer.cornerRadius = PhotoConstants.defaultValue
     $0.setTitle(" JPEG", for: .normal)
     $0.setImage(UIImage(systemName: "arrow.down.app.fill"), for: .normal)
-    $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+    $0.titleLabel?.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .regular)
     $0.tintColor = .darkGray
-    $0.alpha = 0.4
+    $0.alpha = PhotoConstants.alpha
     $0.setContentHuggingPriority(.required, for: .horizontal)
-    $0.widthAnchor.constraint(equalToConstant: 74).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: 32).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: PhotoConstants.downloadButtonWidth).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: PhotoConstants.downloadButtonHeight).isActive = true
     return $0
   }(UIButton(type: .system))
 
@@ -219,7 +207,7 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .fill
-    $0.spacing = 16
+    $0.spacing = PhotoConstants.midlValue
     $0.addArrangedSubview(profitabilityStackViews)
     $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(downloadButton)
@@ -230,17 +218,15 @@ class PhotoDetailView: UIView {
   private lazy var secondLine: UIView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.backgroundColor = .white
-    $0.alpha = 0.9
-    $0.heightAnchor.constraint(equalToConstant: 1).isActive = true
-    $0.widthAnchor.constraint(equalToConstant: frame.width - 32).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: PhotoConstants.lineHeightAnchor).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: frame.width - PhotoConstants.longValue).isActive = true
     return $0
   }(UIView())
 
   // MARK: - Created,
   private let createdLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.9
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
     return $0
   }(UILabel())
 
@@ -250,14 +236,12 @@ class PhotoDetailView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: "camera.aperture")
     $0.tintColor = .white
-    $0.alpha = 0.9
     return $0
   }(UIImageView())
 
   private var cameraModelLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .black)
-    $0.alpha = 0.9
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .black)
     return $0
   }(UILabel())
 
@@ -266,7 +250,7 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 4
+    $0.spacing = PhotoConstants.defaultValue
     $0.addArrangedSubview(cameraImageView)
     $0.addArrangedSubview(cameraModelLabel)
     $0.addArrangedSubview(UIView())
@@ -274,23 +258,23 @@ class PhotoDetailView: UIView {
   }(UIStackView())
 
   // MARK: - Photo size
-  private let sizeLabel: UILabel = {
+  private let resolutionLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
     $0.textAlignment = .center
     $0.backgroundColor = .darkGray
-    $0.alpha = 0.4
-    $0.layer.cornerRadius = 4.0
+    $0.alpha = PhotoConstants.alpha
+    $0.layer.cornerRadius = PhotoConstants.resolutionLabelCornerRadius
     $0.clipsToBounds = true
-    $0.widthAnchor.constraint(equalToConstant: 68).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: 22).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: PhotoConstants.resolutionLabelWidth).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: PhotoConstants.resolutionLabelHeight).isActive = true
     return $0
   }(UILabel())
 
   private let pxLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.5
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
+    $0.alpha = PhotoConstants.alpha
     return $0
   }(UILabel())
 
@@ -299,8 +283,8 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 8
-    $0.addArrangedSubview(sizeLabel)
+   $0.spacing = PhotoConstants.defaultValue
+    $0.addArrangedSubview(resolutionLabel)
     $0.addArrangedSubview(pxLabel)
     $0.addArrangedSubview(UIView())
     return $0
@@ -309,29 +293,29 @@ class PhotoDetailView: UIView {
   // MARK: - Characteristics of photography
   private let isoLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.5
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
+    $0.alpha = PhotoConstants.alpha
     return $0
   }(UILabel())
 
   private let apertureLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.5
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
+    $0.alpha = PhotoConstants.alpha
     return $0
   }(UILabel())
 
   private let focalLengthLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.5
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
+    $0.alpha = PhotoConstants.alpha
     return $0
   }(UILabel())
 
   private let exposureTimeLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 15, weight: .medium)
-    $0.alpha = 0.5
+    $0.font = .systemFont(ofSize: PhotoConstants.defaultFontSize, weight: .medium)
+    $0.alpha = PhotoConstants.alpha
     return $0
   }(UILabel())
 
@@ -340,7 +324,6 @@ class PhotoDetailView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = 0
     $0.addArrangedSubview(isoLabel)
     $0.addArrangedSubview(focalLengthLabel)
     $0.addArrangedSubview(apertureLabel)
@@ -350,11 +333,11 @@ class PhotoDetailView: UIView {
   }(UIStackView())
 
   // MARK: - Сontaining everything
-  private lazy var vStackView: UIStackView = {
+  private lazy var mainStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .vertical
     $0.distribution = .equalSpacing
-    $0.spacing = 16
+    $0.spacing = PhotoConstants.midlValue
     $0.addArrangedSubview(profilePhotoAndNameStackView)
     $0.addArrangedSubview(socialStackView)
     $0.addArrangedSubview(firstLine)
@@ -371,7 +354,7 @@ class PhotoDetailView: UIView {
   func setupView() {
     addSubview(photoView)
     addSubview(gradientView)
-    addSubview(vStackView)
+    addSubview(mainStackView)
 
     NSLayoutConstraint.activate([
       
@@ -381,12 +364,12 @@ class PhotoDetailView: UIView {
       gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
       photoView.topAnchor.constraint(equalTo: topAnchor),
-      photoView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150),
+      photoView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: PhotoConstants.photoViewBottomAnchor),
       photoView.leadingAnchor.constraint(equalTo: leadingAnchor),
       photoView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
-      vStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-      vStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+      mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: PhotoConstants.mainStackLeadingAnchor),
+      mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: PhotoConstants.mainStackViewBottomAnchor),
     ])
 
   }
@@ -396,23 +379,24 @@ class PhotoDetailView: UIView {
     photoView.configure(with: photo)
     nameLabel.text = photo.user.displayName
     likesLabel.text = String(photo.likes)
-    downloadsLabel.text = String(photo.downloads ?? 0)
+    downloadsLabel.text = String(photo.downloads ?? Int.zero)
     createdAt(from: photo.createdAt)
     guard let exif = photo.exif else { return }
-    cameraModelLabel.text = exif.model ?? "Camera model"
-    sizeLabel.text = determineResolutionCategory(width: photo.width, height: photo.height)
+    cameraModelLabel.text = exif.model ?? DefaultTextForLabel.cameraModel
+    resolutionLabel.text = determineResolutionCategory(width: photo.width, height: photo.height)
     pxLabel.text = "\(photo.width) × \(photo.height)"
-    isoLabel.text = "ISO " + "\(photo.exif?.iso ?? 0) • "
-    focalLengthLabel.text = (photo.exif?.focalLength ?? "0") + " mm • "
-    apertureLabel.text = "𝑓 " + "\(photo.exif?.aperture ?? "0.0") • "
-    exposureTimeLabel.text = (photo.exif?.exposureTime ?? "0/0") + " s"
-    instUsernameLabel.text = photo.user.social?.instagramUsername ?? "instagram_username"
-    twitUsernameLabel.text = photo.user.social?.twitterUsername ?? "twitter_username"
+    isoLabel.text = "ISO \(exif.iso ?? Int.zero)" + DefaultTextForLabel.dot
+    focalLengthLabel.text = "\(exif.focalLength ?? "0") mm" + DefaultTextForLabel.dot
+    apertureLabel.text = "𝑓 \(exif.aperture ?? "0.0")" + DefaultTextForLabel.dot
+    exposureTimeLabel.text = "\(exif.exposureTime ?? "0/0") s"
+    guard let social = photo.user.social else { return }
+    instagramUsernameLabel.text = social.instagramUsername ?? DefaultTextForLabel.instagramUsername
+    twitterUsernameLabel.text = social.twitterUsername ?? DefaultTextForLabel.twitterUsername
   }
 
   // MARK: - Private Methods
   private func createdAt(from date: String) {
-    guard let date = iso860Formatter.date(from: date) else { return }
+    guard let date = ISO8601DateFormatter().date(from: date) else { return }
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .medium
     dateFormatter.timeStyle = .short
@@ -424,17 +408,17 @@ class PhotoDetailView: UIView {
     let maxDimension = max(width, height)
     switch maxDimension {
     case 7680...:
-      return "8K UHD"
+      return Resolution.uhd8K
     case 3840..<7680:
-      return "4K UHD"
+      return Resolution.uhd4K
     case 2560..<3840:
-      return "2K QHD"
+      return Resolution.qhd2K
     case 1920..<2560:
-      return "Full HD"
+      return Resolution.fullHD
     case 1280..<1920:
-      return "HD"
+      return Resolution.hd
     default:
-      return "Standard Definition"
+      return Resolution.standard
     }
   }
 }
