@@ -27,7 +27,7 @@ enum PhotoConstants {
   // constraints value
   static let photoViewBottomAnchor: CGFloat = -150.0
   static let mainStackLeadingAnchor: CGFloat = 16.0
-  static let mainStackViewBottomAnchor: CGFloat = -50.0
+  static let mainStackViewBottomAnchor: CGFloat = 0.0
   static let lineHeightAnchor: CGFloat = 1.0
   static let resolutionLabelWidth: CGFloat = 66
   static let resolutionLabelHeight: CGFloat = resolutionLabelWidth / 3

@@ -390,8 +390,8 @@ class PhotoDetailView: UIView {
     apertureLabel.text = "𝑓 \(exif.aperture ?? "0.0")" + DefaultTextForLabel.dot
     exposureTimeLabel.text = "\(exif.exposureTime ?? "0/0") s"
     guard let social = photo.user.social else { return }
-    instagramUsernameLabel.text = social.instagramUsername ?? DefaultTextForLabel.instagramUsername
-    twitterUsernameLabel.text = social.twitterUsername ?? DefaultTextForLabel.twitterUsername
+    instagramUsernameLabel.text = social.instagramUsername ?? photo.user.username
+    twitterUsernameLabel.text = social.twitterUsername ?? photo.user.username 
   }
 
   // MARK: - Private Methods
