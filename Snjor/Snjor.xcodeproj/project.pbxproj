@@ -83,6 +83,7 @@
 		66D0824A2C24E1C1000574A7 /* PhotoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D082492C24E1C1000574A7 /* PhotoDetailViewModel.swift */; };
 		66D0824D2C2574F6000574A7 /* PhotoExif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0824C2C2574F6000574A7 /* PhotoExif.swift */; };
 		66F5C23A2C2C57B4001FC3A3 /* PhotoConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5C2392C2C57B4001FC3A3 /* PhotoConstants.swift */; };
+		66F5C23F2C2C988B001FC3A3 /* LocalDataImageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5C23E2C2C988B001FC3A3 /* LocalDataImageServiceProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +165,7 @@
 		66D082492C24E1C1000574A7 /* PhotoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewModel.swift; sourceTree = "<group>"; };
 		66D0824C2C2574F6000574A7 /* PhotoExif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoExif.swift; sourceTree = "<group>"; };
 		66F5C2392C2C57B4001FC3A3 /* PhotoConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoConstants.swift; sourceTree = "<group>"; };
+		66F5C23E2C2C988B001FC3A3 /* LocalDataImageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataImageServiceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 		664A511D2C1DCE5B003491BA /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				66F5C23D2C2C985D001FC3A3 /* Storage */,
 				664A511E2C1DCE6C003491BA /* ImageCache.swift */,
 			);
 			path = Storage;
@@ -462,6 +465,14 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
+		66F5C23D2C2C985D001FC3A3 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				66F5C23E2C2C988B001FC3A3 /* LocalDataImageServiceProtocol.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -578,6 +589,7 @@
 				66D0824A2C24E1C1000574A7 /* PhotoDetailViewModel.swift in Sources */,
 				66A17F432C2A0D830032767F /* UIView + Extension.swift in Sources */,
 				66BE9C662C1F17870006011A /* PhotoListCoordinator.swift in Sources */,
+				66F5C23F2C2C988B001FC3A3 /* LocalDataImageServiceProtocol.swift in Sources */,
 				664A515C2C1E458A003491BA /* Photo.swift in Sources */,
 				664A51672C1E4E6F003491BA /* PhotoListViewModel.swift in Sources */,
 				665993592C20E15F00BA8C85 /* PhotoDetailViewController.swift in Sources */,
