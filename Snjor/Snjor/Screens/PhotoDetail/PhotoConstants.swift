@@ -32,7 +32,7 @@ enum PhotoConstants {
   static let resolutionLabelWidth: CGFloat = 66
   static let resolutionLabelHeight: CGFloat = resolutionLabelWidth / 3
   static let downloadButtonWidth: CGFloat = 74.0
-  static let downloadButtonHeight: CGFloat = downloadButtonWidth / half
+  static let downloadButtonHeight: CGFloat = 32.0
 }
 
 enum DefaultTextForLabel {
