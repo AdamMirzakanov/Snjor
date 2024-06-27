@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AppContainerProtocol {
-  var apiClient: any ImageDataRequestable { get }
+  var apiClient: any Requestable & ImageDataRequestable { get }
   var localDataService: any LocalDataImageServiceProtocol { get }
   func getDataImageUseCase() -> any ImageDataUseCaseProtocol
 }
@@ -16,7 +16,7 @@ protocol AppContainerProtocol {
 struct AppContainer: AppContainerProtocol {
 
   // MARK: - Public Properties
-  var apiClient: any ImageDataRequestable = NetworkService()
+  var apiClient: any Requestable & ImageDataRequestable = NetworkService()
   var localDataService: any LocalDataImageServiceProtocol = LocalDataImageService()
 
   // MARK: - Public  Methods

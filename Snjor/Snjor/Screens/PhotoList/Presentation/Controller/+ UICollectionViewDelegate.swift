@@ -12,8 +12,7 @@ extension PhotoListCollectionViewController {
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-    let itemIndex = indexPath.item
-    let photo = viewModel.fetchPhoto(at: indexPath)
-    delegate?.didSelect(photo: photo)
+    let id = viewModel.getPhotoID(at: indexPath)
+    delegate?.didSelect(id: id)
   }
 }

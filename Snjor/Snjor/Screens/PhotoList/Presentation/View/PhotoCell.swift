@@ -10,6 +10,12 @@ import UIKit
 class PhotoCell: UICollectionViewCell {
   // MARK: - Private Properties
   private var task: Task<Void, Never>?
+  private var showsUsername = true {
+    didSet {
+      userNameLabel.alpha = showsUsername ? 1 : 0
+      gradientView.alpha = showsUsername ? 1 : 0
+    }
+  }
 
   // MARK: - Views
   let photoImageView: UIImageView = {
@@ -18,6 +24,22 @@ class PhotoCell: UICollectionViewCell {
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
+
+  private let gradientView: GradientView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.setColors([
+      GradientView.Color(color: .clear, location: 0.7),
+      GradientView.Color(color: UIColor(white: 0, alpha: 0.5), location: 1)
+    ])
+    return $0
+  }(GradientView())
+
+  private let userNameLabel: UILabel = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.textColor = .white
+    $0.font = .systemFont(ofSize: 13, weight: .medium)
+    return $0
+  }(UILabel())
 
   // MARK: - Initializers
   override init(frame: CGRect) {
@@ -32,8 +54,8 @@ class PhotoCell: UICollectionViewCell {
   // MARK: - Override Methods
   override func prepareForReuse() {
     super.prepareForReuse()
-    task?.cancel()
     photoImageView.image = nil
+    task?.cancel()
   }
 
   // MARK: - Public Methods
@@ -41,7 +63,10 @@ class PhotoCell: UICollectionViewCell {
     setImage(viewModel: viewModel)
   }
 
-  func setImage(viewModel: PhotoListViewModelItem) {
+  func setImage(viewModel: PhotoListViewModelItem, showsUsername: Bool = true) {
+    self.showsUsername = showsUsername
+    userNameLabel.text = viewModel.name
+
     if let data = viewModel.imageDataFromCache {
       photoImageView.setImageFromData(data: data)
       print("из Кэша")
@@ -65,7 +90,11 @@ class PhotoCell: UICollectionViewCell {
   // MARK: - Private Methods
   private func setupPhotoView() {
     contentView.preservesSuperviewLayoutMargins = true
+
     contentView.addSubview(photoImageView)
+    contentView.addSubview(gradientView)
+    contentView.addSubview(userNameLabel)
+
     setupConstraints()
   }
 
@@ -74,7 +103,15 @@ class PhotoCell: UICollectionViewCell {
       photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
       photoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
       photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      photoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+      photoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+
+      gradientView.topAnchor.constraint(equalTo: contentView.topAnchor),
+      gradientView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      gradientView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      gradientView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+
+      userNameLabel.leadingAnchor.constraint(equalTo: photoImageView.leadingAnchor, constant: 10),
+      userNameLabel.bottomAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: -10)
     ])
   }
 }

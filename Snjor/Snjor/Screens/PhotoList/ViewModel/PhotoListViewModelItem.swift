@@ -8,16 +8,14 @@
 import Foundation
 
 struct PhotoListViewModelItem {
-  private(set) var photo: Photo
-  private(set) var dataImageUseCase: any ImageDataUseCaseProtocol
-
-  var width: Int { photo.width }
-  var height: Int { photo.height }
-
+  var name: String { photo.user.displayName }
   var imageDataFromCache: Data? {
     let url = photo.urls[.thumb]
     return dataImageUseCase.getDataFromCache(url: url)
   }
+
+  private(set) var photo: Photo
+  private(set) var dataImageUseCase: any ImageDataUseCaseProtocol
 
   func getImageData() async -> Data? {
     let url = photo.urls[.thumb]

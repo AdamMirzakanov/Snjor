@@ -12,7 +12,7 @@ extension PhotoListCollectionViewController: WaterfallLayoutDelegate {
     _ layout: WaterfallLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    let photo = viewModel.fetchPhoto(at: indexPath)
+    let photo = viewModel.getPhotoItem(at: indexPath)
     return CGSize(width: photo.width, height: photo.height)
   }
 }

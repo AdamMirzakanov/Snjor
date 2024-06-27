@@ -12,22 +12,24 @@ protocol PhotoListFactoryProtocol {
   func makeModule(delegate: any PhotoListViewControllerDelegate) -> UIViewController
   func makeTabBarItem(navigation: any Navigable)
   func mekePhotoDetailCoordinator(
-    photo: Photo,
+    id: String,
     navigation: any Navigable,
     overlordCoordinator: any OverlordCoordinator
   ) -> any Coordinatable
 }
 
 struct PhotoListFactory: PhotoListFactoryProtocol {
+  // MARK: - Public Properties
  let appContainer: any AppContainerProtocol
+
   // MARK: - Public Methods
   func makeModule(
     delegate: any PhotoListViewControllerDelegate
   ) -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
-    let apiClient = NetworkService()
+    let apiClient = appContainer.apiClient
     let photoRepository = PhotosRepository(apiClient: apiClient)
-    let lastPageValidationUseCase = PagingGenerator()
+    let lastPageValidationUseCase = LastPageValidationUseCase()
     let loadPhotoListUseCase = LoadPhotoListUseCase(
       photoListRepository: photoRepository
     )
@@ -65,11 +67,11 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
   }
 
   func mekePhotoDetailCoordinator(
-    photo: Photo,
+    id: String,
     navigation: any Navigable,
     overlordCoordinator: any OverlordCoordinator
   ) -> any Coordinatable {
-    let factory = PhotoDetailFactory(photo: photo)
+    let factory = PhotoDetailFactory(id: id, appContainer: appContainer)
     let coordinator = PhotoDetailCoordinator(
       factory: factory,
       navigation: navigation,

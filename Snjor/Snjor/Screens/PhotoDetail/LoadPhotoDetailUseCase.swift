@@ -8,22 +8,18 @@
 import Foundation
 
 protocol LoadPhotoDetailUseCaseProtocol {
-  func execute() async -> Result<Photo, any Error>
+  func execute() async throws -> Photo
 }
 
 struct LoadPhotoDetailUseCase: LoadPhotoDetailUseCaseProtocol {
   // MARK: - Private Properties
   let photoDetailRepository: any PhotoDetailRepositoryProtocol
-  let photo: Photo
+  let id: String
 
   // MARK: - Public Methods
-  func execute() async -> Result<Photo, any Error> {
-    do {
-      let request = try RequestController.photoRequest(id: photo.id)
-      let photo = try await photoDetailRepository.fetchPhoto(request: request)
-      return .success(photo)
-    } catch {
-      return .failure(error)
-    }
+  func execute() async throws -> Photo {
+    let request = try RequestController.photoRequest(id: id)
+    print(#function, request)
+    return try await photoDetailRepository.fetchPhoto(request: request)
   }
 }

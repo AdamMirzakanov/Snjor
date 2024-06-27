@@ -9,13 +9,13 @@ import UIKit
 import Combine
 
 protocol PhotoListViewControllerDelegate: AnyObject {
-  func didSelect(photo: Photo)
+  func didSelect(id: String)
 }
 
 class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - Private Properties
   private(set) var viewModel: any PhotoListViewModelProtocol
-  weak var delegate: (any PhotoListViewControllerDelegate)?
+  private(set) weak var delegate: (any PhotoListViewControllerDelegate)?
   private var cancellable = Set<AnyCancellable>()
 
   // MARK: - Initializers

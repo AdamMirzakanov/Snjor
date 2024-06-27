@@ -19,38 +19,30 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
 
   // MARK: - Private Properties
   private let loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
+  private let dataImageUseCase: any ImageDataUseCaseProtocol
 
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
+    loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol,
+    dataImageUseCase: any ImageDataUseCaseProtocol
   ) {
     self.state = state
     self.loadPhotoDetailUseCase = loadPhotoDetailUseCase
+    self.dataImageUseCase = dataImageUseCase
   }
 
   // MARK: - Public Methods
   func viewDidLoad() {
     state.send(.loading)
     Task {
-      await loadPhotoDetailUseCase()
-    }
-  }
-
-  // MARK: - Private Methods
-  private func loadPhotoDetailUseCase() async {
-    guard photo != nil else { return }
-    let result = await loadPhotoDetailUseCase.execute()
-    updateState(with: result)
-  }
-
-  private func updateState(with result: Result<Photo, Error>) {
-    switch result {
-    case .success(let photo):
-      self.photo = photo
-      state.send(.success)
-    case .failure(let error):
-      state.send(.fail(error: error.localizedDescription))
+      do {
+        let photo = try await loadPhotoDetailUseCase.execute()
+        self.photo = photo
+        state.send(.success)
+      } catch {
+        state.send(.fail(error: error.localizedDescription))
+      }
     }
   }
 }

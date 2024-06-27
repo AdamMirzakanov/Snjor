@@ -1,11 +1,11 @@
 //
-//  PagingGenerator.swift
+//  LastPageValidationUseCase.swift
 //  Snjor
 //
 //  Created by Адам on 15.06.2024.
 //
 
-struct PagingGenerator: Pageable {
+struct LastPageValidationUseCase: Pageable {
   // MARK: - Private Properties
   private var threshold = 10
   private(set) var lastPage = false
