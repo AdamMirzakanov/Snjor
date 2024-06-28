@@ -23,15 +23,12 @@ enum RequestController {
       path: path,
       parameters: parameters
     )
-    print(#function, request)
     return request
   }
 
   static func photoRequest(id: String) throws -> URLRequest {
     let path = photo.rawValue
-//    let parameters = PrepareParameters.preparePhotoParameters()
     let request = try PrepareRequests.prepareInfoURLRequest(path: path, id: id)
-    print(#function, request)
     return request
   }
 

@@ -14,12 +14,10 @@ protocol PhotoDetailFactoryProtocol {
 
 struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
   let id: String
-  let apiClient = NetworkService()
   let appContainer: any AppContainerProtocol
 
   func makeModule() -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
-
     let photoDetailRepository = PhotoDetailRepository(apiClient: appContainer.apiClient)
     let loadPhotoDetailUseCase = LoadPhotoDetailUseCase(
       photoDetailRepository: photoDetailRepository,
@@ -31,7 +29,6 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
       dataImageUseCase: appContainer.getDataImageUseCase()
     )
     // 🟢
-//    viewModel.photo?.id = id
     let module = PhotoDetailViewController(viewModel: viewModel)
     return module
   }

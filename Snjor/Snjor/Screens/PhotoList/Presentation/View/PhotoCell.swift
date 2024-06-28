@@ -67,9 +67,9 @@ class PhotoCell: UICollectionViewCell {
     self.showsUsername = showsUsername
     userNameLabel.text = viewModel.name
 
-    if let data = viewModel.imageDataFromCache {
+    if let data = viewModel.imageData {
       photoImageView.setImageFromData(data: data)
-      print("из Кэша")
+//      print(#function, "из Кэша")
     } else {
       task = Task {
         if let blurHash = viewModel.photo.blurHash {
@@ -77,11 +77,10 @@ class PhotoCell: UICollectionViewCell {
           photoImageView.image = UIImage(blurHash: blurHash, size: size)
           let dataImage = await viewModel.getImageData()
           photoImageView.setImageFromData(data: dataImage)
-          print("из Интернета + БлюрХэш")
+//          print(#function, "из Интернета")
         } else {
           let dataImage = await viewModel.getImageData()
           photoImageView.setImageFromData(data: dataImage)
-          print("из Интернета без БлюрХэша")
         }
       }
     }

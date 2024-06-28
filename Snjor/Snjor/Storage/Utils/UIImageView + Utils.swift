@@ -11,6 +11,7 @@ extension UIImageView {
   func setImageFromData(data: Data?) {
     if let data = data {
       if let image = UIImage(data: data) {
+        self.image = image
         UIView.transition(
           with: self,
           duration: 0.25,

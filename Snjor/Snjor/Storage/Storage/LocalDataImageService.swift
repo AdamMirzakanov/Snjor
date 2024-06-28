@@ -8,20 +8,21 @@
 import Foundation
 
 protocol LocalDataImageServiceProtocol {
-  func save(key: URL, data: Data?)
-  func get(key: URL) -> Data?
+  func save(key: String, data: Data?)
+  func get(key: String) -> Data?
 }
 
 struct LocalDataImageService: LocalDataImageServiceProtocol {
 
-  private var dataStorage = NSCache<NSURL, NSData>()
+  private var dataStorage = NSCache<NSString, NSData>()
 
-  func save(key: URL, data: Data?) {
+  func save(key: String, data: Data?) {
     guard let data = data else { return }
-    dataStorage.setObject(data as NSData, forKey: key as NSURL)
+    dataStorage.setObject(data as NSData, forKey: key as NSString)
   }
 
-  func get(key: URL) -> Data? {
-    dataStorage.object(forKey: key as NSURL) as? Data
+  // 1
+  func get(key: String) -> Data? {
+    return dataStorage.object(forKey: key as NSString) as? Data
   }
 }

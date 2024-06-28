@@ -27,8 +27,7 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
     delegate: any PhotoListViewControllerDelegate
   ) -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
-    let apiClient = appContainer.apiClient
-    let photoRepository = PhotosRepository(apiClient: apiClient)
+    let photoRepository = PhotosRepository(apiClient: appContainer.apiClient)
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let loadPhotoListUseCase = LoadPhotoListUseCase(
       photoListRepository: photoRepository

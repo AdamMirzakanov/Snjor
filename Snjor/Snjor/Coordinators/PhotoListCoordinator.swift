@@ -44,16 +44,6 @@ extension PhotoListCoordinator: PhotoListViewControllerDelegate {
     )
     addAndStartChildCoordinator(coordinator)
   }
-  
-//  func didSelect(photo: Photo) {
-//    // code
-//    let coordinator = factory.mekePhotoDetailCoordinator(
-//      photo: photo,
-//      navigation: navigation,
-//      overlordCoordinator: self
-//    )
-//    addAndStartChildCoordinator(coordinator)
-//  }
 }
 
 extension PhotoListCoordinator: OverlordCoordinator { }
