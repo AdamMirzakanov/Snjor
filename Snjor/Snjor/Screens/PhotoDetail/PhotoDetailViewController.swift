@@ -60,16 +60,16 @@ class PhotoDetailViewController: UIViewController {
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
-//        self.hideSpinner()
+        self.hideSpinner()
         switch state {
         case .success:
           self.configData()
         case .loading:
-          print()
-//          self.showSpinner()
+//          print()
+          self.showSpinner()
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
-//          self.hideSpinner()
+          self.hideSpinner()
         }
       }
       .store(in: &cancellable)
@@ -94,8 +94,8 @@ class PhotoDetailViewController: UIViewController {
   }
 
   private func setupUI() {
-    view.backgroundColor = .white
     view.addSubview(screenView)
+    view.backgroundColor = .systemBackground
 
     NSLayoutConstraint.activate([
       screenView.topAnchor.constraint(equalTo: view.topAnchor),

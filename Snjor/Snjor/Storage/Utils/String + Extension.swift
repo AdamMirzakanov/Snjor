@@ -1,5 +1,5 @@
 //
-//  String + empty.swift
+//  String + Extension.swift
 //  Snjor
 //
 //  Created by Адам on 27.06.2024.
@@ -11,7 +11,7 @@ extension String {
   static var empty: String { String() }
   static var cameraDefault: String { "iPhone 15 Pro" }
   static var focalLengtDefault: String { "0" }
-  static var apertureLengtDefault: String { "0.0" }
+  static var apertureDefault: String { "0.0" }
   static var exposureDefault: String { "0/0" }
   static var instagramUsernameDefault: String { "oracle____" }
   static var twitterUsernameDefault: String { "oracle____" }

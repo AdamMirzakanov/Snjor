@@ -71,15 +71,15 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   }
 
   var focalLength: String {
-    (photo?.exif?.focalLength ?? .empty) + .millimeter + .dot
+    (photo?.exif?.focalLength ?? .focalLengtDefault) + .millimeter + .dot
   }
 
   var aperture: String {
-    .aperture + (photo?.exif?.aperture ?? .empty) + .dot
+    .aperture + (photo?.exif?.aperture ?? .apertureDefault) + .dot
   }
 
   var exposureTime: String {
-    (photo?.exif?.exposureTime ?? .empty) + .exposure
+    (photo?.exif?.exposureTime ?? .exposureDefault) + .exposure
   }
 
   var instagramUsername: String {
