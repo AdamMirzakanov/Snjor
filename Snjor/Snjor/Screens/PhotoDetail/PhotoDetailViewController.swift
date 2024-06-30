@@ -12,16 +12,63 @@ import Combine
 class PhotoDetailViewController: UIViewController {
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private let viewModel: PhotoDetailViewModelProtocol
+  private let viewModel: any PhotoDetailViewModelProtocol
 
   // MARK: - Views
-  private let screenView: PhotoDetailView = {
+  private let uiContainerView: ContainerView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.backgroundColor = .systemBackground
     return $0
-  }(PhotoDetailView())
+  }(ContainerView())
+
+  private let backBarButtonBlurView: UIVisualEffectView = {
+    $0.frame = CGRect(
+      x: .zero,
+      y: .zero,
+      width: UIConst.downloadButtonHeight,
+      height: UIConst.downloadButtonHeight
+    )
+    $0.layer.cornerRadius = UIConst.backButtonBlurViewCornerRadius
+    $0.clipsToBounds = true
+    return $0
+  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
+
+  private lazy var backBarButton: UIButton = {
+    $0.setImage(UIImage(systemName: .backBarButtonImage), for: .normal)
+    $0.tintColor = .label
+    $0.alpha = UIConst.alpha
+    $0.frame = backBarButtonBlurView.bounds
+    return $0
+  }(UIButton(type: .custom))
+
+  private let downloadBarButtonBlurView: UIVisualEffectView = {
+    $0.frame = CGRect(
+      x: .zero,
+      y: .zero,
+      width: UIConst.downloadButtonWidth,
+      height: UIConst.downloadButtonHeight
+    )
+    $0.layer.cornerRadius = UIConst.defaultValue
+    $0.clipsToBounds = true
+    return $0
+  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
+
+  private lazy var downloadBarButton: UIButton = {
+    $0.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
+    $0.setTitle(.jpeg, for: .normal)
+    $0.titleLabel?.font = .systemFont(
+      ofSize: UIConst.defaultFontSize,
+      weight: .regular
+    )
+    $0.tintColor = .label
+    $0.setTitleColor(.label, for: .normal)
+    $0.alpha = UIConst.alpha
+    $0.frame = downloadBarButtonBlurView.bounds
+    return $0
+  }(UIButton(type: .custom))
 
   // MARK: - Initializers
-  init(viewModel: PhotoDetailViewModelProtocol
+  init(viewModel: any PhotoDetailViewModelProtocol
   ) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
@@ -34,8 +81,8 @@ class PhotoDetailViewController: UIViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    stateController()
     setupUI()
+    stateController()
     viewModel.viewDidLoad()
   }
 
@@ -65,7 +112,6 @@ class PhotoDetailViewController: UIViewController {
         case .success:
           self.configData()
         case .loading:
-//          print()
           self.showSpinner()
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
@@ -76,37 +122,58 @@ class PhotoDetailViewController: UIViewController {
   }
 
   private func configData() {
-    screenView.setupView()
-    screenView.photoImageView.setImageFromData(data: viewModel.imageData)
-    screenView.nameLabel.text = viewModel.displayName
-    screenView.likesLabel.text = viewModel.likes
-    screenView.downloadsLabel.text = viewModel.downloads
-    screenView.createdAt(from: viewModel.createdAt)
-    screenView.cameraModelLabel.text = viewModel.cameraModel
-    screenView.resolutionLabel.text = viewModel.resolution
-    screenView.pxLabel.text = viewModel.pixels
-    screenView.isoLabel.text = viewModel.iso
-    screenView.focalLengthLabel.text = viewModel.focalLength
-    screenView.apertureLabel.text = viewModel.aperture
-    screenView.exposureTimeLabel.text = viewModel.exposureTime
-    screenView.instagramUsernameLabel.text = viewModel.instagramUsername
-    screenView.twitterUsernameLabel.text = viewModel.twitterUsername
+    uiContainerView.setupView()
+    uiContainerView.photoImageView.setImageFromData(data: viewModel.imageData)
+    uiContainerView.profilePhotoImageView.setImageFromData(data: viewModel.imageData)
+    uiContainerView.nameLabel.text = viewModel.displayName
+    uiContainerView.likesLabel.text = viewModel.likes
+    uiContainerView.downloadsLabel.text = viewModel.downloads
+    uiContainerView.viewsLabel.text = viewModel.views
+    uiContainerView.createdAt(from: viewModel.createdAt)
+    uiContainerView.cameraModelLabel.text = viewModel.cameraModel
+    uiContainerView.resolutionLabel.text = viewModel.resolution
+    uiContainerView.pxLabel.text = viewModel.pixels
+    uiContainerView.isoLabel.text = viewModel.iso
+    uiContainerView.focalLengthLabel.text = viewModel.focalLength
+    uiContainerView.apertureLabel.text = viewModel.aperture
+    uiContainerView.exposureTimeLabel.text = viewModel.exposureTime
   }
 
   private func setupUI() {
-    view.addSubview(screenView)
-    view.backgroundColor = .systemBackground
-
+    setupBackButton()
+    setupDownloadButton()
+    view.addSubview(uiContainerView)
     NSLayoutConstraint.activate([
-      screenView.topAnchor.constraint(equalTo: view.topAnchor),
-      screenView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      screenView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      screenView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      uiContainerView.topAnchor.constraint(equalTo: view.topAnchor),
+      uiContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      uiContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      uiContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
     ])
+  }
+
+  private func setupBackButton() {
+    backBarButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    backBarButtonBlurView.contentView.addSubview(backBarButton)
+    navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBarButtonBlurView)
+  }
+
+  private func setupDownloadButton() {
+    downloadBarButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
+    downloadBarButtonBlurView.contentView.addSubview(downloadBarButton)
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: downloadBarButtonBlurView)
+  }
+
+  @objc private func backButtonTapped() {
+    navigationController?.popViewController(animated: true)
+  }
+
+  @objc private func downloadButtonTapped() {
+    print(#function)
   }
 }
 
+// MARK: - MessageDisplayable
 extension PhotoDetailViewController: MessageDisplayable { }
+
+// MARK: - SpinnerDisplayable
 extension PhotoDetailViewController: SpinnerDisplayable { }
-
-

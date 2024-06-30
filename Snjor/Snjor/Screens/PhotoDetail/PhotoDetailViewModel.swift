@@ -12,6 +12,7 @@ protocol PhotoDetailViewModelProtocol: BaseViewModelProtocol {
   var displayName: String { get }
   var likes: String { get }
   var downloads: String { get }
+  var views: String { get }
   var createdAt: String { get }
   var cameraModel: String { get }
   var width: Int { get }
@@ -40,6 +41,10 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
 
   var downloads: String {
     "\(photo?.downloads ?? .zero)"
+  }
+
+  var views: String {
+    "\(photo?.user.totalPhotos ?? .zero)"
   }
 
   var createdAt: String {
@@ -91,27 +96,25 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   }
 
   var imageData: Data? {
-    let data = dataImageUseCase.getDataFromCache(id: photo?.id)
-    print(#function, data)
-    return data
+    imageDataUseCase.getDataFromCache(id: photo?.id)
   }
 
   var state: PassthroughSubject<StateController, Never>
 
   // MARK: - Private Properties
   private let loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
-  private let dataImageUseCase: any ImageDataUseCaseProtocol
+  private let imageDataUseCase: any ImageDataUseCaseProtocol
   private var photo: Photo?
 
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
     loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol,
-    dataImageUseCase: any ImageDataUseCaseProtocol
+    imageDataUseCase: any ImageDataUseCaseProtocol
   ) {
     self.state = state
     self.loadPhotoDetailUseCase = loadPhotoDetailUseCase
-    self.dataImageUseCase = dataImageUseCase
+    self.imageDataUseCase = imageDataUseCase
   }
 
   // MARK: - Public Methods

@@ -63,13 +63,13 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
 
   func createDataSource(for collectionView: UICollectionView) {
     dataSource = UICollectionViewDiffableDataSource
-    <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, _ in
+    <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, item in
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: PhotoCell.reuseID,
         for: indexPath
       )
       guard let waterfallCell = cell as? PhotoCell else { return cell }
-      let viewModelItem = self.getPhotoListViewModelItem(at: indexPath)
+      let viewModelItem = self.getPhotoListViewModelItem(at: indexPath.item)
       waterfallCell.configCell(viewModel: viewModelItem)
       return cell
     }
@@ -80,8 +80,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     dataSource.apply(snapshot, animatingDifferences: true)
   }
 
-  func getPhotoItem(at indexPath: IndexPath) -> Photo {
-    return photos[indexPath.item]
+  func getPhotoItem(at index: Int) -> Photo {
+    return photos[index]
   }
 
   //  func setupRefreshControl(for collectionView: UICollectionView) {
@@ -89,29 +89,29 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   //    collectionView.refreshControl = refreshControl
   //  }
 
-  func getPhotoListViewModelItem(at indexPath: IndexPath) -> PhotoListViewModelItem {
+  func getPhotoListViewModelItem(at indexPath: Int) -> PhotoListViewModelItem {
     checkAndLoadMorePhotos(at: indexPath)
-    return makePhotoListViewModelItem(itemIndex: indexPath.item)
+    return makePhotoListViewModelItem(index: indexPath)
   }
 
-  func makePhotoListViewModelItem(itemIndex: Int) -> PhotoListViewModelItem {
-    let photo = photos[itemIndex]
-    let itemPhotoViewModel = PhotoListViewModelItem(
+  func makePhotoListViewModelItem(index: Int) -> PhotoListViewModelItem {
+    let photo = photos[index]
+    let photoViewModelItem = PhotoListViewModelItem(
       photo: photo,
       dataImageUseCase: imageDataUseCase
     )
-    return itemPhotoViewModel
+    return photoViewModelItem
   }
 
-  func getPhotoID(at indexPath: IndexPath) -> String {
-    let id = photos[indexPath.item].id
+  func getPhotoID(at indexPath: Int) -> String {
+    let id = photos[indexPath].id
     return id
   }
 
   // MARK: - Private Methods
-  private func checkAndLoadMorePhotos(at indexPath: IndexPath) {
+  private func checkAndLoadMorePhotos(at index: Int) {
     lastPageValidationUseCase.checkAndLoadMoreItems(
-      item: indexPath.item,
+      at: index,
       actualItems: photos.count,
       action: viewDidLoad
     )

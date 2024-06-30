@@ -40,6 +40,8 @@ class PhotoListCollectionViewController: UICollectionViewController {
     viewModel.createDataSource(for: collectionView)
     viewModel.viewDidLoad()
     //    viewModel.setupRefreshControl(for: collectionView)
+
+    navigationItem.title = .snjor
   }
 
   // MARK: - Private Methods

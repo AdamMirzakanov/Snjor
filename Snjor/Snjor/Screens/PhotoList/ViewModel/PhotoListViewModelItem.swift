@@ -16,6 +16,10 @@ struct PhotoListViewModelItem {
     dataImageUseCase.getDataFromCache(id: photo.id)
   }
 
+  var profileImageData: Data? {
+    dataImageUseCase.getDataFromCache(id: photo.id)
+  }
+
   private(set) var photo: Photo
   private(set) var dataImageUseCase: any ImageDataUseCaseProtocol
 

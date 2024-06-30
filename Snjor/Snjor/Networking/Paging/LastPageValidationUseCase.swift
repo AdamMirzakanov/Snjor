@@ -18,13 +18,13 @@ struct LastPageValidationUseCase: Pageable {
   }
 
   func checkAndLoadMoreItems(
-    item: Int,
+    at itemIndex: Int,
     actualItems: Int,
     action: () -> Void
   ) {
     guard !lastPage else { return }
     let limit = actualItems - threshold
-    if limit == item {
+    if limit == itemIndex {
       action()
     }
   }

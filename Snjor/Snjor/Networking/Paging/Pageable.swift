@@ -9,7 +9,7 @@ protocol Pageable {
   var lastPage: Bool { get }
   mutating func updateLastPage(itemsCount: Int)
   func checkAndLoadMoreItems(
-    item: Int,
+    at itemIndex: Int,
     actualItems: Int,
     action: () -> Void
   )

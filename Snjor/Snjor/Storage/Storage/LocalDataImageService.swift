@@ -23,6 +23,6 @@ struct LocalDataImageService: LocalDataImageServiceProtocol {
 
   // 1
   func get(key: String) -> Data? {
-    return dataStorage.object(forKey: key as NSString) as? Data
+    dataStorage.object(forKey: key as NSString) as? Data
   }
 }

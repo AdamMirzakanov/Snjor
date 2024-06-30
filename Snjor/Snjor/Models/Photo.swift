@@ -5,7 +5,7 @@
 //  Created by Адам on 16.06.2024.
 //
 
-import UIKit
+import Foundation
 
 struct Photo: Decodable, Hashable {
   // MARK: - Public Properties
@@ -16,11 +16,12 @@ struct Photo: Decodable, Hashable {
   let blurHash: String?
   let user: User
   let downloads: Int?
-  let likes: Int
+  let likes: Int?
   let exif: PhotoExif?
   let links: [LinkKind: URL]
   let instagramUsername: String?
   let createdAt: String
+  let location: Location?
 
   // MARK: - Public Enum
   enum URLKind: String, Decodable {

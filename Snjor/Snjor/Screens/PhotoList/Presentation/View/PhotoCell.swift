@@ -55,6 +55,7 @@ class PhotoCell: UICollectionViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     photoImageView.image = nil
+    userNameLabel.text = nil
     task?.cancel()
   }
 
@@ -63,21 +64,25 @@ class PhotoCell: UICollectionViewCell {
     setImage(viewModel: viewModel)
   }
 
-  func setImage(viewModel: PhotoListViewModelItem, showsUsername: Bool = true) {
+  // MARK: - Private Methods
+  private func setImage(
+    viewModel: PhotoListViewModelItem,
+    showsUsername: Bool = true
+  ) {
     self.showsUsername = showsUsername
     userNameLabel.text = viewModel.name
-
-    if let data = viewModel.imageData {
-      photoImageView.setImageFromData(data: data)
-//      print(#function, "из Кэша")
+    if let cellImageData = viewModel.imageData {
+      photoImageView.setImageFromData(data: cellImageData)
     } else {
       task = Task {
         if let blurHash = viewModel.photo.blurHash {
+
           let size = CGSize(width: 20.0, height: 20.0)
           photoImageView.image = UIImage(blurHash: blurHash, size: size)
-          let dataImage = await viewModel.getImageData()
-          photoImageView.setImageFromData(data: dataImage)
-//          print(#function, "из Интернета")
+
+          let cellImageData = await viewModel.getImageData()
+          photoImageView.setImageFromData(data: cellImageData)
+
         } else {
           let dataImage = await viewModel.getImageData()
           photoImageView.setImageFromData(data: dataImage)
@@ -86,7 +91,6 @@ class PhotoCell: UICollectionViewCell {
     }
   }
 
-  // MARK: - Private Methods
   private func setupPhotoView() {
     contentView.preservesSuperviewLayoutMargins = true
 

@@ -37,7 +37,7 @@ extension SpinnerDisplayable where Self: UIViewController {
 
   func hideSpinner() {
     if let foundView = parentView.viewWithTag(ViewValues.tagIdentifierSpinner) {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
         UIView.animate(
           withDuration: 0.2,
           animations: { foundView.alpha = 0

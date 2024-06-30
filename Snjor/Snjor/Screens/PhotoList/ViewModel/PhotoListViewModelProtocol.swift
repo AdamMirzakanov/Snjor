@@ -15,7 +15,7 @@ protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
 
   var photosCount: Int { get }
   var lastPage: Bool { get }
-  func getPhotoItem(at indexPath: IndexPath) -> Photo
-  func getPhotoListViewModelItem(at indexPath: IndexPath) -> PhotoListViewModelItem
-  func getPhotoID(at indexPath: IndexPath) -> String
+  func getPhotoItem(at index: Int) -> Photo
+  func getPhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem
+  func getPhotoID(at index: Int) -> String
 }
