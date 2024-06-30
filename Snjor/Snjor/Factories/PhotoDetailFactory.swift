@@ -13,7 +13,7 @@ protocol PhotoDetailFactoryProtocol {
 }
 
 struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
-  let id: String
+  let id: Photo
   let appContainer: any AppContainerProtocol
 
   func makeModule() -> UIViewController {
@@ -28,6 +28,7 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
       loadPhotoDetailUseCase: loadPhotoDetailUseCase, 
       imageDataUseCase: appContainer.getDataImageUseCase()
     )
+    viewModel.photo = id
     // 🟢
     let module = PhotoDetailViewController(viewModel: viewModel)
     return module

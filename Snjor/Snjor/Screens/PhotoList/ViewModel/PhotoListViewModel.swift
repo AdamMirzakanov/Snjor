@@ -103,8 +103,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     return photoViewModelItem
   }
 
-  func getPhotoID(at indexPath: Int) -> String {
-    let id = photos[indexPath].id
+  func getPhotoID(at indexPath: Int) -> Photo {
+    let id = photos[indexPath]
     return id
   }
 

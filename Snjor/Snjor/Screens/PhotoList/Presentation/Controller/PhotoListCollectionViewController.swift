@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol PhotoListViewControllerDelegate: AnyObject {
-  func didSelect(id: String)
+  func didSelect(id: Photo)
 }
 
 class PhotoListCollectionViewController: UICollectionViewController {

@@ -12,7 +12,7 @@ protocol PhotoListFactoryProtocol {
   func makeModule(delegate: any PhotoListViewControllerDelegate) -> UIViewController
   func makeTabBarItem(navigation: any Navigable)
   func mekePhotoDetailCoordinator(
-    id: String,
+    id: Photo,
     navigation: any Navigable,
     overlordCoordinator: any OverlordCoordinator
   ) -> any Coordinatable
@@ -66,7 +66,7 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
   }
 
   func mekePhotoDetailCoordinator(
-    id: String,
+    id: Photo,
     navigation: any Navigable,
     overlordCoordinator: any OverlordCoordinator
   ) -> any Coordinatable {

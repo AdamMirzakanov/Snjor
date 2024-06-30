@@ -89,7 +89,7 @@ class MainTabBarController: UITabBarController {
   ) -> UIButton {
     return {
       $0.setImage(UIImage(systemName: icon), for: .normal)
-      $0.tintColor = .systemMint
+      $0.tintColor = .label
       $0.layer.opacity = opacity
       $0.tag = tag
       return $0

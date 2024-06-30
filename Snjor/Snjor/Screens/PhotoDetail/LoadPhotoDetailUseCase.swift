@@ -14,7 +14,7 @@ protocol LoadPhotoDetailUseCaseProtocol {
 struct LoadPhotoDetailUseCase: LoadPhotoDetailUseCaseProtocol {
   // MARK: - Private Properties
   let photoDetailRepository: any PhotoDetailRepositoryProtocol
-  let id: String
+  let id: Photo
 
   // MARK: - Public Methods
   func execute() async throws -> Photo {

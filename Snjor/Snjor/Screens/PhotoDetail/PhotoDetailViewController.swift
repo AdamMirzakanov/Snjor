@@ -83,7 +83,7 @@ class PhotoDetailViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
     stateController()
-    viewModel.viewDidLoad()
+//    viewModel.viewDidLoad()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -112,7 +112,8 @@ class PhotoDetailViewController: UIViewController {
         case .success:
           self.configData()
         case .loading:
-          self.showSpinner()
+//          self.showSpinner()
+          print()
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
           self.hideSpinner()
@@ -123,8 +124,8 @@ class PhotoDetailViewController: UIViewController {
 
   private func configData() {
     uiContainerView.setupView()
-    uiContainerView.photoImageView.setImageFromData(data: viewModel.imageData)
-    uiContainerView.profilePhotoImageView.setImageFromData(data: viewModel.imageData)
+    uiContainerView.photoImageView.setImageFromData(data: viewModel.backgroundImageData)
+    uiContainerView.profilePhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
     uiContainerView.nameLabel.text = viewModel.displayName
     uiContainerView.likesLabel.text = viewModel.likes
     uiContainerView.downloadsLabel.text = viewModel.downloads
@@ -169,6 +170,7 @@ class PhotoDetailViewController: UIViewController {
 
   @objc private func downloadButtonTapped() {
     print(#function)
+    viewModel.viewDidLoad()
   }
 }
 

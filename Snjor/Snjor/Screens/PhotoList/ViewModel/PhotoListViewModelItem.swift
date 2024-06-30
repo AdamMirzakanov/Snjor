@@ -13,11 +13,11 @@ struct PhotoListViewModelItem {
   }
 
   var imageData: Data? {
-    dataImageUseCase.getDataFromCache(id: photo.id)
+    dataImageUseCase.getDataFromCache(url: photo.urls[.regular])
   }
 
   var profileImageData: Data? {
-    dataImageUseCase.getDataFromCache(id: photo.id)
+    dataImageUseCase.getDataFromCache(url: photo.urls[.regular])
   }
 
   private(set) var photo: Photo
@@ -26,7 +26,7 @@ struct PhotoListViewModelItem {
   func getImageData() async -> Data? {
     let url = photo.urls[.regular]
     let id = photo.id
-    let data = await dataImageUseCase.getData(url: url, id: id)
+    let data = await dataImageUseCase.getData(url: url)
     return data
   }
 }

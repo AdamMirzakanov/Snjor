@@ -70,7 +70,7 @@ struct PhotoDetailViewModelItem {
   }
 
   var profileImageData: Data? {
-    dataImageUseCase.getDataFromCache(id: photo.id)
+    dataImageUseCase.getDataFromCache(url: photo.urls[.regular])
   }
 
   // MARK: - Private Methods

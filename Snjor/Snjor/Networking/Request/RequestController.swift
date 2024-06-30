@@ -26,9 +26,9 @@ enum RequestController {
     return request
   }
 
-  static func photoRequest(id: String) throws -> URLRequest {
+  static func photoRequest(id: Photo) throws -> URLRequest {
     let path = photo.rawValue
-    let request = try PrepareRequests.prepareInfoURLRequest(path: path, id: id)
+    let request = try PrepareRequests.prepareInfoURLRequest(path: path, id: id.id)
     return request
   }
 

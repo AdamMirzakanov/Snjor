@@ -25,7 +25,8 @@ protocol PhotoDetailViewModelProtocol: BaseViewModelProtocol {
   var twitterUsername: String { get }
   var pixels: String { get }
   var resolution: String { get }
-  var imageData: Data? { get }
+  var backgroundImageData: Data? { get }
+  var photo: Photo? { get set }
 }
 
 final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
@@ -95,8 +96,9 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
     photo?.user.social?.twitterUsername ?? .twitterUsernameDefault
   }
 
-  var imageData: Data? {
-    imageDataUseCase.getDataFromCache(id: photo?.id)
+  var backgroundImageData: Data? {
+    let url = photo!.urls[.regular]
+    return imageDataUseCase.getDataFromCache(url: url)
   }
 
   var state: PassthroughSubject<StateController, Never>
@@ -104,7 +106,7 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   // MARK: - Private Properties
   private let loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
   private let imageDataUseCase: any ImageDataUseCaseProtocol
-  private var photo: Photo?
+  var photo: Photo?
 
   // MARK: - Initializers
   init(
