@@ -27,8 +27,8 @@ enum UIConst {
 
   // Photo detail gradient
   static let location: CGFloat = 0.7
-  static let halfLocation: CGFloat = location / half
-  static let gradientAlpha: CGFloat = 1.0
+  static var halfLocation: CGFloat = 0.0
+  static let gradientAlpha: CGFloat = 0.9
 
   static let defaultFontSize: CGFloat = 15.0
   static let nameFontSize: CGFloat = 20.0

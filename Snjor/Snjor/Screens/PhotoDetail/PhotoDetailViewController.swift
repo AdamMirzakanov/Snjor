@@ -84,6 +84,9 @@ class PhotoDetailViewController: UIViewController {
     setupUI()
     stateController()
 //    viewModel.viewDidLoad()
+    configData()
+    configActions()
+    hideCustomTabBar()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -144,11 +147,12 @@ class PhotoDetailViewController: UIViewController {
     setupBackButton()
     setupDownloadButton()
     view.addSubview(uiContainerView)
+
     NSLayoutConstraint.activate([
       uiContainerView.topAnchor.constraint(equalTo: view.topAnchor),
       uiContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       uiContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      uiContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      uiContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
   }
 
@@ -170,8 +174,59 @@ class PhotoDetailViewController: UIViewController {
 
   @objc private func downloadButtonTapped() {
     print(#function)
-    viewModel.viewDidLoad()
+//    viewModel.viewDidLoad()
+    self.hideCustomTabBar()
   }
+
+  // MARK: - Кнопка Info
+  private func configActions() {
+    let infoAction = UIAction { [weak self] _ in
+      guard let self = self else { return }
+//      self.viewModel.viewDidLoad()
+      self.showCustomTabBar()
+    }
+    uiContainerView.infoButton.addAction(infoAction, for: .touchUpInside)
+  }
+
+  func hideCustomTabBar() {
+    UIView.animate(withDuration: 0.4) {
+      self.uiContainerView.profilePhotoAndNameStackView.transform = CGAffineTransform(translationX: 0, y: -10)
+      self.uiContainerView.mainStackView.transform = CGAffineTransform(translationX: 0, y: 100)
+      self.uiContainerView.gradientView.alpha = 0.4
+      self.uiContainerView.mainStackView.alpha = 0
+      self.uiContainerView.mainStackView.isHidden = true
+    }
+  }
+
+  func showCustomTabBar() {
+    UIView.animate(withDuration: 0.3) {
+      self.uiContainerView.gradientView.alpha = 1
+      self.uiContainerView.gradientView.transform = .identity
+
+    } completion: { _ in
+//      UIView.animate(withDuration: 0.3) {
+//        self.uiContainerView.mainStackView.alpha = 1
+//      }
+    }
+
+    UIView.animate(withDuration: 0.3) {
+      self.uiContainerView.mainStackView.alpha = 1
+    }
+
+    UIView.animate(
+      withDuration: 0.7,
+      delay: 0,
+      usingSpringWithDamping: 0.5,
+      initialSpringVelocity: 0.5
+    ) {
+      self.uiContainerView.overlordStackView.transform = .identity
+      self.uiContainerView.mainStackView.transform = .identity
+      self.uiContainerView.mainStackView.isHidden = false
+    }
+
+  }
+
+
 }
 
 // MARK: - MessageDisplayable
@@ -179,3 +234,4 @@ extension PhotoDetailViewController: MessageDisplayable { }
 
 // MARK: - SpinnerDisplayable
 extension PhotoDetailViewController: SpinnerDisplayable { }
+

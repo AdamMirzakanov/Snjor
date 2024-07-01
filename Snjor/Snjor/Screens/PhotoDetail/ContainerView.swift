@@ -60,74 +60,75 @@ class ContainerView: UIView {
     $0.spacing = UIConst.midlValue
     $0.addArrangedSubview(profilePhotoImageView)
     $0.addArrangedSubview(nameLabel)
+    $0.addArrangedSubview(infoButton)
     return $0
   }(UIStackView())
 
   // MARK: - Social
-//  let instagramLogoImageView: UIImageView = {
-//    $0.translatesAutoresizingMaskIntoConstraints = false
-//    $0.contentMode = .scaleAspectFill
-//    $0.image = UIImage(named: "inst")
-//    $0.tintColor = .white
-//    $0.widthAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
-//    $0.heightAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
-//    return $0
-//  }(UIImageView())
-//
-//  let instagramUsernameLabel: UILabel = {
-//    $0.text = .instagramUsernameDefault
-//    $0.textColor = .white
-//    $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
-//    return $0
-//  }(UILabel())
-//
-//  lazy var instStackView: UIStackView = {
-//    $0.translatesAutoresizingMaskIntoConstraints = false
-//    $0.axis = .horizontal
-//    $0.distribution = .fill
-//    $0.alignment = .center
-//    $0.spacing = UIConst.defaultValue
-//    $0.addArrangedSubview(instagramLogoImageView)
-//    $0.addArrangedSubview(instagramUsernameLabel)
-//    return $0
-//  }(UIStackView())
-//
-//  let twitLogoImageView: UIImageView = {
-//    $0.translatesAutoresizingMaskIntoConstraints = false
-//    $0.contentMode = .scaleAspectFill
-//    $0.image = UIImage(named: "twit")
-//    $0.tintColor = .white
-//    $0.widthAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
-//    $0.heightAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
-//    return $0
-//  }(UIImageView())
-//
-//  let twitterUsernameLabel: UILabel = {
-//    $0.text = .twitterUsernameDefault
-//    $0.textColor = .white
-//    $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
-//    return $0
-//  }(UILabel())
-//
-//  lazy var twitStackView: UIStackView = {
-//    $0.translatesAutoresizingMaskIntoConstraints = false
-//    $0.axis = .horizontal
-//    $0.distribution = .fill
-//    $0.alignment = .center
-//    $0.spacing = UIConst.defaultValue
-//    $0.addArrangedSubview(twitLogoImageView)
-//    $0.addArrangedSubview(twitterUsernameLabel)
-//    return $0
-//  }(UIStackView())
-//
-//  lazy var socialStackView: UIStackView = {
-//    $0.translatesAutoresizingMaskIntoConstraints = false
-//    $0.axis = .vertical
-//    $0.spacing = UIConst.midlValue
-//    $0.addArrangedSubview(instStackView)
-//    $0.addArrangedSubview(twitStackView)
-//    return $0
-//  }(UIStackView())
+  //  let instagramLogoImageView: UIImageView = {
+  //    $0.translatesAutoresizingMaskIntoConstraints = false
+  //    $0.contentMode = .scaleAspectFill
+  //    $0.image = UIImage(named: "inst")
+  //    $0.tintColor = .white
+  //    $0.widthAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
+  //    $0.heightAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
+  //    return $0
+  //  }(UIImageView())
+  //
+  //  let instagramUsernameLabel: UILabel = {
+  //    $0.text = .instagramUsernameDefault
+  //    $0.textColor = .white
+  //    $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
+  //    return $0
+  //  }(UILabel())
+  //
+  //  lazy var instStackView: UIStackView = {
+  //    $0.translatesAutoresizingMaskIntoConstraints = false
+  //    $0.axis = .horizontal
+  //    $0.distribution = .fill
+  //    $0.alignment = .center
+  //    $0.spacing = UIConst.defaultValue
+  //    $0.addArrangedSubview(instagramLogoImageView)
+  //    $0.addArrangedSubview(instagramUsernameLabel)
+  //    return $0
+  //  }(UIStackView())
+  //
+  //  let twitLogoImageView: UIImageView = {
+  //    $0.translatesAutoresizingMaskIntoConstraints = false
+  //    $0.contentMode = .scaleAspectFill
+  //    $0.image = UIImage(named: "twit")
+  //    $0.tintColor = .white
+  //    $0.widthAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
+  //    $0.heightAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
+  //    return $0
+  //  }(UIImageView())
+  //
+  //  let twitterUsernameLabel: UILabel = {
+  //    $0.text = .twitterUsernameDefault
+  //    $0.textColor = .white
+  //    $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
+  //    return $0
+  //  }(UILabel())
+  //
+  //  lazy var twitStackView: UIStackView = {
+  //    $0.translatesAutoresizingMaskIntoConstraints = false
+  //    $0.axis = .horizontal
+  //    $0.distribution = .fill
+  //    $0.alignment = .center
+  //    $0.spacing = UIConst.defaultValue
+  //    $0.addArrangedSubview(twitLogoImageView)
+  //    $0.addArrangedSubview(twitterUsernameLabel)
+  //    return $0
+  //  }(UIStackView())
+  //
+  //  lazy var socialStackView: UIStackView = {
+  //    $0.translatesAutoresizingMaskIntoConstraints = false
+  //    $0.axis = .vertical
+  //    $0.spacing = UIConst.midlValue
+  //    $0.addArrangedSubview(instStackView)
+  //    $0.addArrangedSubview(twitStackView)
+  //    return $0
+  //  }(UIStackView())
 
   // MARK: - First Line
   lazy var firstLine: UIView = {
@@ -135,7 +136,6 @@ class ContainerView: UIView {
     $0.backgroundColor = .white
     $0.alpha = UIConst.alpha
     $0.heightAnchor.constraint(equalToConstant: UIConst.lineHeightAnchor).isActive = true
-    $0.widthAnchor.constraint(equalToConstant: frame.width - UIConst.longValue).isActive = true
     return $0
   }(UIView())
 
@@ -229,20 +229,13 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
-//  let downloadButton: UIButton = {
-//    $0.translatesAutoresizingMaskIntoConstraints = false
-//    $0.backgroundColor = .white
-//    $0.layer.cornerRadius = UIConst.defaultValue
-//    $0.setTitle(" JPEG", for: .normal)
-//    $0.setImage(UIImage(systemName: "arrow.down.app.fill"), for: .normal)
-//    $0.titleLabel?.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .regular)
-//    $0.tintColor = .darkGray
-//    $0.alpha = UIConst.alpha
-//    $0.setContentHuggingPriority(.required, for: .horizontal)
-//    $0.widthAnchor.constraint(equalToConstant: UIConst.downloadButtonWidth).isActive = true
-//    $0.heightAnchor.constraint(equalToConstant: UIConst.downloadButtonHeight).isActive = true
-//    return $0
-//  }(UIButton(type: .system))
+  let infoButton: UIButton = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.setImage(UIImage(systemName: "info.circle"), for: .normal)
+    $0.tintColor = .white
+    $0.alpha = UIConst.alpha
+    return $0
+  }(UIButton(type: .system))
 
   lazy var profitAndDownloadButtonStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -252,7 +245,6 @@ class ContainerView: UIView {
     $0.spacing = UIConst.midlValue
     $0.addArrangedSubview(profitabilityStackViews)
     $0.addArrangedSubview(UIView())
-//    $0.addArrangedSubview(createdLabel)
     return $0
   }(UIStackView())
 
@@ -262,7 +254,6 @@ class ContainerView: UIView {
     $0.backgroundColor = .white
     $0.alpha = UIConst.alpha
     $0.heightAnchor.constraint(equalToConstant: UIConst.lineHeightAnchor).isActive = true
-    $0.widthAnchor.constraint(equalToConstant: frame.width - UIConst.longValue).isActive = true
     return $0
   }(UIView())
 
@@ -388,8 +379,8 @@ class ContainerView: UIView {
     $0.axis = .vertical
     $0.distribution = .equalSpacing
     $0.spacing = UIConst.midlValue
-    $0.addArrangedSubview(profilePhotoAndNameStackView)
-//    $0.addArrangedSubview(socialStackView)
+    //    $0.backgroundColor = .brown
+//    $0.addArrangedSubview(profilePhotoAndNameStackView)
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitAndDownloadButtonStackView)
     $0.addArrangedSubview(secondLine)
@@ -400,37 +391,49 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
+  lazy var overlordStackView: UIStackView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.axis = .vertical
+    $0.distribution = .equalSpacing
+    $0.spacing = UIConst.midlValue
+    //    $0.backgroundColor = .brown
+    $0.addArrangedSubview(profilePhotoAndNameStackView)
+    $0.addArrangedSubview(mainStackView)
+    return $0
+  }(UIStackView())
+
   // MARK: - Private Methods
   func setupView() {
     addSubview(photoImageView)
     addSubview(gradientView)
-    addSubview(mainStackView)
+    addSubview(overlordStackView)
     NSLayoutConstraint.activate([
 
       gradientView.topAnchor.constraint(equalTo: topAnchor),
-      gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      gradientView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
       gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
       gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
       photoImageView.topAnchor.constraint(equalTo: topAnchor),
-      photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UIConst.photoViewBottomAnchor),
+      photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
       photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
       photoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
-      mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIConst.mainStackLeadingAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UIConst.mainStackViewBottomAnchor),
+      overlordStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIConst.mainStackLeadingAnchor),
+      overlordStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIConst.mainStackLeadingAnchor),
+      overlordStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
     ])
   }
 
-    // MARK: - Public Methods
-    func createdAt(from date: String) {
-      guard let date = ISO8601DateFormatter().date(from: date) else { return }
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateStyle = .medium
-      dateFormatter.timeStyle = .short
-      let readableDate = dateFormatter.string(from: date)
-      createdLabel.text = readableDate
-    }
+  // MARK: - Public Methods
+  func createdAt(from date: String) {
+    guard let date = ISO8601DateFormatter().date(from: date) else { return }
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .short
+    let readableDate = dateFormatter.string(from: date)
+    createdLabel.text = readableDate
   }
+}
 
 
