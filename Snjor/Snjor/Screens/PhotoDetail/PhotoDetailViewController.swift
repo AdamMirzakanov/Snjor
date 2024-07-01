@@ -13,6 +13,7 @@ class PhotoDetailViewController: UIViewController {
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private let viewModel: any PhotoDetailViewModelProtocol
+  private var isAspectFill = true
 
   // MARK: - Views
   private let uiContainerView: ContainerView = {
@@ -53,6 +54,19 @@ class PhotoDetailViewController: UIViewController {
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
 
+  private let toggleContentModeButtonBlurView: UIVisualEffectView = {
+    $0.frame = CGRect(
+      x: .zero,
+      y: .zero,
+      width: UIConst.downloadButtonHeight,
+      height: UIConst.downloadButtonHeight
+    )
+    $0.layer.cornerRadius = UIConst.defaultValue
+//    $0.layer.cornerRadius = UIConst.backButtonBlurViewCornerRadius
+    $0.clipsToBounds = true
+    return $0
+  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
+
   private lazy var downloadBarButton: UIButton = {
     $0.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
     $0.setTitle(.jpeg, for: .normal)
@@ -64,6 +78,16 @@ class PhotoDetailViewController: UIViewController {
     $0.setTitleColor(.label, for: .normal)
     $0.alpha = UIConst.alpha
     $0.frame = downloadBarButtonBlurView.bounds
+    return $0
+  }(UIButton(type: .custom))
+
+  private lazy var toggleContentModeButton: UIButton = {
+    $0.setImage(UIImage(systemName: "arrow.up.backward.and.arrow.down.forward"), for: .normal)
+//    $0.setImage(UIImage(systemName: "arrow.down.forward.and.arrow.up.backward"), for: .normal)
+    $0.tintColor = .label
+    $0.setTitleColor(.label, for: .normal)
+    $0.alpha = UIConst.alpha
+    $0.frame = toggleContentModeButtonBlurView.bounds
     return $0
   }(UIButton(type: .custom))
 
@@ -86,7 +110,7 @@ class PhotoDetailViewController: UIViewController {
 //    viewModel.viewDidLoad()
     configData()
     configActions()
-    hideCustomTabBar()
+    hidePhotoInfo()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -146,6 +170,7 @@ class PhotoDetailViewController: UIViewController {
   private func setupUI() {
     setupBackButton()
     setupDownloadButton()
+    setupContentModeButton()
     view.addSubview(uiContainerView)
 
     NSLayoutConstraint.activate([
@@ -165,7 +190,17 @@ class PhotoDetailViewController: UIViewController {
   private func setupDownloadButton() {
     downloadBarButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
     downloadBarButtonBlurView.contentView.addSubview(downloadBarButton)
-    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: downloadBarButtonBlurView)
+    let downloadBarButton = UIBarButtonItem(customView: downloadBarButtonBlurView)
+
+    toggleContentModeButton.addTarget(self, action: #selector(toggleContentMode), for: .touchUpInside)
+    toggleContentModeButtonBlurView.contentView.addSubview(toggleContentModeButton)
+    let toggleContentModeButton = UIBarButtonItem(customView: toggleContentModeButtonBlurView)
+
+    navigationItem.rightBarButtonItems = [toggleContentModeButton, downloadBarButton]
+  }
+
+  private func setupContentModeButton() {
+
   }
 
   @objc private func backButtonTapped() {
@@ -173,9 +208,19 @@ class PhotoDetailViewController: UIViewController {
   }
 
   @objc private func downloadButtonTapped() {
-    print(#function)
-//    viewModel.viewDidLoad()
-    self.hideCustomTabBar()
+    self.hidePhotoInfo()
+  }
+
+  @objc private func toggleContentMode() {
+    self.hidePhotoInfo()
+    if isAspectFill {
+      uiContainerView.photoImageView.contentMode = .scaleAspectFit
+      toggleContentModeButton.setImage(UIImage(systemName: "arrow.down.forward.and.arrow.up.backward"), for: .normal)
+    } else {
+      uiContainerView.photoImageView.contentMode = .scaleAspectFill
+      toggleContentModeButton.setImage(UIImage(systemName: "arrow.up.backward.and.arrow.down.forward"), for: .normal)
+    }
+    isAspectFill.toggle()
   }
 
   // MARK: - Кнопка Info
@@ -183,12 +228,12 @@ class PhotoDetailViewController: UIViewController {
     let infoAction = UIAction { [weak self] _ in
       guard let self = self else { return }
 //      self.viewModel.viewDidLoad()
-      self.showCustomTabBar()
+      self.showPhotoInfo()
     }
     uiContainerView.infoButton.addAction(infoAction, for: .touchUpInside)
   }
 
-  func hideCustomTabBar() {
+  func hidePhotoInfo() {
     UIView.animate(withDuration: 0.4) {
       self.uiContainerView.profilePhotoAndNameStackView.transform = CGAffineTransform(translationX: 0, y: -10)
       self.uiContainerView.mainStackView.transform = CGAffineTransform(translationX: 0, y: 100)
@@ -198,7 +243,7 @@ class PhotoDetailViewController: UIViewController {
     }
   }
 
-  func showCustomTabBar() {
+  func showPhotoInfo() {
     UIView.animate(withDuration: 0.3) {
       self.uiContainerView.gradientView.alpha = 1
       self.uiContainerView.gradientView.transform = .identity
@@ -223,7 +268,6 @@ class PhotoDetailViewController: UIViewController {
       self.uiContainerView.mainStackView.transform = .identity
       self.uiContainerView.mainStackView.isHidden = false
     }
-
   }
 
 
