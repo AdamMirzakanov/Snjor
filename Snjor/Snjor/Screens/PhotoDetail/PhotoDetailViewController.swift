@@ -14,6 +14,7 @@ class PhotoDetailViewController: UIViewController {
   private var cancellable = Set<AnyCancellable>()
   private let viewModel: any PhotoDetailViewModelProtocol
   private var isAspectFill = true
+  private var isPhotoInfo = true
 
   // MARK: - Views
   private let uiContainerView: ContainerView = {
@@ -22,12 +23,13 @@ class PhotoDetailViewController: UIViewController {
     return $0
   }(ContainerView())
 
+  // MARK: - Back Bar Button
   private let backBarButtonBlurView: UIVisualEffectView = {
     $0.frame = CGRect(
       x: .zero,
       y: .zero,
-      width: UIConst.downloadButtonHeight,
-      height: UIConst.downloadButtonHeight
+      width: UIConst.buttonHeight,
+      height: UIConst.buttonHeight
     )
     $0.layer.cornerRadius = UIConst.backButtonBlurViewCornerRadius
     $0.clipsToBounds = true
@@ -42,27 +44,15 @@ class PhotoDetailViewController: UIViewController {
     return $0
   }(UIButton(type: .custom))
 
+  // MARK: - Download Bar Button
   private let downloadBarButtonBlurView: UIVisualEffectView = {
     $0.frame = CGRect(
       x: .zero,
       y: .zero,
-      width: UIConst.downloadButtonWidth,
-      height: UIConst.downloadButtonHeight
+      width: UIConst.buttonWidth,
+      height: UIConst.buttonHeight
     )
     $0.layer.cornerRadius = UIConst.defaultValue
-    $0.clipsToBounds = true
-    return $0
-  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
-
-  private let toggleContentModeButtonBlurView: UIVisualEffectView = {
-    $0.frame = CGRect(
-      x: .zero,
-      y: .zero,
-      width: UIConst.downloadButtonHeight,
-      height: UIConst.downloadButtonHeight
-    )
-    $0.layer.cornerRadius = UIConst.defaultValue
-//    $0.layer.cornerRadius = UIConst.backButtonBlurViewCornerRadius
     $0.clipsToBounds = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
@@ -81,9 +71,22 @@ class PhotoDetailViewController: UIViewController {
     return $0
   }(UIButton(type: .custom))
 
+  // MARK: - Toggle Content Mode Button
+  private let toggleContentModeButtonBlurView: UIVisualEffectView = {
+    $0.frame = CGRect(
+      x: .zero,
+      y: .zero,
+      width: UIConst.buttonHeight,
+      height: UIConst.buttonHeight
+    )
+    $0.layer.cornerRadius = UIConst.defaultValue
+    $0.clipsToBounds = true
+    return $0
+  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
+
   private lazy var toggleContentModeButton: UIButton = {
-    $0.setImage(UIImage(systemName: "arrow.up.backward.and.arrow.down.forward"), for: .normal)
-//    $0.setImage(UIImage(systemName: "arrow.down.forward.and.arrow.up.backward"), for: .normal)
+    let icon = UIImage(systemName: .arrowUp)
+    $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
     $0.alpha = UIConst.alpha
@@ -107,9 +110,8 @@ class PhotoDetailViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
     stateController()
-//    viewModel.viewDidLoad()
+    //    viewModel.viewDidLoad()
     configData()
-    configActions()
     hidePhotoInfo()
   }
 
@@ -139,7 +141,7 @@ class PhotoDetailViewController: UIViewController {
         case .success:
           self.configData()
         case .loading:
-//          self.showSpinner()
+          //          self.showSpinner()
           print()
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
@@ -151,7 +153,7 @@ class PhotoDetailViewController: UIViewController {
 
   private func configData() {
     uiContainerView.setupView()
-    uiContainerView.photoImageView.setImageFromData(data: viewModel.backgroundImageData)
+    uiContainerView.mainPhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
     uiContainerView.profilePhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
     uiContainerView.nameLabel.text = viewModel.displayName
     uiContainerView.likesLabel.text = viewModel.likes
@@ -168,11 +170,9 @@ class PhotoDetailViewController: UIViewController {
   }
 
   private func setupUI() {
-    setupBackButton()
-    setupDownloadButton()
-    setupContentModeButton()
+    setupBarButtonItems()
+    configActions()
     view.addSubview(uiContainerView)
-
     NSLayoutConstraint.activate([
       uiContainerView.topAnchor.constraint(equalTo: view.topAnchor),
       uiContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -181,81 +181,102 @@ class PhotoDetailViewController: UIViewController {
     ])
   }
 
-  private func setupBackButton() {
-    backBarButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-    backBarButtonBlurView.contentView.addSubview(backBarButton)
-    navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBarButtonBlurView)
-  }
-
-  private func setupDownloadButton() {
-    downloadBarButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
-    downloadBarButtonBlurView.contentView.addSubview(downloadBarButton)
-    let downloadBarButton = UIBarButtonItem(customView: downloadBarButtonBlurView)
-
-    toggleContentModeButton.addTarget(self, action: #selector(toggleContentMode), for: .touchUpInside)
-    toggleContentModeButtonBlurView.contentView.addSubview(toggleContentModeButton)
-    let toggleContentModeButton = UIBarButtonItem(customView: toggleContentModeButtonBlurView)
-
+  private func setupBarButtonItems() {
+    let toggleContentModeButton = makeToggleContentModeButton()
+    let downloadBarButton = makeDownloadBarButton()
+    let backBarButton = makeBackBarButton()
     navigationItem.rightBarButtonItems = [toggleContentModeButton, downloadBarButton]
+    navigationItem.leftBarButtonItems = [backBarButton]
   }
 
-  private func setupContentModeButton() {
-
+  private func makeBackBarButton() -> UIBarButtonItem {
+    backBarButtonBlurView.contentView.addSubview(backBarButton)
+    return UIBarButtonItem(customView: backBarButtonBlurView)
   }
 
-  @objc private func backButtonTapped() {
-    navigationController?.popViewController(animated: true)
+  private func makeDownloadBarButton() -> UIBarButtonItem {
+    downloadBarButtonBlurView.contentView.addSubview(downloadBarButton)
+    return UIBarButtonItem(customView: downloadBarButtonBlurView)
   }
 
-  @objc private func downloadButtonTapped() {
-    self.hidePhotoInfo()
+  private func makeToggleContentModeButton() -> UIBarButtonItem {
+    toggleContentModeButtonBlurView.contentView.addSubview(toggleContentModeButton)
+    return UIBarButtonItem(customView: toggleContentModeButtonBlurView)
   }
 
-  @objc private func toggleContentMode() {
-    self.hidePhotoInfo()
-    if isAspectFill {
-      uiContainerView.photoImageView.contentMode = .scaleAspectFit
-      toggleContentModeButton.setImage(UIImage(systemName: "arrow.down.forward.and.arrow.up.backward"), for: .normal)
-    } else {
-      uiContainerView.photoImageView.contentMode = .scaleAspectFill
-      toggleContentModeButton.setImage(UIImage(systemName: "arrow.up.backward.and.arrow.down.forward"), for: .normal)
-    }
-    isAspectFill.toggle()
-  }
 
-  // MARK: - Кнопка Info
+  // MARK: -
+
   private func configActions() {
-    let infoAction = UIAction { [weak self] _ in
+    configInfoButtonAction()
+    configBackButtonAction()
+    configDownloadButtonAction()
+    configToggleContentModeButtonAction()
+  }
+
+  private func configInfoButtonAction() {
+    let infoButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-//      self.viewModel.viewDidLoad()
-      self.showPhotoInfo()
+      self.isPhotoInfo ? self.showPhotoInfo() : self.hidePhotoInfo()
+      self.isPhotoInfo.toggle()
     }
-    uiContainerView.infoButton.addAction(infoAction, for: .touchUpInside)
+    uiContainerView.infoButton.addAction(infoButtonAction, for: .touchUpInside)
   }
 
-  func hidePhotoInfo() {
+  private func configBackButtonAction() {
+    let backButtonAction = UIAction { [weak self] _ in
+      guard let self = self else { return }
+      self.navigationController?.popViewController(animated: true)
+    }
+    backBarButton.addAction(backButtonAction, for: .touchUpInside)
+  }
+
+  private func configDownloadButtonAction() {
+    let downloadButtonAction = UIAction { [weak self] _ in
+      guard let self = self else { return }
+      //code:
+    }
+    downloadBarButton.addAction(downloadButtonAction, for: .touchUpInside)
+  }
+
+  private func configToggleContentModeButtonAction() {
+    let toggleContentModeButtonAction = UIAction { [weak self] _ in
+      guard let self = self else { return }
+      if self.isAspectFill {
+        let icon = UIImage(systemName: .arrowDown)
+        self.uiContainerView.mainPhotoImageView.contentMode = .scaleAspectFit
+        self.toggleContentModeButton.setImage(icon, for: .normal)
+      } else {
+        let icon = UIImage(systemName: .arrowUp)
+        self.uiContainerView.mainPhotoImageView.contentMode = .scaleAspectFill
+        self.toggleContentModeButton.setImage(icon, for: .normal)
+      }
+      self.isAspectFill.toggle()
+    }
+    toggleContentModeButton.addAction(toggleContentModeButtonAction, for: .touchUpInside)
+  }
+
+  private func hidePhotoInfo() {
     UIView.animate(withDuration: 0.4) {
-      self.uiContainerView.profilePhotoAndNameStackView.transform = CGAffineTransform(translationX: 0, y: -10)
-      self.uiContainerView.mainStackView.transform = CGAffineTransform(translationX: 0, y: 100)
+      self.uiContainerView.profileStackView.transform = CGAffineTransform(translationX: 0, y: -10)
+      self.uiContainerView.photoInfoStackView.transform = CGAffineTransform(translationX: 0, y: 100)
       self.uiContainerView.gradientView.alpha = 0.4
-      self.uiContainerView.mainStackView.alpha = 0
-      self.uiContainerView.mainStackView.isHidden = true
+      self.uiContainerView.photoInfoStackView.alpha = 0
+      self.uiContainerView.photoInfoStackView.isHidden = true
     }
   }
 
-  func showPhotoInfo() {
+  private func showPhotoInfo() {
     UIView.animate(withDuration: 0.3) {
       self.uiContainerView.gradientView.alpha = 1
-      self.uiContainerView.gradientView.transform = .identity
-
     } completion: { _ in
-//      UIView.animate(withDuration: 0.3) {
-//        self.uiContainerView.mainStackView.alpha = 1
-//      }
+      //      UIView.animate(withDuration: 0.3) {
+      //        self.uiContainerView.photoInfoStackView.alpha = 1
+      //      }
     }
 
     UIView.animate(withDuration: 0.3) {
-      self.uiContainerView.mainStackView.alpha = 1
+      self.uiContainerView.photoInfoStackView.alpha = 1
     }
 
     UIView.animate(
@@ -264,13 +285,11 @@ class PhotoDetailViewController: UIViewController {
       usingSpringWithDamping: 0.5,
       initialSpringVelocity: 0.5
     ) {
-      self.uiContainerView.overlordStackView.transform = .identity
       self.uiContainerView.mainStackView.transform = .identity
-      self.uiContainerView.mainStackView.isHidden = false
+      self.uiContainerView.photoInfoStackView.transform = .identity
+      self.uiContainerView.photoInfoStackView.isHidden = false
     }
   }
-
-
 }
 
 // MARK: - MessageDisplayable

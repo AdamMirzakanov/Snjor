@@ -16,7 +16,7 @@ enum UIConst {
   static let logoSize: CGFloat = 17.0
 
   static let profilePhotoCornerRadius: CGFloat = profilePhotoSize / half
-  static let backButtonBlurViewCornerRadius: CGFloat = downloadButtonHeight / half
+  static let backButtonBlurViewCornerRadius: CGFloat = buttonHeight / half
   static let resolutionLabelCornerRadius: CGFloat = smallValue
 
   static let half: CGFloat = 2.0
@@ -26,9 +26,9 @@ enum UIConst {
   static let longValue: CGFloat = midlValue * half
 
   // Photo detail gradient
-  static let location: CGFloat = 0.7
-  static var halfLocation: CGFloat = 0.0
-  static let gradientAlpha: CGFloat = 0.9
+  static let location: CGFloat = 0.9
+  static var halfLocation: CGFloat = 0.1
+  static let gradientAlpha: CGFloat = 0.8
 
   static let defaultFontSize: CGFloat = 15.0
   static let nameFontSize: CGFloat = 20.0
@@ -40,8 +40,8 @@ enum UIConst {
   static let lineHeightAnchor: CGFloat = 1.0
   static let resolutionLabelWidth: CGFloat = 66
   static let resolutionLabelHeight: CGFloat = resolutionLabelWidth / 3
-  static let downloadButtonWidth: CGFloat = 74.0
-  static let downloadButtonHeight: CGFloat = 32.0
+  static let buttonWidth: CGFloat = 74.0
+  static let buttonHeight: CGFloat = 32.0
 
   // MARK: -
 }

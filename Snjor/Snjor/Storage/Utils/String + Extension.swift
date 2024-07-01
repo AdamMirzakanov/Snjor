@@ -7,7 +7,7 @@
 
 extension String {
 
-  // Default
+  // Default value
   static var empty: String { String() }
   static var likesDefault: String { "0" }
   static var downloadDefault: String { "0" }
@@ -39,15 +39,24 @@ extension String {
   static var hd: String { "HD" }
   static var standard: String { "Standard Definition" }
 
-  // Button
+  // MARK: - Images
   static var backBarButtonImage: String { "chevron.backward" }
   static var downloadBarButtonImage: String { "arrow.down.app.fill" }
+
+  // Toggle content mode button
+  static var arrowDown: String { "arrow.down.forward.and.arrow.up.backward" }
+  static var arrowUp: String { "arrow.up.backward.and.arrow.down.forward" }
+
+  // Profitability
   static var heartImage: String { "heart.fill" }
   static var downloadsImage: String { "tray.and.arrow.down.fill" }
   static var viewsImage: String { "sparkles" }
 
-  static var profilePhotoDefaultImage: String { "profile" }
+  static var cameraImage: String { "camera.aperture" }
 
-  // Font
+  // Profile default photo
+  static var profileDefaultPhotoImage: String { "profile" }
+
+  // MARK: - Fonts
   static var nameFont: String { "Times New Roman Bold" }
 }

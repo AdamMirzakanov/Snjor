@@ -9,7 +9,7 @@ import UIKit
 // swiftlint:disable all
 class ContainerView: UIView {
   // MARK: - Background Views
-  let photoImageView: UIImageView = {
+  let mainPhotoImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
@@ -33,11 +33,11 @@ class ContainerView: UIView {
     return $0
   }(GradientView())
 
-  // MARK: - Profile photo, Name
+  // MARK: - Profile
   let profilePhotoImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(named: .profilePhotoDefaultImage)
+    $0.image = UIImage(named: .profileDefaultPhotoImage)
     $0.layer.cornerRadius = UIConst.backButtonBlurViewCornerRadius
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(equalToConstant: UIConst.blurViewSize).isActive = true
@@ -52,7 +52,16 @@ class ContainerView: UIView {
     return $0
   }(UILabel())
 
-  lazy var profilePhotoAndNameStackView: UIStackView = {
+  let infoButton: UIButton = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.setImage(UIImage(systemName: "info.circle"), for: .normal)
+    $0.tintColor = .white
+    $0.alpha = UIConst.alpha
+    return $0
+  }(UIButton(type: .system))
+
+  // MARK: - Profile StackView
+ lazy var profileStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -64,74 +73,8 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
-  // MARK: - Social
-  //  let instagramLogoImageView: UIImageView = {
-  //    $0.translatesAutoresizingMaskIntoConstraints = false
-  //    $0.contentMode = .scaleAspectFill
-  //    $0.image = UIImage(named: "inst")
-  //    $0.tintColor = .white
-  //    $0.widthAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
-  //    $0.heightAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
-  //    return $0
-  //  }(UIImageView())
-  //
-  //  let instagramUsernameLabel: UILabel = {
-  //    $0.text = .instagramUsernameDefault
-  //    $0.textColor = .white
-  //    $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
-  //    return $0
-  //  }(UILabel())
-  //
-  //  lazy var instStackView: UIStackView = {
-  //    $0.translatesAutoresizingMaskIntoConstraints = false
-  //    $0.axis = .horizontal
-  //    $0.distribution = .fill
-  //    $0.alignment = .center
-  //    $0.spacing = UIConst.defaultValue
-  //    $0.addArrangedSubview(instagramLogoImageView)
-  //    $0.addArrangedSubview(instagramUsernameLabel)
-  //    return $0
-  //  }(UIStackView())
-  //
-  //  let twitLogoImageView: UIImageView = {
-  //    $0.translatesAutoresizingMaskIntoConstraints = false
-  //    $0.contentMode = .scaleAspectFill
-  //    $0.image = UIImage(named: "twit")
-  //    $0.tintColor = .white
-  //    $0.widthAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
-  //    $0.heightAnchor.constraint(equalToConstant: UIConst.logoSize).isActive = true
-  //    return $0
-  //  }(UIImageView())
-  //
-  //  let twitterUsernameLabel: UILabel = {
-  //    $0.text = .twitterUsernameDefault
-  //    $0.textColor = .white
-  //    $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
-  //    return $0
-  //  }(UILabel())
-  //
-  //  lazy var twitStackView: UIStackView = {
-  //    $0.translatesAutoresizingMaskIntoConstraints = false
-  //    $0.axis = .horizontal
-  //    $0.distribution = .fill
-  //    $0.alignment = .center
-  //    $0.spacing = UIConst.defaultValue
-  //    $0.addArrangedSubview(twitLogoImageView)
-  //    $0.addArrangedSubview(twitterUsernameLabel)
-  //    return $0
-  //  }(UIStackView())
-  //
-  //  lazy var socialStackView: UIStackView = {
-  //    $0.translatesAutoresizingMaskIntoConstraints = false
-  //    $0.axis = .vertical
-  //    $0.spacing = UIConst.midlValue
-  //    $0.addArrangedSubview(instStackView)
-  //    $0.addArrangedSubview(twitStackView)
-  //    return $0
-  //  }(UIStackView())
-
   // MARK: - First Line
-  lazy var firstLine: UIView = {
+  private let firstLine: UIView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.backgroundColor = .white
     $0.alpha = UIConst.alpha
@@ -139,8 +82,8 @@ class ContainerView: UIView {
     return $0
   }(UIView())
 
-  // MARK: - Likes, Downloads, Downloads button
-  let heartImageView: UIImageView = {
+  // MARK: - Likes
+  private let heartImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .heartImage)
@@ -166,7 +109,8 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
-  let downloadsImageView: UIImageView = {
+  // MARK: - Downloads
+  private let downloadsImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .downloadsImage)
@@ -181,7 +125,7 @@ class ContainerView: UIView {
     return $0
   }(UILabel())
 
-  lazy var downloadStackView: UIStackView = {
+  private lazy var downloadStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -192,7 +136,8 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
-  let viewsImageView: UIImageView = {
+  // MARK: - Views
+  private let viewsImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .viewsImage)
@@ -207,7 +152,7 @@ class ContainerView: UIView {
     return $0
   }(UILabel())
 
-  lazy var viewsStackView: UIStackView = {
+  private lazy var viewsStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -218,7 +163,8 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
-  lazy var profitabilityStackViews: UIStackView = {
+  // MARK: - Profit StackViews
+  private lazy var profitStackViews: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .equalSpacing
@@ -229,27 +175,19 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
-  let infoButton: UIButton = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.setImage(UIImage(systemName: "info.circle"), for: .normal)
-    $0.tintColor = .white
-    $0.alpha = UIConst.alpha
-    return $0
-  }(UIButton(type: .system))
-
-  lazy var profitAndDownloadButtonStackView: UIStackView = {
+  private lazy var profitAndInfoButtonStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .fill
     $0.spacing = UIConst.midlValue
-    $0.addArrangedSubview(profitabilityStackViews)
+    $0.addArrangedSubview(profitStackViews)
     $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
 
   // MARK: - Second Line
-  lazy var secondLine: UIView = {
+  private let secondLine: UIView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.backgroundColor = .white
     $0.alpha = UIConst.alpha
@@ -265,10 +203,10 @@ class ContainerView: UIView {
   }(UILabel())
 
   // MARK: - Camera model
-  let cameraImageView: UIImageView = {
+  private let cameraImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: "camera.aperture")
+    $0.image = UIImage(systemName: .cameraImage)
     $0.tintColor = .white
     return $0
   }(UIImageView())
@@ -280,7 +218,7 @@ class ContainerView: UIView {
     return $0
   }(UILabel())
 
-  lazy var cameraStackView: UIStackView = {
+  private lazy var cameraStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -315,7 +253,7 @@ class ContainerView: UIView {
     return $0
   }(UILabel())
 
-  lazy var photoResolutionStackView: UIStackView = {
+  private lazy var photoResolutionStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -327,7 +265,7 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
-  // MARK: - Characteristics of photography
+  // MARK: - Characteristics photo
   let isoLabel: UILabel = {
     $0.text = .isoDefault
     $0.textColor = .white
@@ -360,7 +298,7 @@ class ContainerView: UIView {
     return $0
   }(UILabel())
 
-  lazy var characteristicsOfPhotographyStackView: UIStackView = {
+  private lazy var characteristicsPhotoStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -373,57 +311,32 @@ class ContainerView: UIView {
     return $0
   }(UIStackView())
 
-  // MARK: - Сontaining everything
+  // MARK: - Photo Info StackView
+  lazy var photoInfoStackView: UIStackView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.axis = .vertical
+    $0.distribution = .equalSpacing
+    $0.spacing = UIConst.midlValue
+    $0.addArrangedSubview(firstLine)
+    $0.addArrangedSubview(profitAndInfoButtonStackView)
+    $0.addArrangedSubview(secondLine)
+    $0.addArrangedSubview(createdLabel)
+    $0.addArrangedSubview(cameraStackView)
+    $0.addArrangedSubview(photoResolutionStackView)
+    $0.addArrangedSubview(characteristicsPhotoStackView)
+    return $0
+  }(UIStackView())
+
+  // MARK: - Main StackView
   lazy var mainStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .vertical
     $0.distribution = .equalSpacing
     $0.spacing = UIConst.midlValue
-    //    $0.backgroundColor = .brown
-//    $0.addArrangedSubview(profilePhotoAndNameStackView)
-    $0.addArrangedSubview(firstLine)
-    $0.addArrangedSubview(profitAndDownloadButtonStackView)
-    $0.addArrangedSubview(secondLine)
-    $0.addArrangedSubview(createdLabel)
-    $0.addArrangedSubview(cameraStackView)
-    $0.addArrangedSubview(photoResolutionStackView)
-    $0.addArrangedSubview(characteristicsOfPhotographyStackView)
+    $0.addArrangedSubview(profileStackView)
+    $0.addArrangedSubview(photoInfoStackView)
     return $0
   }(UIStackView())
-
-  lazy var overlordStackView: UIStackView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.axis = .vertical
-    $0.distribution = .equalSpacing
-    $0.spacing = UIConst.midlValue
-    //    $0.backgroundColor = .brown
-    $0.addArrangedSubview(profilePhotoAndNameStackView)
-    $0.addArrangedSubview(mainStackView)
-    return $0
-  }(UIStackView())
-
-  // MARK: - Private Methods
-  func setupView() {
-    addSubview(photoImageView)
-    addSubview(gradientView)
-    addSubview(overlordStackView)
-    NSLayoutConstraint.activate([
-
-      gradientView.topAnchor.constraint(equalTo: topAnchor),
-      gradientView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-      gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
-
-      photoImageView.topAnchor.constraint(equalTo: topAnchor),
-      photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      photoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-
-      overlordStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIConst.mainStackLeadingAnchor),
-      overlordStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIConst.mainStackLeadingAnchor),
-      overlordStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
-    ])
-  }
 
   // MARK: - Public Methods
   func createdAt(from date: String) {
@@ -433,6 +346,29 @@ class ContainerView: UIView {
     dateFormatter.timeStyle = .short
     let readableDate = dateFormatter.string(from: date)
     createdLabel.text = readableDate
+  }
+
+  // MARK: - Private Methods
+  func setupView() {
+    addSubview(mainPhotoImageView)
+    addSubview(gradientView)
+    addSubview(mainStackView)
+    
+    NSLayoutConstraint.activate([
+      gradientView.topAnchor.constraint(equalTo: topAnchor),
+      gradientView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+      gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
+      mainPhotoImageView.topAnchor.constraint(equalTo: topAnchor),
+      mainPhotoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      mainPhotoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      mainPhotoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
+      mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIConst.mainStackLeadingAnchor),
+      mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIConst.mainStackLeadingAnchor),
+      mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
+    ])
   }
 }
 
