@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Photos
 
 // swiftlint:disable all
 class PhotoDetailViewController: UIViewController {
@@ -15,6 +16,37 @@ class PhotoDetailViewController: UIViewController {
   private let viewModel: any PhotoDetailViewModelProtocol
   private var isAspectFill = true
   private var isPhotoInfo = true
+
+  // MARK: - Download
+  let documentsPath = FileManager.default.urls(
+    for: .documentDirectory,
+    in: .userDomainMask
+  ).first!
+
+  let downloadService = DownloadService()
+
+  lazy var downloadsSession: URLSession = {
+    let configuration = URLSessionConfiguration.background(
+      withIdentifier: "com.raywenderlich.HalfTunes.bgSession"
+    )
+    return URLSession(
+      configuration: configuration,
+      delegate: self,
+      delegateQueue: nil
+    )
+  }()
+
+//  func localFilePath(for url: URL) -> URL {
+//    return documentsPath.appendingPathComponent(url.lastPathComponent)
+//  }
+
+  func localFilePath(for url: URL) -> URL {
+      var destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
+      if destinationURL.pathExtension.isEmpty {
+          destinationURL = destinationURL.appendingPathExtension("jpg")
+      }
+      return destinationURL
+  }
 
   // MARK: - Views
   private let uiContainerView: ContainerView = {
@@ -112,7 +144,8 @@ class PhotoDetailViewController: UIViewController {
     stateController()
     configData()
     hidePhotoInfo()
-    viewModel.viewDidLoad()
+//    viewModel.viewDidLoad()
+    downloadService.downloadsSession = downloadsSession
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -235,6 +268,10 @@ class PhotoDetailViewController: UIViewController {
     let downloadButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
       //code:
+      downloadService.startDownload(viewModel.photo!)
+      UIView.animate(withDuration: 1) {
+        self.downloadBarButtonBlurView.transform = 
+      }
     }
     downloadBarButton.addAction(downloadButtonAction, for: .touchUpInside)
   }
@@ -257,39 +294,48 @@ class PhotoDetailViewController: UIViewController {
   }
 
   private func hidePhotoInfo() {
-    UIView.animate(withDuration: 0.4) {
+    UIView.animate(withDuration: 0.3) {
       self.uiContainerView.profileStackView.transform = CGAffineTransform(translationX: 0, y: -10)
-      self.uiContainerView.photoInfoStackView.transform = CGAffineTransform(translationX: 0, y: 100)
-      self.uiContainerView.gradientView.alpha = 0.4
       self.uiContainerView.photoInfoStackView.alpha = 0
+      self.uiContainerView.gradientView.alpha = 0.4
       self.uiContainerView.photoInfoStackView.isHidden = true
     }
   }
 
   private func showPhotoInfo() {
-    UIView.animate(withDuration: 0.3) {
-      self.uiContainerView.gradientView.alpha = 1
-    } completion: { _ in
-      //      UIView.animate(withDuration: 0.3) {
-      //        self.uiContainerView.photoInfoStackView.alpha = 1
-      //      }
-    }
-
-    UIView.animate(withDuration: 0.3) {
-      self.uiContainerView.photoInfoStackView.alpha = 1
-    }
-
     UIView.animate(
       withDuration: 0.7,
       delay: 0,
       usingSpringWithDamping: 0.5,
       initialSpringVelocity: 0.5
     ) {
+      self.uiContainerView.gradientView.alpha = 1
+      self.uiContainerView.photoInfoStackView.alpha = 1
       self.uiContainerView.mainStackView.transform = .identity
-      self.uiContainerView.photoInfoStackView.transform = .identity
       self.uiContainerView.photoInfoStackView.isHidden = false
     }
   }
+
+
+  private func saveImageToGallery(at url: URL) {
+    PHPhotoLibrary.requestAuthorization { status in
+      guard status == .authorized else {
+        print("Photo library access not authorized.")
+        return
+      }
+
+      PHPhotoLibrary.shared().performChanges({
+        PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
+      }) { success, error in
+        if success {
+          print("Successfully saved image to gallery.")
+        } else if let error = error {
+          print("Error saving image to gallery: \(error)")
+        }
+      }
+    }
+  }
+
 }
 
 // MARK: - MessageDisplayable
@@ -298,3 +344,67 @@ extension PhotoDetailViewController: MessageDisplayable { }
 // MARK: - SpinnerDisplayable
 extension PhotoDetailViewController: SpinnerDisplayable { }
 
+// MARK: - URL Session Delegate
+extension PhotoDetailViewController: URLSessionDelegate {
+  func urlSessionDidFinishEvents(
+    forBackgroundURLSession session: URLSession
+  ) {
+    DispatchQueue.main.async {
+      if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+         let completionHandler = appDelegate.backgroundSessionCompletionHandler {
+        appDelegate.backgroundSessionCompletionHandler = nil
+        completionHandler()
+      }
+    }
+  }
+}
+
+// MARK: - URL Session Download Delegate
+extension PhotoDetailViewController: URLSessionDownloadDelegate {
+  func urlSession(
+    _ session: URLSession,
+    downloadTask: URLSessionDownloadTask,
+    didFinishDownloadingTo location: URL
+  ) {
+
+    guard let sourceURL = downloadTask.originalRequest?.url
+    else {
+      return
+    }
+
+    let download = downloadService.activeDownloads[sourceURL]
+    downloadService.activeDownloads[sourceURL] = nil
+
+    let destinationURL = localFilePath(for: sourceURL)
+    print(destinationURL)
+
+    let fileManager = FileManager.default
+    try? fileManager.removeItem(at: destinationURL)
+
+    do {
+      try fileManager.copyItem(at: location, to: destinationURL)
+      saveImageToGallery(at: destinationURL)
+    } catch let error {
+      print("Could not copy file to disk: \(error.localizedDescription)")
+    }
+  }
+
+  func urlSession(
+    _ session: URLSession,
+    downloadTask: URLSessionDownloadTask,
+    didWriteData bytesWritten: Int64,
+    totalBytesWritten: Int64,
+    totalBytesExpectedToWrite: Int64
+  ) {
+    guard
+      let url = downloadTask.originalRequest?.url,
+      let download = downloadService.activeDownloads[url]
+    else {
+      return
+    }
+
+    download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+
+    let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
+  }
+}

@@ -56,6 +56,8 @@
 		664BF3052BF6AEA300C9D29E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */; };
 		665993592C20E15F00BA8C85 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665993582C20E15F00BA8C85 /* PhotoDetailViewController.swift */; };
 		665CA9012C28CBE50086B2DB /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665CA9002C28CBE50086B2DB /* Social.swift */; };
+		667579F92C3445DC00A7DCC9 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667579F82C3445DC00A7DCC9 /* Download.swift */; };
+		667579FD2C3446CB00A7DCC9 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667579FC2C3446CB00A7DCC9 /* DownloadService.swift */; };
 		667A59882C1EE63C00FE4985 /* LoadPhotoListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */; };
 		667A598A2C1EE66A00FE4985 /* LoadPhotoListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */; };
 		667A59902C1EF6F500FE4985 /* PhotoListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */; };
@@ -147,6 +149,8 @@
 		664BF3042BF6AEA300C9D29E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		665993582C20E15F00BA8C85 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		665CA9002C28CBE50086B2DB /* Social.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
+		667579F82C3445DC00A7DCC9 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		667579FC2C3446CB00A7DCC9 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		667A59872C1EE63B00FE4985 /* LoadPhotoListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoListUseCase.swift; sourceTree = "<group>"; };
 		667A59892C1EE66A00FE4985 /* LoadPhotoListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoListRepository.swift; sourceTree = "<group>"; };
 		667A598F2C1EF6F500FE4985 /* PhotoListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCollectionViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +240,7 @@
 		664A512F2C1DE706003491BA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				667579FA2C34469D00A7DCC9 /* Download */,
 				664A51302C1DE716003491BA /* Core */,
 				664A514C2C1DFE50003491BA /* Request */,
 				664A513D2C1DEEC0003491BA /* Paging */,
@@ -343,10 +348,10 @@
 		664BF2BC2BF6472C00C9D29E /* Snjor */ = {
 			isa = PBXGroup;
 			children = (
+				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
 				664A512F2C1DE706003491BA /* Networking */,
 				664A51252C1DD3DF003491BA /* Utils */,
 				664A511D2C1DCE5B003491BA /* Storage */,
-				664BF2D22BF64B0C00C9D29E /* AppLifecycle */,
 				664BF2DE2BF65BB400C9D29E /* Navigation */,
 				664BF2F82BF67DF000C9D29E /* Screens */,
 				664BF2FB2BF681DF00C9D29E /* Factories */,
@@ -438,6 +443,31 @@
 				66D082452C24D8D0000574A7 /* LoadPhotoDetailUseCase.swift */,
 			);
 			path = PhotoDetail;
+			sourceTree = "<group>";
+		};
+		667579F72C3445C300A7DCC9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				667579F82C3445DC00A7DCC9 /* Download.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		667579FA2C34469D00A7DCC9 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				667579FB2C3446A800A7DCC9 /* DownloadService */,
+				667579F72C3445C300A7DCC9 /* Model */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		667579FB2C3446A800A7DCC9 /* DownloadService */ = {
+			isa = PBXGroup;
+			children = (
+				667579FC2C3446CB00A7DCC9 /* DownloadService.swift */,
+			);
+			path = DownloadService;
 			sourceTree = "<group>";
 		};
 		667A598B2C1EF64300FE4985 /* MainTabBar */ = {
@@ -609,6 +639,7 @@
 				664A51522C1DFF61003491BA /* RequestController.swift in Sources */,
 				664A51412C1DEFA4003491BA /* LastPageValidationUseCase.swift in Sources */,
 				66F5C2432C2C9A10001FC3A3 /* ImageDataRequestable.swift in Sources */,
+				667579FD2C3446CB00A7DCC9 /* DownloadService.swift in Sources */,
 				66F5C2492C2CA0B6001FC3A3 /* AppContainer.swift in Sources */,
 				66BE9C602C1F13C10006011A /* + WaterfallLayoutDelegate.swift in Sources */,
 				66B0C71F2C261D370074CE5B /* + UICollectionViewDelegate.swift in Sources */,
@@ -651,6 +682,7 @@
 				66F5C2412C2C9967001FC3A3 /* ImageDataRepository.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
 				66BE9C5B2C1F10680006011A /* LayoutConstants.swift in Sources */,
+				667579F92C3445DC00A7DCC9 /* Download.swift in Sources */,
 				664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */,
 				664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */,
 				66A17F412C2A0CE80032767F /* SpinnerDisplayable.swift in Sources */,

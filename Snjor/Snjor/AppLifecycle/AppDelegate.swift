@@ -9,6 +9,9 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+  var backgroundSessionCompletionHandler: (() -> Void)?
+
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -34,4 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didDiscardSceneSessions sceneSessions: Set<UISceneSession>
   ) {
   }
+
+  func application(
+    _ application: UIApplication,
+    handleEventsForBackgroundURLSession handleEventsForBackgroundURLSessionidentifier: String,
+    completionHandler: @escaping () -> Void
+  ) {
+    backgroundSessionCompletionHandler = completionHandler
+  }
+
 }
