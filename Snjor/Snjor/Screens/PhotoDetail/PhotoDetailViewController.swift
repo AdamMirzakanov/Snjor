@@ -110,9 +110,9 @@ class PhotoDetailViewController: UIViewController {
     super.viewDidLoad()
     setupUI()
     stateController()
-    //    viewModel.viewDidLoad()
     configData()
     hidePhotoInfo()
+    viewModel.viewDidLoad()
   }
 
   override func viewWillAppear(_ animated: Bool) {
