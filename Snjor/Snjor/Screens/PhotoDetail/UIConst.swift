@@ -45,5 +45,5 @@ enum UIConst {
   static let buttonWidth: CGFloat = 72.0
   static let buttonHeight: CGFloat = 32.0
 
-  static let xAxis: CGFloat = buttonWidth - buttonHeight
+  static let x: CGFloat = buttonWidth - buttonHeight
 }

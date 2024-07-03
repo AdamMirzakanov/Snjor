@@ -69,6 +69,10 @@
 		66A17F412C2A0CE80032767F /* SpinnerDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F402C2A0CE80032767F /* SpinnerDisplayable.swift */; };
 		66A17F432C2A0D830032767F /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F422C2A0D830032767F /* UIView + Extension.swift */; };
 		66A17F452C2A0E7C0032767F /* ViewValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F442C2A0E7C0032767F /* ViewValues.swift */; };
+		66A3F3A92C3593D300F367A4 /* BarButtonViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3A82C3593D300F367A4 /* BarButtonViews.swift */; };
+		66A3F3AB2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AA2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift */; };
+		66A3F3AD2C35940200F367A4 /* PauseButtonVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AC2C35940200F367A4 /* PauseButtonVisualEffectView.swift */; };
+		66A3F3AF2C35942C00F367A4 /* ToggleVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AE2C35942C00F367A4 /* ToggleVisualEffectView.swift */; };
 		66A698482C2DC9A100F0C954 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A698472C2DC9A100F0C954 /* String + Extension.swift */; };
 		66B0C71F2C261D370074CE5B /* + UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B0C71E2C261D370074CE5B /* + UICollectionViewDelegate.swift */; };
 		66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */; };
@@ -162,6 +166,10 @@
 		66A17F402C2A0CE80032767F /* SpinnerDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerDisplayable.swift; sourceTree = "<group>"; };
 		66A17F422C2A0D830032767F /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		66A17F442C2A0E7C0032767F /* ViewValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewValues.swift; sourceTree = "<group>"; };
+		66A3F3A82C3593D300F367A4 /* BarButtonViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonViews.swift; sourceTree = "<group>"; };
+		66A3F3AA2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonVisualEffectView.swift; sourceTree = "<group>"; };
+		66A3F3AC2C35940200F367A4 /* PauseButtonVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButtonVisualEffectView.swift; sourceTree = "<group>"; };
+		66A3F3AE2C35942C00F367A4 /* ToggleVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleVisualEffectView.swift; sourceTree = "<group>"; };
 		66A698472C2DC9A100F0C954 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		66B0C71E2C261D370074CE5B /* + UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
@@ -434,6 +442,7 @@
 		665993572C20E11200BA8C85 /* PhotoDetail */ = {
 			isa = PBXGroup;
 			children = (
+				66A3F3A72C3593BC00F367A4 /* BarButtonVisualEffect */,
 				665993582C20E15F00BA8C85 /* PhotoDetailViewController.swift */,
 				66A17F3C2C29AC6C0032767F /* ContainerView.swift */,
 				66F5C2392C2C57B4001FC3A3 /* UIConst.swift */,
@@ -508,6 +517,17 @@
 				66BE9C5F2C1F13C10006011A /* + WaterfallLayoutDelegate.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		66A3F3A72C3593BC00F367A4 /* BarButtonVisualEffect */ = {
+			isa = PBXGroup;
+			children = (
+				66A3F3A82C3593D300F367A4 /* BarButtonViews.swift */,
+				66A3F3AA2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift */,
+				66A3F3AC2C35940200F367A4 /* PauseButtonVisualEffectView.swift */,
+				66A3F3AE2C35942C00F367A4 /* ToggleVisualEffectView.swift */,
+			);
+			path = BarButtonVisualEffect;
 			sourceTree = "<group>";
 		};
 		66BE9C5E2C1F10C30006011A /* Layout */ = {
@@ -640,12 +660,14 @@
 				664A51412C1DEFA4003491BA /* LastPageValidationUseCase.swift in Sources */,
 				66F5C2432C2C9A10001FC3A3 /* ImageDataRequestable.swift in Sources */,
 				667579FD2C3446CB00A7DCC9 /* DownloadService.swift in Sources */,
+				66A3F3AD2C35940200F367A4 /* PauseButtonVisualEffectView.swift in Sources */,
 				66F5C2492C2CA0B6001FC3A3 /* AppContainer.swift in Sources */,
 				66BE9C602C1F13C10006011A /* + WaterfallLayoutDelegate.swift in Sources */,
 				66B0C71F2C261D370074CE5B /* + UICollectionViewDelegate.swift in Sources */,
 				66F5C2452C2C9A8E001FC3A3 /* ImageDataUseCase.swift in Sources */,
 				66F5C23A2C2C57B4001FC3A3 /* UIConst.swift in Sources */,
 				664A51452C1DFA50003491BA /* API.swift in Sources */,
+				66A3F3A92C3593D300F367A4 /* BarButtonViews.swift in Sources */,
 				664A51382C1DE831003491BA /* NetworkService + Requestable.swift in Sources */,
 				66D0824A2C24E1C1000574A7 /* PhotoDetailViewModel.swift in Sources */,
 				660DB6682C31A36900514738 /* PhotoDetailViewModelItem.swift in Sources */,
@@ -684,7 +706,9 @@
 				66BE9C5B2C1F10680006011A /* LayoutConstants.swift in Sources */,
 				667579F92C3445DC00A7DCC9 /* Download.swift in Sources */,
 				664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */,
+				66A3F3AF2C35942C00F367A4 /* ToggleVisualEffectView.swift in Sources */,
 				664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */,
+				66A3F3AB2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift in Sources */,
 				66A17F412C2A0CE80032767F /* SpinnerDisplayable.swift in Sources */,
 				664A51362C1DE804003491BA /* NetworkService.swift in Sources */,
 				664BF3032BF6AD3900C9D29E /* AppFactory.swift in Sources */,

@@ -16,6 +16,7 @@ class PhotoDetailViewController: UIViewController {
   private let viewModel: any PhotoDetailViewModelProtocol
   private var isAspectFill = true
   private var isPhotoInfo = true
+  private let barButtonsView = BarButtonViews()
 
   // MARK: - Download
   let documentsPath = FileManager.default.urls(
@@ -36,16 +37,12 @@ class PhotoDetailViewController: UIViewController {
     )
   }()
 
-//  func localFilePath(for url: URL) -> URL {
-//    return documentsPath.appendingPathComponent(url.lastPathComponent)
-//  }
-
   func localFilePath(for url: URL) -> URL {
-      var destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
-      if destinationURL.pathExtension.isEmpty {
-          destinationURL = destinationURL.appendingPathExtension("jpg")
-      }
-      return destinationURL
+    var destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
+    if destinationURL.pathExtension.isEmpty {
+      destinationURL = destinationURL.appendingPathExtension("jpg")
+    }
+    return destinationURL
   }
 
   // MARK: - Views
@@ -54,101 +51,6 @@ class PhotoDetailViewController: UIViewController {
     $0.backgroundColor = .systemBackground
     return $0
   }(ContainerView())
-
-  // MARK: - Back Bar Button
-  private let backBarButtonBlurView: UIVisualEffectView = {
-    $0.frame = CGRect(
-      x: .zero,
-      y: .zero,
-      width: UIConst.buttonHeight,
-      height: UIConst.buttonHeight
-    )
-    $0.layer.cornerRadius = UIConst.backButtonBlurViewCornerRadius
-    $0.clipsToBounds = true
-    return $0
-  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
-
-  private lazy var backBarButton: UIButton = {
-    $0.setImage(UIImage(systemName: .backBarButtonImage), for: .normal)
-    $0.tintColor = .label
-    $0.alpha = UIConst.alpha
-    $0.frame = backBarButtonBlurView.bounds
-    return $0
-  }(UIButton(type: .custom))
-
-  // MARK: - Download Bar Button
-  private let downloadBarButtonBlurView: UIVisualEffectView = {
-    $0.frame = CGRect(
-      x: .zero,
-      y: .zero,
-      width: UIConst.buttonWidth,
-      height: UIConst.buttonHeight
-    )
-    $0.alpha = 0.5
-    $0.backgroundColor = .white
-    $0.layer.cornerRadius = UIConst.defaultValue
-    $0.clipsToBounds = true
-    return $0
-  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
-
-  private lazy var downloadBarButton: UIButton = {
-//    $0.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
-//    $0.setTitle(.jpeg, for: .normal)
-//    $0.titleLabel?.font = .systemFont(
-//      ofSize: UIConst.defaultFontSize,
-//      weight: .regular
-//    )
-    $0.tintColor = .label
-    $0.setTitleColor(.label, for: .normal)
-//    $0.alpha = UIConst.alpha
-    $0.frame = downloadBarButtonBlurView.bounds
-    return $0
-  }(UIButton(type: .custom))
-
-  // MARK: - Pause Bar Button
-  private let pauseBarButtonBlurView: UIVisualEffectView = {
-    $0.frame = CGRect(
-      x: .zero,
-      y: .zero,
-      width: UIConst.buttonWidth,
-      height: UIConst.buttonHeight
-    )
-    $0.backgroundColor = .systemRed
-    $0.layer.cornerRadius = UIConst.defaultValue
-    $0.clipsToBounds = true
-    return $0
-  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
-
-  private lazy var pauseBarButton: UIButton = {
-//    $0.setImage(UIImage(systemName: .pauseBarButtonImage), for: .normal)
-    $0.tintColor = .label
-//    $0.alpha = UIConst.alpha
-    $0.frame = pauseBarButtonBlurView.bounds
-    return $0
-  }(UIButton(type: .custom))
-
-  // MARK: - Toggle Content Mode Button
-  private let toggleContentModeButtonBlurView: UIVisualEffectView = {
-    $0.frame = CGRect(
-      x: .zero,
-      y: .zero,
-      width: UIConst.buttonHeight,
-      height: UIConst.buttonHeight
-    )
-    $0.layer.cornerRadius = UIConst.defaultValue
-    $0.clipsToBounds = true
-    return $0
-  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
-
-  private lazy var toggleContentModeButton: UIButton = {
-    let icon = UIImage(systemName: .arrowUp)
-    $0.setImage(icon, for: .normal)
-    $0.tintColor = .label
-    $0.setTitleColor(.label, for: .normal)
-    $0.alpha = UIConst.alpha
-    $0.frame = toggleContentModeButtonBlurView.bounds
-    return $0
-  }(UIButton(type: .custom))
 
   // MARK: - Initializers
   init(viewModel: any PhotoDetailViewModelProtocol
@@ -168,7 +70,7 @@ class PhotoDetailViewController: UIViewController {
     stateController()
     configData()
     hidePhotoInfo()
-//    viewModel.viewDidLoad()
+    //    viewModel.viewDidLoad()
     downloadService.downloadsSession = downloadsSession
   }
 
@@ -228,7 +130,6 @@ class PhotoDetailViewController: UIViewController {
 
   private func setupUI() {
     setupBarButtonItems()
-    configActions()
     view.addSubview(uiContainerView)
     NSLayoutConstraint.activate([
       uiContainerView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -239,38 +140,13 @@ class PhotoDetailViewController: UIViewController {
   }
 
   private func setupBarButtonItems() {
-    let toggleContentModeButton = makeToggleContentModeButton()
-    let downloadBarButton = makeDownloadBarButton()
-    let pauseBarButton = makePauseBarButton()
-    let backBarButton = makeBackBarButton()
-    navigationItem.rightBarButtonItems = [toggleContentModeButton, downloadBarButton, pauseBarButton]
-    navigationItem.leftBarButtonItems = [backBarButton]
+    navigationItem.rightBarButtonItems = barButtonsView.makeRightBackBarButtons()
+    navigationItem.leftBarButtonItems = barButtonsView.makeLeftBackBarButtons()
+    configActions()
+    barButtonsView.setupBarButtonView()
   }
 
-  private func makePauseBarButton() -> UIBarButtonItem {
-    pauseBarButtonBlurView.contentView.addSubview(pauseBarButton)
-    pauseBarButtonBlurView.isHidden = true
-    return UIBarButtonItem(customView: pauseBarButtonBlurView)
-  }
-
-  private func makeBackBarButton() -> UIBarButtonItem {
-    backBarButtonBlurView.contentView.addSubview(backBarButton)
-    return UIBarButtonItem(customView: backBarButtonBlurView)
-  }
-
-  private func makeDownloadBarButton() -> UIBarButtonItem {
-    downloadBarButtonBlurView.contentView.addSubview(downloadBarButton)
-    return UIBarButtonItem(customView: downloadBarButtonBlurView)
-  }
-
-  private func makeToggleContentModeButton() -> UIBarButtonItem {
-    toggleContentModeButtonBlurView.contentView.addSubview(toggleContentModeButton)
-    return UIBarButtonItem(customView: toggleContentModeButtonBlurView)
-  }
-
-
-  // MARK: -
-
+  // MARK: - Actions
   private func configActions() {
     configInfoButtonAction()
     configBackButtonAction()
@@ -292,84 +168,55 @@ class PhotoDetailViewController: UIViewController {
       guard let self = self else { return }
       self.navigationController?.popViewController(animated: true)
     }
-    backBarButton.addAction(backButtonAction, for: .touchUpInside)
+    barButtonsView.backBarButton.addAction(backButtonAction, for: .touchUpInside)
   }
 
   private func configDownloadButtonAction() {
     let downloadButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-      //code:
-//      downloadService.startDownload(viewModel.photo!)
-
-      UIView.animate(
-        withDuration: 1.3,
-        delay: 0,
-        usingSpringWithDamping: 0.5,
-        initialSpringVelocity: 0.5
-      ) {
-        self.downloadBarButtonBlurView.frame = CGRect(
-          x: UIConst.xAxis,
-          y: .zero,
-          width: UIConst.buttonHeight,
-          height: UIConst.buttonHeight
-        )
-        self.downloadBarButton.frame = CGRect(
-          x: .zero,
-          y: .zero,
-          width: UIConst.buttonHeight,
-          height: UIConst.buttonHeight
-        )
-        self.downloadBarButton.setTitle("", for: .normal)
-        self.pauseBarButtonBlurView.isHidden = false
-        self.pauseBarButtonBlurView.frame = CGRect(
-          x: .zero,
-          y: .zero,
-          width: UIConst.buttonHeight,
-          height: UIConst.buttonHeight
-        )
-      }
-
-//      UIView.animate(withDuration: 3.3) {
-//        self.downloadBarButtonBlurView.frame = CGRect(
-//          x: UIConst.xAxis,
-//          y: .zero,
-//          width: UIConst.buttonHeight,
-//          height: UIConst.buttonHeight
-//        )
-//        self.downloadBarButton.frame = CGRect(
-//          x: .zero,
-//          y: .zero,
-//          width: UIConst.buttonHeight,
-//          height: UIConst.buttonHeight
-//        )
-//        self.downloadBarButton.setTitle("", for: .normal)
-//        self.pauseBarButtonBlurView.isHidden = false
-//        self.pauseBarButtonBlurView.frame = CGRect(
-//          x: .zero,
-//          y: .zero,
-//          width: UIConst.buttonHeight,
-//          height: UIConst.buttonHeight
-//        )
-//      }
+      downloadService.startDownload(viewModel.photo!)
+      animateDownloadButton()
     }
-    downloadBarButton.addAction(downloadButtonAction, for: .touchUpInside)
+    barButtonsView.downloadBarButton.addAction(downloadButtonAction, for: .touchUpInside)
+  }
+
+  private func animateDownloadButton() {
+    UIView.animate(
+      withDuration: 0.7,
+      delay: 0,
+      usingSpringWithDamping: 0.5,
+      initialSpringVelocity: 0.5
+    ) {
+      self.barButtonsView.downloadBarButtonBlurView.frame.size.width = UIConst.buttonHeight
+      self.barButtonsView.downloadBarButtonBlurView.frame.origin.x = UIConst.x
+      self.barButtonsView.downloadBarButton.frame.size.width = UIConst.buttonHeight
+      self.barButtonsView.downloadBarButton.setTitle(nil, for: .normal)
+      self.barButtonsView.downloadBarButton.setImage(nil, for: .normal)
+
+      self.barButtonsView.pauseBarButtonBlurView.frame.size.width = UIConst.buttonHeight
+      self.barButtonsView.pauseBarButtonBlurView.isHidden = false
+    }
   }
 
   private func configToggleContentModeButtonAction() {
     let toggleContentModeButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-      if self.isAspectFill {
-        let icon = UIImage(systemName: .arrowDown)
-        self.uiContainerView.mainPhotoImageView.contentMode = .scaleAspectFit
-        self.toggleContentModeButton.setImage(icon, for: .normal)
-      } else {
-        let icon = UIImage(systemName: .arrowUp)
-        self.uiContainerView.mainPhotoImageView.contentMode = .scaleAspectFill
-        self.toggleContentModeButton.setImage(icon, for: .normal)
-      }
-      self.isAspectFill.toggle()
+      configToggleContentMode()
     }
-    toggleContentModeButton.addAction(toggleContentModeButtonAction, for: .touchUpInside)
+    barButtonsView.toggleContentModeButton.addAction(toggleContentModeButtonAction, for: .touchUpInside)
+  }
+
+  private func configToggleContentMode() {
+    if self.isAspectFill {
+      let icon = UIImage(systemName: .arrowDown)
+      self.uiContainerView.mainPhotoImageView.contentMode = .scaleAspectFit
+      self.barButtonsView.toggleContentModeButton.setImage(icon, for: .normal)
+    } else {
+      let icon = UIImage(systemName: .arrowUp)
+      self.uiContainerView.mainPhotoImageView.contentMode = .scaleAspectFill
+      self.barButtonsView.toggleContentModeButton.setImage(icon, for: .normal)
+    }
+    self.isAspectFill.toggle()
   }
 
   private func hidePhotoInfo() {
@@ -416,6 +263,30 @@ class PhotoDetailViewController: UIViewController {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // MARK: - MessageDisplayable
 extension PhotoDetailViewController: MessageDisplayable { }
