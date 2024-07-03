@@ -42,6 +42,7 @@ extension String {
   // MARK: - Images
   static var backBarButtonImage: String { "chevron.backward" }
   static var downloadBarButtonImage: String { "arrow.down.app.fill" }
+  static var pauseBarButtonImage: String { "pause.circle" }
 
   // Toggle content mode button
   static var arrowDown: String { "arrow.down.forward.and.arrow.up.backward" }

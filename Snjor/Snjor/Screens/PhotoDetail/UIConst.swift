@@ -40,8 +40,10 @@ enum UIConst {
   static let lineHeightAnchor: CGFloat = 1.0
   static let resolutionLabelWidth: CGFloat = 66
   static let resolutionLabelHeight: CGFloat = resolutionLabelWidth / 3
-  static let buttonWidth: CGFloat = 74.0
-  static let buttonHeight: CGFloat = 32.0
 
   // MARK: -
+  static let buttonWidth: CGFloat = 72.0
+  static let buttonHeight: CGFloat = 32.0
+
+  static let xAxis: CGFloat = buttonWidth - buttonHeight
 }
