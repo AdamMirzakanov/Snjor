@@ -39,3 +39,9 @@ struct Photo: Decodable, Hashable {
     case downloadLocation
   }
 }
+
+extension Photo: Downloadable {
+  var downloadURL: URL {
+    return self.urls[.full]!
+  }
+}

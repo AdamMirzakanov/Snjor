@@ -73,6 +73,7 @@
 		66A3F3AB2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AA2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift */; };
 		66A3F3AD2C35940200F367A4 /* PauseButtonVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AC2C35940200F367A4 /* PauseButtonVisualEffectView.swift */; };
 		66A3F3AF2C35942C00F367A4 /* ToggleVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AE2C35942C00F367A4 /* ToggleVisualEffectView.swift */; };
+		66A3F3B32C35FD3F00F367A4 /* Downloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3B22C35FD3F00F367A4 /* Downloadable.swift */; };
 		66A698482C2DC9A100F0C954 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A698472C2DC9A100F0C954 /* String + Extension.swift */; };
 		66B0C71F2C261D370074CE5B /* + UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B0C71E2C261D370074CE5B /* + UICollectionViewDelegate.swift */; };
 		66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */; };
@@ -170,6 +171,7 @@
 		66A3F3AA2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonVisualEffectView.swift; sourceTree = "<group>"; };
 		66A3F3AC2C35940200F367A4 /* PauseButtonVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButtonVisualEffectView.swift; sourceTree = "<group>"; };
 		66A3F3AE2C35942C00F367A4 /* ToggleVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleVisualEffectView.swift; sourceTree = "<group>"; };
+		66A3F3B22C35FD3F00F367A4 /* Downloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloadable.swift; sourceTree = "<group>"; };
 		66A698472C2DC9A100F0C954 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		66B0C71E2C261D370074CE5B /* + UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 		667579FB2C3446A800A7DCC9 /* DownloadService */ = {
 			isa = PBXGroup;
 			children = (
+				66A3F3B22C35FD3F00F367A4 /* Downloadable.swift */,
 				667579FC2C3446CB00A7DCC9 /* DownloadService.swift */,
 			);
 			path = DownloadService;
@@ -699,6 +702,7 @@
 				665CA9012C28CBE50086B2DB /* Social.swift in Sources */,
 				667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */,
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
+				66A3F3B32C35FD3F00F367A4 /* Downloadable.swift in Sources */,
 				664A51542C1E4095003491BA /* BaseViewModel.swift in Sources */,
 				66A17F452C2A0E7C0032767F /* ViewValues.swift in Sources */,
 				66F5C2412C2C9967001FC3A3 /* ImageDataRepository.swift in Sources */,

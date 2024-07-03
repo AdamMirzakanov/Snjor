@@ -264,30 +264,6 @@ class PhotoDetailViewController: UIViewController {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // MARK: - MessageDisplayable
 extension PhotoDetailViewController: MessageDisplayable { }
 

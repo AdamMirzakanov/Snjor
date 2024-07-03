@@ -9,14 +9,14 @@ import Foundation
 
 class Download {
   // MARK: - Public Properties
+  var item: any Downloadable
   var isDownloading = false
   var progress: Float = 0
   var resumeData: Data?
   var task: URLSessionDownloadTask?
-  var photo: Photo
 
   // MARK: - Initializers
-  init(photo: Photo) {
-    self.photo = photo
+  init(item: any Downloadable) {
+    self.item = item
   }
 }

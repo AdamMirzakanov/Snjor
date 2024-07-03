@@ -11,19 +11,15 @@ class DownloadService {
   var activeDownloads: [URL: Download] = [:]
   var downloadsSession: URLSession!
 
-  func cancelDownload(_ photo: Photo) {
-    guard 
-      let download = activeDownloads[photo.urls[.full]!]
-    else {
-      return
-    }
+  func cancelDownload<T: Downloadable>(_ item: T) {
+    guard let download = activeDownloads[item.downloadURL] else { return }
     download.task?.cancel()
-    activeDownloads[photo.urls[.full]!] = nil
+    activeDownloads[item.downloadURL] = nil
   }
 
-  func pauseDownload(_ photo: Photo) {
+  func pauseDownload<T: Downloadable>(_ item: T) {
     guard
-      let download = activeDownloads[photo.urls[.full]!],
+      let download = activeDownloads[item.downloadURL],
       download.isDownloading
     else {
       return
@@ -36,26 +32,22 @@ class DownloadService {
     download.isDownloading = false
   }
 
-  func resumeDownload(_ photo: Photo) {
-    guard 
-      let download = activeDownloads[photo.urls[.full]!]
-    else {
-      return
-    }
+  func resumeDownload<T: Downloadable>(_ item: T) {
+    guard let download = activeDownloads[item.downloadURL] else { return }
     if let resumeData = download.resumeData {
       download.task = downloadsSession.downloadTask(withResumeData: resumeData)
     } else {
-      download.task = downloadsSession.downloadTask(with: download.photo.urls[.full]!)
+      download.task = downloadsSession.downloadTask(with: download.item.downloadURL)
     }
     download.task?.resume()
     download.isDownloading = true
   }
 
-  func startDownload(_ photo: Photo) {
-    let download = Download(photo: photo)
-    download.task = downloadsSession.downloadTask(with: photo.urls[.full]!)
+  func startDownload<T: Downloadable>(_ item: T) {
+    let download = Download(item: item)
+    download.task = downloadsSession.downloadTask(with: item.downloadURL)
     download.task?.resume()
     download.isDownloading = true
-    activeDownloads[download.photo.urls[.full]!] = download
+    activeDownloads[item.downloadURL] = download
   }
 }
