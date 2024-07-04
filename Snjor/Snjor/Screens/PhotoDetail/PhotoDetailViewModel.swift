@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Photos
 
 protocol PhotoDetailViewModelProtocol: BaseViewModelProtocol {
   var displayName: String { get }
@@ -27,9 +28,15 @@ protocol PhotoDetailViewModelProtocol: BaseViewModelProtocol {
   var resolution: String { get }
   var backgroundImageData: Data? { get }
   var photo: Photo? { get set }
+  
+  var downloadService: DownloadService { get }
+  func saveImageToGallery(at url: URL)
+  func localFilePath(for url: URL) -> URL
 }
 
 final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
+  
+  var downloadService: DownloadService = DownloadService()
 
   // MARK: - Public Properties
   var displayName: String {
@@ -133,6 +140,33 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
     }
   }
 
+  func saveImageToGallery(at url: URL) {
+    PHPhotoLibrary.requestAuthorization { status in
+      guard status == .authorized else { return }
+//      PHPhotoLibrary.shared().performChanges {
+//        PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
+//      }
+
+      PHPhotoLibrary.shared().performChanges({
+        PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
+      }) { success, error in
+        if success {
+          print("Successfully saved image to gallery.")
+        } else if let error = error {
+          print("Error saving image to gallery: \(error)")
+        }
+      }
+    }
+  }
+
+  func localFilePath(for url: URL) -> URL {
+    var destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
+    if destinationURL.pathExtension.isEmpty {
+      destinationURL = destinationURL.appendingPathExtension(.jpegExtension)
+    }
+    return destinationURL
+  }
+
   // MARK: - Private Methods
   private func determineResolutionCategory(width: Int, height: Int) -> String {
     let maxDimension = max(width, height)
@@ -151,4 +185,9 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
       return .standard
     }
   }
+
+  private let documentsPath = FileManager.default.urls(
+    for: .documentDirectory,
+    in: .userDomainMask
+  ).first!
 }

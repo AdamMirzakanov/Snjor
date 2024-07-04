@@ -65,15 +65,14 @@
 		667A59942C1EF9B400FE4985 /* + MessageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59932C1EF9B400FE4985 /* + MessageDisplayable.swift */; };
 		667A59982C1EFE4A00FE4985 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */; };
 		667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A599B2C1F082900FE4985 /* PhotoCell.swift */; };
-		66A17F3D2C29AC6C0032767F /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F3C2C29AC6C0032767F /* ContainerView.swift */; };
+		6680DF592C36AD1C001BAAD8 /* ViewLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680DF582C36AD1C001BAAD8 /* ViewLoadable.swift */; };
+		6680DF5B2C36ADE2001BAAD8 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680DF5A2C36ADE2001BAAD8 /* PhotoDetailView.swift */; };
 		66A17F412C2A0CE80032767F /* SpinnerDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F402C2A0CE80032767F /* SpinnerDisplayable.swift */; };
 		66A17F432C2A0D830032767F /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F422C2A0D830032767F /* UIView + Extension.swift */; };
 		66A17F452C2A0E7C0032767F /* ViewValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F442C2A0E7C0032767F /* ViewValues.swift */; };
-		66A3F3A92C3593D300F367A4 /* BarButtonViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3A82C3593D300F367A4 /* BarButtonViews.swift */; };
-		66A3F3AB2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AA2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift */; };
-		66A3F3AD2C35940200F367A4 /* PauseButtonVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AC2C35940200F367A4 /* PauseButtonVisualEffectView.swift */; };
-		66A3F3AF2C35942C00F367A4 /* ToggleVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3AE2C35942C00F367A4 /* ToggleVisualEffectView.swift */; };
 		66A3F3B32C35FD3F00F367A4 /* Downloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3B22C35FD3F00F367A4 /* Downloadable.swift */; };
+		66A3F3B52C36049C00F367A4 /* PhotoDetailViewController + URLSessionDownloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3B42C36049C00F367A4 /* PhotoDetailViewController + URLSessionDownloadDelegate.swift */; };
+		66A3F3B82C36054E00F367A4 /* PhotoDetailViewController + URLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3F3B72C36054E00F367A4 /* PhotoDetailViewController + URLSessionDelegate.swift */; };
 		66A698482C2DC9A100F0C954 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A698472C2DC9A100F0C954 /* String + Extension.swift */; };
 		66B0C71F2C261D370074CE5B /* + UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B0C71E2C261D370074CE5B /* + UICollectionViewDelegate.swift */; };
 		66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */; };
@@ -85,6 +84,7 @@
 		66BE9C682C1FAB370006011A /* MainTabBarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C672C1FAB370006011A /* MainTabBarConstants.swift */; };
 		66BE9C6F2C2073CF0006011A /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C6E2C2073CF0006011A /* GradientView.swift */; };
 		66BE9C712C20791B0006011A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE9C702C20791B0006011A /* User.swift */; };
+		66BEB0FD2C36F9CF00663A04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BEB0FC2C36F9CF00663A04 /* ViewController.swift */; };
 		66D082422C24C80E000574A7 /* PhotoDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D082412C24C80E000574A7 /* PhotoDetailFactory.swift */; };
 		66D082442C24D896000574A7 /* PhotoDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D082432C24D896000574A7 /* PhotoDetailRepository.swift */; };
 		66D082462C24D8D0000574A7 /* LoadPhotoDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D082452C24D8D0000574A7 /* LoadPhotoDetailUseCase.swift */; };
@@ -163,15 +163,14 @@
 		667A59932C1EF9B400FE4985 /* + MessageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ MessageDisplayable.swift"; sourceTree = "<group>"; };
 		667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		667A599B2C1F082900FE4985 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
-		66A17F3C2C29AC6C0032767F /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		6680DF582C36AD1C001BAAD8 /* ViewLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLoadable.swift; sourceTree = "<group>"; };
+		6680DF5A2C36ADE2001BAAD8 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		66A17F402C2A0CE80032767F /* SpinnerDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerDisplayable.swift; sourceTree = "<group>"; };
 		66A17F422C2A0D830032767F /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		66A17F442C2A0E7C0032767F /* ViewValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewValues.swift; sourceTree = "<group>"; };
-		66A3F3A82C3593D300F367A4 /* BarButtonViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonViews.swift; sourceTree = "<group>"; };
-		66A3F3AA2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonVisualEffectView.swift; sourceTree = "<group>"; };
-		66A3F3AC2C35940200F367A4 /* PauseButtonVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButtonVisualEffectView.swift; sourceTree = "<group>"; };
-		66A3F3AE2C35942C00F367A4 /* ToggleVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleVisualEffectView.swift; sourceTree = "<group>"; };
 		66A3F3B22C35FD3F00F367A4 /* Downloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloadable.swift; sourceTree = "<group>"; };
+		66A3F3B42C36049C00F367A4 /* PhotoDetailViewController + URLSessionDownloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoDetailViewController + URLSessionDownloadDelegate.swift"; sourceTree = "<group>"; };
+		66A3F3B72C36054E00F367A4 /* PhotoDetailViewController + URLSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoDetailViewController + URLSessionDelegate.swift"; sourceTree = "<group>"; };
 		66A698472C2DC9A100F0C954 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		66B0C71E2C261D370074CE5B /* + UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		66BE9C582C1F0E440006011A /* + UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+ UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
@@ -183,6 +182,7 @@
 		66BE9C672C1FAB370006011A /* MainTabBarConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarConstants.swift; sourceTree = "<group>"; };
 		66BE9C6E2C2073CF0006011A /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		66BE9C702C20791B0006011A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		66BEB0FC2C36F9CF00663A04 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		66D082412C24C80E000574A7 /* PhotoDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailFactory.swift; sourceTree = "<group>"; };
 		66D082432C24D896000574A7 /* PhotoDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailRepository.swift; sourceTree = "<group>"; };
 		66D082452C24D8D0000574A7 /* LoadPhotoDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPhotoDetailUseCase.swift; sourceTree = "<group>"; };
@@ -444,9 +444,8 @@
 		665993572C20E11200BA8C85 /* PhotoDetail */ = {
 			isa = PBXGroup;
 			children = (
-				66A3F3A72C3593BC00F367A4 /* BarButtonVisualEffect */,
-				665993582C20E15F00BA8C85 /* PhotoDetailViewController.swift */,
-				66A17F3C2C29AC6C0032767F /* ContainerView.swift */,
+				6680DF5C2C36EEC8001BAAD8 /* View */,
+				66A3F3B62C3604B200F367A4 /* Controller */,
 				66F5C2392C2C57B4001FC3A3 /* UIConst.swift */,
 				66D082492C24E1C1000574A7 /* PhotoDetailViewModel.swift */,
 				660DB6672C31A36900514738 /* PhotoDetailViewModelItem.swift */,
@@ -522,15 +521,23 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		66A3F3A72C3593BC00F367A4 /* BarButtonVisualEffect */ = {
+		6680DF5C2C36EEC8001BAAD8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				66A3F3A82C3593D300F367A4 /* BarButtonViews.swift */,
-				66A3F3AA2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift */,
-				66A3F3AC2C35940200F367A4 /* PauseButtonVisualEffectView.swift */,
-				66A3F3AE2C35942C00F367A4 /* ToggleVisualEffectView.swift */,
+				6680DF5A2C36ADE2001BAAD8 /* PhotoDetailView.swift */,
 			);
-			path = BarButtonVisualEffect;
+			path = View;
+			sourceTree = "<group>";
+		};
+		66A3F3B62C3604B200F367A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				66BEB0FE2C36F9F900663A04 /* ViewLoadable */,
+				665993582C20E15F00BA8C85 /* PhotoDetailViewController.swift */,
+				66A3F3B42C36049C00F367A4 /* PhotoDetailViewController + URLSessionDownloadDelegate.swift */,
+				66A3F3B72C36054E00F367A4 /* PhotoDetailViewController + URLSessionDelegate.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		66BE9C5E2C1F10C30006011A /* Layout */ = {
@@ -540,6 +547,15 @@
 				66BE9C5C2C1F10A30006011A /* WaterfallLayout.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		66BEB0FE2C36F9F900663A04 /* ViewLoadable */ = {
+			isa = PBXGroup;
+			children = (
+				6680DF582C36AD1C001BAAD8 /* ViewLoadable.swift */,
+				66BEB0FC2C36F9CF00663A04 /* ViewController.swift */,
+			);
+			path = ViewLoadable;
 			sourceTree = "<group>";
 		};
 		66F5C23D2C2C985D001FC3A3 /* Storage */ = {
@@ -657,20 +673,17 @@
 				667A59902C1EF6F500FE4985 /* PhotoListCollectionViewController.swift in Sources */,
 				66BE9C5D2C1F10A30006011A /* WaterfallLayout.swift in Sources */,
 				66D082442C24D896000574A7 /* PhotoDetailRepository.swift in Sources */,
-				66A17F3D2C29AC6C0032767F /* ContainerView.swift in Sources */,
 				664A513F2C1DEED9003491BA /* Pageable.swift in Sources */,
 				664A51522C1DFF61003491BA /* RequestController.swift in Sources */,
 				664A51412C1DEFA4003491BA /* LastPageValidationUseCase.swift in Sources */,
 				66F5C2432C2C9A10001FC3A3 /* ImageDataRequestable.swift in Sources */,
 				667579FD2C3446CB00A7DCC9 /* DownloadService.swift in Sources */,
-				66A3F3AD2C35940200F367A4 /* PauseButtonVisualEffectView.swift in Sources */,
 				66F5C2492C2CA0B6001FC3A3 /* AppContainer.swift in Sources */,
 				66BE9C602C1F13C10006011A /* + WaterfallLayoutDelegate.swift in Sources */,
 				66B0C71F2C261D370074CE5B /* + UICollectionViewDelegate.swift in Sources */,
 				66F5C2452C2C9A8E001FC3A3 /* ImageDataUseCase.swift in Sources */,
 				66F5C23A2C2C57B4001FC3A3 /* UIConst.swift in Sources */,
 				664A51452C1DFA50003491BA /* API.swift in Sources */,
-				66A3F3A92C3593D300F367A4 /* BarButtonViews.swift in Sources */,
 				664A51382C1DE831003491BA /* NetworkService + Requestable.swift in Sources */,
 				66D0824A2C24E1C1000574A7 /* PhotoDetailViewModel.swift in Sources */,
 				660DB6682C31A36900514738 /* PhotoDetailViewModelItem.swift in Sources */,
@@ -683,6 +696,7 @@
 				664A51672C1E4E6F003491BA /* PhotoListViewModel.swift in Sources */,
 				665993592C20E15F00BA8C85 /* PhotoDetailViewController.swift in Sources */,
 				664A51492C1DFA7A003491BA /* Authorization.swift in Sources */,
+				66A3F3B52C36049C00F367A4 /* PhotoDetailViewController + URLSessionDownloadDelegate.swift in Sources */,
 				664A515F2C1E46A6003491BA /* SearchPhotos.swift in Sources */,
 				664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */,
 				664A513C2C1DE8A0003491BA /* HTTPResponseStatus.swift in Sources */,
@@ -705,14 +719,16 @@
 				66A3F3B32C35FD3F00F367A4 /* Downloadable.swift in Sources */,
 				664A51542C1E4095003491BA /* BaseViewModel.swift in Sources */,
 				66A17F452C2A0E7C0032767F /* ViewValues.swift in Sources */,
+				6680DF5B2C36ADE2001BAAD8 /* PhotoDetailView.swift in Sources */,
+				6680DF592C36AD1C001BAAD8 /* ViewLoadable.swift in Sources */,
+				66BEB0FD2C36F9CF00663A04 /* ViewController.swift in Sources */,
 				66F5C2412C2C9967001FC3A3 /* ImageDataRepository.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
 				66BE9C5B2C1F10680006011A /* LayoutConstants.swift in Sources */,
 				667579F92C3445DC00A7DCC9 /* Download.swift in Sources */,
 				664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */,
-				66A3F3AF2C35942C00F367A4 /* ToggleVisualEffectView.swift in Sources */,
+				66A3F3B82C36054E00F367A4 /* PhotoDetailViewController + URLSessionDelegate.swift in Sources */,
 				664BF2E62BF65F4400C9D29E /* Navigation + UINavigationControllerDelegate.swift in Sources */,
-				66A3F3AB2C3593EF00F367A4 /* DownloadButtonVisualEffectView.swift in Sources */,
 				66A17F412C2A0CE80032767F /* SpinnerDisplayable.swift in Sources */,
 				664A51362C1DE804003491BA /* NetworkService.swift in Sources */,
 				664BF3032BF6AD3900C9D29E /* AppFactory.swift in Sources */,

@@ -43,6 +43,7 @@ extension String {
   static var backBarButtonImage: String { "chevron.backward" }
   static var downloadBarButtonImage: String { "arrow.down.app.fill" }
   static var pauseBarButtonImage: String { "pause.circle" }
+  static var infoButtonImage: String { "info.circle" }
 
   // Toggle content mode button
   static var arrowDown: String { "arrow.down.forward.and.arrow.up.backward" }
@@ -60,4 +61,8 @@ extension String {
 
   // MARK: - Fonts
   static var nameFont: String { "Times New Roman Bold" }
+
+  // MARK: - Downloads
+  static var jpegExtension: String { "jpg" }
+  static var downloadsSessionID: String { "com.adamirzakan" }
 }

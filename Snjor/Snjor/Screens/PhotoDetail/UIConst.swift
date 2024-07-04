@@ -8,9 +8,9 @@
 import CoreGraphics
 
 enum UIConst {
-
   // MARK: - PhotoDetailViewController
-  static let alpha: CGFloat = 0.5
+  static let alphaDefault: CGFloat = 0.4
+  static let maxOpacity: CGFloat = 1
   static let profilePhotoSize: CGFloat = 52.0
   static let blurViewSize: CGFloat = 36.0
   static let logoSize: CGFloat = 17.0
@@ -45,5 +45,12 @@ enum UIConst {
   static let buttonWidth: CGFloat = 72.0
   static let buttonHeight: CGFloat = 32.0
 
-  static let x: CGFloat = buttonWidth - buttonHeight
+  static let translationX: CGFloat = buttonWidth - buttonHeight
+  static let translationY: CGFloat = -10
+
+  // MARK: - Animate
+  static let durationDefault: CGFloat = 0.7
+  static let dampingDefault: CGFloat = 0.5
+  static let velocityDefault: CGFloat = 0.5
+  static let hidePhotoInfoDurationDefault: CGFloat = 0.3
 }
