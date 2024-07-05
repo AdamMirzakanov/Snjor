@@ -32,7 +32,7 @@ class PhotoDetailView: UIView {
   }(UIButton(type: .custom))
 
   // MARK: Download Bar Button
-  private let downloadBarButtonBlurView: UIVisualEffectView = {
+  let downloadBarButtonBlurView: UIVisualEffectView = {
     $0.frame.size.width = UIConst.buttonWidth
     $0.frame.size.height = UIConst.buttonHeight
     $0.layer.cornerRadius = UIConst.defaultValue
@@ -55,14 +55,14 @@ class PhotoDetailView: UIView {
   }(UIButton(type: .custom))
 
   // MARK: Pause Bar Button
-  private let pauseBarButtonBlurView: UIVisualEffectView = {
+  let pauseBarButtonBlurView: UIVisualEffectView = {
     $0.frame.size.height = UIConst.buttonHeight
     $0.layer.cornerRadius = UIConst.defaultValue
     $0.clipsToBounds = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
 
-  private lazy var pauseBarButton: UIButton = {
+  lazy var pauseBarButton: UIButton = {
     $0.setImage(UIImage(systemName: .pauseBarButtonImage), for: .normal)
     $0.tintColor = .label
     $0.alpha = UIConst.alphaDefault
@@ -460,11 +460,14 @@ class PhotoDetailView: UIView {
     navigationItem.rightBarButtonItems = makeRightBackBarButtons()
     navigationItem.leftBarButtonItems = makeLeftBackBarButtons()
     configInfoButtonAction()
+    configPauseButtonAction()
     configBackButtonAction(navigationController: navigationController)
     configToggleContentModeButtonAction()
   }
 
+
   func animateDownloadButton() {
+    self.downloadBarButtonBlurView.frame.origin.x = 0.0
     UIView.animate(
       withDuration: UIConst.durationDefault,
       delay: .zero,
@@ -476,9 +479,10 @@ class PhotoDetailView: UIView {
       self.downloadBarButton.frame.size.width = UIConst.buttonHeight
       self.downloadBarButton.setTitle(nil, for: .normal)
       self.downloadBarButton.setImage(nil, for: .normal)
+      self.downloadBarButton.isEnabled = false
 
       self.pauseBarButtonBlurView.frame.size.width = UIConst.buttonHeight
-      self.pauseBarButtonBlurView.isHidden = false
+      self.pauseBarButton.frame = self.pauseBarButtonBlurView.bounds
     }
   }
 
@@ -522,14 +526,9 @@ class PhotoDetailView: UIView {
     toggleContentModeButtonBlurView.contentView.addSubview(toggleContentModeButton)
   }
 
-  private func makePauseBarButton() -> UIBarButtonItem {
-    pauseBarButtonBlurView.isHidden = true
-    return UIBarButtonItem(customView: pauseBarButtonBlurView)
-  }
-
   private func makeRightBackBarButtons() -> [UIBarButtonItem] {
     let downloadBarButton = UIBarButtonItem(customView: downloadBarButtonBlurView)
-    let pauseBarButton = makePauseBarButton()
+    let pauseBarButton = UIBarButtonItem(customView: pauseBarButtonBlurView)
     let toggleContentModeButton = UIBarButtonItem(customView: toggleContentModeButtonBlurView)
     let barButtonItems = [toggleContentModeButton, downloadBarButton, pauseBarButton]
     return barButtonItems
@@ -547,6 +546,14 @@ class PhotoDetailView: UIView {
       navigationController?.popViewController(animated: true)
     }
     backBarButton.addAction(backButtonAction, for: .touchUpInside)
+  }
+
+  private func configPauseButtonAction() {
+    let pauseButtonAction = UIAction { [weak self] _ in
+      guard let self = self else { return }
+      self.configToggleContentMode()
+    }
+    pauseBarButton.addAction(pauseButtonAction, for: .touchUpInside)
   }
 
   private func configToggleContentModeButtonAction() {

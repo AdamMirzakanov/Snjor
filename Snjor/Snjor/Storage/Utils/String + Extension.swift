@@ -42,7 +42,8 @@ extension String {
   // MARK: - Images
   static var backBarButtonImage: String { "chevron.backward" }
   static var downloadBarButtonImage: String { "arrow.down.app.fill" }
-  static var pauseBarButtonImage: String { "pause.circle" }
+  static var pauseBarButtonImage: String { "pause.fill" }
+  static var resumeBarButtonImage: String { "play.fill" }
   static var infoButtonImage: String { "info.circle" }
 
   // Toggle content mode button

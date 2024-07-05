@@ -13,6 +13,10 @@ class PhotoDetailViewController: ViewController<PhotoDetailView> {
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var viewModel: any PhotoDetailViewModelProtocol
+  private(set) var documentsPath = FileManager.default.urls(
+    for: .documentDirectory,
+    in: .userDomainMask
+  ).first!
 
   // MARK: - Download
   lazy var downloadsSession: URLSession = {
@@ -69,7 +73,7 @@ class PhotoDetailViewController: ViewController<PhotoDetailView> {
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
-        self.hideSpinner()
+//        self.hideSpinner()
         switch state {
         case .success:
           self.mainView.setupData(viewModel: viewModel)
@@ -78,7 +82,7 @@ class PhotoDetailViewController: ViewController<PhotoDetailView> {
           print()
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
-          self.hideSpinner()
+//          self.hideSpinner()
         }
       }
       .store(in: &cancellable)
@@ -95,6 +99,7 @@ class PhotoDetailViewController: ViewController<PhotoDetailView> {
       guard let self = self else { return }
       self.viewModel.downloadService.startDownload(viewModel.photo!)
       self.mainView.animateDownloadButton()
+      self.showSpinner(on: self.mainView.downloadBarButton)
     }
     mainView.downloadBarButton.addAction(downloadButtonAction, for: .touchUpInside)
   }
