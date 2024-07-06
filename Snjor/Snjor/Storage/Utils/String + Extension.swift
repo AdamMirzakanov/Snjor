@@ -9,27 +9,31 @@ extension String {
 
   // Default value
   static var empty: String { String() }
-  static var likesDefault: String { "0" }
-  static var downloadDefault: String { "0" }
+  static var space: String { " " }
+  static var likesDefault: String { "-" }
+  static var downloadDefault: String { "-" }
   static var viewsDefault: String { "0" }
   static var cameraDefault: String { "iPhone X" }
   static var resolutionDefault: String { qhd2K }
   static var pxlDefault: String { "0000 × 0000" }
-  static var isoDefault: String { iso + "000" }
-  static var focalLengtDefault: String { "0" }
-  static var apertureDefault: String { "0.0" }
-  static var exposureDefault: String { "0/0" }
+  static var isoDefault: String {"-" }
+  static var focalLengtDefault: String { "-" }
+  static var apertureDefault: String { "-" }
+  static var exposureDefault: String { "-" }
   static var instagramUsernameDefault: String { "oracle____" }
   static var twitterUsernameDefault: String { "oracle____" }
   static var nameDefault: String { "Adam Mirzakanov" }
   static var snjor: String { "S  N  J  Ø  R" }
 
   static var jpeg: String { " JPEG" }
-//  static var dot: String { " • " }
-  static var iso: String { "ISO " }
+  static var dot: String { " • " }
+  static var iso: String { "ISO" }
   static var millimeter: String { " mm" }
-  static var aperture: String { "𝑓 " }
-  static var exposure: String { " s" }
+  static var aperture: String { "Aperture" }
+  static var 𝑓: String { "𝑓" }
+  static var second: String { " s" }
+  static var focalLengt: String { "Focal lengt" }
+  static var exposure: String { "Exposure" }
 
   // Resolution
   static var uhd8K: String { "8K UHD" }

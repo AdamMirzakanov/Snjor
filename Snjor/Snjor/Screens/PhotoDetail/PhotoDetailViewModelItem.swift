@@ -66,7 +66,7 @@ struct PhotoDetailViewModelItem {
   }
 
   var exposureTime: String {
-    (photo.exif?.exposureTime ?? .exposureDefault) + .exposure
+    (photo.exif?.exposureTime ?? .exposureDefault) + .second
   }
 
   var profileImageData: Data? {

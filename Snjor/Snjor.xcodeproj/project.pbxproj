@@ -432,9 +432,9 @@
 		664BF2FB2BF681DF00C9D29E /* Factories */ = {
 			isa = PBXGroup;
 			children = (
+				664BF3022BF6AD3900C9D29E /* AppFactory.swift */,
 				664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */,
 				664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */,
-				664BF3022BF6AD3900C9D29E /* AppFactory.swift */,
 				66BE9C612C1F150F0006011A /* PhotoListFactory.swift */,
 				66D082412C24C80E000574A7 /* PhotoDetailFactory.swift */,
 			);

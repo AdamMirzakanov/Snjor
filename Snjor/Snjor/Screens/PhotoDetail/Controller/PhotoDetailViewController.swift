@@ -97,7 +97,7 @@ class PhotoDetailViewController: ViewController<PhotoDetailView> {
   private func configDownloadButtonAction() {
     let downloadButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-//      self.viewModel.downloadService.startDownload(viewModel.photo!)
+      self.viewModel.downloadService.startDownload(viewModel.photo!)
       self.mainView.animateDownloadButton()
 //      self.showSpinner(on: self.mainView.downloadBarButtonBlurView)
 
