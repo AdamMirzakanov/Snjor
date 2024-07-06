@@ -15,7 +15,7 @@ extension String {
   static var cameraDefault: String { "iPhone X" }
   static var resolutionDefault: String { qhd2K }
   static var pxlDefault: String { "0000 × 0000" }
-  static var isoDefault: String { iso + "000" + dot}
+  static var isoDefault: String { iso + "000" }
   static var focalLengtDefault: String { "0" }
   static var apertureDefault: String { "0.0" }
   static var exposureDefault: String { "0/0" }
@@ -25,7 +25,7 @@ extension String {
   static var snjor: String { "S  N  J  Ø  R" }
 
   static var jpeg: String { " JPEG" }
-  static var dot: String { " • " }
+//  static var dot: String { " • " }
   static var iso: String { "ISO " }
   static var millimeter: String { " mm" }
   static var aperture: String { "𝑓 " }

@@ -170,7 +170,7 @@ class PhotoDetailView: UIView {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .heartImage)
-    $0.tintColor = .systemBrown
+    $0.tintColor = .systemPink
     return $0
   }(UIImageView())
 
@@ -350,7 +350,41 @@ class PhotoDetailView: UIView {
     $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
-
+  
+  private lazy var leftStackView: UIStackView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.axis = .vertical
+    $0.distribution = .equalSpacing
+    $0.spacing = UIConst.midlValue
+    $0.addArrangedSubview(createdLabel)
+    $0.addArrangedSubview(cameraStackView)
+    $0.addArrangedSubview(resolutionStackView)
+    return $0
+  }(UIStackView())
+  
+  private let thirdLine: UIView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.backgroundColor = .white
+    $0.alpha = UIConst.alphaDefault
+    $0.widthAnchor.constraint(equalToConstant: UIConst.lineHeightAnchor).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: 100).isActive = true
+    return $0
+  }(UIView())
+  
+  private lazy var centerStackView: UIStackView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = 10
+    $0.addArrangedSubview(leftStackView)
+    $0.addArrangedSubview(UIView())
+    $0.addArrangedSubview(thirdLine)
+    $0.addArrangedSubview(characteristicsPhotoStackView)
+    $0.addArrangedSubview(UIView())
+    return $0
+  }(UIStackView())
+  
   // MARK: Exposure parameters
   private let isoLabel: UILabel = {
     $0.text = .isoDefault
@@ -386,9 +420,10 @@ class PhotoDetailView: UIView {
 
   private lazy var characteristicsPhotoStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.axis = .horizontal
+    $0.axis = .vertical
     $0.distribution = .fill
-    $0.alignment = .center
+    $0.alignment = .leading
+    $0.spacing = UIConst.defaultValue
     $0.addArrangedSubview(isoLabel)
     $0.addArrangedSubview(focalLengthLabel)
     $0.addArrangedSubview(apertureLabel)
@@ -406,10 +441,7 @@ class PhotoDetailView: UIView {
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitStackView)
     $0.addArrangedSubview(secondLine)
-    $0.addArrangedSubview(createdLabel)
-    $0.addArrangedSubview(cameraStackView)
-    $0.addArrangedSubview(resolutionStackView)
-    $0.addArrangedSubview(characteristicsPhotoStackView)
+    $0.addArrangedSubview(centerStackView)
     return $0
   }(UIStackView())
 

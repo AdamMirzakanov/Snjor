@@ -54,15 +54,15 @@ struct PhotoDetailViewModelItem {
   }
 
   var iso: String {
-    .iso + "\(photo.exif?.iso ?? .zero)" + .dot
+    .iso + "\(photo.exif?.iso ?? .zero)"
   }
 
   var focalLength: String {
-    (photo.exif?.focalLength ?? .focalLengtDefault) + .millimeter + .dot
+    (photo.exif?.focalLength ?? .focalLengtDefault) + .millimeter
   }
 
   var aperture: String {
-    .aperture + (photo.exif?.aperture ?? .apertureDefault) + .dot
+    .aperture + (photo.exif?.aperture ?? .apertureDefault)
   }
 
   var exposureTime: String {
