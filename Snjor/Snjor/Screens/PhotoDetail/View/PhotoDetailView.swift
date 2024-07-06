@@ -467,22 +467,53 @@ class PhotoDetailView: UIView {
 
 
   func animateDownloadButton() {
-    self.downloadBarButtonBlurView.frame.origin.x = 0.0
+
     UIView.animate(
       withDuration: UIConst.durationDefault,
       delay: .zero,
       usingSpringWithDamping: UIConst.dampingDefault,
       initialSpringVelocity: UIConst.velocityDefault
     ) {
-      self.downloadBarButtonBlurView.frame.size.width = UIConst.buttonHeight
       self.downloadBarButtonBlurView.frame.origin.x = UIConst.translationX
-      self.downloadBarButton.frame.size.width = UIConst.buttonHeight
-      self.downloadBarButton.setTitle(nil, for: .normal)
-      self.downloadBarButton.setImage(nil, for: .normal)
-      self.downloadBarButton.isEnabled = false
+      self.downloadBarButtonBlurView.frame.size.width = UIConst.buttonHeight
+      self.downloadBarButtonBlurView.frame.size.height = UIConst.buttonHeight
 
+      self.downloadBarButton.frame.size.width = UIConst.buttonHeight
+      self.downloadBarButton.frame.size.height = UIConst.buttonHeight
+      self.downloadBarButton.setTitle(nil, for: .normal)
+      self.downloadBarButton.setImage(UIImage(systemName: .pauseBarButtonImage), for: .normal)
+      self.downloadBarButton.isEnabled = false
+      
       self.pauseBarButtonBlurView.frame.size.width = UIConst.buttonHeight
-      self.pauseBarButton.frame = self.pauseBarButtonBlurView.bounds
+      self.pauseBarButtonBlurView.frame.size.height = UIConst.buttonHeight
+      self.pauseBarButtonBlurView.isHidden = false
+      
+      self.pauseBarButton.frame.size.width = UIConst.buttonHeight
+      self.pauseBarButton.frame.size.height = UIConst.buttonHeight
+      self.pauseBarButton.setImage(UIImage(systemName: .stopBarButtonImage), for: .normal)
+    }
+  completion: { _ in
+      UIView.animate(
+        withDuration: 0.2,
+        delay: .zero) {
+
+          self.downloadBarButtonBlurView.frame.origin.x = -UIConst.translationX
+          self.downloadBarButtonBlurView.frame.size.width = UIConst.buttonWidth
+          self.downloadBarButtonBlurView.frame.size.height = UIConst.buttonHeight
+          self.downloadBarButtonBlurView.layer.cornerRadius = UIConst.defaultValue
+          
+          self.downloadBarButton.frame = self.downloadBarButtonBlurView.bounds
+          self.downloadBarButton.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
+          self.downloadBarButton.setTitle(.jpeg, for: .normal)
+          self.downloadBarButton.isEnabled = true
+          
+          self.pauseBarButtonBlurView.frame.origin.x = -8
+          self.pauseBarButtonBlurView.frame.size.width = .zero
+          self.pauseBarButtonBlurView.frame.size.height = UIConst.buttonHeight
+
+          self.pauseBarButton.frame.size.width = .zero
+          self.pauseBarButton.frame.size.height = UIConst.buttonHeight
+        }
     }
   }
 

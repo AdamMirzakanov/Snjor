@@ -53,4 +53,5 @@ enum UIConst {
   static let dampingDefault: CGFloat = 0.5
   static let velocityDefault: CGFloat = 0.5
   static let hidePhotoInfoDurationDefault: CGFloat = 0.3
+  
 }

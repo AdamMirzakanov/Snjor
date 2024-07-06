@@ -74,22 +74,8 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
   private func hideSpinner() {
 
     DispatchQueue.main.async {
-      self.hideSpinner(from: self.mainView.downloadBarButton)
-      UIView.animate(
-        withDuration: UIConst.durationDefault,
-        delay: .zero
-      ) {
-        self.mainView.downloadBarButtonBlurView.frame.origin.x = -UIConst.translationX
-        self.mainView.downloadBarButtonBlurView.frame.size.width = UIConst.buttonWidth
-        self.mainView.downloadBarButton.frame.size.width = UIConst.buttonWidth
-        self.mainView.downloadBarButton.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
-        self.mainView.downloadBarButton.setTitle(.jpeg, for: .normal)
-        self.mainView.downloadBarButton.isEnabled = true
+      self.hideSpinner(from: self.mainView.downloadBarButtonBlurView)
 
-        self.mainView.pauseBarButtonBlurView.frame.size.width = .zero
-        self.mainView.pauseBarButtonBlurView.frame.origin.x = -8
-        self.mainView.pauseBarButton.frame = self.mainView.pauseBarButtonBlurView.bounds
-      }
     }
   }
 }

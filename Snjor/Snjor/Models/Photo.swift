@@ -42,6 +42,6 @@ struct Photo: Decodable, Hashable {
 
 extension Photo: Downloadable {
   var downloadURL: URL {
-    return self.urls[.small]!
+    return self.urls[.full]!
   }
 }

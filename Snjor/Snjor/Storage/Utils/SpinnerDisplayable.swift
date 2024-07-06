@@ -60,27 +60,27 @@ import UIKit
 
 
 protocol SpinnerDisplayable: AnyObject {
-  func showSpinner(on button: UIButton)
-  func hideSpinner(from button: UIButton)
+  func showSpinner(on button: UIVisualEffectView)
+  func hideSpinner(from button: UIVisualEffectView)
 }
 
 extension SpinnerDisplayable where Self: UIViewController {
-  func showSpinner(on button: UIButton) {
+  func showSpinner(on button: UIVisualEffectView) {
     guard button.viewWithTag(ViewValues.tagIdentifierSpinner) == nil else { return }
     configureSpinner(on: button)
   }
 
-  private func configureSpinner(on button: UIButton) {
+  private func configureSpinner(on button: UIVisualEffectView) {
     let spinner = UIActivityIndicatorView(style: .medium)
     spinner.startAnimating()
     spinner.color = .label
     spinner.tag = ViewValues.tagIdentifierSpinner
     spinner.translatesAutoresizingMaskIntoConstraints = false
-    button.addSubview(spinner)
+    button.contentView.addSubview(spinner)
     spinner.centerXY()
   }
 
-  func hideSpinner(from button: UIButton) {
+  func hideSpinner(from button: UIVisualEffectView) {
     if let spinner = button.viewWithTag(ViewValues.tagIdentifierSpinner) as? UIActivityIndicatorView {
       UIView.animate(
         withDuration: 0.2,
