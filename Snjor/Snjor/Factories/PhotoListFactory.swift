@@ -20,24 +20,25 @@ protocol PhotoListFactoryProtocol {
 
 struct PhotoListFactory: PhotoListFactoryProtocol {
   // MARK: - Public Properties
- let appContainer: any AppContainerProtocol
+// let appContainer: any AppContainerProtocol
 
   // MARK: - Public Methods
   func makeModule(
     delegate: any PhotoListViewControllerDelegate
   ) -> UIViewController {
+    let apiClient = NetworkService()
     let state = PassthroughSubject<StateController, Never>()
-    let photoRepository = PhotosRepository(apiClient: appContainer.apiClient)
+    let photoRepository = PhotosRepository(apiClient: apiClient)
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let loadPhotoListUseCase = LoadPhotoListUseCase(
       photoListRepository: photoRepository
     )
-    let imageDataUseCase = appContainer.getDataImageUseCase()
+//    let imageDataUseCase = appContainer.getDataImageUseCase()
     let viewModel = PhotoListViewModel(
-      state: state,
+      state: state, 
       loadPhotosUseCase: loadPhotoListUseCase,
-      pagingGenerator: lastPageValidationUseCase, 
-      imageDataUseCase: imageDataUseCase
+      pagingGenerator: lastPageValidationUseCase
+//      imageDataUseCase: imageDataUseCase
     )
 
     let defaultLayout = UICollectionViewLayout()
@@ -70,7 +71,7 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
     navigation: any Navigable,
     overlordCoordinator: any OverlordCoordinator
   ) -> any Coordinatable {
-    let factory = PhotoDetailFactory(id: id, appContainer: appContainer)
+    let factory = PhotoDetailFactory(id: id)
     let coordinator = PhotoDetailCoordinator(
       factory: factory,
       navigation: navigation,

@@ -13,6 +13,12 @@ class PhotoDetailView: UIView {
   private var isAspectFill = true
   private var isPhotoInfo = true
   
+  // MARK: - Main Photo View
+  private let photoView: PhotoView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    return $0
+  }(PhotoView())
+
   // MARK: - Gradient
   private let gradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -113,12 +119,12 @@ class PhotoDetailView: UIView {
   }(UIButton(type: .system))
   
   // MARK: - ImageViews
-  let mainPhotoImageView: UIImageView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.contentMode = .scaleAspectFill
-    $0.clipsToBounds = true
-    return $0
-  }(UIImageView())
+//  let mainPhotoImageView: UIImageView = {
+//    $0.translatesAutoresizingMaskIntoConstraints = false
+//    $0.contentMode = .scaleAspectFill
+//    $0.clipsToBounds = true
+//    return $0
+//  }(UIImageView())
   
   let profilePhotoImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -505,11 +511,11 @@ class PhotoDetailView: UIView {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   // MARK: - Internal Methods
     func setupData(viewModel: any PhotoDetailViewModelProtocol) {
-      mainPhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
-      profilePhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
+      photoView.configure(with: viewModel.photo!)
+      photoView.setupImageView()
       nameLabel.text = viewModel.displayName
       likesLabel.text = viewModel.likes
       downloadsLabel.text = viewModel.downloads
@@ -587,7 +593,7 @@ class PhotoDetailView: UIView {
   
   // MARK: - Private Methods
   private func setupViews() {
-    addSubview(mainPhotoImageView)
+    addSubview(photoView)
     addSubview(gradientView)
     addSubview(mainStackView)
     setupConstraint()
@@ -601,11 +607,11 @@ class PhotoDetailView: UIView {
       gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
       gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
       
-      mainPhotoImageView.topAnchor.constraint(equalTo: topAnchor),
-      mainPhotoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      mainPhotoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      mainPhotoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      
+      photoView.topAnchor.constraint(equalTo: topAnchor),
+      photoView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 50),
+      photoView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      photoView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
       mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIConst.mainStackLeadingAnchor),
       mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIConst.mainStackLeadingAnchor),
       mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UIConst.mainStackViewBottomAnchor)
@@ -666,11 +672,11 @@ class PhotoDetailView: UIView {
   private func configToggleContentMode() {
     if self.isAspectFill {
       let icon = UIImage(systemName: .arrowDown)
-      mainPhotoImageView.contentMode = .scaleAspectFit
+      photoView.mainPhotoImageView.contentMode = .scaleAspectFit
       toggleContentModeButton.setImage(icon, for: .normal)
     } else {
       let icon = UIImage(systemName: .arrowUp)
-      mainPhotoImageView.contentMode = .scaleAspectFill
+      photoView.mainPhotoImageView.contentMode = .scaleAspectFill
       toggleContentModeButton.setImage(icon, for: .normal)
     }
     self.isAspectFill.toggle()

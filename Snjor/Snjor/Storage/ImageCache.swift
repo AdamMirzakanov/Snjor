@@ -14,7 +14,7 @@ enum ImageCache {
 
   // MARK: - Public Methods
   static let cache: URLCache = {
-    let diskPath = "unsplash"
+    let diskPath = "snjor"
     // swiftlint:disable force_unwrapping
     let cachesDirectory = FileManager.default.urls(
       for: .cachesDirectory,

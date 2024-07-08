@@ -14,15 +14,49 @@ protocol LocalDataImageServiceProtocol {
 
 struct LocalDataImageService: LocalDataImageServiceProtocol {
 
-  private var dataStorage = NSCache<NSURL, NSData>()
+//  private var dataStorage = NSCache<NSURL, NSData>()
+//  private let cacheQueue = DispatchQueue(label: "com.example.LocalDataImageService", qos: .background)
+//
+//  func save(key: URL, data: Data?) {
+//    guard let data = data else { return }
+//    cacheQueue.async {
+//      self.dataStorage.setObject(data as NSData, forKey: key as NSURL)
+//    }
+//  }
+//
+//  func get(key: URL) -> Data? {
+//    var cachedData: Data?
+//    cacheQueue.sync {
+//      cachedData = self.dataStorage.object(forKey: key as NSURL) as Data?
+//    }
+//    return cachedData
+//  }
+
+
+  private let cacheQueue = DispatchQueue(label: "com.example.LocalDataImageService", qos: .background)
+
+  static let cache: URLCache = {
+    let memoryCapacity = 50 * 1024 * 1024 // 50 MB
+    let diskCapacity = 100 * 1024 * 1024 // 100 MB
+    let diskPath = "unsplash"
+    let cachesDirectory = FileManager.default.urls(
+      for: .cachesDirectory,
+      in: .userDomainMask
+    ).first!
+    let cacheURL = cachesDirectory.appendingPathComponent(diskPath, isDirectory: true)
+    return URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, directory: cacheURL)
+  }()
 
   func save(key: URL, data: Data?) {
     guard let data = data else { return }
-    dataStorage.setObject(data as NSData, forKey: key as NSURL)
+    let request = URLRequest(url: key)
+    let response = URLResponse(url: key, mimeType: "image/jpeg", expectedContentLength: data.count, textEncodingName: nil)
+    let cachedData = CachedURLResponse(response: response, data: data)
+    LocalDataImageService.cache.storeCachedResponse(cachedData, for: request)
   }
 
-  // 1
   func get(key: URL) -> Data? {
-    dataStorage.object(forKey: key as NSURL) as? Data
+    let request = URLRequest(url: key)
+    return LocalDataImageService.cache.cachedResponse(for: request)?.data
   }
 }

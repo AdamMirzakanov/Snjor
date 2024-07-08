@@ -45,7 +45,6 @@ final class PhotoDetailViewController: ViewController<PhotoDetailView> {
     configUI()
     stateController()
     fetchData()
-    print(#function, mainView.downloadBarButtonBlurView.frame.origin)
   }
 
   override func viewWillAppear(_ animated: Bool) {

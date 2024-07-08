@@ -12,6 +12,7 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   // MARK: - Public Properties
   var refreshControl = UIRefreshControl()
   var photosCount: Int { photos.count }
+  var onPhotosChange: (([Photo]) -> Void)?
 
   // если буду делать индиктор загрузки, может и не буду
   var lastPage: Bool {
@@ -21,7 +22,6 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   // MARK: - Private Properties
   private var lastPageValidationUseCase: any Pageable
   private let loadPhotosUseCase: any LoadPhotoListUseCaseProtocol
-  private var imageDataUseCase: any ImageDataUseCaseProtocol
   private (set) var state: PassthroughSubject<StateController, Never>
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
@@ -37,13 +37,11 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   init(
     state: PassthroughSubject<StateController, Never>,
     loadPhotosUseCase: any LoadPhotoListUseCaseProtocol,
-    pagingGenerator: any Pageable,
-    imageDataUseCase: any ImageDataUseCaseProtocol
+    pagingGenerator: any Pageable
   ) {
     self.state = state
     self.loadPhotosUseCase = loadPhotosUseCase
     self.lastPageValidationUseCase = pagingGenerator
-    self.imageDataUseCase = imageDataUseCase
   }
 
   // MARK: - Public Methods
@@ -68,9 +66,9 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
         withReuseIdentifier: PhotoCell.reuseID,
         for: indexPath
       )
-      guard let waterfallCell = cell as? PhotoCell else { return cell }
-      let viewModelItem = self.getPhotoListViewModelItem(at: indexPath.item)
-      waterfallCell.configCell(viewModel: viewModelItem)
+      guard let photoCell = cell as? PhotoCell else { return cell }
+      let photo = self.loadPhoto(at: indexPath.item)
+      photoCell.configure(with: photo)
       return cell
     }
   }
@@ -84,24 +82,29 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     return photos[index]
   }
 
+  func loadPhoto(at index: Int) -> Photo {
+    checkAndLoadMorePhotos(at: index)
+    return photos[index]
+  }
+
   //  func setupRefreshControl(for collectionView: UICollectionView) {
   //    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
   //    collectionView.refreshControl = refreshControl
   //  }
 
-  func getPhotoListViewModelItem(at indexPath: Int) -> PhotoListViewModelItem {
-    checkAndLoadMorePhotos(at: indexPath)
-    return makePhotoListViewModelItem(index: indexPath)
-  }
-
-  func makePhotoListViewModelItem(index: Int) -> PhotoListViewModelItem {
-    let photo = photos[index]
-    let photoViewModelItem = PhotoListViewModelItem(
-      photo: photo,
-      dataImageUseCase: imageDataUseCase
-    )
-    return photoViewModelItem
-  }
+//  func getPhotoListViewModelItem(at indexPath: Int) -> PhotoListViewModelItem {
+//    checkAndLoadMorePhotos(at: indexPath)
+//    return makePhotoListViewModelItem(index: indexPath)
+//  }
+//
+//  func makePhotoListViewModelItem(index: Int) -> PhotoListViewModelItem {
+//    let photo = photos[index]
+//    let photoViewModelItem = PhotoListViewModelItem(
+//      photo: photo,
+//      dataImageUseCase: imageDataUseCase
+//    )
+//    return photoViewModelItem
+//  }
 
   func getPhotoID(at indexPath: Int) -> Photo {
     let id = photos[indexPath]
@@ -129,7 +132,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
       let newPhotos = photos.filter { !existingPhotoIDs.contains($0.id) }
       lastPageValidationUseCase.updateLastPage(itemsCount: photos.count)
       self.photos.append(contentsOf: newPhotos)
-      state.send(.success)
+//      state.send(.success)
+      onPhotosChange?(self.photos)
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))
     }

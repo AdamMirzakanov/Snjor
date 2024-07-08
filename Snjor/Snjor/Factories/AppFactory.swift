@@ -10,10 +10,10 @@ protocol AppFactoryProtocol {
 }
 
 struct AppFactory: AppFactoryProtocol {
-  let appContainer = AppContainer()
+
   // MARK: - Public Methods
   func makeMainTabBarCoordinator(_ navigation: any Navigable) -> any Coordinatable {
-    let factory = MainTabBarFactory(appContainer: appContainer)
+    let factory = MainTabBarFactory()
     let coordinator = MainTabBarCoordinator(
       navigation: navigation,
       factory: factory

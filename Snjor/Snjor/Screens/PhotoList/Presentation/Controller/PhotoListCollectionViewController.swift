@@ -36,31 +36,38 @@ class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    stateController()
+//    stateController()
     viewModel.createDataSource(for: collectionView)
     viewModel.viewDidLoad()
     //    viewModel.setupRefreshControl(for: collectionView)
-
+    viewModel.onPhotosChange = { [weak self] photos in
+                self?.updateCollectionView(with: photos)
+            }
     navigationItem.title = .snjor
   }
 
-  // MARK: - Private Methods
-  private func stateController() {
-    viewModel
-      .state
-      .receive(on: DispatchQueue.main)
-      .sink { [weak self] state in
-        guard let self = self else { return }
-        switch state {
-        case .success:
+  private func updateCollectionView(with photos: [Photo]) {
           viewModel.applySnapshot()
-          // viewModel.refreshControl.endRefreshing()
-        case .loading:
-          break
-        case .fail(error: let error):
-          self.presentAlert(message: error, title: AppLocalized.error)
-        }
+//          print("CollectionView updated with photos: \(photos)")
       }
-      .store(in: &cancellable)
-  }
+
+  // MARK: - Private Methods
+//  private func stateController() {
+//    viewModel
+//      .state
+//      .receive(on: DispatchQueue.main)
+//      .sink { [weak self] state in
+//        guard let self = self else { return }
+//        switch state {
+//        case .success:
+//          viewModel.applySnapshot()
+//          // viewModel.refreshControl.endRefreshing()
+//        case .loading:
+//          break
+//        case .fail(error: let error):
+//          self.presentAlert(message: error, title: AppLocalized.error)
+//        }
+//      }
+//      .store(in: &cancellable)
+//  }
 }
