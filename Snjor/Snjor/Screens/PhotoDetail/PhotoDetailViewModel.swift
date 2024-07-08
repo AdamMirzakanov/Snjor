@@ -28,13 +28,9 @@ protocol PhotoDetailViewModelProtocol: BaseViewModelProtocol {
   var resolution: String { get }
   var backgroundImageData: Data? { get }
   var photo: Photo? { get set }
-  
-  var downloadService: DownloadService { get }
 }
 
 final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
-  
-  var downloadService: DownloadService = DownloadService()
   
   // MARK: - Public Properties
   var displayName: String {

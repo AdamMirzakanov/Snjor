@@ -16,8 +16,8 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
     didFinishDownloadingTo location: URL
   ) {
     guard let sourceURL = downloadTask.originalRequest?.url else { return }
-    let download = viewModel.downloadService.activeDownloads[sourceURL]
-    viewModel.downloadService.activeDownloads[sourceURL] = nil
+    let download = downloadService.activeDownloads[sourceURL]
+    downloadService.activeDownloads[sourceURL] = nil
     let destinationURL = localFilePath(for: sourceURL)
     let fileManager = FileManager.default
     try? fileManager.removeItem(at: destinationURL)
@@ -25,10 +25,13 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
       try fileManager.copyItem(at: location, to: destinationURL)
       saveImageToGallery(at: destinationURL)
     } catch let error {
-      self.presentAlert(message: "\(error.localizedDescription)", title: AppLocalized.error)
+      self.presentAlert(
+        message: "\(error.localizedDescription)",
+        title: AppLocalized.error
+      )
     }
   }
-
+  
   func urlSession(
     _ session: URLSession,
     downloadTask: URLSessionDownloadTask,
@@ -38,15 +41,18 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
   ) {
     guard
       let url = downloadTask.originalRequest?.url,
-      let download = viewModel.downloadService.activeDownloads[url]
+      let download = downloadService.activeDownloads[url]
     else {
       return
     }
     download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
     let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
+    
   }
 
   // MARK: - Private Methods
+  
+  // сохранить изображение в галерею
   private func saveImageToGallery(at url: URL) {
     PHPhotoLibrary.requestAuthorization { status in
       guard status == .authorized else { return }
@@ -55,7 +61,10 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
       } completionHandler: { success, error in
         if success {
           print("Successfully saved image to gallery.")
-          self.hideSpinner()
+          // анимация возврата когда фото сохранилось в галерее
+          DispatchQueue.main.async{
+            self.mainView.reverseAnimateDownloadButton()
+          }
         } else if let error = error {
           self.presentAlert(message: "\(error.localizedDescription)", title: AppLocalized.error)
         }
@@ -71,11 +80,13 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
     return destinationURL
   }
 
-  private func hideSpinner() {
-
-    DispatchQueue.main.async {
-      self.hideSpinner(from: self.mainView.downloadBarButtonBlurView)
-
-    }
-  }
+//  private func hideSpinner() {
+//
+//    DispatchQueue.main.async {
+//      self.hideSpinner(from: self.mainView.downloadBarButtonBlurView)
+//
+//    }
+//  }
+  
+ 
 }

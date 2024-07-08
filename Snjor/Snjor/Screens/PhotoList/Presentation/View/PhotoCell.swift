@@ -72,6 +72,7 @@ class PhotoCell: UICollectionViewCell {
     self.showsUsername = showsUsername
     userNameLabel.text = viewModel.name
     if let cellImageData = viewModel.imageData {
+      photoImageView.image = nil
       photoImageView.setImageFromData(data: cellImageData)
     } else {
       task = Task {

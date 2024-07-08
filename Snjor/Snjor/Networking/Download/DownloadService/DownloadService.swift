@@ -7,6 +7,11 @@
 
 import Foundation
 
+protocol DownloadServiceProtocol {
+  var downloadsSession: URLSession { get }
+  func startDownload<T: Downloadable>(_ item: T)
+}
+
 class DownloadService {
   var activeDownloads: [URL: Download] = [:]
   var downloadsSession: URLSession!

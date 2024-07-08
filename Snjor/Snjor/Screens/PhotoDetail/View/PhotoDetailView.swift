@@ -113,14 +113,14 @@ class PhotoDetailView: UIView {
   }(UIButton(type: .system))
   
   // MARK: - ImageViews
-  private let mainPhotoImageView: UIImageView = {
+  let mainPhotoImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
   
-  private let profilePhotoImageView: UIImageView = {
+  let profilePhotoImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(named: .profileDefaultPhotoImage)
@@ -164,28 +164,28 @@ class PhotoDetailView: UIView {
   }(UIImageView())
   
   // MARK: - Labels
-  private let nameLabel: UILabel = {
+  let nameLabel: UILabel = {
     $0.text = .nameDefault
     $0.textColor = .white
     $0.font = UIFont(name: .nameFont, size: UIConst.nameFontSize)
     return $0
   }(UILabel())
   
-  private let likesLabel: UILabel = {
+  let likesLabel: UILabel = {
     $0.text = .likesDefault
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
     return $0
   }(UILabel())
   
-  private let downloadsLabel: UILabel = {
+  let downloadsLabel: UILabel = {
     $0.text = .downloadDefault
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
     return $0
   }(UILabel())
   
-  private let activityLabel: UILabel = {
+  let activityLabel: UILabel = {
     $0.text = .viewsDefault
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
@@ -198,14 +198,14 @@ class PhotoDetailView: UIView {
     return $0
   }(UILabel())
   
-  private var cameraModelLabel: UILabel = {
+  var cameraModelLabel: UILabel = {
     $0.text = .cameraDefault
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .black)
     return $0
   }(UILabel())
   
-  private let resolutionLabel: UILabel = {
+  let resolutionLabel: UILabel = {
     $0.text = .resolutionDefault
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
@@ -219,7 +219,7 @@ class PhotoDetailView: UIView {
     return $0
   }(UILabel())
   
-  private let pxLabel: UILabel = {
+  let pxLabel: UILabel = {
     $0.text = .pxlDefault
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
@@ -227,7 +227,7 @@ class PhotoDetailView: UIView {
     return $0
   }(UILabel())
   
-  private let isoValueLabel: UILabel = {
+  let isoValueLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
     $0.alpha = UIConst.alphaDefault
@@ -241,7 +241,7 @@ class PhotoDetailView: UIView {
     return $0
   }(UILabel())
   
-  private let apertureValueLabel: UILabel = {
+  let apertureValueLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
     $0.alpha = UIConst.alphaDefault
@@ -255,7 +255,7 @@ class PhotoDetailView: UIView {
     return $0
   }(UILabel())
   
-  private let focalLengthValueLabel: UILabel = {
+  let focalLengthValueLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
     $0.alpha = UIConst.alphaDefault
@@ -269,7 +269,7 @@ class PhotoDetailView: UIView {
     return $0
   }(UILabel())
   
-  private let exposureTimeValueLabel: UILabel = {
+  let exposureTimeValueLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
     $0.alpha = UIConst.alphaDefault
@@ -507,22 +507,22 @@ class PhotoDetailView: UIView {
   }
   
   // MARK: - Internal Methods
-  func setupData(viewModel: any PhotoDetailViewModelProtocol) {
-    mainPhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
-    profilePhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
-    nameLabel.text = viewModel.displayName
-    likesLabel.text = viewModel.likes
-    downloadsLabel.text = viewModel.downloads
-    activityLabel.text = viewModel.views
-    createdAt(from: viewModel.createdAt)
-    cameraModelLabel.text = viewModel.cameraModel
-    resolutionLabel.text = viewModel.resolution
-    pxLabel.text = viewModel.pixels
-    isoValueLabel.text = viewModel.iso
-    focalLengthValueLabel.text = viewModel.focalLength
-    apertureValueLabel.text = viewModel.aperture
-    exposureTimeValueLabel.text = viewModel.exposureTime
-  }
+    func setupData(viewModel: any PhotoDetailViewModelProtocol) {
+      mainPhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
+      profilePhotoImageView.setImageFromData(data: viewModel.backgroundImageData)
+      nameLabel.text = viewModel.displayName
+      likesLabel.text = viewModel.likes
+      downloadsLabel.text = viewModel.downloads
+      activityLabel.text = viewModel.views
+      createdAt(from: viewModel.createdAt)
+      cameraModelLabel.text = viewModel.cameraModel
+      resolutionLabel.text = viewModel.resolution
+      pxLabel.text = viewModel.pixels
+      isoValueLabel.text = viewModel.iso
+      focalLengthValueLabel.text = viewModel.focalLength
+      apertureValueLabel.text = viewModel.aperture
+      exposureTimeValueLabel.text = viewModel.exposureTime
+    }
   
   func setupBarButtonItems(
     navigationItem: UINavigationItem,
@@ -537,9 +537,8 @@ class PhotoDetailView: UIView {
     configToggleContentModeButtonAction()
   }
   
-  
+  // анимация которая происходит по нажатию на кнопку
   func animateDownloadButton() {
-    
     UIView.animate(
       withDuration: UIConst.durationDefault,
       delay: .zero,
@@ -549,44 +548,41 @@ class PhotoDetailView: UIView {
       self.downloadBarButtonBlurView.frame.origin.x = UIConst.translationX
       self.downloadBarButtonBlurView.frame.size.width = UIConst.buttonHeight
       self.downloadBarButtonBlurView.frame.size.height = UIConst.buttonHeight
-      
       self.downloadBarButton.frame.size.width = UIConst.buttonHeight
       self.downloadBarButton.frame.size.height = UIConst.buttonHeight
       self.downloadBarButton.setTitle(nil, for: .normal)
       self.downloadBarButton.setImage(UIImage(systemName: .pauseBarButtonImage), for: .normal)
       self.downloadBarButton.isEnabled = false
-      
       self.pauseBarButtonBlurView.frame.size.width = UIConst.buttonHeight
       self.pauseBarButtonBlurView.frame.size.height = UIConst.buttonHeight
       self.pauseBarButtonBlurView.isHidden = false
-      
       self.pauseBarButton.frame.size.width = UIConst.buttonHeight
       self.pauseBarButton.frame.size.height = UIConst.buttonHeight
       self.pauseBarButton.setImage(UIImage(systemName: .stopBarButtonImage), for: .normal)
     }
-  completion: { _ in
-    UIView.animate(
-      withDuration: 0.2,
-      delay: .zero) {
-        
-        self.downloadBarButtonBlurView.frame.origin.x = -UIConst.translationX
-        self.downloadBarButtonBlurView.frame.size.width = UIConst.buttonWidth
-        self.downloadBarButtonBlurView.frame.size.height = UIConst.buttonHeight
-        self.downloadBarButtonBlurView.layer.cornerRadius = UIConst.defaultValue
-        
-        self.downloadBarButton.frame = self.downloadBarButtonBlurView.bounds
-        self.downloadBarButton.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
-        self.downloadBarButton.setTitle(.jpeg, for: .normal)
-        self.downloadBarButton.isEnabled = true
-        
-        self.pauseBarButtonBlurView.frame.origin.x = -8
-        self.pauseBarButtonBlurView.frame.size.width = .zero
-        self.pauseBarButtonBlurView.frame.size.height = UIConst.buttonHeight
-        
-        self.pauseBarButton.frame.size.width = .zero
-        self.pauseBarButton.frame.size.height = UIConst.buttonHeight
-      }
   }
+  
+  // анимация которая происходит по завершению загрузки
+  // возвращает кнопку в исходное положение и размер
+  func reverseAnimateDownloadButton() {
+    UIView.animate(
+      withDuration: UIConst.durationDefault,
+      delay: .zero
+    ) {
+      self.downloadBarButtonBlurView.frame.origin.x = -UIConst.translationX
+      self.downloadBarButtonBlurView.frame.size.width = UIConst.buttonWidth
+      self.downloadBarButtonBlurView.frame.size.height = UIConst.buttonHeight
+      self.downloadBarButtonBlurView.layer.cornerRadius = UIConst.defaultValue
+      self.downloadBarButton.frame = self.downloadBarButtonBlurView.bounds
+      self.downloadBarButton.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
+      self.downloadBarButton.setTitle(.jpeg, for: .normal)
+      self.downloadBarButton.isEnabled = true
+      self.pauseBarButtonBlurView.frame.origin.x = -8
+      self.pauseBarButtonBlurView.frame.size.width = .zero
+      self.pauseBarButtonBlurView.frame.size.height = UIConst.buttonHeight
+      self.pauseBarButton.frame.size.width = .zero
+      self.pauseBarButton.frame.size.height = UIConst.buttonHeight
+    }
   }
   
   // MARK: - Private Methods
@@ -715,7 +711,7 @@ class PhotoDetailView: UIView {
   }
   
   // MARK: Helper
-  private func createdAt(from date: String) {
+  func createdAt(from date: String) {
     guard let date = ISO8601DateFormatter().date(from: date) else { return }
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .medium

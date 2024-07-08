@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 // swiftlint:disable all
-class PhotoDetailViewController: ViewController<PhotoDetailView> {
+final class PhotoDetailViewController: ViewController<PhotoDetailView> {
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var viewModel: any PhotoDetailViewModelProtocol
@@ -45,6 +45,7 @@ class PhotoDetailViewController: ViewController<PhotoDetailView> {
     configUI()
     stateController()
     fetchData()
+    print(#function, mainView.downloadBarButtonBlurView.frame.origin)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -60,17 +61,19 @@ class PhotoDetailViewController: ViewController<PhotoDetailView> {
       tabBar.showCustomTabBar()
     }
   }
-
+  
+  var downloadService: DownloadService = DownloadService()
+  
   // MARK: - Private Methods
   private func fetchData() {
     viewModel.viewDidLoad()
-    viewModel.downloadService.downloadsSession = downloadsSession
+    downloadService.downloadsSession = downloadsSession
   }
 
   private func stateController() {
     viewModel
       .state
-      .receive(on: DispatchQueue.main)
+      .receive(on: RunLoop.current)
       .sink { [weak self] state in
         guard let self = self else { return }
 //        self.hideSpinner()
@@ -90,82 +93,18 @@ class PhotoDetailViewController: ViewController<PhotoDetailView> {
 
   private func configUI() {
     mainView.setupData(viewModel: viewModel)
-    mainView.setupBarButtonItems(navigationItem: navigationItem, navigationController: navigationController)
+    mainView.setupBarButtonItems(
+      navigationItem: navigationItem, 
+      navigationController: navigationController
+    )
     configDownloadButtonAction()
   }
 
   private func configDownloadButtonAction() {
     let downloadButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-      self.viewModel.downloadService.startDownload(viewModel.photo!)
+      self.downloadService.startDownload(viewModel.photo!)
       self.mainView.animateDownloadButton()
-//      self.showSpinner(on: self.mainView.downloadBarButtonBlurView)
-
-//      UIView.animate(
-//        withDuration: 1.3,
-//        delay: 0,
-//        usingSpringWithDamping: 0.4,
-//        initialSpringVelocity: 0.4) {
-//          self.mainView.downloadBarButtonBlurView.frame = CGRect(
-//            x: UIConst.translationX,
-//            y: .zero,
-//            width: UIConst.buttonHeight,
-//            height: UIConst.buttonHeight
-//          )
-//          self.mainView.downloadBarButton.frame = CGRect(
-//            x: .zero,
-//            y: .zero,
-//            width: UIConst.buttonHeight,
-//            height: UIConst.buttonHeight
-//          )
-//          self.mainView.downloadBarButton.setTitle(nil, for: .normal)
-//          self.mainView.downloadBarButton.setImage(nil, for: .normal)
-//          self.mainView.pauseBarButtonBlurView.isHidden = false
-//          self.mainView.pauseBarButtonBlurView.frame = CGRect(
-//            x: .zero,
-//            y: .zero,
-//            width: UIConst.buttonHeight,
-//            height: UIConst.buttonHeight
-//          )
-//
-//          self.mainView.pauseBarButton.frame = CGRect(
-//            x: .zero,
-//            y: .zero,
-//            width: UIConst.buttonHeight,
-//            height: UIConst.buttonHeight
-//          )
-//
-//        } completion: { _ in
-//          UIView.animate(
-//            withDuration: 1.3,
-//            delay: 0,
-//            usingSpringWithDamping: 0.4,
-//            initialSpringVelocity: 0.4) {
-//              
-//              
-//              self.mainView.downloadBarButtonBlurView.frame = CGRect(
-//                x: -UIConst.translationX,
-//                y: .zero,
-//                width: UIConst.buttonWidth,
-//                height: UIConst.buttonHeight
-//              )
-//              self.mainView.downloadBarButton.frame = self.mainView.downloadBarButtonBlurView.bounds
-//              self.mainView.pauseBarButtonBlurView.frame = CGRect(
-//                x: .zero,
-//                y: .zero,
-//                width: .zero,
-//                height: UIConst.buttonHeight
-//              )
-//              
-//              self.mainView.pauseBarButton.frame = CGRect(
-//                x: .zero,
-//                y: .zero,
-//                width: .zero,
-//                height: UIConst.buttonHeight
-//              )
-//            }
-//        }
-
     }
     mainView.downloadBarButton.addAction(downloadButtonAction, for: .touchUpInside)
   }
