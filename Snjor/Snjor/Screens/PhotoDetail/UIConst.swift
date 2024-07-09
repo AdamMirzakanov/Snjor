@@ -31,11 +31,12 @@ enum UIConst {
   static let gradientAlpha: CGFloat = 0.8
 
   static let defaultFontSize: CGFloat = 14.0
+  static let downloadButtonFontSize: CGFloat = 14.0
   static let nameFontSize: CGFloat = 20.0
 
   // Constraints value
   static let photoViewBottomAnchor: CGFloat = -200.0
-  static let mainStackLeadingAnchor: CGFloat = 16.0
+  static let mainStackLeadingAnchor: CGFloat = 20.0
   static let mainStackViewBottomAnchor: CGFloat = -50.0
   static let lineHeightAnchor: CGFloat = 1.0
   static let resolutionLabelWidth: CGFloat = 66

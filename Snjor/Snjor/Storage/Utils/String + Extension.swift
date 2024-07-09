@@ -14,8 +14,6 @@ extension String {
   static var downloadDefault: String { "-" }
   static var viewsDefault: String { "0" }
   static var cameraDefault: String { "iPhone X" }
-  static var resolutionDefault: String { qhd2K }
-  static var pxlDefault: String { "0000 × 0000" }
   static var isoDefault: String {"-" }
   static var focalLengtDefault: String { "-" }
   static var apertureDefault: String { "-" }
@@ -25,14 +23,16 @@ extension String {
   static var nameDefault: String { "Adam Mirzakanov" }
   static var snjor: String { "S  N  J  Ø  R" }
 
+  static var dash: String { "-" }
+  
   static var jpeg: String { " JPEG" }
   static var dot: String { " • " }
   static var iso: String { "ISO" }
-  static var millimeter: String { " mm" }
+  static var mm: String { " mm" }
   static var aperture: String { "Aperture" }
   static var 𝑓: String { "𝑓" }
   static var second: String { " s" }
-  static var focalLengt: String { "Focal lengt" }
+  static var focalLengt: String { "Focal" }
   static var exposure: String { "Exposure" }
 
   // Resolution

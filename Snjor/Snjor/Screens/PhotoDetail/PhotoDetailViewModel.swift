@@ -53,7 +53,7 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   }
   
   var cameraModel: String {
-    photo?.exif?.model ?? .cameraDefault
+    photo?.exif?.model?.uppercased() ?? .cameraDefault
   }
   
   var width: Int {
@@ -71,21 +71,24 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   var pixels: String {
     "\(width) × \(height)"
   }
-  
+
   var iso: String {
-    "\(photo?.exif?.iso ?? .zero)"
+    return photo?.exif?.iso.map { "\($0)" } ?? .dash
   }
-  
+
   var focalLength: String {
-    (photo?.exif?.focalLength ?? .focalLengtDefault) + .millimeter
+    let focalLength = photo?.exif?.focalLength ?? .dash
+    return focalLength == .dash ? focalLength : focalLength + .mm
   }
   
   var aperture: String {
-    .𝑓 + .space + (photo?.exif?.aperture ?? .apertureDefault)
+    let aperture = photo?.exif?.aperture ?? .dash
+    return aperture == .dash ? aperture : .𝑓 + .space + aperture
   }
-  
+
   var exposureTime: String {
-    (photo?.exif?.exposureTime ?? .exposureDefault) + .second
+    let time = photo?.exif?.exposureTime ?? .dash
+    return time == .dash ? time : time + .second
   }
   
   var instagramUsername: String {

@@ -82,7 +82,7 @@ class PhotoDetailView: UIView {
     $0.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
     $0.setTitle(.jpeg, for: .normal)
     $0.titleLabel?.font = .systemFont(
-      ofSize: UIConst.defaultFontSize,
+      ofSize: UIConst.downloadButtonFontSize,
       weight: .medium
     )
     $0.tintColor = .label
@@ -146,14 +146,6 @@ class PhotoDetailView: UIView {
     return $0
   }(UIImageView())
   
-  private let activityImageView: UIImageView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .viewsImage)
-    $0.tintColor = .white
-    return $0
-  }(UIImageView())
-  
   private let cameraImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
@@ -184,13 +176,6 @@ class PhotoDetailView: UIView {
     return $0
   }(UILabel())
   
-  let activityLabel: UILabel = {
-    $0.text = .viewsDefault
-    $0.textColor = .white
-    $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
-    return $0
-  }(UILabel())
-  
   private let createdLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
@@ -205,7 +190,6 @@ class PhotoDetailView: UIView {
   }(UILabel())
   
   let resolutionLabel: UILabel = {
-    $0.text = .resolutionDefault
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
     $0.textAlignment = .center
@@ -219,7 +203,6 @@ class PhotoDetailView: UIView {
   }(UILabel())
   
   let pxLabel: UILabel = {
-    $0.text = .pxlDefault
     $0.textColor = .white
     $0.font = .systemFont(ofSize: UIConst.defaultFontSize, weight: .medium)
     $0.alpha = UIConst.alphaDefault
@@ -307,7 +290,7 @@ class PhotoDetailView: UIView {
     $0.heightAnchor.constraint(equalToConstant: 100).isActive = true
     return $0
   }(UIView())
-  
+
   // MARK: - StackViews
   private lazy var profileAndInfoButtonStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -342,28 +325,16 @@ class PhotoDetailView: UIView {
     $0.addArrangedSubview(downloadsLabel)
     return $0
   }(UIStackView())
-  
-  private lazy var activityStackView: UIStackView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.axis = .horizontal
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = UIConst.defaultValue
-    $0.addArrangedSubview(activityImageView)
-    $0.addArrangedSubview(activityLabel)
-    return $0
-  }(UIStackView())
-  
+
   private lazy var profitStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .horizontal
-    $0.distribution = .equalSpacing
+    $0.distribution = .fill
     $0.spacing = UIConst.longValue
-    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(likesStackView)
     $0.addArrangedSubview(downloadStackView)
-    $0.addArrangedSubview(activityStackView)
     $0.addArrangedSubview(UIView())
+    $0.addArrangedSubview(createdLabel)
     return $0
   }(UIStackView())
   
@@ -437,10 +408,10 @@ class PhotoDetailView: UIView {
   private lazy var leftStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .vertical
-    $0.distribution = .equalSpacing
+    $0.distribution = .fillProportionally
     $0.alignment = .leading
     $0.spacing = UIConst.midlValue
-    $0.addArrangedSubview(createdLabel)
+//    $0.addArrangedSubview(createdLabel)
     $0.addArrangedSubview(cameraStackView)
     $0.addArrangedSubview(resolutionStackView)
     return $0
@@ -449,27 +420,13 @@ class PhotoDetailView: UIView {
   private lazy var rightStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.axis = .vertical
-    $0.distribution = .fill
+    $0.distribution = .equalSpacing
     $0.alignment = .leading
     $0.spacing = UIConst.defaultValue
     $0.addArrangedSubview(isoStackView)
     $0.addArrangedSubview(focalLengthStackView)
     $0.addArrangedSubview(apertureStackView)
     $0.addArrangedSubview(exposureTimeStackView)
-    return $0
-  }(UIStackView())
-  
-  private lazy var mainBottomStackView: UIStackView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.axis = .horizontal
-    $0.distribution = .equalCentering
-    $0.alignment = .center
-    $0.spacing = UIConst.midlValue
-    $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(leftStackView)
-    $0.addArrangedSubview(centerLine)
-    $0.addArrangedSubview(rightStackView)
-    $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
   
@@ -481,7 +438,6 @@ class PhotoDetailView: UIView {
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitStackView)
     $0.addArrangedSubview(secondLine)
-    $0.addArrangedSubview(mainBottomStackView)
     return $0
   }(UIStackView())
   
@@ -512,7 +468,6 @@ class PhotoDetailView: UIView {
       nameLabel.text = viewModel.displayName
       likesLabel.text = viewModel.likes
       downloadsLabel.text = viewModel.downloads
-      activityLabel.text = viewModel.views
       createdAt(from: viewModel.createdAt)
       cameraModelLabel.text = viewModel.cameraModel
       resolutionLabel.text = viewModel.resolution
@@ -586,6 +541,10 @@ class PhotoDetailView: UIView {
     addSubview(photoView)
     addSubview(gradientView)
     addSubview(mainStackView)
+    addSubview(leftStackView)
+    addSubview(centerLine)
+    addSubview(rightStackView)
+
     setupConstraint()
     hidePhotoInfo()
   }
@@ -604,10 +563,22 @@ class PhotoDetailView: UIView {
 
       mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIConst.mainStackLeadingAnchor),
       mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIConst.mainStackLeadingAnchor),
-      mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UIConst.mainStackViewBottomAnchor)
+      mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UIConst.mainStackViewBottomAnchor),
+
+      centerLine.centerXAnchor.constraint(equalTo: centerXAnchor),
+      centerLine.bottomAnchor.constraint(equalTo: mainStackView.topAnchor, constant: 225),
+      centerLine.heightAnchor.constraint(equalToConstant: 100),
+
+      leftStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIConst.mainStackLeadingAnchor),
+      leftStackView.centerYAnchor.constraint(equalTo: mainStackView.centerYAnchor, constant: 120),
+      leftStackView.trailingAnchor.constraint(equalTo: centerLine.trailingAnchor, constant: -10),
+
+      rightStackView.leadingAnchor.constraint(equalTo: centerLine.leadingAnchor, constant: UIConst.mainStackLeadingAnchor),
+      rightStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIConst.mainStackLeadingAnchor),
+      rightStackView.centerYAnchor.constraint(equalTo: mainStackView.centerYAnchor, constant: 120),
     ])
   }
-  
+
   // MARK: Make Bar Buttons
   private func setupNavigationItems(navigationItem: UINavigationItem) {
     navigationItem.rightBarButtonItems = makeRightBarButtons()
@@ -686,7 +657,14 @@ class PhotoDetailView: UIView {
     UIView.animate(withDuration: UIConst.hidePhotoInfoDurationDefault) {
       let transform = CGAffineTransform(translationX: .zero, y: UIConst.translationY)
       self.profileAndInfoButtonStackView.transform = transform
+      self.mainStackView.transform = transform
+      self.leftStackView.transform = transform
+      self.rightStackView.transform = transform
+      self.centerLine.transform = transform
       self.photoInfoStackView.alpha = .zero
+      self.leftStackView.alpha = .zero
+      self.rightStackView.alpha = .zero
+      self.centerLine.alpha = .zero
       self.gradientView.alpha = UIConst.alphaDefault
       self.photoInfoStackView.isHidden = true
     }
@@ -701,7 +679,14 @@ class PhotoDetailView: UIView {
     ) {
       self.gradientView.alpha = UIConst.maxOpacity
       self.photoInfoStackView.alpha = UIConst.maxOpacity
-      self.mainStackView.transform = .identity
+      self.leftStackView.alpha = UIConst.maxOpacity
+      self.rightStackView.alpha = UIConst.maxOpacity
+      self.centerLine.alpha = UIConst.alphaDefault
+      let transform = CGAffineTransform(translationX: .zero, y: -120)
+      self.mainStackView.transform = transform
+      self.leftStackView.transform = transform
+      self.rightStackView.transform = transform
+      self.centerLine.transform = transform
       self.photoInfoStackView.isHidden = false
     }
   }
