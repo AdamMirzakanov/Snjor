@@ -6,7 +6,7 @@
 //
 
 final class MainTabBarCoordinator: Coordinatable {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
 
@@ -22,7 +22,7 @@ final class MainTabBarCoordinator: Coordinatable {
     self.factory = factory
   }
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func start() {
     let navigationTabBar = factory.makeMainTabBarController()
     navigation.pushViewController(navigationTabBar, animated: false)
@@ -34,5 +34,5 @@ final class MainTabBarCoordinator: Coordinatable {
   }
 }
 
-// MARK: - OverlordCoordinator
-extension MainTabBarCoordinator: OverlordCoordinator { }
+// MARK: - ParentCoordinator
+extension MainTabBarCoordinator: ParentCoordinator { }

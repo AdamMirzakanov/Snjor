@@ -14,15 +14,12 @@ protocol PhotoListFactoryProtocol {
   func mekePhotoDetailCoordinator(
     id: Photo,
     navigation: any Navigable,
-    overlordCoordinator: any OverlordCoordinator
+    overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable
 }
 
 struct PhotoListFactory: PhotoListFactoryProtocol {
-  // MARK: - Public Properties
-// let appContainer: any AppContainerProtocol
-
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func makeModule(
     delegate: any PhotoListViewControllerDelegate
   ) -> UIViewController {
@@ -33,12 +30,10 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
     let loadPhotoListUseCase = LoadPhotoListUseCase(
       photoListRepository: photoRepository
     )
-//    let imageDataUseCase = appContainer.getDataImageUseCase()
     let viewModel = PhotoListViewModel(
       state: state, 
       loadPhotosUseCase: loadPhotoListUseCase,
       pagingGenerator: lastPageValidationUseCase
-//      imageDataUseCase: imageDataUseCase
     )
 
     let defaultLayout = UICollectionViewLayout()
@@ -69,7 +64,7 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
   func mekePhotoDetailCoordinator(
     id: Photo,
     navigation: any Navigable,
-    overlordCoordinator: any OverlordCoordinator
+    overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
     let factory = PhotoDetailFactory(id: id)
     let coordinator = PhotoDetailCoordinator(

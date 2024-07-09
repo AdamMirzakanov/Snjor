@@ -8,11 +8,11 @@
 import Foundation
 
 enum ImageCache {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   private static let memoryCapacity: Int = 50.megabytes
   private static let diskCapacity: Int = 100.megabytes
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   static let cache: URLCache = {
     let diskPath = "snjor"
     // swiftlint:disable force_unwrapping

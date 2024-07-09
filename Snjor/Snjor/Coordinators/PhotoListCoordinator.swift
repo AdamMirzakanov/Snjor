@@ -8,7 +8,7 @@
 import Foundation
 
 final class PhotoListCoordinator: Coordinatable {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
 
@@ -24,7 +24,7 @@ final class PhotoListCoordinator: Coordinatable {
     self.navigation = navigation
   }
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func start() {
     let controller = factory.makeModule(delegate: self)
     factory.makeTabBarItem(navigation: navigation)
@@ -46,4 +46,4 @@ extension PhotoListCoordinator: PhotoListViewControllerDelegate {
   }
 }
 
-extension PhotoListCoordinator: OverlordCoordinator { }
+extension PhotoListCoordinator: ParentCoordinator { }

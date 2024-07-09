@@ -15,7 +15,7 @@ enum RequestController {
   private static var collections: Endpoints { .collections }
   private static var searchCollections: Endpoints { .searchCollections }
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   static func photoListRequest() throws -> URLRequest {
     let path = photos.rawValue
     let parameters = PrepareParameters.preparePhotoParameters()
@@ -31,5 +31,4 @@ enum RequestController {
     let request = try PrepareRequests.prepareInfoURLRequest(path: path, id: id.id)
     return request
   }
-
 }

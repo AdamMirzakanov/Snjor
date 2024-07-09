@@ -8,7 +8,7 @@
 import Foundation
 
 class Download {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   var item: any Downloadable
   var isDownloading = false
   var progress: Float = 0

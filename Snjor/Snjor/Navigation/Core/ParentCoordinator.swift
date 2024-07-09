@@ -1,16 +1,16 @@
 //
-//  OverlordCoordinator.swift
+//  ParentCoordinator.swift
 //  Snjor
 //
 //  Created by Адам on 16.05.2024.
 //
 
-protocol OverlordCoordinator: AnyObject {
+protocol ParentCoordinator: AnyObject {
   var childCoordinators: [any Coordinatable] { get set }
 }
 
 // MARK: - Default Methods
-extension OverlordCoordinator {
+extension ParentCoordinator {
   func addAndStartChildCoordinator(
     _ coordinator: (any Coordinatable)?
   ) {

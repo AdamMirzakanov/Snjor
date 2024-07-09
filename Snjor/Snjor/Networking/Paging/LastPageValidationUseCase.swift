@@ -10,7 +10,7 @@ struct LastPageValidationUseCase: Pageable {
   private var threshold = 10
   private(set) var lastPage = false
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   mutating func updateLastPage(itemsCount: Int) {
     if itemsCount == Int.zero {
       lastPage = false

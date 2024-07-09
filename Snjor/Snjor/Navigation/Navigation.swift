@@ -8,7 +8,7 @@
 import UIKit
 
 final class Navigation: NSObject {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   var rootViewController: UINavigationController
   var dismissNavigation: (() -> Void)?
   var backCompletions: [UIViewController: () -> Void] = [:]

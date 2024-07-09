@@ -13,7 +13,7 @@ struct LoadPhotoListUseCase: LoadPhotoListUseCaseProtocol {
   // MARK: - Private Properties
   let photoListRepository: any PhotoListRepositoryProtocol
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func execute() async -> Result<[Photo], any Error> {
     do {
       let request = try RequestController.photoListRequest()

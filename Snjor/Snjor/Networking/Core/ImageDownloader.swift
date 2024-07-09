@@ -12,7 +12,7 @@ class ImageDownloader {
   private var imageDataTask: URLSessionDataTask?
   private let cache = ImageCache.cache
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func downloadPhoto(
     with url: URL,
     completion: @escaping ((UIImage?, Bool) -> Void)

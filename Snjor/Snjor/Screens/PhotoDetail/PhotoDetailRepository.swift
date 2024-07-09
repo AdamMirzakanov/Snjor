@@ -12,10 +12,10 @@ protocol PhotoDetailRepositoryProtocol {
 }
 
 struct PhotoDetailRepository: PhotoDetailRepositoryProtocol {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   let apiClient: any Requestable
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func fetchPhoto(request: URLRequest) async throws -> Photo {
     let photo = try await apiClient.request(request: request, type: Photo.self)
     return photo

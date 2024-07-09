@@ -8,15 +8,11 @@
 typealias Parameters = [String: String]
 
 enum PrepareParameters {
-  // MARK: - Public Properties
-//  static var page: Int {
-//    Int.random(in: 0...10000)
-//  }
-
+  // MARK: - Internal Properties
   static var page: Int = 1
   private static let perPage: Int = 30
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   static func preparePhotoParameters() -> Parameters {
     page += 1
     var parameters: [String: String] = [:]

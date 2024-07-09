@@ -8,7 +8,7 @@
 import Foundation
 
 struct Photo: Decodable, Hashable {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   let width: Int
   let height: Int
   let urls: [URLKind: URL]
@@ -23,7 +23,7 @@ struct Photo: Decodable, Hashable {
   let createdAt: String
   let location: Location?
 
-  // MARK: - Public Enum
+  // MARK: - Internal Enum
   enum URLKind: String, Decodable {
     case raw
     case full

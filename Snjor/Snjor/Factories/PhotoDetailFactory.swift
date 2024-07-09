@@ -14,7 +14,6 @@ protocol PhotoDetailFactoryProtocol {
 
 struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
   let id: Photo
-//  let appContainer: any AppContainerProtocol
 
   func makeModule() -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()

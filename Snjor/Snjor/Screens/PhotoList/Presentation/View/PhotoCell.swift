@@ -30,7 +30,7 @@ class PhotoCell: UICollectionViewCell {
     photoView.prepareForReuse()
   }
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func configure(with photo: Photo) {
     photoView.configure(with: photo)
   }

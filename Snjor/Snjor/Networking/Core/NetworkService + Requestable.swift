@@ -8,7 +8,7 @@
 import Foundation
 
 extension NetworkService: Requestable {
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func request<T>(
     request: URLRequest,
     type: T.Type
@@ -54,11 +54,8 @@ extension NetworkService: Requestable {
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     let model = try? decoder.decode(T.self, from: data)
     guard let model = model else {
-      print(#function, APIError.decodingError)
       throw APIError.decodingError
     }
-//    let json = try JSONSerialization.jsonObject(with: data, options: [])
-//    print(json)
     return model
   }
 }

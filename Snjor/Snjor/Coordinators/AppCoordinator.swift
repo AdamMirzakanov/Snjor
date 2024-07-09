@@ -8,7 +8,7 @@
 import UIKit
 
 final class AppCoordinator: Coordinatable {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   var factory: (any AppFactoryProtocol)?
@@ -25,7 +25,7 @@ final class AppCoordinator: Coordinatable {
     self.factory = factory
   }
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func start() {
     configWindow()
     startSomeCoordinator()
@@ -53,5 +53,5 @@ final class AppCoordinator: Coordinatable {
   }
 }
 
-// MARK: - OverlordCoordinator
-extension AppCoordinator: OverlordCoordinator { }
+// MARK: - ParentCoordinator
+extension AppCoordinator: ParentCoordinator { }

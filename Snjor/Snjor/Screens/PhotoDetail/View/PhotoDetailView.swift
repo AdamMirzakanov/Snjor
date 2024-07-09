@@ -119,13 +119,6 @@ class PhotoDetailView: UIView {
   }(UIButton(type: .system))
   
   // MARK: - ImageViews
-//  let mainPhotoImageView: UIImageView = {
-//    $0.translatesAutoresizingMaskIntoConstraints = false
-//    $0.contentMode = .scaleAspectFill
-//    $0.clipsToBounds = true
-//    return $0
-//  }(UIImageView())
-  
   let profilePhotoImageView: UIImageView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
@@ -543,7 +536,6 @@ class PhotoDetailView: UIView {
     configToggleContentModeButtonAction()
   }
   
-  // анимация которая происходит по нажатию на кнопку
   func animateDownloadButton() {
     UIView.animate(
       withDuration: UIConst.durationDefault,
@@ -567,9 +559,7 @@ class PhotoDetailView: UIView {
       self.pauseBarButton.setImage(UIImage(systemName: .stopBarButtonImage), for: .normal)
     }
   }
-  
-  // анимация которая происходит по завершению загрузки
-  // возвращает кнопку в исходное положение и размер
+
   func reverseAnimateDownloadButton() {
     UIView.animate(
       withDuration: UIConst.durationDefault,

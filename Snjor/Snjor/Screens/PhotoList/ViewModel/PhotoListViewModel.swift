@@ -9,15 +9,10 @@ import UIKit
 import Combine
 
 final class PhotoListViewModel: PhotoListViewModelProtocol {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   var refreshControl = UIRefreshControl()
   var photosCount: Int { photos.count }
   var onPhotosChange: (([Photo]) -> Void)?
-
-  // если буду делать индиктор загрузки, может и не буду
-  var lastPage: Bool {
-    lastPageValidationUseCase.lastPage
-  }
 
   // MARK: - Private Properties
   private var lastPageValidationUseCase: any Pageable
@@ -44,20 +39,13 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     self.lastPageValidationUseCase = pagingGenerator
   }
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func viewDidLoad() {
     state.send(.loading)
     Task {
       await loadPhotosUseCase()
     }
   }
-
-  //  @objc func refreshData() {
-  //    state.send(.loading)
-  //    Task {
-  //      await loadPhotosUseCase()
-  //    }
-  //  }
 
   func createDataSource(for collectionView: UICollectionView) {
     dataSource = UICollectionViewDiffableDataSource
@@ -87,25 +75,6 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     return photos[index]
   }
 
-  //  func setupRefreshControl(for collectionView: UICollectionView) {
-  //    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-  //    collectionView.refreshControl = refreshControl
-  //  }
-
-//  func getPhotoListViewModelItem(at indexPath: Int) -> PhotoListViewModelItem {
-//    checkAndLoadMorePhotos(at: indexPath)
-//    return makePhotoListViewModelItem(index: indexPath)
-//  }
-//
-//  func makePhotoListViewModelItem(index: Int) -> PhotoListViewModelItem {
-//    let photo = photos[index]
-//    let photoViewModelItem = PhotoListViewModelItem(
-//      photo: photo,
-//      dataImageUseCase: imageDataUseCase
-//    )
-//    return photoViewModelItem
-//  }
-
   func getPhotoID(at indexPath: Int) -> Photo {
     let id = photos[indexPath]
     return id
@@ -132,7 +101,6 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
       let newPhotos = photos.filter { !existingPhotoIDs.contains($0.id) }
       lastPageValidationUseCase.updateLastPage(itemsCount: photos.count)
       self.photos.append(contentsOf: newPhotos)
-//      state.send(.success)
       onPhotosChange?(self.photos)
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))

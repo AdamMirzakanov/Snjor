@@ -8,7 +8,7 @@
 import Foundation
 
 struct User: Decodable, Hashable {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   let firstName: String?
   let lastName: String?
   let name: String?
@@ -24,7 +24,7 @@ struct User: Decodable, Hashable {
   let id: String
   let social: Social?
 
-  // MARK: - Public Enum
+  // MARK: - Internal Enum
   enum ProfileImageSize: String, Decodable {
     case small
     case medium

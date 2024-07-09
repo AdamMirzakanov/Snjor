@@ -8,7 +8,7 @@
 import UIKit
 
 class GradientView: UIView {
-  // MARK: - Public Struct
+  // MARK: - Internal Struct
   struct Color {
     let color: UIColor
     let location: CGFloat
@@ -17,7 +17,7 @@ class GradientView: UIView {
   // MARK: - Private Properties
   private var colors: [Color] = []
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func setColors(_ colors: [Color]) {
     self.colors = colors
     updateGradient()

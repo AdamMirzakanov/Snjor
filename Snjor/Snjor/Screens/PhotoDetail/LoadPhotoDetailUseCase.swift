@@ -16,7 +16,7 @@ struct LoadPhotoDetailUseCase: LoadPhotoDetailUseCaseProtocol {
   let photoDetailRepository: any PhotoDetailRepositoryProtocol
   let id: Photo
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func execute() async throws -> Photo {
     let request = try RequestController.photoRequest(id: id)
     return try await photoDetailRepository.fetchPhoto(request: request)

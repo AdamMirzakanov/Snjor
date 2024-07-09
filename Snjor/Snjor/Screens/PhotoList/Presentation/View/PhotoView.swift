@@ -45,7 +45,7 @@ class PhotoView: UIView {
     return $0
   }(UILabel())
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func prepareForReuse() {
     currentPhotoID = nil
     mainPhotoImageView.image = nil

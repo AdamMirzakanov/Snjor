@@ -11,7 +11,7 @@ protocol AppFactoryProtocol {
 
 struct AppFactory: AppFactoryProtocol {
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func makeMainTabBarCoordinator(_ navigation: any Navigable) -> any Coordinatable {
     let factory = MainTabBarFactory()
     let coordinator = MainTabBarCoordinator(

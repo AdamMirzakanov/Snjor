@@ -8,26 +8,20 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   var window: UIWindow?
 
   // MARK: - Private Properties
   private var appCoordinator: AppCoordinator?
   private var appFactory: (any AppFactoryProtocol)?
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func scene(
     _ scene: UIScene,
     willConnectTo session: UISceneSession,
     options connectionOptions: UIScene.ConnectionOptions
   ) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
-
-//    window = UIWindow(windowScene: windowScene)
-//    window?.windowScene = windowScene
-//    window?.makeKeyAndVisible()
-//    window?.rootViewController = PhotoDetailViewController()
-
     window = UIWindow(windowScene: windowScene)
     appFactory = AppFactory()
     let navigationController = UINavigationController()
@@ -38,7 +32,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       window: window,
       factory: appFactory
     )
-
     appCoordinator?.start()
   }
 

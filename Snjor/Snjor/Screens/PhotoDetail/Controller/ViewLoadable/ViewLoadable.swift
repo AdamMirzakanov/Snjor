@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol ViewLoadable {
+protocol ViewLoadable {
   associatedtype MainView: UIView
 }
 

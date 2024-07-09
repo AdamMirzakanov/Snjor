@@ -14,7 +14,7 @@ protocol MainTabBarFactoryProtocol {
 
 struct MainTabBarFactory: MainTabBarFactoryProtocol {
 
-  // MARK: - Public Methods
+  // MARK: - Internal Methods
   func makeMainTabBarController() -> UITabBarController {
     let mainTabBarController = MainTabBarController()
     return mainTabBarController

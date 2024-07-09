@@ -8,7 +8,7 @@
 import Foundation
 
 struct NetworkService {
-  // MARK: - Public Properties
+  // MARK: - Internal Properties
   let session: URLSession
 
   // MARK: - Initializers
