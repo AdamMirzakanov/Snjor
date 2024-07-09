@@ -18,5 +18,4 @@ protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
   func getPhotoItem(at index: Int) -> Photo
 //  func getPhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem
   func getPhotoID(at index: Int) -> Photo
-  func loadPhoto(at index: Int) -> Photo
 }

@@ -67,8 +67,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
         for: indexPath
       )
       guard let photoCell = cell as? PhotoCell else { return cell }
-      let photo = self.loadPhoto(at: indexPath.item)
-      photoCell.configure(with: photo)
+      self.checkAndLoadMorePhotos(at: indexPath.item)
+      photoCell.configure(with: item)
       return cell
     }
   }
