@@ -55,4 +55,3 @@ class PhotoCell: UICollectionViewCell {
 
 // MARK: - Reusable
 extension PhotoCell: Reusable { }
-

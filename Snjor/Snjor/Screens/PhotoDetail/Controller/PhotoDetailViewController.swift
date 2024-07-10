@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 // swiftlint:disable all
-final class PhotoDetailViewController: ViewController<PhotoDetailView> {
+final class PhotoDetailViewController: ViewController<PhotoDetailContainerView> {
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var viewModel: any PhotoDetailViewModelProtocol
@@ -113,4 +113,4 @@ final class PhotoDetailViewController: ViewController<PhotoDetailView> {
 extension PhotoDetailViewController: MessageDisplayable { }
 
 // MARK: - SpinnerDisplayable
-extension PhotoDetailViewController: SpinnerDisplayable { }
+//extension PhotoDetailViewController: SpinnerDisplayable { }

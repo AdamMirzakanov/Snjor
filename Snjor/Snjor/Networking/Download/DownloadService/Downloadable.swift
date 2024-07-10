@@ -8,5 +8,5 @@
 import Foundation
 
 protocol Downloadable {
-  var downloadURL: URL { get }
+  var downloadURL: URL? { get }
 }

@@ -65,7 +65,9 @@
 		667A59982C1EFE4A00FE4985 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */; };
 		667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A599B2C1F082900FE4985 /* PhotoCell.swift */; };
 		6680DF592C36AD1C001BAAD8 /* ViewLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680DF582C36AD1C001BAAD8 /* ViewLoadable.swift */; };
-		6680DF5B2C36ADE2001BAAD8 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680DF5A2C36ADE2001BAAD8 /* PhotoDetailView.swift */; };
+		6680DF5B2C36ADE2001BAAD8 /* PhotoDetailContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680DF5A2C36ADE2001BAAD8 /* PhotoDetailContainerView.swift */; };
+		6684EF642C3F39A900498FE7 /* BasePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6684EF632C3F39A800498FE7 /* BasePhotoView.swift */; };
+		6684EF662C3F3A6600498FE7 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6684EF652C3F3A6600498FE7 /* PhotoDetailView.swift */; };
 		66A17F412C2A0CE80032767F /* SpinnerDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F402C2A0CE80032767F /* SpinnerDisplayable.swift */; };
 		66A17F432C2A0D830032767F /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F422C2A0D830032767F /* UIView + Extension.swift */; };
 		66A17F452C2A0E7C0032767F /* ViewValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A17F442C2A0E7C0032767F /* ViewValues.swift */; };
@@ -158,7 +160,9 @@
 		667A59972C1EFE4A00FE4985 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		667A599B2C1F082900FE4985 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		6680DF582C36AD1C001BAAD8 /* ViewLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLoadable.swift; sourceTree = "<group>"; };
-		6680DF5A2C36ADE2001BAAD8 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
+		6680DF5A2C36ADE2001BAAD8 /* PhotoDetailContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailContainerView.swift; sourceTree = "<group>"; };
+		6684EF632C3F39A800498FE7 /* BasePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePhotoView.swift; sourceTree = "<group>"; };
+		6684EF652C3F3A6600498FE7 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		66A17F402C2A0CE80032767F /* SpinnerDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerDisplayable.swift; sourceTree = "<group>"; };
 		66A17F422C2A0D830032767F /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		66A17F442C2A0E7C0032767F /* ViewValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewValues.swift; sourceTree = "<group>"; };
@@ -410,6 +414,7 @@
 		664BF2F82BF67DF000C9D29E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				6684EF632C3F39A800498FE7 /* BasePhotoView.swift */,
 				665993572C20E11200BA8C85 /* PhotoDetail */,
 				664A51602C1E4CDB003491BA /* PhotoList */,
 				667A598B2C1EF64300FE4985 /* MainTabBar */,
@@ -512,7 +517,8 @@
 		6680DF5C2C36EEC8001BAAD8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6680DF5A2C36ADE2001BAAD8 /* PhotoDetailView.swift */,
+				6680DF5A2C36ADE2001BAAD8 /* PhotoDetailContainerView.swift */,
+				6684EF652C3F3A6600498FE7 /* PhotoDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -646,6 +652,7 @@
 				66D082422C24C80E000574A7 /* PhotoDetailFactory.swift in Sources */,
 				664BF2F22BF6676E00C9D29E /* ParentCoordinator.swift in Sources */,
 				664A512D2C1DD737003491BA /* UIImage + Preload.swift in Sources */,
+				6684EF662C3F3A6600498FE7 /* PhotoDetailView.swift in Sources */,
 				664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */,
 				667A59902C1EF6F500FE4985 /* PhotoListCollectionViewController.swift in Sources */,
 				66BE9C5D2C1F10A30006011A /* WaterfallLayout.swift in Sources */,
@@ -687,12 +694,13 @@
 				6636E3D22C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift in Sources */,
 				66BE9C592C1F0E450006011A /* + UIScrollViewDelegate.swift in Sources */,
 				665CA9012C28CBE50086B2DB /* Social.swift in Sources */,
+				6684EF642C3F39A900498FE7 /* BasePhotoView.swift in Sources */,
 				667A599C2C1F082900FE4985 /* PhotoCell.swift in Sources */,
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
 				66A3F3B32C35FD3F00F367A4 /* Downloadable.swift in Sources */,
 				664A51542C1E4095003491BA /* BaseViewModel.swift in Sources */,
 				66A17F452C2A0E7C0032767F /* ViewValues.swift in Sources */,
-				6680DF5B2C36ADE2001BAAD8 /* PhotoDetailView.swift in Sources */,
+				6680DF5B2C36ADE2001BAAD8 /* PhotoDetailContainerView.swift in Sources */,
 				6680DF592C36AD1C001BAAD8 /* ViewLoadable.swift in Sources */,
 				66BEB0FD2C36F9CF00663A04 /* ViewController.swift in Sources */,
 				664BF2E02BF65C5900C9D29E /* Navigation.swift in Sources */,
@@ -873,6 +881,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -903,6 +912,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

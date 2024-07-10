@@ -12,14 +12,16 @@ class DownloadService {
   var downloadsSession: URLSession!
 
   func cancelDownload<T: Downloadable>(_ item: T) {
-    guard let download = activeDownloads[item.downloadURL] else { return }
+    guard let downloadURL = item.downloadURL else { return }
+    guard let download = activeDownloads[downloadURL] else { return }
     download.task?.cancel()
-    activeDownloads[item.downloadURL] = nil
+    activeDownloads[downloadURL] = nil
   }
 
   func pauseDownload<T: Downloadable>(_ item: T) {
     guard
-      let download = activeDownloads[item.downloadURL],
+      let downloadURL = item.downloadURL,
+      let download = activeDownloads[downloadURL],
       download.isDownloading
     else {
       return
@@ -33,11 +35,12 @@ class DownloadService {
   }
 
   func resumeDownload<T: Downloadable>(_ item: T) {
-    guard let download = activeDownloads[item.downloadURL] else { return }
+    guard let downloadURL = item.downloadURL else { return }
+    guard let download = activeDownloads[downloadURL] else { return }
     if let resumeData = download.resumeData {
       download.task = downloadsSession.downloadTask(withResumeData: resumeData)
     } else {
-      download.task = downloadsSession.downloadTask(with: download.item.downloadURL)
+      download.task = downloadsSession.downloadTask(with: downloadURL)
     }
     download.task?.resume()
     download.isDownloading = true
@@ -45,9 +48,10 @@ class DownloadService {
 
   func startDownload<T: Downloadable>(_ item: T) {
     let download = Download(item: item)
-    download.task = downloadsSession.downloadTask(with: item.downloadURL)
+    guard let downloadURL = item.downloadURL else { return }
+    download.task = downloadsSession.downloadTask(with: downloadURL)
     download.task?.resume()
     download.isDownloading = true
-    activeDownloads[item.downloadURL] = download
+    activeDownloads[downloadURL] = download
   }
 }
