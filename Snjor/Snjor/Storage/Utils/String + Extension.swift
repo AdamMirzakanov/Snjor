@@ -70,5 +70,5 @@ extension String {
 
   // MARK: - Downloads
   static var jpegExtension: String { "jpg" }
-  static var downloadsSessionID: String { "com.adamirzakan" }
+  static var downloadsSessionID: String { "com.snjor" }
 }

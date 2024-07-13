@@ -10,18 +10,9 @@ import UIKit
 class BasePhotoView: UIView {
   // MARK: - Internal Properties
   var screenScale: CGFloat { return UIScreen.main.scale }
-
-  // MARK: - Private Properties
-  private var currentPhotoID: String?
-  private var imageDownloader = ImageDownloader()
-  private var showsUsername = true {
-    didSet {
-      userNameLabel.alpha = showsUsername ? 1 : 0
-      gradientView.alpha = showsUsername ? 1 : 0
-    }
-  }
-
-  private var hasSetImage = false
+  var currentPhotoID: String?
+  var imageDownloader = ImageDownloader()
+  var hasSetImage = false
 
   // MARK: - Internal Views
   let mainPhotoImageView: UIImageView = {
@@ -31,8 +22,7 @@ class BasePhotoView: UIView {
     return $0
   }(UIImageView())
 
-  // MARK: - Private Views
-  private let gradientView: GradientView = {
+  let gradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.setColors([
       GradientView.Color(color: .clear, location: 0.7),
@@ -41,26 +31,9 @@ class BasePhotoView: UIView {
     return $0
   }(GradientView())
 
-  private let userNameLabel: UILabel = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.textColor = .white
-    $0.font = .systemFont(ofSize: 13, weight: .medium)
-    return $0
-  }(UILabel())
-
   // MARK: - Internal Methods
-  func prepareForReuse() {
-    currentPhotoID = nil
-    mainPhotoImageView.image = nil
-    userNameLabel.text = nil
-    imageDownloader.cancel()
-    hasSetImage = false
-  }
-
-  func configure(with photo: Photo, showsUsername: Bool = true) {
+  func configure(with photo: Photo, showsUsername: Bool) {
     let size = CGSize(width: 32.0, height: 32.0)
-    self.showsUsername = showsUsername
-    userNameLabel.text = photo.user.displayName
     currentPhotoID = photo.id
     if let blurHash = photo.blurHash {
       if self.hasSetImage == true {
@@ -77,7 +50,6 @@ class BasePhotoView: UIView {
   func setupImageView() {
     addSubview(mainPhotoImageView)
     addSubview(gradientView)
-    addSubview(userNameLabel)
     setupConstraints()
   }
 
@@ -97,9 +69,6 @@ class BasePhotoView: UIView {
       gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
       gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
       gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
-
-      userNameLabel.leadingAnchor.constraint(equalTo: mainPhotoImageView.leadingAnchor, constant: 10),
-      userNameLabel.bottomAnchor.constraint(equalTo: mainPhotoImageView.bottomAnchor, constant: -10)
     ])
   }
 
@@ -111,10 +80,10 @@ class BasePhotoView: UIView {
       guard let self = self, self.currentPhotoID == downloadPhotoID
       else { return }
       if isCached == true {
-        print(#function, "from the Сache")
+//        print(#function, "from the Сache")
         self.mainPhotoImageView.image = image
       } else {
-        print(#function, "from the Internet")
+//        print(#function, "from the Internet")
         UIView.transition(
           with: self,
           duration: 0.25,

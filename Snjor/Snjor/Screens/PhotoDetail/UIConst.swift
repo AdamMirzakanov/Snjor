@@ -30,7 +30,7 @@ enum UIConst {
   static var halfLocation: CGFloat = 0.1
   static let gradientAlpha: CGFloat = 0.8
 
-  static let defaultFontSize: CGFloat = 14.0
+  static let defaultFontSize: CGFloat = 13.0
   static let downloadButtonFontSize: CGFloat = 14.0
   static let nameFontSize: CGFloat = 20.0
 

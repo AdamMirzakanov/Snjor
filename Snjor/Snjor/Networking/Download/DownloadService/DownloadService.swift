@@ -10,7 +10,16 @@ import Foundation
 class DownloadService {
   var activeDownloads: [URL: Download] = [:]
   var downloadsSession: URLSession!
-
+  
+  func configureSession(delegate: URLSessionDelegate) {
+    let configuration = URLSessionConfiguration.background(withIdentifier: .downloadsSessionID)
+    downloadsSession = URLSession(
+      configuration: configuration,
+      delegate: delegate,
+      delegateQueue: nil
+    )
+  }
+  
   func cancelDownload<T: Downloadable>(_ item: T) {
     guard let downloadURL = item.downloadURL else { return }
     guard let download = activeDownloads[downloadURL] else { return }

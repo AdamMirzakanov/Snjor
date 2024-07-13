@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Download {
+final class Download {
   // MARK: - Internal Properties
   var item: any Downloadable
   var isDownloading = false

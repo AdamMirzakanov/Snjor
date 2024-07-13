@@ -96,7 +96,7 @@
 		66F5C2432C2C9A10001FC3A3 /* ImageDataRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5C2422C2C9A10001FC3A3 /* ImageDataRequestable.swift */; };
 		66F5C24B2C2CA16F001FC3A3 /* NetworkService + ImageDataRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5C24A2C2CA16F001FC3A3 /* NetworkService + ImageDataRequestable.swift */; };
 		66F5C24D2C2CA6D8001FC3A3 /* UIImageView + Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F5C24C2C2CA6D8001FC3A3 /* UIImageView + Utils.swift */; };
-		66FA20622C3C3CB600592F34 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FA20612C3C3CB600592F34 /* PhotoView.swift */; };
+		66FA20622C3C3CB600592F34 /* PhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FA20612C3C3CB600592F34 /* PhotoListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -191,7 +191,7 @@
 		66F5C2422C2C9A10001FC3A3 /* ImageDataRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataRequestable.swift; sourceTree = "<group>"; };
 		66F5C24A2C2CA16F001FC3A3 /* NetworkService + ImageDataRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + ImageDataRequestable.swift"; sourceTree = "<group>"; };
 		66F5C24C2C2CA6D8001FC3A3 /* UIImageView + Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Utils.swift"; sourceTree = "<group>"; };
-		66FA20612C3C3CB600592F34 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		66FA20612C3C3CB600592F34 /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -497,7 +497,7 @@
 			children = (
 				66BE9C6E2C2073CF0006011A /* GradientView.swift */,
 				667A599B2C1F082900FE4985 /* PhotoCell.swift */,
-				66FA20612C3C3CB600592F34 /* PhotoView.swift */,
+				66FA20612C3C3CB600592F34 /* PhotoListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -656,7 +656,7 @@
 				664A511F2C1DCE6C003491BA /* ImageCache.swift in Sources */,
 				667A59902C1EF6F500FE4985 /* PhotoListCollectionViewController.swift in Sources */,
 				66BE9C5D2C1F10A30006011A /* WaterfallLayout.swift in Sources */,
-				66FA20622C3C3CB600592F34 /* PhotoView.swift in Sources */,
+				66FA20622C3C3CB600592F34 /* PhotoListView.swift in Sources */,
 				66D082442C24D896000574A7 /* PhotoDetailRepository.swift in Sources */,
 				664A513F2C1DEED9003491BA /* Pageable.swift in Sources */,
 				664A51522C1DFF61003491BA /* RequestController.swift in Sources */,

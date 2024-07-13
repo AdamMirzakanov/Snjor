@@ -18,16 +18,6 @@ final class PhotoDetailViewController: ViewController<PhotoDetailContainerView> 
     in: .userDomainMask
   ).first!
 
-  // MARK: - Download
-  lazy var downloadsSession: URLSession = {
-    let configuration = URLSessionConfiguration.background(withIdentifier: .downloadsSessionID)
-    return URLSession(
-      configuration: configuration,
-      delegate: self,
-      delegateQueue: nil
-    )
-  }()
-
   // MARK: - Initializers
   init(viewModel: any PhotoDetailViewModelProtocol
   ) {
@@ -61,12 +51,16 @@ final class PhotoDetailViewController: ViewController<PhotoDetailContainerView> 
     }
   }
   
+  deinit {
+    print(#function, "деинициализирован")
+  }
+  
   var downloadService: DownloadService = DownloadService()
   
   // MARK: - Private Methods
   private func fetchData() {
     viewModel.viewDidLoad()
-    downloadService.downloadsSession = downloadsSession
+    downloadService.configureSession(delegate: self)
   }
 
   private func stateController() {
@@ -105,7 +99,10 @@ final class PhotoDetailViewController: ViewController<PhotoDetailContainerView> 
       self.downloadService.startDownload(viewModel.photo!)
       self.mainView.animateDownloadButton()
     }
-    mainView.downloadBarButton.addAction(downloadButtonAction, for: .touchUpInside)
+    mainView.downloadBarButton.addAction(
+      downloadButtonAction,
+      for: .touchUpInside
+    )
   }
 }
 
@@ -114,3 +111,4 @@ extension PhotoDetailViewController: MessageDisplayable { }
 
 // MARK: - SpinnerDisplayable
 //extension PhotoDetailViewController: SpinnerDisplayable { }
+

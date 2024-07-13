@@ -20,6 +20,7 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   private (set) var state: PassthroughSubject<StateController, Never>
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
+  var downloadService: DownloadService = DownloadService()
 
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
@@ -47,7 +48,7 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     }
   }
 
-  func createDataSource(for collectionView: UICollectionView) {
+  func createDataSource(for collectionView: UICollectionView, delegate: any PhotoCellDelegate) {
     dataSource = UICollectionViewDiffableDataSource
     <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, item in
       let cell = collectionView.dequeueReusableCell(
@@ -55,9 +56,16 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
         for: indexPath
       )
       guard let photoCell = cell as? PhotoCell else { return cell }
+      
+      photoCell.delegate = delegate
       self.checkAndLoadMorePhotos(at: indexPath.item)
-      photoCell.configure(with: item)
-      return cell
+      photoCell.configure(
+        with: item,
+        downloaded: item.downloaded,
+        download: self.downloadService.activeDownloads[item.downloadURL!]
+      )
+      
+      return photoCell
     }
   }
 

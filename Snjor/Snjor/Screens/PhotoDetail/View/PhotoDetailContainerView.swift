@@ -463,7 +463,7 @@ class PhotoDetailContainerView: UIView {
 
   // MARK: - Internal Methods
     func setupData(viewModel: any PhotoDetailViewModelProtocol) {
-      photoView.configure(with: viewModel.photo!)
+      photoView.configure(with: viewModel.photo!, showsUsername: false)
       photoView.setupImageView()
       nameLabel.text = viewModel.displayName
       likesLabel.text = viewModel.likes
@@ -557,7 +557,7 @@ class PhotoDetailContainerView: UIView {
       gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
       
       photoView.topAnchor.constraint(equalTo: topAnchor),
-      photoView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 50),
+      photoView.bottomAnchor.constraint(equalTo: bottomAnchor),
       photoView.leadingAnchor.constraint(equalTo: leadingAnchor),
       photoView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
