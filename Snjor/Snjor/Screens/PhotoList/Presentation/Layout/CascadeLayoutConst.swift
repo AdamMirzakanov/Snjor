@@ -1,5 +1,5 @@
 //
-//  LayoutConstants.swift
+//  CascadeLayoutConst.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum LayoutConstants {
+enum CascadeLayoutConst {
   static let columnSpacing = getAdjustedSpacing()
   static var iPhoneColumns = 2
   static let iPadColumns = 3

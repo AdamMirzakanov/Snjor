@@ -10,17 +10,15 @@ import Combine
 
 final class PhotoListViewModel: PhotoListViewModelProtocol {
   // MARK: - Internal Properties
-  var refreshControl = UIRefreshControl()
   var photosCount: Int { photos.count }
-  var onPhotosChange: (([Photo]) -> Void)?
 
   // MARK: - Private Properties
-  private var lastPageValidationUseCase: any Pageable
   private let loadPhotosUseCase: any LoadPhotoListUseCaseProtocol
-  private (set) var state: PassthroughSubject<StateController, Never>
+  private var lastPageValidationUseCase: any Pageable
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
-  var downloadService: DownloadService = DownloadService()
+  private (set) var downloadService = DownloadService()
+  private (set) var state: PassthroughSubject<StateController, Never>
 
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
@@ -56,15 +54,9 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
         for: indexPath
       )
       guard let photoCell = cell as? PhotoCell else { return cell }
-      
       photoCell.delegate = delegate
       self.checkAndLoadMorePhotos(at: indexPath.item)
-      photoCell.configure(
-        with: item,
-        downloaded: item.downloaded,
-        download: self.downloadService.activeDownloads[item.downloadURL!]
-      )
-      
+      photoCell.configure(with: item)
       return photoCell
     }
   }
@@ -74,18 +66,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     dataSource.apply(snapshot, animatingDifferences: true)
   }
 
-  func getPhotoItem(at index: Int) -> Photo {
-    return photos[index]
-  }
-
-  func loadPhoto(at index: Int) -> Photo {
-    checkAndLoadMorePhotos(at: index)
-    return photos[index]
-  }
-
-  func getPhotoID(at indexPath: Int) -> Photo {
-    let id = photos[indexPath]
-    return id
+  func getPhoto(at indexPath: Int) -> Photo {
+    photos[indexPath]
   }
 
   // MARK: - Private Methods
@@ -109,7 +91,7 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
       let newPhotos = photos.filter { !existingPhotoIDs.contains($0.id) }
       lastPageValidationUseCase.updateLastPage(itemsCount: photos.count)
       self.photos.append(contentsOf: newPhotos)
-      onPhotosChange?(self.photos)
+      state.send(.success)
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))
     }

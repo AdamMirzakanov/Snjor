@@ -12,7 +12,7 @@ protocol PhotoListFactoryProtocol {
   func makeModule(delegate: any PhotoListViewControllerDelegate) -> UIViewController
   func makeTabBarItem(navigation: any Navigable)
   func mekePhotoDetailCoordinator(
-    id: Photo,
+    photo: Photo,
     navigation: any Navigable,
     overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable
@@ -42,8 +42,8 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
       delegate: delegate,
       layout: defaultLayout
     )
-    let waterfallLayout = WaterfallLayout(with: module)
-    module.collectionView.collectionViewLayout = waterfallLayout
+    let cascadeLayout = CascadeLayout(with: module)
+    module.collectionView.collectionViewLayout = cascadeLayout
     module.collectionView.showsVerticalScrollIndicator = false
     module.collectionView.register(
       PhotoCell.self,
@@ -62,11 +62,11 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
   }
 
   func mekePhotoDetailCoordinator(
-    id: Photo,
+    photo: Photo,
     navigation: any Navigable,
     overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
-    let factory = PhotoDetailFactory(id: id)
+    let factory = PhotoDetailFactory(photo: photo)
     let coordinator = PhotoDetailCoordinator(
       factory: factory,
       navigation: navigation,

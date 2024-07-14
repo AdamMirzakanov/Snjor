@@ -14,11 +14,16 @@ extension UIView {
     right: NSLayoutXAxisAnchor? = nil,
     bottom: NSLayoutYAxisAnchor? = nil,
     left: NSLayoutXAxisAnchor? = nil,
+    centerY: NSLayoutYAxisAnchor? = nil,
+    centerX: NSLayoutXAxisAnchor? = nil,
     pTop: CGFloat = CGFloat.zero,
     pRight: CGFloat = CGFloat.zero,
     pBottom: CGFloat = CGFloat.zero,
-    pLeft: CGFloat = CGFloat.zero
+    pLeft: CGFloat = CGFloat.zero,
+    pCenterY: CGFloat = CGFloat.zero,
+    pCenterX: CGFloat = CGFloat.zero
   ){
+
     translatesAutoresizingMaskIntoConstraints = false
 
     if let top = top {
@@ -44,6 +49,20 @@ extension UIView {
 
     if let left = left {
       leftAnchor.constraint(equalTo: left, constant: pLeft).isActive = true
+    }
+    
+    if let centerY = centerY {
+      centerYAnchor.constraint(
+        equalTo: centerY,
+        constant: pCenterY
+      ).isActive = true
+    }
+
+    if let centerX = centerX {
+      centerXAnchor.constraint(
+        equalTo: centerX,
+        constant: pCenterX
+      ).isActive = true
     }
   }
 

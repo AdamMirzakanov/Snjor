@@ -55,12 +55,10 @@ final class PhotoDetailViewController: ViewController<PhotoDetailContainerView> 
     print(#function, "деинициализирован")
   }
   
-  var downloadService: DownloadService = DownloadService()
-  
   // MARK: - Private Methods
   private func fetchData() {
     viewModel.viewDidLoad()
-    downloadService.configureSession(delegate: self)
+    viewModel.downloadService.configureSession(delegate: self)
   }
 
   private func stateController() {
@@ -96,8 +94,9 @@ final class PhotoDetailViewController: ViewController<PhotoDetailContainerView> 
   private func configDownloadButtonAction() {
     let downloadButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-      self.downloadService.startDownload(viewModel.photo!)
+      self.viewModel.downloadService.startDownload(viewModel.photo!)
       self.mainView.animateDownloadButton()
+      showSpinner(on: mainView.spinnerBlurEffect)
     }
     mainView.downloadBarButton.addAction(
       downloadButtonAction,
@@ -105,10 +104,3 @@ final class PhotoDetailViewController: ViewController<PhotoDetailContainerView> 
     )
   }
 }
-
-// MARK: - MessageDisplayable
-extension PhotoDetailViewController: MessageDisplayable { }
-
-// MARK: - SpinnerDisplayable
-//extension PhotoDetailViewController: SpinnerDisplayable { }
-

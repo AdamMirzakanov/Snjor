@@ -8,22 +8,19 @@
 import UIKit
 
 protocol PhotoCellDelegate: AnyObject {
-  func cancelTapped(_ cell: PhotoCell)
   func downloadTapped(_ cell: PhotoCell)
-  func pauseTapped(_ cell: PhotoCell)
-  func resumeTapped(_ cell: PhotoCell)
 }
 
-class PhotoCell: UICollectionViewCell {
-  
+final class PhotoCell: UICollectionViewCell {
+
   // MARK: - Internal Properties
   weak var delegate: (any PhotoCellDelegate)?
 
   // MARK: - Views
-  private let photoView: PhotoListView = {
+  private let photoView: PhotoCellView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     return $0
-  }(PhotoListView())
+  }(PhotoCellView())
 
   // MARK: - Initializers
   override init(frame: CGRect) {
@@ -43,49 +40,51 @@ class PhotoCell: UICollectionViewCell {
   }
 
   // MARK: - Internal Methods
-  func configure(with photo: Photo, downloaded: Bool, download: Download?) {
+  func configure(with photo: Photo) {
     photoView.configure(with: photo)
-    if let download = download {
-      let imageName = download.isDownloading ? "pause.circle.fill" : "play.circle.fill"
-      photoView.downloadBarButton.setImage(UIImage(systemName: imageName), for: .normal)
-    }
   }
 
   // MARK: - Private Methods
   private func setupPhotoView() {
-    contentView.preservesSuperviewLayoutMargins = true
     contentView.addSubview(photoView)
-    photoView.setupImageView()
+    photoView.fillSuperView()
+    photoView.setupBaseViews()
     photoView.setupDownloadButton()
-    setupConstraints()
   }
 
-  private func setupConstraints() {
-    NSLayoutConstraint.activate([
-      photoView.topAnchor.constraint(equalTo: contentView.topAnchor),
-      photoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-      photoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      photoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-    ])
-  }
-  
   private func configDownloadButtonAction() {
-    let downloadButtonAction = UIAction { [weak self] _ in
-      guard let self = self else { return }
-      UIView.animate(withDuration: 0.15) {
-        self.photoView.downloadBarButtonBlurView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-      } completion: { _ in
-        UIView.animate(withDuration: 0.15) {
-          self.photoView.downloadBarButtonBlurView.transform = CGAffineTransform.identity
-        }
-      }
+    let downloadButtonAction = downloadAction()
+    addAction(downloadButtonAction)
+  }
 
-      delegate?.downloadTapped(self)
+  private func downloadAction() -> UIAction {
+    return UIAction { [weak self] _ in
+      guard
+        let self = self,
+        let delegate = delegate
+      else {
+        return
+      }
+      animateButton()
+      delegate.downloadTapped(self)
     }
-    photoView.downloadBarButton.addAction(
-      downloadButtonAction,
+  }
+
+  private func addAction(_ action: UIAction) {
+    photoView.downloadButton.addAction(
+      action,
       for: .touchUpInside
     )
+  }
+
+  private func animateButton() {
+    UIView.animate(withDuration: 0.15) {
+      self.photoView.blurEffect.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+    } completion: { _ in
+      UIView.animate(withDuration: 0.15) {
+        self.photoView.blurEffect.transform = CGAffineTransform.identity
+      }
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 //
-//  PhotoDetailViewController + URLSessionDelegate.swift
+//  PhotoDetail + URLSessionDelegate.swift
 //  Snjor
 //
 //  Created by Адам on 04.07.2024.

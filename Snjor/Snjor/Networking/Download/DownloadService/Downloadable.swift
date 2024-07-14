@@ -9,5 +9,4 @@ import Foundation
 
 protocol Downloadable {
   var downloadURL: URL? { get }
-  var downloaded: Bool { get set }
 }

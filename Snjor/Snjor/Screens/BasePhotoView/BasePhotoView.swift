@@ -16,24 +16,29 @@ class BasePhotoView: UIView {
 
   // MARK: - Internal Views
   let mainPhotoImageView: UIImageView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
 
   let gradientView: GradientView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
+    let color = UIColor(white: .zero, alpha: BasePhotoViewConst.gradientAlpha)
     $0.setColors([
-      GradientView.Color(color: .clear, location: 0.7),
-      GradientView.Color(color: UIColor(white: 0, alpha: 0.5), location: 1)
+      GradientView.Color(
+        color: .clear,
+        location: BasePhotoViewConst.downLocation
+      ),
+      GradientView.Color(
+        color: color,
+        location: BasePhotoViewConst.upLocation
+      )
     ])
     return $0
   }(GradientView())
 
   // MARK: - Internal Methods
   func configure(with photo: Photo, showsUsername: Bool) {
-    let size = CGSize(width: 32.0, height: 32.0)
+    let size = BasePhotoViewConst.blurSize
     currentPhotoID = photo.id
     if let blurHash = photo.blurHash {
       if self.hasSetImage == true {
@@ -47,9 +52,8 @@ class BasePhotoView: UIView {
     }
   }
 
-  func setupImageView() {
-    addSubview(mainPhotoImageView)
-    addSubview(gradientView)
+  func setupBaseViews() {
+    addSubviews()
     setupConstraints()
   }
 
@@ -58,18 +62,14 @@ class BasePhotoView: UIView {
   }
 
   // MARK: - Private Methods
-  private func setupConstraints() {
-    NSLayoutConstraint.activate([
-      mainPhotoImageView.topAnchor.constraint(equalTo: topAnchor),
-      mainPhotoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      mainPhotoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      mainPhotoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+  private func addSubviews() {
+    addSubview(mainPhotoImageView)
+    addSubview(gradientView)
+  }
 
-      gradientView.topAnchor.constraint(equalTo: topAnchor),
-      gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
-    ])
+  private func setupConstraints() {
+    mainPhotoImageView.fillSuperView()
+    gradientView.fillSuperView()
   }
 
   private func downloadImage(with photo: Photo) {
@@ -80,13 +80,13 @@ class BasePhotoView: UIView {
       guard let self = self, self.currentPhotoID == downloadPhotoID
       else { return }
       if isCached == true {
-//        print(#function, "from the Сache")
+        print(#function, "🟡 Сache")
         self.mainPhotoImageView.image = image
       } else {
-//        print(#function, "from the Internet")
+        print(#function, "🟢 Internet")
         UIView.transition(
           with: self,
-          duration: 0.25,
+          duration: BasePhotoViewConst.duration,
           options: [.transitionCrossDissolve]) {
             self.mainPhotoImageView.image = image
           }

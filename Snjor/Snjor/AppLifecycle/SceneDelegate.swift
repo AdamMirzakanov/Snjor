@@ -32,7 +32,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       window: window,
       factory: appFactory
     )
-    appCoordinator?.start()
+    guard let appCoordinator = appCoordinator else { return }
+    appCoordinator.start()
   }
 
   func sceneDidDisconnect(_ scene: UIScene) { }

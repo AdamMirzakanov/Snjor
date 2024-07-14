@@ -1,5 +1,5 @@
 //
-//  WaterfallLayout.swift
+//  CascadeLayout.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
@@ -7,26 +7,26 @@
 
 import UIKit
 
-protocol WaterfallLayoutDelegate: AnyObject {
-  func waterfallLayout(
-    _ layout: WaterfallLayout,
+protocol CascadeLayoutDelegate: AnyObject {
+  func cascadeLayout(
+    _ layout: CascadeLayout,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize
 }
 
-final class WaterfallLayout: UICollectionViewLayout {
+final class CascadeLayout: UICollectionViewLayout {
   // MARK: - Private Properties
-  private weak var delegate: WaterfallLayoutDelegate?
+  private weak var delegate: CascadeLayoutDelegate?
   private var layoutAttributes: [UICollectionViewLayoutAttributes] = []
   private var frames: [CGRect] = []
   private var pagingViewAttributes: UICollectionViewLayoutAttributes?
-  private var contentHeight = CGFloat.zero
-  private var numberOfColumns = Int.zero
-  private var isSingleColumn: Bool { numberOfColumns == Int.zero }
+  private var contentHeight: CGFloat = .zero
+  private var numberOfColumns: Int = .zero
+  private var isSingleColumn: Bool { numberOfColumns == .zero }
 
   private var itemSpacing: CGFloat {
     let zero = CGFloat.zero
-    let columnSpacing = LayoutConstants.columnSpacing
+    let columnSpacing = CascadeLayoutConst.columnSpacing
     return isSingleColumn ? zero : columnSpacing
   }
 
@@ -53,7 +53,7 @@ final class WaterfallLayout: UICollectionViewLayout {
   }
 
   // MARK: - Initializers
-  init(with delegate: WaterfallLayoutDelegate?) {
+  init(with delegate: CascadeLayoutDelegate?) {
     self.delegate = delegate
     super.init()
     setUpDefaultOfColumns()
@@ -87,7 +87,7 @@ final class WaterfallLayout: UICollectionViewLayout {
     }
 
     if let pagingViewAttributes = pagingViewAttributes,
-      pagingViewAttributes.frame.intersects(rect) {
+       pagingViewAttributes.frame.intersects(rect) {
       attributes.append(pagingViewAttributes)
     }
     return attributes
@@ -122,22 +122,22 @@ final class WaterfallLayout: UICollectionViewLayout {
     let numberOfColumns = self.numberOfColumns
     let isSingleColumn = self.isSingleColumn
     let columnWidth = self.columnWidth
-    let topInset = CGFloat.zero
+    let topInset: CGFloat = .zero
     var columnHeights = [CGFloat](repeating: topInset, count: numberOfColumns)
-    var numberOfItems = Int.zero
+    var numberOfItems: Int = .zero
 
     func originForColumn(_ columnIndex: Int) -> CGPoint {
-      let pointX = isSingleColumn ? 0 : CGFloat(columnIndex) * (columnWidth + itemSpacing)
+      let pointX = isSingleColumn ? .zero : CGFloat(columnIndex) * (columnWidth + itemSpacing)
       let pointY = columnHeights[columnIndex]
       return CGPoint(x: pointX, y: pointY)
     }
 
     func indexOfNextColumn() -> Int {
       guard let minHeight = columnHeights.min() else {
-        let zeroColumnHeight = Int.zero
+        let zeroColumnHeight: Int = .zero
         return zeroColumnHeight
       }
-      return columnHeights.firstIndex { $0 == minHeight } ?? Int.zero
+      return columnHeights.firstIndex { $0 == minHeight } ?? .zero
     }
 
     (0 ..< collectionView.numberOfSections).forEach {
@@ -146,7 +146,7 @@ final class WaterfallLayout: UICollectionViewLayout {
 
     for index in 0 ..< numberOfItems {
       let indexPath = IndexPath(item: index, section: 0)
-      let photoSize = delegate.waterfallLayout(self, sizeForItemAt: indexPath)
+      let photoSize = delegate.cascadeLayout(self, sizeForItemAt: indexPath)
       let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
       let columnIndex = indexOfNextColumn()
       let origin = originForColumn(columnIndex)
@@ -156,15 +156,14 @@ final class WaterfallLayout: UICollectionViewLayout {
       layoutAttributes.append(attributes)
       frames.append(attributes.frame)
     }
-
-    contentHeight = columnHeights.max() ?? CGFloat.zero
+    contentHeight = columnHeights.max() ?? .zero
     contentHeight += itemSpacing
   }
 
   // MARK: - Private Methods
   private func setUpDefaultOfColumns() {
-    let iPad = LayoutConstants.iPadColumns
-    let iPhone = LayoutConstants.iPhoneColumns
+    let iPad = CascadeLayoutConst.iPadColumns
+    let iPhone = CascadeLayoutConst.iPhoneColumns
     let userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
     let device = userInterfaceIdiom == .pad ? iPad : iPhone
     numberOfColumns = device
@@ -174,7 +173,7 @@ final class WaterfallLayout: UICollectionViewLayout {
     pagingViewAttributes = nil
     layoutAttributes.removeAll()
     frames.removeAll()
-    contentHeight = CGFloat.zero
+    contentHeight = .zero
   }
 
   // MARK: - Utilities

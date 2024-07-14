@@ -22,38 +22,36 @@ protocol PhotoDetailViewModelProtocol: BaseViewModelProtocol {
   var focalLength: String { get }
   var aperture: String { get }
   var exposureTime: String { get }
-  var instagramUsername: String { get }
-  var twitterUsername: String { get }
   var pixels: String { get }
   var resolution: String { get }
   var photo: Photo? { get set }
+  var downloadService: DownloadService { get }
 }
 
 final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
-  
-  // MARK: - Internal Properties
+  // MARK: - Computed Properties
   var displayName: String {
-    photo?.user.displayName ?? .empty
+    photo?.user.displayName ?? .defaultUserName
   }
   
   var likes: String {
-    "\(photo?.likes ?? .zero)"
+    String(photo?.likes ?? .zero)
   }
   
   var downloads: String {
-    "\(photo?.downloads ?? .zero)"
+    String(photo?.downloads ?? .zero)
   }
   
   var views: String {
-    "\(photo?.user.totalPhotos ?? .zero)"
+    String(photo?.user.totalPhotos ?? .zero)
   }
   
   var createdAt: String {
-    photo?.createdAt ?? .empty
+    photo?.createdAt ?? .defaultDate
   }
   
   var cameraModel: String {
-    photo?.exif?.model?.uppercased() ?? .cameraDefault
+    photo?.exif?.model?.uppercased() ?? .defaultCamera
   }
   
   var width: Int {
@@ -73,7 +71,7 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   }
 
   var iso: String {
-    return photo?.exif?.iso.map { "\($0)" } ?? .dash
+    return photo?.exif?.iso.map { String($0) } ?? .dash
   }
 
   var focalLength: String {
@@ -83,28 +81,22 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   
   var aperture: String {
     let aperture = photo?.exif?.aperture ?? .dash
-    return aperture == .dash ? aperture : .𝑓 + .space + aperture
+    return aperture == .dash ? aperture : .𝑓 + aperture
   }
 
   var exposureTime: String {
     let time = photo?.exif?.exposureTime ?? .dash
     return time == .dash ? time : time + .second
   }
-  
-  var instagramUsername: String {
-    photo?.user.social?.instagramUsername ?? .instagramUsernameDefault
-  }
-  
-  var twitterUsername: String {
-    photo?.user.social?.twitterUsername ?? .twitterUsernameDefault
-  }
 
+  // MARK: - Internal Properties
   var state: PassthroughSubject<StateController, Never>
-  
+  var photo: Photo?
+
   // MARK: - Private Properties
   private let loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
-  var photo: Photo?
-  
+  private (set) var downloadService = DownloadService()
+
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
@@ -143,7 +135,7 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
     case 1280..<1920:
       return .hd
     default:
-      return .standard
+      return .sd
     }
   }
 }

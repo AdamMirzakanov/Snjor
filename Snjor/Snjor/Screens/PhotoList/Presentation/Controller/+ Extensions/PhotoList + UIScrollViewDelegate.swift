@@ -1,5 +1,5 @@
 //
-//  + UIScrollViewDelegate.swift
+//  PhotoList + UIScrollViewDelegate.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.

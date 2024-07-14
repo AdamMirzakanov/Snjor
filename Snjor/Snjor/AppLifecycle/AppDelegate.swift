@@ -44,5 +44,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) {
     backgroundSessionCompletionHandler = completionHandler
   }
-
 }

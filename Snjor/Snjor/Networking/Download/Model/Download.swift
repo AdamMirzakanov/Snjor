@@ -10,9 +10,6 @@ import Foundation
 final class Download {
   // MARK: - Internal Properties
   var item: any Downloadable
-  var isDownloading = false
-  var progress: Float = 0
-  var resumeData: Data?
   var task: URLSessionDownloadTask?
 
   // MARK: - Initializers

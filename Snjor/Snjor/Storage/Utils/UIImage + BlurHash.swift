@@ -9,7 +9,7 @@ import UIKit
 
 // swiftlint:disable all
 extension UIImage {
-  // MARK: - Initializers
+  // MARK: - Initializers 
   convenience init?(
     blurHash: String,
     size: CGSize,

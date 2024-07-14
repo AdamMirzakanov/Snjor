@@ -1,5 +1,5 @@
 //
-//  PhotoListView.swift
+//  PhotoCellView.swift
 //  Snjor
 //
 //  Created by Адам on 08.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoListView: BasePhotoView {
+class PhotoCellView: BasePhotoView {
   // MARK: - Private Properties
   private var showsUsername = true {
     didSet {
@@ -17,25 +17,26 @@ class PhotoListView: BasePhotoView {
   }
   
   // MARK: - Private Views
-  let downloadBarButtonBlurView: UIVisualEffectView = {
+  let blurEffect: UIVisualEffectView = {
     $0.frame.size.width = 30
     $0.frame.size.height = 30
     $0.layer.cornerRadius = 6
     $0.clipsToBounds = true
+    $0.widthAnchor.constraint(equalToConstant: 30).isActive = true
+    $0.heightAnchor.constraint(equalToConstant: 30).isActive = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
   
-  lazy var downloadBarButton: UIButton = {
+  lazy var downloadButton: UIButton = {
     $0.setImage(UIImage(systemName: "arrow.down.circle.fill"), for: .normal)
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
-    $0.alpha = UIConst.alphaDefault
-    $0.frame = downloadBarButtonBlurView.bounds
+    $0.alpha = PhotoDetailConst.defaultAlpha
+    $0.frame = blurEffect.bounds
     return $0
   }(UIButton(type: .custom))
   
   let userNameLabel: UILabel = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
     $0.textColor = .white
     $0.font = .systemFont(ofSize: 13, weight: .medium)
     return $0
@@ -66,22 +67,24 @@ class PhotoListView: BasePhotoView {
   }
   
   func setupDownloadButton() {
-    addSubview(downloadBarButtonBlurView)
+    addSubview(blurEffect)
     addSubview(userNameLabel)
-    downloadBarButtonBlurView.contentView.addSubview(downloadBarButton)
-    setupDownloadButtonConstraints()
+    blurEffect.contentView.addSubview(downloadButton)
+    setupConstraints()
   }
   
-  private func setupDownloadButtonConstraints() {
-    downloadBarButtonBlurView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      downloadBarButtonBlurView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-      downloadBarButtonBlurView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-      downloadBarButtonBlurView.widthAnchor.constraint(equalToConstant: 30),
-      downloadBarButtonBlurView.heightAnchor.constraint(equalToConstant: 30),
-      
-      userNameLabel.leadingAnchor.constraint(equalTo: mainPhotoImageView.leadingAnchor, constant: 10),
-      userNameLabel.bottomAnchor.constraint(equalTo: mainPhotoImageView.bottomAnchor, constant: -10)
-    ])
+  private func setupConstraints() {
+    blurEffect.setConstraints(
+      top: topAnchor,
+      right: rightAnchor,
+      pTop: 10,
+      pRight: 10
+    )
+    userNameLabel.setConstraints(
+      bottom: mainPhotoImageView.bottomAnchor,
+      left: mainPhotoImageView.leftAnchor,
+      pBottom: 10,
+      pLeft: 10
+    )
   }
 }
