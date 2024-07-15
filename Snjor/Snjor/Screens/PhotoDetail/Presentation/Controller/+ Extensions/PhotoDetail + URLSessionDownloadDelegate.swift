@@ -1,14 +1,14 @@
 //
-//  PhotoList + URLSessionDownloadDelegate.swift
+//  PhotoDetail + URLSessionDownloadDelegate.swift
 //  Snjor
 //
-//  Created by Адам on 14.07.2024.
+//  Created by Адам on 04.07.2024.
 //
 
-import Foundation
+import UIKit
 import Photos
 
-extension PhotoListCollectionViewController: URLSessionDownloadDelegate {
+extension PhotoDetailViewController: URLSessionDownloadDelegate {
   // MARK: - URL Session Download Delegate
   func urlSession(
     _ session: URLSession,
@@ -41,18 +41,14 @@ extension PhotoListCollectionViewController: URLSessionDownloadDelegate {
           print(#function, "Successfully saved image to gallery.")
           self.hideSpinner()
         } else if let error = error {
-          self.presentAlert(
-            message: "\(error.localizedDescription)",
-            title: AppLocalized.error
-          )
+          self.presentAlert(message: "\(error.localizedDescription)", title: AppLocalized.error)
         }
       }
     }
   }
 
   private func localFilePath(for url: URL) -> URL {
-    let component = url.lastPathComponent
-    var destinationURL = documentsPath.appendingPathComponent(component)
+    var destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
     if destinationURL.pathExtension.isEmpty {
       destinationURL = destinationURL.appendingPathExtension(.jpegExt)
     }
@@ -61,7 +57,7 @@ extension PhotoListCollectionViewController: URLSessionDownloadDelegate {
 
   private func hideSpinner() {
     DispatchQueue.main.async{
-      self.hideSpinner(from: self.spinnerVisualEffectView)
+      self.hideSpinner(from: self.mainView.spinnerBlurEffect)
     }
   }
 }

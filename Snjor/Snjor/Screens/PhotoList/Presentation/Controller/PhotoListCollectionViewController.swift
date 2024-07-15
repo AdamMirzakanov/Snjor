@@ -8,7 +8,6 @@
 import UIKit
 import Combine
 
-
 protocol PhotoListViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
@@ -25,8 +24,8 @@ final class PhotoListCollectionViewController: UICollectionViewController {
 
   // MARK: - Views
   let spinnerVisualEffectView: SpinnerVisualEffectView = {
-    $0.frame.size.width = PhotoDetailConst.fullValue
-    $0.frame.size.height = PhotoDetailConst.fullValue
+    $0.frame.size.width = GlobalConst.fullValue
+    $0.frame.size.height = GlobalConst.fullValue
     $0.effect = nil
     return $0
   }(SpinnerVisualEffectView(effect: UIBlurEffect(style: .regular)))
@@ -66,10 +65,7 @@ final class PhotoListCollectionViewController: UICollectionViewController {
   }
 
   private func setupNavigationBarItems() {
-    spinnerVisualEffectView.setupBarItems(
-      navigationItem: navigationItem,
-      navigationController: navigationController
-    )
+    navigationItem.leftBarButtonItem = spinnerVisualEffectView.makeSpinnerBarItem()
   }
 
   private func stateController() {

@@ -77,7 +77,7 @@ enum PrepareRequests {
 
   private static func prepareHeaders() -> [String: String] {
     var headers: [String: String] = [:]
-    headers["Authorization"] = "Client-ID \(accessKey.rawValue)"
+    headers["Authorization"] = "Client-ID " + accessKey.rawValue
     return headers
   }
 }
