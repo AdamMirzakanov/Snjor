@@ -683,12 +683,12 @@
 		6698613B2C43D7940085D789 /* + Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				669861352C43D64D0085D789 /* PhotoList + SpinnerDisplayable.swift */,
+				667A59932C1EF9B400FE4985 /* PhotoList + MessageDisplayable.swift */,
 				669861392C43D6AF0085D789 /* PhotoList + URLSessionDownloadDelegate.swift */,
 				669861372C43D6810085D789 /* PhotoList + PhotoCellDelegate.swift */,
-				669861352C43D64D0085D789 /* PhotoList + SpinnerDisplayable.swift */,
 				66B0C71E2C261D370074CE5B /* PhotoList + UICollectionViewDelegate.swift */,
 				66BE9C582C1F0E440006011A /* PhotoList + UIScrollViewDelegate.swift */,
-				667A59932C1EF9B400FE4985 /* PhotoList + MessageDisplayable.swift */,
 				66BE9C5F2C1F13C10006011A /* PhotoList + CascadeLayoutDelegate.swift */,
 			);
 			path = "+ Extensions";

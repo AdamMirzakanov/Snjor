@@ -38,8 +38,8 @@ extension PhotoListCollectionViewController: URLSessionDownloadDelegate {
         PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
       } completionHandler: { success, error in
         if success {
-          print(#function, "Successfully saved image to gallery.")
           self.hideSpinner()
+          print(#function, "🏁 Successfully saved image to gallery.")
         } else if let error = error {
           self.presentAlert(
             message: "\(error.localizedDescription)",

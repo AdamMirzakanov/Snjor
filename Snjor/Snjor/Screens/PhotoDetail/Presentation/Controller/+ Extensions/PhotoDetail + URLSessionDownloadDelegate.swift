@@ -31,15 +31,16 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
   }
 
   // MARK: - Private Methods
-  private func saveImageToGallery(at url: URL) {
+  func saveImageToGallery(at url: URL) {
     PHPhotoLibrary.requestAuthorization { status in
       guard status == .authorized else { return }
       PHPhotoLibrary.shared().performChanges {
         PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
       } completionHandler: { success, error in
         if success {
-          print(#function, "Successfully saved image to gallery.")
+//          self.downloadService.invalidateSession(withID: self.sessionID)
           self.hideSpinner()
+          print(#function, "🏳️ Successfully saved image to gallery.")
         } else if let error = error {
           self.presentAlert(message: "\(error.localizedDescription)", title: AppLocalized.error)
         }
@@ -47,7 +48,13 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
     }
   }
 
-  private func localFilePath(for url: URL) -> URL {
+  func createNewSession() {
+      let newSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+      self.sessionID = UUID().uuidString // Генерируем новый идентификатор сессии
+    self.downloadService.sessions[self.sessionID] = newSession
+  }
+
+  func localFilePath(for url: URL) -> URL {
     var destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
     if destinationURL.pathExtension.isEmpty {
       destinationURL = destinationURL.appendingPathExtension(.jpegExt)

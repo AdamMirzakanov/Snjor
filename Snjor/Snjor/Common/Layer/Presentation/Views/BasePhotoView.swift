@@ -11,7 +11,6 @@ class BasePhotoView: UIView {
   // MARK: - Properties
   var currentPhotoID: String?
   var imageDownloader = ImageDownloader()
-  var hasSetImage = false
 
   // MARK: - Views
   let mainPhotoImageView: UIImageView = {
@@ -43,12 +42,8 @@ class BasePhotoView: UIView {
     let size = BasePhotoViewConst.blurSize
     currentPhotoID = photo.id
     if let blurHash = photo.blurHash {
-      if self.hasSetImage == true {
-        return
-      }
       mainPhotoImageView.image = UIImage(blurHash: blurHash, size: size)
       downloadImage(with: photo)
-      self.hasSetImage = true
     } else {
       downloadImage(with: photo)
     }
@@ -84,7 +79,9 @@ class BasePhotoView: UIView {
       else { return }
       if isCached == true {
         self.mainPhotoImageView.image = image
+        print(#function, "Кэш")
       } else {
+        print(#function, "Интерент")
         UIView.transition(
           with: self,
           duration: BasePhotoViewConst.duration,

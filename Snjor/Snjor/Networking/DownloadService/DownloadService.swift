@@ -9,27 +9,39 @@ import Foundation
 
 final class DownloadService {
   // MARK: - Private Properties
-  private var downloadsSession: URLSession?
+  var sessions: [String: URLSession] = [:]
 
   // MARK: - Internal Methods
-  func configureSession(delegate: URLSessionDelegate) {
-    let configuration = URLSessionConfiguration.background(
-      withIdentifier: .sessionID
-    )
-    downloadsSession = URLSession(
+  func configureSession(
+    delegate: URLSessionDelegate?,
+    id: String
+  ) {
+    let configuration = URLSessionConfiguration.background(withIdentifier: id)
+    let session = URLSession(
       configuration: configuration,
       delegate: delegate,
       delegateQueue: nil
     )
+    sessions[id] = session
   }
 
-  func startDownload<T: Downloadable>(_ item: T) {
-    let download = Download(item: item)
-    guard let downloadURL = item.downloadURL,
-          let downloadsSession = downloadsSession else {
+  func startDownload<T: Downloadable>(_ item: T, sessionID: String) {
+    guard
+      let downloadURL = item.downloadURL,
+      let session = sessions[sessionID]
+    else {
       return
     }
-    download.task = downloadsSession.downloadTask(with: downloadURL)
-    download.task?.resume()
+    let downloadTask = session.downloadTask(with: downloadURL)
+    downloadTask.resume()
   }
+
+  func invalidateSession(withID id: String) {
+    sessions[id]?.invalidateAndCancel()
+    sessions[id] = nil
+  }
+}
+
+extension String {
+  static let jpegExt = "jpg"
 }

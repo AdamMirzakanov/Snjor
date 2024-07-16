@@ -9,8 +9,7 @@ import UIKit
 
 final class SpinnerVisualEffectView: UIVisualEffectView {
   func makeSpinnerBarItem() -> UIBarButtonItem {
-    let spinner = UIBarButtonItem(customView: self)
-    let barButtonItem = spinner
+    let barButtonItem = UIBarButtonItem(customView: self)
     return barButtonItem
   }
 }

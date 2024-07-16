@@ -17,7 +17,6 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   private var lastPageValidationUseCase: any Pageable
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
-  private (set) var downloadService = DownloadService()
   private (set) var state: PassthroughSubject<StateController, Never>
 
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {

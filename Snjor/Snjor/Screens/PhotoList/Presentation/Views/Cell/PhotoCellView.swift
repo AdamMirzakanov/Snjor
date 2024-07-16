@@ -64,7 +64,6 @@ final class PhotoCellView: BasePhotoView {
     mainPhotoImageView.image = nil
     userNameLabel.text = nil
     imageDownloader.cancel()
-    hasSetImage = false
   }
   
   func setupDownloadButton() {

@@ -9,7 +9,6 @@ import UIKit
 
 protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
   var photosCount: Int { get }
-  var downloadService: DownloadService { get }
 
   func getPhoto(at index: Int) -> Photo
   func applySnapshot()

@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol PhotoDetailContainerViewDelegate: AnyObject {
+  func didTapDownloadButton()
+}
+
 // swiftlint:disable all
 final class PhotoDetailContainerView: UIView {
+  weak var delegate: PhotoDetailContainerViewDelegate?
   // MARK: - Private Properties
   private var isAspectFill = true
   private var isPhotoInfo = true
@@ -452,11 +457,14 @@ final class PhotoDetailContainerView: UIView {
     photoView.setupBaseViews()
     nameLabel.text = viewModel.displayName
     likesLabel.text = viewModel.likes
-    downloadsLabel.text = viewModel.downloads
     createdAt(from: viewModel.createdAt)
-    cameraModelLabel.text = viewModel.cameraModel
     resolutionLabel.text = viewModel.resolution
     pxLabel.text = viewModel.pixels
+  }
+
+  func setupPhotoInfoData(viewModel: any PhotoDetailViewModelProtocol) {
+    downloadsLabel.text = viewModel.downloads
+    cameraModelLabel.text = viewModel.cameraModel
     isoValueLabel.text = viewModel.iso
     focalLengthValueLabel.text = viewModel.focalLength
     apertureValueLabel.text = viewModel.aperture
@@ -630,6 +638,7 @@ final class PhotoDetailContainerView: UIView {
     configPauseButtonAction()
     configBackButtonAction(navigationController)
     configToggleContentModeButtonAction()
+    configDownloadButtonAction()
   }
 
   private func setupNavigationItems(_ navigationItem: UINavigationItem) {
@@ -665,6 +674,18 @@ final class PhotoDetailContainerView: UIView {
       navigationController?.popViewController(animated: true)
     }
     backBarButton.addAction(backButtonAction, for: .touchUpInside)
+  }
+
+  private func configDownloadButtonAction() {
+    let downloadButtonAction = UIAction { [weak self] _ in
+      guard let self = self else { return }
+//      animateDownloadButton()
+      delegate?.didTapDownloadButton()
+    }
+    downloadBarButton.addAction(
+      downloadButtonAction,
+      for: .touchUpInside
+    )
   }
 
   private func configPauseButtonAction() {

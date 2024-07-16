@@ -32,8 +32,4 @@ extension String {
 
   //font
   static let nameFont = "Times New Roman Bold"
-
-  //download
-  static let jpegExt = "jpg"
-  static let sessionID = "com.snjor"
 }

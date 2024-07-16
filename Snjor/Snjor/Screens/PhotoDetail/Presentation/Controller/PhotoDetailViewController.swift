@@ -8,11 +8,11 @@
 import UIKit
 import Combine
 
-// swiftlint:disable all
 final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerView> {
   // MARK: - Private Properties
-  private var downloadService = DownloadService()
   private var cancellable = Set<AnyCancellable>()
+  var downloadService = DownloadService()
+  var sessionID = UUID().uuidString
   private(set) var viewModel: any PhotoDetailViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
@@ -33,9 +33,11 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    mainView.delegate = self
     configUI()
     stateController()
-    fetchData()
+    viewModel.viewDidLoad()
+    configureDownloadSession()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -50,16 +52,19 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
     if let tabBar = tabBarController as? MainTabBarController {
       tabBar.showCustomTabBar()
     }
+    downloadService.invalidateSession(withID: sessionID)
   }
-  
+
   deinit {
     print(#function, "деинициализирован")
   }
   
   // MARK: - Private Methods
-  private func fetchData() {
-    viewModel.viewDidLoad()
-    downloadService.configureSession(delegate: self)
+  func configureDownloadSession() {
+    downloadService.configureSession(
+      delegate: self,
+      id: sessionID
+    )
   }
 
   private func stateController() {
@@ -68,16 +73,12 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
       .receive(on: RunLoop.current)
       .sink { [weak self] state in
         guard let self = self else { return }
-//        self.hideSpinner()
         switch state {
         case .success:
-          self.mainView.setupData(viewModel: viewModel)
-        case .loading:
-          // self.showSpinner()
-          print()
+          mainView.setupPhotoInfoData(viewModel: viewModel)
+        case .loading: break
         case .fail(error: let error):
-          self.presentAlert(message: error, title: AppLocalized.error)
-//          self.hideSpinner()
+          presentAlert(message: error, title: AppLocalized.error)
         }
       }
       .store(in: &cancellable)
@@ -89,19 +90,15 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
       navigationItem: navigationItem, 
       navigationController: navigationController
     )
-    configDownloadButtonAction()
   }
+}
 
-  private func configDownloadButtonAction() {
-    let downloadButtonAction = UIAction { [weak self] _ in
-      guard let self = self else { return }
-      self.downloadService.startDownload(viewModel.photo!)
-      self.mainView.animateDownloadButton()
-      showSpinner(on: mainView.spinnerBlurEffect)
-    }
-    mainView.downloadBarButton.addAction(
-      downloadButtonAction,
-      for: .touchUpInside
+extension PhotoDetailViewController: PhotoDetailContainerViewDelegate {
+  func didTapDownloadButton() {
+    showSpinner(on: mainView.spinnerBlurEffect)
+    downloadService.startDownload(
+      viewModel.photo!,
+      sessionID: sessionID
     )
   }
 }

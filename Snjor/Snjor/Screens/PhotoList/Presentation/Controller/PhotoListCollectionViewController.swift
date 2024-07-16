@@ -15,6 +15,8 @@ protocol PhotoListViewControllerDelegate: AnyObject {
 final class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
+  private(set) var downloadService = DownloadService()
+  private(set) var sessionID = UUID().uuidString
   private(set) var viewModel: any PhotoListViewModelProtocol
   private(set) weak var delegate: (any PhotoListViewControllerDelegate)?
   private(set) var documentsPath = FileManager.default.urls(
@@ -50,18 +52,24 @@ final class PhotoListCollectionViewController: UICollectionViewController {
     super.viewDidLoad()
     stateController()
     setupDataSource()
-    configDownloadService()
+    configureDownloadSession()
     setupNavigationBarItems()
     viewModel.viewDidLoad()
   }
 
   // MARK: - Private Methods
   private func setupDataSource() {
-    viewModel.createDataSource(for: collectionView, delegate: self)
+    viewModel.createDataSource(
+      for: collectionView,
+      delegate: self
+    )
   }
 
-  private func configDownloadService() {
-    viewModel.downloadService.configureSession(delegate: self)
+  private func configureDownloadSession() {
+    downloadService.configureSession(
+      delegate: self,
+      id: sessionID
+    )
   }
 
   private func setupNavigationBarItems() {
@@ -77,8 +85,7 @@ final class PhotoListCollectionViewController: UICollectionViewController {
         switch state {
         case .success:
           viewModel.applySnapshot()
-        case .loading:
-          break
+        case .loading: break
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
         }

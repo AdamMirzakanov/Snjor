@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SpinnerDisplayable: AnyObject {
+protocol SpinnerDisplayable {
   func showSpinner(on visualEffect: UIVisualEffectView)
   func hideSpinner(from visualEffect: UIVisualEffectView)
 }

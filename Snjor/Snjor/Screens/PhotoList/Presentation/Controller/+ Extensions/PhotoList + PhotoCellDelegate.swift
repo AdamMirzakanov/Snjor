@@ -9,7 +9,7 @@ extension PhotoListCollectionViewController: PhotoCellDelegate {
   func downloadTapped(_ cell: PhotoCell) {
     if let indexPath = collectionView.indexPath(for: cell) {
       let photo = viewModel.getPhoto(at: indexPath.item)
-      viewModel.downloadService.startDownload(photo)
+      downloadService.startDownload(photo, sessionID: sessionID)
       showSpinner(on: spinnerVisualEffectView)
     }
   }
