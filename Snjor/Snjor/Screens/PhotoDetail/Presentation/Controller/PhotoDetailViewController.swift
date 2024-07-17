@@ -8,11 +8,11 @@
 import UIKit
 import Combine
 
-final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerView> {
+final class PhotoDetailViewController: BaseViewController<PhotoDetailMainView> {
+
   // MARK: - Private Properties
-  private var cancellable = Set<AnyCancellable>()
   var downloadService = DownloadService()
-  var sessionID = UUID().uuidString
+  private var cancellable = Set<AnyCancellable>()
   private(set) var viewModel: any PhotoDetailViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
@@ -34,7 +34,7 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
   override func viewDidLoad() {
     super.viewDidLoad()
     mainView.delegate = self
-    configUI()
+    setupUI()
     stateController()
     viewModel.viewDidLoad()
     configureDownloadSession()
@@ -42,17 +42,13 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomTabBar()
-    }
+    hideCustomTabBar()
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.showCustomTabBar()
-    }
-    downloadService.invalidateSession(withID: sessionID)
+    showCustomTabBar()
+    downloadService.invalidateSession(withID: Self.sessionID)
   }
 
   deinit {
@@ -60,10 +56,22 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
   }
   
   // MARK: - Private Methods
-  func configureDownloadSession() {
+  private func hideCustomTabBar() {
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.hideCustomTabBar()
+    }
+  }
+
+  private func showCustomTabBar() {
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.showCustomTabBar()
+    }
+  }
+
+  private func configureDownloadSession() {
     downloadService.configureSession(
       delegate: self,
-      id: sessionID
+      id: Self.sessionID
     )
   }
 
@@ -84,7 +92,7 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
       .store(in: &cancellable)
   }
 
-  private func configUI() {
+  private func setupUI() {
     mainView.setupData(viewModel: viewModel)
     mainView.setupBarButtonItems(
       navigationItem: navigationItem, 
@@ -93,12 +101,13 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailContainerVi
   }
 }
 
-extension PhotoDetailViewController: PhotoDetailContainerViewDelegate {
+extension PhotoDetailViewController: PhotoDetailMainViewDelegate {
   func didTapDownloadButton() {
-    showSpinner(on: mainView.spinnerBlurEffect)
     downloadService.startDownload(
       viewModel.photo!,
-      sessionID: sessionID
+      sessionID: Self.sessionID
     )
   }
 }
+
+extension PhotoDetailViewController: SessionIdentifiable { }

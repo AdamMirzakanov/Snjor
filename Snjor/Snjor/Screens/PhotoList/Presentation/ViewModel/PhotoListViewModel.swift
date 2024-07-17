@@ -45,7 +45,10 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     }
   }
 
-  func createDataSource(for collectionView: UICollectionView, delegate: any PhotoCellDelegate) {
+  func createDataSource(
+    for collectionView: UICollectionView,
+    delegate: any PhotoCellDelegate
+  ) {
     dataSource = UICollectionViewDiffableDataSource
     <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, photo in
       let cell = collectionView.dequeueReusableCell(

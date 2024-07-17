@@ -8,10 +8,7 @@
 import CoreGraphics
 
 enum PhotoCellConst {
-  //animate
+  //animation values of the download button
   static let duration: CGFloat = 0.15
-  static let scale: CGFloat = 1.3
-
-  //constraints
-  static let padding: CGFloat = 10.0
+  static let scale: CGFloat = 0.8
 }

@@ -60,8 +60,14 @@ extension PhotoListCollectionViewController: URLSessionDownloadDelegate {
   }
 
   private func hideSpinner() {
-    DispatchQueue.main.async{
-      self.hideSpinner(from: self.spinnerVisualEffectView)
+    DispatchQueue.main.async {
+      self.collectionView.visibleCells
+        .compactMap { $0 as? PhotoCell }
+        .forEach { cell in
+          cell.photoView.spinner.stopAnimating()
+          cell.photoView.spinner.isHidden = true
+          cell.photoView.downloadButton.isHidden = false
+        }
     }
   }
 }

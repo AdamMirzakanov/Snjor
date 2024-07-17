@@ -9,7 +9,9 @@ import UIKit
 import Combine
 
 protocol PhotoListFactoryProtocol {
-  func makeModule(delegate: any PhotoListViewControllerDelegate) -> UIViewController
+  func makeModule(
+    delegate: any PhotoListViewControllerDelegate
+  ) -> UIViewController
   func makeTabBarItem(navigation: any Navigable)
   func mekePhotoDetailCoordinator(
     photo: Photo,

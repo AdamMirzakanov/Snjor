@@ -13,12 +13,14 @@ protocol PhotoListViewControllerDelegate: AnyObject {
 }
 
 final class PhotoListCollectionViewController: UICollectionViewController {
+
+  // MARK: - Delegate
+  private(set) weak var delegate: (any PhotoListViewControllerDelegate)?
+
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()
-  private(set) var sessionID = UUID().uuidString
   private(set) var viewModel: any PhotoListViewModelProtocol
-  private(set) weak var delegate: (any PhotoListViewControllerDelegate)?
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -68,7 +70,7 @@ final class PhotoListCollectionViewController: UICollectionViewController {
   private func configureDownloadSession() {
     downloadService.configureSession(
       delegate: self,
-      id: sessionID
+      id: Self.sessionID
     )
   }
 
@@ -93,3 +95,5 @@ final class PhotoListCollectionViewController: UICollectionViewController {
       .store(in: &cancellable)
   }
 }
+
+extension PhotoListCollectionViewController: SessionIdentifiable { }

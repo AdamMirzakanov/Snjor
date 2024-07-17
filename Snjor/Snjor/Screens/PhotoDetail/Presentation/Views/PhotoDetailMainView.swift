@@ -1,5 +1,5 @@
 //
-//  PhotoDetailContainerView.swift
+//  PhotoDetailMainView.swift
 //  Snjor
 //
 //  Created by Адам on 04.07.2024.
@@ -7,13 +7,16 @@
 
 import UIKit
 
-protocol PhotoDetailContainerViewDelegate: AnyObject {
+protocol PhotoDetailMainViewDelegate: AnyObject {
   func didTapDownloadButton()
 }
 
 // swiftlint:disable all
-final class PhotoDetailContainerView: UIView {
-  weak var delegate: PhotoDetailContainerViewDelegate?
+final class PhotoDetailMainView: UIView {
+
+  // MARK: - Delegate
+  weak var delegate: PhotoDetailMainViewDelegate?
+
   // MARK: - Private Properties
   private var isAspectFill = true
   private var isPhotoInfo = true
@@ -27,32 +30,38 @@ final class PhotoDetailContainerView: UIView {
   private let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: PhotoDetailContainerViewConst.gradientAlpha
+      alpha: PhotoDetailMainViewConst.gradientAlpha
     )
     $0.setColors([
       GradientView.Color(
         color: .clear,
-        location: PhotoDetailContainerViewConst.downLocation
+        location: PhotoDetailMainViewConst.downLocation
       ),
       GradientView.Color(
         color: color,
-        location: PhotoDetailContainerViewConst.upLocation
+        location: PhotoDetailMainViewConst.upLocation
       )
     ])
-    $0.clipsToBounds = true
     return $0
   }(GradientView())
 
-  // MARK: - BlurViews
-  let spinnerBlurEffect: SpinnerVisualEffectView = {
-    $0.frame.size.width = GlobalConst.fullValue
-    $0.frame.size.height = GlobalConst.fullValue
-    $0.layer.cornerRadius = GlobalConst.defaultValue
-    $0.clipsToBounds = true
+  // MARK: - Spinner
+  lazy var spinner: UIActivityIndicatorView = {
+    let xCenter = self.downloadBarButtonBlurEffect.contentView.bounds.midX
+    let yCenter = self.downloadBarButtonBlurEffect.contentView.bounds.midY
+    $0.center = CGPoint(x: xCenter, y: yCenter)
+    $0.startAnimating()
+    $0.color = .label
+    $0.transform = CGAffineTransform(
+      scaleX: PhotoDetailMainViewConst.spinnerScale,
+      y: PhotoDetailMainViewConst.spinnerScale
+    )
+    $0.alpha = GlobalConst.defaultAlpha
     return $0
-  }(SpinnerVisualEffectView(effect: UIBlurEffect(style: .regular)))
+  }(UIActivityIndicatorView(style: .medium))
 
-  private let backBarButtonBlurView: UIVisualEffectView = {
+  // MARK: - Blur Effects
+  private let backBarButtonBlurEffect: UIVisualEffectView = {
     $0.frame.size.width = GlobalConst.fullValue
     $0.frame.size.height = GlobalConst.fullValue
     $0.layer.cornerRadius = GlobalConst.circle
@@ -60,22 +69,15 @@ final class PhotoDetailContainerView: UIView {
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
 
-  let downloadBarButtonBlurView: UIVisualEffectView = {
-    $0.frame.size.width = PhotoDetailContainerViewConst.downloadButtonWidth
+  let downloadBarButtonBlurEffect: UIVisualEffectView = {
+    $0.frame.size.width = PhotoDetailMainViewConst.downloadButtonWidth
     $0.frame.size.height = GlobalConst.fullValue
     $0.layer.cornerRadius = GlobalConst.defaultValue
     $0.clipsToBounds = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
 
-  let pauseBarButtonBlurView: UIVisualEffectView = {
-    $0.frame.size.height = GlobalConst.fullValue
-    $0.layer.cornerRadius = GlobalConst.defaultValue
-    $0.clipsToBounds = true
-    return $0
-  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
-
-  private let toggleContentModeButtonBlurView: UIVisualEffectView = {
+  private let toggleContentModePhotoButtonBlurEffect: UIVisualEffectView = {
     $0.frame.size.width = GlobalConst.fullValue
     $0.frame.size.height = GlobalConst.fullValue
     $0.layer.cornerRadius = GlobalConst.defaultValue
@@ -85,47 +87,43 @@ final class PhotoDetailContainerView: UIView {
 
   // MARK: - Buttons
   private lazy var backBarButton: UIButton = {
-    $0.setImage(UIImage(systemName: .backBarButtonImage), for: .normal)
+    let icon = UIImage(systemName: .backBarButtonImage)
+    $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.alpha = GlobalConst.defaultAlpha
-    $0.frame = backBarButtonBlurView.bounds
+    $0.frame = backBarButtonBlurEffect.bounds
     return $0
   }(UIButton(type: .custom))
 
   lazy var downloadBarButton: UIButton = {
-    $0.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
+    let icon = UIImage(systemName: .downloadBarButtonImage)
+    $0.setImage(icon, for: .normal)
     $0.setTitle(.jpeg, for: .normal)
     $0.titleLabel?.font = .systemFont(
-      ofSize: GlobalConst.defaultFontSize,
+      ofSize: GlobalConst.downloadFontSize,
       weight: .medium
     )
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
     $0.alpha = GlobalConst.defaultAlpha
-    $0.frame = downloadBarButtonBlurView.bounds
-    return $0
-  }(UIButton(type: .custom))
-
-  lazy var pauseBarButton: UIButton = {
-    $0.setImage(UIImage(systemName: .pauseBarButtonImage), for: .normal)
-    $0.tintColor = .label
-    $0.alpha = GlobalConst.defaultAlpha
-    $0.frame = pauseBarButtonBlurView.bounds
+    $0.frame = downloadBarButtonBlurEffect.bounds
     return $0
   }(UIButton(type: .custom))
 
   private lazy var toggleContentModeButton: UIButton = {
-    let icon = UIImage(systemName: .arrowUp)
+    let icon = UIImage(systemName: .toggleUp)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
     $0.alpha = GlobalConst.defaultAlpha
-    $0.frame = toggleContentModeButtonBlurView.bounds
+    $0.frame = toggleContentModePhotoButtonBlurEffect.bounds
+//    $0.adjustsImageWhenHighlighted = false
     return $0
   }(UIButton(type: .custom))
 
   private let infoButton: UIButton = {
-    $0.setImage(UIImage(systemName: .infoButtonImage), for: .normal)
+    let icon = UIImage(systemName: .infoButtonImage)
+    $0.setImage(icon, for: .normal)
     $0.tintColor = .white
     $0.alpha = GlobalConst.defaultAlpha
     return $0
@@ -137,8 +135,12 @@ final class PhotoDetailContainerView: UIView {
     $0.image = UIImage(named: .defaultProfilePhoto)
     $0.layer.cornerRadius = GlobalConst.circle
     $0.clipsToBounds = true
-    $0.widthAnchor.constraint(equalToConstant: GlobalConst.maxValue).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: GlobalConst.maxValue).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: GlobalConst.maxValue
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: GlobalConst.maxValue
+    ).isActive = true
     return $0
   }(UIImageView())
 
@@ -167,58 +169,86 @@ final class PhotoDetailContainerView: UIView {
   let nameLabel: UILabel = {
     $0.text = .defaultUserName
     $0.textColor = .white
-    $0.font = UIFont(name: .nameFont, size: PhotoDetailContainerViewConst.userNameFontSize)
+    $0.font = UIFont(
+      name: .nameFont,
+      size: PhotoDetailMainViewConst.userNameFontSize
+    )
     return $0
   }(UILabel())
 
   let likesLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     return $0
   }(UILabel())
 
   let downloadsLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     return $0
   }(UILabel())
 
   private let createdLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     return $0
   }(UILabel())
 
   var cameraModelLabel: UILabel = {
     $0.text = .defaultCamera
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .black)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .black
+    )
     return $0
   }(UILabel())
 
   let resolutionLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     $0.textAlignment = .center
     $0.backgroundColor = .darkGray
     $0.alpha = GlobalConst.defaultAlpha
     $0.layer.cornerRadius = GlobalConst.smallValue
     $0.clipsToBounds = true
-    $0.widthAnchor.constraint(equalToConstant: PhotoDetailContainerViewConst.resolutionLabelWidth).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: PhotoDetailContainerViewConst.resolutionLabelHeight).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: PhotoDetailMainViewConst.resolutionLabelWidth
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: PhotoDetailMainViewConst.resolutionLabelHeight
+    ).isActive = true
     return $0
   }(UILabel())
 
   let pxLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     $0.alpha = GlobalConst.defaultAlpha
     return $0
   }(UILabel())
 
   let isoValueLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     $0.alpha = GlobalConst.defaultAlpha
     return $0
   }(UILabel())
@@ -226,13 +256,19 @@ final class PhotoDetailContainerView: UIView {
   private let isoLabel: UILabel = {
     $0.text = .iso
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     return $0
   }(UILabel())
 
   let apertureValueLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     $0.alpha = GlobalConst.defaultAlpha
     return $0
   }(UILabel())
@@ -240,13 +276,19 @@ final class PhotoDetailContainerView: UIView {
   private let apertureLabel: UILabel = {
     $0.text = .aperture
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     return $0
   }(UILabel())
 
   let focalLengthValueLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     $0.alpha = GlobalConst.defaultAlpha
     return $0
   }(UILabel())
@@ -254,13 +296,19 @@ final class PhotoDetailContainerView: UIView {
   private let focalLengthLabel: UILabel = {
     $0.text = .focalLengt
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     return $0
   }(UILabel())
 
   let exposureTimeValueLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     $0.alpha = GlobalConst.defaultAlpha
     return $0
   }(UILabel())
@@ -268,7 +316,10 @@ final class PhotoDetailContainerView: UIView {
   private let exposureTimeLabel: UILabel = {
     $0.text = .exposure
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize, weight: .medium)
+    $0.font = .systemFont(
+      ofSize: GlobalConst.defaultFontSize,
+      weight: .medium
+    )
     return $0
   }(UILabel())
 
@@ -276,22 +327,30 @@ final class PhotoDetailContainerView: UIView {
   private let firstLine: UIView = {
     $0.backgroundColor = .white
     $0.alpha = GlobalConst.defaultAlpha
-    $0.heightAnchor.constraint(equalToConstant: PhotoDetailContainerViewConst.lineWidth).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: PhotoDetailMainViewConst.lineWidth
+    ).isActive = true
     return $0
   }(UIView())
 
   private let secondLine: UIView = {
     $0.backgroundColor = .white
     $0.alpha = GlobalConst.defaultAlpha
-    $0.heightAnchor.constraint(equalToConstant: PhotoDetailContainerViewConst.lineWidth).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: PhotoDetailMainViewConst.lineWidth
+    ).isActive = true
     return $0
   }(UIView())
 
   private let centerLine: UIView = {
     $0.backgroundColor = .white
     $0.alpha = GlobalConst.defaultAlpha
-    $0.widthAnchor.constraint(equalToConstant: PhotoDetailContainerViewConst.lineWidth).isActive = true
-    $0.heightAnchor.constraint(equalToConstant: PhotoDetailContainerViewConst.lineHeight).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: PhotoDetailMainViewConst.lineWidth
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: PhotoDetailMainViewConst.lineHeight
+    ).isActive = true
     return $0
   }(UIView())
 
@@ -453,7 +512,8 @@ final class PhotoDetailContainerView: UIView {
 
   // MARK: - Setup Data
   func setupData(viewModel: any PhotoDetailViewModelProtocol) {
-    photoView.configure(with: viewModel.photo!, showsUsername: false)
+    guard let photo = viewModel.photo else { return }
+    photoView.configure(with: photo, showsUsername: false)
     photoView.setupBaseViews()
     nameLabel.text = viewModel.displayName
     likesLabel.text = viewModel.likes
@@ -472,54 +532,59 @@ final class PhotoDetailContainerView: UIView {
   }
 
   // MARK: - Animate Buttons
-  func animateDownloadButton() {
+ private func animateDownloadButton() {
     UIView.animate(
-      withDuration: PhotoDetailContainerViewConst.duration,
-      delay: .zero,
-      usingSpringWithDamping: PhotoDetailContainerViewConst.damping,
-      initialSpringVelocity: PhotoDetailContainerViewConst.velocity
+      withDuration: PhotoDetailMainViewConst.minDuration
     ) {
-      self.downloadBarButtonBlurView.frame.origin.x = PhotoDetailContainerViewConst.translationX
-      self.downloadBarButtonBlurView.frame.size.width = GlobalConst.fullValue
-      self.downloadBarButtonBlurView.frame.size.height = GlobalConst.fullValue
-      self.downloadBarButton.frame.size.width = GlobalConst.fullValue
-      self.downloadBarButton.frame.size.height = GlobalConst.fullValue
-      self.downloadBarButton.setTitle(nil, for: .normal)
-      self.downloadBarButton.setImage(UIImage(systemName: .pauseBarButtonImage), for: .normal)
-      self.downloadBarButton.isEnabled = false
-      self.pauseBarButtonBlurView.frame.size.width = GlobalConst.fullValue
-      self.pauseBarButtonBlurView.frame.size.height = GlobalConst.fullValue
-      self.pauseBarButtonBlurView.isHidden = false
-      self.pauseBarButton.frame.size.width = GlobalConst.fullValue
-      self.pauseBarButton.frame.size.height = GlobalConst.fullValue
-      self.pauseBarButton.setImage(UIImage(systemName: .stopBarButtonImage), for: .normal)
+      self.downloadBarButtonBlurEffect.frame.origin.x = PhotoDetailMainViewConst.translationX
+      self.downloadBarButtonBlurEffect.frame.size.width = GlobalConst.fullValue
+      self.downloadBarButtonBlurEffect.frame.size.height = GlobalConst.fullValue
+      self.downloadBarButton.alpha = .zero
+      self.downloadBarButtonBlurEffect.layer.cornerRadius = GlobalConst.circle
+    } completion: { _ in
+      self.downloadBarButton.removeFromSuperview()
+      self.downloadBarButtonBlurEffect.contentView.addSubview(self.spinner)
     }
   }
 
   func reverseAnimateDownloadButton() {
     UIView.animate(
-      withDuration: PhotoDetailContainerViewConst.duration,
-      delay: .zero
+      withDuration: PhotoDetailMainViewConst.defaultDuration,
+      delay: .zero,
+      usingSpringWithDamping: 0.6,
+      initialSpringVelocity: 0.6
     ) {
-      self.downloadBarButtonBlurView.frame.origin.x = -PhotoDetailContainerViewConst.translationX
-      self.downloadBarButtonBlurView.frame.size.width = PhotoDetailContainerViewConst.downloadButtonWidth
-      self.downloadBarButtonBlurView.frame.size.height = GlobalConst.fullValue
-      self.downloadBarButtonBlurView.layer.cornerRadius = GlobalConst.defaultValue
-      self.downloadBarButton.frame = self.downloadBarButtonBlurView.bounds
-      self.downloadBarButton.setImage(UIImage(systemName: .downloadBarButtonImage), for: .normal)
-      self.downloadBarButton.setTitle(.jpeg, for: .normal)
-      self.downloadBarButton.isEnabled = true
-      self.pauseBarButtonBlurView.frame.origin.x = -8
-      self.pauseBarButtonBlurView.frame.size.width = .zero
-      self.pauseBarButtonBlurView.frame.size.height = GlobalConst.fullValue
-      self.pauseBarButton.frame.size.width = .zero
-      self.pauseBarButton.frame.size.height = GlobalConst.fullValue
+      self.downloadBarButtonBlurEffect.frame.origin.x = -PhotoDetailMainViewConst.translationX
+      self.downloadBarButtonBlurEffect.frame.size.width = PhotoDetailMainViewConst.downloadButtonWidth
+      self.downloadBarButtonBlurEffect.frame.size.height = GlobalConst.fullValue
+      self.downloadBarButtonBlurEffect.layer.cornerRadius = GlobalConst.defaultValue
+      self.spinner.removeFromSuperview()
+      self.downloadBarButtonBlurEffect.contentView.addSubview(self.downloadBarButton)
+      self.downloadBarButton.alpha = GlobalConst.defaultAlpha
+    }
+  }
+
+  private func animateToggleContentModeButton(_ button: UIButton ) {
+    UIView.animate(withDuration: PhotoDetailMainViewConst.minDuration) {
+      let scaleTransform = CGAffineTransform(
+        scaleX: PhotoDetailMainViewConst.toggleButtonMinScale,
+        y: PhotoDetailMainViewConst.toggleButtonMinScale
+      )
+      self.configToggleContentMode()
+      button.transform = scaleTransform
+    } completion: { _ in
+      UIView.animate(withDuration: PhotoDetailMainViewConst.minDuration) {
+        button.transform = .identity
+      }
     }
   }
 
   private func hidePhotoInfo() {
-    UIView.animate(withDuration: PhotoDetailContainerViewConst.hidePhotoInfoDuration) {
-      let transform = CGAffineTransform(translationX: .zero, y: PhotoDetailContainerViewConst.translationY)
+    UIView.animate(withDuration: PhotoDetailMainViewConst.hidePhotoInfoDuration) {
+      let transform = CGAffineTransform(
+        translationX: .zero,
+        y: PhotoDetailMainViewConst.translationY
+      )
       self.profileAndInfoButtonStackView.transform = transform
       self.mainStackView.transform = transform
       self.leftStackView.transform = transform
@@ -536,10 +601,10 @@ final class PhotoDetailContainerView: UIView {
 
   private func showPhotoInfo() {
     UIView.animate(
-      withDuration: PhotoDetailContainerViewConst.duration,
+      withDuration: PhotoDetailMainViewConst.defaultDuration,
       delay: .zero,
-      usingSpringWithDamping: PhotoDetailContainerViewConst.damping,
-      initialSpringVelocity: PhotoDetailContainerViewConst.velocity
+      usingSpringWithDamping: PhotoDetailMainViewConst.damping,
+      initialSpringVelocity: PhotoDetailMainViewConst.velocity
     ) {
       self.gradientView.alpha = GlobalConst.maxAlpha
       self.photoInfoStackView.alpha = GlobalConst.maxAlpha
@@ -548,7 +613,7 @@ final class PhotoDetailContainerView: UIView {
       self.centerLine.alpha = GlobalConst.defaultAlpha
       let transform = CGAffineTransform(
         translationX: .zero,
-        y: PhotoDetailContainerViewConst.verticalTranslation
+        y: PhotoDetailMainViewConst.verticalTranslation
       )
       self.mainStackView.transform = transform
       self.leftStackView.transform = transform
@@ -587,9 +652,9 @@ final class PhotoDetailContainerView: UIView {
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pRight: PhotoDetailContainerViewConst.rightPadding,
-      pBottom: PhotoDetailContainerViewConst.bottomPadding,
-      pLeft: PhotoDetailContainerViewConst.leftPadding
+      pRight: PhotoDetailMainViewConst.rightPadding,
+      pBottom: PhotoDetailMainViewConst.bottomPadding,
+      pLeft: PhotoDetailMainViewConst.leftPadding
     )
   }
 
@@ -597,33 +662,33 @@ final class PhotoDetailContainerView: UIView {
     centerLine.centerX()
     centerLine.setConstraints(
       top: mainStackView.topAnchor,
-      pTop: PhotoDetailContainerViewConst.topOffset
+      pTop: PhotoDetailMainViewConst.topOffset
     )
   }
 
   private func setupLeftStackViewConstraints() {
     leftStackView.setConstraints(
       centerY: mainStackView.centerYAnchor,
-      pCenterY: PhotoDetailContainerViewConst.centerYOffset
+      pCenterY: PhotoDetailMainViewConst.centerYOffset
     )
     leftStackView.setConstraints(
       right: rightAnchor,
       left: leftAnchor,
-      pRight: PhotoDetailContainerViewConst.halfRightPadding,
-      pLeft: PhotoDetailContainerViewConst.leftPadding
+      pRight: PhotoDetailMainViewConst.halfRightPadding,
+      pLeft: PhotoDetailMainViewConst.leftPadding
     )
   }
 
   private func setupRightStackViewConstraints() {
     rightStackView.setConstraints(
       centerY: mainStackView.centerYAnchor,
-      pCenterY: PhotoDetailContainerViewConst.centerYOffset
+      pCenterY: PhotoDetailMainViewConst.centerYOffset
     )
     rightStackView.setConstraints(
       right: rightAnchor,
       left: centerLine.leftAnchor,
-      pRight: PhotoDetailContainerViewConst.rightPadding,
-      pLeft: PhotoDetailContainerViewConst.leftPadding
+      pRight: PhotoDetailMainViewConst.rightPadding,
+      pLeft: PhotoDetailMainViewConst.leftPadding
     )
   }
 
@@ -635,7 +700,6 @@ final class PhotoDetailContainerView: UIView {
     setupBarButtons()
     setupNavigationItems(navigationItem)
     configInfoButtonAction()
-    configPauseButtonAction()
     configBackButtonAction(navigationController)
     configToggleContentModeButtonAction()
     configDownloadButtonAction()
@@ -647,40 +711,47 @@ final class PhotoDetailContainerView: UIView {
   }
 
   private func setupBarButtons() {
-    backBarButtonBlurView.contentView.addSubview(backBarButton)
-    downloadBarButtonBlurView.contentView.addSubview(downloadBarButton)
-    pauseBarButtonBlurView.contentView.addSubview(pauseBarButton)
-    toggleContentModeButtonBlurView.contentView.addSubview(toggleContentModeButton)
+    backBarButtonBlurEffect.contentView.addSubview(backBarButton)
+    downloadBarButtonBlurEffect.contentView.addSubview(downloadBarButton)
+    toggleContentModePhotoButtonBlurEffect.contentView.addSubview(toggleContentModeButton)
   }
 
   private func makeRightBarButtons() -> [UIBarButtonItem] {
-    let downloadBarButton = UIBarButtonItem(customView: downloadBarButtonBlurView)
-    let pauseBarButton = UIBarButtonItem(customView: pauseBarButtonBlurView)
-    let toggleContentModeButton = UIBarButtonItem(customView: toggleContentModeButtonBlurView)
-    let spinnerBarItem = spinnerBlurEffect.makeSpinnerBarItem()
-    let barButtonItems = [spinnerBarItem, toggleContentModeButton, downloadBarButton, pauseBarButton]
+    let downloadBarButton = UIBarButtonItem(customView: downloadBarButtonBlurEffect)
+    let toggleContentModeButton = UIBarButtonItem(customView: toggleContentModePhotoButtonBlurEffect)
+    let barButtonItems = [toggleContentModeButton, downloadBarButton]
     return barButtonItems
   }
 
   private func makeLeftBarButtons() -> [UIBarButtonItem] {
-    let backBarButton = UIBarButtonItem(customView: backBarButtonBlurView)
+    let backBarButton = UIBarButtonItem(customView: backBarButtonBlurEffect)
     let barButtonItems = [backBarButton]
     return barButtonItems
   }
 
   // MARK: - Config Navigation Item Actions
-  private func configBackButtonAction(_ navigationController: UINavigationController?) {
+  private func configBackButtonAction(
+    _ navigationController: UINavigationController?
+  ) {
     let backButtonAction = UIAction { _ in
       navigationController?.popViewController(animated: true)
     }
-    backBarButton.addAction(backButtonAction, for: .touchUpInside)
+    backBarButton.addAction(
+      backButtonAction,
+      for: .touchUpInside
+    )
   }
 
   private func configDownloadButtonAction() {
     let downloadButtonAction = UIAction { [weak self] _ in
-      guard let self = self else { return }
-//      animateDownloadButton()
-      delegate?.didTapDownloadButton()
+      guard
+        let self = self,
+        let delegate = delegate
+      else {
+        return
+      }
+      animateDownloadButton()
+      delegate.didTapDownloadButton()
     }
     downloadBarButton.addAction(
       downloadButtonAction,
@@ -688,29 +759,24 @@ final class PhotoDetailContainerView: UIView {
     )
   }
 
-  private func configPauseButtonAction() {
-    let pauseButtonAction = UIAction { [weak self] _ in
-      guard let self = self else { return }
-      self.configToggleContentMode()
-    }
-    pauseBarButton.addAction(pauseButtonAction, for: .touchUpInside)
-  }
-
   private func configToggleContentModeButtonAction() {
     let toggleContentModeButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-      self.configToggleContentMode()
+      animateToggleContentModeButton(toggleContentModeButton)
     }
-    toggleContentModeButton.addAction(toggleContentModeButtonAction, for: .touchUpInside)
+    toggleContentModeButton.addAction(
+      toggleContentModeButtonAction,
+      for: .touchUpInside
+    )
   }
 
   private func configToggleContentMode() {
     if self.isAspectFill {
-      let icon = UIImage(systemName: .arrowDown)
+      let icon = UIImage(systemName: .toggleDown)
       photoView.mainPhotoImageView.contentMode = .scaleAspectFit
       toggleContentModeButton.setImage(icon, for: .normal)
     } else {
-      let icon = UIImage(systemName: .arrowUp)
+      let icon = UIImage(systemName: .toggleUp)
       photoView.mainPhotoImageView.contentMode = .scaleAspectFill
       toggleContentModeButton.setImage(icon, for: .normal)
     }
@@ -720,8 +786,8 @@ final class PhotoDetailContainerView: UIView {
   private func configInfoButtonAction() {
     let infoButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-      self.isPhotoInfo ? self.showPhotoInfo() : self.hidePhotoInfo()
-      self.isPhotoInfo.toggle()
+      isPhotoInfo ? self.showPhotoInfo() : self.hidePhotoInfo()
+      isPhotoInfo.toggle()
     }
     infoButton.addAction(infoButtonAction, for: .touchUpInside)
   }

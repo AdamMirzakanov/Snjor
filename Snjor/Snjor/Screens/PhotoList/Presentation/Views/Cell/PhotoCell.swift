@@ -13,12 +13,11 @@ protocol PhotoCellDelegate: AnyObject {
 
 final class PhotoCell: UICollectionViewCell {
 
-  // MARK: - Internal Properties
+  // MARK: - Delegate
   weak var delegate: (any PhotoCellDelegate)?
 
   // MARK: - Views
-  private let photoView: PhotoCellView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
+  let photoView: PhotoCellView = {
     return $0
   }(PhotoCellView())
 
@@ -26,7 +25,7 @@ final class PhotoCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupPhotoView()
-    configDownloadButtonAction()
+    photoView.delegate = self
   }
 
   required init?(coder: NSCoder) {
@@ -39,55 +38,25 @@ final class PhotoCell: UICollectionViewCell {
     photoView.prepareForReuse()
   }
 
-  // MARK: - Internal Methods
+  // MARK: - Setup Data
   func configure(with photo: Photo) {
     photoView.configure(with: photo)
   }
 
-  // MARK: - Private Methods
+  // MARK: - Setup Views
   private func setupPhotoView() {
     contentView.addSubview(photoView)
     photoView.fillSuperView()
-    photoView.setupBaseViews()
-    photoView.setupDownloadButton()
-  }
-
-  private func configDownloadButtonAction() {
-    let downloadButtonAction = downloadAction()
-    addAction(downloadButtonAction)
-  }
-
-  private func downloadAction() -> UIAction {
-    return UIAction { [weak self] _ in
-      guard
-        let self = self,
-        let delegate = delegate
-      else {
-        return
-      }
-      animateButton()
-      delegate.downloadTapped(self)
-    }
-  }
-
-  private func addAction(_ action: UIAction) {
-    photoView.downloadButton.addAction(
-      action,
-      for: .touchUpInside
-    )
-  }
-
-  private func animateButton() {
-    UIView.animate(withDuration: PhotoCellConst.duration) {
-      let scaleTransform = CGAffineTransform(scaleX: PhotoCellConst.scale, y: PhotoCellConst.scale)
-      self.photoView.blurEffect.transform = scaleTransform
-    } completion: { _ in
-      UIView.animate(withDuration: PhotoCellConst.duration) {
-        self.photoView.blurEffect.transform = CGAffineTransform.identity
-      }
-    }
   }
 }
 
-// MARK: - Reusable
+// MARK: - Reuse ID
 extension PhotoCell: Reusable { }
+
+// MARK: - PhotoCellViewDelegate
+extension PhotoCell: PhotoCellViewDelegate {
+  func downloadTapped() {
+    guard let delegate = delegate else { return }
+    delegate.downloadTapped(self)
+  }
+}

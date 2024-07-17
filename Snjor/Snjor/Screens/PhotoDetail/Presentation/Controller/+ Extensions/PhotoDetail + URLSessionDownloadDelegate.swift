@@ -38,20 +38,13 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
         PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
       } completionHandler: { success, error in
         if success {
-//          self.downloadService.invalidateSession(withID: self.sessionID)
-          self.hideSpinner()
+          self.hideSpinnerAndReverseAnimateDownloadButton()
           print(#function, "🏳️ Successfully saved image to gallery.")
         } else if let error = error {
           self.presentAlert(message: "\(error.localizedDescription)", title: AppLocalized.error)
         }
       }
     }
-  }
-
-  func createNewSession() {
-      let newSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-      self.sessionID = UUID().uuidString // Генерируем новый идентификатор сессии
-    self.downloadService.sessions[self.sessionID] = newSession
   }
 
   func localFilePath(for url: URL) -> URL {
@@ -62,9 +55,9 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
     return destinationURL
   }
 
-  private func hideSpinner() {
+  private func hideSpinnerAndReverseAnimateDownloadButton() {
     DispatchQueue.main.async{
-      self.hideSpinner(from: self.mainView.spinnerBlurEffect)
+      self.mainView.reverseAnimateDownloadButton()
     }
   }
 }

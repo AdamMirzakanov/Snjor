@@ -12,13 +12,14 @@ class BasePhotoView: UIView {
   var currentPhotoID: String?
   var imageDownloader = ImageDownloader()
 
-  // MARK: - Views
+  // MARK: - Main Photo
   let mainPhotoImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
 
+  // MARK: - Gradient
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
@@ -37,7 +38,17 @@ class BasePhotoView: UIView {
     return $0
   }(GradientView())
 
-  // MARK: - Internal Methods
+  // MARK: - Initializers
+  init() {
+    super.init(frame: .zero)
+    setupBaseViews()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  // MARK: - Setup Data
   func configure(with photo: Photo, showsUsername: Bool) {
     let size = BasePhotoViewConst.blurSize
     currentPhotoID = photo.id
@@ -59,7 +70,6 @@ class BasePhotoView: UIView {
     setupConstraints()
   }
 
-  // MARK: - Private Methods
   private func addSubviews() {
     addSubview(mainPhotoImageView)
     addSubview(gradientView)
@@ -70,13 +80,17 @@ class BasePhotoView: UIView {
     gradientView.fillSuperView()
   }
 
+  // MARK: - Image Downloader
   private func downloadImage(with photo: Photo) {
     guard let regularURL = photo.regularURL else { return }
     let url = sizedImageURL(from: regularURL)
     let downloadPhotoID = photo.id
     imageDownloader.downloadPhoto(with: url) { [weak self] image, isCached in
-      guard let self = self, self.currentPhotoID == downloadPhotoID
-      else { return }
+      guard let self = self,
+            self.currentPhotoID == downloadPhotoID
+      else {
+        return
+      }
       if isCached == true {
         self.mainPhotoImageView.image = image
         print(#function, "Кэш")
