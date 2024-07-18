@@ -113,7 +113,7 @@ final class PhotoDetailMainView: UIView {
     $0.alpha = GlobalConst.defaultAlpha
     $0.frame = backBarButtonBlurEffect.bounds
     return $0
-  }(UIButton(type: .custom))
+  }(UIButton())
 
   lazy var downloadBarButton: UIButton = {
     let icon = UIImage(systemName: .downloadBarButtonImage)
@@ -128,7 +128,7 @@ final class PhotoDetailMainView: UIView {
     $0.alpha = GlobalConst.defaultAlpha
     $0.frame = downloadBarButtonBlurEffect.bounds
     return $0
-  }(UIButton(type: .custom))
+  }(UIButton())
 
   private lazy var toggleContentModeButton: UIButton = {
     let icon = UIImage(systemName: .toggleUp)
@@ -139,7 +139,7 @@ final class PhotoDetailMainView: UIView {
     $0.frame = toggleContentModePhotoButtonBlurEffect.bounds
 //    $0.adjustsImageWhenHighlighted = false
     return $0
-  }(UIButton(type: .custom))
+  }(UIButton())
 
   private let infoButton: UIButton = {
     let icon = UIImage(systemName: .infoButtonImage)
@@ -147,7 +147,7 @@ final class PhotoDetailMainView: UIView {
     $0.tintColor = .white
     $0.alpha = GlobalConst.defaultAlpha
     return $0
-  }(UIButton(type: .system))
+  }(UIButton())
 
   // MARK: - ImageViews
   let profilePhotoImageView: UIImageView = {
@@ -590,13 +590,10 @@ final class PhotoDetailMainView: UIView {
         scaleX: PhotoDetailMainViewConst.toggleButtonMinScale,
         y: PhotoDetailMainViewConst.toggleButtonMinScale
       )
-      self.configToggleContentMode()
       button.transform = scaleTransform
-    } completion: { _ in
-      UIView.animate(withDuration: PhotoDetailMainViewConst.minDuration) {
-        button.transform = .identity
-      }
+      button.transform = .identity
     }
+    configToggleContentMode()
   }
 
   func hidePhotoInfo() {

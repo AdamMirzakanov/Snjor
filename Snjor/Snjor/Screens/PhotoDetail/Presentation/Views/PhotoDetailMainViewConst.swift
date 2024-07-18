@@ -37,7 +37,7 @@ enum PhotoDetailMainViewConst {
   //animate
   static let defaultDuration: CGFloat = 0.7
   static let minDuration: CGFloat = 0.2
-  static let toggleButtonMinScale: CGFloat = 0.2
+  static let toggleButtonMinScale: CGFloat = 0.4
   static let spinnerScale: CGFloat = 0.75
   static let damping: CGFloat = 0.5
   static let velocity: CGFloat = 0.5
