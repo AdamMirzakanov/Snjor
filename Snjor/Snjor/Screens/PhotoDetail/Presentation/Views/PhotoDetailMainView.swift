@@ -21,13 +21,33 @@ final class PhotoDetailMainView: UIView {
   private var isAspectFill = true
   private var isPhotoInfo = true
 
+  // MARK: - Gesture
+  private lazy var tapGesture: UITapGestureRecognizer = {
+    return $0
+  }(
+    UITapGestureRecognizer(
+      target: self,
+      action: #selector(showAndHidePhotoInfo(_:))
+    )
+  )
+
+  @objc private func showAndHidePhotoInfo(_ recognizer: UITapGestureRecognizer) {
+    switch recognizer.state {
+    case .ended:
+      showAndHidePhotoInfo()
+    default: 
+      break
+    }
+  }
+
   // MARK: - Main Photo View
-  private let photoView: BasePhotoView = {
+  let photoView: BasePhotoView = {
     return $0
   }(BasePhotoView())
 
   // MARK: - Gradient
-  private let gradientView: GradientView = {
+ private let gradientView: GradientView = {
+   $0.isUserInteractionEnabled = false
     let color = UIColor(
       white: .zero,
       alpha: PhotoDetailMainViewConst.gradientAlpha
@@ -579,7 +599,7 @@ final class PhotoDetailMainView: UIView {
     }
   }
 
-  private func hidePhotoInfo() {
+  func hidePhotoInfo() {
     UIView.animate(withDuration: PhotoDetailMainViewConst.hidePhotoInfoDuration) {
       let transform = CGAffineTransform(
         translationX: .zero,
@@ -636,6 +656,7 @@ final class PhotoDetailMainView: UIView {
     addSubview(leftStackView)
     addSubview(centerLine)
     addSubview(rightStackView)
+    photoView.addGestureRecognizer(tapGesture)
   }
 
   private func setupConstraints() {
@@ -783,22 +804,27 @@ final class PhotoDetailMainView: UIView {
     self.isAspectFill.toggle()
   }
 
+  // MARK: - Config Button Actions
   private func configInfoButtonAction() {
     let infoButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-      isPhotoInfo ? self.showPhotoInfo() : self.hidePhotoInfo()
-      isPhotoInfo.toggle()
+      self.showAndHidePhotoInfo()
     }
     infoButton.addAction(infoButtonAction, for: .touchUpInside)
   }
 
   // MARK: - Helper
-  func createdAt(from date: String) {
+  private func createdAt(from date: String) {
     guard let date = ISO8601DateFormatter().date(from: date) else { return }
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .medium
     dateFormatter.timeStyle = .short
     let readableDate = dateFormatter.string(from: date)
     createdLabel.text = readableDate
+  }
+
+  private func showAndHidePhotoInfo() {
+    isPhotoInfo ? showPhotoInfo() : hidePhotoInfo()
+    isPhotoInfo.toggle()
   }
 }
