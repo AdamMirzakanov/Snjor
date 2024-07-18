@@ -584,18 +584,6 @@ final class PhotoDetailMainView: UIView {
     }
   }
 
-  private func animateToggleContentModeButton(_ button: UIButton ) {
-    UIView.animate(withDuration: PhotoDetailMainViewConst.minDuration) {
-      let scaleTransform = CGAffineTransform(
-        scaleX: PhotoDetailMainViewConst.toggleButtonMinScale,
-        y: PhotoDetailMainViewConst.toggleButtonMinScale
-      )
-      button.transform = scaleTransform
-      button.transform = .identity
-    }
-    configToggleContentMode()
-  }
-
   func hidePhotoInfo() {
     UIView.animate(withDuration: PhotoDetailMainViewConst.hidePhotoInfoDuration) {
       let transform = CGAffineTransform(
@@ -780,7 +768,7 @@ final class PhotoDetailMainView: UIView {
   private func configToggleContentModeButtonAction() {
     let toggleContentModeButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
-      animateToggleContentModeButton(toggleContentModeButton)
+      configToggleContentMode()
     }
     toggleContentModeButton.addAction(
       toggleContentModeButtonAction,
