@@ -1,5 +1,5 @@
 //
-//  PhotoDetailString.swift
+//  PhotoDetailRootView.swift
 //  Snjor
 //
 //  Created by Адам on 15.07.2024.

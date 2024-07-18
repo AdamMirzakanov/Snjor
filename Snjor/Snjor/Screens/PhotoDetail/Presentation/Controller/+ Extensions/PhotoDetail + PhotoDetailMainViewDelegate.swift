@@ -5,7 +5,7 @@
 //  Created by Адам on 18.07.2024.
 //
 
-extension PhotoDetailViewController: PhotoDetailMainViewDelegate {
+extension PhotoDetailViewController: PhotoDetailRootViewDelegate {
   func didTapDownloadButton() {
     downloadService.startDownload(
       viewModel.photo!,

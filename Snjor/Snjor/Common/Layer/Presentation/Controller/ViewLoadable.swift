@@ -8,13 +8,13 @@
 import UIKit
 
 protocol ViewLoadable {
-  associatedtype MainView: UIView
+  associatedtype RootView: UIView
 }
 
 extension ViewLoadable where Self: UIViewController {
-  var mainView: MainView {
-    guard let customView = view as? MainView else {
-      fatalError("Expected view to be of type \(MainView.self) but got \(type(of: view)) instead")
+  var rootView: RootView {
+    guard let customView = view as? RootView else {
+      fatalError("Expected view to be of type \(RootView.self) but got \(type(of: view)) instead")
     }
     return customView
   }

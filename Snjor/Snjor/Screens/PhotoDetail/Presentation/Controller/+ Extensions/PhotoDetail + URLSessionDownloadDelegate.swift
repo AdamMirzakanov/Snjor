@@ -57,7 +57,7 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
 
   private func hideSpinnerAndReverseAnimateDownloadButton() {
     DispatchQueue.main.async{
-      self.mainView.reverseAnimateDownloadButton()
+      self.rootView.reverseAnimateDownloadButton()
     }
   }
 }

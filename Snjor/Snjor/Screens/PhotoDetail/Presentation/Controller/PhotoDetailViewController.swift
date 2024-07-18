@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PhotoDetailViewController: BaseViewController<PhotoDetailMainView> {
+final class PhotoDetailViewController: BaseViewController<PhotoDetailRootView> {
 
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -33,7 +33,7 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailMainView> {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    mainView.delegate = self
+    rootView.delegate = self
     setupUI()
     stateController()
     viewModel.viewDidLoad()
@@ -83,7 +83,7 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailMainView> {
         guard let self = self else { return }
         switch state {
         case .success:
-          mainView.setupPhotoInfoData(viewModel: viewModel)
+          rootView.setupPhotoInfoData(viewModel: viewModel)
         case .loading: break
         case .fail(error: let error):
           presentAlert(message: error, title: AppLocalized.error)
@@ -93,9 +93,9 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailMainView> {
   }
 
   private func setupUI() {
-    mainView.setupData(viewModel: viewModel)
-    mainView.setupBarButtonItems(
-      navigationItem: navigationItem, 
+    rootView.setupData(viewModel: viewModel)
+    rootView.setupBarButtonItems(
+      navigationItem: navigationItem,
       navigationController: navigationController
     )
   }

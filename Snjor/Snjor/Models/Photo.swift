@@ -39,6 +39,7 @@ struct Photo: Decodable, Hashable {
   }
 }
 
+// MARK: - URLs
 extension Photo: Downloadable {
   var downloadURL: URL? {
     return self.urls[.regular]
@@ -48,5 +49,11 @@ extension Photo: Downloadable {
 extension Photo {
   var regularURL: URL? {
     return self.urls[.regular]
+  }
+}
+
+extension Photo {
+  var profileImageURL: URL? {
+    return self.user.profileImage[.medium]
   }
 }

@@ -8,9 +8,9 @@
 import UIKit
 
 class BaseViewController<ViewType: UIView>: UIViewController {
-  typealias MainView = ViewType
+  typealias RootView = ViewType
   override func loadView() {
-    let customView = MainView()
+    let customView = RootView()
     view = customView
   }
 }

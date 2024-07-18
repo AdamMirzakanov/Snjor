@@ -1,5 +1,5 @@
 //
-//  PhotoCellView.swift
+//  PhotoListCellView.swift
 //  Snjor
 //
 //  Created by Адам on 08.07.2024.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol PhotoCellViewDelegate: AnyObject {
+protocol PhotoListCellViewDelegate: AnyObject {
   func downloadTapped()
 }
 
-final class PhotoCellView: BasePhotoView {
+final class PhotoListCellView: BasePhotoView {
 
   // MARK: - Delegate
-  weak var delegate: (any PhotoCellViewDelegate)?
+  weak var delegate: (any PhotoListCellViewDelegate)?
 
   // MARK: - Private Properties
   private var screenScale: CGFloat {
@@ -26,7 +26,26 @@ final class PhotoCellView: BasePhotoView {
       gradientView.alpha = showsUsername ? GlobalConst.maxAlpha : .zero
     }
   }
-  
+
+  // MARK: - Gradient
+  let gradientView: GradientView = {
+    let color = UIColor(
+      white: .zero,
+      alpha: BasePhotoViewConst.gradientAlpha
+    )
+    $0.setColors([
+      GradientView.Color(
+        color: .clear,
+        location: BasePhotoViewConst.downLocation
+      ),
+      GradientView.Color(
+        color: color,
+        location: BasePhotoViewConst.upLocation
+      )
+    ])
+    return $0
+  }(GradientView())
+
   // MARK: - Spinner
   lazy var spinner: UIActivityIndicatorView = {
     let xCenter = self.downloadButtonBlurEffect.contentView.bounds.midX
@@ -35,8 +54,8 @@ final class PhotoCellView: BasePhotoView {
     $0.stopAnimating()
     $0.color = .label
     $0.transform = CGAffineTransform(
-      scaleX: PhotoDetailMainViewConst.spinnerScale,
-      y: PhotoDetailMainViewConst.spinnerScale
+      scaleX: PhotoDetailRootViewConst.spinnerScale,
+      y: PhotoDetailRootViewConst.spinnerScale
     )
     $0.alpha = GlobalConst.defaultAlpha
     $0.isHidden = true
@@ -83,14 +102,14 @@ final class PhotoCellView: BasePhotoView {
   override init() {
     super.init()
     configDownloadButtonAction()
-    setupViews()
+    setupPhotoCellViews()
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Override Methods
+  // MARK: - Sized Image
   override func sizedImageURL(from url: URL) -> URL {
     layoutIfNeeded()
     return url.appending(queryItems: [
@@ -104,27 +123,30 @@ final class PhotoCellView: BasePhotoView {
       )
     ])
   }
-  
-  // MARK: Setup Data
-  override func configure(
+
+  // MARK: - Setup Data
+  func configure(
     with photo: Photo,
-    showsUsername: Bool = true
+    showsUsername: Bool = true,
+    url: URL?
   ) {
     super.configure(
       with: photo,
-      showsUsername: showsUsername
+      url: url,
+      blurHash: photo.blurHash
     )
     self.showsUsername = showsUsername
     userNameLabel.text = photo.user.displayName
   }
-  
+
   // MARK: - Setup Views
-  private func setupViews() {
+  private func setupPhotoCellViews() {
     addSubviews()
     setupConstraints()
   }
 
   private func addSubviews() {
+    addSubview(gradientView)
     addSubview(downloadButtonBlurEffect)
     addSubview(userNameLabel)
     downloadButtonBlurEffect.contentView.addSubview(downloadButton)
@@ -132,8 +154,13 @@ final class PhotoCellView: BasePhotoView {
   }
 
   private func setupConstraints() {
+    setupGradientConstraints()
     setupBlurEffectConstraints()
     setupUserNameLabelConstraints()
+  }
+
+  private func setupGradientConstraints() {
+    gradientView.fillSuperView()
   }
 
   private func setupBlurEffectConstraints() {
@@ -147,8 +174,8 @@ final class PhotoCellView: BasePhotoView {
 
   private func setupUserNameLabelConstraints() {
     userNameLabel.setConstraints(
-      bottom: mainPhotoImageView.bottomAnchor,
-      left: mainPhotoImageView.leftAnchor,
+      bottom: mainImageView.bottomAnchor,
+      left: mainImageView.leftAnchor,
       pBottom: GlobalConst.defaultValue,
       pLeft: GlobalConst.defaultValue
     )
@@ -159,8 +186,8 @@ final class PhotoCellView: BasePhotoView {
   }
 
   private func reset() {
-    currentPhotoID = nil
-    mainPhotoImageView.image = nil
+//    currentPhotoID = nil
+    mainImageView.image = nil
     userNameLabel.text = nil
     imageDownloader.cancel()
     downloadButton.isHidden = false
@@ -196,14 +223,14 @@ final class PhotoCellView: BasePhotoView {
 
   // MARK: - Animate Buttons
   private func animateButton() {
-    UIView.animate(withDuration: PhotoCellConst.duration) {
+    UIView.animate(withDuration: PhotoListCellViewConst.duration) {
       let scaleTransform = CGAffineTransform(
-        scaleX: PhotoCellConst.scale,
-        y: PhotoCellConst.scale
+        scaleX: PhotoListCellViewConst.scale,
+        y: PhotoListCellViewConst.scale
       )
       self.downloadButtonBlurEffect.transform = scaleTransform
     } completion: { _ in
-      UIView.animate(withDuration: PhotoCellConst.duration) {
+      UIView.animate(withDuration: PhotoListCellViewConst.duration) {
         self.downloadButton.isHidden = true
         self.spinner.isHidden = false
         self.spinner.startAnimating()

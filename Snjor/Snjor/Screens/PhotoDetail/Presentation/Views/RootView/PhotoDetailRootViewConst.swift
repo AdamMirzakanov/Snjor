@@ -1,5 +1,5 @@
 //
-//  PhotoDetailMainViewConst.swift
+//  PhotoDetailRootViewConst.swift
 //  Snjor
 //
 //  Created by Адам on 26.06.2024.
@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-enum PhotoDetailMainViewConst {
+enum PhotoDetailRootViewConst {
 
   //left stack & right stack & center line
   static let verticalTranslation: CGFloat = -120.0

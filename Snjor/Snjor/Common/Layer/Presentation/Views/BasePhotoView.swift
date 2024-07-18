@@ -2,46 +2,26 @@
 //  BasePhotoView.swift
 //  Snjor
 //
-//  Created by Адам on 11.07.2024.
+//  Created by Адам on 18.07.2024.
 //
 
 import UIKit
 
 class BasePhotoView: UIView {
   // MARK: - Properties
-  var currentPhotoID: String?
   var imageDownloader = ImageDownloader()
 
   // MARK: - Main Photo
-  let mainPhotoImageView: UIImageView = {
+  let mainImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
 
-  // MARK: - Gradient
-  let gradientView: GradientView = {
-    let color = UIColor(
-      white: .zero,
-      alpha: BasePhotoViewConst.gradientAlpha
-    )
-    $0.setColors([
-      GradientView.Color(
-        color: .clear,
-        location: BasePhotoViewConst.downLocation
-      ),
-      GradientView.Color(
-        color: color,
-        location: BasePhotoViewConst.upLocation
-      )
-    ])
-    return $0
-  }(GradientView())
-
   // MARK: - Initializers
   init() {
     super.init(frame: .zero)
-    setupBaseViews()
+    setupViews()
   }
 
   required init?(coder: NSCoder) {
@@ -49,50 +29,41 @@ class BasePhotoView: UIView {
   }
 
   // MARK: - Setup Data
-  func configure(with photo: Photo, showsUsername: Bool) {
+  func configure<T: Decodable>(
+    with photo: T,
+    url: URL?,
+    blurHash: String?
+  ) {
     let size = BasePhotoViewConst.blurSize
-    currentPhotoID = photo.id
-    if let blurHash = photo.blurHash {
-      mainPhotoImageView.image = UIImage(blurHash: blurHash, size: size)
-      downloadImage(with: photo)
+    if let blurHash = blurHash {
+      mainImageView.image = UIImage(blurHash: blurHash, size: size)
+      downloadImage(with: photo, url: url)
     } else {
-      downloadImage(with: photo)
+      downloadImage(with: photo, url: url)
     }
   }
 
+  // MARK: - Setup Views
+  private func setupViews() {
+    addSubview(mainImageView)
+    mainImageView.fillSuperView()
+  }
+
+  // MARK: - Download Image
   func sizedImageURL(from url: URL) -> URL {
     return url
   }
 
-  // MARK: - Setup Views
-  func setupBaseViews() {
-    addSubviews()
-    setupConstraints()
-  }
-
-  private func addSubviews() {
-    addSubview(mainPhotoImageView)
-    addSubview(gradientView)
-  }
-
-  private func setupConstraints() {
-    mainPhotoImageView.fillSuperView()
-    gradientView.fillSuperView()
-  }
-
-  // MARK: - Image Downloader
-  private func downloadImage(with photo: Photo) {
-    guard let regularURL = photo.regularURL else { return }
-    let url = sizedImageURL(from: regularURL)
-    let downloadPhotoID = photo.id
-    imageDownloader.downloadPhoto(with: url) { [weak self] image, isCached in
-      guard let self = self,
-            self.currentPhotoID == downloadPhotoID
+  private func downloadImage<T: Decodable>(with photo: T, url: URL?) {
+    guard let url = url else { return }
+    let photoUrl = sizedImageURL(from: url)
+    imageDownloader.downloadPhoto(with: photoUrl) { [weak self] image, isCached in
+      guard let self = self
       else {
         return
       }
       if isCached == true {
-        self.mainPhotoImageView.image = image
+        self.mainImageView.image = image
         print(#function, "Кэш")
       } else {
         print(#function, "Интерент")
@@ -101,7 +72,7 @@ class BasePhotoView: UIView {
           duration: BasePhotoViewConst.duration,
           options: [.transitionCrossDissolve]
         ) {
-          self.mainPhotoImageView.image = image
+          self.mainImageView.image = image
         }
       }
     }
