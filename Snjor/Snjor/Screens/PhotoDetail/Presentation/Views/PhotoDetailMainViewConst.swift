@@ -39,8 +39,8 @@ enum PhotoDetailMainViewConst {
   static let minDuration: CGFloat = 0.2
   static let toggleButtonMinScale: CGFloat = 0.4
   static let spinnerScale: CGFloat = 0.75
-  static let damping: CGFloat = 0.5
-  static let velocity: CGFloat = 0.5
+  static let defaultDamping: CGFloat = 0.5
+  static let defaultVelocity: CGFloat = 0.5
   static let hidePhotoInfoDuration: CGFloat = 0.3
   static let translationX: CGFloat = downloadButtonWidth - GlobalConst.fullValue
   static let translationY: CGFloat = -10.0

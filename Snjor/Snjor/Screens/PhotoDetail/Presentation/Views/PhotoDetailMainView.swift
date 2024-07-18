@@ -120,7 +120,7 @@ final class PhotoDetailMainView: UIView {
     $0.setImage(icon, for: .normal)
     $0.setTitle(.jpeg, for: .normal)
     $0.titleLabel?.font = .systemFont(
-      ofSize: GlobalConst.downloadFontSize,
+      ofSize: GlobalConst.defaultFontSize,
       weight: .medium
     )
     $0.tintColor = .label
@@ -571,8 +571,8 @@ final class PhotoDetailMainView: UIView {
     UIView.animate(
       withDuration: PhotoDetailMainViewConst.defaultDuration,
       delay: .zero,
-      usingSpringWithDamping: 0.6,
-      initialSpringVelocity: 0.6
+      usingSpringWithDamping: PhotoDetailMainViewConst.defaultDamping,
+      initialSpringVelocity: PhotoDetailMainViewConst.defaultVelocity
     ) {
       self.downloadBarButtonBlurEffect.frame.origin.x = -PhotoDetailMainViewConst.translationX
       self.downloadBarButtonBlurEffect.frame.size.width = PhotoDetailMainViewConst.downloadButtonWidth
@@ -620,8 +620,8 @@ final class PhotoDetailMainView: UIView {
     UIView.animate(
       withDuration: PhotoDetailMainViewConst.defaultDuration,
       delay: .zero,
-      usingSpringWithDamping: PhotoDetailMainViewConst.damping,
-      initialSpringVelocity: PhotoDetailMainViewConst.velocity
+      usingSpringWithDamping: PhotoDetailMainViewConst.defaultDamping,
+      initialSpringVelocity: PhotoDetailMainViewConst.defaultDuration
     ) {
       self.gradientView.alpha = GlobalConst.maxAlpha
       self.photoInfoStackView.alpha = GlobalConst.maxAlpha
