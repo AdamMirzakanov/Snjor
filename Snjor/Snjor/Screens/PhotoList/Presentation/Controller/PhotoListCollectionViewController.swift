@@ -26,14 +26,6 @@ final class PhotoListCollectionViewController: UICollectionViewController {
     in: .userDomainMask
   ).first!
 
-  // MARK: - Views
-  let spinnerVisualEffectView: SpinnerVisualEffectView = {
-    $0.frame.size.width = GlobalConst.fullValue
-    $0.frame.size.height = GlobalConst.fullValue
-    $0.effect = nil
-    return $0
-  }(SpinnerVisualEffectView(effect: UIBlurEffect(style: .regular)))
-
   // MARK: - Initializers
   init(
     viewModel: any PhotoListViewModelProtocol,
@@ -55,7 +47,6 @@ final class PhotoListCollectionViewController: UICollectionViewController {
     stateController()
     setupDataSource()
     configureDownloadSession()
-    setupNavigationBarItems()
     viewModel.viewDidLoad()
   }
 
@@ -72,10 +63,6 @@ final class PhotoListCollectionViewController: UICollectionViewController {
       delegate: self,
       id: Self.sessionID
     )
-  }
-
-  private func setupNavigationBarItems() {
-    navigationItem.leftBarButtonItem = spinnerVisualEffectView.makeSpinnerBarItem()
   }
 
   private func stateController() {
@@ -95,5 +82,3 @@ final class PhotoListCollectionViewController: UICollectionViewController {
       .store(in: &cancellable)
   }
 }
-
-extension PhotoListCollectionViewController: SessionIdentifiable { }

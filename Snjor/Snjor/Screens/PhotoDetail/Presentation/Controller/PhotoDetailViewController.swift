@@ -11,8 +11,8 @@ import Combine
 final class PhotoDetailViewController: BaseViewController<PhotoDetailMainView> {
 
   // MARK: - Private Properties
-  var downloadService = DownloadService()
   private var cancellable = Set<AnyCancellable>()
+  private(set) var downloadService = DownloadService()
   private(set) var viewModel: any PhotoDetailViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
@@ -100,14 +100,3 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailMainView> {
     )
   }
 }
-
-extension PhotoDetailViewController: PhotoDetailMainViewDelegate {
-  func didTapDownloadButton() {
-    downloadService.startDownload(
-      viewModel.photo!,
-      sessionID: Self.sessionID
-    )
-  }
-}
-
-extension PhotoDetailViewController: SessionIdentifiable { }
