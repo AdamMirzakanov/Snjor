@@ -48,8 +48,8 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
     module.collectionView.collectionViewLayout = cascadeLayout
     module.collectionView.showsVerticalScrollIndicator = false
     module.collectionView.register(
-      PhotoListCell.self,
-      forCellWithReuseIdentifier: PhotoListCell.reuseID
+      PhotoCell.self,
+      forCellWithReuseIdentifier: PhotoCell.reuseID
     )
     return module
   }

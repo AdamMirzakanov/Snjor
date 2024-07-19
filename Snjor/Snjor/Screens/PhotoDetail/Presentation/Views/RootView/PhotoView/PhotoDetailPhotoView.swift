@@ -1,5 +1,5 @@
 //
-//  PhotoDetailView.swift
+//  PhotoDetailPhotoView.swift
 //  Snjor
 //
 //  Created by Адам on 11.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PhotoDetailView: BasePhotoView {
+final class PhotoDetailPhotoView: BasePhotoView {
   // MARK: - Gradient
   let gradientView: GradientView = {
     let color = UIColor(

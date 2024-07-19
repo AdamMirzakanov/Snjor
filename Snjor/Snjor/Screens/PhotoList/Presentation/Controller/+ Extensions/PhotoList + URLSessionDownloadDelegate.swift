@@ -62,7 +62,7 @@ extension PhotoListCollectionViewController: URLSessionDownloadDelegate {
   private func hideSpinner() {
     DispatchQueue.main.async {
       self.collectionView.visibleCells
-        .compactMap { $0 as? PhotoListCell }
+        .compactMap { $0 as? PhotoCell }
         .forEach { cell in
           cell.photoView.spinner.stopAnimating()
           cell.photoView.spinner.isHidden = true

@@ -22,11 +22,11 @@ final class PhotoDetailRootView: UIView {
   private var isPhotoInfo = true
 
   // MARK: - Views
-  let photoView: PhotoDetailView = {
+  let photoView: PhotoDetailPhotoView = {
     return $0
-  }(PhotoDetailView())
+  }(PhotoDetailPhotoView())
 
-  let profilePhotoView: PhotoDetailView = {
+  let profilePhotoView: PhotoDetailPhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.mainImageView.image = UIImage(named: .defaultProfilePhoto)
     $0.layer.cornerRadius = GlobalConst.circle
@@ -38,7 +38,7 @@ final class PhotoDetailRootView: UIView {
       equalToConstant: GlobalConst.fullValue
     ).isActive = true
     return $0
-  }(PhotoDetailView())
+  }(PhotoDetailPhotoView())
 
   // MARK: - Gesture
   private lazy var tapGesture: UITapGestureRecognizer = {
@@ -551,83 +551,6 @@ final class PhotoDetailRootView: UIView {
     exposureTimeValueLabel.text = viewModel.exposureTime
   }
 
-  // MARK: - Animate Buttons
- private func animateDownloadButton() {
-    UIView.animate(
-      withDuration: PhotoDetailRootViewConst.minDuration
-    ) {
-      self.downloadBarButtonBlurEffect.frame.origin.x = PhotoDetailRootViewConst.translationX
-      self.downloadBarButtonBlurEffect.frame.size.width = GlobalConst.fullValue
-      self.downloadBarButtonBlurEffect.frame.size.height = GlobalConst.fullValue
-      self.downloadBarButton.alpha = .zero
-      self.downloadBarButtonBlurEffect.layer.cornerRadius = GlobalConst.circle
-    } completion: { _ in
-      self.downloadBarButton.removeFromSuperview()
-      self.downloadBarButtonBlurEffect.contentView.addSubview(self.spinner)
-    }
-  }
-
-  func reverseAnimateDownloadButton() {
-    UIView.animate(
-      withDuration: PhotoDetailRootViewConst.defaultDuration,
-      delay: .zero,
-      usingSpringWithDamping: PhotoDetailRootViewConst.defaultDamping,
-      initialSpringVelocity: PhotoDetailRootViewConst.defaultVelocity
-    ) {
-      self.downloadBarButtonBlurEffect.frame.origin.x = -PhotoDetailRootViewConst.translationX
-      self.downloadBarButtonBlurEffect.frame.size.width = PhotoDetailRootViewConst.downloadButtonWidth
-      self.downloadBarButtonBlurEffect.frame.size.height = GlobalConst.fullValue
-      self.downloadBarButtonBlurEffect.layer.cornerRadius = GlobalConst.defaultValue
-      self.spinner.removeFromSuperview()
-      self.downloadBarButtonBlurEffect.contentView.addSubview(self.downloadBarButton)
-      self.downloadBarButton.alpha = GlobalConst.defaultAlpha
-    }
-  }
-
-  func hidePhotoInfo() {
-    UIView.animate(withDuration: PhotoDetailRootViewConst.hidePhotoInfoDuration) {
-      let transform = CGAffineTransform(
-        translationX: .zero,
-        y: PhotoDetailRootViewConst.translationY
-      )
-      self.profileAndInfoButtonStackView.transform = transform
-      self.mainStackView.transform = transform
-      self.leftStackView.transform = transform
-      self.rightStackView.transform = transform
-      self.centerLine.transform = transform
-      self.photoInfoStackView.alpha = .zero
-      self.leftStackView.alpha = .zero
-      self.rightStackView.alpha = .zero
-      self.centerLine.alpha = .zero
-      self.gradientView.alpha = GlobalConst.defaultAlpha
-      self.photoInfoStackView.isHidden = true
-    }
-  }
-
-  private func showPhotoInfo() {
-    UIView.animate(
-      withDuration: PhotoDetailRootViewConst.defaultDuration,
-      delay: .zero,
-      usingSpringWithDamping: PhotoDetailRootViewConst.defaultDamping,
-      initialSpringVelocity: PhotoDetailRootViewConst.defaultDuration
-    ) {
-      self.gradientView.alpha = GlobalConst.maxAlpha
-      self.photoInfoStackView.alpha = GlobalConst.maxAlpha
-      self.leftStackView.alpha = GlobalConst.maxAlpha
-      self.rightStackView.alpha = GlobalConst.maxAlpha
-      self.centerLine.alpha = GlobalConst.defaultAlpha
-      let transform = CGAffineTransform(
-        translationX: .zero,
-        y: PhotoDetailRootViewConst.verticalTranslation
-      )
-      self.mainStackView.transform = transform
-      self.leftStackView.transform = transform
-      self.rightStackView.transform = transform
-      self.centerLine.transform = transform
-      self.photoInfoStackView.isHidden = false
-    }
-  }
-
   // MARK: - Setup Views
   private func photoDetailMainViews() {
     addSubviews()
@@ -788,6 +711,84 @@ final class PhotoDetailRootView: UIView {
     }
     self.isAspectFill.toggle()
   }
+
+  // MARK: - Animate Buttons
+ private func animateDownloadButton() {
+    UIView.animate(
+      withDuration: PhotoDetailRootViewConst.minDuration
+    ) {
+      self.downloadBarButtonBlurEffect.frame.origin.x = PhotoDetailRootViewConst.translationX
+      self.downloadBarButtonBlurEffect.frame.size.width = GlobalConst.fullValue
+      self.downloadBarButtonBlurEffect.frame.size.height = GlobalConst.fullValue
+      self.downloadBarButton.alpha = .zero
+      self.downloadBarButtonBlurEffect.layer.cornerRadius = GlobalConst.circle
+    } completion: { _ in
+      self.downloadBarButton.removeFromSuperview()
+      self.downloadBarButtonBlurEffect.contentView.addSubview(self.spinner)
+    }
+  }
+
+  func reverseAnimateDownloadButton() {
+    UIView.animate(
+      withDuration: PhotoDetailRootViewConst.defaultDuration,
+      delay: .zero,
+      usingSpringWithDamping: PhotoDetailRootViewConst.defaultDamping,
+      initialSpringVelocity: PhotoDetailRootViewConst.defaultVelocity
+    ) {
+      self.downloadBarButtonBlurEffect.frame.origin.x = -PhotoDetailRootViewConst.translationX
+      self.downloadBarButtonBlurEffect.frame.size.width = PhotoDetailRootViewConst.downloadButtonWidth
+      self.downloadBarButtonBlurEffect.frame.size.height = GlobalConst.fullValue
+      self.downloadBarButtonBlurEffect.layer.cornerRadius = GlobalConst.defaultValue
+      self.spinner.removeFromSuperview()
+      self.downloadBarButtonBlurEffect.contentView.addSubview(self.downloadBarButton)
+      self.downloadBarButton.alpha = GlobalConst.defaultAlpha
+    }
+  }
+
+  func hidePhotoInfo() {
+    UIView.animate(withDuration: PhotoDetailRootViewConst.hidePhotoInfoDuration) {
+      let transform = CGAffineTransform(
+        translationX: .zero,
+        y: PhotoDetailRootViewConst.translationY
+      )
+      self.profileAndInfoButtonStackView.transform = transform
+      self.mainStackView.transform = transform
+      self.leftStackView.transform = transform
+      self.rightStackView.transform = transform
+      self.centerLine.transform = transform
+      self.photoInfoStackView.alpha = .zero
+      self.leftStackView.alpha = .zero
+      self.rightStackView.alpha = .zero
+      self.centerLine.alpha = .zero
+      self.gradientView.alpha = GlobalConst.defaultAlpha
+      self.photoInfoStackView.isHidden = true
+    }
+  }
+
+  private func showPhotoInfo() {
+    UIView.animate(
+      withDuration: PhotoDetailRootViewConst.defaultDuration,
+      delay: .zero,
+      usingSpringWithDamping: PhotoDetailRootViewConst.defaultDamping,
+      initialSpringVelocity: PhotoDetailRootViewConst.defaultDuration
+    ) {
+      self.gradientView.alpha = GlobalConst.maxAlpha
+      self.photoInfoStackView.alpha = GlobalConst.maxAlpha
+      self.leftStackView.alpha = GlobalConst.maxAlpha
+      self.rightStackView.alpha = GlobalConst.maxAlpha
+      self.centerLine.alpha = GlobalConst.defaultAlpha
+      let transform = CGAffineTransform(
+        translationX: .zero,
+        y: PhotoDetailRootViewConst.verticalTranslation
+      )
+      self.mainStackView.transform = transform
+      self.leftStackView.transform = transform
+      self.rightStackView.transform = transform
+      self.centerLine.transform = transform
+      self.photoInfoStackView.isHidden = false
+    }
+  }
+
 
   // MARK: - Config Button Actions
   private func configInfoButtonAction() {

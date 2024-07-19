@@ -1,5 +1,5 @@
 //
-//  PhotoListCellView.swift
+//  PhotoCellPhotoView.swift
 //  Snjor
 //
 //  Created by Адам on 08.07.2024.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol PhotoListCellViewDelegate: AnyObject {
+protocol PhotoCellPhotoViewDelegate: AnyObject {
   func downloadTapped()
 }
 
-final class PhotoListCellView: BasePhotoView {
+final class PhotoCellPhotoView: BasePhotoView {
 
   // MARK: - Delegate
-  weak var delegate: (any PhotoListCellViewDelegate)?
+  weak var delegate: (any PhotoCellPhotoViewDelegate)?
 
   // MARK: - Private Properties
   private var screenScale: CGFloat {
@@ -223,14 +223,14 @@ final class PhotoListCellView: BasePhotoView {
 
   // MARK: - Animate Buttons
   private func animateButton() {
-    UIView.animate(withDuration: PhotoListCellViewConst.duration) {
+    UIView.animate(withDuration: PhotoCellPhotoViewConst.duration) {
       let scaleTransform = CGAffineTransform(
-        scaleX: PhotoListCellViewConst.scale,
-        y: PhotoListCellViewConst.scale
+        scaleX: PhotoCellPhotoViewConst.scale,
+        y: PhotoCellPhotoViewConst.scale
       )
       self.downloadButtonBlurEffect.transform = scaleTransform
     } completion: { _ in
-      UIView.animate(withDuration: PhotoListCellViewConst.duration) {
+      UIView.animate(withDuration: PhotoCellPhotoViewConst.duration) {
         self.downloadButton.isHidden = true
         self.spinner.isHidden = false
         self.spinner.startAnimating()
