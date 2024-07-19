@@ -48,6 +48,12 @@ final class PhotoListCollectionViewController: UICollectionViewController {
     setupDataSource()
     configureDownloadSession()
     viewModel.viewDidLoad()
+
+    collectionView.register(
+      SectionHeaderView.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: SectionHeaderView.reuseIdentifier
+    )
   }
 
   // MARK: - Private Methods
@@ -80,5 +86,41 @@ final class PhotoListCollectionViewController: UICollectionViewController {
         }
       }
       .store(in: &cancellable)
+  }
+}
+
+class SectionHeaderView: UICollectionReusableView {
+
+  static let reuseIdentifier = "SectionHeaderView"
+
+  let label: UILabel = {
+      let label = UILabel()
+      label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+      label.textColor = .label
+
+      return label
+  }()
+
+  let mainImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.clipsToBounds = true
+    return $0
+  }(UIImageView())
+
+  // MARK: - Применить конфигурации
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    addSubview(mainImageView)
+    addSubview(label)
+    mainImageView.fillSuperView()
+    label.fillSuperView()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  func setImage(_ image: UIImage) {
+    mainImageView.image = image
   }
 }

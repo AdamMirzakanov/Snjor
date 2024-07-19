@@ -18,6 +18,8 @@ final class CascadeLayout: UICollectionViewLayout {
   // MARK: - Private Properties
   private weak var delegate: CascadeLayoutDelegate?
   private var layoutAttributes: [UICollectionViewLayoutAttributes] = []
+  private var headerAttributes: [UICollectionViewLayoutAttributes] = []
+
   private var frames: [CGRect] = []
   private var pagingViewAttributes: UICollectionViewLayoutAttributes?
   private var contentHeight: CGFloat = .zero
@@ -86,6 +88,11 @@ final class CascadeLayout: UICollectionViewLayout {
       attributes.append(attr)
     }
 
+    // Добавляем атрибуты заголовков
+    for attr in headerAttributes where rect.intersects(attr.frame) {
+      attributes.append(attr)
+    }
+
     if let pagingViewAttributes = pagingViewAttributes,
        pagingViewAttributes.frame.intersects(rect) {
       attributes.append(pagingViewAttributes)
@@ -122,8 +129,13 @@ final class CascadeLayout: UICollectionViewLayout {
     let numberOfColumns = self.numberOfColumns
     let isSingleColumn = self.isSingleColumn
     let columnWidth = self.columnWidth
-    let topInset: CGFloat = .zero
-    var columnHeights = [CGFloat](repeating: topInset, count: numberOfColumns)
+
+    // начало коллекции
+    let topInset: CGFloat = CascadeLayoutConst.topInset
+    var columnHeights = [CGFloat](
+      repeating: topInset,
+      count: numberOfColumns
+    )
     var numberOfItems: Int = .zero
 
     func originForColumn(_ columnIndex: Int) -> CGPoint {
@@ -144,8 +156,20 @@ final class CascadeLayout: UICollectionViewLayout {
       numberOfItems += collectionView.numberOfItems(inSection: $0)
     }
 
+    // Вычисляем атрибуты для заголовков секций
+    for section in 0..<collectionView.numberOfSections {
+      let headerIndexPath = IndexPath(item: 0, section: section)
+      let headerAttr = layoutAttributesForSupplementaryView(
+        ofKind: UICollectionView.elementKindSectionHeader,
+        at: headerIndexPath
+      )
+      if let headerAttr = headerAttr {
+        headerAttributes.append(headerAttr)
+      }
+    }
+
     for index in 0 ..< numberOfItems {
-      let indexPath = IndexPath(item: index, section: 0)
+      let indexPath = IndexPath(item: index, section: .zero)
       let photoSize = delegate.cascadeLayout(self, sizeForItemAt: indexPath)
       let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
       let columnIndex = indexOfNextColumn()
@@ -158,6 +182,27 @@ final class CascadeLayout: UICollectionViewLayout {
     }
     contentHeight = columnHeights.max() ?? .zero
     contentHeight += itemSpacing
+  }
+
+  override func layoutAttributesForSupplementaryView(
+    ofKind elementKind: String,
+    at indexPath: IndexPath
+  ) -> UICollectionViewLayoutAttributes? {
+    guard elementKind == UICollectionView.elementKindSectionHeader else {
+      return nil
+    }
+
+    let attributes = UICollectionViewLayoutAttributes(
+      forSupplementaryViewOfKind: elementKind,
+      with: indexPath
+    )
+    attributes.frame = CGRect(
+      x: .zero,
+      y: .zero,
+      width: collectionView?.frame.width ?? .zero,
+      height: CascadeLayoutConst.headerImage // высота заголовка
+    )
+    return attributes
   }
 
   // MARK: - Private Methods
@@ -174,6 +219,7 @@ final class CascadeLayout: UICollectionViewLayout {
     layoutAttributes.removeAll()
     frames.removeAll()
     contentHeight = .zero
+    headerAttributes.removeAll() // Добавляем сброс атрибутов заголовков
   }
 
   // MARK: - Utilities

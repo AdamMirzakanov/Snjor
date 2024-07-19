@@ -17,12 +17,14 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   private var lastPageValidationUseCase: any Pageable
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
+  private var sections: [Section] = []
   private (set) var state: PassthroughSubject<StateController, Never>
 
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(photos)
+    snapshot.appendItems(photos, toSection: .main)
+    sections = snapshot.sectionIdentifiers
     return snapshot
   }
 
@@ -45,21 +47,50 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     }
   }
 
+
+
   func createDataSource(
     for collectionView: UICollectionView,
     delegate: any PhotoCellDelegate
   ) {
     dataSource = UICollectionViewDiffableDataSource
     <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, photo in
-      let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: PhotoCell.reuseID,
+
+      let section = self.sections[indexPath.section]
+
+      switch section {
+      case .main:
+        let cell = collectionView.dequeueReusableCell(
+          withReuseIdentifier: PhotoCell.reuseID,
+          for: indexPath
+        )
+        guard let photoCell = cell as? PhotoCell else { return cell }
+        photoCell.delegate = delegate
+        self.checkAndLoadMorePhotos(at: indexPath.item)
+        photoCell.configure(with: photo)
+        return photoCell
+      }
+    }
+
+    dataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) -> UICollectionReusableView? in
+      guard kind == UICollectionView.elementKindSectionHeader else {
+        return nil
+      }
+
+      let section = self.sections[indexPath.section]
+      let sectionImage: UIImage
+      switch section {
+      case .main:
+        sectionImage = UIImage(named: "profile")!
+      }
+
+      let headerView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: kind,
+        withReuseIdentifier: SectionHeaderView.reuseIdentifier,
         for: indexPath
-      )
-      guard let photoCell = cell as? PhotoCell else { return cell }
-      photoCell.delegate = delegate
-      self.checkAndLoadMorePhotos(at: indexPath.item)
-      photoCell.configure(with: photo)
-      return photoCell
+      ) as! SectionHeaderView
+      headerView.setImage(sectionImage)
+      return headerView
     }
   }
 
@@ -103,4 +134,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
 // MARK: - Section
 private enum Section: CaseIterable {
   case main
+}
+
+private enum SupplementaryViewKind {
+  static let header = "header"
 }
