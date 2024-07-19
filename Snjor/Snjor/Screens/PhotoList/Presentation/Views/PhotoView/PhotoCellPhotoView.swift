@@ -133,7 +133,8 @@ final class PhotoCellPhotoView: BasePhotoView {
     super.configure(
       with: photo,
       url: url,
-      blurHash: photo.blurHash
+      blurHash: photo.blurHash,
+      photoID: photo.id
     )
     self.showsUsername = showsUsername
     userNameLabel.text = photo.user.displayName
@@ -186,7 +187,7 @@ final class PhotoCellPhotoView: BasePhotoView {
   }
 
   private func reset() {
-//    currentPhotoID = nil
+    currentPhotoID = nil
     mainImageView.image = nil
     userNameLabel.text = nil
     imageDownloader.cancel()
