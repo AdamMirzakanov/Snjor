@@ -131,7 +131,6 @@ final class PhotoCellPhotoView: BasePhotoView {
     url: URL?
   ) {
     super.configure(
-      with: photo,
       url: url,
       blurHash: photo.blurHash,
       photoID: photo.id

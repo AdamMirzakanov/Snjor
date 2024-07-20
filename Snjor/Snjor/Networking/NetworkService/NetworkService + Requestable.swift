@@ -36,13 +36,13 @@ extension NetworkService: Requestable {
 
     switch httpResponse.statusCode {
     case HTTPResponseStatus.success:
-      print("code:", httpResponse.statusCode)
+      print(#function, "code:", httpResponse.statusCode)
       return try decodeResponse(data: request.data)
     case HTTPResponseStatus.clientError:
-      print("code:", httpResponse.statusCode)
+      print(#function, "code:", httpResponse.statusCode)
       throw APIError.clientError
     case HTTPResponseStatus.serverError:
-      print("code:", httpResponse.statusCode)
+      print(#function, "code:", httpResponse.statusCode)
       throw APIError.serverError
     default:
       throw APIError.unknownError

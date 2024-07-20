@@ -8,7 +8,7 @@
 import UIKit
 
 enum CascadeLayoutConst {
-  static let headerImage: CGFloat = 200.0
+  static let headerImage: CGFloat = 50.0
   static let topInset: CGFloat = headerImage + getAdjustedSpacing()
   static let iPhoneColumns = 2
   static let iPadColumns = 3

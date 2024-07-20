@@ -43,7 +43,6 @@ final class PhotoDetailPhotoView: BasePhotoView {
     url: URL?
   ) {
     super.configure(
-      with: photo,
       url: url,
       blurHash: photo.blurHash
     )

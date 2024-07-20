@@ -184,6 +184,7 @@ final class CascadeLayout: UICollectionViewLayout {
     contentHeight += itemSpacing
   }
 
+  // MARK: - SupplementaryView
   override func layoutAttributesForSupplementaryView(
     ofKind elementKind: String,
     at indexPath: IndexPath

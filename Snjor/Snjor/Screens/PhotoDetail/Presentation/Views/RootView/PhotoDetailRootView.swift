@@ -21,7 +21,7 @@ final class PhotoDetailRootView: UIView {
   private var isAspectFill = true
   private var isPhotoInfo = true
 
-  // MARK: - Views
+  // MARK: - Photo Views
   let photoView: PhotoDetailPhotoView = {
     return $0
   }(PhotoDetailPhotoView())
@@ -522,7 +522,7 @@ final class PhotoDetailRootView: UIView {
   // MARK: - Initializers
   init() {
     super.init(frame: .zero)
-    photoDetailMainViews()
+    setupPhotoDetailMainViews()
     hidePhotoInfo()
   }
 
@@ -552,7 +552,7 @@ final class PhotoDetailRootView: UIView {
   }
 
   // MARK: - Setup Views
-  private func photoDetailMainViews() {
+  private func setupPhotoDetailMainViews() {
     addSubviews()
     setupConstraints()
   }

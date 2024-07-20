@@ -78,18 +78,17 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
       }
 
       let section = self.sections[indexPath.section]
-      let sectionImage: UIImage
-      switch section {
-      case .main:
-        sectionImage = UIImage(named: "profile")!
-      }
 
       let headerView = collectionView.dequeueReusableSupplementaryView(
         ofKind: kind,
-        withReuseIdentifier: SectionHeaderView.reuseIdentifier,
+        withReuseIdentifier: SectionHeaderView.reuseID,
         for: indexPath
       ) as! SectionHeaderView
-      headerView.setImage(sectionImage)
+
+      switch section {
+      case .main:
+        headerView.setImage()
+      }
       return headerView
     }
   }

@@ -15,7 +15,10 @@ enum PrepareRequests {
   private static var accessKey: Authorization { .accessKey }
 
   // MARK: - Internal Methods
-  static func prepareInfoURLRequest(path: String, id: String) throws -> URLRequest {
+  static func prepareInfoURLRequest(
+    path: String,
+    id: String
+  ) throws -> URLRequest {
     var components = URLComponents()
     components.scheme = scheme.rawValue
     components.host = host.rawValue

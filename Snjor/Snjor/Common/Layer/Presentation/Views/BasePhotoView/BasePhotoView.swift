@@ -32,22 +32,20 @@ class BasePhotoView: UIView {
   // MARK: - Setup Data
   /// Configure the view with a photo, url, and optional blur hash.
   /// - Parameters:
-  ///   - photo: The photo object.
   ///   - url: The URL of the photo.
   ///   - blurHash: The optional blur hash of the photo.
-  func configure<T>(
-    with photo: T,
+  func configure(
     url: URL?,
-    blurHash: String?,
+    blurHash: String? = nil,
     photoID: String? = nil
-  ) where T: Decodable {
+  ) {
     currentPhotoID = photoID
     let size = BasePhotoViewConst.blurSize
     if let blurHash = blurHash {
       mainImageView.image = UIImage(blurHash: blurHash, size: size)
-      downloadImage(with: photo, url, photoID)
+      downloadImage(url, photoID)
     } else {
-      downloadImage(with: photo, url, photoID)
+      downloadImage(url, photoID)
     }
   }
 
@@ -65,11 +63,10 @@ class BasePhotoView: UIView {
     return url
   }
 
-  private func downloadImage<T>(
-    with photo: T,
+  private func downloadImage(
     _ url: URL?,
     _ photoID: String?
-  ) where T: Decodable {
+  ) {
     guard let url = url else { return }
     let photoURL = sizedImageURL(from: url)
     let downloadPhotoID = photoID
