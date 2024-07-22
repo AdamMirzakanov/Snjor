@@ -129,7 +129,6 @@
 /* Begin PBXFileReference section */
 		3723E3552C4F0CFE00C3AE3E /* TopicsPageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsPageFactory.swift; sourceTree = "<group>"; };
 		3723E3572C4F0D3400C3AE3E /* TopicsPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsPageCoordinator.swift; sourceTree = "<group>"; };
-		3723E37C2C4F0D5A00C3AE3E /* TopicsPhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsPhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		3723E38A2C4F0E5B00C3AE3E /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		3723E38C2C4F0F6300C3AE3E /* TopicsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsPageViewController.swift; sourceTree = "<group>"; };
 		3723E38E2C4F0FF600C3AE3E /* TopicsPage + UIPageViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopicsPage + UIPageViewControllerDataSource.swift"; sourceTree = "<group>"; };
@@ -437,82 +436,9 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		3723E37A2C4F0D5A00C3AE3E /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		3723E37B2C4F0D5A00C3AE3E /* + Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "+ Extensions";
-			sourceTree = "<group>";
-		};
-		3723E37D2C4F0D5A00C3AE3E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				3723E37B2C4F0D5A00C3AE3E /* + Extensions */,
-				3723E37C2C4F0D5A00C3AE3E /* TopicsPhotosCollectionViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		3723E37E2C4F0D5A00C3AE3E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		3723E37F2C4F0D5A00C3AE3E /* + Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "+ Extensions";
-			sourceTree = "<group>";
-		};
-		3723E3802C4F0D5A00C3AE3E /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				3723E37F2C4F0D5A00C3AE3E /* + Extensions */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		3723E3812C4F0D5A00C3AE3E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3723E3802C4F0D5A00C3AE3E /* Cell */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		3723E3822C4F0D5A00C3AE3E /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				3723E37D2C4F0D5A00C3AE3E /* Controller */,
-				3723E37E2C4F0D5A00C3AE3E /* ViewModel */,
-				3723E3812C4F0D5A00C3AE3E /* Views */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		3723E3832C4F0D5A00C3AE3E /* TopicsPhotosCollectionViewController */ = {
-			isa = PBXGroup;
-			children = (
-				3723E37A2C4F0D5A00C3AE3E /* Domain */,
-				3723E3822C4F0D5A00C3AE3E /* Presentation */,
-			);
-			path = TopicsPhotosCollectionViewController;
-			sourceTree = "<group>";
-		};
 		3723E3842C4F0D5A00C3AE3E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				3723E3832C4F0D5A00C3AE3E /* TopicsPhotosCollectionViewController */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
