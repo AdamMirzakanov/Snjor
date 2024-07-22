@@ -11,6 +11,7 @@ enum RequestController {
   // MARK: - Private Properties
   private static var photoListEndpoint: Endpoints { .photos }
   private static var photoEndpoint: Endpoints { .photo }
+  private static var topicsEndpoint: Endpoints { .topics }
   private static var searchPhotosEndpoint: Endpoints { .searchPhotos }
   private static var collectionsEndpoint: Endpoints { .collections }
   private static var searchCollectionsEndpoint: Endpoints { .searchCollections }
@@ -30,6 +31,15 @@ enum RequestController {
     let path = photoEndpoint.rawValue
     let id = photo.id
     let request = try PrepareRequests.prepareInfoURLRequest(path: path, id: id)
+    return request
+  }
+  
+  static func topicsRequest() throws -> URLRequest {
+    let path = topicsEndpoint.rawValue
+    let url = try Endpoints.createUrl(from: path)
+    var request = URLRequest(url: url)
+    request.allHTTPHeaderFields = Endpoints.prepareHeaders()
+    request.httpMethod = "GET"
     return request
   }
 }
