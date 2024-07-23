@@ -14,6 +14,6 @@ protocol TopicsPhotosViewModelProtocol: BaseViewModelProtocol {
   func applySnapshot()
   func createDataSource(
     for collectionView: UICollectionView,
-    delegate: any TopicsPhotoCellDelegate
+    delegate: any TopicsPhotosCellDelegate
   )
 }

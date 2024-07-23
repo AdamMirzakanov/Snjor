@@ -12,7 +12,11 @@ protocol TopicsPhotosViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-class TopicsPhotosCollectionViewController: UICollectionViewController {
+class TopicsPhotosCollectionViewController: UICollectionViewController, TopicsPhotosCellDelegate {
+  func downloadTapped(_ cell: TopicsPhotoCell) {
+    //
+  }
+  
   
   var topicID: String?
   var pageIndex: Int?
@@ -47,13 +51,13 @@ class TopicsPhotosCollectionViewController: UICollectionViewController {
 
   // MARK: - Initializers
   init(
-    viewModel: any TopicsPhotosViewModelProtocol,
-    delegate: any TopicsPhotosViewControllerDelegate,
-    layout: UICollectionViewLayout
+    viewModel: (any TopicsPhotosViewModelProtocol)? = nil,
+    delegate: (any TopicsPhotosViewControllerDelegate)? = nil,
+    layout: UICollectionViewLayout? = nil
   ) {
-    self.viewModel = viewModel
+    self.viewModel = viewModel!
     self.delegate = delegate
-    super.init(collectionViewLayout: layout)
+    super.init(collectionViewLayout: layout!)
   }
 
   required init?(coder: NSCoder) {

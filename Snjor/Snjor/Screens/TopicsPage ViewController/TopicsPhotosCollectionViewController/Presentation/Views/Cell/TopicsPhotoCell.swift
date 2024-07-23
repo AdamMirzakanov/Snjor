@@ -14,7 +14,7 @@ protocol TopicsPhotosCellDelegate: AnyObject {
 final class TopicsPhotoCell: UICollectionViewCell {
   
   // MARK: - Delegate
-  weak var delegate: (any TopicsPhotoCellDelegate)?
+  weak var delegate: (any TopicsPhotosCellDelegate)?
   
   // MARK: - Main Photo View
   let photoView: PhotoCellPhotoView = {

@@ -12,11 +12,7 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
 
   func viewControllerForTopic(at index: Int) -> UIViewController? {
     guard index >= 0 && index < viewModel.topicsCount else { return nil }
-    let photosViewController = TopicsPhotosCollectionViewController(
-      viewModel: <#T##any TopicsPhotosViewModelProtocol#>,
-      delegate: <#T##any TopicsPhotosViewControllerDelegate#>,
-      layout: <#T##UICollectionViewLayout#>
-    )
+    let photosViewController = TopicsPhotosCollectionViewController()
     photosViewController.topicID = viewModel.topics[index].id
     photosViewController.title = viewModel.topics[index].title
     photosViewController.pageIndex = index
