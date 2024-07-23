@@ -98,6 +98,10 @@ final class TopicsPageViewController: UIViewController {
         switch state {
         case .success:
           collectionView.reloadData()
+          self.collectionView.reloadData()
+          if let firstViewController = self.viewControllerForTopic(at: 0) {
+            self.pageViewController.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
+          }
         case .loading: break
         case .fail(error: let error):
           print(#function)
