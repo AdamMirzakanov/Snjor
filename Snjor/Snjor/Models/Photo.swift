@@ -57,3 +57,45 @@ extension Photo {
     return self.user.profileImage[.medium]
   }
 }
+
+
+struct TopicPhoto: Decodable {
+  let width: Int
+  let height: Int
+  let urls: [URLKind: URL]
+  var id: String
+  
+  enum URLKind: String, Decodable, CodingKey {
+    case raw
+    case full
+    case regular
+    case small
+    case thumb
+  }
+  
+  private enum CodingKeys: String, CodingKey {
+    case width
+    case height
+    case urls
+    case id
+  }
+  
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    width = try container.decode(Int.self, forKey: .width)
+    height = try container.decode(Int.self, forKey: .height)
+    id = try container.decode(String.self, forKey: .id)
+    
+    let urlsContainer = try container.nestedContainer(
+      keyedBy: URLKind.self,
+      forKey: .urls
+    )
+    
+    urls = try urlsContainer.allKeys.reduce(into: [:]) { result, key in
+      if let kind = URLKind(rawValue: key.rawValue),
+         let url = try urlsContainer.decodeIfPresent(URL.self, forKey: key) {
+        result[kind] = url
+      }
+    }
+  }
+}

@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 final class TopicsPageViewController: UIViewController {
   
   // MARK: - Private Properties
-  var pageViewController: UIPageViewController!
-  private var collectionView: UICollectionView!
   private(set) var viewModel: any TopicsPageViewModelProtocol
+  var pageViewController: UIPageViewController!
+  var collectionView: UICollectionView!
+  private var cancellable = Set<AnyCancellable>()
   
   // MARK: - Initializers
   init(
@@ -30,6 +32,7 @@ final class TopicsPageViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     viewModel.viewDidLoad()
+    stateController()
     setupCollectionView()
     setupPageViewController()
     view.backgroundColor = .systemBlue
@@ -45,6 +48,7 @@ final class TopicsPageViewController: UIViewController {
     )
     collectionView.dataSource = self
     collectionView.delegate = self
+    
     collectionView.backgroundColor = .white
     collectionView.register(
       TopicsCell.self,
@@ -69,6 +73,7 @@ final class TopicsPageViewController: UIViewController {
       navigationOrientation: .horizontal,
       options: nil
     )
+    
     pageViewController.dataSource = self
     pageViewController.delegate = self
     
@@ -82,6 +87,23 @@ final class TopicsPageViewController: UIViewController {
       pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
     pageViewController.didMove(toParent: self)
+  }
+  
+  private func stateController() {
+    viewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        switch state {
+        case .success:
+          collectionView.reloadData()
+        case .loading: break
+        case .fail(error: let error):
+          print(#function)
+        }
+      }
+      .store(in: &cancellable)
   }
   
   
