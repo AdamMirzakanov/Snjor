@@ -13,7 +13,7 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
   
   func viewControllerForTopic(at index: Int) -> UIViewController? {
     guard index >= 0 && index < viewModel.topicsCount else { return nil }
-    let photosViewController = PhotosCollectionViewController()
+    let photosViewController = photoListFactory.makeModule(delegate: self) as! PhotoListCollectionViewController
     photosViewController.topicID = viewModel.topics[index].id
     photosViewController.title = viewModel.topics[index].title
     photosViewController.pageIndex = index
@@ -25,7 +25,7 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     _ pageViewController: UIPageViewController,
     viewControllerBefore viewController: UIViewController
   ) -> UIViewController? {
-    guard let photosVC = viewController as? PhotosCollectionViewController,
+    guard let photosVC = viewController as? PhotoListCollectionViewController,
           let index = photosVC.pageIndex
     else {
       return nil
@@ -38,7 +38,7 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     _ pageViewController: UIPageViewController,
     viewControllerAfter viewController: UIViewController
   ) -> UIViewController? {
-    guard let photosVC = viewController as? PhotosCollectionViewController,
+    guard let photosVC = viewController as? PhotoListCollectionViewController,
           let index = photosVC.pageIndex
     else {
       return nil
@@ -61,5 +61,11 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
         scrollPosition: .centeredHorizontally
       )
     }
+  }
+}
+
+extension TopicsPageViewController: PhotoListViewControllerDelegate {
+  func didSelect(_ photo: Photo) {
+    print(#function)
   }
 }

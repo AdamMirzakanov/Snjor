@@ -17,6 +17,9 @@ final class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - Delegate
   private(set) weak var delegate: (any PhotoListViewControllerDelegate)?
 
+  var topicID: String?
+  var pageIndex: Int?
+  
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()

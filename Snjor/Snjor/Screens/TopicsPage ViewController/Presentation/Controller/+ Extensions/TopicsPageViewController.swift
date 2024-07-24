@@ -15,6 +15,7 @@ final class TopicsPageViewController: UIViewController {
   var pageViewController: UIPageViewController!
   var collectionView: UICollectionView!
   private var cancellable = Set<AnyCancellable>()
+  let photoListFactory = PhotoListFactory()
   
   // MARK: - Initializers
   init(
@@ -35,7 +36,7 @@ final class TopicsPageViewController: UIViewController {
     stateController()
     setupCollectionView()
     setupPageViewController()
-    view.backgroundColor = .systemBlue
+    view.backgroundColor = .white
   }
   
   // MARK: - Private Methods
@@ -97,11 +98,18 @@ final class TopicsPageViewController: UIViewController {
         guard let self = self else { return }
         switch state {
         case .success:
-          collectionView.reloadData()
           self.collectionView.reloadData()
-          if let firstViewController = self.viewControllerForTopic(at: 0) {
-            self.pageViewController.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
+          guard 
+            let firstViewController = self.viewControllerForTopic(at: 0)
+          else {
+            return
           }
+          self.pageViewController.setViewControllers(
+            [firstViewController],
+            direction: .forward,
+            animated: false,
+            completion: nil
+          )
         case .loading: break
         case .fail(error: let error):
           print(#function)
@@ -109,6 +117,4 @@ final class TopicsPageViewController: UIViewController {
       }
       .store(in: &cancellable)
   }
-  
-  
 }
