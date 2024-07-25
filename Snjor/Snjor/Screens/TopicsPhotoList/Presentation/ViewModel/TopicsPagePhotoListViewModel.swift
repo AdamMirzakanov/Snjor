@@ -1,25 +1,36 @@
 //
-//  PhotoListViewModel.swift
+//  TopicsPagePhotoListViewModel.swift
 //  Snjor
 //
-//  Created by Адам on 16.06.2024.
+//  Created by Адам Мирзаканов on 25.07.2024.
 //
 
 import UIKit
 import Combine
 
-final class PhotoListViewModel: PhotoListViewModelProtocol {
+protocol TopicsPagePhotoListViewModelProtocol: BaseViewModelProtocol {
+  var photosCount: Int { get }
+
+  func getPhoto(at index: Int) -> Photo
+  func applySnapshot()
+  func createDataSource(
+    for collectionView: UICollectionView,
+    delegate: any PhotoCellDelegate
+  )
+}
+
+final class TopicsPagePhotoListViewModel: TopicsPagePhotoListViewModelProtocol {
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
 
   // MARK: - Private Properties
-  private let loadPhotosUseCase: any LoadPhotoListUseCaseProtocol
+  private let loadTopicsPagePhotosUseCase: any LoadTopicsPagePhotoListUseCaseProtocol
   private var lastPageValidationUseCase: any Pageable
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
   private var sections: [Section] = []
   private (set) var state: PassthroughSubject<StateController, Never>
-
+  
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
     snapshot.appendSections([.main])
@@ -27,26 +38,26 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     sections = snapshot.sectionIdentifiers
     return snapshot
   }
-
+  
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadPhotosUseCase: any LoadPhotoListUseCaseProtocol,
+    loadTopicsPagePhotosUseCase: any LoadTopicsPagePhotoListUseCaseProtocol,
     pagingGenerator: any Pageable
   ) {
     self.state = state
-    self.loadPhotosUseCase = loadPhotosUseCase
+    self.loadTopicsPagePhotosUseCase = loadTopicsPagePhotosUseCase
     self.lastPageValidationUseCase = pagingGenerator
   }
-
+  
   // MARK: - Internal Methods
   func viewDidLoad() {
     state.send(.loading)
     Task {
-      await loadPhotosUseCase()
+      await loadTopicsPagePhotoListUseCase()
     }
   }
-
+  
   func createDataSource(
     for collectionView: UICollectionView,
     delegate: any PhotoCellDelegate
@@ -90,16 +101,16 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
       return headerView
     }
   }
-
+  
   func applySnapshot() {
     guard let dataSource = dataSource else { return }
     dataSource.apply(snapshot, animatingDifferences: true)
   }
-
+  
   func getPhoto(at indexPath: Int) -> Photo {
     photos[indexPath]
   }
-
+  
   // MARK: - Private Methods
   private func checkAndLoadMorePhotos(at index: Int) {
     lastPageValidationUseCase.checkAndLoadMoreItems(
@@ -109,11 +120,11 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     )
   }
 
-  private func loadPhotosUseCase() async {
-    let result = await loadPhotosUseCase.execute()
+  private func loadTopicsPagePhotoListUseCase() async {
+    let result = await loadTopicsPagePhotosUseCase.execute()
     updateStateUI(with: result)
   }
-
+  
   private func updateStateUI(with result: Result<[Photo], Error>) {
     switch result {
     case .success(let photos):

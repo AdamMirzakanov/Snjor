@@ -24,3 +24,4 @@ struct LoadPhotoListUseCase: LoadPhotoListUseCaseProtocol {
     }
   }
 }
+

@@ -15,7 +15,7 @@ final class TopicsPageViewController: UIViewController {
   var pageViewController: UIPageViewController!
   var collectionView: UICollectionView!
   private var cancellable = Set<AnyCancellable>()
-  let photoListFactory = PhotoListFactory()
+  let photoListFactory = TopicsPagePhotoListFactory()
   
   // MARK: - Initializers
   init(

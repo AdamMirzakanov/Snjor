@@ -1,31 +1,33 @@
 //
-//  PhotoListCollectionViewController.swift
+//  TopicsPagePhotoListViewController.swift
 //  Snjor
 //
-//  Created by Адам on 16.06.2024.
+//  Created by Адам Мирзаканов on 25.07.2024.
 //
 
 import UIKit
 import Combine
 
-protocol PhotoListViewControllerDelegate: AnyObject {
+protocol TopicsPagePhotoListViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-final class PhotoListCollectionViewController: UICollectionViewController {
-
+final class TopicsPagePhotoListViewController: UICollectionViewController {
+  var topicID: String?
+  var pageIndex: Int?
+  
   // MARK: - Delegate
-  private(set) weak var delegate: (any PhotoListViewControllerDelegate)?
+  private(set) weak var delegate: (any TopicsPagePhotoListViewControllerDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any PhotoListViewModelProtocol
+  private(set) var viewModel: any TopicsPagePhotoListViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
   ).first!
-
+  
   private let gradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.setColors([
@@ -41,11 +43,11 @@ final class PhotoListCollectionViewController: UICollectionViewController {
     $0.isUserInteractionEnabled = false
     return $0
   }(GradientView())
-
+  
   // MARK: - Initializers
   init(
-    viewModel: any PhotoListViewModelProtocol,
-    delegate: any PhotoListViewControllerDelegate,
+    viewModel: any TopicsPagePhotoListViewModelProtocol,
+    delegate: any TopicsPagePhotoListViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel
@@ -71,24 +73,24 @@ final class PhotoListCollectionViewController: UICollectionViewController {
       withReuseIdentifier: SectionHeaderView.reuseID
     )
 
-//    view.addSubview(gradientView)
-//    NSLayoutConstraint.activate([
-//      gradientView.topAnchor.constraint(equalTo: view.topAnchor),
-//      gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-//      gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//      gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
+    view.addSubview(gradientView)
+    NSLayoutConstraint.activate([
+      gradientView.topAnchor.constraint(equalTo: view.topAnchor),
+      gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+      gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
   }
-
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-//    self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    self.navigationController?.setNavigationBarHidden(true, animated: animated)
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: animated)
   }
-
+  
   // MARK: - Private Methods
   private func setupDataSource() {
     viewModel.createDataSource(
@@ -96,14 +98,14 @@ final class PhotoListCollectionViewController: UICollectionViewController {
       delegate: self
     )
   }
-
+  
   private func configureDownloadSession() {
     downloadService.configureSession(
       delegate: self,
       id: Self.sessionID
     )
   }
-
+  
   private func stateController() {
     viewModel
       .state
