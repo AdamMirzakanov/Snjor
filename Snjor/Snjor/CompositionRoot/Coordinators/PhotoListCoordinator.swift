@@ -31,7 +31,7 @@ final class PhotoListCoordinator: Coordinatable {
 }
 
 // MARK: - PhotosCollectionViewControllerDelegate
-extension PhotoListCoordinator: PhotoListViewControllerDelegate {
+extension PhotoListCoordinator: PhotoListCollectionViewControllerDelegate {
   func didSelect(_ photo: Photo) {
     let coordinator = factory.mekePhotoDetailCoordinator(
       photo: photo,

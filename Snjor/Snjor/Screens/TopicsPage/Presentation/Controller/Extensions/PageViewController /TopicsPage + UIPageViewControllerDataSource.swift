@@ -9,23 +9,13 @@ import UIKit
 
 // MARK: - UIPageViewControllerDataSource
 extension TopicsPageViewController: UIPageViewControllerDataSource {
-
-  func viewControllerForTopic(at index: Int) -> UIViewController? {
-    guard index >= 0 && index < viewModel.topicsCount else { return nil }
-    let topicsPagePhotoListFactory = TopicsPagePhotoListFactory(topic: viewModel.topics[index])
-    guard let topicsPagePhotoListViewController = topicsPagePhotoListFactory.makeModule(delegate: self) as? TopicsPagePhotoListViewController else { return UIViewController() }
-    topicsPagePhotoListViewController.topicID = viewModel.topics[index].id
-    topicsPagePhotoListViewController.title = viewModel.topics[index].title
-    topicsPagePhotoListViewController.pageIndex = index
-    return topicsPagePhotoListViewController
-  }
   
   // обратно
   func pageViewController(
     _ pageViewController: UIPageViewController,
     viewControllerBefore viewController: UIViewController
   ) -> UIViewController? {
-    guard let photosVC = viewController as? TopicsPagePhotoListViewController,
+    guard let photosVC = viewController as? TopicPhotoListCollectionViewController,
           let index = photosVC.pageIndex
     else {
       return nil
@@ -38,11 +28,12 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     _ pageViewController: UIPageViewController,
     viewControllerAfter viewController: UIViewController
   ) -> UIViewController? {
-    guard let photosVC = viewController as? TopicsPagePhotoListViewController,
+    guard let photosVC = viewController as? TopicPhotoListCollectionViewController,
           let index = photosVC.pageIndex
     else {
       return nil
     }
+    
     return viewControllerForTopic(at: index + 1)
   }
   
@@ -53,9 +44,9 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     transitionCompleted completed: Bool
   ) {
     if completed,
-       let visibleViewController = pageViewController.viewControllers?.first as? TopicsPagePhotoListViewController,
+       let visibleViewController = pageViewController.viewControllers?.first as? TopicPhotoListCollectionViewController,
        let index = visibleViewController.pageIndex {
-      collectionView.selectItem(
+      rootView.categoryCollectionView.selectItem(
         at: IndexPath(item: index, section: 0),
         animated: true,
         scrollPosition: .centeredHorizontally
@@ -64,7 +55,7 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
   }
 }
 
-extension TopicsPageViewController: TopicsPagePhotoListViewControllerDelegate {
+extension TopicsPageViewController: TopicPhotoListCollectionViewControllerDelegate {
   func didSelect(_ photo: Photo) {
     print(#function)
   }

@@ -1,5 +1,5 @@
 //
-//  TopicsPagePhotoList + CascadeLayoutDelegate.swift
+//  TopicPhotoList + CascadeLayoutDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension TopicsPagePhotoListViewController: CascadeLayoutDelegate {
+extension TopicPhotoListCollectionViewController: CascadeLayoutDelegate {
   func cascadeLayout(
     _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath

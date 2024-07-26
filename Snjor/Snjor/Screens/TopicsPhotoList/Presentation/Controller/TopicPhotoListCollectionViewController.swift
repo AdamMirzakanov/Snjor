@@ -1,5 +1,5 @@
 //
-//  TopicsPagePhotoListViewController.swift
+//  TopicPhotoListCollectionViewController.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -8,16 +8,16 @@
 import UIKit
 import Combine
 
-protocol TopicsPagePhotoListViewControllerDelegate: AnyObject {
+protocol TopicPhotoListCollectionViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-final class TopicsPagePhotoListViewController: UICollectionViewController {
+final class TopicPhotoListCollectionViewController: UICollectionViewController {
   var topicID: String?
   var pageIndex: Int?
   
   // MARK: - Delegate
-  private(set) weak var delegate: (any TopicsPagePhotoListViewControllerDelegate)?
+  private(set) weak var delegate: (any TopicPhotoListCollectionViewControllerDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -47,7 +47,7 @@ final class TopicsPagePhotoListViewController: UICollectionViewController {
   // MARK: - Initializers
   init(
     viewModel: any TopicsPagePhotoListViewModelProtocol,
-    delegate: any TopicsPagePhotoListViewControllerDelegate,
+    delegate: any TopicPhotoListCollectionViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel
@@ -66,7 +66,6 @@ final class TopicsPagePhotoListViewController: UICollectionViewController {
     setupDataSource()
     configureDownloadSession()
     viewModel.viewDidLoad()
-
     collectionView.register(
       SectionHeaderView.self,
       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,

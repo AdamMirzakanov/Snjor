@@ -10,7 +10,7 @@ import Combine
 
 protocol PhotoListFactoryProtocol {
   func makeModule(
-    delegate: any PhotoListViewControllerDelegate
+    delegate: any PhotoListCollectionViewControllerDelegate
   ) -> UIViewController
   func makeTabBarItem(navigation: any Navigable)
   func mekePhotoDetailCoordinator(
@@ -23,7 +23,7 @@ protocol PhotoListFactoryProtocol {
 struct PhotoListFactory: PhotoListFactoryProtocol {
   // MARK: - Internal Methods
   func makeModule(
-    delegate: any PhotoListViewControllerDelegate
+    delegate: any PhotoListCollectionViewControllerDelegate
   ) -> UIViewController {
     let apiClient = NetworkService()
     let state = PassthroughSubject<StateController, Never>()

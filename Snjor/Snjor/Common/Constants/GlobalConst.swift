@@ -16,6 +16,6 @@ enum GlobalConst {
   static let maxValue = fullValue + smallValue // 36
   static let circle = fullValue / half         // 16
   static let defaultAlpha: CGFloat = 0.4
-  static let maxAlpha: CGFloat = 1
+  static let maxAlpha: CGFloat = 1.0
   static let defaultFontSize: CGFloat = 14.0
 }

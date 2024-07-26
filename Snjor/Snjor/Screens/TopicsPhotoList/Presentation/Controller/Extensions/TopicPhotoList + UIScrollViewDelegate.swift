@@ -1,5 +1,5 @@
 //
-//  TopicsPagePhotoList + UIScrollViewDelegate.swift
+//  TopicPhotoList + UIScrollViewDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TopicsPagePhotoListViewController {
+extension TopicPhotoListCollectionViewController {
   // MARK: - UIScrollViewDelegate
   override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
     return .bottom

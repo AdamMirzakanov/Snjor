@@ -1,5 +1,5 @@
 //
-//  TopicsPagePhotoList + UICollectionViewDelegate.swift
+//  TopicPhotoList + UICollectionViewDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TopicsPagePhotoListViewController {
+extension TopicPhotoListCollectionViewController {
   override func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath

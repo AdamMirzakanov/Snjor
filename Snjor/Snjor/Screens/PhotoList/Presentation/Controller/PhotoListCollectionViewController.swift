@@ -8,14 +8,14 @@
 import UIKit
 import Combine
 
-protocol PhotoListViewControllerDelegate: AnyObject {
+protocol PhotoListCollectionViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
 final class PhotoListCollectionViewController: UICollectionViewController {
 
   // MARK: - Delegate
-  private(set) weak var delegate: (any PhotoListViewControllerDelegate)?
+  private(set) weak var delegate: (any PhotoListCollectionViewControllerDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -45,7 +45,7 @@ final class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - Initializers
   init(
     viewModel: any PhotoListViewModelProtocol,
-    delegate: any PhotoListViewControllerDelegate,
+    delegate: any PhotoListCollectionViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel

@@ -10,7 +10,7 @@ import Combine
 
 protocol TopicsPagePhotoListFactoryProtocol {
   func makeModule(
-    delegate: any TopicsPagePhotoListViewControllerDelegate
+    delegate: any TopicPhotoListCollectionViewControllerDelegate
   ) -> UIViewController
 //  func makeTabBarItem(navigation: any Navigable)
   func mekePhotoDetailCoordinator(
@@ -25,7 +25,7 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
   let topic: Topic
   
   func makeModule(
-    delegate: any TopicsPagePhotoListViewControllerDelegate
+    delegate: any TopicPhotoListCollectionViewControllerDelegate
   ) -> UIViewController {
     let apiClient = NetworkService()
     let state = PassthroughSubject<StateController, Never>()
@@ -44,7 +44,7 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
     
     let defaultLayout = UICollectionViewLayout()
     
-    let module = TopicsPagePhotoListViewController(
+    let module = TopicPhotoListCollectionViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout

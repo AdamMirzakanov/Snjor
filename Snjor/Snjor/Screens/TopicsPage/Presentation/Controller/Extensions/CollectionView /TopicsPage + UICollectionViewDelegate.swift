@@ -7,7 +7,6 @@
 
 import UIKit
 
-// MARK: - UICollectionViewDelegate
 extension TopicsPageViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
@@ -18,7 +17,7 @@ extension TopicsPageViewController: UICollectionViewDelegate {
     else {
       return
     }
-    pageViewController.setViewControllers(
+    rootView.pageViewController.setViewControllers(
       [viewController],
       direction: .forward,
       animated: true,

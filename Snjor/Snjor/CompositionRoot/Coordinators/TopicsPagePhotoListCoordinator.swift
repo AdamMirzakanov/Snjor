@@ -29,7 +29,7 @@ final class TopicsPagePhotoListCoordinator: Coordinatable {
   }
 }
 
-extension TopicsPagePhotoListCoordinator: TopicsPagePhotoListViewControllerDelegate {
+extension TopicsPagePhotoListCoordinator: TopicPhotoListCollectionViewControllerDelegate {
   func didSelect(_ photo: Photo) {
     //получить координатора следующего экрана
     

@@ -1,5 +1,5 @@
 //
-//  TopicsPagePhotoList + URLSessionDownloadDelegate.swift
+//  TopicPhotoList + URLSessionDownloadDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -8,7 +8,7 @@
 import Foundation
 import Photos
 
-extension TopicsPagePhotoListViewController: URLSessionDownloadDelegate {
+extension TopicPhotoListCollectionViewController: URLSessionDownloadDelegate {
   // MARK: - URL Session Download Delegate
   func urlSession(
     _ session: URLSession,

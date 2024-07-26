@@ -7,7 +7,6 @@
 
 import UIKit
 
-// MARK: - UICollectionViewDataSource
 extension TopicsPageViewController: UICollectionViewDataSource {
   func collectionView(
     _ collectionView: UICollectionView,

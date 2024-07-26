@@ -522,7 +522,7 @@ final class PhotoDetailRootView: UIView {
   // MARK: - Initializers
   init() {
     super.init(frame: .zero)
-    setupPhotoDetailMainViews()
+    setupViews()
     hidePhotoInfo()
   }
 
@@ -552,7 +552,7 @@ final class PhotoDetailRootView: UIView {
   }
 
   // MARK: - Setup Views
-  private func setupPhotoDetailMainViews() {
+  private func setupViews() {
     addSubviews()
     setupConstraints()
   }
