@@ -10,14 +10,14 @@ import UIKit
 // MARK: - UIPageViewControllerDataSource
 extension TopicsPageViewController: UIPageViewControllerDataSource {
 
-  
   func viewControllerForTopic(at index: Int) -> UIViewController? {
     guard index >= 0 && index < viewModel.topicsCount else { return nil }
-    let photosViewController = photoListFactory.makeModule(delegate: self) as! TopicsPagePhotoListViewController
-    photosViewController.topicID = viewModel.topics[index].id
-    photosViewController.title = viewModel.topics[index].title
-    photosViewController.pageIndex = index
-    return photosViewController
+    let topicsPagePhotoListFactory = TopicsPagePhotoListFactory(topic: viewModel.topics[index])
+    guard let topicsPagePhotoListViewController = topicsPagePhotoListFactory.makeModule(delegate: self) as? TopicsPagePhotoListViewController else { return UIViewController() }
+    topicsPagePhotoListViewController.topicID = viewModel.topics[index].id
+    topicsPagePhotoListViewController.title = viewModel.topics[index].title
+    topicsPagePhotoListViewController.pageIndex = index
+    return topicsPagePhotoListViewController
   }
   
   // обратно
@@ -53,7 +53,7 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     transitionCompleted completed: Bool
   ) {
     if completed,
-       let visibleViewController = pageViewController.viewControllers?.first as? PhotosCollectionViewController,
+       let visibleViewController = pageViewController.viewControllers?.first as? TopicsPagePhotoListViewController,
        let index = visibleViewController.pageIndex {
       collectionView.selectItem(
         at: IndexPath(item: index, section: 0),

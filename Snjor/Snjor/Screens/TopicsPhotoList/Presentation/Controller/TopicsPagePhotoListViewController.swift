@@ -73,17 +73,17 @@ final class TopicsPagePhotoListViewController: UICollectionViewController {
       withReuseIdentifier: SectionHeaderView.reuseID
     )
 
-    view.addSubview(gradientView)
-    NSLayoutConstraint.activate([
-      gradientView.topAnchor.constraint(equalTo: view.topAnchor),
-      gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-      gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
+//    view.addSubview(gradientView)
+//    NSLayoutConstraint.activate([
+//      gradientView.topAnchor.constraint(equalTo: view.topAnchor),
+//      gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+//      gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//      gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(true, animated: animated)
+//    self.navigationController?.setNavigationBarHidden(true, animated: animated)
   }
 
   override func viewWillDisappear(_ animated: Bool) {

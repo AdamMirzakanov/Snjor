@@ -8,13 +8,13 @@
 typealias Parameters = [String: String]
 
 enum PrepareParameters {
-  // MARK: - Internal Properties
-  static var page: Int = .page
+  // MARK: - Private  Properties
+  private static var page: Int = .page
   private static let perPage: Int = .perPage
 
   // MARK: - Internal Methods
   static func preparePhotoParameters() -> Parameters {
-    page += 1
+    nextPage()
     var parameters: [String: String] = [:]
     parameters[.page] = String(page)
     parameters[.perPage] = String(perPage)
@@ -22,11 +22,17 @@ enum PrepareParameters {
   }
 
   static func prepareSearchPhotoParameters(with searchTerm: String) -> Parameters {
+    nextPage()
     var parameters: [String: String] = [:]
     parameters[.query] = searchTerm
     parameters[.page] = String(page)
     parameters[.perPage] = String(perPage)
     return parameters
+  }
+  
+  // MARK: - Private  Methods
+  private static func nextPage() {
+    page += 1
   }
 }
 

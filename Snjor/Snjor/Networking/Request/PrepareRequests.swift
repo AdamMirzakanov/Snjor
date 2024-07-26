@@ -9,69 +9,96 @@ import Foundation
 
 enum PrepareRequests {
   // MARK: - Private Properties
-  private static var httpMethod: HTTPMethod { .get }
+  private static var getHTTP: HTTPMethod { .get }
   private static var scheme: API { .scheme }
   private static var host: API { .host }
   private static var accessKey: Authorization { .accessKey }
 
   // MARK: - Internal Methods
-  static func prepareInfoURLRequest(
+  static func prepareTopicsTitleAPIRequest(topics: String) throws -> URLRequest {
+    guard let url = prepareURL(from: topics) else {
+      throw APIError.URLError
+    }
+    let request = prepareURLRequest(url: url)
+    return request
+  }
+  
+  static func prepareTopicsPhotosAPIRequest(
+    topics: String,
+    id: String,
+    phtos: String,
+    parameters: [String: String]
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: topics, parameters: parameters) else {
+      throw APIError.URLError
+    }
+    let topicsIdURL = url.appending(path: id)
+    let topicsPhotosURL = topicsIdURL.appending(path: phtos)
+    let request = prepareURLRequest(url: topicsPhotosURL)
+    return request
+  }
+  
+  static func preparePhotoInfoAPIRequest(
     path: String,
     id: String
   ) throws -> URLRequest {
-    var components = URLComponents()
-    components.scheme = scheme.rawValue
-    components.host = host.rawValue
-    components.path = path + id
-    guard let url = components.url else { throw APIError.URLError }
-    var request = URLRequest(url: url)
-    request.httpMethod = httpMethod.rawValue
-    request.allHTTPHeaderFields = prepareHeaders()
+    guard let url = prepareURL(from: path) else {
+      throw APIError.URLError
+    }
+    let photoInfoURL = url.appending(component: id)
+    let request = prepareURLRequest(url: photoInfoURL)
     return request
   }
 
-  static func prepareURLRequest(
+  static func prepareAPIRequest(
     path: String,
     parameters: [String: String]
   ) throws -> URLRequest {
-    guard let url = prepareURL(
-      from: path,
-      parameters: parameters
-    ) else {
+    guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-
-    var request = URLRequest(url: url)
-    request.allHTTPHeaderFields = prepareHeaders()
-    request.httpMethod = httpMethod.rawValue
+    let request = prepareURLRequest(url: url)
     return request
   }
 
   // MARK: - Private Methods
+  private static func prepareURLRequest(url: URL) -> URLRequest {
+    var request = URLRequest(url: url)
+    request.allHTTPHeaderFields = prepareHeaders()
+    request.httpMethod = getHTTP.rawValue
+    return request
+  }
+  
   private static func prepareURL(
     from path: String,
-    parameters: [String: String]
+    parameters: [String: String]? = nil
   ) -> URL? {
-    let components = prepareURLComponents(
-      from: path,
-      parameters: parameters)
-    let url = components.url
-    return url
+    if let parameters = parameters {
+      let components = prepareURLComponents(from: path, parameters: parameters)
+      return components.url
+    } else {
+      let components = prepareURLComponents(from: path)
+      return components.url
+    }
   }
 
   private static func prepareURLComponents(
     from path: String,
-    parameters: [String: String]
+    parameters: [String: String]? = nil
   ) -> URLComponents {
     var components = URLComponents()
     components.scheme = scheme.rawValue
     components.host = host.rawValue
     components.path = path
-    components.queryItems = prepareQueryItems(parameters: parameters)
+    if let parameters = parameters {
+      components.queryItems = prepareQueryItems(parameters: parameters)
+    }
     return components
   }
 
-  private static func prepareQueryItems(parameters: [String: String]) -> [URLQueryItem] {
+  private static func prepareQueryItems(
+    parameters: [String: String]
+  ) -> [URLQueryItem] {
     parameters.map { URLQueryItem(
       name: $0.key,
       value: $0.value)

@@ -118,6 +118,7 @@ final class TopicsPagePhotoListViewModel: TopicsPagePhotoListViewModelProtocol {
       actualItems: photos.count,
       action: viewDidLoad
     )
+    print(#function)
   }
 
   private func loadTopicsPagePhotoListUseCase() async {

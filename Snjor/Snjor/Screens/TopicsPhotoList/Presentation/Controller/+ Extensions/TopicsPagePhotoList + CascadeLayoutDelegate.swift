@@ -9,7 +9,7 @@ import Foundation
 
 extension TopicsPagePhotoListViewController: CascadeLayoutDelegate {
   func cascadeLayout(
-    _ layout: CascadeLayout,
+    _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     let photo = viewModel.getPhoto(at: indexPath.item)

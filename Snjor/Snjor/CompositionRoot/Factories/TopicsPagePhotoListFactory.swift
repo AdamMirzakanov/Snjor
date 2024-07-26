@@ -21,6 +21,9 @@ protocol TopicsPagePhotoListFactoryProtocol {
 }
 
 struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
+  
+  let topic: Topic
+  
   func makeModule(
     delegate: any TopicsPagePhotoListViewControllerDelegate
   ) -> UIViewController {
@@ -29,7 +32,7 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
     let repository = LoadPageTopicsPhotoListRepository(
       apiClient: apiClient)
     let useCase = LoadTopicsPagePhotoListUseCase(
-      topicsPhotoListRepository: repository
+      topicsPhotoListRepository: repository, topic: topic
     )
     let lastPageValidationUseCase = LastPageValidationUseCase()
     
@@ -47,7 +50,7 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
       layout: defaultLayout
     )
     
-    let cascadeLayout = CascadeLayout(with: module)
+    let cascadeLayout = SingleColumnCascadeLayout(with: module)
     module.collectionView.collectionViewLayout = cascadeLayout
     module.collectionView.showsVerticalScrollIndicator = false
     module.collectionView.register(

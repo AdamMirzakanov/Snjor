@@ -18,7 +18,7 @@ struct LoadTopicsPageUseCase: LoadTopicsPageUseCaseProtocol {
   // MARK: - Internal Methods
   func execute() async -> Result<[Topic], any Error> {
     do {
-      let request = try RequestController.topicsRequest()
+      let request = try RequestController.topicsTitleRequest()
       let topics = try await topicsPageRepository.fetchTopic(request: request)
       return .success(topics)
     } catch {

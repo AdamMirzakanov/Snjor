@@ -11,6 +11,7 @@ final class TopicsCell: UICollectionViewCell {
   // MARK: - View
   let titleLabel: UILabel = {
     $0.textColor = .label
+    $0.font = .systemFont(ofSize: 14)
     return $0
   }(UILabel())
   

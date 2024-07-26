@@ -9,37 +9,47 @@ import Foundation
 
 enum RequestController {
   // MARK: - Private Properties
-  private static var photoListEndpoint: Endpoints { .photos }
-  private static var photoEndpoint: Endpoints { .photo }
-  private static var topicsEndpoint: Endpoints { .topics }
-  private static var searchPhotosEndpoint: Endpoints { .searchPhotos }
-  private static var collectionsEndpoint: Endpoints { .collections }
-  private static var searchCollectionsEndpoint: Endpoints { .searchCollections }
+  private static var photos: Endpoints { .photos }
+  private static var topics: Endpoints { .topics }
+  private static var searchPhotos: Endpoints { .searchPhotos }
+  private static var collections: Endpoints { .collections }
+  private static var searchCollections: Endpoints { .searchCollections }
 
   // MARK: - Internal Methods
   static func photoListRequest() throws -> URLRequest {
-    let path = photoListEndpoint.rawValue
+    let path = photos.rawValue
     let parameters = PrepareParameters.preparePhotoParameters()
-    let request = try PrepareRequests.prepareURLRequest(
+    let request = try PrepareRequests.prepareAPIRequest(
       path: path,
       parameters: parameters
     )
     return request
   }
 
-  static func photoRequest(photo: Photo) throws -> URLRequest {
-    let path = photoEndpoint.rawValue
+  static func photoDetailRequest(photo: Photo) throws -> URLRequest {
+    let path = photos.rawValue
     let id = photo.id
-    let request = try PrepareRequests.prepareInfoURLRequest(path: path, id: id)
+    let request = try PrepareRequests.preparePhotoInfoAPIRequest(path: path, id: id)
     return request
   }
   
-  static func topicsRequest() throws -> URLRequest {
-    let path = topicsEndpoint.rawValue
-    let url = try Endpoints.createUrl(from: path)
-    var request = URLRequest(url: url)
-    request.allHTTPHeaderFields = Endpoints.prepareHeaders()
-    request.httpMethod = "GET"
+  static func topicsPhotoListRequest(topic: Topic) throws -> URLRequest {
+    let topicsPath = topics.rawValue
+    let id = topic.id
+    let photosPath = photos.rawValue
+    let parameters = PrepareParameters.preparePhotoParameters()
+    let request = try PrepareRequests.prepareTopicsPhotosAPIRequest(
+      topics: topicsPath,
+      id: id,
+      phtos: photosPath,
+      parameters: parameters
+    )
+    return request
+  }
+  
+  static func topicsTitleRequest() throws -> URLRequest {
+    let topicsPath = topics.rawValue
+    let request = try PrepareRequests.prepareTopicsTitleAPIRequest(topics: topicsPath)
     return request
   }
 }

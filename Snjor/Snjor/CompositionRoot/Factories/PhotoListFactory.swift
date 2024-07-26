@@ -44,7 +44,7 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
       delegate: delegate,
       layout: defaultLayout
     )
-    let cascadeLayout = CascadeLayout(with: module)
+    let cascadeLayout = MultiColumnCascadeLayout(with: module)
     module.collectionView.collectionViewLayout = cascadeLayout
     module.collectionView.showsVerticalScrollIndicator = false
     module.collectionView.register(

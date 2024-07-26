@@ -15,7 +15,6 @@ final class TopicsPageViewController: UIViewController {
   var pageViewController: UIPageViewController!
   var collectionView: UICollectionView!
   private var cancellable = Set<AnyCancellable>()
-  let photoListFactory = TopicsPagePhotoListFactory()
   
   // MARK: - Initializers
   init(
@@ -36,7 +35,6 @@ final class TopicsPageViewController: UIViewController {
     stateController()
     setupCollectionView()
     setupPageViewController()
-    view.backgroundColor = .white
   }
   
   // MARK: - Private Methods
@@ -50,7 +48,7 @@ final class TopicsPageViewController: UIViewController {
     collectionView.dataSource = self
     collectionView.delegate = self
     
-    collectionView.backgroundColor = .white
+    collectionView.backgroundColor = .clear
     collectionView.register(
       TopicsCell.self,
       forCellWithReuseIdentifier: TopicsCell.reuseID
