@@ -11,13 +11,13 @@ protocol LoadPhotoListUseCaseProtocol {
 
 struct LoadPhotoListUseCase: LoadPhotoListUseCaseProtocol {
   // MARK: - Internal Properties
-  let photoListRepository: any PhotoListRepositoryProtocol
+  let repository: any LoadPhotoListRepositoryProtocol
 
   // MARK: - Internal Methods
   func execute() async -> Result<[Photo], any Error> {
     do {
       let request = try RequestController.photoListRequest()
-      let photos = try await photoListRepository.fetchPhotoList(request: request)
+      let photos = try await repository.fetchPhotoList(request: request)
       return .success(photos)
     } catch {
       return .failure(error)

@@ -1,5 +1,5 @@
 //
-//  TopicsPageRepository.swift
+//  LoadTopicsPageRepository.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol TopicsPageRepositoryProtocol {
+protocol LoadTopicsPageRepositoryProtocol {
   func fetchTopic(request: URLRequest) async throws -> [Topic]
 }
 
-struct TopicsPageRepository: TopicsPageRepositoryProtocol {
+struct LoadTopicsPageRepository: LoadTopicsPageRepositoryProtocol {
   // MARK: - Internal Properties
-  let apiClient: any Requestable
+  let networkService: any Requestable
 
   // MARK: - Internal Methods
   func fetchTopic(request: URLRequest) async throws -> [Topic] {
-    return try await apiClient.request(
+    return try await networkService.request(
       request: request,
       type: [Topic].self
     )

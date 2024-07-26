@@ -26,14 +26,16 @@ struct TopicsPageFactory: TopicsPageFactoryProtocol {
   
   func makeModule() -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
-    let apiClient = NetworkService()
-    let topicsPageRepository = TopicsPageRepository(apiClient: apiClient)
-    let loadTopicsPageUseCase = LoadTopicsPageUseCase(
-      topicsPageRepository: topicsPageRepository
+    let networkService = NetworkService()
+    let repository = LoadTopicsPageRepository(
+      networkService: networkService
+    )
+    let loadUseCase = LoadTopicsPageUseCase(
+      repository: repository
     )
     let viewModel = TopicsPageViewModel(
       state: state,
-      loadTopicsPageUseCase: loadTopicsPageUseCase
+      loadUseCase: loadUseCase
     )
     let module = TopicsPageViewController(viewModel: viewModel)
     return module

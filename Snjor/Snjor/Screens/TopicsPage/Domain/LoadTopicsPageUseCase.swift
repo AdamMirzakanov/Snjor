@@ -13,13 +13,13 @@ protocol LoadTopicsPageUseCaseProtocol {
 
 struct LoadTopicsPageUseCase: LoadTopicsPageUseCaseProtocol {
   // MARK: - Private Properties
-  let topicsPageRepository: any TopicsPageRepositoryProtocol
+  let repository: any LoadTopicsPageRepositoryProtocol
   
   // MARK: - Internal Methods
   func execute() async -> Result<[Topic], any Error> {
     do {
       let request = try RequestController.topicsTitleRequest()
-      let topics = try await topicsPageRepository.fetchTopic(request: request)
+      let topics = try await repository.fetchTopic(request: request)
       return .success(topics)
     } catch {
       return .failure(error)

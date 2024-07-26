@@ -24,8 +24,8 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   var photosCount: Int { photos.count }
 
   // MARK: - Private Properties
-  private let loadTopicsPagePhotosUseCase: any LoadTopicsPagePhotoListUseCaseProtocol
-  private var lastPageValidationUseCase: any Pageable
+  private let loadUseCase: any LoadTopicsPagePhotoListUseCaseProtocol
+  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
   private var sections: [Section] = []
@@ -42,12 +42,12 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadTopicsPagePhotosUseCase: any LoadTopicsPagePhotoListUseCaseProtocol,
-    pagingGenerator: any Pageable
+    loadUseCase: any LoadTopicsPagePhotoListUseCaseProtocol,
+    lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   ) {
     self.state = state
-    self.loadTopicsPagePhotosUseCase = loadTopicsPagePhotosUseCase
-    self.lastPageValidationUseCase = pagingGenerator
+    self.loadUseCase = loadUseCase
+    self.lastPageValidationUseCase = lastPageValidationUseCase
   }
   
   // MARK: - Internal Methods
@@ -122,7 +122,7 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   }
 
   private func loadTopicsPagePhotoListUseCase() async {
-    let result = await loadTopicsPagePhotosUseCase.execute()
+    let result = await loadUseCase.execute()
     updateStateUI(with: result)
   }
   

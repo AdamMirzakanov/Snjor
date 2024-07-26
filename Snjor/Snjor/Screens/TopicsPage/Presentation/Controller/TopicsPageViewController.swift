@@ -37,6 +37,7 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     stateController()
     configurePageViewController()
     configureCategoryCollectionView()
+    rootView.backgroundColor = .systemBackground
   }
   
   // MARK: - Internal Methods
@@ -88,6 +89,7 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   }
   
   private func configureCategoryCollectionView() {
+    rootView.categoryCollectionView.showsHorizontalScrollIndicator = false
     rootView.categoryCollectionView.dataSource = self
     rootView.categoryCollectionView.delegate = self
     rootView.categoryCollectionView.register(

@@ -11,6 +11,7 @@ final class TopicPageRootView: UIView {
   
   // MARK: - Views
   var pageViewController: UIPageViewController = {
+    $0.view.backgroundColor = .clear
     return $0
   }(UIPageViewController(
     transitionStyle: .scroll,
@@ -25,9 +26,25 @@ final class TopicPageRootView: UIView {
       frame: .zero,
       collectionViewLayout: layout
     )
-    collectionView.backgroundColor = .systemBackground
+    collectionView.backgroundColor = .clear
     return collectionView
   }()
+  
+  private let gradientView: GradientView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.setColors([
+      GradientView.Color(
+        color: UIColor(white: 0, alpha: 1.0),
+        location: 0.065
+      ),
+      GradientView.Color(
+        color: .clear,
+        location: 0.15
+      ),
+    ])
+    $0.isUserInteractionEnabled = false
+    return $0
+  }(GradientView())
   
   // MARK: - Initializers
   init() {
@@ -46,13 +63,16 @@ final class TopicPageRootView: UIView {
   }
   
   private func addSubviews() {
-    addSubview(categoryCollectionView)
+    
     addSubview(pageViewController.view)
+    addSubview(categoryCollectionView)
+    addSubview(gradientView)
   }
   
   private func setupConstraints() {
     setupCategoryCollectionViewConstraints()
     setupPageViewControllerViewConstraints()
+    setupGradientViewConstraints()
   }
   
   private func setupCategoryCollectionViewConstraints() {
@@ -70,16 +90,10 @@ final class TopicPageRootView: UIView {
   }
   
   private func setupPageViewControllerViewConstraints() {
-    pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      pageViewController.view.topAnchor.constraint(
-        equalTo: categoryCollectionView.bottomAnchor),
-      pageViewController.view.bottomAnchor.constraint(
-        equalTo: bottomAnchor),
-      pageViewController.view.leadingAnchor.constraint(
-        equalTo: leadingAnchor),
-      pageViewController.view.trailingAnchor.constraint(
-        equalTo: trailingAnchor)
-    ])
+    pageViewController.view.fillSuperView()
+  }
+  
+  private func setupGradientViewConstraints() {
+    gradientView.fillSuperView()
   }
 }

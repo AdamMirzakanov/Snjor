@@ -70,15 +70,15 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   var photo: Photo?
 
   // MARK: - Private Properties
-  private let loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
+  private let loadUseCase: any LoadPhotoDetailUseCaseProtocol
 
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadPhotoDetailUseCase: any LoadPhotoDetailUseCaseProtocol
+    loadUseCase: any LoadPhotoDetailUseCaseProtocol
   ) {
     self.state = state
-    self.loadPhotoDetailUseCase = loadPhotoDetailUseCase
+    self.loadUseCase = loadUseCase
   }
   
   // MARK: - Internal Methods
@@ -86,7 +86,7 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
     state.send(.loading)
     Task {
       do {
-        let photo = try await loadPhotoDetailUseCase.execute()
+        let photo = try await loadUseCase.execute()
         self.photo = photo
         state.send(.success)
       } catch {

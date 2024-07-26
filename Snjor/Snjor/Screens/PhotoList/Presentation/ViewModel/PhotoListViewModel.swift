@@ -13,12 +13,12 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   var photosCount: Int { photos.count }
 
   // MARK: - Private Properties
-  private let loadPhotosUseCase: any LoadPhotoListUseCaseProtocol
-  private var lastPageValidationUseCase: any Pageable
+  private(set) var state: PassthroughSubject<StateController, Never>
+  private let loadUseCase: any LoadPhotoListUseCaseProtocol
+  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
   private var sections: [Section] = []
-  private (set) var state: PassthroughSubject<StateController, Never>
 
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
@@ -31,12 +31,12 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadPhotosUseCase: any LoadPhotoListUseCaseProtocol,
-    pagingGenerator: any Pageable
+    loadUseCase: any LoadPhotoListUseCaseProtocol,
+    lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   ) {
     self.state = state
-    self.loadPhotosUseCase = loadPhotosUseCase
-    self.lastPageValidationUseCase = pagingGenerator
+    self.loadUseCase = loadUseCase
+    self.lastPageValidationUseCase = lastPageValidationUseCase
   }
 
   // MARK: - Internal Methods
@@ -110,7 +110,7 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   }
 
   private func loadPhotosUseCase() async {
-    let result = await loadPhotosUseCase.execute()
+    let result = await loadUseCase.execute()
     updateStateUI(with: result)
   }
 

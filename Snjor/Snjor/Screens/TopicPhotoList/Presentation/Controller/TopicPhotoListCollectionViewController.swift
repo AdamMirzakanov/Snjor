@@ -30,23 +30,6 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
     in: .userDomainMask
   ).first!
   
-  // MARK: - Views
-  private let gradientView: GradientView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.setColors([
-      GradientView.Color(
-        color: UIColor(white: 0, alpha: 1.0),
-        location: 0.065
-      ),
-      GradientView.Color(
-        color: .clear,
-        location: 0.15
-      ),
-    ])
-    $0.isUserInteractionEnabled = false
-    return $0
-  }(GradientView())
-  
   // MARK: - Initializers
   init(
     viewModel: any TopicPhotoListViewModelProtocol,
@@ -65,7 +48,6 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupViews()
     viewModel.viewDidLoad()
     stateController()
     setupDataSource()
@@ -75,12 +57,12 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setNavigationBarHidden(true, animated: animated)
+//    setNavigationBarHidden(true, animated: animated)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    setNavigationBarHidden(false, animated: animated)
+//    setNavigationBarHidden(false, animated: animated)
   }
   
   private func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
@@ -125,10 +107,5 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
       withReuseIdentifier: SectionHeaderView.reuseID
     )
-  }
-  
-  private func setupViews() {
-    view.addSubview(gradientView)
-    gradientView.fillSuperView()
   }
 }

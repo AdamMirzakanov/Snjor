@@ -25,19 +25,20 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
   func makeModule(
     delegate: any PhotoListCollectionViewControllerDelegate
   ) -> UIViewController {
-    let apiClient = NetworkService()
-    let state = PassthroughSubject<StateController, Never>()
-    let photoRepository = PhotoListRepository(apiClient: apiClient)
+    let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
-    let loadPhotoListUseCase = LoadPhotoListUseCase(
-      photoListRepository: photoRepository
+    let state = PassthroughSubject<StateController, Never>()
+    let repository = LoadPhotoListRepository(
+      networkService: networkService
+    )
+    let loadUseCase = LoadPhotoListUseCase(
+      repository: repository
     )
     let viewModel = PhotoListViewModel(
       state: state, 
-      loadPhotosUseCase: loadPhotoListUseCase,
-      pagingGenerator: lastPageValidationUseCase
+      loadUseCase: loadUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase
     )
-
     let defaultLayout = UICollectionViewLayout()
     let module = PhotoListCollectionViewController(
       viewModel: viewModel,

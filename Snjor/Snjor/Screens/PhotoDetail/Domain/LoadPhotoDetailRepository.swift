@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol PhotoDetailRepositoryProtocol {
+protocol LoadPhotoDetailRepositoryProtocol {
   func fetchPhoto(request: URLRequest) async throws -> Photo
 }
 
-struct PhotoDetailRepository: PhotoDetailRepositoryProtocol {
+struct LoadPhotoDetailRepository: LoadPhotoDetailRepositoryProtocol {
   // MARK: - Internal Properties
-  let apiClient: any Requestable
+  let networkService: any Requestable
 
   // MARK: - Internal Methods
   func fetchPhoto(request: URLRequest) async throws -> Photo {
-    return try await apiClient.request(
+    return try await networkService.request(
       request: request,
       type: Photo.self
     )

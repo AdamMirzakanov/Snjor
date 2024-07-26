@@ -5,7 +5,7 @@
 //  Created by Адам on 15.06.2024.
 //
 
-struct LastPageValidationUseCase: Pageable {
+struct LastPageValidationUseCase: lastPageValidationUseCaseProtocol {
   // MARK: - Private Properties
   private var threshold = 10
   private(set) var lastPage = false

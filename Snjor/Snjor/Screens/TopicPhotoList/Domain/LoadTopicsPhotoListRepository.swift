@@ -13,11 +13,11 @@ protocol LoadPageTopicsPhotoListRepositoryProtocol {
 
 struct LoadPageTopicsPhotoListRepository: LoadPageTopicsPhotoListRepositoryProtocol {
   // MARK: - Internal Properties
-  let apiClient: any Requestable
+  let networkService: any Requestable
   
   // MARK: - Internal Methods
   func fetchTopicsPhotoList(request: URLRequest) async throws -> [Photo] {
-    return try await apiClient.request(
+    return try await networkService.request(
       request: request,
       type: [Photo].self
     )

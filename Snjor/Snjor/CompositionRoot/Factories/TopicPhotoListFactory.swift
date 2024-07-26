@@ -1,5 +1,5 @@
 //
-//  TopicsPagePhotoListFactory.swift
+//  TopicsPhotoListFactory.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -27,29 +27,27 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
   func makeModule(
     delegate: any TopicPhotoListCollectionViewControllerDelegate
   ) -> UIViewController {
-    let apiClient = NetworkService()
+    let networkService = NetworkService()
+    let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let repository = LoadPageTopicsPhotoListRepository(
-      apiClient: apiClient)
-    let useCase = LoadTopicsPagePhotoListUseCase(
-      topicsPhotoListRepository: repository, topic: topic
+      networkService: networkService
     )
-    let lastPageValidationUseCase = LastPageValidationUseCase()
-    
+    let loadUseCase = LoadTopicsPagePhotoListUseCase(
+      repository: repository,
+      topic: topic
+    )
     let viewModel = TopicPhotoListViewModel(
       state: state,
-      loadTopicsPagePhotosUseCase: useCase,
-      pagingGenerator: lastPageValidationUseCase
+      loadUseCase: loadUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase
     )
-    
     let defaultLayout = UICollectionViewLayout()
-    
     let module = TopicPhotoListCollectionViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout
     )
-    
     let cascadeLayout = SingleColumnCascadeLayout(with: module)
     module.collectionView.collectionViewLayout = cascadeLayout
     module.collectionView.showsVerticalScrollIndicator = false
@@ -58,7 +56,6 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
       forCellWithReuseIdentifier: PhotoCell.reuseID
     )
     return module
-    
   }
   
 //  func makeTabBarItem(navigation: any Navigable) {

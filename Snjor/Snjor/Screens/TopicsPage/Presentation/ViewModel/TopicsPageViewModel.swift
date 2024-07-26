@@ -15,16 +15,16 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
 
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
-  private let loadTopicsPageUseCase: any LoadTopicsPageUseCaseProtocol
+  private let loadUseCase: any LoadTopicsPageUseCaseProtocol
   var topics: [Topic] = []
 
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadTopicsPageUseCase: any LoadTopicsPageUseCaseProtocol
+    loadUseCase: any LoadTopicsPageUseCaseProtocol
   ) {
     self.state = state
-    self.loadTopicsPageUseCase = loadTopicsPageUseCase
+    self.loadUseCase = loadUseCase
   }
 
   // MARK: - Internal Methods
@@ -37,7 +37,7 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
 
   // MARK: - Private Methods
   private func loadTopicsPageUseCase() async {
-    let result = await loadTopicsPageUseCase.execute()
+    let result = await loadUseCase.execute()
     updateStateUI(with: result)
   }
 
