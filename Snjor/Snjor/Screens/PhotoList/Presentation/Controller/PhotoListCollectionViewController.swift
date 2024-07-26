@@ -26,22 +26,6 @@ final class PhotoListCollectionViewController: UICollectionViewController {
     in: .userDomainMask
   ).first!
 
-  private let gradientView: GradientView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.setColors([
-      GradientView.Color(
-        color: UIColor(white: 0, alpha: 1.0),
-        location: 0.065
-      ),
-      GradientView.Color(
-        color: .clear,
-        location: 0.15
-      ),
-    ])
-    $0.isUserInteractionEnabled = false
-    return $0
-  }(GradientView())
-
   // MARK: - Initializers
   init(
     viewModel: any PhotoListViewModelProtocol,
@@ -60,33 +44,10 @@ final class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    viewModel.viewDidLoad()
     stateController()
     setupDataSource()
     configureDownloadSession()
-    viewModel.viewDidLoad()
-
-    collectionView.register(
-      SectionHeaderView.self,
-      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-      withReuseIdentifier: SectionHeaderView.reuseID
-    )
-
-//    view.addSubview(gradientView)
-//    NSLayoutConstraint.activate([
-//      gradientView.topAnchor.constraint(equalTo: view.topAnchor),
-//      gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-//      gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//      gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
-  }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-//    self.navigationController?.setNavigationBarHidden(true, animated: animated)
-  }
-
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    self.navigationController?.setNavigationBarHidden(false, animated: animated)
   }
 
   // MARK: - Private Methods

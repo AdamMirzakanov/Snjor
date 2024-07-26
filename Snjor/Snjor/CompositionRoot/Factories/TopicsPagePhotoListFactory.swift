@@ -36,7 +36,7 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
     )
     let lastPageValidationUseCase = LastPageValidationUseCase()
     
-    let viewModel = TopicsPagePhotoListViewModel(
+    let viewModel = TopicPhotoListViewModel(
       state: state,
       loadTopicsPagePhotosUseCase: useCase,
       pagingGenerator: lastPageValidationUseCase

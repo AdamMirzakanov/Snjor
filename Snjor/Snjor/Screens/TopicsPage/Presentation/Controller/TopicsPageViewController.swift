@@ -35,8 +35,8 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     super.viewDidLoad()
     viewModel.viewDidLoad()
     stateController()
-    setupPageViewController()
-    setupCategoryCollectionView()
+    configurePageViewController()
+    configureCategoryCollectionView()
   }
   
   // MARK: - Internal Methods
@@ -80,14 +80,14 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
       .store(in: &cancellable)
   }
   
-  private func setupPageViewController() {
+  private func configurePageViewController() {
     rootView.pageViewController.dataSource = self
     rootView.pageViewController.delegate = self
     addChild(rootView.pageViewController)
     rootView.pageViewController.didMove(toParent: self)
   }
   
-  private func setupCategoryCollectionView() {
+  private func configureCategoryCollectionView() {
     rootView.categoryCollectionView.dataSource = self
     rootView.categoryCollectionView.delegate = self
     rootView.categoryCollectionView.register(

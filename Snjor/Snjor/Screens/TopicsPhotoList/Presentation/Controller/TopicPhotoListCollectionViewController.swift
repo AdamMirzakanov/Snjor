@@ -13,6 +13,8 @@ protocol TopicPhotoListCollectionViewControllerDelegate: AnyObject {
 }
 
 final class TopicPhotoListCollectionViewController: UICollectionViewController {
+  
+  // MARK: - Private Properties
   var topicID: String?
   var pageIndex: Int?
   
@@ -22,12 +24,13 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any TopicsPagePhotoListViewModelProtocol
+  private(set) var viewModel: any TopicPhotoListViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
   ).first!
   
+  // MARK: - Views
   private let gradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.setColors([
@@ -46,7 +49,7 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
   
   // MARK: - Initializers
   init(
-    viewModel: any TopicsPagePhotoListViewModelProtocol,
+    viewModel: any TopicPhotoListViewModelProtocol,
     delegate: any TopicPhotoListCollectionViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
@@ -54,40 +57,34 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
     self.delegate = delegate
     super.init(collectionViewLayout: layout)
   }
-
+  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupViews()
+    viewModel.viewDidLoad()
     stateController()
     setupDataSource()
+    registerSectionHeaderView()
     configureDownloadSession()
-    viewModel.viewDidLoad()
-    collectionView.register(
-      SectionHeaderView.self,
-      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-      withReuseIdentifier: SectionHeaderView.reuseID
-    )
-
-//    view.addSubview(gradientView)
-//    NSLayoutConstraint.activate([
-//      gradientView.topAnchor.constraint(equalTo: view.topAnchor),
-//      gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-//      gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//      gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-//    self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    setNavigationBarHidden(true, animated: animated)
   }
-
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    setNavigationBarHidden(false, animated: animated)
+  }
+  
+  private func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
+    self.navigationController?.setNavigationBarHidden(hidden, animated: animated)
   }
   
   // MARK: - Private Methods
@@ -120,5 +117,18 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
         }
       }
       .store(in: &cancellable)
+  }
+  
+  private func registerSectionHeaderView() {
+    collectionView.register(
+      SectionHeaderView.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: SectionHeaderView.reuseID
+    )
+  }
+  
+  private func setupViews() {
+    view.addSubview(gradientView)
+    gradientView.fillSuperView()
   }
 }

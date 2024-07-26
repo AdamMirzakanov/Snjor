@@ -8,7 +8,6 @@
 import UIKit
 
 final class TopicPageRootView: UIView {
-  // MARK: - Private Properties
   
   // MARK: - Views
   var pageViewController: UIPageViewController = {
@@ -52,8 +51,11 @@ final class TopicPageRootView: UIView {
   }
   
   private func setupConstraints() {
-    
-    // collection view
+    setupCategoryCollectionViewConstraints()
+    setupPageViewControllerViewConstraints()
+  }
+  
+  private func setupCategoryCollectionViewConstraints() {
     categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       categoryCollectionView.topAnchor.constraint(
@@ -65,8 +67,9 @@ final class TopicPageRootView: UIView {
       categoryCollectionView.heightAnchor.constraint(
         equalToConstant: 50)
     ])
-    
-    // page view controller
+  }
+  
+  private func setupPageViewControllerViewConstraints() {
     pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       pageViewController.view.topAnchor.constraint(

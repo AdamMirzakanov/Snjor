@@ -31,8 +31,8 @@ final class TopicsCell: UICollectionViewCell {
    }
 
    // MARK: - Setup Data
-   func configure(with topicPhoto: Topic) {
-     titleLabel.text = topicPhoto.title
+   func configure(with topic: Topic) {
+     titleLabel.text = topic.title
    }
 
    // MARK: - Setup Views

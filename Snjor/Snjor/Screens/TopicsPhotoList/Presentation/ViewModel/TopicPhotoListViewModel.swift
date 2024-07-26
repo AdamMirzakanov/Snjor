@@ -1,5 +1,5 @@
 //
-//  TopicsPagePhotoListViewModel.swift
+//  TopicPhotoListViewModel.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-protocol TopicsPagePhotoListViewModelProtocol: BaseViewModelProtocol {
+protocol TopicPhotoListViewModelProtocol: BaseViewModelProtocol {
   var photosCount: Int { get }
 
   func getPhoto(at index: Int) -> Photo
@@ -19,7 +19,7 @@ protocol TopicsPagePhotoListViewModelProtocol: BaseViewModelProtocol {
   )
 }
 
-final class TopicsPagePhotoListViewModel: TopicsPagePhotoListViewModelProtocol {
+final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
 
