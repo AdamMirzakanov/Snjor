@@ -39,7 +39,6 @@ extension PhotoListCoordinator: PhotoListCollectionViewControllerDelegate {
       overlordCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
-    print(#function)
   }
 }
 

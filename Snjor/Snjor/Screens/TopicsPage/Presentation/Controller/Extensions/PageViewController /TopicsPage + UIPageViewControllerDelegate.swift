@@ -8,6 +8,4 @@
 import UIKit
 
 // MARK: - UIPageViewControllerDelegate
-extension TopicsPageViewController: UIPageViewControllerDelegate {
-  
-}
+extension TopicsPageViewController: UIPageViewControllerDelegate { }

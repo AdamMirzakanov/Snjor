@@ -42,7 +42,12 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   
   // MARK: - Internal Methods
   func viewControllerForTopic(at index: Int) -> UIViewController? {
-    guard index >= 0 && index < viewModel.topicsCount else { return nil }
+    guard 
+      index >= 0,
+      index < viewModel.topicsCount 
+    else {
+      return nil
+    }
     let topicsPagePhotoListFactory = TopicsPagePhotoListFactory(topic: viewModel.topics[index])
     guard
       let topicsPagePhotoListViewController = topicsPagePhotoListFactory.makeModule(
@@ -65,13 +70,12 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
         guard let self = self else { return }
         switch state {
         case .success:
-          guard let firstViewController = self.viewControllerForTopic(at: 0)
+          guard let firstPage = self.viewControllerForTopic(at: 0)
           else { return }
           rootView.pageViewController.setViewControllers(
-            [firstViewController],
+            [firstPage],
             direction: .forward,
-            animated: false,
-            completion: nil
+            animated: true
           )
         case .loading: break
         case .fail(error: let error):

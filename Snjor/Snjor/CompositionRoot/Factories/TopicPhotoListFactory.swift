@@ -10,7 +10,7 @@ import Combine
 
 protocol TopicsPagePhotoListFactoryProtocol {
   func makeModule(
-    delegate: any TopicPhotoListCollectionViewControllerDelegate
+    delegate: (any TopicPhotoListCollectionViewControllerDelegate)? 
   ) -> UIViewController
 //  func makeTabBarItem(navigation: any Navigable)
   func mekePhotoDetailCoordinator(
@@ -25,7 +25,7 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
   let topic: Topic
   
   func makeModule(
-    delegate: any TopicPhotoListCollectionViewControllerDelegate
+    delegate: (any TopicPhotoListCollectionViewControllerDelegate)? 
   ) -> UIViewController {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
@@ -43,6 +43,7 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
       lastPageValidationUseCase: lastPageValidationUseCase
     )
     let defaultLayout = UICollectionViewLayout()
+    guard let delegate = delegate else { return UIViewController() }
     let module = TopicPhotoListCollectionViewController(
       viewModel: viewModel,
       delegate: delegate,
