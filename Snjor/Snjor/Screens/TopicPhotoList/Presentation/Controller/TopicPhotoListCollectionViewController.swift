@@ -48,10 +48,10 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    registerSectionHeaderView()
+    setupDataSource()
     viewModel.viewDidLoad()
     stateController()
-    setupDataSource()
-    registerSectionHeaderView()
     configureDownloadSession()
   }
   

@@ -414,8 +414,8 @@
 		3723E3712C4F0D5A00C3AE3E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				3723E3962C4F105F00C3AE3E /* TopicsPageViewModel.swift */,
 				3723E3982C4F108700C3AE3E /* TopicsPageViewModelProtocol.swift */,
+				3723E3962C4F105F00C3AE3E /* TopicsPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

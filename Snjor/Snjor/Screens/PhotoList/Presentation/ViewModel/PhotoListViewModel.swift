@@ -23,8 +23,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(photos, toSection: .main)
-    sections = snapshot.sectionIdentifiers
+    snapshot.appendItems(photos)
+//    sections = snapshot.sectionIdentifiers
     return snapshot
   }
 
@@ -54,10 +54,10 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     dataSource = UICollectionViewDiffableDataSource
     <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, photo in
 
-      let section = self.sections[indexPath.section]
+//      let section = self.sections[indexPath.section]
 
-      switch section {
-      case .main:
+//      switch section {
+//      case .main:
         let cell = collectionView.dequeueReusableCell(
           withReuseIdentifier: PhotoCell.reuseID,
           for: indexPath
@@ -67,7 +67,7 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
         self.checkAndLoadMorePhotos(at: indexPath.item)
         photoCell.configure(with: photo)
         return photoCell
-      }
+//      }
     }
 
     dataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) -> UICollectionReusableView? in
@@ -75,7 +75,7 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
         return nil
       }
 
-      let section = self.sections[indexPath.section]
+//      let section = self.sections[indexPath.section]
 
       let headerView = collectionView.dequeueReusableSupplementaryView(
         ofKind: kind,
@@ -83,10 +83,10 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
         for: indexPath
       ) as! SectionHeaderView
 
-      switch section {
-      case .main:
+//      switch section {
+//      case .main:
         headerView.setImage()
-      }
+//      }
       return headerView
     }
   }
@@ -133,6 +133,6 @@ private enum Section: CaseIterable {
   case main
 }
 
-private enum SupplementaryViewKind {
-  static let header = "header"
-}
+//private enum SupplementaryViewKind {
+//  static let header = "header"
+//}
