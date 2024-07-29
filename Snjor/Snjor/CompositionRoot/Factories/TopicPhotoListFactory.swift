@@ -10,14 +10,14 @@ import Combine
 
 protocol TopicsPagePhotoListFactoryProtocol {
   func makeModule(
-    delegate: (any TopicPhotoListCollectionViewControllerDelegate)? 
+//    delegate: any TopicPhotoListCollectionViewControllerDelegate
   ) -> UIViewController
 //  func makeTabBarItem(navigation: any Navigable)
-  func mekePhotoDetailCoordinator(
-    photo: Photo,
-    navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
-  ) -> any Coordinatable
+//  func mekePhotoDetailCoordinator(
+//    photo: Photo,
+//    navigation: any Navigable,
+//    overlordCoordinator: any ParentCoordinator
+//  ) -> any Coordinatable
 }
 
 struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
@@ -25,7 +25,7 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
   let topic: Topic
   
   func makeModule(
-    delegate: (any TopicPhotoListCollectionViewControllerDelegate)? 
+//    delegate: any TopicPhotoListCollectionViewControllerDelegate
   ) -> UIViewController {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
@@ -43,10 +43,10 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
       lastPageValidationUseCase: lastPageValidationUseCase
     )
     let defaultLayout = UICollectionViewLayout()
-    guard let delegate = delegate else { return UIViewController() }
+    
     let module = TopicPhotoListCollectionViewController(
       viewModel: viewModel,
-      delegate: delegate,
+//      delegate: delegate,
       layout: defaultLayout
     )
     let cascadeLayout = SingleColumnCascadeLayout(with: module)
@@ -63,17 +63,17 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
 //    
 //  }
   
-  func mekePhotoDetailCoordinator(
-    photo: Photo,
-    navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
-  ) -> any Coordinatable {
-    let factory = PhotoDetailFactory(photo: photo)
-    let coordinator = PhotoDetailCoordinator(
-      factory: factory,
-      navigation: navigation,
-      overlordCoordinator: overlordCoordinator
-    )
-    return coordinator
-  }
+//  func mekePhotoDetailCoordinator(
+//    photo: Photo,
+//    navigation: any Navigable,
+//    overlordCoordinator: any ParentCoordinator
+//  ) -> any Coordinatable {
+//    let factory = PhotoDetailFactory(photo: photo)
+//    let coordinator = PhotoDetailCoordinator(
+//      factory: factory,
+//      navigation: navigation,
+//      overlordCoordinator: overlordCoordinator
+//    )
+//    return coordinator
+//  }
 }

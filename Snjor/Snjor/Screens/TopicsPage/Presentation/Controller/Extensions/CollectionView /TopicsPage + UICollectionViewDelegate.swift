@@ -8,31 +8,24 @@
 import UIKit
 
 extension TopicsPageViewController: UICollectionViewDelegate {
-  func collectionView(
-    _ collectionView: UICollectionView,
-    didSelectItemAt indexPath: IndexPath
-  ) {
-    guard
-      let viewController = viewControllerForTopic(at: indexPath.item)
-    else {
-      return
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        guard let page = viewControllerForTopic(at: indexPath.item) else { return }
+        rootView.pageViewController.setViewControllers([page], direction: .forward, animated: true)
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+        }
     }
-    rootView.pageViewController.setViewControllers(
-      [viewController],
-      direction: .forward,
-      animated: true,
-      completion: nil
-    )
-  }
-  
-  func collectionView(
-    _ collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    sizeForItemAt indexPath: IndexPath
-  ) -> CGSize {
-    let topic = viewModel.topics[indexPath.item]
-    let width = topic.title.size(
-      withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]).width + 20
-    return CGSize(width: width, height: collectionView.bounds.height)
-  }
+
+    private func updateIndicatorPositionForVisibleCells() {
+        let visibleIndexPaths = rootView.categoryCollectionView.indexPathsForVisibleItems.sorted()
+        if let indexPath = visibleIndexPaths.first, let cell = rootView.categoryCollectionView.cellForItem(at: indexPath) {
+            rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+        }
+    }
 }
+
+

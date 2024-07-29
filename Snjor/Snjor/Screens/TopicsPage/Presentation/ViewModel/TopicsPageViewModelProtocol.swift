@@ -7,5 +7,5 @@
 
 protocol TopicsPageViewModelProtocol: BaseViewModelProtocol {
   var topicsCount: Int { get }
-  var topics: [Topic] { get set }
+  func getTopicsPageViewModelItem(at index: Int) -> TopicsPageViewModelItem
 }

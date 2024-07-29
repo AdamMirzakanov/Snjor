@@ -9,7 +9,7 @@ typealias Parameters = [String: String]
 
 enum PrepareParameters {
   // MARK: - Private  Properties
-  private static var page: Int = .page
+  static var page: Int = .page
   private static let perPage: Int = .perPage
 
   // MARK: - Internal Methods

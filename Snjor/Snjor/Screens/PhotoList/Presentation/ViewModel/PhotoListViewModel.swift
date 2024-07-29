@@ -48,8 +48,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   }
 
   func createDataSource(
-    for collectionView: UICollectionView,
-    delegate: any PhotoCellDelegate
+    for collectionView: UICollectionView
+//    delegate: any PhotoCellDelegate
   ) {
     dataSource = UICollectionViewDiffableDataSource
     <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, photo in
@@ -63,9 +63,9 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
           for: indexPath
         )
         guard let photoCell = cell as? PhotoCell else { return cell }
-        photoCell.delegate = delegate
-        self.checkAndLoadMorePhotos(at: indexPath.item)
-        photoCell.configure(with: photo)
+//        photoCell.delegate = delegate
+//        self.checkAndLoadMorePhotos(at: indexPath.item)
+//      photoCell.configure(viewModelItem: photo)
         return photoCell
 //      }
     }
@@ -129,9 +129,9 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
 }
 
 // MARK: - Section
-private enum Section: CaseIterable {
-  case main
-}
+//private enum Section: CaseIterable {
+//  case main
+//}
 
 //private enum SupplementaryViewKind {
 //  static let header = "header"

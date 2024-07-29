@@ -33,7 +33,6 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     else {
       return nil
     }
-    
     return viewControllerForTopic(at: index + 1)
   }
   
@@ -45,25 +44,29 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
   ) {
     if completed,
        let visibleViewController = pageViewController.viewControllers?.first as? TopicPhotoListCollectionViewController,
-       let itemIndex = visibleViewController.pageIndex {
+       let currentIndex = visibleViewController.pageIndex {
       
       rootView.categoryCollectionView.selectItem(
-        at: IndexPath(item: itemIndex, section: .zero),
+        at: IndexPath(item: currentIndex, section: .zero),
         animated: true,
         scrollPosition: .centeredHorizontally
       )
+      
+      if let cell = rootView.categoryCollectionView.cellForItem(at: IndexPath(item: currentIndex, section: 0)) {
+            rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+          }
     }
   }
 }
 
-extension TopicsPageViewController: TopicPhotoListCollectionViewControllerDelegate {
-  func didSelect(_ photo: Photo) {
-    let photoDetailFactory = PhotoDetailFactory(photo: photo)
-    let controller = photoDetailFactory.makeModule()
-    navigationController?.pushViewController(
-      controller,
-      animated: true
-    )
-    print(#function)
-  }
-}
+//extension TopicsPageViewController: TopicPhotoListCollectionViewControllerDelegate {
+//  func didSelect(_ photo: Photo) {
+//    let photoDetailFactory = PhotoDetailFactory(photo: photo)
+//    let controller = photoDetailFactory.makeModule()
+//    navigationController?.pushViewController(
+//      controller,
+//      animated: true
+//    )
+//    print(#function)
+//  }
+//}

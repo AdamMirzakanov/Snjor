@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol PhotoCellPhotoViewDelegate: AnyObject {
-  func downloadTapped()
-}
+//protocol PhotoCellPhotoViewDelegate: AnyObject {
+//  func downloadTapped()
+//}
 
 final class PhotoCellPhotoView: BasePhotoView {
 
   // MARK: - Delegate
-  weak var delegate: (any PhotoCellPhotoViewDelegate)?
+//  weak var delegate: (any PhotoCellPhotoViewDelegate)?
 
   // MARK: - Private Properties
   private var screenScale: CGFloat {
@@ -101,7 +101,7 @@ final class PhotoCellPhotoView: BasePhotoView {
   // MARK: - Initializers
   override init() {
     super.init()
-    configDownloadButtonAction()
+//    configDownloadButtonAction()
     setupPhotoCellViews()
   }
 
@@ -196,23 +196,23 @@ final class PhotoCellPhotoView: BasePhotoView {
   }
 
   // MARK: - Config Actions
-  private func configDownloadButtonAction() {
-    let downloadButtonAction = downloadAction()
-    addAction(downloadButtonAction)
-  }
-
-  private func downloadAction() -> UIAction {
-    return UIAction { [weak self] _ in
-      guard
-        let self = self,
-        let delegate = delegate
-      else {
-        return
-      }
-      animateButton()
-      delegate.downloadTapped()
-    }
-  }
+//  private func configDownloadButtonAction() {
+//    let downloadButtonAction = downloadAction()
+//    addAction(downloadButtonAction)
+//  }
+//
+//  private func downloadAction() -> UIAction {
+//    return UIAction { [weak self] _ in
+//      guard
+//        let self = self
+//        let delegate = delegate
+//      else {
+//        return
+//      }
+//      animateButton()
+//      delegate.downloadTapped()
+//    }
+//  }
 
   private func addAction(_ action: UIAction) {
     downloadButton.addAction(

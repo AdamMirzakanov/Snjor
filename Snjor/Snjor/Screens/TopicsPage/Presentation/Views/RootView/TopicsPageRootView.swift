@@ -19,27 +19,20 @@ final class TopicPageRootView: UIView {
     options: nil
   ))
   
-  var categoryCollectionView: UICollectionView = {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
-    let collectionView = UICollectionView(
-      frame: .zero,
-      collectionViewLayout: layout
-    )
-    collectionView.backgroundColor = .clear
-    return collectionView
-  }()
+  var categoryCollectionView: TopicsPageCategoryCollectionView = {
+    return $0
+  }(TopicsPageCategoryCollectionView())
   
   private let gradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.setColors([
       GradientView.Color(
         color: UIColor(white: 0, alpha: 1.0),
-        location: 0.065
+        location: 0.1
       ),
       GradientView.Color(
         color: .clear,
-        location: 0.15
+        location: 0.25
       ),
     ])
     $0.isUserInteractionEnabled = false
@@ -63,10 +56,9 @@ final class TopicPageRootView: UIView {
   }
   
   private func addSubviews() {
-    
     addSubview(pageViewController.view)
-    addSubview(categoryCollectionView)
     addSubview(gradientView)
+    addSubview(categoryCollectionView)
   }
   
   private func setupConstraints() {
@@ -85,7 +77,7 @@ final class TopicPageRootView: UIView {
       categoryCollectionView.trailingAnchor.constraint(
         equalTo: trailingAnchor),
       categoryCollectionView.heightAnchor.constraint(
-        equalToConstant: 50)
+        equalToConstant: 40)
     ])
   }
   

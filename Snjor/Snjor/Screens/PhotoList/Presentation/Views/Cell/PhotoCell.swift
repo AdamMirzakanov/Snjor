@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol PhotoCellDelegate: AnyObject {
-  func downloadTapped(_ cell: PhotoCell)
-}
+//protocol PhotoCellDelegate: AnyObject {
+//  func downloadTapped(_ cell: PhotoCell)
+//}
 
 final class PhotoCell: UICollectionViewCell {
   // MARK: - Delegate
-  weak var delegate: (any PhotoCellDelegate)?
+//  weak var delegate: (any PhotoCellDelegate)?
 
   // MARK: - Main Photo View
   let photoView: PhotoCellPhotoView = {
@@ -24,7 +24,7 @@ final class PhotoCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupPhotoView()
-    photoView.delegate = self
+//    photoView.delegate = self
   }
 
   required init?(coder: NSCoder) {
@@ -38,8 +38,10 @@ final class PhotoCell: UICollectionViewCell {
   }
 
   // MARK: - Setup Data
-  func configure(with photo: Photo) {
-    photoView.configure(with: photo, url: photo.regularURL)
+  func configure(viewModelItem: TopicPhotoListViewModelItem) {
+    let photo = viewModelItem.photo
+    let photoURL = viewModelItem.photoURL
+    photoView.configure(with: photo, url: photoURL)
   }
 
   // MARK: - Setup Views

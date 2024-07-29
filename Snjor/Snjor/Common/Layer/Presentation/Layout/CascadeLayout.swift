@@ -160,7 +160,7 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
       numberOfItems += collectionView.numberOfItems(inSection: $0)
     }
     
-    // Вычисляем атрибуты для заголовков секций
+    // атрибуты для заголовков секций
     for section in 0 ..< collectionView.numberOfSections {
       let headerIndexPath = IndexPath(item: 0, section: section)
       let headerAttr = layoutAttributesForSupplementaryView(

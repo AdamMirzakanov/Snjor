@@ -13,7 +13,7 @@ protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
   func getPhoto(at index: Int) -> Photo
   func applySnapshot()
   func createDataSource(
-    for collectionView: UICollectionView,
-    delegate: any PhotoCellDelegate
+    for collectionView: UICollectionView
+//    delegate: any PhotoCellDelegate
   )
 }

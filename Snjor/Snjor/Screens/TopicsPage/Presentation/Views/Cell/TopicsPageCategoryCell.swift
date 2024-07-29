@@ -1,5 +1,5 @@
 //
-//  TopicsCell.swift
+//  TopicsPageCategoryCell.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class TopicsCell: UICollectionViewCell {
+final class TopicsPageCategoryCell: UICollectionViewCell {
   // MARK: - View
-  let titleLabel: UILabel = {
-    $0.textColor = .label
-    $0.font = .systemFont(ofSize: GlobalConst.defaultFontSize)
+  private let topicTitleLabel: UILabel = {
+    $0.textColor = .white
+    $0.font = .systemFont(ofSize: 16, weight: .medium)
     return $0
   }(UILabel())
   
@@ -28,16 +28,17 @@ final class TopicsCell: UICollectionViewCell {
    // MARK: - Override Methods
    override func prepareForReuse() {
      super.prepareForReuse()
+     topicTitleLabel.text = nil
    }
 
    // MARK: - Setup Data
-   func configure(with topic: Topic) {
-     titleLabel.text = topic.title
+   func configure(viewModelItem: TopicsPageViewModelItem) {
+     topicTitleLabel.text = viewModelItem.topicTitle
    }
 
    // MARK: - Setup Views
    private func setupViews() {
-     contentView.addSubview(titleLabel)
-     titleLabel.centerXY()
+     contentView.addSubview(topicTitleLabel)
+     topicTitleLabel.centerXY()
    }
 }

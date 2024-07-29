@@ -1,8 +1,8 @@
 //
-//  TopicsCell + Reusable.swift
+//  TopicsPageCategoryCell + Reusable.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
 //
 
-extension TopicsCell: Reusable { }
+extension TopicsPageCategoryCell: Reusable { }

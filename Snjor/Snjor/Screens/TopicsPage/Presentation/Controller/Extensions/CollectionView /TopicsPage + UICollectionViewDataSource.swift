@@ -8,6 +8,7 @@
 import UIKit
 
 extension TopicsPageViewController: UICollectionViewDataSource {
+  
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
@@ -19,14 +20,17 @@ extension TopicsPageViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: TopicsCell.reuseID,
-      for: indexPath
-    ) as! TopicsCell
-    let topic = viewModel.topics[indexPath.item]
-    cell.configure(with: topic)
+    guard
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: TopicsPageCategoryCell.reuseID,
+        for: indexPath
+      ) as? TopicsPageCategoryCell else {
+      return UICollectionViewCell()
+    }
+    let itemIndex = indexPath.item
+    let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: itemIndex)
+    cell.configure(viewModelItem: topicsPageViewModelItem)
     return cell
   }
-  
-  
 }
+

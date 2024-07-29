@@ -12,11 +12,11 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
 
   // MARK: - Internal Properties
   var topicsCount: Int { topics.count }
-
+  var state: PassthroughSubject<StateController, Never>
+  
   // MARK: - Private Properties
-  private(set) var state: PassthroughSubject<StateController, Never>
   private let loadUseCase: any LoadTopicsPageUseCaseProtocol
-  var topics: [Topic] = []
+  private var topics: [Topic] = []
 
   // MARK: - Initializers
   init(
@@ -34,8 +34,17 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
       await loadTopicsPageUseCase()
     }
   }
+  
+  func getTopicsPageViewModelItem(at index: Int) -> TopicsPageViewModelItem {
+    return makeViewModelItem(at: index)
+  }
 
   // MARK: - Private Methods
+  private func makeViewModelItem(at index: Int) -> TopicsPageViewModelItem {
+    let topic = topics[index]
+    return TopicsPageViewModelItem(topic: topic)
+  }
+  
   private func loadTopicsPageUseCase() async {
     let result = await loadUseCase.execute()
     updateStateUI(with: result)

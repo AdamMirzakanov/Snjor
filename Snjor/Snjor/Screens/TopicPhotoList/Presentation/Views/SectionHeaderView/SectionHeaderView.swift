@@ -13,6 +13,7 @@ class SectionHeaderView: UICollectionReusableView {
   let photoImageView: UIImageView = {
     $0.contentMode = .scaleAspectFit
     $0.clipsToBounds = true
+    $0.backgroundColor = .black
     return $0
   }(UIImageView())
 
