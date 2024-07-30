@@ -10,6 +10,18 @@ import UIKit
 final class TopicPageRootView: UIView {
   
   // MARK: - Views
+  let appNameLabel: UILabel = {
+    let text = "Snjør".uppercased()
+    let fontSize = UIFont.systemFont(ofSize: 20, weight: .medium)
+    let attributes: [NSAttributedString.Key: Any] = [
+      .kern: 4.5,
+      .font: fontSize
+    ]
+    $0.attributedText = NSAttributedString(string: text, attributes: attributes)
+    $0.textColor = .white
+    return $0
+  }(UILabel())
+  
   var pageViewController: UIPageViewController = {
     $0.view.backgroundColor = .clear
     return $0
@@ -59,19 +71,21 @@ final class TopicPageRootView: UIView {
     addSubview(pageViewController.view)
     addSubview(gradientView)
     addSubview(categoryCollectionView)
+    addSubview(appNameLabel)
   }
   
   private func setupConstraints() {
     setupCategoryCollectionViewConstraints()
     setupPageViewControllerViewConstraints()
     setupGradientViewConstraints()
+    setupAppNameLabelConstraints()
   }
   
   private func setupCategoryCollectionViewConstraints() {
     categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       categoryCollectionView.topAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.topAnchor),
+        equalTo: safeAreaLayoutGuide.topAnchor, constant: 45),
       categoryCollectionView.leadingAnchor.constraint(
         equalTo: leadingAnchor),
       categoryCollectionView.trailingAnchor.constraint(
@@ -86,6 +100,24 @@ final class TopicPageRootView: UIView {
   }
   
   private func setupGradientViewConstraints() {
-    gradientView.fillSuperView()
+    gradientView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      gradientView.topAnchor.constraint(
+        equalTo: topAnchor, constant: -40),
+      gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      gradientView.leadingAnchor.constraint(
+        equalTo: leadingAnchor),
+      gradientView.trailingAnchor.constraint(
+        equalTo: trailingAnchor)
+    ])
+  }
+  
+  private func setupAppNameLabelConstraints() {
+    appNameLabel.centerX()
+    NSLayoutConstraint.activate([
+      appNameLabel.topAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.topAnchor, constant: 15)
+    ])
+    
   }
 }

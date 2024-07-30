@@ -53,8 +53,8 @@ final class PhotoListCollectionViewController: UICollectionViewController {
   // MARK: - Private Methods
   private func setupDataSource() {
     viewModel.createDataSource(
-      for: collectionView
-//      delegate: self
+      for: collectionView,
+      delegate: self
     )
   }
 

@@ -14,11 +14,11 @@ enum SectionHeaderViewConst {
   static let gradientAlpha: CGFloat = 0.7
 
   //photosForEveryoneLabel shadow value
-  static let shadowRadius: CGFloat = 15.0
-  static let shadowOpacity: Float = 0.5
+  static let shadowRadius: CGFloat = 5.0
+  static let shadowOpacity: Float = 0.8
 
   //font size value
-  static let photosForEveryoneLabelFontSize: CGFloat = 25.0
+  static let photosForEveryoneLabelFontSize: CGFloat = 33.0
   static let photoOfTheDayFontSize: CGFloat = 12.0
 
   //constraints value

@@ -34,12 +34,19 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     configureCategoryCollectionView()
     stateController()
     viewModel.viewDidLoad()
-    
-    DispatchQueue.main.async {
-      if let firstCell = self.rootView.categoryCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
-        self.rootView.categoryCollectionView.updateIndicatorPosition(for: firstCell)
-      }
+    if let firstCell = self.rootView.categoryCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
+      self.rootView.categoryCollectionView.updateIndicatorPosition(for: firstCell)
     }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setNavigationBarHidden(true, animated: animated)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    setNavigationBarHidden(false, animated: animated)
   }
   
   // Словарь для кэширования контроллеров
@@ -62,27 +69,36 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     
     let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
     
-    let topicsPagePhotoListFactory = TopicsPagePhotoListFactory(
+    let topicPhotoListFactory = TopicPhotoListFactory(
       topic: topicsPageViewModelItem.topic
     )
     
     let topicID = topicsPageViewModelItem.topicID
-    guard let topicsPagePhotoListViewController = topicsPagePhotoListFactory.makeModule() as?  TopicPhotoListCollectionViewController 
-    else { return UIViewController() }
-    topicsPagePhotoListViewController.topicID = topicID
-    topicsPagePhotoListViewController.pageIndex = index
-    cacheController(index: index, controller: topicsPagePhotoListViewController)
-    return topicsPagePhotoListViewController
+    let viewController = topicPhotoListFactory.makeModule(delegate: self)
+
+    guard 
+      let topicsPhotoListViewController = viewController as? TopicPhotoListCollectionViewController
+    else {
+      return viewController
+    }
+
+    topicsPhotoListViewController.topicID = topicID
+    topicsPhotoListViewController.pageIndex = index
+    cacheController(index: index, controller: topicsPhotoListViewController)
+    return topicsPhotoListViewController
   }
   
-  private func cacheController(index: Int, controller: TopicPhotoListCollectionViewController) {
+  private func cacheController(
+    index: Int,
+    controller: TopicPhotoListCollectionViewController
+  ) {
     if cachedViewControllers.count >= maxCachedControllers {
       if let oldestKey = orderedKeys.first {
         cachedViewControllers.removeValue(forKey: oldestKey)
         orderedKeys.removeFirst()
       }
     }
-    
+
     cachedViewControllers[index] = controller
     orderedKeys.append(index)
     
@@ -128,12 +144,8 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     rootView.categoryCollectionView.dataSource = self
     rootView.categoryCollectionView.delegate = self
   }
+  
+  func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
+    self.navigationController?.setNavigationBarHidden(hidden, animated: animated)
+  }
 }
-
-extension TopicsPageViewController: MessageDisplayable { }
-
-//extension TopicsPageViewController: TopicPhotoListCollectionViewControllerDelegate {
-//  func didSelect(_ photo: Photo) {
-//    print(#function)
-//  }
-//}

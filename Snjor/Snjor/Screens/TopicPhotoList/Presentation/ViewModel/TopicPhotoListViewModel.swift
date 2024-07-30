@@ -21,14 +21,14 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   }
   
   // MARK: - Private Properties
-  private let loadUseCase: any LoadTopicsPagePhotoListUseCaseProtocol
+  private let loadUseCase: any LoadTopicPhotoListUseCaseProtocol
   private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   private var photos: [Photo] = []
   
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadUseCase: any LoadTopicsPagePhotoListUseCaseProtocol,
+    loadUseCase: any LoadTopicPhotoListUseCaseProtocol,
     lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   ) {
     self.state = state
@@ -48,7 +48,9 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
     photos[indexPath]
   }
   
-  func getTopicPhotoListViewModelItem(at index: Int) -> TopicPhotoListViewModelItem {
+  func getTopicPhotoListViewModelItem(
+    at index: Int
+  ) -> TopicPhotoListViewModelItem {
     checkAndLoadMorePhotos(at: index)
     return makeTopicPhotoListViewModelItem(at: index)
   }

@@ -12,8 +12,8 @@ extension TopicPhotoListCollectionViewController {
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-//    guard let delegate = delegate else { return }
+    guard let delegate = delegate else { return }
     let photo = viewModel.getPhoto(at: indexPath.item)
-//    delegate.didSelect(photo)
+    delegate.didSelect(photo)
   }
 }

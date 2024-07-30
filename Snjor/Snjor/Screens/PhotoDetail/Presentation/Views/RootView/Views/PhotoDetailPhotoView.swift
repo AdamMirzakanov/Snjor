@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PhotoDetailPhotoView: BasePhotoView {
+final class PhotoDetailPhotoView: BaseImageContainerView {
   // MARK: - Gradient
   let gradientView: GradientView = {
     let color = UIColor(

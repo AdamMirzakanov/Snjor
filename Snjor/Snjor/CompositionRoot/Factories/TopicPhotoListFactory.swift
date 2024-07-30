@@ -8,32 +8,26 @@
 import UIKit
 import Combine
 
-protocol TopicsPagePhotoListFactoryProtocol {
+protocol TopicPhotoListFactoryProtocol {
   func makeModule(
-//    delegate: any TopicPhotoListCollectionViewControllerDelegate
+    delegate: any TopicPhotoListCollectionViewControllerDelegate
   ) -> UIViewController
-//  func makeTabBarItem(navigation: any Navigable)
-//  func mekePhotoDetailCoordinator(
-//    photo: Photo,
-//    navigation: any Navigable,
-//    overlordCoordinator: any ParentCoordinator
-//  ) -> any Coordinatable
 }
 
-struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
+struct TopicPhotoListFactory: TopicPhotoListFactoryProtocol {
   
   let topic: Topic
   
   func makeModule(
-//    delegate: any TopicPhotoListCollectionViewControllerDelegate
+    delegate: any TopicPhotoListCollectionViewControllerDelegate
   ) -> UIViewController {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
-    let repository = LoadPageTopicsPhotoListRepository(
+    let repository = LoadTopicPhotoListRepository(
       networkService: networkService
     )
-    let loadUseCase = LoadTopicsPagePhotoListUseCase(
+    let loadUseCase = LoadTopicPhotoListUseCase(
       repository: repository,
       topic: topic
     )
@@ -43,18 +37,19 @@ struct TopicsPagePhotoListFactory: TopicsPagePhotoListFactoryProtocol {
       lastPageValidationUseCase: lastPageValidationUseCase
     )
     let defaultLayout = UICollectionViewLayout()
-    
+
     let module = TopicPhotoListCollectionViewController(
       viewModel: viewModel,
-//      delegate: delegate,
+      delegate: delegate,
       layout: defaultLayout
     )
+
     let cascadeLayout = SingleColumnCascadeLayout(with: module)
     module.collectionView.collectionViewLayout = cascadeLayout
     module.collectionView.showsVerticalScrollIndicator = false
     module.collectionView.register(
-      PhotoCell.self,
-      forCellWithReuseIdentifier: PhotoCell.reuseID
+      TopicsPagePhotoListCell.self,
+      forCellWithReuseIdentifier: TopicsPagePhotoListCell.reuseID
     )
     return module
   }

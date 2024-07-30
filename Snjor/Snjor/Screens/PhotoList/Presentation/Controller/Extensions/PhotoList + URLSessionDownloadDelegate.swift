@@ -58,15 +58,15 @@ extension PhotoListCollectionViewController: URLSessionDownloadDelegate {
     }
     return destinationURL
   }
-
+  
   private func hideSpinner() {
     DispatchQueue.main.async {
       self.collectionView.visibleCells
-        .compactMap { $0 as? PhotoCell }
+        .compactMap { $0 as? PhotoListCell }
         .forEach { cell in
-          cell.photoView.spinner.stopAnimating()
-          cell.photoView.spinner.isHidden = true
-          cell.photoView.downloadButton.isHidden = false
+          cell.mainView.spinner.stopAnimating()
+          cell.mainView.spinner.isHidden = true
+          cell.mainView.downloadButton.isHidden = false
         }
     }
   }

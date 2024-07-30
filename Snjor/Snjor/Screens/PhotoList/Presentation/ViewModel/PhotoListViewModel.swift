@@ -48,25 +48,32 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   }
 
   func createDataSource(
-    for collectionView: UICollectionView
-//    delegate: any PhotoCellDelegate
+    for collectionView: UICollectionView,
+    delegate: any PhotoCellDelegate
   ) {
-    dataSource = UICollectionViewDiffableDataSource
-    <Section, Photo>(collectionView: collectionView) { collectionView, indexPath, photo in
+    dataSource = UICollectionViewDiffableDataSource<Section, Photo>(
+      collectionView: collectionView
+    ) { [weak self] collectionView, indexPath, photo in
+      
+      guard
+        let strongSelf = self,
+        let cell = collectionView.dequeueReusableCell(
+          withReuseIdentifier: PhotoListCell.reuseID,
+          for: indexPath
+        ) as? PhotoListCell
+      else {
+        return UICollectionViewCell()
+      }
 
 //      let section = self.sections[indexPath.section]
 
 //      switch section {
 //      case .main:
-        let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: PhotoCell.reuseID,
-          for: indexPath
-        )
-        guard let photoCell = cell as? PhotoCell else { return cell }
-//        photoCell.delegate = delegate
-//        self.checkAndLoadMorePhotos(at: indexPath.item)
-//      photoCell.configure(viewModelItem: photo)
-        return photoCell
+        cell.delegate = delegate
+      strongSelf.checkAndLoadMorePhotos(at: indexPath.item)
+      let viewModelItem = strongSelf.getPhotoListViewModelItem(at: indexPath.item)
+      cell.configure(viewModelItem: viewModelItem)
+        return cell
 //      }
     }
 
@@ -99,6 +106,13 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   func getPhoto(at indexPath: Int) -> Photo {
     photos[indexPath]
   }
+  
+  func getPhotoListViewModelItem(
+    at index: Int
+  ) -> PhotoListViewModelItem {
+    checkAndLoadMorePhotos(at: index)
+    return makePhotoListViewModelItem(at: index)
+  }
 
   // MARK: - Private Methods
   private func checkAndLoadMorePhotos(at index: Int) {
@@ -125,6 +139,13 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))
     }
+  }
+  
+  func makePhotoListViewModelItem(
+    at index: Int
+  ) -> PhotoListViewModelItem {
+    let photo = photos[index]
+    return PhotoListViewModelItem(photo: photo)
   }
 }
 

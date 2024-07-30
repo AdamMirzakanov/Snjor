@@ -9,11 +9,12 @@ import UIKit
 
 protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
   var photosCount: Int { get }
-
-  func getPhoto(at index: Int) -> Photo
   func applySnapshot()
   func createDataSource(
-    for collectionView: UICollectionView
-//    delegate: any PhotoCellDelegate
+    for collectionView: UICollectionView,
+    delegate: any PhotoCellDelegate
   )
+  
+  func getPhoto(at index: Int) -> Photo
+  func getPhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem
 }

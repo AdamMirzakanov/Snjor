@@ -11,7 +11,7 @@
 //  var childCoordinators: [any Coordinatable] = []
 //  
 //  // MARK: - Private Properties
-//  private let factory: any TopicsPagePhotoListFactoryProtocol
+//  private let factory: any TopicsPhotoListFactoryProtocol
 //  
 //  // MARK: - Initializers
 //  init(

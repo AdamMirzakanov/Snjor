@@ -11,7 +11,7 @@ protocol LoadPageTopicsPhotoListRepositoryProtocol {
   func fetchTopicsPhotoList(request: URLRequest) async throws -> [Photo]
 }
 
-struct LoadPageTopicsPhotoListRepository: LoadPageTopicsPhotoListRepositoryProtocol {
+struct LoadTopicPhotoListRepository: LoadPageTopicsPhotoListRepositoryProtocol {
   // MARK: - Internal Properties
   let networkService: any Requestable
   

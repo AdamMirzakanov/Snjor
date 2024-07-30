@@ -11,9 +11,10 @@ class SectionHeaderView: UICollectionReusableView {
 
   // MARK: - Photo View
   let photoImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFit
+    $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
-    $0.backgroundColor = .black
+    $0.backgroundColor = .systemPurple
+    $0.image = UIImage(named: "hedarMockPhoto")
     return $0
   }(UIImageView())
 
@@ -38,20 +39,20 @@ class SectionHeaderView: UICollectionReusableView {
 
   // MARK: - Labels
   let photosForEveryoneLabel: UILabel = {
-    $0.text = "S    n    j    ø    r".uppercased()
+    $0.text = .photosForEveryone
     $0.textColor = .label
     $0.font = .systemFont(
       ofSize: SectionHeaderViewConst.photosForEveryoneLabelFontSize,
-      weight: .light
+      weight: .bold
     )
-//    $0.layer.shadowColor = UIColor.black.cgColor
-//    $0.layer.shadowRadius = SectionHeaderViewConst.shadowRadius
-//    $0.layer.shadowOpacity = SectionHeaderViewConst.shadowOpacity
-//    $0.layer.shadowOffset = CGSize(
-//      width: Int.zero,
-//      height: Int.zero
-//    )
-//    $0.layer.masksToBounds = false
+    $0.layer.shadowColor = UIColor.black.cgColor
+    $0.layer.shadowRadius = SectionHeaderViewConst.shadowRadius
+    $0.layer.shadowOpacity = SectionHeaderViewConst.shadowOpacity
+    $0.layer.shadowOffset = CGSize(
+      width: Int.zero,
+      height: Int.zero
+    )
+    $0.layer.masksToBounds = false
     return $0
   }(UILabel())
 

@@ -52,8 +52,14 @@ final class TopicsPageCategoryCollectionView: UICollectionView {
   override func layoutSubviews() {
     super.layoutSubviews()
     
-    let indicatorHeight: CGFloat = 0.3
-    lineView.frame = CGRect(x: 0, y: bounds.height - indicatorHeight, width: contentSize.width, height: indicatorHeight)
+    // получить толщину линии, равную одному пикселю
+    let indicatorHeight: CGFloat = 1 / traitCollection.displayScale
+    lineView.frame = CGRect(
+      x: 0,
+      y: bounds.height - indicatorHeight,
+      width: contentSize.width,
+      height: indicatorHeight
+    )
     if let selectedIndexPath = indexPathsForSelectedItems?.first,
        let cell = cellForItem(at: selectedIndexPath) {
       updateIndicatorPosition(for: cell)

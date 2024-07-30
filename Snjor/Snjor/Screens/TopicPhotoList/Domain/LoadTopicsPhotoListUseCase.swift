@@ -5,11 +5,11 @@
 //  Created by Адам Мирзаканов on 25.07.2024.
 //
 
-protocol LoadTopicsPagePhotoListUseCaseProtocol {
+protocol LoadTopicPhotoListUseCaseProtocol {
   func execute() async -> Result<[Photo], any Error>
 }
 
-struct LoadTopicsPagePhotoListUseCase: LoadTopicsPagePhotoListUseCaseProtocol {
+struct LoadTopicPhotoListUseCase: LoadTopicPhotoListUseCaseProtocol {
   // MARK: - Internal Properties
   let repository: any LoadPageTopicsPhotoListRepositoryProtocol
   let topic: Topic
