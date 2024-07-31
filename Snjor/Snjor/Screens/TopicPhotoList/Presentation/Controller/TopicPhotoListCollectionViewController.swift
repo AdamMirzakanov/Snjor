@@ -55,6 +55,7 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    collectionView.bouncesZoom = true
     resetPage()
     registerSectionHeaderView()
     setupCollectionViewConstraints()

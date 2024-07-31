@@ -8,6 +8,7 @@
 import UIKit
 
 final class TopicsPagePhotoListCell: UICollectionViewCell {
+
   // MARK: - Main View
   let mainView: TopicPhotoListCellMainView = {
     return $0

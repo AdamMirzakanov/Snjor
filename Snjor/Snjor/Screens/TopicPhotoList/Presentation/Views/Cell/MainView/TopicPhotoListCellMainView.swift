@@ -8,17 +8,19 @@
 import UIKit
 
 final class TopicPhotoListCellMainView: BaseImageContainerView {
+
   // MARK: - Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale
   }
+  
   private var showsUsername = true {
     didSet {
       userNameLabel.alpha = showsUsername ? GlobalConst.maxAlpha : .zero
       gradientView.alpha = showsUsername ? GlobalConst.maxAlpha : .zero
     }
   }
-
+  
   // MARK: - Gradient
   let gradientView: GradientView = {
     let color = UIColor(
@@ -38,15 +40,80 @@ final class TopicPhotoListCellMainView: BaseImageContainerView {
     return $0
   }(GradientView())
   
+  // MARK: - Profile Photo
+  let profilePhotoView: PhotoDetailPhotoView = {
+    $0.contentMode = .scaleAspectFill
+    $0.mainImageView.image = UIImage(named: .defaultProfilePhoto)
+    $0.layer.cornerRadius = GlobalConst.ultraCircle
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(
+      equalToConstant: GlobalConst.ultraValue
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: GlobalConst.ultraValue
+    ).isActive = true
+    $0.backgroundColor = .systemPurple
+    return $0
+  }(PhotoDetailPhotoView())
+  
   // MARK: - Labels
   let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: GlobalConst.defaultFontSize,
+      ofSize: 17,
       weight: .medium
     )
     return $0
   }(UILabel())
+  
+  let likesLabel: UILabel = {
+    $0.textColor = .white
+    $0.font = .systemFont(
+      ofSize: 15,
+      weight: .medium
+    )
+    return $0
+  }(UILabel())
+  
+  // MARK: - ImageViews
+  private let heartImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(systemName: .heartImage)
+    $0.tintColor = .label
+    return $0
+  }(UIImageView())
+  
+  // MARK: - StackViews
+  private lazy var profileStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = GlobalConst.middleValue
+    $0.addArrangedSubview(profilePhotoView)
+    $0.addArrangedSubview(userNameLabel)
+    return $0
+  }(UIStackView())
+  
+  private lazy var likesStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = GlobalConst.smallValue
+    $0.addArrangedSubview(heartImageView)
+    $0.addArrangedSubview(likesLabel)
+    return $0
+  }(UIStackView())
+  
+  private lazy var infoStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = GlobalConst.middleValue
+    $0.addArrangedSubview(profileStackView)
+    $0.addArrangedSubview(UIView())
+    $0.addArrangedSubview(likesStackView)
+    return $0
+  }(UIStackView())
 
   // MARK: - Initializers
   override init() {
@@ -89,6 +156,12 @@ final class TopicPhotoListCellMainView: BaseImageContainerView {
     )
     self.showsUsername = showsUsername
     userNameLabel.text = photo.user.displayName
+    profilePhotoView.configure(
+      with: photo,
+      url: photo.profileImageURL
+    )
+    guard let likes = photo.likes else { return }
+    likesLabel.text = String(describing: likes)
   }
   
   // MARK: - Setup Views
@@ -99,7 +172,7 @@ final class TopicPhotoListCellMainView: BaseImageContainerView {
 
   private func addSubviews() {
     addSubview(gradientView)
-    addSubview(userNameLabel)
+    addSubview(infoStackView)
   }
 
   private func setupConstraints() {
@@ -112,11 +185,20 @@ final class TopicPhotoListCellMainView: BaseImageContainerView {
   }
 
   private func setupUserNameLabelConstraints() {
-    userNameLabel.setConstraints(
-      bottom: mainImageView.bottomAnchor,
-      left: mainImageView.leftAnchor,
-      pBottom: GlobalConst.defaultValue,
-      pLeft: GlobalConst.defaultValue
+//    infoStackView.setConstraints(
+//      bottom: mainImageView.bottomAnchor,
+//      left: mainImageView.leftAnchor,
+//      pBottom: -50,
+//      pLeft: GlobalConst.defaultValue
+//    )
+    
+    infoStackView.setConstraints(
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      left: leftAnchor,
+      pRight: GlobalConst.middleValue,
+      pBottom: 20,
+      pLeft: GlobalConst.middleValue
     )
   }
 

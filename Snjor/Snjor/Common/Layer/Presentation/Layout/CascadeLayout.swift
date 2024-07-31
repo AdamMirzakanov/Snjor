@@ -24,20 +24,20 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
   
   private var frames: [CGRect] = []
   private var pagingViewAttributes: UICollectionViewLayoutAttributes?
-  private var contentHeight: CGFloat = .zero
+  var contentHeight: CGFloat = .zero
   var numberOfColumns: Int = .zero
-  private var isSingleColumn: Bool { numberOfColumns == .zero }
+  var isSingleColumn: Bool { numberOfColumns == .zero }
   
   var topInset: CGFloat = CascadeLayoutConst.topInset
   var headerHeight: CGFloat = CascadeLayoutConst.headerHeight
+  var columnSpacing = CascadeLayoutConst.columnSpacing
   
-  private var itemSpacing: CGFloat {
+  var itemSpacing: CGFloat {
     let zero = CGFloat.zero
-    let columnSpacing = CascadeLayoutConst.columnSpacing
     return isSingleColumn ? zero : columnSpacing
   }
   
-  private var columnWidth: CGFloat {
+  var columnWidth: CGFloat {
     let contentWidth = collectionViewContentSize.width
     let numberOfColumns = CGFloat(numberOfColumns)
     if isSingleColumn == true {
@@ -52,7 +52,7 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     guard let collectionView = collectionView else {
       return CGSize.zero
     }
-    let width = collectionView.frame.width
+    var width = collectionView.frame.width
     return CGSize(
       width: width,
       height: contentHeight
@@ -64,6 +64,7 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     self.delegate = delegate
     super.init()
     setUpDefaultOfColumns()
+    
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -111,6 +112,13 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     return layoutAttributes[indexPath.item]
   }
   
+  func originForColumn(_ columnIndex: Int, collectionView: UICollectionView?, columnHeights: [CGFloat]) -> CGPoint {
+    
+    let pointX = isSingleColumn ? .zero : CGFloat(columnIndex) * (columnWidth + itemSpacing)
+    let pointY = columnHeights[columnIndex]
+    return CGPoint(x: pointX, y: pointY)
+  }
+  
   override func shouldInvalidateLayout(
     forBoundsChange newBounds: CGRect
   ) -> Bool {
@@ -142,12 +150,6 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     )
     var numberOfItems: Int = .zero
     
-    func originForColumn(_ columnIndex: Int) -> CGPoint {
-      let pointX = isSingleColumn ? .zero : CGFloat(columnIndex) * (columnWidth + itemSpacing)
-      let pointY = columnHeights[columnIndex]
-      return CGPoint(x: pointX, y: pointY)
-    }
-    
     func indexOfNextColumn() -> Int {
       guard let minHeight = columnHeights.min() else {
         let zeroColumnHeight: Int = .zero
@@ -177,7 +179,7 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
       let photoSize = delegate.cascadeLayout(self, sizeForItemAt: indexPath)
       let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
       let columnIndex = indexOfNextColumn()
-      let origin = originForColumn(columnIndex)
+      let origin = originForColumn(columnIndex, collectionView: collectionView, columnHeights: columnHeights)
       let newSize = self.scaledSizeForColumnWidth(from: photoSize, with: columnWidth)
       columnHeights[columnIndex] = origin.y + newSize.height + itemSpacing
       attributes.frame = CGRect(origin: origin, size: newSize)

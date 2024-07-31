@@ -29,14 +29,15 @@ final class PhotoDetailRootView: UIView {
   let profilePhotoView: PhotoDetailPhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.mainImageView.image = UIImage(named: .defaultProfilePhoto)
-    $0.layer.cornerRadius = GlobalConst.circle
+    $0.layer.cornerRadius = GlobalConst.ultraCircle
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: GlobalConst.fullValue
+      equalToConstant: GlobalConst.ultraValue
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: GlobalConst.fullValue
+      equalToConstant: GlobalConst.ultraValue
     ).isActive = true
+    $0.backgroundColor = .systemPurple
     return $0
   }(PhotoDetailPhotoView())
 
