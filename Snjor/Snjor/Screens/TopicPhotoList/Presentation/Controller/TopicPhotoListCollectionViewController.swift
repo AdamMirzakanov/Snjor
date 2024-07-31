@@ -64,12 +64,6 @@ final class TopicPhotoListCollectionViewController: UICollectionViewController {
     stateController()
   }
   
-//  override func viewWillAppear(_ animated: Bool) {
-//    super.viewWillAppear(animated)
-//    setNavigationBarHidden(true, animated: animated)
-//  }
-  
-  
   // MARK: - Private Methods
   private func setupDataSource() {
     createDataSource(

@@ -44,7 +44,7 @@ final class TopicsPageCategoryCollectionView: UICollectionView {
     
     guard indicatorView.frame != newFrame else { return }
     
-    UIView.animate(withDuration: 0.25) {
+    UIView.animate(withDuration: 0.15) {
       self.indicatorView.frame = newFrame
     }
   }

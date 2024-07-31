@@ -79,7 +79,7 @@ final class TopicPhotoListCellMainView: BaseImageContainerView {
   private let heartImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .heartImage)
-    $0.tintColor = .label
+    $0.tintColor = .white
     return $0
   }(UIImageView())
   
@@ -197,7 +197,7 @@ final class TopicPhotoListCellMainView: BaseImageContainerView {
       bottom: bottomAnchor,
       left: leftAnchor,
       pRight: GlobalConst.middleValue,
-      pBottom: 20,
+      pBottom: GlobalConst.middleValue,
       pLeft: GlobalConst.middleValue
     )
   }
