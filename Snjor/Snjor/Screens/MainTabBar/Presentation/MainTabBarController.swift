@@ -13,26 +13,26 @@ final class MainTabBarController: UITabBarController {
 
   // Buttons
   private lazy var photoListButton = getButton(
-    icon: "photo.on.rectangle.angled",
+    icon: "house",
     tag: Int.zero,
     action: action,
     opacity: 1
   )
 
   private lazy var searchButton = getButton(
-    icon: "magnifyingglass",
+    icon: "photo.on.rectangle.angled",
     tag: 1,
     action: action
   )
 
   private lazy var profileButton = getButton(
-    icon: "person",
+    icon: "magnifyingglass",
     tag: 2,
     action: action
   )
 
   private lazy var settingButton = getButton(
-    icon: "gearshape",
+    icon: "slider.horizontal.below.square.filled.and.square",
     tag: 3,
     action: action
   )

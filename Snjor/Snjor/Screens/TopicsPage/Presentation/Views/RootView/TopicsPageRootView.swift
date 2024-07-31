@@ -11,10 +11,10 @@ final class TopicPageRootView: UIView {
   
   // MARK: - Views
   let appNameLabel: UILabel = {
-    let text = "Snjør".uppercased()
-    let fontSize = UIFont.systemFont(ofSize: 20, weight: .medium)
+    let text = "Snjør"
+    let fontSize = UIFont.systemFont(ofSize: 20, weight: .bold)
     let attributes: [NSAttributedString.Key: Any] = [
-      .kern: 4.5,
+      .kern: 0.5,
       .font: fontSize
     ]
     $0.attributedText = NSAttributedString(string: text, attributes: attributes)

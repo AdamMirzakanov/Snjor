@@ -52,6 +52,7 @@ struct PhotoListFactory: PhotoListFactoryProtocol {
       PhotoListCell.self,
       forCellWithReuseIdentifier: PhotoListCell.reuseID
     )
+    module.title = "Discover"
     return module
   }
 
