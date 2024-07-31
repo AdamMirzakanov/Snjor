@@ -7,8 +7,10 @@
 
 extension PhotoDetailViewController: PhotoDetailRootViewDelegate {
   func didTapDownloadButton() {
+    let photoDetailViewModelItem = viewModel.getPhotoDetailViewModelItem()
+    guard let photoDetailViewModelItem = photoDetailViewModelItem else { return }
     downloadService.startDownload(
-      viewModel.photo!,
+      photoDetailViewModelItem.photo,
       sessionID: Self.sessionID
     )
   }

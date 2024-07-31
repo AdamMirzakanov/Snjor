@@ -29,14 +29,11 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    rootView.backgroundColor = .systemBackground
-    configurePageViewController()
-    configureCategoryCollectionView()
+    setFirstPage()
+    configPageViewController()
+    configCategoryCollectionView()
     stateController()
     viewModel.viewDidLoad()
-    if let firstCell = self.rootView.categoryCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
-      self.rootView.categoryCollectionView.updateIndicatorPosition(for: firstCell)
-    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -49,67 +46,35 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     setNavigationBarHidden(false, animated: animated)
   }
   
-  // Словарь для кэширования контроллеров
-  private var cachedViewControllers: [Int: TopicPhotoListCollectionViewController] = [:]
-  private let maxCachedControllers = 3
-  private var orderedKeys: [Int] = []
-  
   // MARK: - Internal Methods
   func viewControllerForTopic(at index: Int) -> UIViewController? {
-    guard 
+    guard
       index >= 0,
-      index < viewModel.topicsCount 
-    else {
+      index < viewModel.topicsCount else {
       return nil
     }
     
-    if let cachedController = cachedViewControllers[index] {
-      return cachedController
-    }
-    
     let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
-    
-    let topicPhotoListFactory = TopicPhotoListFactory(
-      topic: topicsPageViewModelItem.topic
-    )
-    
+    let topic = topicsPageViewModelItem.topic
+    let topicPhotoListFactory = TopicPhotoListFactory(topic: topic)
     let topicID = topicsPageViewModelItem.topicID
     let viewController = topicPhotoListFactory.makeModule(delegate: self)
-
-    guard 
-      let topicsPhotoListViewController = viewController as? TopicPhotoListCollectionViewController
-    else {
+    
+    guard let topicPhotoListCollectionViewController = (
+      viewController as? TopicPhotoListViewController
+    ) else {
       return viewController
     }
-
-    topicsPhotoListViewController.topicID = topicID
-    topicsPhotoListViewController.pageIndex = index
-    cacheController(index: index, controller: topicsPhotoListViewController)
-    return topicsPhotoListViewController
-  }
-  
-  private func cacheController(
-    index: Int,
-    controller: TopicPhotoListCollectionViewController
-  ) {
-    if cachedViewControllers.count >= maxCachedControllers {
-      if let oldestKey = orderedKeys.first {
-        cachedViewControllers.removeValue(forKey: oldestKey)
-        orderedKeys.removeFirst()
-      }
-    }
-
-    cachedViewControllers[index] = controller
-    orderedKeys.append(index)
     
-    if orderedKeys.count > maxCachedControllers {
-      let removedKey = orderedKeys.removeFirst()
-      cachedViewControllers.removeValue(forKey: removedKey)
-    }
+    topicPhotoListCollectionViewController.topicID = topicID
+    topicPhotoListCollectionViewController.pageIndex = index
+    return topicPhotoListCollectionViewController
   }
-  
-  // MARK: - Private Methods
-  private func stateController() {
+}
+
+// MARK: - Private Methods
+private extension TopicsPageViewController {
+  func stateController() {
     viewModel
       .state
       .receive(on: DispatchQueue.main)
@@ -118,13 +83,7 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
         switch state {
         case .success:
           self.rootView.categoryCollectionView.reloadData()
-          guard let firstPage = self.viewControllerForTopic(at: 0)
-          else { return }
-          rootView.pageViewController.setViewControllers(
-            [firstPage],
-            direction: .forward,
-            animated: true
-          )
+          setFirstPage()
         case .loading: break
         case .fail(error: let error):
           presentAlert(message: error, title: AppLocalized.error)
@@ -133,19 +92,31 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
       .store(in: &cancellable)
   }
   
-  private func configurePageViewController() {
+  private func setFirstPage() {
+    guard let firstPage = self.viewControllerForTopic(at: .zero) else {
+      return
+    }
+    rootView.pageViewController.setViewControllers(
+      [firstPage],
+      direction: .forward,
+      animated: true
+    )
+  }
+  
+  private func configPageViewController() {
     rootView.pageViewController.dataSource = self
     rootView.pageViewController.delegate = self
     addChild(rootView.pageViewController)
     rootView.pageViewController.didMove(toParent: self)
+    rootView.backgroundColor = .systemBackground
   }
   
-  private func configureCategoryCollectionView() {
+  private func configCategoryCollectionView() {
     rootView.categoryCollectionView.dataSource = self
     rootView.categoryCollectionView.delegate = self
   }
   
-  func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
+  private func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
     self.navigationController?.setNavigationBarHidden(hidden, animated: animated)
   }
 }

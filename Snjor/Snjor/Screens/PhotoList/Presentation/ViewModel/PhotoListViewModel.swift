@@ -9,6 +9,9 @@ import UIKit
 import Combine
 
 final class PhotoListViewModel: PhotoListViewModelProtocol {
+  
+  typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
+  
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
 
@@ -24,7 +27,6 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
     snapshot.appendSections([.main])
     snapshot.appendItems(photos)
-//    sections = snapshot.sectionIdentifiers
     return snapshot
   }
 
@@ -54,50 +56,15 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     dataSource = UICollectionViewDiffableDataSource<Section, Photo>(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
-      
-      guard
-        let strongSelf = self,
-        let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: PhotoListCell.reuseID,
-          for: indexPath
-        ) as? PhotoListCell
-      else {
-        return UICollectionViewCell()
-      }
-
-//      let section = self.sections[indexPath.section]
-
-//      switch section {
-//      case .main:
-        cell.delegate = delegate
-      strongSelf.checkAndLoadMorePhotos(at: indexPath.item)
-      let viewModelItem = strongSelf.getPhotoListViewModelItem(at: indexPath.item)
-      cell.configure(viewModelItem: viewModelItem)
-        return cell
-//      }
-    }
-
-    dataSource?.supplementaryViewProvider = { (collectionView, kind, indexPath) -> UICollectionReusableView? in
-      guard kind == UICollectionView.elementKindSectionHeader else {
-        return nil
-      }
-
-//      let section = self.sections[indexPath.section]
-
-      let headerView = collectionView.dequeueReusableSupplementaryView(
-        ofKind: kind,
-        withReuseIdentifier: SectionHeaderView.reuseID,
-        for: indexPath
-      ) as! SectionHeaderView
-
-//      switch section {
-//      case .main:
-        headerView.setImage()
-//      }
-      return headerView
+      return self?.configureCell(
+        collectionView: collectionView,
+        indexPath: indexPath,
+        photo: photo,
+        delegate: delegate
+      ) ?? UICollectionViewCell()
     }
   }
-
+  
   func applySnapshot() {
     guard let dataSource = dataSource else { return }
     dataSource.apply(snapshot, animatingDifferences: true)
@@ -141,19 +108,30 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     }
   }
   
-  func makePhotoListViewModelItem(
-    at index: Int
-  ) -> PhotoListViewModelItem {
+  private func makePhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem {
     let photo = photos[index]
     return PhotoListViewModelItem(photo: photo)
   }
+  
+  private func configureCell(
+    collectionView: UICollectionView,
+    indexPath: IndexPath,
+    photo: Photo,
+    delegate: any PhotoCellDelegate
+  ) -> UICollectionViewCell {
+    guard
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: PhotoListCell.reuseID,
+        for: indexPath
+      ) as? PhotoListCell
+    else {
+      return UICollectionViewCell()
+    }
+    
+    cell.delegate = delegate
+    checkAndLoadMorePhotos(at: indexPath.item)
+    let viewModelItem = getPhotoListViewModelItem(at: indexPath.item)
+    cell.configure(viewModelItem: viewModelItem)
+    return cell
+  }
 }
-
-// MARK: - Section
-//private enum Section: CaseIterable {
-//  case main
-//}
-
-//private enum SupplementaryViewKind {
-//  static let header = "header"
-//}

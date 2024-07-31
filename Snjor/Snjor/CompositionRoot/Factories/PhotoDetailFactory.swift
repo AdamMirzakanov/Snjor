@@ -29,6 +29,7 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
       state: state,
       loadUseCase: loadUseCase
     )
+    
     viewModel.photo = photo
     let module = PhotoDetailViewController(viewModel: viewModel)
     return module

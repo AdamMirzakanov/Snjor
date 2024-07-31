@@ -9,27 +9,26 @@ import UIKit
 
 // MARK: - UIPageViewControllerDataSource
 extension TopicsPageViewController: UIPageViewControllerDataSource {
-  
-  // перед текущим контроллером
   func pageViewController(
     _ pageViewController: UIPageViewController,
     viewControllerBefore viewController: UIViewController
   ) -> UIViewController? {
-    guard let contentViewController = viewController as? TopicPhotoListCollectionViewController,
-          let index = contentViewController.pageIndex
+    guard
+      let contentViewController = viewController as? TopicPhotoListViewController,
+      let index = contentViewController.pageIndex
     else {
       return nil
     }
     return viewControllerForTopic(at: index - 1)
   }
   
-  // после текущего
   func pageViewController(
     _ pageViewController: UIPageViewController,
     viewControllerAfter viewController: UIViewController
   ) -> UIViewController? {
-    guard let contentViewController = viewController as? TopicPhotoListCollectionViewController,
-          let index = contentViewController.pageIndex
+    guard
+      let contentViewController = viewController as? TopicPhotoListViewController,
+      let index = contentViewController.pageIndex
     else {
       return nil
     }
@@ -42,31 +41,39 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     previousViewControllers: [UIViewController],
     transitionCompleted completed: Bool
   ) {
-    if completed,
-       let visibleViewController = pageViewController.viewControllers?.first as? TopicPhotoListCollectionViewController,
-       let currentIndex = visibleViewController.pageIndex {
-      
-      rootView.categoryCollectionView.selectItem(
-        at: IndexPath(item: currentIndex, section: .zero),
-        animated: true,
-        scrollPosition: .centeredHorizontally
-      )
-      
-      if let cell = rootView.categoryCollectionView.cellForItem(at: IndexPath(item: currentIndex, section: 0)) {
-            rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
-          }
+    guard completed else { return }
+    handlePageViewControllerTransition(pageViewController)
+  }
+  
+  // MARK: - Private Methods
+  private func handlePageViewControllerTransition(
+    _ pageViewController: UIPageViewController
+  ) {
+    guard
+      let visibleViewController = pageViewController
+        .viewControllers?
+        .first as? TopicPhotoListViewController,
+      let currentIndex = visibleViewController.pageIndex
+    else {
+      return
     }
+    
+    let indexPath = IndexPath(item: currentIndex, section: .zero)
+    
+    guard
+      let cell = rootView.categoryCollectionView.cellForItem(at: indexPath)
+    else {
+      return
+    }
+    selectItem(at: indexPath)
+    rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+  }
+  
+  private func selectItem(at indexPath: IndexPath) {
+    rootView.categoryCollectionView.selectItem(
+      at: indexPath,
+      animated: true,
+      scrollPosition: .centeredHorizontally
+    )
   }
 }
-
-//extension TopicsPageViewController: TopicPhotoListCollectionViewControllerDelegate {
-//  func didSelect(_ photo: Photo) {
-//    let photoDetailFactory = PhotoDetailFactory(photo: photo)
-//    let controller = photoDetailFactory.makeModule()
-//    navigationController?.pushViewController(
-//      controller,
-//      animated: true
-//    )
-//    print(#function)
-//  }
-//}

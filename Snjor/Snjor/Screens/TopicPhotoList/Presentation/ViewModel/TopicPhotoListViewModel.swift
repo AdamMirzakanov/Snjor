@@ -10,20 +10,24 @@ import Combine
 
 final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   
+  typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
+  
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
   var state: PassthroughSubject<StateController, Never>
-  var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
+  
+  // MARK: - Private Properties
+  private let loadUseCase: any LoadTopicPhotoListUseCaseProtocol
+  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+  private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
+  private var photos: [Photo] = []
+  
+  private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
     snapshot.appendSections([.main])
     snapshot.appendItems(photos)
     return snapshot
   }
-  
-  // MARK: - Private Properties
-  private let loadUseCase: any LoadTopicPhotoListUseCaseProtocol
-  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
-  private var photos: [Photo] = []
   
   // MARK: - Initializers
   init(
@@ -44,13 +48,34 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
     }
   }
   
+  func createDataSource(
+    for collectionView: UICollectionView
+  ) {
+    dataSource = UICollectionViewDiffableDataSource<Section, Photo>(
+      collectionView: collectionView
+    ) { [weak self] collectionView, indexPath, photo in
+      return self?.configureCell(
+        collectionView: collectionView,
+        indexPath: indexPath,
+        photo: photo
+      ) ?? UICollectionViewCell()
+    }
+    configureSectionHeaders(dataSource: dataSource)
+  }
+  
+  func applySnapshot() {
+    guard let dataSource = dataSource else { return }
+    dataSource.apply(
+      snapshot,
+      animatingDifferences: true
+    )
+  }
+  
   func getPhoto(at indexPath: Int) -> Photo {
     photos[indexPath]
   }
   
-  func getTopicPhotoListViewModelItem(
-    at index: Int
-  ) -> TopicPhotoListViewModelItem {
+  func getTopicPhotoListViewModelItem(at index: Int) -> TopicPhotoListViewModelItem {
     checkAndLoadMorePhotos(at: index)
     return makeTopicPhotoListViewModelItem(at: index)
   }
@@ -82,9 +107,45 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
     }
   }
   
-  func makeTopicPhotoListViewModelItem(at index: Int) -> TopicPhotoListViewModelItem {
+  private func makeTopicPhotoListViewModelItem(at index: Int) -> TopicPhotoListViewModelItem {
     let photo = photos[index]
     return TopicPhotoListViewModelItem(photo: photo)
+  }
+  
+  private func configureCell(
+    collectionView: UICollectionView,
+    indexPath: IndexPath,
+    photo: Photo
+  ) -> UICollectionViewCell {
+    guard
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: TopicsPagePhotoListCell.reuseID,
+        for: indexPath
+      ) as? TopicsPagePhotoListCell
+    else {
+      return UICollectionViewCell()
+    }
+    
+    checkAndLoadMorePhotos(at: indexPath.item)
+    let viewModelItem = getTopicPhotoListViewModelItem(at: indexPath.item)
+    cell.configure(viewModelItem: viewModelItem)
+    return cell
+  }
+  
+  private func configureSectionHeaders(dataSource: DataSource) {
+    dataSource?.supplementaryViewProvider = {
+      collectionView, kind, indexPath -> UICollectionReusableView? in
+      guard kind == UICollectionView.elementKindSectionHeader else {
+        return nil
+      }
+      let headerView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: kind,
+        withReuseIdentifier: SectionHeaderView.reuseID,
+        for: indexPath
+      ) as! SectionHeaderView
+      headerView.setImage()
+      return headerView
+    }
   }
 }
 

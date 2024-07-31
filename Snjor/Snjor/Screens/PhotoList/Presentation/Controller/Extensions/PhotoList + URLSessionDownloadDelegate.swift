@@ -24,7 +24,7 @@ extension PhotoListCollectionViewController: URLSessionDownloadDelegate {
       saveImageToGallery(at: destinationURL)
     } catch let error {
       self.presentAlert(
-        message: "\(error.localizedDescription)",
+        message: error.localizedDescription,
         title: AppLocalized.error
       )
     }

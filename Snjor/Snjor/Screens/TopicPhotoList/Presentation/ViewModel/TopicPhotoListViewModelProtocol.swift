@@ -9,7 +9,8 @@ import UIKit
 
 protocol TopicPhotoListViewModelProtocol: BaseViewModelProtocol {
   var photosCount: Int { get }
-  var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> { get }
   func getTopicPhotoListViewModelItem(at index: Int) -> TopicPhotoListViewModelItem
   func getPhoto(at index: Int) -> Photo
+  func applySnapshot()
+  func createDataSource(for collectionView: UICollectionView)
 }

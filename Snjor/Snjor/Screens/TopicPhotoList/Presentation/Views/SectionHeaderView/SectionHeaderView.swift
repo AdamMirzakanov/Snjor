@@ -7,19 +7,18 @@
 
 import UIKit
 
-class SectionHeaderView: UICollectionReusableView {
+final class SectionHeaderView: UICollectionReusableView {
 
   // MARK: - Photo View
-  let photoImageView: UIImageView = {
+  private let photoImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
     $0.backgroundColor = .systemPurple
-    $0.image = UIImage(named: "hedarMockPhoto")
     return $0
   }(UIImageView())
 
   // MARK: - Gradient
-  let gradientView: GradientView = {
+  private let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
       alpha: SectionHeaderViewConst.gradientAlpha
@@ -38,7 +37,7 @@ class SectionHeaderView: UICollectionReusableView {
   }(GradientView())
 
   // MARK: - Labels
-  let photosForEveryoneLabel: UILabel = {
+  private let photosForEveryoneLabel: UILabel = {
     $0.text = .photosForEveryone
     $0.textColor = .label
     $0.font = .systemFont(
@@ -56,15 +55,15 @@ class SectionHeaderView: UICollectionReusableView {
     return $0
   }(UILabel())
 
-  let photoOfTheDay: UILabel = {
-    $0.text = .photoOfTheDay
-    $0.textColor = .white
-    $0.font = .systemFont(
-      ofSize: SectionHeaderViewConst.photoOfTheDayFontSize,
-      weight: .medium
-    )
-    return $0
-  }(UILabel())
+//  private let photoOfTheDay: UILabel = {
+//    $0.text = .photoOfTheDay
+//    $0.textColor = .white
+//    $0.font = .systemFont(
+//      ofSize: SectionHeaderViewConst.photoOfTheDayFontSize,
+//      weight: .medium
+//    )
+//    return $0
+//  }(UILabel())
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -100,6 +99,6 @@ class SectionHeaderView: UICollectionReusableView {
   }
 
   func setImage() {
-//    photoImageView.image = UIImage(named: "day")!
+    photoImageView.image = UIImage(named: "hedarMockPhoto")!
   }
 }

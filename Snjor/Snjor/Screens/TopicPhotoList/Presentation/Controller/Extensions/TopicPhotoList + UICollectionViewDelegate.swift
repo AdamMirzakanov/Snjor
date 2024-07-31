@@ -7,8 +7,8 @@
 
 import UIKit
 
-extension TopicPhotoListCollectionViewController {
-  override func collectionView(
+extension TopicPhotoListViewController: UICollectionViewDelegate {
+  func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {

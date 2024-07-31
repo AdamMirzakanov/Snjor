@@ -8,24 +8,27 @@
 import UIKit
 
 extension TopicsPageViewController: UICollectionViewDelegate {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        didSelectItemAt indexPath: IndexPath
-    ) {
-        guard let page = viewControllerForTopic(at: indexPath.item) else { return }
-        rootView.pageViewController.setViewControllers([page], direction: .forward, animated: true)
-        
-        if let cell = collectionView.cellForItem(at: indexPath) {
-            rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
-        }
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
+    guard
+      let page = viewControllerForTopic(at: indexPath.item),
+      let cell = collectionView.cellForItem(at: indexPath)
+    else {
+      return
     }
-
-    private func updateIndicatorPositionForVisibleCells() {
-        let visibleIndexPaths = rootView.categoryCollectionView.indexPathsForVisibleItems.sorted()
-        if let indexPath = visibleIndexPaths.first, let cell = rootView.categoryCollectionView.cellForItem(at: indexPath) {
-            rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
-        }
-    }
+    setPage(page: page)
+    rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+  }
+  
+  private func setPage(page: UIViewController) {
+    rootView.pageViewController.setViewControllers(
+      [page],
+      direction: .forward,
+      animated: true
+    )
+  }
 }
 
 

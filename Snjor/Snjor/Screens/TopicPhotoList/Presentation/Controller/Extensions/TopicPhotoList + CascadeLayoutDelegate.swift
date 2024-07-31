@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension TopicPhotoListCollectionViewController: CascadeLayoutDelegate {
+extension TopicPhotoListViewController: CascadeLayoutDelegate {
   func cascadeLayout(
     _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath

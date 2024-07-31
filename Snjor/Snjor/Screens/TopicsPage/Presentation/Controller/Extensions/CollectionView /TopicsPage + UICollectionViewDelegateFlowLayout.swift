@@ -15,13 +15,7 @@ extension TopicsPageViewController: UICollectionViewDelegateFlowLayout {
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     let itemIndex = indexPath.item
-    let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: itemIndex)
-    let width = topicsPageViewModelItem.topicTitle.size(
-      withAttributes:
-        [
-          NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)
-        ]
-    ).width + 11
+    let width = calculateItemWidth(for: itemIndex)
     return CGSize(
       width: width,
       height: collectionView.bounds.height
@@ -33,6 +27,22 @@ extension TopicsPageViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     insetForSectionAt section: Int
   ) -> UIEdgeInsets {
-    return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    return UIEdgeInsets(
+      top: .zero,
+      left: 10,
+      bottom: .zero,
+      right: 10
+    )
+  }
+  
+  // MARK: -  Private Methods
+  private func calculateItemWidth(for index: Int) -> CGFloat {
+    let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
+    let width = topicsPageViewModelItem.topicTitle.size(
+      withAttributes: [
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)
+      ]
+    ).width + 11
+    return width
   }
 }

@@ -29,7 +29,7 @@
 //  }
 //}
 //
-//extension TopicsPagePhotoListCoordinator: TopicPhotoListCollectionViewControllerDelegate {
+//extension TopicsPagePhotoListCoordinator: TopicPhotoListViewControllerDelegate {
 //  func didSelect(_ photo: Photo) {
 //    print("GGGGGGG")
 //    //получить координатора следующего экрана

@@ -11,77 +11,93 @@ final class TopicsPageCategoryCollectionView: UICollectionView {
   
   // MARK: - Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
-  private let indicatorView = UIView()
   
-  var lineView: UIView = {
+  // MARK: - Views
+  private let lineView: UIView = {
     $0.backgroundColor = .white
     $0.alpha = 0.7
+    return $0
+  }(UIView())
+  
+  private let indicatorView: UIView = {
+    $0.backgroundColor = .white
     return $0
   }(UIView())
   
   // MARK: - Initializers
   init() {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
-    configure()
-    indicatorView.backgroundColor = .white
-    addSubview(lineView)
-    addSubview(indicatorView)
+    configureLayout()
+    addSubviews()
+    cellRegister()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  func updateIndicatorPosition(for cell: UICollectionViewCell) {
-    let cellFrame = cell.frame
-    let indicatorHeight: CGFloat = 2.0
-    let newFrame = CGRect(
-      x: cellFrame.origin.x,
-      y: cellFrame.maxY - indicatorHeight,
-      width: cellFrame.width,
-      height: indicatorHeight
-    )
-    
-    guard indicatorView.frame != newFrame else { return }
-    
-    UIView.animate(withDuration: 0.15) {
-      self.indicatorView.frame = newFrame
-    }
-  }
-  
+
+  // MARK: - Override Methods
   override func layoutSubviews() {
     super.layoutSubviews()
-    
-    // получить толщину линии, равную одному пикселю
+    updateLineViewAndIndicatorPosition()
+  }
+
+  // MARK: - Internal Methods
+  private func updateLineViewAndIndicatorPosition() {
     let indicatorHeight: CGFloat = 1 / traitCollection.displayScale
     lineView.frame = CGRect(
-      x: 0,
+      x: .zero,
       y: bounds.height - indicatorHeight,
       width: contentSize.width,
       height: indicatorHeight
     )
-    if let selectedIndexPath = indexPathsForSelectedItems?.first,
-       let cell = cellForItem(at: selectedIndexPath) {
-      updateIndicatorPosition(for: cell)
+    guard
+      let selectedIndexPath = indexPathsForSelectedItems?.first,
+      let cell = cellForItem(at: selectedIndexPath)
+    else {
+      return
     }
+    updateIndicatorPosition(for: cell)
   }
   
+  func updateIndicatorPosition(for cell: UICollectionViewCell) {
+    let cellFrame = cell.frame
+    let indicatorHeight: CGFloat = 2.0
+    let xPosition = cellFrame.origin.x
+    let yPosition = cellFrame.maxY - indicatorHeight
+    let newFrame = CGRect(
+      x: xPosition,
+      y: yPosition,
+      width: cellFrame.width,
+      height: indicatorHeight
+    )
+    guard indicatorView.frame != newFrame else { return }
+    animateCellIndicator(indicatorView: indicatorView, newFrame: newFrame)
+  }
   
   // MARK: - Private Methods
-  private func configure() {
-    register()
+  private func addSubviews() {
+    addSubview(lineView)
+    addSubview(indicatorView)
+  }
+  
+  private func configureLayout() {
     flowlayout.scrollDirection = .horizontal
     backgroundColor = .clear
     bounces = false
     showsHorizontalScrollIndicator = false
   }
   
-  private func register() {
+  private func cellRegister() {
     register(
       TopicsPageCategoryCell.self,
       forCellWithReuseIdentifier: TopicsPageCategoryCell.reuseID
     )
   }
+  
+  private func animateCellIndicator(indicatorView: UIView, newFrame: CGRect) {
+    UIView.animate(withDuration: 0.15) {
+      self.indicatorView.frame = newFrame
+    }
+  }
 }
-
-

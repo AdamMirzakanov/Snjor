@@ -9,12 +9,12 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
   // MARK: - Private Properties
-  private var selected = Int.zero
+  private var selected: Int = .zero
 
   // Buttons
   private lazy var photoListButton = getButton(
     icon: "house",
-    tag: Int.zero,
+    tag: .zero,
     action: action,
     opacity: 1
   )

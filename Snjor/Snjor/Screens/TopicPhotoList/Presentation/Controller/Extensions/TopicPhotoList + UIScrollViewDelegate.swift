@@ -7,25 +7,25 @@
 
 import UIKit
 
-extension TopicPhotoListCollectionViewController {
+extension TopicPhotoListViewController {
   // MARK: - UIScrollViewDelegate
   override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
     return .bottom
   }
 
-  override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     if let tabBar = tabBarController as? MainTabBarController {
       tabBar.hideCustomTabBar()
     }
   }
 
-  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     if let tabBar = tabBarController as? MainTabBarController {
       tabBar.showCustomTabBar()
     }
   }
 
-  override func scrollViewDidEndDragging(
+  func scrollViewDidEndDragging(
     _ scrollView: UIScrollView,
     willDecelerate decelerate: Bool
   ) {

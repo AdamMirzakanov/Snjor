@@ -152,7 +152,6 @@ final class PhotoDetailRootView: UIView {
     $0.setTitleColor(.label, for: .normal)
     $0.alpha = GlobalConst.defaultAlpha
     $0.frame = toggleContentModePhotoButtonBlurEffect.bounds
-//    $0.adjustsImageWhenHighlighted = false
     return $0
   }(UIButton())
 
@@ -533,23 +532,29 @@ final class PhotoDetailRootView: UIView {
 
   // MARK: - Setup Data
   func setupData(viewModel: any PhotoDetailViewModelProtocol) {
-    guard let photo = viewModel.photo else { return }
-    photoView.configure(with: photo, url: photo.regularURL)
-    profilePhotoView.configure(with: photo, url: photo.profileImageURL)
-    nameLabel.text = viewModel.displayName
-    likesLabel.text = viewModel.likes
-    createdAt(from: viewModel.createdAt)
-    resolutionLabel.text = viewModel.resolution
-    pxLabel.text = viewModel.pixels
+    let viewModelItem = viewModel.getPhotoDetailViewModelItem()
+    guard let viewModelItem = viewModelItem else { return }
+    let photo = viewModelItem.photo
+    let regularURL = photo.regularURL
+    let profileImageURL = photo.profileImageURL
+    photoView.configure(with: photo, url: regularURL)
+    profilePhotoView.configure(with: photo, url: profileImageURL)
+    nameLabel.text = viewModelItem.displayName
+    likesLabel.text = viewModelItem.likes
+    createdAt(from: viewModelItem.createdAt)
+    resolutionLabel.text = viewModelItem.resolution
+    pxLabel.text = viewModelItem.pixels
   }
 
   func setupPhotoInfoData(viewModel: any PhotoDetailViewModelProtocol) {
-    downloadsLabel.text = viewModel.downloads
-    cameraModelLabel.text = viewModel.cameraModel
-    isoValueLabel.text = viewModel.iso
-    focalLengthValueLabel.text = viewModel.focalLength
-    apertureValueLabel.text = viewModel.aperture
-    exposureTimeValueLabel.text = viewModel.exposureTime
+    let viewModelItem = viewModel.getPhotoDetailViewModelItem()
+    guard let viewModelItem = viewModelItem else { return }
+    downloadsLabel.text = viewModelItem.downloads
+    cameraModelLabel.text = viewModelItem.cameraModel
+    isoValueLabel.text = viewModelItem.iso
+    focalLengthValueLabel.text = viewModelItem.focalLength
+    apertureValueLabel.text = viewModelItem.aperture
+    exposureTimeValueLabel.text = viewModelItem.exposureTime
   }
 
   // MARK: - Setup Views

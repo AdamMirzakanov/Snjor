@@ -10,7 +10,7 @@ import Combine
 
 protocol TopicPhotoListFactoryProtocol {
   func makeModule(
-    delegate: any TopicPhotoListCollectionViewControllerDelegate
+    delegate: any TopicPhotoListViewControllerDelegate
   ) -> UIViewController
 }
 
@@ -19,7 +19,7 @@ struct TopicPhotoListFactory: TopicPhotoListFactoryProtocol {
   let topic: Topic
   
   func makeModule(
-    delegate: any TopicPhotoListCollectionViewControllerDelegate
+    delegate: any TopicPhotoListViewControllerDelegate
   ) -> UIViewController {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
@@ -38,37 +38,15 @@ struct TopicPhotoListFactory: TopicPhotoListFactoryProtocol {
     )
     let defaultLayout = UICollectionViewLayout()
 
-    let module = TopicPhotoListCollectionViewController(
+    let module = TopicPhotoListViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout
     )
 
     let cascadeLayout = SingleColumnCascadeLayout(with: module)
-    module.collectionView.collectionViewLayout = cascadeLayout
-    module.collectionView.showsVerticalScrollIndicator = false
-    module.collectionView.register(
-      TopicsPagePhotoListCell.self,
-      forCellWithReuseIdentifier: TopicsPagePhotoListCell.reuseID
-    )
+    module.rootView.topicPhotoListCollectionView.collectionViewLayout = cascadeLayout
+    module.rootView.topicPhotoListCollectionView.showsVerticalScrollIndicator = false
     return module
   }
-  
-//  func makeTabBarItem(navigation: any Navigable) {
-//    
-//  }
-  
-//  func mekePhotoDetailCoordinator(
-//    photo: Photo,
-//    navigation: any Navigable,
-//    overlordCoordinator: any ParentCoordinator
-//  ) -> any Coordinatable {
-//    let factory = PhotoDetailFactory(photo: photo)
-//    let coordinator = PhotoDetailCoordinator(
-//      factory: factory,
-//      navigation: navigation,
-//      overlordCoordinator: overlordCoordinator
-//    )
-//    return coordinator
-//  }
 }

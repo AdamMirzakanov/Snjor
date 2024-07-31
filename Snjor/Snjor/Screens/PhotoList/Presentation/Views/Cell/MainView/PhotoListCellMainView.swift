@@ -141,6 +141,10 @@ final class PhotoListCellMainView: BaseImageContainerView {
     self.showsUsername = showsUsername
     userNameLabel.text = photo.user.displayName
   }
+  
+  func prepareForReuse() {
+    reset()
+  }
 
   // MARK: - Setup Views
   private func setupPhotoCellViews() {
@@ -182,10 +186,6 @@ final class PhotoListCellMainView: BaseImageContainerView {
       pBottom: GlobalConst.defaultValue,
       pLeft: GlobalConst.defaultValue
     )
-  }
-
-  func prepareForReuse() {
-    reset()
   }
 
   private func reset() {

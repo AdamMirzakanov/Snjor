@@ -9,19 +9,7 @@ import UIKit
 
 final class TopicPageRootView: UIView {
   
-  // MARK: - Views
-  let appNameLabel: UILabel = {
-    let text = "Snjør"
-    let fontSize = UIFont.systemFont(ofSize: 20, weight: .bold)
-    let attributes: [NSAttributedString.Key: Any] = [
-      .kern: 0.5,
-      .font: fontSize
-    ]
-    $0.attributedText = NSAttributedString(string: text, attributes: attributes)
-    $0.textColor = .white
-    return $0
-  }(UILabel())
-  
+  // MARK: - Internal Views
   var pageViewController: UIPageViewController = {
     $0.view.backgroundColor = .clear
     return $0
@@ -32,8 +20,23 @@ final class TopicPageRootView: UIView {
   ))
   
   var categoryCollectionView: TopicsPageCategoryCollectionView = {
+    $0.heightAnchor.constraint(
+      equalToConstant: 40).isActive = true
     return $0
   }(TopicsPageCategoryCollectionView())
+  
+  // MARK: - Private Views
+  private let appNameLabel: UILabel = {
+    let text = "Snjør"
+    let fontSize = UIFont.systemFont(ofSize: 20, weight: .bold)
+    let attributes: [NSAttributedString.Key: Any] = [
+      .kern: 0.5,
+      .font: fontSize
+    ]
+    $0.attributedText = NSAttributedString(string: text, attributes: attributes)
+    $0.textColor = .white
+    return $0
+  }(UILabel())
   
   private let gradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -82,17 +85,12 @@ final class TopicPageRootView: UIView {
   }
   
   private func setupCategoryCollectionViewConstraints() {
-    categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      categoryCollectionView.topAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.topAnchor, constant: 45),
-      categoryCollectionView.leadingAnchor.constraint(
-        equalTo: leadingAnchor),
-      categoryCollectionView.trailingAnchor.constraint(
-        equalTo: trailingAnchor),
-      categoryCollectionView.heightAnchor.constraint(
-        equalToConstant: 40)
-    ])
+    categoryCollectionView.setConstraints(
+      top: safeAreaLayoutGuide.topAnchor,
+      right: rightAnchor,
+      left: leftAnchor,
+      pTop: 45
+    )
   }
   
   private func setupPageViewControllerViewConstraints() {
@@ -100,24 +98,20 @@ final class TopicPageRootView: UIView {
   }
   
   private func setupGradientViewConstraints() {
-    gradientView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      gradientView.topAnchor.constraint(
-        equalTo: topAnchor, constant: -40),
-      gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      gradientView.leadingAnchor.constraint(
-        equalTo: leadingAnchor),
-      gradientView.trailingAnchor.constraint(
-        equalTo: trailingAnchor)
-    ])
+    gradientView.setConstraints(
+      top: topAnchor,
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      left: leftAnchor,
+      pTop: -40
+    )
   }
   
   private func setupAppNameLabelConstraints() {
     appNameLabel.centerX()
-    NSLayoutConstraint.activate([
-      appNameLabel.topAnchor.constraint(
-        equalTo: safeAreaLayoutGuide.topAnchor, constant: 15)
-    ])
-    
+    appNameLabel.setConstraints(
+      top: safeAreaLayoutGuide.topAnchor,
+      pTop: 15
+    )
   }
 }
