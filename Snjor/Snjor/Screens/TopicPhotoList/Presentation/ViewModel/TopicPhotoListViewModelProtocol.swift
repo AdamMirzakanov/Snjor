@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TopicPhotoListViewModelProtocol: BaseViewModelProtocol {
-  var photosCount: Int { get }
+//  var photosCount: Int { get }
   func getTopicPhotoListViewModelItem(at index: Int) -> TopicPhotoListViewModelItem
   func getPhoto(at index: Int) -> Photo
   func applySnapshot()

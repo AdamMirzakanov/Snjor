@@ -29,11 +29,12 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupDataSource()
     setFirstPage()
     configPageViewController()
     configCategoryCollectionView()
-    stateController()
     viewModel.viewDidLoad()
+    stateController()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +44,13 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    updateIndicatorForVisibleCells()
+    let indexPath = IndexPath(item: .zero, section: .zero)
+    guard
+      let cell = rootView.categoryCollectionView.cellForItem(at: indexPath)
+    else {
+      return
+    }
+    rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -58,28 +65,33 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
       index < viewModel.topicsCount else {
       return nil
     }
-    
+
     let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
     let topic = topicsPageViewModelItem.topic
     let topicPhotoListFactory = TopicPhotoListFactory(topic: topic)
     let topicID = topicsPageViewModelItem.topicID
     let viewController = topicPhotoListFactory.makeModule(delegate: self)
-    
+
     guard let topicPhotoListCollectionViewController = (
       viewController as? TopicPhotoListViewController
     ) else {
       return viewController
     }
-    
+
     topicPhotoListCollectionViewController.topicID = topicID
     topicPhotoListCollectionViewController.pageIndex = index
     return topicPhotoListCollectionViewController
   }
-}
-
-// MARK: - Private Methods
-private extension TopicsPageViewController {
-  func stateController() {
+  
+  
+  // MARK: - Private Methods
+  private func setupDataSource() {
+    viewModel.createDataSource(
+      for: rootView.categoryCollectionView
+    )
+  }
+  
+  private func stateController() {
     viewModel
       .state
       .receive(on: DispatchQueue.main)
@@ -87,7 +99,7 @@ private extension TopicsPageViewController {
         guard let self = self else { return }
         switch state {
         case .success:
-          rootView.categoryCollectionView.reloadData()
+          viewModel.applySnapshot()
           setFirstPage()
         case .loading: break
         case .fail(error: let error):
@@ -117,17 +129,11 @@ private extension TopicsPageViewController {
   }
   
   private func configCategoryCollectionView() {
-    rootView.categoryCollectionView.dataSource = self
+//        rootView.categoryCollectionView.dataSource = self
     rootView.categoryCollectionView.delegate = self
   }
   
   private func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
     self.navigationController?.setNavigationBarHidden(hidden, animated: animated)
-  }
-  
-  private func updateIndicatorForVisibleCells() {
-    let visibleCells = rootView.categoryCollectionView.visibleCells
-    guard let firstVisibleCell = visibleCells.first else { return }
-    rootView.categoryCollectionView.updateIndicatorPosition(for: firstVisibleCell)
   }
 }

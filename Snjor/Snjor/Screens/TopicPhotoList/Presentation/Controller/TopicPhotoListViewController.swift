@@ -17,7 +17,6 @@ final class TopicPhotoListViewController: BaseViewController<TopicPhotoListRootV
   // MARK: - Internal Properties
   var topicID: String?
   var pageIndex: Int?
-  var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   
   // MARK: - Delegate
   private(set) weak var delegate: (any TopicPhotoListViewControllerDelegate)?

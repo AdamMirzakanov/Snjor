@@ -10,7 +10,7 @@ import UIKit
 final class TopicPageRootView: UIView {
   
   // MARK: - Internal Views
-  var pageViewController: UIPageViewController = {
+  let pageViewController: UIPageViewController = {
     $0.view.backgroundColor = .clear
     return $0
   }(UIPageViewController(
@@ -19,9 +19,8 @@ final class TopicPageRootView: UIView {
     options: nil
   ))
   
-  var categoryCollectionView: TopicsPageCategoryCollectionView = {
-    $0.heightAnchor.constraint(
-      equalToConstant: 40).isActive = true
+  let categoryCollectionView: TopicsPageCategoryCollectionView = {
+    $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
     return $0
   }(TopicsPageCategoryCollectionView())
   

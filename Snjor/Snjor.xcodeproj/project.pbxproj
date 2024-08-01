@@ -468,8 +468,8 @@
 		3723E3782C4F0D5A00C3AE3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				372A99962C5523DC00C95D15 /* CollectionView */,
 				37EFC4A32C543DCF001D3581 /* RootView */,
+				372A99962C5523DC00C95D15 /* CollectionView */,
 				3723E3772C4F0D5A00C3AE3E /* Cell */,
 			);
 			path = Views;

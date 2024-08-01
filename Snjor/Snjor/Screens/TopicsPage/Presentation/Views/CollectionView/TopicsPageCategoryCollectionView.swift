@@ -45,7 +45,7 @@ final class TopicsPageCategoryCollectionView: UICollectionView {
   // MARK: - Internal Methods
   func updateIndicatorPosition(for cell: UICollectionViewCell) {
     let cellFrame = cell.frame
-    let indicatorHeight: CGFloat = traitCollection.displayScale / 2
+    let indicatorHeight: CGFloat = traitCollection.displayScale * 0.7
     let xPosition = cellFrame.origin.x
     let yPosition = cellFrame.maxY - indicatorHeight
     let newFrame = CGRect(

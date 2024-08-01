@@ -13,7 +13,7 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
   
   // MARK: - Internal Properties
-  var photosCount: Int { photos.count }
+//  var photosCount: Int { photos.count }
   var state: PassthroughSubject<StateController, Never>
   
   // MARK: - Private Properties

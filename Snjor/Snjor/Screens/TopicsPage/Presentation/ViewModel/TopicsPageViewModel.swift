@@ -5,11 +5,11 @@
 //  Created by Адам Мирзаканов on 23.07.2024.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 final class TopicsPageViewModel: TopicsPageViewModelProtocol {
-
+  
   // MARK: - Internal Properties
   var topicsCount: Int { topics.count }
   var state: PassthroughSubject<StateController, Never>
@@ -17,7 +17,16 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
   // MARK: - Private Properties
   private let loadUseCase: any LoadTopicsPageUseCaseProtocol
   private var topics: [Topic] = []
-
+  private var dataSource: UICollectionViewDiffableDataSource<Section, Topic>?
+  
+  private var snapshot: NSDiffableDataSourceSnapshot<Section, Topic> {
+    var snapshot = NSDiffableDataSourceSnapshot<Section, Topic>()
+    snapshot.appendSections([.main])
+    snapshot.appendItems(topics)
+    print(#function, topics.count)
+    return snapshot
+  }
+  
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
@@ -37,6 +46,28 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
   
   func getTopicsPageViewModelItem(at index: Int) -> TopicsPageViewModelItem {
     return makeViewModelItem(at: index)
+  }
+  
+  func createDataSource(
+    for collectionView: UICollectionView
+  ) {
+    dataSource = UICollectionViewDiffableDataSource<Section, Topic>(
+      collectionView: collectionView
+    ) { [weak self] collectionView, indexPath, topicItem in
+      return self?.configureCell(
+        collectionView: collectionView,
+        indexPath: indexPath,
+        topic: topicItem
+      ) ?? UICollectionViewCell()
+    }
+  }
+  
+  func applySnapshot() {
+    guard let dataSource = dataSource else { return }
+    dataSource.apply(
+      snapshot,
+      animatingDifferences: true
+    )
   }
 
   // MARK: - Private Methods
@@ -58,5 +89,23 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))
     }
+  }
+  
+  private func configureCell(
+    collectionView: UICollectionView,
+    indexPath: IndexPath,
+    topic: Topic
+  ) -> UICollectionViewCell {
+    guard
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: TopicsPageCategoryCell.reuseID,
+        for: indexPath
+      ) as? TopicsPageCategoryCell
+    else {
+      return UICollectionViewCell()
+    }
+    let viewModelItem = getTopicsPageViewModelItem(at: indexPath.item)
+    cell.configure(viewModelItem: viewModelItem)
+    return cell
   }
 }

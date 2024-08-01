@@ -67,7 +67,10 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   
   func applySnapshot() {
     guard let dataSource = dataSource else { return }
-    dataSource.apply(snapshot, animatingDifferences: true)
+    dataSource.apply(
+      snapshot,
+      animatingDifferences: true
+    )
   }
 
   func getPhoto(at indexPath: Int) -> Photo {
