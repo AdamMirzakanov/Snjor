@@ -43,26 +43,9 @@ final class TopicsPageCategoryCollectionView: UICollectionView {
   }
 
   // MARK: - Internal Methods
-  private func updateLineViewAndIndicatorPosition() {
-    let indicatorHeight: CGFloat = 1 / traitCollection.displayScale
-    lineView.frame = CGRect(
-      x: .zero,
-      y: bounds.height - indicatorHeight,
-      width: contentSize.width,
-      height: indicatorHeight
-    )
-    guard
-      let selectedIndexPath = indexPathsForSelectedItems?.first,
-      let cell = cellForItem(at: selectedIndexPath)
-    else {
-      return
-    }
-    updateIndicatorPosition(for: cell)
-  }
-  
   func updateIndicatorPosition(for cell: UICollectionViewCell) {
     let cellFrame = cell.frame
-    let indicatorHeight: CGFloat = 2.0
+    let indicatorHeight: CGFloat = traitCollection.displayScale / 2
     let xPosition = cellFrame.origin.x
     let yPosition = cellFrame.maxY - indicatorHeight
     let newFrame = CGRect(
@@ -99,5 +82,22 @@ final class TopicsPageCategoryCollectionView: UICollectionView {
     UIView.animate(withDuration: 0.15) {
       self.indicatorView.frame = newFrame
     }
+  }
+  
+  private func updateLineViewAndIndicatorPosition() {
+    let indicatorHeight: CGFloat = 1 / traitCollection.displayScale
+    lineView.frame = CGRect(
+      x: .zero,
+      y: bounds.height - indicatorHeight,
+      width: contentSize.width,
+      height: indicatorHeight
+    )
+    guard
+      let selectedIndexPath = indexPathsForSelectedItems?.first,
+      let cell = cellForItem(at: selectedIndexPath)
+    else {
+      return
+    }
+    updateIndicatorPosition(for: cell)
   }
 }

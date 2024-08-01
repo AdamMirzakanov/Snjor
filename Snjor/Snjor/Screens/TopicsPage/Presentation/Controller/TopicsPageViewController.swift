@@ -41,6 +41,11 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     setNavigationBarHidden(true, animated: animated)
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    updateIndicatorForVisibleCells()
+  }
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     setNavigationBarHidden(false, animated: animated)
@@ -82,7 +87,7 @@ private extension TopicsPageViewController {
         guard let self = self else { return }
         switch state {
         case .success:
-          self.rootView.categoryCollectionView.reloadData()
+          rootView.categoryCollectionView.reloadData()
           setFirstPage()
         case .loading: break
         case .fail(error: let error):
@@ -118,5 +123,11 @@ private extension TopicsPageViewController {
   
   private func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
     self.navigationController?.setNavigationBarHidden(hidden, animated: animated)
+  }
+  
+  private func updateIndicatorForVisibleCells() {
+    let visibleCells = rootView.categoryCollectionView.visibleCells
+    guard let firstVisibleCell = visibleCells.first else { return }
+    rootView.categoryCollectionView.updateIndicatorPosition(for: firstVisibleCell)
   }
 }
