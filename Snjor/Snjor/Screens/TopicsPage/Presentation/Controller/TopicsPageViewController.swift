@@ -42,15 +42,9 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     setNavigationBarHidden(true, animated: animated)
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    let indexPath = IndexPath(item: .zero, section: .zero)
-    guard
-      let cell = rootView.categoryCollectionView.cellForItem(at: indexPath)
-    else {
-      return
-    }
-    rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    updateIndicatorToInitialPosition()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -65,19 +59,19 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
       index < viewModel.topicsCount else {
       return nil
     }
-
+    
     let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
     let topic = topicsPageViewModelItem.topic
     let topicPhotoListFactory = TopicPhotoListFactory(topic: topic)
     let topicID = topicsPageViewModelItem.topicID
     let viewController = topicPhotoListFactory.makeModule(delegate: self)
-
+    
     guard let topicPhotoListCollectionViewController = (
       viewController as? TopicPhotoListViewController
     ) else {
       return viewController
     }
-
+    
     topicPhotoListCollectionViewController.topicID = topicID
     topicPhotoListCollectionViewController.pageIndex = index
     return topicPhotoListCollectionViewController
@@ -129,11 +123,19 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   }
   
   private func configCategoryCollectionView() {
-//        rootView.categoryCollectionView.dataSource = self
+    //        rootView.categoryCollectionView.dataSource = self
     rootView.categoryCollectionView.delegate = self
   }
   
   private func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
     self.navigationController?.setNavigationBarHidden(hidden, animated: animated)
+  }
+  
+  private func updateIndicatorToInitialPosition() {
+    let indexPath = IndexPath(item: .zero, section: .zero)
+    guard let cell = rootView.categoryCollectionView.cellForItem(at: indexPath) else {
+      return
+    }
+    rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
   }
 }
