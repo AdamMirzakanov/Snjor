@@ -110,8 +110,8 @@ final class TopicPhotoListCellMainView: BaseImageContainerView {
     $0.alignment = .center
     $0.spacing = GlobalConst.middleValue
     $0.addArrangedSubview(profileStackView)
-    $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(likesStackView)
+//    $0.addArrangedSubview(UIView())
+//    $0.addArrangedSubview(likesStackView)
     return $0
   }(UIStackView())
 
