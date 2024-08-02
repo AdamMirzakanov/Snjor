@@ -18,6 +18,13 @@ final class PhotoListCollectionViewController: UICollectionViewController {
   private(set) weak var delegate: (any PhotoListCollectionViewControllerDelegate)?
   
   // MARK: - Private Properties
+  private let searchController: UISearchController = {
+    $0.obscuresBackgroundDuringPresentation = false
+    $0.automaticallyShowsSearchResultsController = true
+    $0.searchBar.placeholder = "Search photos, collections, users"
+    return $0
+  }(UISearchController())
+  
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()
   private(set) var viewModel: any PhotoListViewModelProtocol
@@ -48,6 +55,7 @@ final class PhotoListCollectionViewController: UICollectionViewController {
     stateController()
     setupDataSource()
     configureDownloadSession()
+    navigationItem.searchController = searchController
   }
 
   // MARK: - Private Methods
