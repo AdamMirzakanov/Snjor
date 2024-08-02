@@ -13,14 +13,14 @@ final class MainTabBarController: UITabBarController {
 
   // Buttons
   private lazy var photoListButton = getButton(
-    icon: "house",
+    icon: "photos",
     tag: .zero,
     action: action,
     opacity: 1
   )
 
   private lazy var searchButton = getButton(
-    icon: "photo.on.rectangle.angled",
+    icon: "search",
     tag: 1,
     action: action
   )
@@ -103,7 +103,13 @@ final class MainTabBarController: UITabBarController {
     opacity: Float = 0.4
   ) -> UIButton {
     return {
-      $0.setImage(UIImage(systemName: icon), for: .normal)
+      $0.setImage(UIImage(named: icon), for: .normal)
+      $0.widthAnchor.constraint(
+        equalToConstant: 22
+      ).isActive = true
+      $0.heightAnchor.constraint(
+        equalToConstant: 22
+      ).isActive = true
       $0.tintColor = .label
       $0.layer.opacity = opacity
       $0.tag = tag
