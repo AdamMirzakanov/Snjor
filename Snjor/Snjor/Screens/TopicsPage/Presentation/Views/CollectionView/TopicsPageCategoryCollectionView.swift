@@ -79,7 +79,7 @@ final class TopicsPageCategoryCollectionView: UICollectionView {
   }
   
   private func animateCellIndicator(indicatorView: UIView, newFrame: CGRect) {
-    UIView.animate(withDuration: 0.15) {
+    UIView.animate(withDuration: 0.0) {
       self.indicatorView.frame = newFrame
     }
   }
