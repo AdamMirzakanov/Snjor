@@ -35,6 +35,18 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     configCategoryCollectionView()
     viewModel.viewDidLoad()
     stateController()
+    
+    for subview in rootView.pageViewController.view.subviews {
+      if let scrollView = subview as? UIScrollView {
+        scrollView.delegate = self
+      }
+    }
+  }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    // Обработка событий прокрутки
+    print("Scrolling: \(scrollView.contentOffset.x)")
+    rootView.categoryCollectionView.updateIndicatorPosition(for: <#T##UICollectionViewCell#>)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -132,8 +144,8 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   }
   
   private func updateIndicatorToInitialPosition() {
-    let indexPath = IndexPath(item: .zero, section: .zero)
-    guard let cell = rootView.categoryCollectionView.cellForItem(at: indexPath) else {
+    let firstItemIndexPath = IndexPath(item: .zero, section: .zero)
+    guard let cell = rootView.categoryCollectionView.cellForItem(at: firstItemIndexPath) else {
       return
     }
     rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
