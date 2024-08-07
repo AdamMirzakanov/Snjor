@@ -109,3 +109,7 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
     return cell
   }
 }
+
+private enum Section: CaseIterable {
+  case main
+}

@@ -10,7 +10,7 @@ import Combine
 
 final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   
-  typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
+  private typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
   
   // MARK: - Internal Properties
 //  var photosCount: Int { photos.count }
@@ -150,6 +150,6 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
 }
 
 // MARK: - Section
-enum Section: CaseIterable {
+private enum Section: CaseIterable {
   case main
 }

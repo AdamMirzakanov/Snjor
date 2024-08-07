@@ -56,6 +56,8 @@ final class PhotoListCollectionViewController: UICollectionViewController {
     setupDataSource()
     configureDownloadSession()
     navigationItem.searchController = searchController
+    searchController.searchBar.showsScopeBar = true
+    searchController.searchBar.scopeButtonTitles = ["Photos", "Collections", "Users"]
   }
 
   // MARK: - Private Methods

@@ -10,8 +10,6 @@ import Combine
 
 final class PhotoListViewModel: PhotoListViewModelProtocol {
   
-  typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
-  
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
 
@@ -19,14 +17,15 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   private(set) var state: PassthroughSubject<StateController, Never>
   private let loadUseCase: any LoadPhotoListUseCaseProtocol
   private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
-  private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
+  private var dataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
   private var photos: [Photo] = []
-  private var sections: [Section] = []
+  private var sections: [PhotoListSection] = []
 
-  private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
-    var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+  private var snapshot: NSDiffableDataSourceSnapshot<PhotoListSection, Photo> {
+    var snapshot = NSDiffableDataSourceSnapshot<PhotoListSection, Photo>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(photos)
+    snapshot.appendItems(photos, toSection: .main)
+    sections = snapshot.sectionIdentifiers
     return snapshot
   }
 
@@ -53,15 +52,24 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     for collectionView: UICollectionView,
     delegate: any PhotoCellDelegate
   ) {
-    dataSource = UICollectionViewDiffableDataSource<Section, Photo>(
+    dataSource = UICollectionViewDiffableDataSource<PhotoListSection, Photo>(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
-      return self?.configureCell(
-        collectionView: collectionView,
-        indexPath: indexPath,
-        photo: photo,
-        delegate: delegate
-      ) ?? UICollectionViewCell()
+      
+      let defaultCell = UICollectionViewCell()
+      
+      guard let strongSelf = self else { return defaultCell }
+      
+      let section = strongSelf.sections[indexPath.section]
+      switch section {
+      case .main:
+        return strongSelf.configureCell(
+          collectionView: collectionView,
+          indexPath: indexPath,
+          photo: photo,
+          delegate: delegate
+        )
+      }
     }
   }
   
@@ -137,4 +145,8 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
+}
+
+private enum PhotoListSection: Hashable {
+  case main
 }
