@@ -26,7 +26,7 @@ final class MainTabBarController: UITabBarController {
   )
 
   private lazy var profileButton = getButton(
-    icon: "magnifyingglass",
+    icon: "search",
     tag: 2,
     action: action
   )

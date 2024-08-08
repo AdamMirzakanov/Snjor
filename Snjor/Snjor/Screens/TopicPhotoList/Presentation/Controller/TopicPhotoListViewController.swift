@@ -23,7 +23,6 @@ final class TopicPhotoListViewController: BaseViewController<TopicPhotoListRootV
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) var downloadService = DownloadService()
   private(set) var viewModel: any TopicPhotoListViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
