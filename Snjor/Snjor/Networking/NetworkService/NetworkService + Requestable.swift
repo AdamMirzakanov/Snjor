@@ -36,6 +36,7 @@ extension NetworkService: Requestable {
 
     switch httpResponse.statusCode {
     case HTTPResponseStatus.success:
+      print(#function, "code:", httpResponse.statusCode)
       return try decodeResponse(data: request.data)
     case HTTPResponseStatus.clientError:
       print(#function, "code:", httpResponse.statusCode)
@@ -53,8 +54,17 @@ extension NetworkService: Requestable {
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     let model = try? decoder.decode(T.self, from: data)
     guard let model = model else {
+      print(#function, APIError.decodingError)
       throw APIError.decodingError
     }
+    
+//    if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+//          let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
+//          let jsonString = String(data: jsonData, encoding: .utf8) {
+//           print("🟢 \(jsonString) 🔴")
+//       } else {
+//           print("Error serializing JSON")
+//       }
     return model
   }
 }

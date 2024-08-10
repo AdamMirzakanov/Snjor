@@ -23,7 +23,6 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Topic>()
     snapshot.appendSections([.main])
     snapshot.appendItems(topics)
-    print(#function, topics.count)
     return snapshot
   }
   

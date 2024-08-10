@@ -20,6 +20,14 @@ enum PrepareParameters {
     parameters[.perPage] = String(perPage)
     return parameters
   }
+  
+  static func prepareAlbumParameters() -> Parameters {
+    nextPage()
+    var parameters: [String: String] = [:]
+    parameters[.page] = String(page)
+    parameters[.perPage] = String(perPage)
+    return parameters
+  }
 
   static func prepareSearchPhotoParameters(with searchTerm: String) -> Parameters {
     nextPage()

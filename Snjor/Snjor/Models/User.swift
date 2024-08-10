@@ -37,43 +37,6 @@ struct User: Decodable, Hashable {
     case likes
     case portfolio
   }
-
-  // MARK: - Private Enum
-  private enum CodingKeys: String, CodingKey {
-    case id
-    case username
-    case firstName
-    case lastName
-    case name
-    case profileImage
-    case bio
-    case links
-    case location
-    case portfolioURL
-    case totalCollections
-    case totalLikes
-    case totalPhotos
-    case social
-  }
-
-  // MARK: - Initializers
-  init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    id = try container.decode(String.self, forKey: .id)
-    username = try container.decode(String.self, forKey: .username)
-    firstName = try? container.decode(String.self, forKey: .firstName)
-    lastName = try? container.decode(String.self, forKey: .lastName)
-    name = try? container.decode(String.self, forKey: .name)
-    profileImage = try container.decode([ProfileImageSize: URL].self, forKey: .profileImage)
-    bio = try? container.decode(String.self, forKey: .bio)
-    links = try container.decode([LinkKind: URL].self, forKey: .links)
-    location = try? container.decode(String.self, forKey: .location)
-    portfolioURL = try? container.decode(URL.self, forKey: .portfolioURL)
-    totalCollections = try container.decode(Int.self, forKey: .totalCollections)
-    totalLikes = try container.decode(Int.self, forKey: .totalLikes)
-    totalPhotos = try container.decode(Int.self, forKey: .totalPhotos)
-    social = try container.decode(Social.self, forKey: .social)
-  }
 }
 
 // MARK: - Display Name

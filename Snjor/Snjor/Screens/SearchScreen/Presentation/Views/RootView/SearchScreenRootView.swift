@@ -14,9 +14,9 @@ class SearchScreenRootView: UIView {
     return $0
   }(UIView())
   
-  let topicContainerView: TopicContainerView = {
+  let albumListContainerView: UIView = {
     return $0
-  }(TopicContainerView())
+  }(UIView())
   
   let usersContainerView: UsersContainerView = {
     return $0
@@ -40,7 +40,7 @@ class SearchScreenRootView: UIView {
   
   private func addSubviews() {
     addSubview(photoListContainerView)
-    addSubview(topicContainerView)
+    addSubview(albumListContainerView)
     addSubview(usersContainerView)
   }
   
@@ -55,7 +55,7 @@ class SearchScreenRootView: UIView {
   }
   
   private func setupTopicContainerViewConstraints() {
-    topicContainerView.fillSuperView()
+    albumListContainerView.fillSuperView()
   }
   
   private func setupUsersContainerViewConstraints() {

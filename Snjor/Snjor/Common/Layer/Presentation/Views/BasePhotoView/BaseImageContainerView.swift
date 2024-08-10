@@ -81,9 +81,9 @@ class BaseImageContainerView: UIView {
   private func updateImage(_ image: UIImage?, _ isCached: Bool) {
     if isCached {
       mainImageView.image = image
-      print(#function, "Кэш")
+//      print(#function, "Кэш")
     } else {
-      print(#function, "Интерент")
+//      print(#function, "Интерент")
       animateImageView(mainImageView, image)
     }
   }

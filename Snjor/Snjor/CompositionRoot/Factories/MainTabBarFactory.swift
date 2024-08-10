@@ -41,16 +41,16 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
     return coordinator
   }
   
-  private func makePhotosCoordinator() -> any Coordinatable {
-    let factory = PhotoListFactory()
-    let navigationController = UINavigationController()
-    let navigation = Navigation(rootViewController: navigationController)
-    let coordinator = PhotoListCoordinator(
-      factory: factory,
-      navigation: navigation
-    )
-    return coordinator
-  }
+//  private func makePhotosCoordinator() -> any Coordinatable {
+//    let factory = PhotoListFactory()
+//    let navigationController = UINavigationController()
+//    let navigation = Navigation(rootViewController: navigationController)
+//    let coordinator = PhotoListCoordinator(
+//      factory: factory,
+//      navigation: navigation
+//    )
+//    return coordinator
+//  }
   
   private func makeSearchScreenCoordinator() -> any Coordinatable {
     let factory = SearchScreenFactory()
