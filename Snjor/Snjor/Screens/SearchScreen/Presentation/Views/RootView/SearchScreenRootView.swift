@@ -10,9 +10,9 @@ import UIKit
 class SearchScreenRootView: UIView {
   
   // MARK: - Views
-  let photoListContainerView: UIView = {
+  let photoListContainerView: PhotoListContainerView = {
     return $0
-  }(UIView())
+  }(PhotoListContainerView())
   
   let albumListContainerView: UIView = {
     return $0

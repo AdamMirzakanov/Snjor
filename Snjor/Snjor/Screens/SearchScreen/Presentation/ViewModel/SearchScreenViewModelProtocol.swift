@@ -5,8 +5,17 @@
 //  Created by Адам Мирзаканов on 07.08.2024.
 //
 
-import Foundation
+import UIKit
 
-protocol SearchScreenViewModelProtocol {
+protocol SearchScreenViewModelProtocol: BaseViewModelProtocol {
+  var photosCount: Int { get }
+  func getPhoto(at index: Int) -> Photo
+  func getPhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem
+  func applySnapshot()
+  func createDataSource(
+    for collectionView: UICollectionView,
+    delegate: any PhotoCellDelegate
+  )
+  
   
 }
