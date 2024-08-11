@@ -20,6 +20,15 @@ protocol SearchScreenFactoryProtocol {
 }
 
 struct SearchScreenFactory: SearchScreenFactoryProtocol {
+  
+  // MARK: - Private Properties
+  private let viewModelFactory: ViewModelFactory
+  
+  // MARK: - Initializers
+  init(viewModelFactory: ViewModelFactory = ViewModelFactory()) {
+    self.viewModelFactory = viewModelFactory
+  }
+  
   // MARK: - Internal Methods
   func makeModule(
     delegate: any PhotosCollectionViewControllerDelegate
@@ -45,8 +54,8 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   private func getModule(
     _ delegate: any PhotosCollectionViewControllerDelegate
   ) -> UIViewController {
-    let photosViewModel = getPhotosViewModel()
-    let albumsViewModel = getAlbumsViewModel()
+    let photosViewModel = viewModelFactory.createPhotosViewModel()
+    let albumsViewModel = viewModelFactory.createAlbumsViewModel()
     let module = SearchScreenViewController(
       photosViewModel: photosViewModel,
       albumsViewModel: albumsViewModel,
@@ -54,44 +63,6 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     )
     setupLayouts(module: module)
     return module
-  }
-  
-  private func getPhotosViewModel() -> PhotosViewModel {
-    let networkService = NetworkService()
-    let lastPageValidationUseCase = LastPageValidationUseCase()
-    let state = PassthroughSubject<StateController, Never>()
-    let loadPhotosUseCase = getLoadPhotosUseCase(networkService)
-    return PhotosViewModel(
-      state: state,
-      loadUseCase: loadPhotosUseCase,
-      lastPageValidationUseCase: lastPageValidationUseCase
-    )
-  }
-  
-  private func getAlbumsViewModel() -> AlbumListViewModel {
-    let networkService = NetworkService()
-    let lastPageValidationUseCase = LastPageValidationUseCase()
-    let state = PassthroughSubject<StateController, Never>()
-    let loadAlbumsUseCase = getLoadAlbumsUseCase(networkService)
-    return AlbumListViewModel(
-      state: state,
-      loadUseCase: loadAlbumsUseCase,
-      lastPageValidationUseCase: lastPageValidationUseCase
-    )
-  }
-  
-  private func getLoadPhotosUseCase(
-    _ networkService: NetworkService
-  ) -> LoadPhotoListUseCase {
-    let loadPhotosRepository = LoadPhotoListRepository(networkService: networkService)
-    return LoadPhotoListUseCase(repository: loadPhotosRepository)
-  }
-  
-  private func getLoadAlbumsUseCase(
-    _ networkService: NetworkService
-  ) -> LoadAlbumListUseCase {
-    let loadAlbumsRepository = LoadAlbumListRepository(networkService: networkService)
-    return LoadAlbumListUseCase(repository: loadAlbumsRepository)
   }
   
   private func setupLayouts(module: SearchScreenViewController) {
