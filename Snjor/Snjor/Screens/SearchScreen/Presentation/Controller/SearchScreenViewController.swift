@@ -17,7 +17,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any PhotoListViewModelProtocol
+  private(set) var viewModel: any SearchScreenViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -25,22 +25,9 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   let searchController = UISearchController()
   
-  
-//  private lazy var photosViewController: UIViewController = {
-//    let factory = PhotoListFactory()
-//    let controller = factory.makeModule(delegate: self)
-//    return controller
-//  }()
-//  
-//  private lazy var albumsViewController: UIViewController = {
-//    let factory = AlbumListFactory()
-//    let controller = factory.makeModule()
-//    return controller
-//  }()
-  
   // MARK: - Initializers
   init(
-    viewModel: any PhotoListViewModelProtocol,
+    viewModel: any SearchScreenViewModelProtocol,
     delegate: any PhotoListCollectionViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
@@ -72,43 +59,24 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     
     searchController.searchBar.scopeButtonTitles = [
       "Photos",
-      "Collections",
-      "Users"
+      "Collections"
     ]
     
-//    addChildController(photosViewController, to: rootView.photoListContainerView)
     setupVisibleContainers()
-    setupNavigationBarAppearance()
-  }
-  
-  private func setupNavigationBarAppearance() {
-    // Установка стиля навигационной панели
-    if let navigationBar = navigationController?.navigationBar {
-      let appearance = UINavigationBarAppearance()
-      appearance.configureWithDefaultBackground()
-      navigationBar.standardAppearance = appearance
-      navigationBar.scrollEdgeAppearance = appearance
-    }
-  }
-  
-  private func addChildController(_ child: UIViewController, to view: UIView) {
-    addChild(child)
-    view.addSubview(child.view)
-    child.view.fillSuperView()
-    child.didMove(toParent: self)
   }
   
   private func setupVisibleContainers() {
-    rootView.photoListContainerView.isHidden = false
-    rootView.albumListContainerView.isHidden = true
-    rootView.usersContainerView.isHidden = true
+    rootView.albumsCollectionView.removeFromSuperview()
   }
   
   // MARK: - Private Methods
   private func setupDataSource() {
     viewModel.createDataSource(
-      for: rootView.photoListContainerView.photoListCollectionView,
+      for: rootView.photoListCollectionView,
       delegate: self
+    )
+    viewModel.createAlbumsDataSource(
+      for: rootView.albumsCollectionView
     )
   }
 
@@ -128,6 +96,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
         switch state {
         case .success:
           viewModel.applySnapshot()
+          viewModel.applyAlbumsSnapshot()
         case .loading: break
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
@@ -135,15 +104,10 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
       }
       .store(in: &cancellable)
   }
-  
 }
 
 // MARK: - Extension
-extension SearchScreenViewController: PhotoListCollectionViewControllerDelegate {
-  func didSelect(_ photo: Photo) {
-    print(#function, Self.self)
-  }
-}
+
 
 extension SearchScreenViewController: UISearchBarDelegate {
   func searchBar(
@@ -151,31 +115,25 @@ extension SearchScreenViewController: UISearchBarDelegate {
     selectedScopeButtonIndexDidChange selectedScope: Int
   ) {
     switch selectedScope {
-    case 0:
-      rootView.photoListContainerView.isHidden = false
-      rootView.albumListContainerView.isHidden = true
-      rootView.usersContainerView.isHidden = true
-    case 1:
-      rootView.photoListContainerView.isHidden = true
-      rootView.albumListContainerView.isHidden = false
-      rootView.usersContainerView.isHidden = true
-//      if albumsViewController.parent == nil {
-//        addChildController(albumsViewController, to: rootView.albumListContainerView)
-//      }
-    case 2:
-      rootView.photoListContainerView.isHidden = true
-      rootView.albumListContainerView.isHidden = true
-      rootView.usersContainerView.isHidden = false
-      //      addChildController(
-      //        albumListViewController(),
-      //        view: rootView.usersContainerView
-      //      )
+    case .zero:
+      rootView.albumsCollectionView.removeFromSuperview()
+      rootView.addSubview(rootView.photoListCollectionView)
+      rootView.photoListCollectionView.fillSuperView()
+      navigationItem.title = "Discover"
     default:
-      break
+      rootView.photoListCollectionView.removeFromSuperview()
+      rootView.addSubview(rootView.albumsCollectionView)
+      rootView.albumsCollectionView.fillSuperView()
+      navigationItem.title = "Collections"
     }
   }
 }
 
+extension SearchScreenViewController: PhotoListCollectionViewControllerDelegate {
+  func didSelect(_ photo: Photo) {
+    print(#function, Self.self)
+  }
+}
 
 extension SearchScreenViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
@@ -238,7 +196,7 @@ extension SearchScreenViewController: URLSessionDownloadDelegate {
   
   private func hideSpinner() {
     DispatchQueue.main.async {
-      self.rootView.photoListContainerView.photoListCollectionView.visibleCells
+      self.rootView.photoListCollectionView.visibleCells
         .compactMap { $0 as? PhotoListCell }
         .forEach { cell in
           cell.mainView.spinner.stopAnimating()
@@ -251,7 +209,7 @@ extension SearchScreenViewController: URLSessionDownloadDelegate {
 
 extension SearchScreenViewController: PhotoCellDelegate {
   func downloadTapped(_ cell: PhotoListCell) {
-    if let indexPath = rootView.photoListContainerView.photoListCollectionView.indexPath(for: cell) {
+    if let indexPath = rootView.photoListCollectionView.indexPath(for: cell) {
       let photo = viewModel.getPhoto(at: indexPath.item)
       downloadService.startDownload(photo, sessionID: Self.sessionID)
     }

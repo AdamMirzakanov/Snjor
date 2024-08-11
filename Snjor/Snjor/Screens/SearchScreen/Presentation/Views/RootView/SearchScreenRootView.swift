@@ -10,13 +10,21 @@ import UIKit
 class SearchScreenRootView: UIView {
   
   // MARK: - Views
-  let photoListContainerView: PhotoListContainerView = {
-    return $0
-  }(PhotoListContainerView())
+//  let photoListContainerView: PhotoListContainerView = {
+//    return $0
+//  }(PhotoListContainerView())
   
-  let albumListContainerView: UIView = {
+  let photoListCollectionView: PhotosCollectionView = {
     return $0
-  }(UIView())
+  }(PhotosCollectionView())
+  
+//  let albumListContainerView: AlbumsContainerView = {
+//    return $0
+//  }(AlbumsContainerView())
+  
+  let albumsCollectionView: AlbumsCollectionView = {
+    return $0
+  }(AlbumsCollectionView())
   
   let usersContainerView: UsersContainerView = {
     return $0
@@ -39,9 +47,9 @@ class SearchScreenRootView: UIView {
   }
   
   private func addSubviews() {
-    addSubview(photoListContainerView)
-    addSubview(albumListContainerView)
-    addSubview(usersContainerView)
+    addSubview(photoListCollectionView)
+    addSubview(albumsCollectionView)
+//    addSubview(usersContainerView)
   }
   
   private func setupConstraints() {
@@ -51,11 +59,11 @@ class SearchScreenRootView: UIView {
   }
   
   private func setupPhotoListContainerViewConstraints() {
-    photoListContainerView.fillSuperView()
+    photoListCollectionView.fillSuperView()
   }
   
   private func setupTopicContainerViewConstraints() {
-    albumListContainerView.fillSuperView()
+    albumsCollectionView.fillSuperView()
   }
   
   private func setupUsersContainerViewConstraints() {

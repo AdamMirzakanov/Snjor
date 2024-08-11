@@ -17,5 +17,7 @@ protocol SearchScreenViewModelProtocol: BaseViewModelProtocol {
     delegate: any PhotoCellDelegate
   )
   
-  
+  func getAlbumListViewModelItem(at index: Int) -> AlbumListViewModelItem
+  func applyAlbumsSnapshot()
+  func createAlbumsDataSource(for collectionView: UICollectionView)
 }

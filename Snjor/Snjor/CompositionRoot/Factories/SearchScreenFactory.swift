@@ -28,15 +28,19 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
-    let repository = LoadPhotoListRepository(
+    let loadPhotosRepository = LoadPhotoListRepository(
       networkService: networkService
     )
-    let loadUseCase = LoadPhotoListUseCase(
-      repository: repository
+    let loadPhotosUseCase = LoadPhotoListUseCase(
+      repository: loadPhotosRepository
     )
-    let viewModel = PhotoListViewModel(
+    let loadAlbumsRepository = LoadAlbumListRepository(networkService: networkService)
+    let loadAlbumsUseCase = LoadAlbumListUseCase(repository: loadAlbumsRepository)
+    
+    let viewModel = SearchScreenViewModel(
       state: state,
-      loadUseCase: loadUseCase,
+      loadPhotosUseCase: loadPhotosUseCase,
+      loadAlbumsUseCase: loadAlbumsUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
     )
     let defaultLayout = UICollectionViewLayout()
@@ -46,12 +50,8 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
       layout: defaultLayout
     )
     let cascadeLayout = MultiColumnCascadeLayout(with: module)
-    module.rootView.photoListContainerView.photoListCollectionView.collectionViewLayout = cascadeLayout
-    module.rootView.photoListContainerView.photoListCollectionView.showsVerticalScrollIndicator = false
-    module.rootView.photoListContainerView.photoListCollectionView.register(
-      PhotoListCell.self,
-      forCellWithReuseIdentifier: PhotoListCell.reuseID
-    )
+    module.rootView.photoListCollectionView.collectionViewLayout = cascadeLayout
+    module.rootView.albumsCollectionView.collectionViewLayout = createAlbumLayout()
     module.title = "Discover"
     return module
   }
@@ -68,5 +68,53 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
       overlordCoordinator: overlordCoordinator
     )
     return coordinator
+  }
+  
+  
+  private func createAlbumLayout() -> UICollectionViewLayout {
+    let layout = UICollectionViewCompositionalLayout { (
+      sectionIndex, layoutEnvironment
+    ) -> NSCollectionLayoutSection? in
+
+      
+      let itemSize = NSCollectionLayoutSize(
+        widthDimension: .fractionalWidth(1),
+        heightDimension: .fractionalHeight(1)
+      )
+      
+      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+      
+      item.contentInsets = NSDirectionalEdgeInsets(
+        top: 4.0,
+        leading: 4.0,
+        bottom: 4.0 * 4.0,
+        trailing: 4.0
+      )
+      
+      let groupSize = NSCollectionLayoutSize(
+        widthDimension: .fractionalWidth(1),
+        heightDimension: .estimated(300)
+      )
+      
+      let horizontalGroup = NSCollectionLayoutGroup.horizontal(
+        layoutSize: groupSize,
+        subitem: item,
+        count: 2
+      )
+      let verticalGroup = NSCollectionLayoutGroup.vertical(
+        layoutSize: groupSize,
+        subitems: [horizontalGroup, horizontalGroup]
+      )
+      
+      let section = NSCollectionLayoutSection(group: verticalGroup)
+      section.contentInsets = NSDirectionalEdgeInsets(
+        top: 4.0,
+        leading: 4.0 * 4.0,
+        bottom: 0,
+        trailing: 4.0 * 4.0
+      )
+      return section
+    }
+    return layout
   }
 }
