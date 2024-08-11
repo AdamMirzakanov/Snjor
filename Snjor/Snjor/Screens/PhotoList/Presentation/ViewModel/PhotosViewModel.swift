@@ -1,5 +1,5 @@
 //
-//  PhotoListViewModel.swift
+//  PhotosViewModel.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PhotoListViewModel: PhotoListViewModelProtocol {
+final class PhotosViewModel: PhotosViewModelProtocol {
   
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
@@ -132,9 +132,9 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: PhotoListCell.reuseID,
+        withReuseIdentifier: PhotosCell.reuseID,
         for: indexPath
-      ) as? PhotoListCell
+      ) as? PhotosCell
     else {
       return UICollectionViewCell()
     }

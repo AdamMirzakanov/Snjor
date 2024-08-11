@@ -12,12 +12,13 @@ import Photos
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
   
   // MARK: - Delegate
-  private(set) weak var delegate: (any PhotoListCollectionViewControllerDelegate)?
+  private(set) weak var delegate: (any PhotosCollectionViewControllerDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any SearchScreenViewModelProtocol
+  private(set) var photosViewModel: any PhotosViewModelProtocol
+  private(set) var albumsViewModel: any AlbumsViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -27,10 +28,12 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Initializers
   init(
-    viewModel: any SearchScreenViewModelProtocol,
-    delegate: any PhotoListCollectionViewControllerDelegate
+    photosViewModel: any PhotosViewModelProtocol,
+    albumsViewModel: any AlbumsViewModelProtocol,
+    delegate: any PhotosCollectionViewControllerDelegate
   ) {
-    self.viewModel = viewModel
+    self.photosViewModel = photosViewModel
+    self.albumsViewModel = albumsViewModel
     self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
@@ -42,7 +45,9 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    viewModel.viewDidLoad()
+    photosViewModel.viewDidLoad()
+    albumsViewModel.viewDidLoad()
+    
     stateController()
     setupDataSource()
     configureDownloadSession()
@@ -70,11 +75,11 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Private Methods
   private func setupDataSource() {
-    viewModel.createPhotosDataSource(
-      for: rootView.photoListCollectionView,
+    photosViewModel.createDataSource(
+      for: rootView.photosCollectionView,
       delegate: self
     )
-    viewModel.createAlbumsDataSource(
+    albumsViewModel.createDataSource(
       for: rootView.albumsCollectionView
     )
   }
@@ -87,15 +92,29 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   }
 
   private func stateController() {
-    viewModel
+    photosViewModel
       .state
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
         switch state {
         case .success:
-          viewModel.applyPhotosSnapshot()
-          viewModel.applyAlbumsSnapshot()
+          photosViewModel.applySnapshot()
+        case .loading: break
+        case .fail(error: let error):
+          self.presentAlert(message: error, title: AppLocalized.error)
+        }
+      }
+      .store(in: &cancellable)
+    
+    albumsViewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        switch state {
+        case .success:
+          albumsViewModel.applySnapshot()
         case .loading: break
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
@@ -105,9 +124,43 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // MARK: - Extension
-
-
 extension SearchScreenViewController: UISearchBarDelegate {
   func searchBar(
     _ searchBar: UISearchBar,
@@ -116,17 +169,17 @@ extension SearchScreenViewController: UISearchBarDelegate {
     switch selectedScope {
     case .zero:
       rootView.albumsCollectionView.removeFromSuperview()
-      rootView.addSubview(rootView.photoListCollectionView)
-      rootView.photoListCollectionView.fillSuperView()
+      rootView.addSubview(rootView.photosCollectionView)
+      rootView.photosCollectionView.fillSuperView()
     default:
-      rootView.photoListCollectionView.removeFromSuperview()
+      rootView.photosCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.albumsCollectionView)
       rootView.albumsCollectionView.fillSuperView()
     }
   }
 }
 
-extension SearchScreenViewController: PhotoListCollectionViewControllerDelegate {
+extension SearchScreenViewController: PhotosCollectionViewControllerDelegate {
   func didSelect(_ photo: Photo) {
     print(#function, Self.self)
   }
@@ -193,8 +246,8 @@ extension SearchScreenViewController: URLSessionDownloadDelegate {
   
   private func hideSpinner() {
     DispatchQueue.main.async {
-      self.rootView.photoListCollectionView.visibleCells
-        .compactMap { $0 as? PhotoListCell }
+      self.rootView.photosCollectionView.visibleCells
+        .compactMap { $0 as? PhotosCell }
         .forEach { cell in
           cell.mainView.spinner.stopAnimating()
           cell.mainView.spinner.isHidden = true
@@ -205,9 +258,9 @@ extension SearchScreenViewController: URLSessionDownloadDelegate {
 }
 
 extension SearchScreenViewController: PhotoCellDelegate {
-  func downloadTapped(_ cell: PhotoListCell) {
-    if let indexPath = rootView.photoListCollectionView.indexPath(for: cell) {
-      let photo = viewModel.getPhoto(at: indexPath.item)
+  func downloadTapped(_ cell: PhotosCell) {
+    if let indexPath = rootView.photosCollectionView.indexPath(for: cell) {
+      let photo = photosViewModel.getPhoto(at: indexPath.item)
       downloadService.startDownload(photo, sessionID: Self.sessionID)
     }
   }
@@ -220,7 +273,7 @@ extension SearchScreenViewController: CascadeLayoutDelegate {
     _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    let photo = viewModel.getPhoto(at: indexPath.item)
+    let photo = photosViewModel.getPhoto(at: indexPath.item)
     return CGSize(width: photo.width, height: photo.height)
   }
 }
@@ -262,7 +315,7 @@ extension SearchScreenViewController: CascadeLayoutDelegate {
 //    didSelectItemAt indexPath: IndexPath
 //  ) {
 //    guard let delegate = delegate else { return }
-//    let photo = viewModel.getPhoto(at: indexPath.item)
+//    let photo = photosViewModel.getPhoto(at: indexPath.item)
 //    delegate.didSelect(photo)
 //  }
 //}

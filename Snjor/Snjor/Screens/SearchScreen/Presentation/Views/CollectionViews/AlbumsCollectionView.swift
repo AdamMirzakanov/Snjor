@@ -1,45 +1,11 @@
 //
-//  AlbumsContainerView.swift
+//  AlbumsCollectionView.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 08.08.2024.
 //
 
 import UIKit
-
-class AlbumsContainerView: UIView {
-  let albumsCollectionView: AlbumsCollectionView = {
-    return $0
-  }(AlbumsCollectionView())
-  
-  // MARK: - Initializers
-  init() {
-    super.init(frame: .zero)
-    setupViews()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  // MARK: - Setup Views
-  private func setupViews() {
-    addSubviews()
-    setupConstraints()
-  }
-  
-  private func addSubviews() {
-    addSubview(albumsCollectionView)
-  }
-  
-  private func setupConstraints() {
-    photoListCollectionViewConstraints()
-  }
-  
-  private func photoListCollectionViewConstraints() {
-    albumsCollectionView.fillSuperView()
-  }
-}
 
 final class AlbumsCollectionView: UICollectionView {
   // MARK: - Private Properties

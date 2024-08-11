@@ -1,9 +1,9 @@
 //
-//  PhotoListCell + Reusable.swift
+//  PhotosCell + Reusable.swift
 //  Snjor
 //
 //  Created by Адам on 18.07.2024.
 //
 
 // MARK: - Reuse ID
-extension PhotoListCell: Reusable { }
+extension PhotosCell: Reusable { }

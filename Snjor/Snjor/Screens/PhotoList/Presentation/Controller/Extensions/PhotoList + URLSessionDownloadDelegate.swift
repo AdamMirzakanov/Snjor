@@ -62,7 +62,7 @@
 //  private func hideSpinner() {
 //    DispatchQueue.main.async {
 //      self.collectionView.visibleCells
-//        .compactMap { $0 as? PhotoListCell }
+//        .compactMap { $0 as? PhotosCell }
 //        .forEach { cell in
 //          cell.mainView.spinner.stopAnimating()
 //          cell.mainView.spinner.isHidden = true

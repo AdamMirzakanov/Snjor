@@ -30,7 +30,7 @@ final class SearchScreenCoordinator: Coordinatable {
   }
 }
 
-extension SearchScreenCoordinator: PhotoListCollectionViewControllerDelegate {
+extension SearchScreenCoordinator: PhotosCollectionViewControllerDelegate {
   func didSelect(_ photo: Photo) {
     let coordinator = factory.mekePhotoDetailCoordinator(
       photo: photo,

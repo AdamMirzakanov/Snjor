@@ -6,7 +6,7 @@
 ////
 //
 //extension PhotoListCollectionViewController: PhotoCellDelegate {
-//  func downloadTapped(_ cell: PhotoListCell) {
+//  func downloadTapped(_ cell: PhotosCell) {
 //    if let indexPath = collectionView.indexPath(for: cell) {
 //      let photo = viewModel.getPhoto(at: indexPath.item)
 //      downloadService.startDownload(photo, sessionID: Self.sessionID)

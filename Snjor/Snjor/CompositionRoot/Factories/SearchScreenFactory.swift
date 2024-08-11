@@ -10,7 +10,7 @@ import Combine
 
 protocol SearchScreenFactoryProtocol {
   func makeModule(
-    delegate: any PhotoListCollectionViewControllerDelegate
+    delegate: any PhotosCollectionViewControllerDelegate
   ) -> UIViewController
   func mekePhotoDetailCoordinator(
     photo: Photo,
@@ -22,7 +22,7 @@ protocol SearchScreenFactoryProtocol {
 struct SearchScreenFactory: SearchScreenFactoryProtocol {
   // MARK: - Internal Methods
   func makeModule(
-    delegate: any PhotoListCollectionViewControllerDelegate
+    delegate: any PhotosCollectionViewControllerDelegate
   ) -> UIViewController {
     let module = getModule(delegate)
     return module
@@ -43,24 +43,39 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   
   // MARK: - Private Methods
   private func getModule(
-    _ delegate: any PhotoListCollectionViewControllerDelegate
+    _ delegate: any PhotosCollectionViewControllerDelegate
   ) -> UIViewController {
-    let viewModel = getViewModel()
-    let module = SearchScreenViewController(viewModel: viewModel, delegate: delegate)
+    let photosViewModel = getPhotosViewModel()
+    let albumsViewModel = getAlbumsViewModel()
+    let module = SearchScreenViewController(
+      photosViewModel: photosViewModel,
+      albumsViewModel: albumsViewModel,
+      delegate: delegate
+    )
     setupLayouts(module: module)
     return module
   }
   
-  private func getViewModel() -> SearchScreenViewModel {
+  private func getPhotosViewModel() -> PhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let loadPhotosUseCase = getLoadPhotosUseCase(networkService)
-    let loadAlbumsUseCase = getLoadAlbumsUseCase(networkService)
-    return SearchScreenViewModel(
+    return PhotosViewModel(
       state: state,
-      loadPhotosUseCase: loadPhotosUseCase,
-      loadAlbumsUseCase: loadAlbumsUseCase,
+      loadUseCase: loadPhotosUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase
+    )
+  }
+  
+  private func getAlbumsViewModel() -> AlbumListViewModel {
+    let networkService = NetworkService()
+    let lastPageValidationUseCase = LastPageValidationUseCase()
+    let state = PassthroughSubject<StateController, Never>()
+    let loadAlbumsUseCase = getLoadAlbumsUseCase(networkService)
+    return AlbumListViewModel(
+      state: state,
+      loadUseCase: loadAlbumsUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
     )
   }
@@ -81,7 +96,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   
   private func setupLayouts(module: SearchScreenViewController) {
     let cascadeLayout = MultiColumnCascadeLayout(with: module)
-    module.rootView.photoListCollectionView.collectionViewLayout = cascadeLayout
+    module.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
     module.rootView.albumsCollectionView.collectionViewLayout = createAlbumLayout()
   }
   

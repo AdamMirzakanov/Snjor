@@ -18,7 +18,7 @@ enum RequestController {
   // MARK: - Internal Methods
   
   /// Список фотографий
-  static func photoListRequest() throws -> URLRequest {
+  static func photosRequest() throws -> URLRequest {
     let path = photos.rawValue
     let parameters = PrepareParameters.preparePhotoParameters()
     let request = try PrepareRequests.prepareAPIRequest(
@@ -42,7 +42,7 @@ enum RequestController {
   }
   
   /// Фотографии внутри категории
-  static func topicsPhotoListRequest(topic: Topic) throws -> URLRequest {
+  static func topicPhotosRequest(topic: Topic) throws -> URLRequest {
     let topicsPath = topics.rawValue
     let id = topic.id
     let photosPath = photos.rawValue
@@ -64,7 +64,7 @@ enum RequestController {
   }
   
   /// Альбомы
-  static func albumListRequest() throws -> URLRequest {
+  static func albumsRequest() throws -> URLRequest {
     let path = collections.rawValue
     let parameters = PrepareParameters.prepareAlbumParameters()
     let request = try PrepareRequests.prepareAPIRequest(

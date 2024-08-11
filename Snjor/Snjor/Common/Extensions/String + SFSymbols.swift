@@ -6,7 +6,7 @@
 //
 
 extension String {
-  // PhotoListCollectionViewController
+  // PhotosCollectionViewController
   static let downloadCellButtonImage = "arrow.down.circle.fill"
 
   // PhotoDetailViewController

@@ -1,5 +1,5 @@
 //
-//  PhotoListViewModelProtocol.swift
+//  PhotosViewModelProtocol.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
+protocol PhotosViewModelProtocol: BaseViewModelProtocol {
   var photosCount: Int { get }
   func getPhoto(at index: Int) -> Photo
   func getPhotoListViewModelItem(at index: Int) -> PhotosViewModelItem

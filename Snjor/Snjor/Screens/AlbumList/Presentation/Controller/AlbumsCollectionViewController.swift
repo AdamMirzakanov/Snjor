@@ -1,5 +1,5 @@
 //
-//  AlbumListViewController.swift
+//  AlbumsCollectionViewController.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 08.08.2024.
@@ -8,17 +8,17 @@
 import UIKit
 import Combine
 
-class AlbumListViewController: UICollectionViewController {
+class AlbumsCollectionViewController: UICollectionViewController {
   
   // MARK: - Delegate
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) var viewModel: any AlbumListViewModelProtocol
+  private(set) var viewModel: any AlbumsViewModelProtocol
   
   // MARK: - Initializers
   init(
-    viewModel: any AlbumListViewModelProtocol,
+    viewModel: any AlbumsViewModelProtocol,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel

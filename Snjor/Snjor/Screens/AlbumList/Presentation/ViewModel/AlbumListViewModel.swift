@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class AlbumListViewModel: AlbumListViewModelProtocol {
+final class AlbumListViewModel: AlbumsViewModelProtocol {
   
   // MARK: - Internal Properties
   var albumsCount: Int { albums.count }

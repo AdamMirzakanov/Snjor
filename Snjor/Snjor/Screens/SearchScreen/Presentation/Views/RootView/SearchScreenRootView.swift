@@ -9,8 +9,8 @@ import UIKit
 
 class SearchScreenRootView: UIView {
   
-  // MARK: - Views
-  let photoListCollectionView: PhotosCollectionView = {
+  // MARK: - Collection Views
+  let photosCollectionView: PhotosCollectionView = {
     return $0
   }(PhotosCollectionView())
   
@@ -18,9 +18,9 @@ class SearchScreenRootView: UIView {
     return $0
   }(AlbumsCollectionView())
   
-  let usersContainerView: UsersContainerView = {
-    return $0
-  }(UsersContainerView())
+//  let usersCollectionView: UsersCollectionView = {
+//    return $0
+//  }(UsersCollectionView())
   
   // MARK: - Initializers
   init() {
@@ -39,25 +39,13 @@ class SearchScreenRootView: UIView {
   }
   
   private func addSubviews() {
-    addSubview(photoListCollectionView)
+    addSubview(photosCollectionView)
     addSubview(albumsCollectionView)
   }
   
   private func setupConstraints() {
-    setupPhotoListContainerViewConstraints()
-    setupTopicContainerViewConstraints()
-    setupUsersContainerViewConstraints()
-  }
-  
-  private func setupPhotoListContainerViewConstraints() {
-    photoListCollectionView.fillSuperView()
-  }
-  
-  private func setupTopicContainerViewConstraints() {
+    photosCollectionView.fillSuperView()
     albumsCollectionView.fillSuperView()
-  }
-  
-  private func setupUsersContainerViewConstraints() {
-    usersContainerView.fillSuperView()
+//    usersCollectionView.fillSuperView()
   }
 }

@@ -10,7 +10,7 @@
 //
 //protocol PhotoListFactoryProtocol {
 //  func makeModule(
-//    delegate: any PhotoListCollectionViewControllerDelegate
+//    delegate: any PhotosCollectionViewControllerDelegate
 //  ) -> UIViewController
 //  func makeTabBarItem(navigation: any Navigable)
 //  func mekePhotoDetailCoordinator(
@@ -34,7 +34,7 @@
 //    let loadUseCase = LoadPhotoListUseCase(
 //      repository: repository
 //    )
-//    let viewModel = PhotoListViewModel(
+//    let viewModel = PhotosViewModel(
 //      state: state, 
 //      loadUseCase: loadUseCase,
 //      lastPageValidationUseCase: lastPageValidationUseCase
@@ -49,7 +49,7 @@
 //    module.collectionView.collectionViewLayout = cascadeLayout
 //    module.collectionView.showsVerticalScrollIndicator = false
 //    module.collectionView.register(
-//      PhotoListCell.self,
+//      PhotosCell.self,
 //      forCellWithReuseIdentifier: PhotoListCell.reuseID
 //    )
 //    module.title = "Discover"

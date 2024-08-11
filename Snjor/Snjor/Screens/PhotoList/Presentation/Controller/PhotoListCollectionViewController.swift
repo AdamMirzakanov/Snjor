@@ -8,14 +8,14 @@
 //import UIKit
 //import Combine
 //
-protocol PhotoListCollectionViewControllerDelegate: AnyObject {
+protocol PhotosCollectionViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 //
 //final class PhotoListCollectionViewController: UICollectionViewController {
 //
 //  // MARK: - Delegate
-//  private(set) weak var delegate: (any PhotoListCollectionViewControllerDelegate)?
+//  private(set) weak var delegate: (any PhotosCollectionViewControllerDelegate)?
 //  
 //  // MARK: - Private Properties
 //  private let searchController: UISearchController = {
@@ -27,7 +27,7 @@ protocol PhotoListCollectionViewControllerDelegate: AnyObject {
 //  
 //  private var cancellable = Set<AnyCancellable>()
 //  private(set) var downloadService = DownloadService()
-//  private(set) var viewModel: any PhotoListViewModelProtocol
+//  private(set) var viewModel: any PhotosViewModelProtocol
 //  private(set) var documentsPath = FileManager.default.urls(
 //    for: .documentDirectory,
 //    in: .userDomainMask

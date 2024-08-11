@@ -16,7 +16,7 @@ struct LoadTopicPhotoListUseCase: LoadTopicPhotoListUseCaseProtocol {
   
   func execute() async -> Result<[Photo], any Error> {
     do {
-      let request = try RequestController.topicsPhotoListRequest(topic: topic)
+      let request = try RequestController.topicPhotosRequest(topic: topic)
       let photos = try await repository.fetchTopicsPhotoList(request: request)
       return .success(photos)
     } catch {

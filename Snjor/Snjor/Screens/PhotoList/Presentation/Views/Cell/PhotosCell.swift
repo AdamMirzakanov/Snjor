@@ -8,10 +8,10 @@
 import UIKit
 
 protocol PhotoCellDelegate: AnyObject {
-  func downloadTapped(_ cell: PhotoListCell)
+  func downloadTapped(_ cell: PhotosCell)
 }
 
-final class PhotoListCell: UICollectionViewCell {
+final class PhotosCell: UICollectionViewCell {
   // MARK: - Delegate
   weak var delegate: (any PhotoCellDelegate)?
 

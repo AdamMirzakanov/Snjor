@@ -31,7 +31,7 @@ struct AlbumListFactory: AlbumListFactoryProtocol {
       lastPageValidationUseCase: lastPageValidationUseCase
     )
     
-    let module = AlbumListViewController(
+    let module = AlbumsCollectionViewController(
       viewModel: viewModel,
       layout: defaultLayout
     )

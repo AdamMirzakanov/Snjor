@@ -32,7 +32,7 @@
 //}
 //
 //// MARK: - PhotosCollectionViewControllerDelegate
-//extension PhotoListCoordinator: PhotoListCollectionViewControllerDelegate {
+//extension PhotoListCoordinator: PhotosCollectionViewControllerDelegate {
 //  func didSelect(_ photo: Photo) {
 //    let coordinator = factory.mekePhotoDetailCoordinator(
 //      photo: photo,

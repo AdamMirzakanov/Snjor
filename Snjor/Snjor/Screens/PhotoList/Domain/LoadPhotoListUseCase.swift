@@ -16,7 +16,7 @@ struct LoadPhotoListUseCase: LoadPhotoListUseCaseProtocol {
   // MARK: - Internal Methods
   func execute() async -> Result<[Photo], any Error> {
     do {
-      let request = try RequestController.photoListRequest()
+      let request = try RequestController.photosRequest()
       let photos = try await repository.fetchPhotoList(request: request)
       return .success(photos)
     } catch {

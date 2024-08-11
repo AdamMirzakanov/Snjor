@@ -16,7 +16,7 @@ struct LoadAlbumListUseCase: LoadAlbumListUseCaseProtocol {
   // MARK: - Internal Methods
   func execute() async -> Result<[Album], any Error> {
     do {
-      let request = try RequestController.albumListRequest()
+      let request = try RequestController.albumsRequest()
       let albums = try await repository.fetchAlbumList(request: request)
       return .success(albums)
     } catch {
