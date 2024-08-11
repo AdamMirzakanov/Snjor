@@ -28,8 +28,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   // MARK: - Initializers
   init(
     viewModel: any SearchScreenViewModelProtocol,
-    delegate: any PhotoListCollectionViewControllerDelegate,
-    layout: UICollectionViewLayout
+    delegate: any PhotoListCollectionViewControllerDelegate
   ) {
     self.viewModel = viewModel
     self.delegate = delegate
@@ -119,12 +118,10 @@ extension SearchScreenViewController: UISearchBarDelegate {
       rootView.albumsCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.photoListCollectionView)
       rootView.photoListCollectionView.fillSuperView()
-      navigationItem.title = "Discover"
     default:
       rootView.photoListCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.albumsCollectionView)
       rootView.albumsCollectionView.fillSuperView()
-      navigationItem.title = "Collections"
     }
   }
 }
