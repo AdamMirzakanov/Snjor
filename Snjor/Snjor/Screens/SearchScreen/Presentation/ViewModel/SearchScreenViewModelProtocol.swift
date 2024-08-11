@@ -8,16 +8,13 @@
 import UIKit
 
 protocol SearchScreenViewModelProtocol: BaseViewModelProtocol {
-  var photosCount: Int { get }
   func getPhoto(at index: Int) -> Photo
-  func getPhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem
-  func applySnapshot()
-  func createDataSource(
+  func applyPhotosSnapshot()
+  func createPhotosDataSource(
     for collectionView: UICollectionView,
     delegate: any PhotoCellDelegate
   )
   
-  func getAlbumListViewModelItem(at index: Int) -> AlbumListViewModelItem
   func applyAlbumsSnapshot()
   func createAlbumsDataSource(for collectionView: UICollectionView)
 }

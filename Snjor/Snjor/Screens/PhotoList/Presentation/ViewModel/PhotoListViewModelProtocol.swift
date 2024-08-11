@@ -10,7 +10,7 @@ import UIKit
 protocol PhotoListViewModelProtocol: BaseViewModelProtocol {
   var photosCount: Int { get }
   func getPhoto(at index: Int) -> Photo
-  func getPhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem
+  func getPhotoListViewModelItem(at index: Int) -> PhotosViewModelItem
   func applySnapshot()
   func createDataSource(
     for collectionView: UICollectionView,

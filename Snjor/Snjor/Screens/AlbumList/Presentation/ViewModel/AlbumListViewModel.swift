@@ -79,15 +79,15 @@ final class AlbumListViewModel: AlbumListViewModelProtocol {
   
   func getAlbumListViewModelItem(
     at index: Int
-  ) -> AlbumListViewModelItem {
+  ) -> AlbumsViewModelItem {
     checkAndLoadMoreAlbums(at: index)
     return makeAlbumListViewModelItem(at: index)
   }
   
   // MARK: - Private Methods
-  private func makeAlbumListViewModelItem(at index: Int) -> AlbumListViewModelItem {
+  private func makeAlbumListViewModelItem(at index: Int) -> AlbumsViewModelItem {
     let album = albums[index]
-    return AlbumListViewModelItem(album: album)
+    return AlbumsViewModelItem(album: album)
   }
   
   private func loadAlbumsUseCase() async {

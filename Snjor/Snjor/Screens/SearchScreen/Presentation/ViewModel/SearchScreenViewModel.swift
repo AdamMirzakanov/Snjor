@@ -10,54 +10,10 @@ import Combine
 
 final class SearchScreenViewModel: SearchScreenViewModelProtocol {
 
-  
-  func applyAlbumsSnapshot() {
-    guard let dataSource = albumsDataSource else { return }
-    dataSource.apply(
-      albumsSnapshot,
-      animatingDifferences: true
-    )
-  }
-  
-  // MARK: - Internal Properties
-  var photosCount: Int { photos.count }
-  
-  // Albums
-  var albumsCount: Int { albums.count }
-
   // MARK: - Private Properties
-  private(set) var state: PassthroughSubject<StateController, Never>
-  private let loadPhotosUseCase: any LoadPhotoListUseCaseProtocol
   private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
-  private var dataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
-  private var photos: [Photo] = []
-  private var sections: [PhotoListSection] = []
+  private(set) var state: PassthroughSubject<StateController, Never>
   
-  private var albumsSections: [AlbumsSection] = []
-  
-  // Albums
-  private let loadAlbumsUseCase: any LoadAlbumListUseCaseProtocol
-  private var albumsDataSource: UICollectionViewDiffableDataSource<AlbumsSection, Album>?
-  private var albums: [Album] = []
-  
-
-  private var snapshot: NSDiffableDataSourceSnapshot<PhotoListSection, Photo> {
-    var snapshot = NSDiffableDataSourceSnapshot<PhotoListSection, Photo>()
-    snapshot.appendSections([.main])
-    snapshot.appendItems(photos, toSection: .main)
-    sections = snapshot.sectionIdentifiers
-    return snapshot
-  }
-  
-  // Albums
-  private var albumsSnapshot: NSDiffableDataSourceSnapshot<AlbumsSection, Album> {
-    var snapshot = NSDiffableDataSourceSnapshot<AlbumsSection, Album>()
-    snapshot.appendSections([.main])
-    snapshot.appendItems(albums, toSection: .main)
-    albumsSections = snapshot.sectionIdentifiers
-    return snapshot
-  }
-
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
@@ -71,60 +27,40 @@ final class SearchScreenViewModel: SearchScreenViewModelProtocol {
     self.lastPageValidationUseCase = lastPageValidationUseCase
   }
 
-  // MARK: - Internal Methods
+  // MARK: - viewDidLoad
   func viewDidLoad() {
-    photosLoad()
-    albumsLoad()
+    loadPhotos()
+    loadAlbums()
   }
   
-  func photosLoad() {
-    state.send(.loading)
-    Task {
-      await loadPhotosUseCase()
-    }
+  // MARK: - Photos
+  // MARK:  Private Properties
+  private let loadPhotosUseCase: any LoadPhotoListUseCaseProtocol
+  private var photosDataSource: UICollectionViewDiffableDataSource<PhotosSection, Photo>?
+  private var photos: [Photo] = []
+  private var photosSections: [PhotosSection] = []
+  private var photosSnapshot: NSDiffableDataSourceSnapshot<PhotosSection, Photo> {
+    var snapshot = NSDiffableDataSourceSnapshot<PhotosSection, Photo>()
+    snapshot.appendSections([.main])
+    snapshot.appendItems(photos, toSection: .main)
+    photosSections = snapshot.sectionIdentifiers
+    return snapshot
   }
   
-  func albumsLoad() {
-    state.send(.loading)
-    Task {
-      await loadAlbumsUseCase()
-    }
-  }
-  
-  private func loadAlbumsUseCase() async {
-    let result = await loadAlbumsUseCase.execute()
-    updateStateUI(with: result)
-  }
-  
-  private func updateStateUI(with result: Result<[Album], Error>) {
-    switch result {
-    case .success(let albums):
-      let existingAlbumIDs = self.albums.map { $0.id }
-      let newAlbums = albums.filter { !existingAlbumIDs.contains($0.id) }
-      lastPageValidationUseCase.updateLastPage(itemsCount: albums.count)
-      self.albums.append(contentsOf: newAlbums)
-      state.send(.success)
-    case .failure(let error):
-      state.send(.fail(error: error.localizedDescription))
-    }
-  }
-
-  func createDataSource(
+  // MARK:  Internal Methods
+  func createPhotosDataSource(
     for collectionView: UICollectionView,
     delegate: any PhotoCellDelegate
   ) {
-    dataSource = UICollectionViewDiffableDataSource<PhotoListSection, Photo>(
+    photosDataSource = UICollectionViewDiffableDataSource<PhotosSection, Photo>(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
-      
       let defaultCell = UICollectionViewCell()
-      
       guard let strongSelf = self else { return defaultCell }
-      
-      let section = strongSelf.sections[indexPath.section]
+      let section = strongSelf.photosSections[indexPath.section]
       switch section {
       case .main:
-        return strongSelf.configureCell(
+        return strongSelf.configurePhotoCell(
           collectionView: collectionView,
           indexPath: indexPath,
           photo: photo,
@@ -134,62 +70,32 @@ final class SearchScreenViewModel: SearchScreenViewModelProtocol {
     }
   }
   
-  // Albums
-  func createAlbumsDataSource(for collectionView: UICollectionView) {
-    albumsDataSource = UICollectionViewDiffableDataSource<AlbumsSection, Album>(
-      collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, album in
-      
-      let defaultCell = UICollectionViewCell()
-      
-      guard let strongSelf = self else { return defaultCell }
-      
-      let section = strongSelf.sections[indexPath.section]
-      switch section {
-      case .main:
-        return strongSelf.configureAlbumCell(
-          collectionView: collectionView,
-          indexPath: indexPath,
-          album: album
-        )
-      }
-    }
-  }
-  
-  func applySnapshot() {
-    guard let dataSource = dataSource else { return }
+  func applyPhotosSnapshot() {
+    guard let dataSource = photosDataSource else { return }
     dataSource.apply(
-      snapshot,
+      photosSnapshot,
       animatingDifferences: true
     )
   }
-
+  
   func getPhoto(at indexPath: Int) -> Photo {
     photos[indexPath]
   }
   
-  func getPhotoListViewModelItem(
-    at index: Int
-  ) -> PhotoListViewModelItem {
-    checkAndLoadMorePhotos(at: index)
-    return makePhotoListViewModelItem(at: index)
+  // MARK:  Private Methods
+  private func loadPhotos() {
+    state.send(.loading)
+    Task {
+      await loadPhotosUseCase()
+    }
   }
-
-  // MARK: - Private Methods
-  private func checkAndLoadMorePhotos(at index: Int) {
-    lastPageValidationUseCase.checkAndLoadMoreItems(
-      at: index,
-      actualItems: photos.count,
-      action: photosLoad
-    )
-  }
-
+  
   private func loadPhotosUseCase() async {
     let result = await loadPhotosUseCase.execute()
-    updateStateUI(with: result)
+    updatePhotosStateUI(with: result)
   }
-
-  private func updateStateUI(with result: Result<[Photo], Error>) {
+  
+  private func updatePhotosStateUI(with result: Result<[Photo], Error>) {
     switch result {
     case .success(let photos):
       let existingPhotoIDs = self.photos.map { $0.id }
@@ -202,12 +108,27 @@ final class SearchScreenViewModel: SearchScreenViewModelProtocol {
     }
   }
   
-  private func makePhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem {
-    let photo = photos[index]
-    return PhotoListViewModelItem(photo: photo)
+  private func checkAndLoadMorePhotos(at index: Int) {
+    lastPageValidationUseCase.checkAndLoadMoreItems(
+      at: index,
+      actualItems: photos.count,
+      action: loadPhotos
+    )
   }
   
-  private func configureCell(
+  private func getPhotosViewModelItem(
+    at index: Int
+  ) -> PhotosViewModelItem {
+    checkAndLoadMorePhotos(at: index)
+    return makePhotosViewModelItem(at: index)
+  }
+  
+  private func makePhotosViewModelItem(at index: Int) -> PhotosViewModelItem {
+    let photo = photos[index]
+    return PhotosViewModelItem(photo: photo)
+  }
+  
+  private func configurePhotoCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
     photo: Photo,
@@ -224,12 +145,103 @@ final class SearchScreenViewModel: SearchScreenViewModelProtocol {
     
     cell.delegate = delegate
     checkAndLoadMorePhotos(at: indexPath.item)
-    let viewModelItem = getPhotoListViewModelItem(at: indexPath.item)
+    let viewModelItem = getPhotosViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
   
-  // Albums
+  // MARK:  Sections
+  private enum PhotosSection: Hashable {
+    case main
+  }
+  
+  // MARK: - Albums
+  // MARK:  Private Properties
+  private let loadAlbumsUseCase: any LoadAlbumListUseCaseProtocol
+  private var albumsDataSource: UICollectionViewDiffableDataSource<AlbumsSection, Album>?
+  private var albums: [Album] = []
+  private var albumsSections: [AlbumsSection] = []
+  private var albumsSnapshot: NSDiffableDataSourceSnapshot<AlbumsSection, Album> {
+    var snapshot = NSDiffableDataSourceSnapshot<AlbumsSection, Album>()
+    snapshot.appendSections([.main])
+    snapshot.appendItems(albums, toSection: .main)
+    albumsSections = snapshot.sectionIdentifiers
+    return snapshot
+  }
+  
+  // MARK: Internal Methods
+  func createAlbumsDataSource(for collectionView: UICollectionView) {
+    albumsDataSource = UICollectionViewDiffableDataSource<AlbumsSection, Album>(
+      collectionView: collectionView
+    ) { [weak self] collectionView, indexPath, album in
+      let defaultCell = UICollectionViewCell()
+      guard let strongSelf = self else { return defaultCell }
+      let section = strongSelf.photosSections[indexPath.section]
+      switch section {
+      case .main:
+        return strongSelf.configureAlbumCell(
+          collectionView: collectionView,
+          indexPath: indexPath,
+          album: album
+        )
+      }
+    }
+  }
+  
+  func applyAlbumsSnapshot() {
+    guard let dataSource = albumsDataSource else { return }
+    dataSource.apply(
+      albumsSnapshot,
+      animatingDifferences: true
+    )
+  }
+  
+  // MARK:  Private Methods
+  private func loadAlbums() {
+    state.send(.loading)
+    Task {
+      await loadAlbumsUseCase()
+    }
+  }
+  
+  private func loadAlbumsUseCase() async {
+    let result = await loadAlbumsUseCase.execute()
+    updateAlbumsStateUI(with: result)
+  }
+  
+  private func updateAlbumsStateUI(with result: Result<[Album], Error>) {
+    switch result {
+    case .success(let albums):
+      let existingAlbumIDs = self.albums.map { $0.id }
+      let newAlbums = albums.filter { !existingAlbumIDs.contains($0.id) }
+      lastPageValidationUseCase.updateLastPage(itemsCount: albums.count)
+      self.albums.append(contentsOf: newAlbums)
+      state.send(.success)
+    case .failure(let error):
+      state.send(.fail(error: error.localizedDescription))
+    }
+  }
+  
+  private func checkAndLoadMoreAlbums(at index: Int) {
+    lastPageValidationUseCase.checkAndLoadMoreItems(
+      at: index,
+      actualItems: albums.count,
+      action: loadAlbums
+    )
+  }
+  
+  private func getAlbumsViewModelItem(
+    at index: Int
+  ) -> AlbumsViewModelItem {
+    checkAndLoadMoreAlbums(at: index)
+    return makeAlbumListViewModelItem(at: index)
+  }
+  
+  private func makeAlbumListViewModelItem(at index: Int) -> AlbumsViewModelItem {
+    let album = albums[index]
+    return AlbumsViewModelItem(album: album)
+  }
+  
   private func configureAlbumCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
@@ -245,36 +257,13 @@ final class SearchScreenViewModel: SearchScreenViewModelProtocol {
     }
     
     checkAndLoadMoreAlbums(at: indexPath.item)
-    let viewModelItem = getAlbumListViewModelItem(at: indexPath.item)
+    let viewModelItem = getAlbumsViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
   
-  func getAlbumListViewModelItem(
-    at index: Int
-  ) -> AlbumListViewModelItem {
-    checkAndLoadMoreAlbums(at: index)
-    return makeAlbumListViewModelItem(at: index)
+  // MARK:  Sections
+  private enum AlbumsSection: Hashable {
+    case main
   }
-  
-  private func makeAlbumListViewModelItem(at index: Int) -> AlbumListViewModelItem {
-    let album = albums[index]
-    return AlbumListViewModelItem(album: album)
-  }
-  
-  private func checkAndLoadMoreAlbums(at index: Int) {
-    lastPageValidationUseCase.checkAndLoadMoreItems(
-      at: index,
-      actualItems: albums.count,
-      action: albumsLoad
-    )
-  }
-}
-
-private enum PhotoListSection: Hashable {
-  case main
-}
-
-private enum AlbumsSection: Hashable {
-  case main
 }

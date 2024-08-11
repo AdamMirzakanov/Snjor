@@ -59,7 +59,7 @@ protocol PhotoListCollectionViewControllerDelegate: AnyObject {
 //
 //  // MARK: - Private Methods
 //  private func setupDataSource() {
-//    viewModel.createDataSource(
+//    viewModel.createPhotosDataSource(
 //      for: collectionView,
 //      delegate: self
 //    )
@@ -80,7 +80,7 @@ protocol PhotoListCollectionViewControllerDelegate: AnyObject {
 //        guard let self = self else { return }
 //        switch state {
 //        case .success:
-//          viewModel.applySnapshot()
+//          viewModel.applyPhotosSnapshot()
 //        case .loading: break
 //        case .fail(error: let error):
 //          self.presentAlert(message: error, title: AppLocalized.error)

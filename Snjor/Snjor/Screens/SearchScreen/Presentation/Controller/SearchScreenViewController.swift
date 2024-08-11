@@ -70,7 +70,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Private Methods
   private func setupDataSource() {
-    viewModel.createDataSource(
+    viewModel.createPhotosDataSource(
       for: rootView.photoListCollectionView,
       delegate: self
     )
@@ -94,7 +94,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
         guard let self = self else { return }
         switch state {
         case .success:
-          viewModel.applySnapshot()
+          viewModel.applyPhotosSnapshot()
           viewModel.applyAlbumsSnapshot()
         case .loading: break
         case .fail(error: let error):

@@ -87,7 +87,7 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
   
   func getPhotoListViewModelItem(
     at index: Int
-  ) -> PhotoListViewModelItem {
+  ) -> PhotosViewModelItem {
     checkAndLoadMorePhotos(at: index)
     return makePhotoListViewModelItem(at: index)
   }
@@ -119,9 +119,9 @@ final class PhotoListViewModel: PhotoListViewModelProtocol {
     }
   }
   
-  private func makePhotoListViewModelItem(at index: Int) -> PhotoListViewModelItem {
+  private func makePhotoListViewModelItem(at index: Int) -> PhotosViewModelItem {
     let photo = photos[index]
-    return PhotoListViewModelItem(photo: photo)
+    return PhotosViewModelItem(photo: photo)
   }
   
   private func configureCell(
