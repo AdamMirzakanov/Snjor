@@ -124,9 +124,9 @@ final class AlbumListViewModel: AlbumsViewModelProtocol {
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: AlbumListCell.reuseID,
+        withReuseIdentifier: AlbumCell.reuseID,
         for: indexPath
-      ) as? AlbumListCell
+      ) as? AlbumCell
     else {
       return UICollectionViewCell()
     }
@@ -134,6 +134,7 @@ final class AlbumListViewModel: AlbumsViewModelProtocol {
     checkAndLoadMoreAlbums(at: indexPath.item)
     let viewModelItem = getAlbumListViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
+//    cell.backgroundColor = .systemBlue
     return cell
   }
 }

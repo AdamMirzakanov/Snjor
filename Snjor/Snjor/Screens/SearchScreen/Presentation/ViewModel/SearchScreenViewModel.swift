@@ -249,7 +249,7 @@
 //  ) -> UICollectionViewCell {
 //    guard
 //      let cell = collectionView.dequeueReusableCell(
-//        withReuseIdentifier: AlbumListCell.reuseID,
+//        withReuseIdentifier: AlbumCell.reuseID,
 //        for: indexPath
 //      ) as? AlbumListCell
 //    else {

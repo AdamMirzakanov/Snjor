@@ -40,7 +40,7 @@ extension TopicsPageViewController: UICollectionViewDelegateFlowLayout {
     let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
     let width = topicsPageViewModelItem.topicTitle.size(
       withAttributes: [
-        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
       ]
     ).width + 11
     return width

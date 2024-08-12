@@ -37,8 +37,8 @@ struct AlbumListFactory: AlbumListFactoryProtocol {
     )
     module.collectionView.collectionViewLayout = createLayout()
     module.collectionView.register(
-      AlbumListCell.self,
-      forCellWithReuseIdentifier: AlbumListCell.reuseID
+      AlbumCell.self,
+      forCellWithReuseIdentifier: AlbumCell.reuseID
     )
     return module
   }

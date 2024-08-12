@@ -91,9 +91,9 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(
-      top: 0,
+      top: 20,
       leading: 4.0,
-      bottom: 4.0 * 2.0,
+      bottom: 8.0,
       trailing: 4.0
     )
     return item
@@ -104,7 +104,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   ) -> NSCollectionLayoutGroup {
     let groupSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(1),
-      heightDimension: .fractionalWidth(0.5)
+      heightDimension: .fractionalWidth(0.6)
     )
     let horizontalGroup = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
@@ -115,6 +115,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
       layoutSize: groupSize,
       subitems: [horizontalGroup, horizontalGroup]
     )
+    
     return verticalGroup
   }
   
@@ -122,9 +123,9 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets = NSDirectionalEdgeInsets(
       top: 0,
-      leading: 4.0 * 4.0,
+      leading: 16.0,
       bottom: 0,
-      trailing: 4.0 * 4.0
+      trailing: 16.0
     )
     return section
   }
