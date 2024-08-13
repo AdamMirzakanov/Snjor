@@ -8,17 +8,17 @@
 import UIKit
 
 protocol PhotoCellDelegate: AnyObject {
-  func downloadTapped(_ cell: PhotosCell)
+  func downloadTapped(_ cell: PhotoCell)
 }
 
-final class PhotosCell: UICollectionViewCell {
+final class PhotoCell: UICollectionViewCell {
   // MARK: - Delegate
   weak var delegate: (any PhotoCellDelegate)?
 
   // MARK: - Main View
-  let mainView: PhotoListCellMainView = {
+  let mainView: PhotoCellMainView = {
     return $0
-  }(PhotoListCellMainView())
+  }(PhotoCellMainView())
 
   // MARK: - Initializers
   override init(frame: CGRect) {

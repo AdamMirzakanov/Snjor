@@ -49,7 +49,7 @@
 //    module.collectionView.collectionViewLayout = cascadeLayout
 //    module.collectionView.showsVerticalScrollIndicator = false
 //    module.collectionView.register(
-//      PhotosCell.self,
+//      PhotoCell.self,
 //      forCellWithReuseIdentifier: PhotoListCell.reuseID
 //    )
 //    module.title = "Discover"

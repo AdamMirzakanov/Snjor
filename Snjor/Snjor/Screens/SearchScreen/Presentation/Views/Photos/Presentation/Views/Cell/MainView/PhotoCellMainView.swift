@@ -1,5 +1,5 @@
 //
-//  PhotoListCellMainView.swift
+//  PhotoCellMainView.swift
 //  Snjor
 //
 //  Created by Адам on 08.07.2024.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol PhotoListCellMainViewDelegate: AnyObject {
+protocol PhotoCellMainViewDelegate: AnyObject {
   func downloadTapped()
 }
 
-final class PhotoListCellMainView: BaseImageContainerView {
+final class PhotoCellMainView: BaseImageContainerView {
 
   // MARK: - Delegate
-  weak var delegate: (any PhotoListCellMainViewDelegate)?
+  weak var delegate: (any PhotoCellMainViewDelegate)?
 
   // MARK: - Private Properties
   private var screenScale: CGFloat {

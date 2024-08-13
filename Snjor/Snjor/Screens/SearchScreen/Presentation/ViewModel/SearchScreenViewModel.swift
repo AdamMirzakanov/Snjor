@@ -136,7 +136,7 @@
 //  ) -> UICollectionViewCell {
 //    guard
 //      let cell = collectionView.dequeueReusableCell(
-//        withReuseIdentifier: PhotosCell.reuseID,
+//        withReuseIdentifier: PhotoCell.reuseID,
 //        for: indexPath
 //      ) as? PhotoListCell
 //    else {

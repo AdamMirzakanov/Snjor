@@ -247,7 +247,7 @@ extension SearchScreenViewController: URLSessionDownloadDelegate {
   private func hideSpinner() {
     DispatchQueue.main.async {
       self.rootView.photosCollectionView.visibleCells
-        .compactMap { $0 as? PhotosCell }
+        .compactMap { $0 as? PhotoCell }
         .forEach { cell in
           cell.mainView.spinner.stopAnimating()
           cell.mainView.spinner.isHidden = true
@@ -258,7 +258,7 @@ extension SearchScreenViewController: URLSessionDownloadDelegate {
 }
 
 extension SearchScreenViewController: PhotoCellDelegate {
-  func downloadTapped(_ cell: PhotosCell) {
+  func downloadTapped(_ cell: PhotoCell) {
     if let indexPath = rootView.photosCollectionView.indexPath(for: cell) {
       let photo = photosViewModel.getPhoto(at: indexPath.item)
       downloadService.startDownload(photo, sessionID: Self.sessionID)

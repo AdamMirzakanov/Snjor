@@ -132,9 +132,9 @@ final class PhotosViewModel: PhotosViewModelProtocol {
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: PhotosCell.reuseID,
+        withReuseIdentifier: PhotoCell.reuseID,
         for: indexPath
-      ) as? PhotosCell
+      ) as? PhotoCell
     else {
       return UICollectionViewCell()
     }
