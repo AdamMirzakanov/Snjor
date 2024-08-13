@@ -12,7 +12,7 @@ struct Album: Decodable, Hashable {
   // MARK: - Internal Properties
   let id: String
   let title: String
-  let previewPhotos: [PreviewPhoto]
+  let previewPhotos: [AlbumPreviewPhoto]
   let totalPhotos: Int
   let tags: [Tag]?
 }

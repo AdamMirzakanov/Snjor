@@ -97,9 +97,9 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: TopicsPageCategoryCell.reuseID,
+        withReuseIdentifier: PageTopicCell.reuseID,
         for: indexPath
-      ) as? TopicsPageCategoryCell
+      ) as? PageTopicCell
     else {
       return UICollectionViewCell()
     }

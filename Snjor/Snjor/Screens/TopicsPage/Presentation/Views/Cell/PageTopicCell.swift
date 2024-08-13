@@ -1,5 +1,5 @@
 //
-//  TopicsPageCategoryCell.swift
+//  TopicsPageCell.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TopicsPageCategoryCell: UICollectionViewCell {
+final class PageTopicCell: UICollectionViewCell {
   // MARK: - View
   private let topicTitleLabel: UILabel = {
     $0.textColor = .white

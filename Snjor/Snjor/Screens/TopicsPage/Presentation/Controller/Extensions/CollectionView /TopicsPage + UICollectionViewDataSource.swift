@@ -21,7 +21,7 @@ import UIKit
 //  ) -> UICollectionViewCell {
 //    guard
 //      let cell = collectionView.dequeueReusableCell(
-//        withReuseIdentifier: TopicsPageCategoryCell.reuseID,
+//        withReuseIdentifier: PageTopicCell.reuseID,
 //        for: indexPath
 //      ) as? TopicsPageCategoryCell
 //    else {

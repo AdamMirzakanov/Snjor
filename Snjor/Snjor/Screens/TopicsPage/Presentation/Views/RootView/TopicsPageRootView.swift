@@ -19,10 +19,10 @@ final class TopicPageRootView: UIView {
     options: nil
   ))
   
-  let categoryCollectionView: TopicsPageCategoryCollectionView = {
+  let categoryCollectionView: PageTopicsCollectionView = {
     $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
     return $0
-  }(TopicsPageCategoryCollectionView())
+  }(PageTopicsCollectionView())
   
   // MARK: - Private Views
   private let appNameLabel: UILabel = {
