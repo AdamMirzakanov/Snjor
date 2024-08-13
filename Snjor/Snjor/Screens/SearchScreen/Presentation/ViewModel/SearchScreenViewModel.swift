@@ -17,8 +17,8 @@
 //  // MARK: - Initializers
 //  init(
 //    state: PassthroughSubject<StateController, Never>,
-//    loadPhotosUseCase: any LoadPhotoListUseCaseProtocol,
-//    loadAlbumsUseCase: any LoadAlbumListUseCaseProtocol,
+//    loadPhotosUseCase: any LoadPhotosUseCaseProtocol,
+//    loadAlbumsUseCase: any LoadAlbumsUseCaseProtocol,
 //    lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
 //  ) {
 //    self.state = state

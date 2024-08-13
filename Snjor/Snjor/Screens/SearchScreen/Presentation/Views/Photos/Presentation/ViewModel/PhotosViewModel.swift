@@ -15,7 +15,7 @@ final class PhotosViewModel: PhotosViewModelProtocol {
 
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
-  private let loadUseCase: any LoadPhotoListUseCaseProtocol
+  private let loadUseCase: any LoadPhotosUseCaseProtocol
   private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   private var dataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
   private var photos: [Photo] = []
@@ -32,7 +32,7 @@ final class PhotosViewModel: PhotosViewModelProtocol {
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadUseCase: any LoadPhotoListUseCaseProtocol,
+    loadUseCase: any LoadPhotosUseCaseProtocol,
     lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   ) {
     self.state = state

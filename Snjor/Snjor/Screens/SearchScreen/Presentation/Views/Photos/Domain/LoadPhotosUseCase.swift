@@ -1,17 +1,17 @@
 //
-//  LoadPhotoListUseCase.swift
+//  LoadPhotosUseCase.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
 //
 
-protocol LoadPhotoListUseCaseProtocol {
+protocol LoadPhotosUseCaseProtocol {
   func execute() async -> Result<[Photo], any Error>
 }
 
-struct LoadPhotoListUseCase: LoadPhotoListUseCaseProtocol {
+struct LoadPhotosUseCase: LoadPhotosUseCaseProtocol {
   // MARK: - Internal Properties
-  let repository: any LoadPhotoListRepositoryProtocol
+  let repository: any LoadPhotosRepositoryProtocol
 
   // MARK: - Internal Methods
   func execute() async -> Result<[Photo], any Error> {
@@ -24,4 +24,3 @@ struct LoadPhotoListUseCase: LoadPhotoListUseCaseProtocol {
     }
   }
 }
-

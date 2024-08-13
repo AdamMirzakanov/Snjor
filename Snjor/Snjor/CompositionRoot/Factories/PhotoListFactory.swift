@@ -28,10 +28,10 @@
 //    let networkService = NetworkService()
 //    let lastPageValidationUseCase = LastPageValidationUseCase()
 //    let state = PassthroughSubject<StateController, Never>()
-//    let repository = LoadPhotoListRepository(
+//    let repository = LoadPhotosRepository(
 //      networkService: networkService
 //    )
-//    let loadUseCase = LoadPhotoListUseCase(
+//    let loadUseCase = LoadPhotosUseCase(
 //      repository: repository
 //    )
 //    let viewModel = PhotosViewModel(

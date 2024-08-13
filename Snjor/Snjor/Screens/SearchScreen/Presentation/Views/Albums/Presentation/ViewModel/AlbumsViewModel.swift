@@ -15,7 +15,7 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
   
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
-  private let loadUseCase: any LoadAlbumListUseCaseProtocol
+  private let loadUseCase: any LoadAlbumsUseCaseProtocol
   private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   private var dataSource: UICollectionViewDiffableDataSource<Section, Album>?
   private var albums: [Album] = []
@@ -32,7 +32,7 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadUseCase: any LoadAlbumListUseCaseProtocol,
+    loadUseCase: any LoadAlbumsUseCaseProtocol,
     lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   ) {
     self.state = state

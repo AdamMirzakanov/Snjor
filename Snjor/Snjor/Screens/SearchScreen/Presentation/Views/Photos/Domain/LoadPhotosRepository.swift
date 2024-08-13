@@ -1,5 +1,5 @@
 //
-//  LoadPhotoListRepository.swift
+//  LoadPhotosRepository.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol LoadPhotoListRepositoryProtocol {
+protocol LoadPhotosRepositoryProtocol {
   func fetchPhotoList(request: URLRequest) async throws -> [Photo]
 }
 
-struct LoadPhotoListRepository: LoadPhotoListRepositoryProtocol {
+struct LoadPhotosRepository: LoadPhotosRepositoryProtocol {
   // MARK: - Internal Properties
   let networkService: any Requestable
 

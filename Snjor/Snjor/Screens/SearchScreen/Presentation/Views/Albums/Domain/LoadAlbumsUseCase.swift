@@ -1,17 +1,17 @@
 //
-//  LoadAlbumListUseCase.swift
+//  LoadAlbumsUseCase.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 08.08.2024.
 //
 
-protocol LoadAlbumListUseCaseProtocol {
+protocol LoadAlbumsUseCaseProtocol {
   func execute() async -> Result<[Album], any Error>
 }
 
-struct LoadAlbumListUseCase: LoadAlbumListUseCaseProtocol {
+struct LoadAlbumsUseCase: LoadAlbumsUseCaseProtocol {
   // MARK: - Internal Properties
-  let repository: any LoadAlbumListRepositoryProtocol
+  let repository: any LoadAlbumsRepositoryProtocol
   
   // MARK: - Internal Methods
   func execute() async -> Result<[Album], any Error> {

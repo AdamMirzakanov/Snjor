@@ -1,5 +1,5 @@
 //
-//  LoadAlbumListRepository.swift
+//  LoadAlbumsRepository.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 08.08.2024.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol LoadAlbumListRepositoryProtocol {
+protocol LoadAlbumsRepositoryProtocol {
   func fetchAlbumList(request: URLRequest) async throws -> [Album]
 }
 
-struct LoadAlbumListRepository: LoadAlbumListRepositoryProtocol {
+struct LoadAlbumsRepository: LoadAlbumsRepositoryProtocol {
   // MARK: - Internal Properties
   let networkService: any Requestable
 

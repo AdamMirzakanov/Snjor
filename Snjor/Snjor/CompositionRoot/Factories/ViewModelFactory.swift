@@ -37,19 +37,19 @@ class ViewModelFactory {
   
   private func getPhotosUseCase(
     _ networkService: NetworkService
-  ) -> LoadPhotoListUseCase {
-    let loadPhotosRepository = LoadPhotoListRepository(
+  ) -> LoadPhotosUseCase {
+    let loadPhotosRepository = LoadPhotosRepository(
       networkService: networkService
     )
-    return LoadPhotoListUseCase(repository: loadPhotosRepository)
+    return LoadPhotosUseCase(repository: loadPhotosRepository)
   }
   
   private func getAlbumsUseCase(
     _ networkService: NetworkService
-  ) -> LoadAlbumListUseCase {
-    let loadAlbumsRepository = LoadAlbumListRepository(
+  ) -> LoadAlbumsUseCase {
+    let loadAlbumsRepository = LoadAlbumsRepository(
       networkService: networkService
     )
-    return LoadAlbumListUseCase(repository: loadAlbumsRepository)
+    return LoadAlbumsUseCase(repository: loadAlbumsRepository)
   }
 }
