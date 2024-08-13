@@ -695,7 +695,7 @@
 			isa = PBXGroup;
 			children = (
 				37DABC462C6AA199009044D4 /* Photos */,
-				37DABC472C6AA1A1009044D4 /* Albums */,
+				37A5029B2C6BA099000221D1 /* Collections */,
 				37DABC482C6AA1A8009044D4 /* Users */,
 			);
 			path = Screens;
@@ -722,6 +722,30 @@
 				37A502862C6B8CC3000221D1 /* SearchScreenViewController + AlbumsDataSource.swift */,
 			);
 			path = CollectionViewDataSource;
+			sourceTree = "<group>";
+		};
+		37A5029B2C6BA099000221D1 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				37A5029C2C6BA0B3000221D1 /* Topics */,
+				37DABC472C6AA1A1009044D4 /* Albums */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		37A5029C2C6BA0B3000221D1 /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				37A5029D2C6BA0C1000221D1 /* Presentation */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
+		37A5029D2C6BA0C1000221D1 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		37D65F582C5924E1006994B2 /* Cell */ = {
