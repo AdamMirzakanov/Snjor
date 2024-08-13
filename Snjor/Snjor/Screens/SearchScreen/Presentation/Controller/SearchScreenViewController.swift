@@ -10,12 +10,15 @@ import Combine
 import Photos
 
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
-  
-  // MARK: - Delegate
-  private(set) weak var delegate: (any PhotosCollectionViewControllerDelegate)?
+
+  // MARK: - Internal Properties
+  var photosDataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
+  var sections: [PhotoListSection] = []
   
   // MARK: - Private Properties
+  private let searchController = UISearchController()
   private var cancellable = Set<AnyCancellable>()
+  private(set) weak var delegate: (any PhotosCollectionViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
   private(set) var photosViewModel: any PhotosViewModelProtocol
   private(set) var albumsViewModel: any AlbumsViewModelProtocol
@@ -23,8 +26,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     for: .documentDirectory,
     in: .userDomainMask
   ).first!
-  
-  let searchController = UISearchController()
   
   // MARK: - Initializers
   init(
@@ -75,7 +76,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Private Methods
   private func setupDataSource() {
-    photosViewModel.createDataSource(
+    createDataSource(
       for: rootView.photosCollectionView,
       delegate: self
     )
@@ -99,7 +100,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
         guard let self = self else { return }
         switch state {
         case .success:
-          photosViewModel.applySnapshot()
+          applyPhotosSnapshot()
         case .loading: break
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)
@@ -154,129 +155,21 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
 
 
 
-
-
-
-
-
-
 // MARK: - Extension
-extension SearchScreenViewController: UISearchBarDelegate {
-  func searchBar(
-    _ searchBar: UISearchBar,
-    selectedScopeButtonIndexDidChange selectedScope: Int
-  ) {
-    switch selectedScope {
-    case .zero:
-      rootView.albumsCollectionView.removeFromSuperview()
-      rootView.addSubview(rootView.photosCollectionView)
-      rootView.photosCollectionView.fillSuperView()
-    default:
-      rootView.photosCollectionView.removeFromSuperview()
-      rootView.addSubview(rootView.albumsCollectionView)
-      rootView.albumsCollectionView.fillSuperView()
-    }
-  }
-}
 
-extension SearchScreenViewController: PhotosCollectionViewControllerDelegate {
-  func didSelect(_ photo: Photo) {
-    print(#function, Self.self)
-  }
-}
 
-extension SearchScreenViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    //    print(#function)
-  }
-}
 
-extension SearchScreenViewController: MessageDisplayable { }
 
-extension SearchScreenViewController: URLSessionDownloadDelegate {
-  // MARK: - URL Session Download Delegate
-  func urlSession(
-    _ session: URLSession,
-    downloadTask: URLSessionDownloadTask,
-    didFinishDownloadingTo location: URL
-  ) {
-    guard let sourceURL = downloadTask.originalRequest?.url else { return }
-    let destinationURL = localFilePath(for: sourceURL)
-    let fileManager = FileManager.default
-    try? fileManager.removeItem(at: destinationURL)
-    do {
-      try fileManager.copyItem(at: location, to: destinationURL)
-      saveImageToGallery(at: destinationURL)
-    } catch let error {
-      self.presentAlert(
-        message: error.localizedDescription,
-        title: AppLocalized.error
-      )
-    }
-  }
 
-  // MARK: - Private Methods
-  private func saveImageToGallery(at url: URL) {
-    PHPhotoLibrary.requestAuthorization { status in
-      guard status == .authorized else { return }
-      PHPhotoLibrary.shared().performChanges {
-        PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
-      } completionHandler: { success, error in
-        if success {
-          self.hideSpinner()
-          print(#function, "🇧🇷 Successfully saved image to gallery.")
-        } else if let error = error {
-          self.presentAlert(
-            message: "\(error.localizedDescription)",
-            title: AppLocalized.error
-          )
-        }
-      }
-    }
-  }
 
-  private func localFilePath(for url: URL) -> URL {
-    let component = url.lastPathComponent
-    var destinationURL = documentsPath.appendingPathComponent(component)
-    if destinationURL.pathExtension.isEmpty {
-      destinationURL = destinationURL.appendingPathExtension(.jpegExt)
-    }
-    return destinationURL
-  }
-  
-  private func hideSpinner() {
-    DispatchQueue.main.async {
-      self.rootView.photosCollectionView.visibleCells
-        .compactMap { $0 as? PhotoCell }
-        .forEach { cell in
-          cell.mainView.spinner.stopAnimating()
-          cell.mainView.spinner.isHidden = true
-          cell.mainView.downloadButton.isHidden = false
-        }
-    }
-  }
-}
 
-extension SearchScreenViewController: PhotoCellDelegate {
-  func downloadTapped(_ cell: PhotoCell) {
-    if let indexPath = rootView.photosCollectionView.indexPath(for: cell) {
-      let photo = photosViewModel.getPhoto(at: indexPath.item)
-      downloadService.startDownload(photo, sessionID: Self.sessionID)
-    }
-  }
-}
 
-extension SearchScreenViewController: SessionIdentifiable { }
 
-extension SearchScreenViewController: CascadeLayoutDelegate {
-  func cascadeLayout(
-    _ layout: any CascadeLayoutConformable,
-    sizeForItemAt indexPath: IndexPath
-  ) -> CGSize {
-    let photo = photosViewModel.getPhoto(at: indexPath.item)
-    return CGSize(width: photo.width, height: photo.height)
-  }
-}
+
+
+
+
+
 //extension SearchScreenViewController {
 //  // MARK: - UIScrollViewDelegate
 //  override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {

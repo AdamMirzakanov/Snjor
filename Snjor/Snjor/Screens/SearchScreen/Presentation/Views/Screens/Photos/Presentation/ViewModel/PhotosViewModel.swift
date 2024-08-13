@@ -5,30 +5,19 @@
 //  Created by Адам on 16.06.2024.
 //
 
-import UIKit
 import Combine
 
 final class PhotosViewModel: PhotosViewModelProtocol {
   
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
-
+  var photos: [Photo] = []
+  
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
   private let loadUseCase: any LoadPhotosUseCaseProtocol
   private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
-  private var dataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
-  private var photos: [Photo] = []
-  private var sections: [PhotoListSection] = []
-
-  private var snapshot: NSDiffableDataSourceSnapshot<PhotoListSection, Photo> {
-    var snapshot = NSDiffableDataSourceSnapshot<PhotoListSection, Photo>()
-    snapshot.appendSections([.main])
-    snapshot.appendItems(photos, toSection: .main)
-    sections = snapshot.sectionIdentifiers
-    return snapshot
-  }
-
+  
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
@@ -39,7 +28,7 @@ final class PhotosViewModel: PhotosViewModelProtocol {
     self.loadUseCase = loadUseCase
     self.lastPageValidationUseCase = lastPageValidationUseCase
   }
-
+  
   // MARK: - Internal Methods
   func viewDidLoad() {
     state.send(.loading)
@@ -47,40 +36,7 @@ final class PhotosViewModel: PhotosViewModelProtocol {
       await loadPhotosUseCase()
     }
   }
-
-  func createDataSource(
-    for collectionView: UICollectionView,
-    delegate: any PhotoCellDelegate
-  ) {
-    dataSource = UICollectionViewDiffableDataSource<PhotoListSection, Photo>(
-      collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, photo in
-      
-      let defaultCell = UICollectionViewCell()
-      
-      guard let strongSelf = self else { return defaultCell }
-      
-      let section = strongSelf.sections[indexPath.section]
-      switch section {
-      case .main:
-        return strongSelf.configureCell(
-          collectionView: collectionView,
-          indexPath: indexPath,
-          photo: photo,
-          delegate: delegate
-        )
-      }
-    }
-  }
   
-  func applySnapshot() {
-    guard let dataSource = dataSource else { return }
-    dataSource.apply(
-      snapshot,
-      animatingDifferences: true
-    )
-  }
-
   func getPhoto(at indexPath: Int) -> Photo {
     photos[indexPath]
   }
@@ -91,21 +47,21 @@ final class PhotosViewModel: PhotosViewModelProtocol {
     checkAndLoadMorePhotos(at: index)
     return makePhotoListViewModelItem(at: index)
   }
-
-  // MARK: - Private Methods
-  private func checkAndLoadMorePhotos(at index: Int) {
+  
+  func checkAndLoadMorePhotos(at index: Int) {
     lastPageValidationUseCase.checkAndLoadMoreItems(
       at: index,
       actualItems: photos.count,
       action: viewDidLoad
     )
   }
-
+  
+  // MARK: - Private Methods
   private func loadPhotosUseCase() async {
     let result = await loadUseCase.execute()
     updateStateUI(with: result)
   }
-
+  
   private func updateStateUI(with result: Result<[Photo], Error>) {
     switch result {
     case .success(let photos):
@@ -123,30 +79,4 @@ final class PhotosViewModel: PhotosViewModelProtocol {
     let photo = photos[index]
     return PhotosViewModelItem(photo: photo)
   }
-  
-  private func configureCell(
-    collectionView: UICollectionView,
-    indexPath: IndexPath,
-    photo: Photo,
-    delegate: any PhotoCellDelegate
-  ) -> UICollectionViewCell {
-    guard
-      let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: PhotoCell.reuseID,
-        for: indexPath
-      ) as? PhotoCell
-    else {
-      return UICollectionViewCell()
-    }
-    
-    cell.delegate = delegate
-    checkAndLoadMorePhotos(at: indexPath.item)
-    let viewModelItem = getPhotoListViewModelItem(at: indexPath.item)
-    cell.configure(viewModelItem: viewModelItem)
-    return cell
-  }
-}
-
-private enum PhotoListSection: Hashable {
-  case main
 }
