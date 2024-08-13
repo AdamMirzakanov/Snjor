@@ -1,5 +1,5 @@
 //
-//  AlbumListViewModel.swift
+//  AlbumsViewModel.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 08.08.2024.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class AlbumListViewModel: AlbumsViewModelProtocol {
+final class AlbumsViewModel: AlbumsViewModelProtocol {
   
   // MARK: - Internal Properties
   var albumsCount: Int { albums.count }
@@ -77,7 +77,7 @@ final class AlbumListViewModel: AlbumsViewModelProtocol {
     )
   }
   
-  func getAlbumListViewModelItem(
+  func getAlbumsViewModelItem(
     at index: Int
   ) -> AlbumsViewModelItem {
     checkAndLoadMoreAlbums(at: index)
@@ -132,7 +132,7 @@ final class AlbumListViewModel: AlbumsViewModelProtocol {
     }
     
     checkAndLoadMoreAlbums(at: indexPath.item)
-    let viewModelItem = getAlbumListViewModelItem(at: indexPath.item)
+    let viewModelItem = getAlbumsViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
 //    cell.backgroundColor = .systemBlue
     return cell

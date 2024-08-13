@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AlbumsViewModelProtocol: BaseViewModelProtocol {
-  func getAlbumListViewModelItem(at index: Int) -> AlbumsViewModelItem
+  func getAlbumsViewModelItem(at index: Int) -> AlbumsViewModelItem
   func applySnapshot()
   func createDataSource(for collectionView: UICollectionView)
 }

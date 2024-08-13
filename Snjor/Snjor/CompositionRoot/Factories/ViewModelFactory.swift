@@ -23,12 +23,12 @@ class ViewModelFactory {
   }
   
   // MARK: - Private Methods
-  func createAlbumsViewModel() -> AlbumListViewModel {
+  func createAlbumsViewModel() -> AlbumsViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let loadAlbumsUseCase = getAlbumsUseCase(networkService)
-    return AlbumListViewModel(
+    return AlbumsViewModel(
       state: state,
       loadUseCase: loadAlbumsUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
