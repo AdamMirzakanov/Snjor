@@ -12,11 +12,11 @@ extension SearchScreenViewController {
     var snapshot = NSDiffableDataSourceSnapshot<PhotoListSection, Photo>()
     snapshot.appendSections([.main])
     snapshot.appendItems(photosViewModel.photos, toSection: .main)
-    sections = snapshot.sectionIdentifiers
+    photosSections = snapshot.sectionIdentifiers
     return snapshot
   }
   
-  func createDataSource(
+  func createPhotosDataSource(
     for collectionView: UICollectionView,
     delegate: any PhotoCellDelegate
   ) {
@@ -25,7 +25,7 @@ extension SearchScreenViewController {
     ) { [weak self] collectionView, indexPath, photo in
       let defaultCell = UICollectionViewCell()
       guard let strongSelf = self else { return defaultCell }
-      let section = strongSelf.sections[indexPath.section]
+      let section = strongSelf.photosSections[indexPath.section]
       switch section {
       case .main:
         return strongSelf.configureCell(

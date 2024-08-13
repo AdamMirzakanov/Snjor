@@ -7,13 +7,14 @@
 
 import UIKit
 import Combine
-import Photos
 
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
 
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
-  var sections: [PhotoListSection] = []
+  var albumsDataSource: UICollectionViewDiffableDataSource<AlbumsSection, Album>?
+  var photosSections: [PhotoListSection] = []
+  var albumsSections: [AlbumsSection] = []
   
   // MARK: - Private Properties
   private let searchController = UISearchController()
@@ -76,11 +77,11 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Private Methods
   private func setupDataSource() {
-    createDataSource(
+    createPhotosDataSource(
       for: rootView.photosCollectionView,
       delegate: self
     )
-    albumsViewModel.createDataSource(
+    createAlbumsDataSource(
       for: rootView.albumsCollectionView
     )
   }
@@ -115,7 +116,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
         guard let self = self else { return }
         switch state {
         case .success:
-          albumsViewModel.applySnapshot()
+          applySnapshot()
         case .loading: break
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)

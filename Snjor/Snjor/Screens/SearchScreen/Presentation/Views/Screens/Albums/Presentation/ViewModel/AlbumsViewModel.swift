@@ -5,7 +5,6 @@
 //  Created by Адам Мирзаканов on 08.08.2024.
 //
 
-import UIKit
 import Combine
 
 final class AlbumsViewModel: AlbumsViewModelProtocol {
@@ -17,17 +16,7 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
   private(set) var state: PassthroughSubject<StateController, Never>
   private let loadUseCase: any LoadAlbumsUseCaseProtocol
   private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
-  private var dataSource: UICollectionViewDiffableDataSource<Section, Album>?
-  private var albums: [Album] = []
-  private var sections: [Section] = []
-  
-  private var snapshot: NSDiffableDataSourceSnapshot<Section, Album> {
-    var snapshot = NSDiffableDataSourceSnapshot<Section, Album>()
-    snapshot.appendSections([.main])
-    snapshot.appendItems(albums, toSection: .main)
-    sections = snapshot.sectionIdentifiers
-    return snapshot
-  }
+  var albums: [Album] = []
   
   // MARK: - Initializers
   init(
@@ -48,40 +37,19 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
     }
   }
   
-  func createDataSource(for collectionView: UICollectionView) {
-    dataSource = UICollectionViewDiffableDataSource<Section, Album>(
-      collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, album in
-      
-      let defaultCell = UICollectionViewCell()
-      
-      guard let strongSelf = self else { return defaultCell }
-      
-      let section = strongSelf.sections[indexPath.section]
-      switch section {
-      case .main:
-        return strongSelf.configureCell(
-          collectionView: collectionView,
-          indexPath: indexPath,
-          album: album
-        )
-      }
-    }
-  }
-  
-  func applySnapshot() {
-    guard let dataSource = dataSource else { return }
-    dataSource.apply(
-      snapshot,
-      animatingDifferences: true
-    )
-  }
-  
   func getAlbumsViewModelItem(
     at index: Int
   ) -> AlbumsViewModelItem {
     checkAndLoadMoreAlbums(at: index)
     return makeAlbumListViewModelItem(at: index)
+  }
+  
+  func checkAndLoadMoreAlbums(at index: Int) {
+    lastPageValidationUseCase.checkAndLoadMoreItems(
+      at: index,
+      actualItems: albums.count,
+      action: viewDidLoad
+    )
   }
   
   // MARK: - Private Methods
@@ -107,38 +75,4 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
       state.send(.fail(error: error.localizedDescription))
     }
   }
-  
-  private func checkAndLoadMoreAlbums(at index: Int) {
-    lastPageValidationUseCase.checkAndLoadMoreItems(
-      at: index,
-      actualItems: albums.count,
-      action: viewDidLoad
-    )
-  }
-  
-  
-  private func configureCell(
-    collectionView: UICollectionView,
-    indexPath: IndexPath,
-    album: Album
-  ) -> UICollectionViewCell {
-    guard
-      let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: AlbumCell.reuseID,
-        for: indexPath
-      ) as? AlbumCell
-    else {
-      return UICollectionViewCell()
-    }
-    
-    checkAndLoadMoreAlbums(at: indexPath.item)
-    let viewModelItem = getAlbumsViewModelItem(at: indexPath.item)
-    cell.configure(viewModelItem: viewModelItem)
-//    cell.backgroundColor = .systemBlue
-    return cell
-  }
-}
-
-private enum Section: Hashable {
-  case main
 }
