@@ -8,9 +8,7 @@
 //import UIKit
 //import Combine
 //
-protocol PhotosCollectionViewControllerDelegate: AnyObject {
-  func didSelect(_ photo: Photo)
-}
+
 //
 //final class PhotoListCollectionViewController: UICollectionViewController {
 //

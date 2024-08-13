@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PhotosCollectionViewControllerDelegate: AnyObject {
+  func didSelect(_ photo: Photo)
+}
+
 final class PhotosCollectionView: UICollectionView {
   // MARK: - Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
