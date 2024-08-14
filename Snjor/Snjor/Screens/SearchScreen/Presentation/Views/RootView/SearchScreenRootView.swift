@@ -18,6 +18,10 @@ class SearchScreenRootView: UIView {
     return $0
   }(AlbumsCollectionView())
   
+//  let topicsCollectionView: TopicCollectionView = {
+//    return $0
+//  }(TopicCollectionView())
+  
 //  let usersCollectionView: UsersCollectionView = {
 //    return $0
 //  }(UsersCollectionView())

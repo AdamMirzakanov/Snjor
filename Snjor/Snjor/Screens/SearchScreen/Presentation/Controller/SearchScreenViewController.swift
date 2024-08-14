@@ -13,10 +13,9 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
   var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, Item>?
-//  var topicsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, Topic>?
   
   var photosSections: [PhotoListSection] = []
-  var albumsSections: [CollectionsSection] = [.albums]
+  var albumsSections: [CollectionsSection] = [.topics, .albums]
   
   // MARK: - Private Properties
   private let searchController = UISearchController()
@@ -54,6 +53,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
+    topicsViewModel.viewDidLoad()
     
     stateController()
     setupDataSource()

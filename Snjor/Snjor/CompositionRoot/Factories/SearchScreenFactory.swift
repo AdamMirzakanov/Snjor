@@ -80,8 +80,44 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     let layout = UICollectionViewCompositionalLayout { (
       sectionIndex, layoutEnvironment
     ) -> NSCollectionLayoutSection? in
+      
       let section = module.albumsSections[sectionIndex]
+      
       switch section {
+        
+      case .topics:
+        let itemSize = NSCollectionLayoutSize(
+          widthDimension: .fractionalWidth(1),
+          heightDimension: .fractionalHeight(0.5)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        item.contentInsets = NSDirectionalEdgeInsets(
+          top: 0,
+          leading: 4.0,
+          bottom: 0,
+          trailing: 4.0
+        )
+        
+        let groupSize = NSCollectionLayoutSize(
+          widthDimension: .fractionalWidth(0.92),
+          heightDimension: .estimated(300)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+          layoutSize: groupSize,
+          subitems: [item]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.contentInsets = NSDirectionalEdgeInsets(
+          top: 0,
+          leading: 4.0,
+          bottom: 4.0 * 5, trailing: 4.0
+        )
+        return section
       case .albums:
         let item = makeItem()
         let verticalGroup = makeVerticalGroup(item: item)

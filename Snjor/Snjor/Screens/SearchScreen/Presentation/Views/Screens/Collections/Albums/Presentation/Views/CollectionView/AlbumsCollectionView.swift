@@ -36,5 +36,10 @@ final class AlbumsCollectionView: UICollectionView {
       AlbumCell.self,
       forCellWithReuseIdentifier: AlbumCell.reuseID
     )
+    
+    register(
+      TopicCell.self,
+      forCellWithReuseIdentifier: TopicCell.reuseID
+    )
   }
 }

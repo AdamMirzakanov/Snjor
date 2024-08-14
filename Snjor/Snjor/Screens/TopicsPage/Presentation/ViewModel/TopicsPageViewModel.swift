@@ -85,6 +85,7 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
     case .success(let topics):
       self.topics.append(contentsOf: topics)
       state.send(.success)
+      Item.topics = self.topics.map { Item.topic($0) } 
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))
     }
