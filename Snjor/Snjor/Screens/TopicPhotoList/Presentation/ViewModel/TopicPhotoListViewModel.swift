@@ -60,7 +60,7 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
         photo: photo
       ) ?? UICollectionViewCell()
     }
-    configureSectionHeaders(dataSource: dataSource)
+//    configureSectionHeaders(dataSource: dataSource)
   }
   
   func applySnapshot() {
@@ -132,21 +132,21 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
     return cell
   }
   
-  private func configureSectionHeaders(dataSource: DataSource) {
-    dataSource?.supplementaryViewProvider = {
-      collectionView, kind, indexPath -> UICollectionReusableView? in
-      guard kind == UICollectionView.elementKindSectionHeader else {
-        return nil
-      }
-      let headerView = collectionView.dequeueReusableSupplementaryView(
-        ofKind: kind,
-        withReuseIdentifier: SectionHeaderView.reuseID,
-        for: indexPath
-      ) as! SectionHeaderView
-      headerView.setImage()
-      return headerView
-    }
-  }
+//  private func configureSectionHeaders(dataSource: DataSource) {
+//    dataSource?.supplementaryViewProvider = {
+//      collectionView, kind, indexPath -> UICollectionReusableView? in
+//      guard kind == UICollectionView.elementKindSectionHeader else {
+//        return nil
+//      }
+//      let headerView = collectionView.dequeueReusableSupplementaryView(
+//        ofKind: kind,
+//        withReuseIdentifier: SectionHeaderView.reuseID,
+//        for: indexPath
+//      ) as! SectionHeaderView
+//      headerView.setImage()
+//      return headerView
+//    }
+//  }
 }
 
 // MARK: - Section

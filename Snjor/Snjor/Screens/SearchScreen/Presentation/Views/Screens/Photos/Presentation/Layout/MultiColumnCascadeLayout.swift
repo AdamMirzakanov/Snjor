@@ -10,7 +10,7 @@ class MultiColumnCascadeLayout: CascadeLayout {
   override func prepare() {
     super.prepare()
     self.topInset = .zero
-    self.headerAttributes.removeAll()
+//    self.headerAttributes.removeAll()
   }
   
   override func setUpDefaultOfColumns() {

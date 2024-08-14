@@ -20,7 +20,7 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
   // MARK: - Private Properties
   weak var delegate: (any CascadeLayoutDelegate)?
   private var layoutAttributes: [UICollectionViewLayoutAttributes] = []
-  var headerAttributes: [UICollectionViewLayoutAttributes] = []
+//  var headerAttributes: [UICollectionViewLayoutAttributes] = []
   
   private var frames: [CGRect] = []
   private var pagingViewAttributes: UICollectionViewLayoutAttributes?
@@ -95,9 +95,9 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     }
     
     // Добавляем атрибуты заголовков
-    for attr in headerAttributes where rect.intersects(attr.frame) {
-      attributes.append(attr)
-    }
+//    for attr in headerAttributes where rect.intersects(attr.frame) {
+//      attributes.append(attr)
+//    }
     
     if let pagingViewAttributes = pagingViewAttributes,
        pagingViewAttributes.frame.intersects(rect) {
@@ -163,16 +163,16 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     }
     
     // атрибуты для заголовков секций
-    for section in 0 ..< collectionView.numberOfSections {
-      let headerIndexPath = IndexPath(item: 0, section: section)
-      let headerAttr = layoutAttributesForSupplementaryView(
-        ofKind: UICollectionView.elementKindSectionHeader,
-        at: headerIndexPath
-      )
-      if let headerAttr = headerAttr {
-        headerAttributes.append(headerAttr)
-      }
-    }
+//    for section in 0 ..< collectionView.numberOfSections {
+//      let headerIndexPath = IndexPath(item: 0, section: section)
+//      let headerAttr = layoutAttributesForSupplementaryView(
+//        ofKind: UICollectionView.elementKindSectionHeader,
+//        at: headerIndexPath
+//      )
+//      if let headerAttr = headerAttr {
+//        headerAttributes.append(headerAttr)
+//      }
+//    }
     
     for index in 0 ..< numberOfItems {
       let indexPath = IndexPath(item: index, section: .zero)
@@ -203,12 +203,12 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
       forSupplementaryViewOfKind: elementKind,
       with: indexPath
     )
-    attributes.frame = CGRect(
-      x: .zero,
-      y: .zero,
-      width: collectionView?.frame.width ?? .zero,
-      height: self.headerHeight // высота заголовка
-    )
+//    attributes.frame = CGRect(
+//      x: .zero,
+//      y: .zero,
+//      width: collectionView?.frame.width ?? .zero,
+//      height: self.headerHeight // высота заголовка
+//    )
 
     return attributes
   }
@@ -227,7 +227,7 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     layoutAttributes.removeAll()
     frames.removeAll()
     contentHeight = .zero
-    headerAttributes.removeAll() // Добавляем сброс атрибутов заголовков
+//    headerAttributes.removeAll() // Добавляем сброс атрибутов заголовков
   }
   
   // MARK: - Utilities

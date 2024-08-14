@@ -16,6 +16,7 @@ final class AlbumsCollectionView: UICollectionView {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     configureLayout()
     cellRegister()
+    reusableViewRegister()
     showsHorizontalScrollIndicator = false
     showsVerticalScrollIndicator = false
   }
@@ -36,10 +37,27 @@ final class AlbumsCollectionView: UICollectionView {
       AlbumCell.self,
       forCellWithReuseIdentifier: AlbumCell.reuseID
     )
-    
     register(
       TopicCell.self,
       forCellWithReuseIdentifier: TopicCell.reuseID
+    )
+  }
+  
+  private func reusableViewRegister() {
+    register(
+      SectionHeaderView.self,
+      forSupplementaryViewOfKind: SupplementaryViewKind.header,
+      withReuseIdentifier: SectionHeaderView.reuseID
+    )
+    register(
+      LineView.self,
+      forSupplementaryViewOfKind: SupplementaryViewKind.topLine,
+      withReuseIdentifier: LineView.reuseID
+    )
+    register(
+      LineView.self,
+      forSupplementaryViewOfKind: SupplementaryViewKind.bottomLine,
+      withReuseIdentifier: LineView.reuseID
     )
   }
 }

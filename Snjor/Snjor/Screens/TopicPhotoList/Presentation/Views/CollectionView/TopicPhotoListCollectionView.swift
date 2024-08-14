@@ -15,7 +15,7 @@ final class TopicPhotoListCollectionView: UICollectionView {
   init() {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     cellRegister()
-    headerRegister()
+//    headerRegister()
   }
   
   required init?(coder: NSCoder) {
@@ -30,11 +30,11 @@ final class TopicPhotoListCollectionView: UICollectionView {
     )
   }
   
-  private func headerRegister() {
-    register(
-      SectionHeaderView.self,
-      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-      withReuseIdentifier: SectionHeaderView.reuseID
-    )
-  }
+//  private func headerRegister() {
+//    register(
+//      SectionHeaderView.self,
+//      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+//      withReuseIdentifier: SectionHeaderView.reuseID
+//    )
+//  }
 }

@@ -11,11 +11,12 @@ final class TagCell: UICollectionViewCell, Reusable {
   
   private let tagLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 11, weight: .medium)
-    label.textColor = .systemBackground
+    label.font = .systemFont(ofSize: 11, weight: .regular)
+    label.textColor = .label
+    label.alpha = 0.6
     label.textAlignment = .center
-    label.backgroundColor = .systemOrange
-    label.layer.cornerRadius = 11
+    label.backgroundColor = .systemGray4
+    label.layer.cornerRadius = 8
     label.layer.masksToBounds = true
     return label
   }()
