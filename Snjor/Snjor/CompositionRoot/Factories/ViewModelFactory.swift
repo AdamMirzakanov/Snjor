@@ -35,6 +35,17 @@ class ViewModelFactory {
     )
   }
   
+  func createTopicsViewModel() -> TopicsPageViewModel {
+    let networkService = NetworkService()
+    let lastPageValidationUseCase = LastPageValidationUseCase()
+    let state = PassthroughSubject<StateController, Never>()
+    let loadTopicsUseCase = getTopicsUseCase(networkService)
+    return TopicsPageViewModel(
+      state: state,
+      loadUseCase: loadTopicsUseCase
+    )
+  }
+  
   private func getPhotosUseCase(
     _ networkService: NetworkService
   ) -> LoadPhotosUseCase {
@@ -51,5 +62,14 @@ class ViewModelFactory {
       networkService: networkService
     )
     return LoadAlbumsUseCase(repository: loadAlbumsRepository)
+  }
+  
+  private func getTopicsUseCase(
+    _ networkService: NetworkService
+  ) -> LoadTopicsPageUseCase {
+    let loadTopicsRepository = LoadTopicsPageRepository(
+      networkService: networkService
+    )
+    return LoadTopicsPageUseCase(repository: loadTopicsRepository)
   }
 }

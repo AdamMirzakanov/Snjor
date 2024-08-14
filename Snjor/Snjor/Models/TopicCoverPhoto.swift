@@ -6,5 +6,6 @@
 //
 
 struct TopicCoverPhoto: Decodable, Hashable {
+  let blurHash: String?
   let urls: TopicCoverPhotoURL
 }

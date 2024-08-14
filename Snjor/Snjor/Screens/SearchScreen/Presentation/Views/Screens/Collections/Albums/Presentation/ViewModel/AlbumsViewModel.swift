@@ -70,6 +70,7 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
       let newAlbums = albums.filter { !existingAlbumIDs.contains($0.id) }
       lastPageValidationUseCase.updateLastPage(itemsCount: albums.count)
       self.albums.append(contentsOf: newAlbums)
+      Item.albums = self.albums.map { Item.album($0) }
       state.send(.success)
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))

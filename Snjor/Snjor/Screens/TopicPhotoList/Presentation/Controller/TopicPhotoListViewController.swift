@@ -45,7 +45,6 @@ final class TopicPhotoListViewController: BaseViewController<TopicPhotoListRootV
   }
   
   deinit {
-    print("DEINIT \(Self.self)")
     cancellable.forEach { $0.cancel() }
   }
   

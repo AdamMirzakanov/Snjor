@@ -7,51 +7,52 @@
 
 import UIKit
 
+// Extension для SearchScreenViewController
 extension SearchScreenViewController {
-  private var snapshot: NSDiffableDataSourceSnapshot<AlbumsSection, Album> {
-    var snapshot = NSDiffableDataSourceSnapshot<AlbumsSection, Album>()
-    snapshot.appendSections([.topics("ca"), .albums("al")])
-    snapshot.appendItems(albumsViewModel.albums, toSection: .albums("Al"))
-//    snapshot.appendItems(albumsViewModel.albums, toSection: .albums("Al"))
+  
+  // Создание snapshot для коллекции
+  var collectionsSnapshot: NSDiffableDataSourceSnapshot<CollectionsSection, Item> {
+    var snapshot = NSDiffableDataSourceSnapshot<CollectionsSection, Item>()
+    snapshot.appendSections([.albums])
+    snapshot.appendItems(Item.albums, toSection: .albums)
     albumsSections = snapshot.sectionIdentifiers
     return snapshot
   }
   
+  // Создание DataSource для коллекции
   func createAlbumsDataSource(for collectionView: UICollectionView) {
-    albumsDataSource = UICollectionViewDiffableDataSource<AlbumsSection, Album>(
+    collectionsDataSource = UICollectionViewDiffableDataSource<CollectionsSection, Item>(
       collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, album in
-      
+    ) { [weak self] collectionView, indexPath, item in // Изменено с album на item
       let defaultCell = UICollectionViewCell()
-      
       guard let strongSelf = self else { return defaultCell }
-      
       let section = strongSelf.albumsSections[indexPath.section]
       switch section {
       case .albums:
-        return strongSelf.configureCell(
-          collectionView: collectionView,
-          indexPath: indexPath,
-          album: album
-        )
-      case .topics:
-        return strongSelf.configureCell(
-          collectionView: collectionView,
-          indexPath: indexPath,
-          album: album
-        )
+        if let album = item.album { // Проверка и извлечение альбома из item
+          return strongSelf.configureCell(
+            collectionView: collectionView,
+            indexPath: indexPath,
+            album: album
+          )
+        } else {
+          print(#function)
+          return defaultCell
+        }
       }
     }
   }
   
-  func applySnapshot() {
-    guard let dataSource = albumsDataSource else { return }
+  // Применение snapshot
+  func applyAlbumsSnapshot() {
+    guard let dataSource = collectionsDataSource else { return }
     dataSource.apply(
-      snapshot,
+      collectionsSnapshot,
       animatingDifferences: true
     )
   }
   
+  // Конфигурация ячейки
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
@@ -66,18 +67,22 @@ extension SearchScreenViewController {
       return UICollectionViewCell()
     }
     
+    // Проверка и загрузка дополнительных альбомов, если необходимо
     albumsViewModel.checkAndLoadMoreAlbums(at: indexPath.item)
+    // Получение ViewModelItem для текущего альбома
     let viewModelItem = albumsViewModel.getAlbumsViewModelItem(at: indexPath.item)
+    // Конфигурация ячейки с использованием ViewModelItem
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
   
 }
 
-enum AlbumsSection: Hashable {
-  case topics(String)
-  case albums(String)
+// Определение секций для коллекции
+enum CollectionsSection: Hashable {
+  case albums
 }
+
 
 
 //extension SearchScreenViewController {

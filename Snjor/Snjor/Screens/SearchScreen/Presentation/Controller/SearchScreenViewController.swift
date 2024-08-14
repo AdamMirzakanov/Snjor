@@ -12,9 +12,11 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
 
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
-  var albumsDataSource: UICollectionViewDiffableDataSource<AlbumsSection, Album>?
+  var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, Item>?
+//  var topicsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, Topic>?
+  
   var photosSections: [PhotoListSection] = []
-  var albumsSections: [AlbumsSection] = [.topics("Categories"), .albums("Albums")]
+  var albumsSections: [CollectionsSection] = [.albums]
   
   // MARK: - Private Properties
   private let searchController = UISearchController()
@@ -23,6 +25,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   private(set) var downloadService = DownloadService()
   private(set) var photosViewModel: any PhotosViewModelProtocol
   private(set) var albumsViewModel: any AlbumsViewModelProtocol
+  private(set) var topicsViewModel: any TopicsPageViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -32,10 +35,12 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   init(
     photosViewModel: any PhotosViewModelProtocol,
     albumsViewModel: any AlbumsViewModelProtocol,
+    topicsViewModel: any TopicsPageViewModelProtocol,
     delegate: any PhotosCollectionViewControllerDelegate
   ) {
     self.photosViewModel = photosViewModel
     self.albumsViewModel = albumsViewModel
+    self.topicsViewModel = topicsViewModel
     self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
@@ -116,7 +121,22 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
         guard let self = self else { return }
         switch state {
         case .success:
-          applySnapshot()
+          applyAlbumsSnapshot()
+        case .loading: break
+        case .fail(error: let error):
+          self.presentAlert(message: error, title: AppLocalized.error)
+        }
+      }
+      .store(in: &cancellable)
+    
+    topicsViewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        switch state {
+        case .success:
+          applyAlbumsSnapshot()
         case .loading: break
         case .fail(error: let error):
           self.presentAlert(message: error, title: AppLocalized.error)

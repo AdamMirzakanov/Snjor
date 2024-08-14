@@ -56,9 +56,11 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   ) -> UIViewController {
     let photosViewModel = viewModelFactory.createPhotosViewModel()
     let albumsViewModel = viewModelFactory.createAlbumsViewModel()
+    let topicsViewModel = viewModelFactory.createTopicsViewModel()
     let module = SearchScreenViewController(
       photosViewModel: photosViewModel,
-      albumsViewModel: albumsViewModel,
+      albumsViewModel: albumsViewModel, 
+      topicsViewModel: topicsViewModel,
       delegate: delegate
     )
     setupLayouts(module: module)
@@ -72,96 +74,14 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   }
   
   // MARK: - Create Album Layout
-  private func createAlbumLayout(module: SearchScreenViewController) -> UICollectionViewLayout {
+  private func createAlbumLayout(
+    module: SearchScreenViewController
+  ) -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { (
       sectionIndex, layoutEnvironment
     ) -> NSCollectionLayoutSection? in
-      // MARK: - Внешние линии разделов
-      let lineItemHeight = 1 / layoutEnvironment.traitCollection.displayScale
-      let lineItemSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(0.92),
-        heightDimension: .absolute(lineItemHeight)
-      )
-      
-      // отступы вокруг
-      let supplementaryItemContentInsets = NSDirectionalEdgeInsets(
-        top: 0,
-        leading: 0,
-        bottom: 0,
-        trailing: 0
-      )
-      
-      // верхня линия
-      let topLineItem = NSCollectionLayoutBoundarySupplementaryItem(
-        layoutSize: lineItemSize,
-        elementKind: SupplementaryViewKind.topLine,
-        alignment: .top
-      )
-      topLineItem.contentInsets = supplementaryItemContentInsets
-      
-      // нижня линия
-      let bottomLineItem = NSCollectionLayoutBoundarySupplementaryItem(
-        layoutSize: lineItemSize,
-        elementKind: SupplementaryViewKind.bottomLine,
-        alignment: .bottom
-      )
-      bottomLineItem.contentInsets = supplementaryItemContentInsets
-      
       let section = module.albumsSections[sectionIndex]
-      
-      // MARK: - Заголовок
-      let headerItemSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(1),
-        heightDimension: .estimated(44)
-      )
-      
-      let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
-        layoutSize: headerItemSize,
-        elementKind: SupplementaryViewKind.header,
-        alignment: .top
-      )
-      headerItem.contentInsets = NSDirectionalEdgeInsets(
-        top: 0,
-        leading: 4.0 * 2,
-        bottom: 0,
-        trailing: 0
-      )
-      
       switch section {
-      case .topics:
-        let itemSize = NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(1),
-          heightDimension: .fractionalHeight(0.5)
-        )
-        
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        item.contentInsets = NSDirectionalEdgeInsets(
-          top: 0,
-          leading: 4.0,
-          bottom: 0,
-          trailing: 4.0
-        )
-        
-        let groupSize = NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(0.92),
-          heightDimension: .estimated(300)
-        )
-        
-        let group = NSCollectionLayoutGroup.horizontal(
-          layoutSize: groupSize,
-          subitems: [item]
-        )
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPagingCentered
-        section.contentInsets = NSDirectionalEdgeInsets(
-          top: 0,
-          leading: 4.0,
-          bottom: 4.0 * 5, trailing: 4.0
-        )
-        section.boundarySupplementaryItems = [bottomLineItem]
-        return section
       case .albums:
         let item = makeItem()
         let verticalGroup = makeVerticalGroup(item: item)

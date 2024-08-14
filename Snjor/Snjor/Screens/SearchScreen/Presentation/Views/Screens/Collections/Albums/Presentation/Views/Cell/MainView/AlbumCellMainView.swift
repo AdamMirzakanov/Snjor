@@ -89,7 +89,6 @@ final class AlbumCellMainView: BaseImageContainerView {
     super.init()
     mainImageView.layer.cornerRadius = 15.0
     setupAlbumCellViews()
-    setupTagsCollectionView()
   }
   
   required init?(coder: NSCoder) {
@@ -151,11 +150,6 @@ final class AlbumCellMainView: BaseImageContainerView {
   private func setupAlbumCellViews() {
     addSubviews()
     setupConstraints()
-  }
-  
-  private func setupTagsCollectionView() {
-//    tagsCollectionView.delegate = self
-//    tagsCollectionView.dataSource = self
   }
   
   private func addSubviews() {

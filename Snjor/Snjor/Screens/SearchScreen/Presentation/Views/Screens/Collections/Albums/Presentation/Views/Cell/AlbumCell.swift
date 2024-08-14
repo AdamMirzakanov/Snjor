@@ -9,7 +9,7 @@ import UIKit
 
 class AlbumCell: UICollectionViewCell {
   
-  // MARK: - Main View
+  // MARK: - Views
   let mainView: AlbumCellMainView = {
     return $0
   }(AlbumCellMainView())

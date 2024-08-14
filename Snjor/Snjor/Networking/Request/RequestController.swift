@@ -71,7 +71,6 @@ enum RequestController {
       path: path,
       parameters: parameters
     )
-    print(request)
     return request
   }
 }
