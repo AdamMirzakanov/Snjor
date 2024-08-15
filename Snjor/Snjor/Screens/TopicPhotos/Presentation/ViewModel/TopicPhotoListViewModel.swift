@@ -54,11 +54,12 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
     dataSource = UICollectionViewDiffableDataSource<Section, Photo>(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
-      return self?.configureCell(
+      guard let strongSelf = self else { return UICollectionViewCell() }
+      return strongSelf.configureCell(
         collectionView: collectionView,
         indexPath: indexPath,
         photo: photo
-      ) ?? UICollectionViewCell()
+      )
     }
 //    configureSectionHeaders(dataSource: dataSource)
   }

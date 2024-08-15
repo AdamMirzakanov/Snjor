@@ -8,23 +8,37 @@
 import UIKit
 
 extension SearchScreenViewController {
-  private var photosSnapshot: NSDiffableDataSourceSnapshot<PhotoListSection, Photo> {
-    var snapshot = NSDiffableDataSourceSnapshot<PhotoListSection, Photo>()
+  
+  private typealias DataSource = UICollectionViewDiffableDataSource<PhotoListSection, Photo>
+  private typealias Snapshot = NSDiffableDataSourceSnapshot<PhotoListSection, Photo>
+  
+  // MARK: - Private Properties
+  private var photosSnapshot: Snapshot {
+    var snapshot = Snapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(photosViewModel.photos, toSection: .main)
     photosSections = snapshot.sectionIdentifiers
     return snapshot
   }
+  // MARK: - Internal Methods
+  func applyPhotosSnapshot() {
+    guard let dataSource = photosDataSource else { return }
+    dataSource.apply(
+      photosSnapshot,
+      animatingDifferences: true
+    )
+  }
   
+  // MARK: - Create Data Source
   func createPhotosDataSource(
     for collectionView: UICollectionView,
     delegate: any PhotoCellDelegate
   ) {
-    photosDataSource = UICollectionViewDiffableDataSource<PhotoListSection, Photo>(
+    photosDataSource = DataSource(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
-      let defaultCell = UICollectionViewCell()
-      guard let strongSelf = self else { return defaultCell }
+      let cell = UICollectionViewCell()
+      guard let strongSelf = self else { return cell }
       let section = strongSelf.photosSections[indexPath.section]
       switch section {
       case .main:
@@ -38,7 +52,7 @@ extension SearchScreenViewController {
     }
   }
   
-  func configureCell(
+  private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
     photo: Photo,
@@ -59,16 +73,4 @@ extension SearchScreenViewController {
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
-  
-  func applyPhotosSnapshot() {
-    guard let dataSource = photosDataSource else { return }
-    dataSource.apply(
-      photosSnapshot,
-      animatingDifferences: true
-    )
-  }
-}
-
-enum PhotoListSection: Hashable {
-  case main
 }

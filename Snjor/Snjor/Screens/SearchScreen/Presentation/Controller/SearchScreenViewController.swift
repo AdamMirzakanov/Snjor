@@ -16,7 +16,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
-  var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, Item>?
+  var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, CollectionsItem>?
   var photosSections: [PhotoListSection] = []
   var collectionsSections: [CollectionsSection] = []
   
@@ -54,8 +54,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    rootView.photosCollectionView.delegate = self
-    rootView.albumsCollectionView.delegate = self
+    setupCollectionViewDelegate()
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
     topicsViewModel.viewDidLoad()
@@ -70,6 +69,11 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   // MARK: - Private Methods
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
+  }
+  
+  private func setupCollectionViewDelegate() {
+    rootView.photosCollectionView.delegate = self
+    rootView.albumsCollectionView.delegate = self
   }
   
   private func configureSearchController() {
@@ -163,93 +167,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     case .loading: break
     case .fail(error: let error):
       presentAlert(message: error, title: AppLocalized.error)
-    }
-  }
-}
-
-extension SearchScreenViewController: UICollectionViewDelegate {
-  func collectionView(
-    _ collectionView: UICollectionView,
-    didSelectItemAt indexPath: IndexPath
-  ) {
-    guard let delegate = delegate else { return }
-    let photo = photosViewModel.getPhoto(at: indexPath.item)
-    delegate.didSelect(photo)
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-extension SearchScreenViewController {
-  // MARK: - UIScrollViewDelegate
-  override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-    return .bottom
-  }
-  
-  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomTabBar()
-    }
-  }
-  
-  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.showCustomTabBar()
-    }
-  }
-  
-  func scrollViewDidEndDragging(
-    _ scrollView: UIScrollView,
-    willDecelerate decelerate: Bool
-  ) {
-    if !decelerate {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-        if let tabBar = self.tabBarController as? MainTabBarController {
-          tabBar.showCustomTabBar()
-        }
-      }
     }
   }
 }
