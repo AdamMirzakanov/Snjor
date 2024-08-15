@@ -20,7 +20,7 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
 //    let photoListCoordinator = makePhotosCoordinator()
     let searchScreenCoordinator = makeSearchScreenCoordinator()
     return [
-//      topicsPageCoordinator,
+      topicsPageCoordinator,
       searchScreenCoordinator
     ]
   }

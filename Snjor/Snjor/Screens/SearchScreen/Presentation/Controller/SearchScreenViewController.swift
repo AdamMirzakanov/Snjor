@@ -8,6 +8,10 @@
 import UIKit
 import Combine
 
+protocol PhotosCollectionViewControllerDelegate: AnyObject {
+  func didSelect(_ photo: Photo)
+}
+
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
   
   // MARK: - Internal Properties
@@ -50,6 +54,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    rootView.photosCollectionView.delegate = self
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
     topicsViewModel.viewDidLoad()
@@ -161,6 +166,16 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   }
 }
 
+extension SearchScreenViewController: UICollectionViewDelegate {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
+    guard let delegate = delegate else { return }
+    let photo = photosViewModel.getPhoto(at: indexPath.item)
+    delegate.didSelect(photo)
+  }
+}
 
 
 

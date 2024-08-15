@@ -30,11 +30,11 @@ extension SearchScreenViewController: UISearchBarDelegate {
   }
 }
 
-extension SearchScreenViewController: PhotosCollectionViewControllerDelegate {
-  func didSelect(_ photo: Photo) {
-    print(#function, Self.self)
-  }
-}
+//extension SearchScreenViewController: PhotosCollectionViewControllerDelegate {
+//  func didSelect(_ photo: Photo) {
+//    print(#function, Self.self)
+//  }
+//}
 
 extension SearchScreenViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
