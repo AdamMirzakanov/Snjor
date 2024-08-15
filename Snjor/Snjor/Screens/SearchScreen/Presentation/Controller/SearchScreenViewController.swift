@@ -55,6 +55,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   override func viewDidLoad() {
     super.viewDidLoad()
     rootView.photosCollectionView.delegate = self
+    rootView.albumsCollectionView.delegate = self
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
     topicsViewModel.viewDidLoad()
@@ -70,7 +71,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
   }
-
+  
   private func configureSearchController() {
     searchController.searchResultsUpdater = self
     searchController.searchBar.delegate = self
@@ -221,45 +222,34 @@ extension SearchScreenViewController: UICollectionViewDelegate {
 
 
 
-//extension SearchScreenViewController {
-//  // MARK: - UIScrollViewDelegate
-//  override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-//    return .bottom
-//  }
-//
-//  override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//    if let tabBar = tabBarController as? MainTabBarController {
-//      tabBar.hideCustomTabBar()
-//    }
-//  }
-//
-//  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//    if let tabBar = tabBarController as? MainTabBarController {
-//      tabBar.showCustomTabBar()
-//    }
-//  }
-//
-//  override func scrollViewDidEndDragging(
-//    _ scrollView: UIScrollView,
-//    willDecelerate decelerate: Bool
-//  ) {
-//    if !decelerate {
-//      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//        if let tabBar = self.tabBarController as? MainTabBarController {
-//          tabBar.showCustomTabBar()
-//        }
-//      }
-//    }
-//  }
-//}
-
-//extension SearchScreenViewController {
-//  override func collectionView(
-//    _ collectionView: UICollectionView,
-//    didSelectItemAt indexPath: IndexPath
-//  ) {
-//    guard let delegate = delegate else { return }
-//    let photo = photosViewModel.getPhoto(at: indexPath.item)
-//    delegate.didSelect(photo)
-//  }
-//}
+extension SearchScreenViewController {
+  // MARK: - UIScrollViewDelegate
+  override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
+    return .bottom
+  }
+  
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.hideCustomTabBar()
+    }
+  }
+  
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.showCustomTabBar()
+    }
+  }
+  
+  func scrollViewDidEndDragging(
+    _ scrollView: UIScrollView,
+    willDecelerate decelerate: Bool
+  ) {
+    if !decelerate {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        if let tabBar = self.tabBarController as? MainTabBarController {
+          tabBar.showCustomTabBar()
+        }
+      }
+    }
+  }
+}
