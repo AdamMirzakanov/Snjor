@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol MainTabBarFactoryProtocol {
-  func makeMainTabBarController() -> UITabBarController
-  func makeChildCoordinators() -> [any Coordinatable]
-}
-
 struct MainTabBarFactory: MainTabBarFactoryProtocol {
 
   // MARK: - Internal Methods
@@ -25,7 +20,7 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
 //    let photoListCoordinator = makePhotosCoordinator()
     let searchScreenCoordinator = makeSearchScreenCoordinator()
     return [
-      topicsPageCoordinator,
+//      topicsPageCoordinator,
       searchScreenCoordinator
     ]
   }

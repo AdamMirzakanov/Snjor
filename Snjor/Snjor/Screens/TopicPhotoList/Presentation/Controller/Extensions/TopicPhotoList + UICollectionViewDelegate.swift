@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TopicPhotoListViewController: UICollectionViewDelegate {
+extension TopicPhotosViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath

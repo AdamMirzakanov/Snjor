@@ -8,13 +8,9 @@
 import UIKit
 import Combine
 
-protocol TopicsPageFactoryProtocol {
-  func makeTabBarItem(navigation: any Navigable)
-  func makeModule() -> UIViewController
-}
-
 struct TopicsPageFactory: TopicsPageFactoryProtocol {
   
+  // MARK: - Internal Methods
   func makeTabBarItem(navigation: any Navigable) {
     makeTabBarItem(
       navigation: navigation,

@@ -8,18 +8,14 @@
 import UIKit
 import Combine
 
-protocol TopicPhotoListFactoryProtocol {
-  func makeModule(
-    delegate: any TopicPhotoListViewControllerDelegate
-  ) -> UIViewController
-}
-
-struct TopicPhotoListFactory: TopicPhotoListFactoryProtocol {
+struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   
+  // MARK: - Internal Properties
   let topic: Topic
   
+  // MARK: - Internal Methods
   func makeModule(
-    delegate: any TopicPhotoListViewControllerDelegate
+    delegate: any TopicPhotosViewControllerDelegate
   ) -> UIViewController {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
@@ -38,7 +34,7 @@ struct TopicPhotoListFactory: TopicPhotoListFactoryProtocol {
     )
     let defaultLayout = UICollectionViewLayout()
 
-    let module = TopicPhotoListViewController(
+    let module = TopicPhotosViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout

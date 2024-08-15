@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TopicPhotoListViewController {
+extension TopicPhotosViewController {
   // MARK: - UIScrollViewDelegate
   override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
     return .bottom

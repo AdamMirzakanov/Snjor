@@ -9,13 +9,12 @@ import UIKit
 import Combine
 
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
-
+  
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
   var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, Item>?
-  
   var photosSections: [PhotoListSection] = []
-  var albumsSections: [CollectionsSection] = []
+  var collectionsSections: [CollectionsSection] = []
   
   // MARK: - Private Properties
   private let searchController = UISearchController()
@@ -43,38 +42,23 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
-
+  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
     topicsViewModel.viewDidLoad()
-    
     stateController()
     setupDataSource()
     configureDownloadSession()
-    
-    view.backgroundColor = .systemBackground
-    navigationItem.searchController = searchController
-    searchController.searchResultsUpdater = self
-    searchController.searchBar.delegate = self
-    searchController.obscuresBackgroundDuringPresentation = false
-    searchController.automaticallyShowsSearchResultsController = true
-    searchController.searchBar.showsScopeBar = true
-    navigationItem.hidesSearchBarWhenScrolling = false
-    navigationItem.title = "Photos"
-    searchController.searchBar.scopeButtonTitles = [
-      "Photos",
-      "Collections",
-      "Users"
-    ]
-    
     setupVisibleContainers()
+    configureSearchController()
+    setupNavigationItem()
   }
   
   private func setupVisibleContainers() {
@@ -82,65 +66,96 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   }
   
   // MARK: - Private Methods
+  private func configureSearchController() {
+    searchController.searchResultsUpdater = self
+    searchController.searchBar.delegate = self
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.automaticallyShowsSearchResultsController = true
+    searchController.searchBar.showsScopeBar = true
+    searchController.searchBar.scopeButtonTitles = [
+      "Photos",
+      "Collections",
+      "Users"
+    ]
+  }
+  
+  private func setupNavigationItem() {
+    navigationItem.hidesSearchBarWhenScrolling = false
+    navigationItem.title = "Photos"
+    navigationItem.searchController = searchController
+  }
+  
   private func setupDataSource() {
     createPhotosDataSource(
       for: rootView.photosCollectionView,
       delegate: self
     )
-    createAlbumsDataSource(
+    createCollectionsDataSource(
       for: rootView.albumsCollectionView
     )
   }
-
+  
   private func configureDownloadSession() {
     downloadService.configureSession(
       delegate: self,
       id: Self.sessionID
     )
   }
-
+  
+  private func handleState(
+    _ state: StateController,
+    successAction: () -> Void
+  ) {
+    switch state {
+    case .success:
+      successAction()
+    case .loading: break
+    case .fail(error: let error):
+      presentAlert(message: error, title: AppLocalized.error)
+    }
+  }
+  
+  
   private func stateController() {
+    photosState()
+    albumsState()
+    topicsState()
+  }
+  
+  private func photosState() {
     photosViewModel
       .state
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
-        switch state {
-        case .success:
-          applyPhotosSnapshot()
-        case .loading: break
-        case .fail(error: let error):
-          self.presentAlert(message: error, title: AppLocalized.error)
+        self.handleState(state) {
+          self.applyPhotosSnapshot()
         }
       }
       .store(in: &cancellable)
-    
+  }
+  
+  private func albumsState() {
     albumsViewModel
       .state
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
-        switch state {
-        case .success:
-          applyAlbumsSnapshot()
-        case .loading: break
-        case .fail(error: let error):
-          self.presentAlert(message: error, title: AppLocalized.error)
+        self.handleState(state) {
+          self.applyCollectionsSnapshot()
         }
       }
       .store(in: &cancellable)
-    
+  }
+  
+  private func topicsState() {
     topicsViewModel
       .state
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
-        switch state {
-        case .success:
-          applyAlbumsSnapshot()
-        case .loading: break
-        case .fail(error: let error):
-          self.presentAlert(message: error, title: AppLocalized.error)
+        self.handleState(state) {
+          self.applyCollectionsSnapshot()
         }
       }
       .store(in: &cancellable)
@@ -177,7 +192,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
 
 
 
-// MARK: - Extension
+
 
 
 

@@ -42,4 +42,5 @@ extension SearchScreenCoordinator: PhotosCollectionViewControllerDelegate {
   }
 }
 
+// MARK: - ParentCoordinator
 extension SearchScreenCoordinator: ParentCoordinator { }

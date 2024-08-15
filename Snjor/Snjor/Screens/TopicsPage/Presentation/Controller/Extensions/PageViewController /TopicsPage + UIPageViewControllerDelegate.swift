@@ -26,7 +26,7 @@ extension TopicsPageViewController: UIPageViewControllerDelegate {
     guard
       let visibleViewController = pageViewController
         .viewControllers?
-        .first as? TopicPhotoListViewController,
+        .first as? TopicPhotosViewController,
       let currentIndex = visibleViewController.pageIndex
     else {
       return

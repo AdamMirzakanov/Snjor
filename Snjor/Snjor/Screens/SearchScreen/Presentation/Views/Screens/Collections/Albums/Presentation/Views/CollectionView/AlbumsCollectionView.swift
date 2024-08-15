@@ -51,12 +51,7 @@ final class AlbumsCollectionView: UICollectionView {
     )
     register(
       LineView.self,
-      forSupplementaryViewOfKind: SupplementaryViewKind.topLine,
-      withReuseIdentifier: LineView.reuseID
-    )
-    register(
-      LineView.self,
-      forSupplementaryViewOfKind: SupplementaryViewKind.bottomLine,
+      forSupplementaryViewOfKind: SupplementaryViewKind.line,
       withReuseIdentifier: LineView.reuseID
     )
   }

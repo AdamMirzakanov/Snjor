@@ -30,6 +30,7 @@ class SearchScreenRootView: UIView {
   init() {
     super.init(frame: .zero)
     setupViews()
+    backgroundColor = .systemBackground
   }
   
   required init?(coder: NSCoder) {

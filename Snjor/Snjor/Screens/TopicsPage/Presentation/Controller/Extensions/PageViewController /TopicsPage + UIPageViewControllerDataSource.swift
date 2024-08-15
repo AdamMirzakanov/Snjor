@@ -14,7 +14,7 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     viewControllerBefore viewController: UIViewController
   ) -> UIViewController? {
     guard
-      let contentViewController = viewController as? TopicPhotoListViewController,
+      let contentViewController = viewController as? TopicPhotosViewController,
       let index = contentViewController.pageIndex
     else {
       return nil
@@ -27,7 +27,7 @@ extension TopicsPageViewController: UIPageViewControllerDataSource {
     viewControllerAfter viewController: UIViewController
   ) -> UIViewController? {
     guard
-      let contentViewController = viewController as? TopicPhotoListViewController,
+      let contentViewController = viewController as? TopicPhotosViewController,
       let index = contentViewController.pageIndex
     else {
       return nil

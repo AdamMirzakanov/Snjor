@@ -62,12 +62,12 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
     
     let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
     let topic = topicsPageViewModelItem.topic
-    let topicPhotoListFactory = TopicPhotoListFactory(topic: topic)
+    let topicPhotoListFactory = TopicPhotosFactory(topic: topic)
     let topicID = topicsPageViewModelItem.topicID
     let viewController = topicPhotoListFactory.makeModule(delegate: self)
     
     guard let topicPhotoListCollectionViewController = (
-      viewController as? TopicPhotoListViewController
+      viewController as? TopicPhotosViewController
     ) else {
       return viewController
     }

@@ -1,5 +1,5 @@
 //
-//  TopicPhotoListRootView.swift
+//  TopicPhotosRootView.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 01.08.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TopicPhotoListRootView: UIView {
+final class TopicPhotosRootView: UIView {
   
   // MARK: - Views
   let topicPhotoListCollectionView: TopicPhotoListCollectionView = {

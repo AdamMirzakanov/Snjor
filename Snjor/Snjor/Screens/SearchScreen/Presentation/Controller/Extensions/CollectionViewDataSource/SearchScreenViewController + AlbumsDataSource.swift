@@ -7,10 +7,9 @@
 
 import UIKit
 
-// Extension для SearchScreenViewController
 extension SearchScreenViewController {
   
-  // Создание snapshot для коллекции
+  // MARK: - Internal Properties
   var collectionsSnapshot: NSDiffableDataSourceSnapshot<CollectionsSection, Item> {
     var snapshot = NSDiffableDataSourceSnapshot<CollectionsSection, Item>()
     let topicSection = CollectionsSection.topics
@@ -18,18 +17,27 @@ extension SearchScreenViewController {
     snapshot.appendSections([topicSection, albumSection])
     snapshot.appendItems(Item.topics, toSection: topicSection)
     snapshot.appendItems(Item.albums, toSection: albumSection)
-    albumsSections = snapshot.sectionIdentifiers
+    collectionsSections = snapshot.sectionIdentifiers
     return snapshot
   }
   
-  // Создание DataSource для коллекции
-  func createAlbumsDataSource(for collectionView: UICollectionView) {
+  // MARK: - Internal Methods
+  func applyCollectionsSnapshot() {
+    guard let dataSource = collectionsDataSource else { return }
+    dataSource.apply(
+      collectionsSnapshot,
+      animatingDifferences: true
+    )
+  }
+  
+  // MARK: - Create Data Source
+  func createCollectionsDataSource(for collectionView: UICollectionView) {
     collectionsDataSource = UICollectionViewDiffableDataSource<CollectionsSection, Item>(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, item in
       let defaultCell = UICollectionViewCell()
       guard let strongSelf = self else { return defaultCell }
-      let section = strongSelf.albumsSections[indexPath.section]
+      let section = strongSelf.collectionsSections[indexPath.section]
       switch section {
       case .topics:
         if let topic = item.topic {
@@ -56,20 +64,17 @@ extension SearchScreenViewController {
     
     collectionsDataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
       switch kind {
-
       case SupplementaryViewKind.header:
-        let section = self.albumsSections[indexPath.section]
+        let section = self.collectionsSections[indexPath.section]
         let sectionName: String
         let defoultHeaderView = collectionView.dequeueReusableSupplementaryView(
           ofKind: SupplementaryViewKind.header,
           withReuseIdentifier: SectionHeaderView.reuseID,
           for: indexPath
         )
-        
         guard let headerView = defoultHeaderView as? SectionHeaderView else {
           return defoultHeaderView
         }
-       
         switch section {
         case .topics:
           return headerView
@@ -79,14 +84,15 @@ extension SearchScreenViewController {
           return headerView
         }
         
-      case SupplementaryViewKind.topLine, SupplementaryViewKind.bottomLine:
+      case SupplementaryViewKind.line:
         let lineView = collectionView.dequeueReusableSupplementaryView(
           ofKind: kind,
           withReuseIdentifier: LineView.reuseID,
           for: indexPath
         )
-        
-        guard let lineView = lineView as? LineView else { return lineView }
+        guard let lineView = lineView as? LineView else {
+          return lineView
+        }
         return lineView
       default:
         return UICollectionReusableView()
@@ -94,14 +100,7 @@ extension SearchScreenViewController {
     }
   }
   
-  func applyAlbumsSnapshot() {
-    guard let dataSource = collectionsDataSource else { return }
-    dataSource.apply(
-      collectionsSnapshot,
-      animatingDifferences: true
-    )
-  }
-  
+  // MARK: - Configure Cells
   private func configureAlbumCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
@@ -138,10 +137,9 @@ extension SearchScreenViewController {
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
-  
 }
 
-// Определение секций для коллекции
+// MARK: - Sections
 enum CollectionsSection: Hashable {
   case topics
   case albums(String)

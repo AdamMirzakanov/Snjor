@@ -8,13 +8,12 @@
 import UIKit
 import Combine
 
-protocol PhotoDetailFactoryProtocol {
-  func makeModule() -> UIViewController
-}
-
 struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
+  
+  // MARK: - Internal Properties
   let photo: Photo
 
+  // MARK: - Internal Methods
   func makeModule() -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
     let networkService = NetworkService()

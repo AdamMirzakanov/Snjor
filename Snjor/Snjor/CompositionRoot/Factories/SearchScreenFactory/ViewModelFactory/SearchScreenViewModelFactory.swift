@@ -1,5 +1,5 @@
 //
-//  ViewModelFactory.swift
+//  SearchScreenViewModelFactory.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 12.08.2024.
@@ -7,13 +7,15 @@
 
 import Combine
 
-class ViewModelFactory {
+class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
+  
+  // MARK: - Private Properties
+  private let networkService = NetworkService()
+  private let lastPageValidationUseCase = LastPageValidationUseCase()
+  private let state = PassthroughSubject<StateController, Never>()
   
   // MARK: - Internal Methods
   func createPhotosViewModel() -> PhotosViewModel {
-    let networkService = NetworkService()
-    let lastPageValidationUseCase = LastPageValidationUseCase()
-    let state = PassthroughSubject<StateController, Never>()
     let loadPhotosUseCase = getPhotosUseCase(networkService)
     return PhotosViewModel(
       state: state,
@@ -22,11 +24,7 @@ class ViewModelFactory {
     )
   }
   
-  // MARK: - Private Methods
   func createAlbumsViewModel() -> AlbumsViewModel {
-    let networkService = NetworkService()
-    let lastPageValidationUseCase = LastPageValidationUseCase()
-    let state = PassthroughSubject<StateController, Never>()
     let loadAlbumsUseCase = getAlbumsUseCase(networkService)
     return AlbumsViewModel(
       state: state,
@@ -36,40 +34,29 @@ class ViewModelFactory {
   }
   
   func createTopicsViewModel() -> TopicsPageViewModel {
-    let networkService = NetworkService()
-    let lastPageValidationUseCase = LastPageValidationUseCase()
-    let state = PassthroughSubject<StateController, Never>()
     let loadTopicsUseCase = getTopicsUseCase(networkService)
-    return TopicsPageViewModel(
-      state: state,
-      loadUseCase: loadTopicsUseCase
-    )
+    return TopicsPageViewModel(state: state, loadUseCase: loadTopicsUseCase)
   }
   
+  // MARK: - Private Methods
   private func getPhotosUseCase(
     _ networkService: NetworkService
   ) -> LoadPhotosUseCase {
-    let loadPhotosRepository = LoadPhotosRepository(
-      networkService: networkService
-    )
+    let loadPhotosRepository = LoadPhotosRepository(networkService: networkService)
     return LoadPhotosUseCase(repository: loadPhotosRepository)
   }
   
   private func getAlbumsUseCase(
     _ networkService: NetworkService
   ) -> LoadAlbumsUseCase {
-    let loadAlbumsRepository = LoadAlbumsRepository(
-      networkService: networkService
-    )
+    let loadAlbumsRepository = LoadAlbumsRepository(networkService: networkService)
     return LoadAlbumsUseCase(repository: loadAlbumsRepository)
   }
   
   private func getTopicsUseCase(
     _ networkService: NetworkService
   ) -> LoadTopicsPageUseCase {
-    let loadTopicsRepository = LoadTopicsPageRepository(
-      networkService: networkService
-    )
+    let loadTopicsRepository = LoadTopicsPageRepository(networkService: networkService)
     return LoadTopicsPageUseCase(repository: loadTopicsRepository)
   }
 }

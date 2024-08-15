@@ -1,5 +1,5 @@
 //
-//  TopicPhotoListViewController.swift
+//  TopicPhotosViewController.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -8,18 +8,18 @@
 import UIKit
 import Combine
 
-protocol TopicPhotoListViewControllerDelegate: AnyObject {
+protocol TopicPhotosViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-final class TopicPhotoListViewController: BaseViewController<TopicPhotoListRootView> {
+final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
   // MARK: - Internal Properties
   var topicID: String?
   var pageIndex: Int?
   
   // MARK: - Delegate
-  private(set) weak var delegate: (any TopicPhotoListViewControllerDelegate)?
+  private(set) weak var delegate: (any TopicPhotosViewControllerDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -32,7 +32,7 @@ final class TopicPhotoListViewController: BaseViewController<TopicPhotoListRootV
   // MARK: - Initializers
   init(
     viewModel: any TopicPhotoListViewModelProtocol,
-    delegate: any TopicPhotoListViewControllerDelegate,
+    delegate: any TopicPhotosViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel
