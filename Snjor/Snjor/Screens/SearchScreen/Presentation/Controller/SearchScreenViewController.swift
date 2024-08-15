@@ -61,11 +61,11 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     setupNavigationItem()
   }
   
+  // MARK: - Private Methods
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
   }
-  
-  // MARK: - Private Methods
+
   private func configureSearchController() {
     searchController.searchResultsUpdater = self
     searchController.searchBar.delegate = self
@@ -101,20 +101,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
       id: Self.sessionID
     )
   }
-  
-  private func handleState(
-    _ state: StateController,
-    successAction: () -> Void
-  ) {
-    switch state {
-    case .success:
-      successAction()
-    case .loading: break
-    case .fail(error: let error):
-      presentAlert(message: error, title: AppLocalized.error)
-    }
-  }
-  
   
   private func stateController() {
     photosState()
@@ -159,6 +145,19 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
         }
       }
       .store(in: &cancellable)
+  }
+  
+  private func handleState(
+    _ state: StateController,
+    successAction: () -> Void
+  ) {
+    switch state {
+    case .success:
+      successAction()
+    case .loading: break
+    case .fail(error: let error):
+      presentAlert(message: error, title: AppLocalized.error)
+    }
   }
 }
 
