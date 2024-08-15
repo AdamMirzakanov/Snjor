@@ -67,10 +67,11 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     searchController.automaticallyShowsSearchResultsController = true
     searchController.searchBar.showsScopeBar = true
     navigationItem.hidesSearchBarWhenScrolling = false
-    
+    navigationItem.title = "Photos"
     searchController.searchBar.scopeButtonTitles = [
       "Photos",
-      "Collections"
+      "Collections",
+      "Users"
     ]
     
     setupVisibleContainers()

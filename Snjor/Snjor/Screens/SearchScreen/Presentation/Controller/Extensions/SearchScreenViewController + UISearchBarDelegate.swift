@@ -17,10 +17,15 @@ extension SearchScreenViewController: UISearchBarDelegate {
       rootView.albumsCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.photosCollectionView)
       rootView.photosCollectionView.fillSuperView()
-    default:
+      navigationItem.title = "Photos"
+    case 1:
       rootView.photosCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.albumsCollectionView)
       rootView.albumsCollectionView.fillSuperView()
+      navigationItem.title = "Collections"
+    default:
+      navigationItem.title = "Users"
+      print(#function)
     }
   }
 }
