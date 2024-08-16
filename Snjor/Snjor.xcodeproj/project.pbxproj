@@ -511,13 +511,13 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		3723E3622C4F0D5A00C3AE3E /* TopicPhotos */ = {
+		3723E3622C4F0D5A00C3AE3E /* PageScreenTopicPhotos */ = {
 			isa = PBXGroup;
 			children = (
 				3723E3612C4F0D5A00C3AE3E /* Presentation */,
 				3723E3592C4F0D5A00C3AE3E /* Domain */,
 			);
-			path = TopicPhotos;
+			path = PageScreenTopicPhotos;
 			sourceTree = "<group>";
 		};
 		3723E3652C4F0D5A00C3AE3E /* Domain */ = {
@@ -1451,9 +1451,9 @@
 			isa = PBXGroup;
 			children = (
 				371EE7C72C63B374007538C2 /* SearchScreen */,
-				3723E3622C4F0D5A00C3AE3E /* TopicPhotos */,
-				3723E3892C4F0D5A00C3AE3E /* PageScreen */,
+				3723E3622C4F0D5A00C3AE3E /* PageScreenTopicPhotos */,
 				665993572C20E11200BA8C85 /* PhotoDetail */,
+				3723E3892C4F0D5A00C3AE3E /* PageScreen */,
 				667A598B2C1EF64300FE4985 /* MainTabBar */,
 			);
 			path = Screens;
