@@ -95,6 +95,7 @@ final class PhotoCellMainView: BaseImageContainerView {
       ofSize: GlobalConst.defaultFontSize,
       weight: .medium
     )
+    $0.numberOfLines = 0
     return $0
   }(UILabel())
 
@@ -181,8 +182,10 @@ final class PhotoCellMainView: BaseImageContainerView {
 
   private func setupUserNameLabelConstraints() {
     userNameLabel.setConstraints(
+      right:  mainImageView.rightAnchor, 
       bottom: mainImageView.bottomAnchor,
       left: mainImageView.leftAnchor,
+      pRight: GlobalConst.defaultValue,
       pBottom: GlobalConst.defaultValue,
       pLeft: GlobalConst.defaultValue
     )
