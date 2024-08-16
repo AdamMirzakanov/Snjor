@@ -70,7 +70,7 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
     )
     
     guard let topicPhotoListCollectionViewController = (
-      viewController as? TopicPhotosViewController
+      viewController as? PageScreenTopicPhotosViewController
     ) else {
       return viewController
     }

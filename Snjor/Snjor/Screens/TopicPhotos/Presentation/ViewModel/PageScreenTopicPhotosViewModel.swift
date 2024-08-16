@@ -1,5 +1,5 @@
 //
-//  TopicPhotoListViewModel.swift
+//  PageScreenTopicPhotosViewModel.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
+final class PageScreenTopicPhotosViewModel: PageScreenTopicPhotosViewModelProtocol {
   
   private typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
   
@@ -17,7 +17,7 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   var state: PassthroughSubject<StateController, Never>
   
   // MARK: - Private Properties
-  private let loadUseCase: any LoadTopicPhotoListUseCaseProtocol
+  private let loadUseCase: any LoadTopicPhotosUseCaseProtocol
   private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
@@ -32,7 +32,7 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadUseCase: any LoadTopicPhotoListUseCaseProtocol,
+    loadUseCase: any LoadTopicPhotosUseCaseProtocol,
     lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
   ) {
     self.state = state
@@ -76,7 +76,7 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
     photos[indexPath]
   }
   
-  func getTopicPhotoListViewModelItem(at index: Int) -> TopicPhotoListViewModelItem {
+  func getTopicPhotoListViewModelItem(at index: Int) -> PageScreenTopicPhotosViewModelItem {
     checkAndLoadMorePhotos(at: index)
     return makeTopicPhotoListViewModelItem(at: index)
   }
@@ -108,9 +108,9 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
     }
   }
   
-  private func makeTopicPhotoListViewModelItem(at index: Int) -> TopicPhotoListViewModelItem {
+  private func makeTopicPhotoListViewModelItem(at index: Int) -> PageScreenTopicPhotosViewModelItem {
     let photo = photos[index]
-    return TopicPhotoListViewModelItem(photo: photo)
+    return PageScreenTopicPhotosViewModelItem(photo: photo)
   }
   
   private func configureCell(
@@ -120,9 +120,9 @@ final class TopicPhotoListViewModel: TopicPhotoListViewModelProtocol {
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: TopicsPagePhotoListCell.reuseID,
+        withReuseIdentifier: PageScreenTopicPhotoCell.reuseID,
         for: indexPath
-      ) as? TopicsPagePhotoListCell
+      ) as? PageScreenTopicPhotoCell
     else {
       return UICollectionViewCell()
     }

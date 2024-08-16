@@ -1,5 +1,5 @@
 //
-//  TopicPhotosViewController.swift
+//  PageScreenTopicPhotosViewController.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -8,22 +8,22 @@
 import UIKit
 import Combine
 
-protocol TopicPhotosViewControllerDelegate: AnyObject {
+protocol PageScreenTopicPhotosViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
+final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTopicPhotosRootView> {
   
   // MARK: - Internal Properties
   var topicID: String?
   var pageIndex: Int?
   
   // MARK: - Delegate
-  private(set) weak var delegate: (any TopicPhotosViewControllerDelegate)?
+  private(set) weak var delegate: (any PageScreenTopicPhotosViewControllerDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) var viewModel: any TopicPhotoListViewModelProtocol
+  private(set) var viewModel: any PageScreenTopicPhotosViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -31,8 +31,8 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
   // MARK: - Initializers
   init(
-    viewModel: any TopicPhotoListViewModelProtocol,
-    delegate: any TopicPhotosViewControllerDelegate,
+    viewModel: any PageScreenTopicPhotosViewModelProtocol,
+    delegate: any PageScreenTopicPhotosViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel
@@ -61,7 +61,7 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   // MARK: - Private Methods
   private func setupDataSource() {
     viewModel.createDataSource(
-      for: rootView.topicPhotoListCollectionView
+      for: rootView.pageScreenTopicPhotosCollectionView
     )
   }
   
@@ -87,6 +87,6 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   }
   
   private func configCollectionView() {
-    rootView.topicPhotoListCollectionView.delegate = self
+    rootView.pageScreenTopicPhotosCollectionView.delegate = self
   }
 }

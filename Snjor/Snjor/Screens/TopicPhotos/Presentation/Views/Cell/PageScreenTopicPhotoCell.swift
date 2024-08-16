@@ -1,5 +1,5 @@
 //
-//  TopicsPagePhotoListCell.swift
+//  PageScreenTopicPhotoCell.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 30.07.2024.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class TopicsPagePhotoListCell: UICollectionViewCell {
+final class PageScreenTopicPhotoCell: UICollectionViewCell {
 
   // MARK: - Main View
-  let mainView: TopicPhotoListCellMainView = {
+  let mainView: PageScreenTopicPhotoCellMainView = {
     return $0
-  }(TopicPhotoListCellMainView())
+  }(PageScreenTopicPhotoCellMainView())
   
   // MARK: - Initializers
   override init(frame: CGRect) {
@@ -31,7 +31,7 @@ final class TopicsPagePhotoListCell: UICollectionViewCell {
   }
 
   // MARK: - Setup Data
-  func configure(viewModelItem: TopicPhotoListViewModelItem) {
+  func configure(viewModelItem: PageScreenTopicPhotosViewModelItem) {
     let photo = viewModelItem.photo
     let photoURL = viewModelItem.photoURL
     mainView.configure(with: photo, url: photoURL)

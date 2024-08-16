@@ -1,5 +1,5 @@
 //
-//  TopicPhotosRootView.swift
+//  PageScreenTopicPhotosRootView.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 01.08.2024.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class TopicPhotosRootView: UIView {
+final class PageScreenTopicPhotosRootView: UIView {
   
   // MARK: - Views
-  let topicPhotoListCollectionView: TopicPhotoListCollectionView = {
+  let pageScreenTopicPhotosCollectionView: PageScreenTopicPhotosCollectionView = {
     return $0
-  }(TopicPhotoListCollectionView())
+  }(PageScreenTopicPhotosCollectionView())
   
   // MARK: - Initializers
   init() {
@@ -31,11 +31,11 @@ final class TopicPhotosRootView: UIView {
   }
   
   private func addSubviews() {
-    addSubview(topicPhotoListCollectionView)
+    addSubview(pageScreenTopicPhotosCollectionView)
   }
   
   private func setupConstraints() {
-    topicPhotoListCollectionView.setConstraints(
+    pageScreenTopicPhotosCollectionView.setConstraints(
       top: topAnchor,
       right: rightAnchor,
       bottom: bottomAnchor,

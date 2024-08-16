@@ -5,7 +5,7 @@
 //  Created by Адам Мирзаканов on 16.08.2024.
 //
 
-final class TopicPhotosCoordinator: Coordinatable, TopicPhotosViewControllerDelegate {
+final class TopicPhotosCoordinator: Coordinatable, PageScreenTopicPhotosViewControllerDelegate {
   
   // MARK: - Internal Properties
   var navigation: any Navigable

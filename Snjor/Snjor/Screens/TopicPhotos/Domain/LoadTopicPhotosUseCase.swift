@@ -1,17 +1,17 @@
 //
-//  LoadTopicsPhotoListUseCase.swift
+//  LoadTopicPhotosUseCase.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
 //
 
-protocol LoadTopicPhotoListUseCaseProtocol {
+protocol LoadTopicPhotosUseCaseProtocol {
   func execute() async -> Result<[Photo], any Error>
 }
 
-struct LoadTopicPhotoListUseCase: LoadTopicPhotoListUseCaseProtocol {
+struct LoadTopicPhotosUseCase: LoadTopicPhotosUseCaseProtocol {
   // MARK: - Internal Properties
-  let repository: any LoadPageTopicsPhotoListRepositoryProtocol
+  let repository: any LoadTopicPhotosRepositoryProtocol
   let topic: Topic
   
   func execute() async -> Result<[Photo], any Error> {

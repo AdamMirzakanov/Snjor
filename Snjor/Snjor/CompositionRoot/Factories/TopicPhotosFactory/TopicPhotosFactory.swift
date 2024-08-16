@@ -15,7 +15,7 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   
   // MARK: - Internal Methods
   func makeModule(
-    delegate: any TopicPhotosViewControllerDelegate,
+    delegate: any PageScreenTopicPhotosViewControllerDelegate,
     layoutType: LayoutType
   ) -> UIViewController {
     let viewModel = createViewModel()
@@ -25,13 +25,13 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   }
   
   // MARK: - Private Methods
-  private func createViewModel() -> TopicPhotoListViewModel {
+  private func createViewModel() -> PageScreenTopicPhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
-    let repository = LoadTopicPhotoListRepository(networkService: networkService)
-    let loadUseCase = LoadTopicPhotoListUseCase(repository: repository, topic: topic)
-    return TopicPhotoListViewModel(
+    let repository = LoadTopicPhotosRepository(networkService: networkService)
+    let loadUseCase = LoadTopicPhotosUseCase(repository: repository, topic: topic)
+    return PageScreenTopicPhotosViewModel(
       state: state,
       loadUseCase: loadUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
@@ -39,30 +39,30 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   }
   
   private func createViewController(
-    viewModel: TopicPhotoListViewModel,
-    delegate: any TopicPhotosViewControllerDelegate
-  ) -> TopicPhotosViewController {
+    viewModel: PageScreenTopicPhotosViewModel,
+    delegate: any PageScreenTopicPhotosViewControllerDelegate
+  ) -> PageScreenTopicPhotosViewController {
     let defaultLayout = UICollectionViewLayout()
-    let module = TopicPhotosViewController(
+    let module = PageScreenTopicPhotosViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout
     )
-    module.rootView.topicPhotoListCollectionView.showsVerticalScrollIndicator = false
+    module.rootView.pageScreenTopicPhotosCollectionView.showsVerticalScrollIndicator = false
     return module
   }
   
   private func configureLayout(
-    for module: TopicPhotosViewController,
+    for module: PageScreenTopicPhotosViewController,
     layoutType: LayoutType
   ) {
     switch layoutType {
     case .singleColumn:
       let cascadeLayout = SingleColumnCascadeLayout(with: module)
-      module.rootView.topicPhotoListCollectionView.collectionViewLayout = cascadeLayout
+      module.rootView.pageScreenTopicPhotosCollectionView.collectionViewLayout = cascadeLayout
     case .multiColumn:
       let cascadeLayout = MultiColumnCascadeLayout(with: module)
-      module.rootView.topicPhotoListCollectionView.collectionViewLayout = cascadeLayout
+      module.rootView.pageScreenTopicPhotosCollectionView.collectionViewLayout = cascadeLayout
     }
   }
 }

@@ -14,7 +14,7 @@ extension PageScreenViewController: UIPageViewControllerDataSource {
     viewControllerBefore viewController: UIViewController
   ) -> UIViewController? {
     guard
-      let contentViewController = viewController as? TopicPhotosViewController,
+      let contentViewController = viewController as? PageScreenTopicPhotosViewController,
       let index = contentViewController.pageIndex
     else {
       return nil
@@ -27,7 +27,7 @@ extension PageScreenViewController: UIPageViewControllerDataSource {
     viewControllerAfter viewController: UIViewController
   ) -> UIViewController? {
     guard
-      let contentViewController = viewController as? TopicPhotosViewController,
+      let contentViewController = viewController as? PageScreenTopicPhotosViewController,
       let index = contentViewController.pageIndex
     else {
       return nil

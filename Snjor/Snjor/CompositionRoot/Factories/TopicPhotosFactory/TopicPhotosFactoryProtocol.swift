@@ -9,7 +9,7 @@ import UIKit
 
 protocol TopicPhotosFactoryProtocol {
   func makeModule(
-    delegate: any TopicPhotosViewControllerDelegate,
+    delegate: any PageScreenTopicPhotosViewControllerDelegate,
     layoutType: LayoutType
   ) -> UIViewController
 }

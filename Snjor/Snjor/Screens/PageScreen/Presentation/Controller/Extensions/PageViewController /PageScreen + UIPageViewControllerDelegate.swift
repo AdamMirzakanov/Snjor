@@ -26,7 +26,7 @@ extension PageScreenViewController: UIPageViewControllerDelegate {
     guard
       let visibleViewController = pageViewController
         .viewControllers?
-        .first as? TopicPhotosViewController,
+        .first as? PageScreenTopicPhotosViewController,
       let currentIndex = visibleViewController.pageIndex
     else {
       return
