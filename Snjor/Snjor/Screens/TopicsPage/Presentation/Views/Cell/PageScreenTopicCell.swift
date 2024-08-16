@@ -1,5 +1,5 @@
 //
-//  TopicsPageCell.swift
+//  PageScreenTopicCell.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PageTopicCell: UICollectionViewCell {
+final class PageScreenTopicCell: UICollectionViewCell {
   // MARK: - View
   private let topicTitleLabel: UILabel = {
     $0.textColor = .white
@@ -32,7 +32,7 @@ final class PageTopicCell: UICollectionViewCell {
    }
 
    // MARK: - Setup Data
-   func configure(viewModelItem: TopicsPageViewModelItem) {
+   func configure(viewModelItem: TopicsViewModelItem) {
      topicTitleLabel.text = viewModelItem.topicTitle
    }
 

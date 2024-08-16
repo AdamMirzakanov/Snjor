@@ -1,5 +1,5 @@
 //
-//  TopicsPage + UIPageViewControllerDataSource.swift
+//  PageScreen + UIPageViewControllerDataSource.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UIPageViewControllerDataSource
-extension TopicsPageViewController: UIPageViewControllerDataSource {
+extension PageScreenViewController: UIPageViewControllerDataSource {
   func pageViewController(
     _ pageViewController: UIPageViewController,
     viewControllerBefore viewController: UIViewController

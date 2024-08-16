@@ -33,9 +33,9 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
     )
   }
   
-  func createTopicsViewModel() -> TopicsPageViewModel {
+  func createTopicsViewModel() -> TopicsViewModel {
     let loadTopicsUseCase = getTopicsUseCase(networkService)
-    return TopicsPageViewModel(state: state, loadUseCase: loadTopicsUseCase)
+    return TopicsViewModel(state: state, loadUseCase: loadTopicsUseCase)
   }
   
   // MARK: - Private Methods
@@ -55,8 +55,8 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
   
   private func getTopicsUseCase(
     _ networkService: NetworkService
-  ) -> LoadTopicsPageUseCase {
+  ) -> LoadTopicsUseCase {
     let loadTopicsRepository = LoadTopicsPageRepository(networkService: networkService)
-    return LoadTopicsPageUseCase(repository: loadTopicsRepository)
+    return LoadTopicsUseCase(repository: loadTopicsRepository)
   }
 }

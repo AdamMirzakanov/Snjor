@@ -1,5 +1,5 @@
 //
-//  TopicsPage + UIPageViewControllerDelegate.swift
+//  PageScreen + UIPageViewControllerDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UIPageViewControllerDelegate
-extension TopicsPageViewController: UIPageViewControllerDelegate { 
+extension PageScreenViewController: UIPageViewControllerDelegate { 
   func pageViewController(
     _ pageViewController: UIPageViewController,
     didFinishAnimating finished: Bool,
@@ -35,16 +35,16 @@ extension TopicsPageViewController: UIPageViewControllerDelegate {
     let indexPath = IndexPath(item: currentIndex, section: .zero)
     
     guard
-      let cell = rootView.categoryCollectionView.cellForItem(at: indexPath)
+      let cell = rootView.topicsCollectionView.cellForItem(at: indexPath)
     else {
       return
     }
     selectItem(at: indexPath)
-    rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+    rootView.topicsCollectionView.updateIndicatorPosition(for: cell)
   }
   
   private func selectItem(at indexPath: IndexPath) {
-    rootView.categoryCollectionView.selectItem(
+    rootView.topicsCollectionView.selectItem(
       at: indexPath,
       animated: true,
       scrollPosition: .centeredHorizontally

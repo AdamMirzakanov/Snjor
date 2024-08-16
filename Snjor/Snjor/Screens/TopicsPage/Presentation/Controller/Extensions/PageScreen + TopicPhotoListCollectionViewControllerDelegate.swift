@@ -1,11 +1,11 @@
 //
-//  TopicsPageViewController + TopicPhotosViewControllerDelegate.swift
+//  PageScreen + TopicPhotosViewControllerDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 30.07.2024.
 //
 
-extension TopicsPageViewController: TopicPhotosViewControllerDelegate {
+extension PageScreenViewController: TopicPhotosViewControllerDelegate {
   func didSelect(_ photo: Photo) {
     let photoDetailFactory = PhotoDetailFactory(photo: photo)
     let photoDetailViewController = photoDetailFactory.makeModule()

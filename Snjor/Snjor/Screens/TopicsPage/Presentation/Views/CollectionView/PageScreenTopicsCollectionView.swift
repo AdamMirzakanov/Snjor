@@ -1,5 +1,5 @@
 //
-//  PageTopicsCollectionView.swift
+//  PageScreenTopicsCollectionView.swift
 //  Snjor
 //
 //  Created by Adam on 27.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PageTopicsCollectionView: UICollectionView {
+final class PageScreenTopicsCollectionView: UICollectionView {
   
   // MARK: - Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
@@ -73,8 +73,8 @@ final class PageTopicsCollectionView: UICollectionView {
   
   private func cellRegister() {
     register(
-      PageTopicCell.self,
-      forCellWithReuseIdentifier: PageTopicCell.reuseID
+      PageScreenTopicCell.self,
+      forCellWithReuseIdentifier: PageScreenTopicCell.reuseID
     )
   }
   

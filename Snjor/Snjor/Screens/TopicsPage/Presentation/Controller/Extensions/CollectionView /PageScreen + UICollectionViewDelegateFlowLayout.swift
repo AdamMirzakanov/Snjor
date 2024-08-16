@@ -1,5 +1,5 @@
 //
-//  TopicsPage + UICollectionViewDelegateFlowLayout.swift
+//  PageScreen + UICollectionViewDelegateFlowLayout.swift
 //  Snjor
 //
 //  Created by Adam on 26.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TopicsPageViewController: UICollectionViewDelegateFlowLayout {
+extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
   
   func collectionView(
     _ collectionView: UICollectionView,

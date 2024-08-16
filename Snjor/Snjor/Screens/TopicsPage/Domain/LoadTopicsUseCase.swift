@@ -1,5 +1,5 @@
 //
-//  LoadTopicsPageUseCase.swift
+//  LoadTopicsUseCase.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 23.07.2024.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol LoadTopicsPageUseCaseProtocol {
+protocol LoadTopicsUseCaseProtocol {
   func execute() async -> Result<[Topic], any Error>
 }
 
-struct LoadTopicsPageUseCase: LoadTopicsPageUseCaseProtocol {
+struct LoadTopicsUseCase: LoadTopicsUseCaseProtocol {
   // MARK: - Private Properties
   let repository: any LoadTopicsPageRepositoryProtocol
   

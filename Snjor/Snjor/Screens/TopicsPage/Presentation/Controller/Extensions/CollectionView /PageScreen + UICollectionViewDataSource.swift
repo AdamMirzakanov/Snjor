@@ -7,7 +7,7 @@
 
 import UIKit
 
-//extension TopicsPageViewController: UICollectionViewDataSource {
+//extension PageScreenViewController: UICollectionViewDataSource {
 //  func collectionView(
 //    _ collectionView: UICollectionView,
 //    numberOfItemsInSection section: Int
@@ -21,7 +21,7 @@ import UIKit
 //  ) -> UICollectionViewCell {
 //    guard
 //      let cell = collectionView.dequeueReusableCell(
-//        withReuseIdentifier: PageTopicCell.reuseID,
+//        withReuseIdentifier: PageScreenTopicCell.reuseID,
 //        for: indexPath
 //      ) as? TopicsPageCategoryCell
 //    else {

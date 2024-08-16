@@ -1,5 +1,5 @@
 //
-//  TopicsPageRootView.swift
+//  PageScreenRootView.swift
 //  Snjor
 //
 //  Created by Adam on 26.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TopicPageRootView: UIView {
+final class PageScreenRootView: UIView {
   
   // MARK: - Internal Views
   let pageViewController: UIPageViewController = {
@@ -19,10 +19,10 @@ final class TopicPageRootView: UIView {
     options: nil
   ))
   
-  let categoryCollectionView: PageTopicsCollectionView = {
+  let topicsCollectionView: PageScreenTopicsCollectionView = {
     $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
     return $0
-  }(PageTopicsCollectionView())
+  }(PageScreenTopicsCollectionView())
   
   // MARK: - Private Views
   private let appNameLabel: UILabel = {
@@ -72,7 +72,7 @@ final class TopicPageRootView: UIView {
   private func addSubviews() {
     addSubview(pageViewController.view)
     addSubview(gradientView)
-    addSubview(categoryCollectionView)
+    addSubview(topicsCollectionView)
     addSubview(appNameLabel)
   }
   
@@ -84,7 +84,7 @@ final class TopicPageRootView: UIView {
   }
   
   private func setupCategoryCollectionViewConstraints() {
-    categoryCollectionView.setConstraints(
+    topicsCollectionView.setConstraints(
       top: safeAreaLayoutGuide.topAnchor,
       right: rightAnchor,
       left: leftAnchor,

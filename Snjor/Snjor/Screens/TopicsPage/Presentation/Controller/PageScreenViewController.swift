@@ -1,5 +1,5 @@
 //
-//  TopicsPageViewController.swift
+//  PageScreenViewController.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -8,15 +8,15 @@
 import UIKit
 import Combine
 
-final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
+final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   
   // MARK: - Private Properties
-  private(set) var viewModel: any TopicsPageViewModelProtocol
+  private(set) var viewModel: any TopicsViewModelProtocol
   private var cancellable = Set<AnyCancellable>()
   
   // MARK: - Initializers
   init(
-    viewModel: any TopicsPageViewModelProtocol
+    viewModel: any TopicsViewModelProtocol
   ) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
@@ -84,7 +84,7 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   // MARK: - Private Methods
   private func setupDataSource() {
     viewModel.createDataSource(
-      for: rootView.categoryCollectionView
+      for: rootView.topicsCollectionView
     )
   }
   
@@ -127,7 +127,7 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   
   private func configCategoryCollectionView() {
     //        rootView.categoryCollectionView.dataSource = self
-    rootView.categoryCollectionView.delegate = self
+    rootView.topicsCollectionView.delegate = self
   }
   
   private func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
@@ -136,9 +136,9 @@ final class TopicsPageViewController: BaseViewController<TopicPageRootView> {
   
   private func updateIndicatorToInitialPosition() {
     let firstItemIndexPath = IndexPath(item: .zero, section: .zero)
-    guard let cell = rootView.categoryCollectionView.cellForItem(at: firstItemIndexPath) else {
+    guard let cell = rootView.topicsCollectionView.cellForItem(at: firstItemIndexPath) else {
       return
     }
-    rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+    rootView.topicsCollectionView.updateIndicatorPosition(for: cell)
   }
 }

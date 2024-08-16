@@ -26,14 +26,14 @@ struct TopicsPageFactory: TopicsPageFactoryProtocol {
     let repository = LoadTopicsPageRepository(
       networkService: networkService
     )
-    let loadUseCase = LoadTopicsPageUseCase(
+    let loadUseCase = LoadTopicsUseCase(
       repository: repository
     )
-    let viewModel = TopicsPageViewModel(
+    let viewModel = TopicsViewModel(
       state: state,
       loadUseCase: loadUseCase
     )
-    let module = TopicsPageViewController(viewModel: viewModel)
+    let module = PageScreenViewController(viewModel: viewModel)
     return module
   }
 }

@@ -1,5 +1,5 @@
 //
-//  TopicsPageViewModel.swift
+//  TopicsViewModel.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 23.07.2024.
@@ -8,14 +8,14 @@
 import UIKit
 import Combine
 
-final class TopicsPageViewModel: TopicsPageViewModelProtocol {
+final class TopicsViewModel: TopicsViewModelProtocol {
   
   // MARK: - Internal Properties
   var topicsCount: Int { topics.count }
   var state: PassthroughSubject<StateController, Never>
   
   // MARK: - Private Properties
-  private let loadUseCase: any LoadTopicsPageUseCaseProtocol
+  private let loadUseCase: any LoadTopicsUseCaseProtocol
   private var topics: [Topic] = []
   private var dataSource: UICollectionViewDiffableDataSource<Section, Topic>?
   
@@ -29,7 +29,7 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadUseCase: any LoadTopicsPageUseCaseProtocol
+    loadUseCase: any LoadTopicsUseCaseProtocol
   ) {
     self.state = state
     self.loadUseCase = loadUseCase
@@ -47,7 +47,7 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
     topics[index]
   }
   
-  func getTopicsPageViewModelItem(at index: Int) -> TopicsPageViewModelItem {
+  func getTopicsPageViewModelItem(at index: Int) -> TopicsViewModelItem {
     return makeViewModelItem(at: index)
   }
   
@@ -74,9 +74,9 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
   }
 
   // MARK: - Private Methods
-  private func makeViewModelItem(at index: Int) -> TopicsPageViewModelItem {
+  private func makeViewModelItem(at index: Int) -> TopicsViewModelItem {
     let topic = topics[index]
-    return TopicsPageViewModelItem(topic: topic)
+    return TopicsViewModelItem(topic: topic)
   }
   
   private func loadTopicsPageUseCase() async {
@@ -102,9 +102,9 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: PageTopicCell.reuseID,
+        withReuseIdentifier: PageScreenTopicCell.reuseID,
         for: indexPath
-      ) as? PageTopicCell
+      ) as? PageScreenTopicCell
     else {
       return UICollectionViewCell()
     }

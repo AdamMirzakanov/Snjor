@@ -1,5 +1,5 @@
 //
-//  TopicsPage + UICollectionViewDelegate.swift
+//  PageScreen + UICollectionViewDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TopicsPageViewController: UICollectionViewDelegate {
+extension PageScreenViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
@@ -19,7 +19,7 @@ extension TopicsPageViewController: UICollectionViewDelegate {
       return
     }
     setPage(page: page)
-    rootView.categoryCollectionView.updateIndicatorPosition(for: cell)
+    rootView.topicsCollectionView.updateIndicatorPosition(for: cell)
   }
   
   private func setPage(page: UIViewController) {
