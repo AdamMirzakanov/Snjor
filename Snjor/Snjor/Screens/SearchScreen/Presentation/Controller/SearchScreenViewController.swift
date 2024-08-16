@@ -8,8 +8,9 @@
 import UIKit
 import Combine
 
-protocol PhotosCollectionViewControllerDelegate: AnyObject {
-  func didSelect(_ photo: Photo)
+protocol SearchScreenViewControllerDelegate: AnyObject {
+  func photoCellDidSelect(_ photo: Photo)
+  func topicCellDidSelect(_ topic: Topic)
 }
 
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
@@ -21,9 +22,10 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   var collectionsSections: [CollectionsSection] = []
   
   // MARK: - Private Properties
+  var currentScopeIndex: Int = 0
   private let searchController = UISearchController()
   private var cancellable = Set<AnyCancellable>()
-  private(set) weak var delegate: (any PhotosCollectionViewControllerDelegate)?
+  private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
   private(set) var photosViewModel: any PhotosViewModelProtocol
   private(set) var albumsViewModel: any AlbumsViewModelProtocol
@@ -38,7 +40,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     photosViewModel: any PhotosViewModelProtocol,
     albumsViewModel: any AlbumsViewModelProtocol,
     topicsViewModel: any TopicsPageViewModelProtocol,
-    delegate: any PhotosCollectionViewControllerDelegate
+    delegate: any SearchScreenViewControllerDelegate
   ) {
     self.photosViewModel = photosViewModel
     self.albumsViewModel = albumsViewModel

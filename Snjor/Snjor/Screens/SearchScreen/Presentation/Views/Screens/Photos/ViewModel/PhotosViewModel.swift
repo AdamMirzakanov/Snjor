@@ -37,8 +37,8 @@ final class PhotosViewModel: PhotosViewModelProtocol {
     }
   }
   
-  func getPhoto(at indexPath: Int) -> Photo {
-    photos[indexPath]
+  func getPhoto(at index: Int) -> Photo {
+    photos[index]
   }
   
   func getPhotoListViewModelItem(

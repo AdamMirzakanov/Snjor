@@ -43,6 +43,10 @@ final class TopicsPageViewModel: TopicsPageViewModelProtocol {
     }
   }
   
+  func getTopic(at index: Int) -> Topic {
+    topics[index]
+  }
+  
   func getTopicsPageViewModelItem(at index: Int) -> TopicsPageViewModelItem {
     return makeViewModelItem(at: index)
   }

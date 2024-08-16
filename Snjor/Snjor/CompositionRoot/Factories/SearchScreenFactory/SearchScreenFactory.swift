@@ -24,7 +24,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   
   // MARK: - Internal Methods
   func makeModule(
-    delegate: any PhotosCollectionViewControllerDelegate
+    delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController {
     let module = getModule(delegate)
     return module
@@ -43,9 +43,22 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     )
   }
   
+  func mekeTopicPhotosCoordinator(
+    topic: Topic,
+    navigation: any Navigable,
+    overlordCoordinator: any ParentCoordinator
+  ) -> any Coordinatable {
+    let factory = TopicPhotosFactory(topic: topic)
+    return TopicPhotosCoordinator(
+      factory: factory,
+      navigation: navigation,
+      overlordCoordinator: overlordCoordinator
+    )
+  }
+  
   // MARK: - Private Methods
   private func getModule(
-    _ delegate: any PhotosCollectionViewControllerDelegate
+    _ delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController {
     let photosViewModel = viewModelFactory.createPhotosViewModel()
     let albumsViewModel = viewModelFactory.createAlbumsViewModel()

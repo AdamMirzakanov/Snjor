@@ -12,6 +12,7 @@ extension SearchScreenViewController: UISearchBarDelegate {
     _ searchBar: UISearchBar,
     selectedScopeButtonIndexDidChange selectedScope: Int
   ) {
+    currentScopeIndex = selectedScope
     switch selectedScope {
     case .zero:
       rootView.albumsCollectionView.removeFromSuperview()

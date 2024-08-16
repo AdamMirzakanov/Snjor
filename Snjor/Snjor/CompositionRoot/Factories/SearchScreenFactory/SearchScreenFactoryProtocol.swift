@@ -9,10 +9,17 @@ import UIKit
 
 protocol SearchScreenFactoryProtocol {
   func makeModule(
-    delegate: any PhotosCollectionViewControllerDelegate
+    delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController
+  
   func mekePhotoDetailCoordinator(
     photo: Photo,
+    navigation: any Navigable,
+    overlordCoordinator: any ParentCoordinator
+  ) -> any Coordinatable
+  
+  func mekeTopicPhotosCoordinator(
+    topic: Topic,
     navigation: any Navigable,
     overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable

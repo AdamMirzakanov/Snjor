@@ -9,6 +9,7 @@ import UIKit
 
 protocol TopicPhotosFactoryProtocol {
   func makeModule(
-    delegate: any TopicPhotosViewControllerDelegate
+    delegate: any TopicPhotosViewControllerDelegate,
+    layoutType: LayoutType
   ) -> UIViewController
 }

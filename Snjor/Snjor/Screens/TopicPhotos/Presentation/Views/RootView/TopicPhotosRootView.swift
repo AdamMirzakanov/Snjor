@@ -36,7 +36,7 @@ final class TopicPhotosRootView: UIView {
   
   private func setupConstraints() {
     topicPhotoListCollectionView.setConstraints(
-      top: safeAreaLayoutGuide.topAnchor,
+      top: topAnchor,
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor
