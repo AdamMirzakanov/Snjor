@@ -48,11 +48,13 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailRootView> {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     showCustomTabBar()
-    downloadService.invalidateSession(withID: Self.sessionID)
+    if self.isMovingFromParent || self.isBeingDismissed {
+      downloadService.invalidateSession(withID: Self.sessionID)
+    }
   }
 
   deinit {
-    print(#function, "деинициализирован")
+    print(#function, Self.self, "деинициализирован")
   }
   
   // MARK: - Private Methods

@@ -46,7 +46,7 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
   deinit {
     cancellable.forEach { $0.cancel() }
-    print(#function)
+    print(#function, Self.self, "деинициализирован")
   }
   
   // MARK: - View Lifecycle
@@ -62,8 +62,10 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    downloadService.invalidateSession(withID: Self.sessionID)
-    dataSource = nil
+    if self.isMovingFromParent || self.isBeingDismissed {
+      downloadService.invalidateSession(withID: Self.sessionID)
+      dataSource = nil
+    }
   }
   
   // MARK: - Private Methods
