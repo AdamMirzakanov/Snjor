@@ -40,6 +40,7 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
   deinit {
     cancellable.forEach { $0.cancel() }
+    print(#function)
   }
   
   // MARK: - View Lifecycle

@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol TopicPhotoCellDelegate: AnyObject {
+  func downloadTapped(_ cell: TopicPhotoCell)
+}
+
 final class TopicPhotoCell: UICollectionViewCell {
+  
+  // MARK: - Delegate
+  weak var delegate: (any TopicPhotoCellDelegate)?
+
   // MARK: - Main View
   let mainView: TopicPhotoCellMainView = {
     return $0
@@ -16,7 +24,8 @@ final class TopicPhotoCell: UICollectionViewCell {
   // MARK: - Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupPhotoView()
+    setupMainView()
+    mainView.delegate = self
   }
 
   required init?(coder: NSCoder) {
@@ -37,7 +46,7 @@ final class TopicPhotoCell: UICollectionViewCell {
   }
 
   // MARK: - Setup Views
-  private func setupPhotoView() {
+  private func setupMainView() {
     contentView.addSubview(mainView)
     mainView.fillSuperView()
   }

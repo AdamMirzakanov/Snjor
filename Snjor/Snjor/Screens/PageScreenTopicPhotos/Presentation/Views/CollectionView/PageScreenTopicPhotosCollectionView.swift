@@ -15,7 +15,6 @@ final class PageScreenTopicPhotosCollectionView: UICollectionView {
   init() {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     cellRegister()
-//    headerRegister()
   }
   
   required init?(coder: NSCoder) {
@@ -29,12 +28,4 @@ final class PageScreenTopicPhotosCollectionView: UICollectionView {
       forCellWithReuseIdentifier: PageScreenTopicPhotoCell.reuseID
     )
   }
-  
-//  private func headerRegister() {
-//    register(
-//      SectionHeaderView.self,
-//      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-//      withReuseIdentifier: SectionHeaderView.reuseID
-//    )
-//  }
 }
