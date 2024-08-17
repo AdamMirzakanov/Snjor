@@ -62,12 +62,9 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
     
     let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
     let topic = topicsPageViewModelItem.topic
-    let topicPhotoListFactory = TopicPhotosFactory(topic: topic)
+    let topicPhotoListFactory = PageScreenTopicPhotosFactory(topic: topic)
     let topicID = topicsPageViewModelItem.topicID
-    let viewController = topicPhotoListFactory.makeModule(
-      delegate: self,
-      layoutType: .singleColumn
-    )
+    let viewController = topicPhotoListFactory.makeModule(delegate: self)
     
     guard let topicPhotoListCollectionViewController = (
       viewController as? PageScreenTopicPhotosViewController

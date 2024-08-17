@@ -1,34 +1,32 @@
 //
-//  PageScreenTopicPhotosViewController.swift
+//  TopicPhotosViewController.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 25.07.2024.
+//  Created by Адам Мирзаканов on 17.08.2024.
 //
 
 import UIKit
 import Combine
 
-protocol PageScreenTopicPhotosViewControllerDelegate: AnyObject {
+protocol TopicPhotosViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTopicPhotosRootView> {
+final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
   // MARK: - Internal Properties
-  var topicID: String?
-  var pageIndex: Int?
   
   // MARK: - Delegate
-  private(set) weak var delegate: (any PageScreenTopicPhotosViewControllerDelegate)?
+  private(set) weak var delegate: (any TopicPhotosViewControllerDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) var viewModel: any PageScreenTopicPhotosViewModelProtocol
+  private(set) var viewModel: any TopicPhotosViewModelProtocol
   
   // MARK: - Initializers
   init(
-    viewModel: any PageScreenTopicPhotosViewModelProtocol,
-    delegate: any PageScreenTopicPhotosViewControllerDelegate,
+    viewModel: any TopicPhotosViewModelProtocol,
+    delegate: any TopicPhotosViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel
@@ -57,7 +55,7 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   // MARK: - Private Methods
   private func setupDataSource() {
     viewModel.createDataSource(
-      for: rootView.pageScreenTopicPhotosCollectionView
+      for: rootView.topicPhotosCollectionView
     )
   }
   
@@ -83,6 +81,6 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   }
   
   private func configCollectionView() {
-    rootView.pageScreenTopicPhotosCollectionView.delegate = self
+    rootView.topicPhotosCollectionView.delegate = self
   }
 }

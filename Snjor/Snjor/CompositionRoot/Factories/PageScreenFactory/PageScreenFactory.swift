@@ -1,5 +1,5 @@
 //
-//  TopicsPageFactory.swift
+//  PageScreenFactory.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-struct TopicsPageFactory: TopicsPageFactoryProtocol {
+struct PageScreenFactory: PageScreenFactoryProtocol {
   
   // MARK: - Internal Methods
   func makeTabBarItem(navigation: any Navigable) {
@@ -23,20 +23,13 @@ struct TopicsPageFactory: TopicsPageFactoryProtocol {
   func makeModule() -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
     let networkService = NetworkService()
-    let repository = LoadTopicsPageRepository(
-      networkService: networkService
-    )
-    let loadUseCase = LoadTopicsUseCase(
-      repository: repository
-    )
-    let viewModel = TopicsViewModel(
-      state: state,
-      loadUseCase: loadUseCase
-    )
+    let repository = LoadTopicsPageRepository(networkService: networkService)
+    let loadUseCase = LoadTopicsUseCase(repository: repository)
+    let viewModel = TopicsViewModel(state: state, loadUseCase: loadUseCase)
     let module = PageScreenViewController(viewModel: viewModel)
     return module
   }
 }
 
 // MARK: - TabBarItemFactory
-extension TopicsPageFactory: TabBarItemFactory { }
+extension PageScreenFactory: TabBarItemFactory { }

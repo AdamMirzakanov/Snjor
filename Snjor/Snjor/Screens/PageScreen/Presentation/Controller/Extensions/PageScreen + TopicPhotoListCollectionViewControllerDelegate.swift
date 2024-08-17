@@ -7,6 +7,7 @@
 
 extension PageScreenViewController: PageScreenTopicPhotosViewControllerDelegate {
   func didSelect(_ photo: Photo) {
+    print(#function, Self.self)
     let photoDetailFactory = PhotoDetailFactory(photo: photo)
     let photoDetailViewController = photoDetailFactory.makeModule()
     navigationController?.pushViewController(

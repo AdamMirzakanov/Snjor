@@ -27,7 +27,7 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
 
   // MARK: - Private Methods
   private func makeTopicsPageCoordinator() -> any Coordinatable {
-    let factory = TopicsPageFactory()
+    let factory = PageScreenFactory()
     let navigationController = UINavigationController()
     let navigation = Navigation(rootViewController: navigationController)
     let coordinator = TopicsPageCoordinator(

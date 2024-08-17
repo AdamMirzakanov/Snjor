@@ -1,21 +1,21 @@
 //
-//  TopicPhotosFactory.swift
+//  TopicsPhotoListFactory.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 17.08.2024.
+//  Created by Адам Мирзаканов on 25.07.2024.
 //
 
 import UIKit
 import Combine
 
-struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
+struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
   
   // MARK: - Internal Properties
   let topic: Topic
   
   // MARK: - Internal Methods
   func makeModule(
-    delegate: any TopicPhotosViewControllerDelegate
+    delegate: any PageScreenTopicPhotosViewControllerDelegate
   ) -> UIViewController {
     let viewModel = createViewModel()
     let module = createViewController(viewModel: viewModel, delegate: delegate)
@@ -24,13 +24,13 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   }
   
   // MARK: - Private Methods
-  private func createViewModel() -> TopicPhotosViewModel {
+  private func createViewModel() -> PageScreenTopicPhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let repository = LoadTopicPhotosRepository(networkService: networkService)
     let loadUseCase = LoadTopicPhotosUseCase(repository: repository, topic: topic)
-    return TopicPhotosViewModel(
+    return PageScreenTopicPhotosViewModel(
       state: state,
       loadUseCase: loadUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
@@ -38,24 +38,23 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   }
   
   private func createViewController(
-    viewModel: TopicPhotosViewModel,
-    delegate: any TopicPhotosViewControllerDelegate
-  ) -> TopicPhotosViewController {
+    viewModel: PageScreenTopicPhotosViewModel,
+    delegate: any PageScreenTopicPhotosViewControllerDelegate
+  ) -> PageScreenTopicPhotosViewController {
     let defaultLayout = UICollectionViewLayout()
-    let module = TopicPhotosViewController(
+    let module = PageScreenTopicPhotosViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout
     )
-    module.rootView.topicPhotosCollectionView.showsVerticalScrollIndicator = false
+    module.rootView.pageScreenTopicPhotosCollectionView.showsVerticalScrollIndicator = false
     return module
   }
   
   private func configureLayout(
-    for module: TopicPhotosViewController
+    for module: PageScreenTopicPhotosViewController
   ) {
     let cascadeLayout = SingleColumnCascadeLayout(with: module)
-    module.rootView.topicPhotosCollectionView.collectionViewLayout = cascadeLayout
+    module.rootView.pageScreenTopicPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }
-

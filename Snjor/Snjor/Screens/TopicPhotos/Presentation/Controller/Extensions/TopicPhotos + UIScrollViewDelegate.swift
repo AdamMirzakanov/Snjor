@@ -1,13 +1,13 @@
 //
-//  PageScreenTopicPhotos + UIScrollViewDelegate.swift
+//  TopicPhotos + UIScrollViewDelegate.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 25.07.2024.
+//  Created by Адам Мирзаканов on 17.08.2024.
 //
 
 import UIKit
 
-extension PageScreenTopicPhotosViewController {
+extension TopicPhotosViewController {
   override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
     return .bottom
   }

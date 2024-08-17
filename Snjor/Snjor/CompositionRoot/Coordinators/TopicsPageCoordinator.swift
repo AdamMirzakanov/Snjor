@@ -10,11 +10,11 @@ final class TopicsPageCoordinator: Coordinatable {
   var navigation: any Navigable
   
   // MARK: - Private Properties
-  private let factory: any TopicsPageFactoryProtocol
+  private let factory: any PageScreenFactoryProtocol
   
   // MARK: - Initializers
   init(
-    factory: any TopicsPageFactoryProtocol,
+    factory: any PageScreenFactoryProtocol,
     navigation: any Navigable
   ) {
     self.factory = factory

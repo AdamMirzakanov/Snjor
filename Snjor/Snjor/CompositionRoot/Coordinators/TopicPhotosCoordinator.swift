@@ -5,7 +5,7 @@
 //  Created by Адам Мирзаканов on 16.08.2024.
 //
 
-final class TopicPhotosCoordinator: Coordinatable, PageScreenTopicPhotosViewControllerDelegate {
+final class TopicPhotosCoordinator: Coordinatable, TopicPhotosViewControllerDelegate {
   
   // MARK: - Internal Properties
   var navigation: any Navigable
@@ -27,7 +27,7 @@ final class TopicPhotosCoordinator: Coordinatable, PageScreenTopicPhotosViewCont
 
   // MARK: - Internal Methods
   func start() {
-    let controller = factory.makeModule(delegate: self, layoutType: .multiColumn)
+    let controller = factory.makeModule(delegate: self)
     navigation.pushViewController(controller, animated: true) { [weak self] in
       guard let self = self else { return }
       self.overlordCoordinator?.removeChildCoordinator(self)
