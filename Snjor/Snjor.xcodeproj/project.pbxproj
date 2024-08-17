@@ -947,8 +947,8 @@
 			isa = PBXGroup;
 			children = (
 				37A502B52C6E3CF1000221D1 /* LayoutProvider.swift */,
-				37A502B12C6E3626000221D1 /* AlbumsLayoutFactory.swift */,
 				37A502B32C6E3A19000221D1 /* TopicsLayoutFactory.swift */,
+				37A502B12C6E3626000221D1 /* AlbumsLayoutFactory.swift */,
 				37A502B82C6E4822000221D1 /* SupplementaryViewKind.swift */,
 			);
 			path = CollectionsLayout;

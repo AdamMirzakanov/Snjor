@@ -26,9 +26,9 @@ struct AlbumsLayoutFactory {
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(
       top: .zero,
-      leading: 4.0,
+      leading: .zero,
       bottom: 32,
-      trailing: 4.0
+      trailing: .zero
     )
     return item
   }
@@ -44,6 +44,7 @@ struct AlbumsLayoutFactory {
       layoutSize: groupSize,
       subitems: [item]
     )
+    horizontalGroup.interItemSpacing = .fixed(8)
     let verticalGroup = NSCollectionLayoutGroup.vertical(
       layoutSize: groupSize,
       subitems: [horizontalGroup]
@@ -57,9 +58,9 @@ struct AlbumsLayoutFactory {
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets = NSDirectionalEdgeInsets(
       top: 24.0,
-      leading: 4.0,
+      leading: 12.0,
       bottom: .zero,
-      trailing: 4.0
+      trailing: 12.0
     )
     return section
   }
