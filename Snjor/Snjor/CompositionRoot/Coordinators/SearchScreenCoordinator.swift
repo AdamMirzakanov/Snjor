@@ -26,7 +26,7 @@ final class SearchScreenCoordinator: Coordinatable {
   func start() {
     let controller = factory.makeModule(delegate: self)
 //    factory.makeTabBarItem(navigation: navigation)
-    navigation.pushViewController(controller, animated: true)
+    navigation.pushViewController(controller, animated: true) 
     navigation.navigationBar.prefersLargeTitles = true
   }
 }

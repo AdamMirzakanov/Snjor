@@ -9,8 +9,8 @@ import UIKit
 
 extension SearchScreenViewController {
   
-  private typealias DataSource = UICollectionViewDiffableDataSource<PhotoListSection, Photo>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot<PhotoListSection, Photo>
+  private typealias DataSource = UICollectionViewDiffableDataSource<PhotosSection, Photo>
+  private typealias Snapshot = NSDiffableDataSourceSnapshot<PhotosSection, Photo>
   
   // MARK: - Private Properties
   private var photosSnapshot: Snapshot {

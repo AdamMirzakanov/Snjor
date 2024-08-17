@@ -16,9 +16,9 @@ protocol SearchScreenViewControllerDelegate: AnyObject {
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
   
   // MARK: - Internal Properties
-  var photosDataSource: UICollectionViewDiffableDataSource<PhotoListSection, Photo>?
+  var photosDataSource: UICollectionViewDiffableDataSource<PhotosSection, Photo>?
   var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, CollectionsItem>?
-  var photosSections: [PhotoListSection] = []
+  var photosSections: [PhotosSection] = []
   var collectionsSections: [CollectionsSection] = []
   
   // MARK: - Private Properties

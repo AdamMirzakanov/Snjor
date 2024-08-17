@@ -28,6 +28,7 @@ final class TopicPhotosCoordinator: Coordinatable, TopicPhotosViewControllerDele
   // MARK: - Internal Methods
   func start() {
     let controller = factory.makeModule(delegate: self)
+    print(#function)
     navigation.pushViewController(controller, animated: true) { [weak self] in
       guard let self = self else { return }
       self.overlordCoordinator?.removeChildCoordinator(self)

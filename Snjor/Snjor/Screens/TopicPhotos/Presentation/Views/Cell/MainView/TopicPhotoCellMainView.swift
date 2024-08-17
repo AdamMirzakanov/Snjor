@@ -55,7 +55,7 @@ final class TopicPhotoCellMainView: BaseImageContainerView {
     $0.stopAnimating()
     $0.color = .label
     $0.transform = CGAffineTransform(
-      scaleX: PhotoDetailRootViewConst.spinnerScale,
+      scaleX: PhotoDetailRootViewConst.spinnerScale, 
       y: PhotoDetailRootViewConst.spinnerScale
     )
     $0.alpha = GlobalConst.defaultAlpha
