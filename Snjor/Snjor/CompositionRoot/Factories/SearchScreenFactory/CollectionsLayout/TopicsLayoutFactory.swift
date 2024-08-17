@@ -37,7 +37,7 @@ struct TopicsLayoutFactory {
   ) -> NSCollectionLayoutGroup {
     let groupSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(0.92),
-      heightDimension: .estimated(350)
+      heightDimension: .estimated(250)
     )
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
@@ -52,7 +52,7 @@ struct TopicsLayoutFactory {
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .groupPagingCentered
     section.contentInsets = NSDirectionalEdgeInsets(
-      top: .zero,
+      top: 12,
       leading: 4.0,
       bottom: 4.0 * 5,
       trailing: 4.0

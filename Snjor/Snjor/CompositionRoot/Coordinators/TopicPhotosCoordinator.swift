@@ -5,11 +5,12 @@
 //  Created by Адам Мирзаканов on 16.08.2024.
 //
 
-final class TopicPhotosCoordinator: Coordinatable, TopicPhotosViewControllerDelegate {
+final class TopicPhotosCoordinator: Coordinatable {
   
   // MARK: - Internal Properties
   var navigation: any Navigable
-
+  var childCoordinators: [any Coordinatable] = []
+  
   // MARK: - Private Properties
   private let factory: any TopicPhotosFactoryProtocol
   private weak var overlordCoordinator: (any ParentCoordinator)?
@@ -28,7 +29,6 @@ final class TopicPhotosCoordinator: Coordinatable, TopicPhotosViewControllerDele
   // MARK: - Internal Methods
   func start() {
     let controller = factory.makeModule(delegate: self)
-    print(#function)
     navigation.pushViewController(controller, animated: true) { [weak self] in
       guard let self = self else { return }
       self.overlordCoordinator?.removeChildCoordinator(self)
@@ -38,8 +38,15 @@ final class TopicPhotosCoordinator: Coordinatable, TopicPhotosViewControllerDele
   }
 }
 
-extension TopicPhotosCoordinator {
+extension TopicPhotosCoordinator: TopicPhotosViewControllerDelegate {
   func didSelect(_ photo: Photo) {
-    print(#function, Self.self)
+    let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
+      navigation: navigation,
+      photo: photo,
+      parentCoordinator: self
+    )
+    addAndStartChildCoordinator(photoDetailCoordinator)
   }
 }
+
+extension TopicPhotosCoordinator: ParentCoordinator { }
