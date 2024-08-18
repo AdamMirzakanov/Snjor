@@ -77,7 +77,7 @@ final class MainTabBarController: UITabBarController {
       white: .zero,
       alpha: 1
     )
-    
+    $0.isUserInteractionEnabled = false
     $0.frame = CGRect(
       x: 0,
       y: view.bounds.height - 150,
