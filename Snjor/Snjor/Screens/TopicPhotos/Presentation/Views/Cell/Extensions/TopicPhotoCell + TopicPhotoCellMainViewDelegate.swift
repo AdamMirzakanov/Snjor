@@ -1,5 +1,5 @@
 //
-//  TopicPhotoCell + TopicPhotoCellDelegate.swift
+//  TopicPhotoCell + TopicPhotoCellMainViewDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 17.08.2024.
