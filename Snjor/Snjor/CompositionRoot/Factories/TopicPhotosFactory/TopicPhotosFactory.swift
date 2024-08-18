@@ -28,15 +28,12 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
     photo: Photo,
     parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
-    
     let factory = PhotoDetailFactory(photo: photo)
-   
     let coordinator = PhotoDetailCoordinator(
       factory: factory,
       navigation: navigation,
       overlordCoordinator: parentCoordinator
     )
-//    coordinator.start()
     return coordinator
   }
   

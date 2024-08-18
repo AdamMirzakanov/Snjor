@@ -13,12 +13,15 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   // MARK: - Private Properties
   private(set) var viewModel: any TopicsViewModelProtocol
   private var cancellable = Set<AnyCancellable>()
+  private(set) var coordinator: any PageScreenTopicPhotosViewControllerDelegate
   
   // MARK: - Initializers
   init(
-    viewModel: any TopicsViewModelProtocol
+    viewModel: any TopicsViewModelProtocol,
+    coordinator: any PageScreenTopicPhotosViewControllerDelegate
   ) {
     self.viewModel = viewModel
+    self.coordinator = coordinator
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -53,7 +56,10 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   }
   
   // MARK: - Internal Methods
-  func viewControllerForTopic(at index: Int) -> UIViewController? {
+  func viewControllerForTopic(
+    at index: Int,
+    delegate: any PageScreenTopicPhotosViewControllerDelegate
+  ) -> UIViewController? {
     guard
       index >= 0,
       index < viewModel.topicsCount else {
@@ -64,7 +70,7 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
     let topic = topicsPageViewModelItem.topic
     let topicPhotoListFactory = PageScreenTopicPhotosFactory(topic: topic)
     let topicID = topicsPageViewModelItem.topicID
-    let viewController = topicPhotoListFactory.makeModule(delegate: self)
+    let viewController = topicPhotoListFactory.makeModule(delegate: coordinator)
     
     guard let topicPhotoListCollectionViewController = (
       viewController as? PageScreenTopicPhotosViewController
@@ -104,7 +110,9 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   }
   
   private func setFirstPage() {
-    guard let firstPage = self.viewControllerForTopic(at: .zero) else {
+    guard 
+      let firstPage = self.viewControllerForTopic(at: .zero, delegate: coordinator)
+    else {
       return
     }
     rootView.pageViewController.setViewControllers(
@@ -133,7 +141,9 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   
   private func updateIndicatorToInitialPosition() {
     let firstItemIndexPath = IndexPath(item: .zero, section: .zero)
-    guard let cell = rootView.topicsCollectionView.cellForItem(at: firstItemIndexPath) else {
+    guard 
+      let cell = rootView.topicsCollectionView.cellForItem(at: firstItemIndexPath)
+    else {
       return
     }
     rootView.topicsCollectionView.updateIndicatorPosition(for: cell)

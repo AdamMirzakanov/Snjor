@@ -13,7 +13,7 @@ extension PageScreenViewController: UICollectionViewDelegate {
     didSelectItemAt indexPath: IndexPath
   ) {
     guard
-      let page = viewControllerForTopic(at: indexPath.item),
+      let page = viewControllerForTopic(at: indexPath.item, delegate: coordinator),
       let cell = collectionView.cellForItem(at: indexPath)
     else {
       return

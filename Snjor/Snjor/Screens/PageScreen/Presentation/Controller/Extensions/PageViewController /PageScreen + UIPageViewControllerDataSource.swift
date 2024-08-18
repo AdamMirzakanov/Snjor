@@ -19,7 +19,7 @@ extension PageScreenViewController: UIPageViewControllerDataSource {
     else {
       return nil
     }
-    return viewControllerForTopic(at: index - 1)
+    return viewControllerForTopic(at: index - 1, delegate: coordinator)
   }
   
   func pageViewController(
@@ -32,6 +32,6 @@ extension PageScreenViewController: UIPageViewControllerDataSource {
     else {
       return nil
     }
-    return viewControllerForTopic(at: index + 1)
+    return viewControllerForTopic(at: index + 1, delegate: coordinator)
   }
 }
