@@ -58,6 +58,11 @@ class AlbumPhotosViewController: BaseViewController<AlbumPhotosRootView> {
     stateController()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setupUI()
+  }
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     if self.isMovingFromParent || self.isBeingDismissed {
@@ -106,4 +111,10 @@ class AlbumPhotosViewController: BaseViewController<AlbumPhotosRootView> {
     rootView.albumPhotosCollectionView.delegate = self
   }
   
+  private func setupUI() {
+    rootView.setupBarButtonItems(
+      navigationItem: navigationItem,
+      navigationController: navigationController
+    )
+  }
 }

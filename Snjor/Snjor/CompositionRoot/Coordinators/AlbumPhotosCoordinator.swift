@@ -34,7 +34,7 @@ final class AlbumPhotosCoordinator: Coordinatable {
       self.overlordCoordinator?.removeChildCoordinator(self)
     }
     navigation.navigationBar.tintColor = .label
-    controller.navigationItem.largeTitleDisplayMode = .never
+//    controller.navigationItem.largeTitleDisplayMode = .never
   }
 }
 

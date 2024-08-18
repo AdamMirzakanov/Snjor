@@ -58,6 +58,11 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
     stateController()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setupUI()
+  }
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     if self.isMovingFromParent || self.isBeingDismissed {
@@ -104,5 +109,12 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
   private func configCollectionView() {
     rootView.topicPhotosCollectionView.delegate = self
+  }
+  
+  private func setupUI() {
+    rootView.setupBarButtonItems(
+      navigationItem: navigationItem,
+      navigationController: navigationController
+    )
   }
 }

@@ -16,6 +16,7 @@ final class AlbumPhotosCollectionView: UICollectionView {
   init() {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     cellRegister()
+    showsVerticalScrollIndicator = false
   }
   
   required init?(coder: NSCoder) {

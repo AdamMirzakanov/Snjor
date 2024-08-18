@@ -42,7 +42,7 @@ final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
   
   func getTopicPhotoListViewModelItem(
     at index: Int
-  ) -> PageScreenTopicPhotosViewModelItem {
+  ) -> TopicPhotosViewModelItem {
     checkAndLoadMorePhotos(at: index)
     return makeTopicPhotoListViewModelItem(at: index)
   }
@@ -76,8 +76,8 @@ final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
   
   private func makeTopicPhotoListViewModelItem(
     at index: Int
-  ) -> PageScreenTopicPhotosViewModelItem {
+  ) -> TopicPhotosViewModelItem {
     let photo = photos[index]
-    return PageScreenTopicPhotosViewModelItem(photo: photo)
+    return TopicPhotosViewModelItem(photo: photo)
   }
 }

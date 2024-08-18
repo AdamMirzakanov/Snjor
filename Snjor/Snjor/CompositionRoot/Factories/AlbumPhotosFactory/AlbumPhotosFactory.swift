@@ -61,7 +61,6 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
       delegate: delegate,
       layout: defaultLayout
     )
-    module.rootView.albumPhotosCollectionView.showsVerticalScrollIndicator = false
     return module
   }
   
