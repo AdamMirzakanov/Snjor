@@ -19,6 +19,7 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   ) -> UIViewController {
     let viewModel = createViewModel()
     let module = createViewController(viewModel: viewModel, delegate: delegate)
+    module.navigationItem.title = topic.title
     configureLayout(for: module)
     return module
   }
