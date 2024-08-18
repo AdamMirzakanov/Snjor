@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TagCell: UICollectionViewCell, Reusable {
+final class TagCell: UICollectionViewCell {
   
   private let tagLabel: UILabel = {
     let label = UILabel()
