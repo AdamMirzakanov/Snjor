@@ -997,6 +997,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3770E1AC2C722EF30017ECBB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				37DABC4E2C6AA2C7009044D4 /* TagCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		3793F7052C5AED9700CFE54D /* RootView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1070,7 +1078,7 @@
 			isa = PBXGroup;
 			children = (
 				3770E1A42C722E370017ECBB /* CollectionView */,
-				37DABC4E2C6AA2C7009044D4 /* TagCell.swift */,
+				3770E1AC2C722EF30017ECBB /* Cell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
