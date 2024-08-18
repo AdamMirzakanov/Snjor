@@ -14,8 +14,6 @@ protocol TopicPhotosViewControllerDelegate: AnyObject {
 
 final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
-  // MARK: - Internal Properties
-  
   // MARK: - Delegate
   private(set) weak var delegate: (any TopicPhotosViewControllerDelegate)?
   

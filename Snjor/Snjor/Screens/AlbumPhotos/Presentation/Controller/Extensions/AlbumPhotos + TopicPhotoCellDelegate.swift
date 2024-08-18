@@ -5,4 +5,11 @@
 //  Created by Адам Мирзаканов on 18.08.2024.
 //
 
-import Foundation
+extension AlbumPhotosViewController: AlbumPhotoCellDelegate {
+  func downloadTapped(_ cell: AlbumPhotoCell) {
+    if let indexPath = rootView.albumPhotosCollectionView.indexPath(for: cell) {
+      let photo = viewModel.getPhoto(at: indexPath.item)
+      downloadService.startDownload(photo, sessionID: Self.sessionID)
+    }
+  }
+}

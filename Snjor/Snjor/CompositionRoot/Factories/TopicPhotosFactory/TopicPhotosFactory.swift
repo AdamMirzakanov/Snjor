@@ -72,4 +72,3 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
     module.rootView.topicPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }
-

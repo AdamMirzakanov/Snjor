@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+extension AlbumPhotosViewController: CascadeLayoutDelegate {
+  func cascadeLayout(
+    _ layout: any CascadeLayoutConformable,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
+    let photo = viewModel.getPhoto(at: indexPath.item)
+    return CGSize(width: photo.width, height: photo.height)
+  }
+}
