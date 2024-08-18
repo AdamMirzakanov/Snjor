@@ -10,7 +10,6 @@ import Combine
 final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
   
   // MARK: - Internal Properties
-//  var photosCount: Int { photos.count }
   var state: PassthroughSubject<StateController, Never>
   var photos: [Photo] = []
   

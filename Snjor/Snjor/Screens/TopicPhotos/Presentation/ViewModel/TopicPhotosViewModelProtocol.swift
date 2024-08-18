@@ -6,9 +6,10 @@
 //
 
 protocol TopicPhotosViewModelProtocol: BaseViewModelProtocol {
-  //  var photosCount: Int { get }
   var photos: [Photo] { get }
-  func getTopicPhotoListViewModelItem(at index: Int) -> PageScreenTopicPhotosViewModelItem
+  func getTopicPhotoListViewModelItem(
+    at index: Int
+  ) -> PageScreenTopicPhotosViewModelItem
   func getPhoto(at index: Int) -> Photo
   func checkAndLoadMorePhotos(at index: Int)
 }
