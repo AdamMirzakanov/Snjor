@@ -13,16 +13,19 @@ extension SearchScreenViewController: UICollectionViewDelegate {
     didSelectItemAt indexPath: IndexPath
   ) {
     guard let delegate = delegate else { return }
-    
     switch currentScopeIndex {
-    case 0:
+    case .zero:
       let photo = photosViewModel.getPhoto(at: indexPath.item)
       delegate.photoCellDidSelect(photo)
-    case 1:
-      let topic = topicsViewModel.getTopic(at: indexPath.item)
-      delegate.topicCellDidSelect(topic)
     default:
-      print("Selected a different scope")
+      switch indexPath.section {
+      case .zero:
+        let topic = topicsViewModel.getTopic(at: indexPath.item)
+        delegate.topicCellDidSelect(topic)
+      default:
+        let album = albumsViewModel.getAlbum(at: indexPath.item)
+        delegate.albumcCellDidSelect(album)
+      }
     }
   }
 }

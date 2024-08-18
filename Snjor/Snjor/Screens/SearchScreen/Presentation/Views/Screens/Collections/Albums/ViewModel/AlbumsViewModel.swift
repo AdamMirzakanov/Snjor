@@ -37,6 +37,10 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
     }
   }
   
+  func getAlbum(at index: Int) -> Album {
+    albums[index]
+  }
+  
   func getAlbumsViewModelItem(
     at index: Int
   ) -> AlbumsViewModelItem {
