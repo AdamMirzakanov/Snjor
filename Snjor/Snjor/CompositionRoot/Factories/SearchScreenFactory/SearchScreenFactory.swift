@@ -56,6 +56,19 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     )
   }
   
+  func mekeAlbumPhotosCoordinator(
+    album: Album,
+    navigation: any Navigable,
+    overlordCoordinator: any ParentCoordinator
+  ) -> any Coordinatable {
+    let factory = AlbumPhotosFactory(album: album)
+    return AlbumPhotosCoordinator(
+      factory: factory,
+      navigation: navigation,
+      overlordCoordinator: overlordCoordinator
+    )
+  }
+  
   // MARK: - Private Methods
   private func getModule(
     _ delegate: any SearchScreenViewControllerDelegate

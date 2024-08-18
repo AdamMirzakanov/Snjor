@@ -23,4 +23,10 @@ protocol SearchScreenFactoryProtocol {
     navigation: any Navigable,
     overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable
+  
+  func mekeAlbumPhotosCoordinator(
+    album: Album,
+    navigation: any Navigable,
+    overlordCoordinator: any ParentCoordinator
+  ) -> any Coordinatable
 }

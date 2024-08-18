@@ -11,6 +11,7 @@ import Combine
 protocol SearchScreenViewControllerDelegate: AnyObject {
   func photoCellDidSelect(_ photo: Photo)
   func topicCellDidSelect(_ topic: Topic)
+  func albumcCellDidSelect(_ album: Album)
 }
 
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
