@@ -58,9 +58,9 @@ struct AlbumsLayoutFactory {
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets = NSDirectionalEdgeInsets(
       top: 24.0,
-      leading: 12.0,
+      leading: 16.0,
       bottom: .zero,
-      trailing: 12.0
+      trailing: 16.0
     )
     return section
   }

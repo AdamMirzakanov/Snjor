@@ -25,6 +25,8 @@ extension SearchScreenViewController: UISearchBarDelegate {
       rootView.albumsCollectionView.fillSuperView()
       navigationItem.title = "Collections"
     default:
+      rootView.photosCollectionView.isHidden = true
+      rootView.albumsCollectionView.isHidden = true
       navigationItem.title = "Users"
       print(#function)
     }

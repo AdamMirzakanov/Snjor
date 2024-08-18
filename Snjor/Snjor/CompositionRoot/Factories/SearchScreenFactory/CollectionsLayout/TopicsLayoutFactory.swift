@@ -36,8 +36,8 @@ struct TopicsLayoutFactory {
     item: NSCollectionLayoutItem
   ) -> NSCollectionLayoutGroup {
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(0.92),
-      heightDimension: .estimated(250)
+      widthDimension: .fractionalWidth(0.94),
+      heightDimension: .estimated(400)
     )
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
