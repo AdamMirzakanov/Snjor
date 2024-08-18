@@ -38,6 +38,21 @@ enum PrepareRequests {
     return request
   }
   
+  static func prepareAlbumPhotosAPIRequest(
+    albums: String,
+    id: String,
+    phtos: String,
+    parameters: [String: String]
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: albums, parameters: parameters) else {
+      throw APIError.URLError
+    }
+    let albumIdURL = url.appending(path: id)
+    let albumPhotosURL = albumIdURL.appending(path: phtos)
+    let request = prepareURLRequest(url: albumPhotosURL)
+    return request
+  }
+  
   static func preparePhotoInfoAPIRequest(
     path: String,
     id: String

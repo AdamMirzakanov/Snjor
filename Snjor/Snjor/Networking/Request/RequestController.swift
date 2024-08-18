@@ -12,7 +12,7 @@ enum RequestController {
   private static var photos: Endpoints { .photos }
   private static var topics: Endpoints { .topics }
   private static var searchPhotos: Endpoints { .searchPhotos }
-  private static var collections: Endpoints { .collections }
+  private static var albums: Endpoints { .collections }
   private static var searchCollections: Endpoints { .searchCollections }
 
   // MARK: - Internal Methods
@@ -56,6 +56,21 @@ enum RequestController {
     return request
   }
   
+  /// Фотографии внутри альбомов
+  static func albumPhotosRequest(album: Album) throws -> URLRequest {
+    let albumsPath = albums.rawValue
+    let id = album.id
+    let photosPath = photos.rawValue
+    let parameters = PrepareParameters.preparePhotoParameters()
+    let request = try PrepareRequests.prepareAlbumPhotosAPIRequest(
+      albums: albumsPath,
+      id: id,
+      phtos: photosPath,
+      parameters: parameters
+    )
+    return request
+  }
+  
   /// Категория
   static func topicsTitleRequest() throws -> URLRequest {
     let topicsPath = topics.rawValue
@@ -65,7 +80,7 @@ enum RequestController {
   
   /// Альбомы
   static func albumsRequest() throws -> URLRequest {
-    let path = collections.rawValue
+    let path = albums.rawValue
     let parameters = PrepareParameters.prepareAlbumParameters()
     let request = try PrepareRequests.prepareAPIRequest(
       path: path,
