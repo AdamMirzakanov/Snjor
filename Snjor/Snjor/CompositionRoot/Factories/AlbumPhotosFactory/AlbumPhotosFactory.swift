@@ -19,6 +19,7 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
   ) -> UIViewController {
     let viewModel = createViewModel()
     let module = createViewController(viewModel: viewModel, delegate: delegate)
+    module.navigationItem.title = album.title.uppercased()
     configureLayout(for: module)
     return module
   }

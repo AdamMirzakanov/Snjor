@@ -33,9 +33,6 @@ final class TopicPhotosCoordinator: Coordinatable {
       guard let self = self else { return }
       self.overlordCoordinator?.removeChildCoordinator(self)
     }
-    navigation.navigationBar.tintColor = .label
-//    controller.navigationItem.largeTitleDisplayMode = .never
-    
   }
 }
 

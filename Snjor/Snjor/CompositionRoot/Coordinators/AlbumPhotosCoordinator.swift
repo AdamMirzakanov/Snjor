@@ -33,8 +33,7 @@ final class AlbumPhotosCoordinator: Coordinatable {
       guard let self = self else { return }
       self.overlordCoordinator?.removeChildCoordinator(self)
     }
-    navigation.navigationBar.tintColor = .label
-//    controller.navigationItem.largeTitleDisplayMode = .never
+    controller.navigationItem.largeTitleDisplayMode = .never
   }
 }
 

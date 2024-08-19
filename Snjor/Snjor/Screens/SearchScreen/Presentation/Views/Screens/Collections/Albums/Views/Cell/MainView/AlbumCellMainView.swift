@@ -13,13 +13,6 @@ final class AlbumCellMainView: BaseImageContainerView {
   private var screenScale: CGFloat {
     UIScreen.main.scale
   }
-  
-  private var showsUsername = true {
-    didSet {
-      userNameLabel.alpha = showsUsername ? GlobalConst.maxAlpha : .zero
-      gradientView.alpha = showsUsername ? GlobalConst.maxAlpha : .zero
-    }
-  }
 
   let secondImageView: UIView = {
     $0.contentMode = .scaleAspectFill
@@ -44,7 +37,7 @@ final class AlbumCellMainView: BaseImageContainerView {
     $0.setColors([
       GradientView.Color(
         color: .clear,
-        location: BasePhotoViewConst.downLocation
+        location: 0.2
       ),
       GradientView.Color(
         color: color,
@@ -68,25 +61,6 @@ final class AlbumCellMainView: BaseImageContainerView {
     $0.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
     $0.layer.shadowRadius = 0.5
     $0.layer.masksToBounds = false
-    return $0
-  }(UILabel())
-  
-  let userNameLabel: UILabel = {
-    $0.textColor = .white
-    $0.font = .systemFont(
-      ofSize: GlobalConst.defaultFontSize,
-      weight: .medium
-    )
-    return $0
-  }(UILabel())
-  
-  let totalPhotosLabel: UILabel = {
-    $0.textColor = .white
-    $0.font = .systemFont(
-      ofSize: 12.0,
-      weight: .medium
-    )
-    $0.alpha = 0.8
     return $0
   }(UILabel())
   
@@ -122,7 +96,6 @@ final class AlbumCellMainView: BaseImageContainerView {
   // MARK: - Setup Data
   func configure(
     with album: Album,
-    showsUsername: Bool = true,
     url: URL?
   ) {
     super.configure(
@@ -130,10 +103,7 @@ final class AlbumCellMainView: BaseImageContainerView {
       blurHash: album.previewPhotos[.zero].blurHash,
       photoID: album.id
     )
-    self.showsUsername = showsUsername
     titleLabel.text = album.title.uppercased()
-    totalPhotosLabel.text = "\(album.totalPhotos) photos"
-    
     secondImageView.backgroundColor = .systemGray3
     thirdImageView.backgroundColor = .systemGray5
   }
@@ -145,11 +115,8 @@ final class AlbumCellMainView: BaseImageContainerView {
   private func reset() {
     currentPhotoID = nil
     mainImageView.image = nil
-    userNameLabel.text = nil
     titleLabel.text = nil
-    totalPhotosLabel.text = nil
     imageDownloader.cancel()
-    
   }
   
   // MARK: - Setup Views
@@ -164,7 +131,6 @@ final class AlbumCellMainView: BaseImageContainerView {
     addSubview(mainImageView)
     mainImageView.addSubview(gradientView)
     addSubview(titleLabel)
-    addSubview(totalPhotosLabel)
   }
   
   private func setupConstraints() {
@@ -199,13 +165,6 @@ final class AlbumCellMainView: BaseImageContainerView {
       gradientView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor)
     ])
     
-    totalPhotosLabel.setConstraints(
-      right: mainImageView.rightAnchor,
-      bottom: mainImageView.bottomAnchor,
-      pRight: GlobalConst.defaultValue,
-      pBottom: GlobalConst.defaultValue
-    )
-    
     titleLabel.setConstraints(
       top: mainImageView.topAnchor,
       right: mainImageView.rightAnchor,
@@ -216,5 +175,3 @@ final class AlbumCellMainView: BaseImageContainerView {
     )
   }
 }
-
-
