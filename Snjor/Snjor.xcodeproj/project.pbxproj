@@ -726,6 +726,43 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
+		376EECE72C73FD71009A2421 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				667A59872C1EE63B00FE4985 /* LoadPhotosUseCase.swift */,
+				667A59892C1EE66A00FE4985 /* LoadPhotosRepository.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		376EECE82C73FD77009A2421 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				379476242C64F681004AFF0E /* LoadAlbumsUseCase.swift */,
+				379476222C64F663004AFF0E /* LoadAlbumsRepository.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		376EECE92C73FDFE009A2421 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				664A51612C1E4CFA003491BA /* ViewModel */,
+				667A598D2C1EF69700FE4985 /* Views */,
+				66BE9C5E2C1F10C30006011A /* Layout */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		376EECEA2C73FE36009A2421 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3794760D2C64E5EB004AFF0E /* ViewModel */,
+				3794760C2C64E5E3004AFF0E /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		3770E1312C6FFB830017ECBB /* TopicPhotos */ = {
 			isa = PBXGroup;
 			children = (
@@ -1327,24 +1364,6 @@
 			path = Collections;
 			sourceTree = "<group>";
 		};
-		37A502DE2C6EBA74000221D1 /* Albums */ = {
-			isa = PBXGroup;
-			children = (
-				379476242C64F681004AFF0E /* LoadAlbumsUseCase.swift */,
-				379476222C64F663004AFF0E /* LoadAlbumsRepository.swift */,
-			);
-			path = Albums;
-			sourceTree = "<group>";
-		};
-		37A502DF2C6EBA80000221D1 /* Photos */ = {
-			isa = PBXGroup;
-			children = (
-				667A59872C1EE63B00FE4985 /* LoadPhotosUseCase.swift */,
-				667A59892C1EE66A00FE4985 /* LoadPhotosRepository.swift */,
-			);
-			path = Photos;
-			sourceTree = "<group>";
-		};
 		37D65F582C5924E1006994B2 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1374,9 +1393,8 @@
 		37DABC462C6AA199009044D4 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
-				664A51612C1E4CFA003491BA /* ViewModel */,
-				667A598D2C1EF69700FE4985 /* Views */,
-				66BE9C5E2C1F10C30006011A /* Layout */,
+				376EECE92C73FDFE009A2421 /* Presentation */,
+				376EECE72C73FD71009A2421 /* Domain */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
@@ -1384,8 +1402,8 @@
 		37DABC472C6AA1A1009044D4 /* Albums */ = {
 			isa = PBXGroup;
 			children = (
-				3794760D2C64E5EB004AFF0E /* ViewModel */,
-				3794760C2C64E5E3004AFF0E /* Views */,
+				376EECEA2C73FE36009A2421 /* Presentation */,
+				376EECE82C73FD77009A2421 /* Domain */,
 			);
 			path = Albums;
 			sourceTree = "<group>";
@@ -1442,8 +1460,6 @@
 		6637692C2C45682E006AB620 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				37A502DF2C6EBA80000221D1 /* Photos */,
-				37A502DE2C6EBA74000221D1 /* Albums */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
