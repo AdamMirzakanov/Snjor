@@ -90,6 +90,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
       "Collections",
       "Users"
     ]
+    searchController.searchBar.placeholder = "Search photos, collections, users"
   }
   
   private func setupNavigationItem() {
