@@ -32,9 +32,3 @@ extension SearchScreenViewController: UISearchBarDelegate {
     }
   }
 }
-
-extension SearchScreenViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    //    print(#function)
-  }
-}

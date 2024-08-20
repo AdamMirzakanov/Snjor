@@ -27,6 +27,16 @@ enum RequestController {
     )
     return request
   }
+  
+  static func searchPhotosRequest(with searchTerm: String) throws -> URLRequest {
+    let path = searchPhotos.rawValue
+    let parameters = PrepareParameters.prepareSearchPhotoParameters(with: searchTerm)
+    let request = try PrepareRequests.prepareAPIRequest(
+      path: path,
+      parameters: parameters
+    )
+    return request
+  }
 
   /// Информация о фотографии
   ///

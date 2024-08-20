@@ -7,8 +7,9 @@
 
 protocol PhotosViewModelProtocol: BaseViewModelProtocol {
   var photosCount: Int { get }
-  var photos: [Photo] { get }
+  var photos: [Photo] { get set }
   func getPhoto(at index: Int) -> Photo
   func getPhotoListViewModelItem(at index: Int) -> PhotosViewModelItem
   func checkAndLoadMorePhotos(at index: Int)
+  func loadSearchPhotos(with searchTerm: String)
 }

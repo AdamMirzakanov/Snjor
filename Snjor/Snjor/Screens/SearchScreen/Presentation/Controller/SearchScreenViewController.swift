@@ -69,6 +69,15 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     setupNavigationItem()
   }
   
+  // MARK: - @objc Methods
+  @objc func fetchMatchingItems() {
+    let searchTerm = searchController.searchBar.text ?? .empty
+    if searchTerm.isEmpty == false {
+      photosViewModel.loadSearchPhotos(with: searchTerm)
+      applyPhotosSnapshot()
+    }
+  }
+  
   // MARK: - Private Methods
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
@@ -91,6 +100,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
       "Users"
     ]
     searchController.searchBar.placeholder = "Search photos, collections, users"
+    navigationItem.hidesSearchBarWhenScrolling = true
   }
   
   private func setupNavigationItem() {
