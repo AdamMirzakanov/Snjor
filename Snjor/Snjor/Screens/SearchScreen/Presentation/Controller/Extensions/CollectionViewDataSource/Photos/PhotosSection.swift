@@ -8,3 +8,4 @@
 enum PhotosSection: Hashable {
   case main
 }
+

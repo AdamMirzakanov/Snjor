@@ -21,9 +21,9 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, CollectionsItem>?
   var photosSections: [PhotosSection] = []
   var collectionsSections: [CollectionsSection] = []
+  var currentScopeIndex: Int = 0
   
   // MARK: - Private Properties
-  var currentScopeIndex: Int = 0
   private let searchController = UISearchController()
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
