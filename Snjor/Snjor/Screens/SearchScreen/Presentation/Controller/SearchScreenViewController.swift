@@ -74,7 +74,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     let searchTerm = searchController.searchBar.text ?? .empty
     if searchTerm.isEmpty == false {
       photosViewModel.loadSearchPhotos(with: searchTerm)
-      applyPhotosSnapshot()
+      
     }
   }
   

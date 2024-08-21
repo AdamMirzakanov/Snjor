@@ -9,17 +9,15 @@ import UIKit
 
 extension SearchScreenViewController {
   
-  private typealias DataSource = UICollectionViewDiffableDataSource<PhotosSection, Photo>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot<PhotosSection, Photo>
-  
   // MARK: - Private Properties
-  private var photosSnapshot: Snapshot {
-    var snapshot = Snapshot()
+  private var photosSnapshot: NSDiffableDataSourceSnapshot<PhotosSection, Photo> {
+    var snapshot = NSDiffableDataSourceSnapshot<PhotosSection, Photo>()
     snapshot.appendSections([.main])
     snapshot.appendItems(photosViewModel.photos, toSection: .main)
     photosSections = snapshot.sectionIdentifiers
     return snapshot
   }
+
   // MARK: - Internal Methods
   func applyPhotosSnapshot() {
     guard let dataSource = photosDataSource else { return }
@@ -34,7 +32,7 @@ extension SearchScreenViewController {
     for collectionView: UICollectionView,
     delegate: any PhotoCellDelegate
   ) {
-    photosDataSource = DataSource(
+    photosDataSource = UICollectionViewDiffableDataSource<PhotosSection, Photo>(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
       let cell = UICollectionViewCell()
@@ -68,7 +66,6 @@ extension SearchScreenViewController {
     }
     
     cell.delegate = delegate
-    photosViewModel.checkAndLoadMorePhotos(at: indexPath.item)
     let viewModelItem = photosViewModel.getPhotoListViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell

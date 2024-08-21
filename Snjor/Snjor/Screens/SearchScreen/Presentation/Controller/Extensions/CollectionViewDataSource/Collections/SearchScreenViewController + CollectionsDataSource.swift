@@ -166,7 +166,6 @@ extension SearchScreenViewController {
     else {
       return UICollectionViewCell()
     }
-    albumsViewModel.checkAndLoadMoreAlbums(at: indexPath.item)
     let viewModelItem = albumsViewModel.getAlbumsViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
