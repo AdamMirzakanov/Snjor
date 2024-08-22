@@ -8,9 +8,8 @@
 import Combine
 
 final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
-  
   func viewDidLoad() {
-    print(#function, Self.self)
+    //code:
   }
   
   
@@ -54,11 +53,11 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
   }
   
   func checkAndLoadMorePhotos(at index: Int) {
-    lastPageValidationUseCase.checkAndLoadMoreItems(
-      at: index,
-      actualItems: photos.count,
-      action: viewDidLoad
-    )
+//    lastPageValidationUseCase.checkAndLoadMoreItems(
+//      at: index,
+//      actualItems: photos.count,
+//      action: loadSearchPhotos
+//    )
   }
   
   // MARK: - Private Methods

@@ -10,8 +10,8 @@ import Combine
 
 protocol SearchScreenViewControllerDelegate: AnyObject {
   func photoCellDidSelect(_ photo: Photo)
-  func topicCellDidSelect(_ topic: Topic)
-  func albumcCellDidSelect(_ album: Album)
+//  func topicCellDidSelect(_ topic: Topic)
+//  func albumcCellDidSelect(_ album: Album)
 }
 
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
@@ -24,7 +24,8 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   var currentScopeIndex: Int = 0
   
   // MARK: - Private Properties
-  private let searchController = UISearchController()
+  
+  lazy var searchController = UISearchController(searchResultsController: getController())
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
@@ -35,6 +36,12 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     for: .documentDirectory,
     in: .userDomainMask
   ).first!
+  
+  func getController() -> UIViewController {
+    let factory = SearchResultScreenFactory()
+    let modul = factory.makeModule()
+    return modul
+  }
   
   // MARK: - Initializers
   init(
@@ -67,15 +74,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     setupVisibleContainers()
     configureSearchController()
     setupNavigationItem()
-  }
-  
-  // MARK: - @objc Methods
-  @objc func fetchMatchingItems() {
-    let searchTerm = searchController.searchBar.text ?? .empty
-    if searchTerm.isEmpty == false {
-      photosViewModel.loadSearchPhotos(with: searchTerm)
-      
-    }
   }
   
   // MARK: - Private Methods

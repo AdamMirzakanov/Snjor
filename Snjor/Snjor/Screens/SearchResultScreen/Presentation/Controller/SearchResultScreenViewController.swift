@@ -34,11 +34,9 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   
   // MARK: - Initializers
   init(
-    photosViewModel: any SearchResultPhotosViewModelProtocol,
-    delegate: any SearchResultScreenViewControllerDelegate
+    photosViewModel: any SearchResultPhotosViewModelProtocol
   ) {
     self.photosViewModel = photosViewModel
-    self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -57,15 +55,14 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     setupVisibleContainers()
     configureSearchController()
     setupNavigationItem()
+    rootView.backgroundColor = .systemBrown
   }
   
-  // MARK: - @objc Methods
-  
-  @objc func fetchMatchingItems() {
+  // MARK: - Internal Methods
+  func fetchMatchingItems() {
     let searchTerm = searchController.searchBar.text ?? .empty
     if searchTerm.isEmpty == false {
       photosViewModel.loadSearchPhotos(with: searchTerm)
-      
     }
   }
   
@@ -79,7 +76,6 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   }
   
   private func configureSearchController() {
-    searchController.searchResultsUpdater = self
     searchController.searchBar.delegate = self
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.automaticallyShowsSearchResultsController = true
