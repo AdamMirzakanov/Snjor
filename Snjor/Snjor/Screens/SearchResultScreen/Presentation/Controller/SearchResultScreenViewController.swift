@@ -22,11 +22,10 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   var currentScopeIndex: Int = 0
   
   // MARK: - Private Properties
-  private let searchController = UISearchController()
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchResultScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
-  private(set) var photosViewModel: any SearchResultPhotosViewModelProtocol
+  var photosViewModel: any SearchResultPhotosViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -44,26 +43,38 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     fatalError("init(coder:) has not been implemented")
   }
   
+  deinit {
+    print("ДЕИНИЦИАЛИЗИРОВАН 🔴")
+  }
+  
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionViewDelegate()
-    photosViewModel.viewDidLoad()
     stateController()
     setupDataSource()
     configureDownloadSession()
     setupVisibleContainers()
-    configureSearchController()
     setupNavigationItem()
     rootView.backgroundColor = .systemBrown
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+//    if self.isMovingFromParent || self.isBeingDismissed {
+//      
+//    }
+    
+    downloadService.invalidateSession(withID: Self.sessionID)
+    photosDataSource = nil
+  }
+  
+  
   // MARK: - Internal Methods
-  func fetchMatchingItems() {
-    let searchTerm = searchController.searchBar.text ?? .empty
-    if searchTerm.isEmpty == false {
-      photosViewModel.loadSearchPhotos(with: searchTerm)
-    }
+  func fetchMatchingItems(with searchTerm: String) {
+    guard !searchTerm.isEmpty else { return }
+    photosViewModel.photos.removeAll()
+    photosViewModel.loadSearchPhotos(with: searchTerm)
   }
   
   // MARK: - Private Methods
@@ -75,24 +86,9 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     rootView.photosCollectionView.delegate = self
   }
   
-  private func configureSearchController() {
-    searchController.searchBar.delegate = self
-    searchController.obscuresBackgroundDuringPresentation = false
-    searchController.automaticallyShowsSearchResultsController = true
-    searchController.searchBar.showsScopeBar = true
-    searchController.searchBar.scopeButtonTitles = [
-      "Photos",
-      "Collections",
-      "Users"
-    ]
-    searchController.searchBar.placeholder = "Search photos, collections, users"
-    navigationItem.hidesSearchBarWhenScrolling = true
-  }
-  
   private func setupNavigationItem() {
     navigationItem.hidesSearchBarWhenScrolling = false
     navigationItem.title = "Photos"
-    navigationItem.searchController = searchController
   }
   
   private func setupDataSource() {

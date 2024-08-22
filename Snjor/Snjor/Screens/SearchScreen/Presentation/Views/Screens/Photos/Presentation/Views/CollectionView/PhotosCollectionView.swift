@@ -34,5 +34,10 @@ final class PhotosCollectionView: UICollectionView {
       PhotoCell.self,
       forCellWithReuseIdentifier: PhotoCell.reuseID
     )
+    
+    register(
+      SearchResultPhotoCell.self,
+      forCellWithReuseIdentifier: SearchResultPhotoCell.reuseID
+    )
   }
 }

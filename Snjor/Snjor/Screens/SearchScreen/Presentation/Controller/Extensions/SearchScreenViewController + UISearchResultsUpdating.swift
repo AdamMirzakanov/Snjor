@@ -8,23 +8,35 @@
 import UIKit
 
 extension SearchScreenViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    
-    guard let query = searchController.searchBar.text, !query.isEmpty else { return }
-    
-    // Получаем ссылку на SearchResultsController
-    if let searchResultsController = searchController.searchResultsController as? SearchResultScreenViewController {
-      print(#function)
+  
+  @objc private func fetchMatchingItems(query: String) {
+    guard 
+      let searchResultsController = searchController.searchResultsController as? SearchResultScreenViewController
+    else {
+      return
     }
-    
-    
-//    NSObject.cancelPreviousPerformRequests(
-//      withTarget: self,
-//      selector: #selector(fetchMatchingItems),
-//      object: nil
-//    )
-//    perform(#selector(fetchMatchingItems), with: nil, afterDelay: 0.3)
-    
-    
+    searchResultsController.fetchMatchingItems(with: query)
+  }
+  
+  func updateSearchResults(for searchController: UISearchController) {
+    guard let query = searchController.searchBar.text, !query.isEmpty else { return }
+    NSObject.cancelPreviousPerformRequests(
+      withTarget: self,
+      selector: #selector(fetchMatchingItems),
+      object: nil
+    )
+    perform(#selector(fetchMatchingItems), with: query, afterDelay: 0.6)
+  }
+}
+
+
+extension SearchScreenViewController {
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.text = .empty
+    searchController.isActive = false
+    if let searchResultsController = searchController.searchResultsController as? SearchResultScreenViewController {
+      searchResultsController.photosViewModel.photos.removeAll()
+      searchResultsController.applyPhotosSnapshot()
+    }
   }
 }

@@ -7,16 +7,18 @@
 
 import Combine
 
+
 final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
   func viewDidLoad() {
     //code:
   }
   
-  
+
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
   var photos: [Photo] = []
-  
+  var searchTerm: String? // Добавлено для хранения поискового запроса
+
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
   private let loadSearchPhotosUseCase: any LoadSearchPhotosUseCaseProtocol
@@ -35,37 +37,38 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
   
   // MARK: - Internal Methods
   func loadSearchPhotos(with searchTerm: String) {
+    self.searchTerm = searchTerm // Сохраняем поисковый запрос
     state.send(.loading)
     Task {
       await loadSearchPhotosUseCase(with: searchTerm)
     }
   }
-  
+
   func getPhoto(at index: Int) -> Photo {
     photos[index]
   }
-  
-  func getPhotoListViewModelItem(
-    at index: Int
-  ) -> SearchResultPhotosViewModelItem {
+
+  func getPhotoListViewModelItem(at index: Int) -> SearchResultPhotosViewModelItem {
     checkAndLoadMorePhotos(at: index)
     return makePhotoListViewModelItem(at: index)
   }
-  
+
+  // Метод реализует пагинацию, подгружая страницы
   func checkAndLoadMorePhotos(at index: Int) {
-//    lastPageValidationUseCase.checkAndLoadMoreItems(
-//      at: index,
-//      actualItems: photos.count,
-//      action: loadSearchPhotos
-//    )
+    guard let searchTerm = searchTerm else { return } // Проверяем, что searchTerm не nil
+    lastPageValidationUseCase.checkAndLoadMoreItems(
+      at: index,
+      actualItems: photos.count,
+      action: { self.loadSearchPhotos(with: searchTerm) } // Передаем searchTerm
+    )
   }
-  
+
   // MARK: - Private Methods
   private func loadSearchPhotosUseCase(with searchTerm: String) async {
     let result = await loadSearchPhotosUseCase.execute(with: searchTerm)
     updateStateUI(with: result)
   }
-  
+
   private func updateStateUI(with result: Result<[Photo], Error>) {
     switch result {
     case .success(let photos):
@@ -78,7 +81,7 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
       state.send(.fail(error: error.localizedDescription))
     }
   }
-  
+
   private func makePhotoListViewModelItem(at index: Int) -> SearchResultPhotosViewModelItem {
     let photo = photos[index]
     return SearchResultPhotosViewModelItem(photo: photo)
