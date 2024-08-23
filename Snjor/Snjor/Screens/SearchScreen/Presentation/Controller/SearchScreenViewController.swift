@@ -76,6 +76,10 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     setupNavigationItem()
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+  }
+  
   // MARK: - Private Methods
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()

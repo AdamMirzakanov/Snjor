@@ -10,8 +10,8 @@ import UIKit
 extension SearchResultScreenViewController {
   
   // MARK: - Private Properties
-  private var photosSnapshot: NSDiffableDataSourceSnapshot<PhotosSection, Photo> {
-    var snapshot = NSDiffableDataSourceSnapshot<PhotosSection, Photo>()
+  private var photosSnapshot: NSDiffableDataSourceSnapshot<SearchResultPhotosSection, Photo> {
+    var snapshot = NSDiffableDataSourceSnapshot<SearchResultPhotosSection, Photo>()
     snapshot.appendSections([.main])
     snapshot.appendItems(photosViewModel.photos, toSection: .main)
     photosSections = snapshot.sectionIdentifiers
@@ -32,7 +32,7 @@ extension SearchResultScreenViewController {
     for collectionView: UICollectionView,
     delegate: any SearchResultPhotoCellDelegate
   ) {
-    photosDataSource = UICollectionViewDiffableDataSource<PhotosSection, Photo>(
+    photosDataSource = UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
       let cell = UICollectionViewCell()

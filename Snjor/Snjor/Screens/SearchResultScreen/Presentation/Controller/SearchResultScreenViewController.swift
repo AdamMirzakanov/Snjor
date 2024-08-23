@@ -17,9 +17,9 @@ protocol SearchResultScreenViewControllerDelegate: AnyObject {
 final class SearchResultScreenViewController: BaseViewController<SearchResultScreenRootView> {
   
   // MARK: - Internal Properties
-  var photosDataSource: UICollectionViewDiffableDataSource<PhotosSection, Photo>?
-  var photosSections: [PhotosSection] = []
-  var currentScopeIndex: Int = 0
+  var photosDataSource: UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>?
+  var photosSections: [SearchResultPhotosSection] = []
+  var currentScopeIndex: Int = .zero
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -56,7 +56,12 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     configureDownloadSession()
     setupVisibleContainers()
     setupNavigationItem()
-    rootView.backgroundColor = .systemBrown
+//    rootView.backgroundColor = .systemBrown
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    PrepareParameters.searchPhotosPage = .zero
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -66,7 +71,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
 //    }
     
     downloadService.invalidateSession(withID: Self.sessionID)
-    photosDataSource = nil
+//    photosDataSource = nil
   }
   
   

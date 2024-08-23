@@ -10,9 +10,9 @@ import UIKit
 class SearchResultScreenRootView: UIView {
   
   // MARK: - Collection Views
-  let photosCollectionView: PhotosCollectionView = {
+  let photosCollectionView: SearchResultPhotosCollectionView = {
     return $0
-  }(PhotosCollectionView())
+  }(SearchResultPhotosCollectionView())
   
   let albumsCollectionView: AlbumsCollectionView = {
     return $0
@@ -37,12 +37,12 @@ class SearchResultScreenRootView: UIView {
   
   private func addSubviews() {
     addSubview(photosCollectionView)
-    addSubview(albumsCollectionView)
+//    addSubview(albumsCollectionView)
   }
   
   private func setupConstraints() {
     photosCollectionView.fillSuperView()
-    albumsCollectionView.fillSuperView()
+//    albumsCollectionView.fillSuperView()
   }
 }
 

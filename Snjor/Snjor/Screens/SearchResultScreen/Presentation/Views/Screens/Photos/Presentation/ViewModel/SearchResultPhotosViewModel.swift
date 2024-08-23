@@ -55,11 +55,11 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
 
   // Метод реализует пагинацию, подгружая страницы
   func checkAndLoadMorePhotos(at index: Int) {
-    guard let searchTerm = searchTerm else { return } // Проверяем, что searchTerm не nil
+    guard let searchTerm = searchTerm else { return }
     lastPageValidationUseCase.checkAndLoadMoreItems(
       at: index,
       actualItems: photos.count,
-      action: { self.loadSearchPhotos(with: searchTerm) } // Передаем searchTerm
+      action: { self.loadSearchPhotos(with: searchTerm) }
     )
   }
 

@@ -1,13 +1,13 @@
 //
-//  PhotosCollectionView.swift
+//  SearchResultPhotosCollectionView.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 08.08.2024.
+//  Created by Адам Мирзаканов on 23.08.2024.
 //
 
 import UIKit
 
-final class PhotosCollectionView: UICollectionView {
+final class SearchResultPhotosCollectionView: UICollectionView {
   // MARK: - Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
   
@@ -31,8 +31,8 @@ final class PhotosCollectionView: UICollectionView {
   
   private func cellRegister() {
     register(
-      PhotoCell.self,
-      forCellWithReuseIdentifier: PhotoCell.reuseID
+      SearchResultPhotoCell.self,
+      forCellWithReuseIdentifier: SearchResultPhotoCell.reuseID
     )
   }
 }
