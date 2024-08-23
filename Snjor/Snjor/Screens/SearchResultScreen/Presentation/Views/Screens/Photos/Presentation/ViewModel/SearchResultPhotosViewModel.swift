@@ -12,7 +12,6 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
   func viewDidLoad() {
     //code:
   }
-  
 
   // MARK: - Internal Properties
   var photosCount: Int { photos.count }
@@ -22,13 +21,13 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
   private let loadSearchPhotosUseCase: any LoadSearchPhotosUseCaseProtocol
-  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+  private var lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
     loadSearchPhotosUseCase: any LoadSearchPhotosUseCaseProtocol,
-    lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+    lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   ) {
     self.state = state
     self.loadSearchPhotosUseCase = loadSearchPhotosUseCase

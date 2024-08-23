@@ -9,9 +9,8 @@ import UIKit
 import Combine
 
 protocol SearchResultScreenViewControllerDelegate: AnyObject {
-  func photoCellDidSelect(_ photo: Photo)
-  func topicCellDidSelect(_ topic: Topic)
-  func albumcCellDidSelect(_ album: Album)
+  func searchPhotoCellDidSelect(_ photo: Photo)
+//  func albumcCellDidSelect(_ album: Album)
 }
 
 final class SearchResultScreenViewController: BaseViewController<SearchResultScreenRootView> {
@@ -20,12 +19,12 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   var photosDataSource: UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>?
   var photosSections: [SearchResultPhotosSection] = []
   var currentScopeIndex: Int = .zero
+  var photosViewModel: any SearchResultPhotosViewModelProtocol
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchResultScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
-  var photosViewModel: any SearchResultPhotosViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -56,24 +55,12 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     configureDownloadSession()
     setupVisibleContainers()
     setupNavigationItem()
-//    rootView.backgroundColor = .systemBrown
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     PrepareParameters.searchPhotosPage = .zero
   }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-//    if self.isMovingFromParent || self.isBeingDismissed {
-//      
-//    }
-    
-    downloadService.invalidateSession(withID: Self.sessionID)
-//    photosDataSource = nil
-  }
-  
   
   // MARK: - Internal Methods
   func fetchMatchingItems(with searchTerm: String) {

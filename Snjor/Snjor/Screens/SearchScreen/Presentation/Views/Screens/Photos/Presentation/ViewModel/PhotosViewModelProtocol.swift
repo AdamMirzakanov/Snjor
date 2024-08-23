@@ -11,5 +11,4 @@ protocol PhotosViewModelProtocol: BaseViewModelProtocol {
   func getPhoto(at index: Int) -> Photo
   func getPhotoListViewModelItem(at index: Int) -> PhotosViewModelItem
   func checkAndLoadMorePhotos(at index: Int)
-  func loadSearchPhotos(with searchTerm: String)
 }

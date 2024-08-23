@@ -10,8 +10,8 @@ import Combine
 
 protocol SearchScreenViewControllerDelegate: AnyObject {
   func photoCellDidSelect(_ photo: Photo)
-//  func topicCellDidSelect(_ topic: Topic)
-//  func albumcCellDidSelect(_ album: Album)
+  func topicCellDidSelect(_ topic: Topic)
+  func albumcCellDidSelect(_ album: Album)
 }
 
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
@@ -74,6 +74,11 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     setupVisibleContainers()
     configureSearchController()
     setupNavigationItem()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
   }
   
   override func viewWillDisappear(_ animated: Bool) {

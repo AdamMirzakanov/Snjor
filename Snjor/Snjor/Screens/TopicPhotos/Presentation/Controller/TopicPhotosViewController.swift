@@ -80,7 +80,7 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   }
   
   private func resetPage() {
-    PrepareParameters.page = .zero
+    PrepareParameters.photosPage = .zero
   }
   
   private func configureDownloadSession() {

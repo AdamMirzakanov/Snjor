@@ -15,13 +15,13 @@ final class AlbumPhotosViewModel: AlbumPhotosViewModelProtocol {
   
   // MARK: - Private Properties
   private let loadUseCase: any LoadAlbumPhotosUseCaseProtocol
-  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+  private var lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
     loadUseCase: any LoadAlbumPhotosUseCaseProtocol,
-    lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+    lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   ) {
     self.state = state
     self.loadUseCase = loadUseCase

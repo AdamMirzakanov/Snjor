@@ -15,13 +15,13 @@ final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
   
   // MARK: - Private Properties
   private let loadUseCase: any LoadTopicPhotosUseCaseProtocol
-  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+  private var lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
     loadUseCase: any LoadTopicPhotosUseCaseProtocol,
-    lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+    lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   ) {
     self.state = state
     self.loadUseCase = loadUseCase

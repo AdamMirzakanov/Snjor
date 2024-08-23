@@ -15,8 +15,7 @@ class SearchResultScreenViewModelFactory: SearchResultScreenViewModelFactoryProt
   private let state = PassthroughSubject<StateController, Never>()
   
   // MARK: - Internal Methods
-  func createPhotosViewModel() -> SearchResultPhotosViewModel {
-    let loadPhotosUseCase = getPhotosUseCase(networkService)
+  func createSearchPhotosViewModel() -> SearchResultPhotosViewModel {
     let loadSearchPhotosUseCase = getSearchPhotosUseCase(networkService)
     return SearchResultPhotosViewModel(
       state: state,
@@ -25,8 +24,8 @@ class SearchResultScreenViewModelFactory: SearchResultScreenViewModelFactoryProt
     )
   }
   
-  func createAlbumsViewModel() -> AlbumsViewModel {
-    let loadAlbumsUseCase = getAlbumsUseCase(networkService)
+  func createSearchAlbumsViewModel() -> AlbumsViewModel {
+    let loadAlbumsUseCase = getSearchAlbumsUseCase(networkService)
     return AlbumsViewModel(
       state: state,
       loadUseCase: loadAlbumsUseCase,
@@ -34,19 +33,7 @@ class SearchResultScreenViewModelFactory: SearchResultScreenViewModelFactoryProt
     )
   }
   
-  func createTopicsViewModel() -> TopicsViewModel {
-    let loadTopicsUseCase = getTopicsUseCase(networkService)
-    return TopicsViewModel(state: state, loadUseCase: loadTopicsUseCase)
-  }
-  
   // MARK: - Private Methods
-  private func getPhotosUseCase(
-    _ networkService: NetworkService
-  ) -> LoadSearchPhotosUseCase {
-    let loadPhotosRepository = LoadSearchPhotosRepository(networkService: networkService)
-    return LoadSearchPhotosUseCase(repository: loadPhotosRepository)
-  }
-  
   private func getSearchPhotosUseCase(
     _ networkService: NetworkService
   ) -> LoadSearchPhotosUseCase {
@@ -54,14 +41,14 @@ class SearchResultScreenViewModelFactory: SearchResultScreenViewModelFactoryProt
     return LoadSearchPhotosUseCase(repository: loadSearchPhotosRepository)
   }
   
-  private func getAlbumsUseCase(
+  private func getSearchAlbumsUseCase(
     _ networkService: NetworkService
   ) -> LoadAlbumsUseCase {
     let loadAlbumsRepository = LoadAlbumsRepository(networkService: networkService)
     return LoadAlbumsUseCase(repository: loadAlbumsRepository)
   }
   
-  private func getTopicsUseCase(
+  private func getSearchTopicsUseCase(
     _ networkService: NetworkService
   ) -> LoadTopicsUseCase {
     let loadTopicsRepository = LoadTopicsPageRepository(networkService: networkService)

@@ -18,7 +18,7 @@ final class PageScreenTopicPhotosViewModel: PageScreenTopicPhotosViewModelProtoc
   
   // MARK: - Private Properties
   private let loadUseCase: any LoadTopicPhotosUseCaseProtocol
-  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+  private var lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   private var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   private var photos: [Photo] = []
   
@@ -33,7 +33,7 @@ final class PageScreenTopicPhotosViewModel: PageScreenTopicPhotosViewModelProtoc
   init(
     state: PassthroughSubject<StateController, Never>,
     loadUseCase: any LoadTopicPhotosUseCaseProtocol,
-    lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+    lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   ) {
     self.state = state
     self.loadUseCase = loadUseCase

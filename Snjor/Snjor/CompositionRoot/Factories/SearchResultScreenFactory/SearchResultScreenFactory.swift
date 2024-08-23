@@ -43,19 +43,6 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     )
   }
   
-  func mekeTopicPhotosCoordinator(
-    topic: Topic,
-    navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
-  ) -> any Coordinatable {
-    let factory = TopicPhotosFactory(topic: topic)
-    return TopicPhotosCoordinator(
-      factory: factory,
-      navigation: navigation,
-      overlordCoordinator: overlordCoordinator
-    )
-  }
-  
   func mekeAlbumPhotosCoordinator(
     album: Album,
     navigation: any Navigable,
@@ -73,9 +60,8 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   private func getModule(
 //    _ delegate: any SearchResultScreenViewControllerDelegate
   ) -> UIViewController {
-    let photosViewModel = viewModelFactory.createPhotosViewModel()
-//    let albumsViewModel = viewModelFactory.createAlbumsViewModel()
-//    let topicsViewModel = viewModelFactory.createTopicsViewModel()
+    let photosViewModel = viewModelFactory.createSearchPhotosViewModel()
+//    let albumsViewModel = viewModelFactory.createSearchAlbumsViewModel()
     let module = SearchResultScreenViewController(
       photosViewModel: photosViewModel
     )

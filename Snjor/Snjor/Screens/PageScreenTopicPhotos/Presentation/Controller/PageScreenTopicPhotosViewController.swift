@@ -62,7 +62,7 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   }
   
   private func resetPage() {
-    PrepareParameters.page = .zero
+    PrepareParameters.photosPage = .zero
   }
   
   private func stateController() {

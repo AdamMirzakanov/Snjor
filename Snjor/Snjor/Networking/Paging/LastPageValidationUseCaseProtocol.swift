@@ -1,11 +1,11 @@
 //
-//  lastPageValidationUseCaseProtocol.swift
+//  LastPageValidationUseCaseProtocol.swift
 //  Snjor
 //
 //  Created by Адам on 15.06.2024.
 //
 
-protocol lastPageValidationUseCaseProtocol {
+protocol LastPageValidationUseCaseProtocol {
   var lastPage: Bool { get }
   mutating func updateLastPage(itemsCount: Int)
   func checkAndLoadMoreItems(

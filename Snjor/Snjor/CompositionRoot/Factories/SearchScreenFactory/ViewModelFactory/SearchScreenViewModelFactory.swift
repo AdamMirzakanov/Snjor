@@ -17,11 +17,9 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
   // MARK: - Internal Methods
   func createPhotosViewModel() -> PhotosViewModel {
     let loadPhotosUseCase = getPhotosUseCase(networkService)
-    let loadSearchPhotosUseCase = getSearchPhotosUseCase(networkService)
     return PhotosViewModel(
       state: state,
-      loadUseCase: loadPhotosUseCase, 
-      loadSearchPhotosUseCase: loadSearchPhotosUseCase,
+      loadUseCase: loadPhotosUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
     )
   }
@@ -46,13 +44,6 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
   ) -> LoadPhotosUseCase {
     let loadPhotosRepository = LoadPhotosRepository(networkService: networkService)
     return LoadPhotosUseCase(repository: loadPhotosRepository)
-  }
-  
-  private func getSearchPhotosUseCase(
-    _ networkService: NetworkService
-  ) -> LoadSearchPhotosUseCase {
-    let loadSearchPhotosRepository = LoadSearchPhotosRepository(networkService: networkService)
-    return LoadSearchPhotosUseCase(repository: loadSearchPhotosRepository)
   }
   
   private func getAlbumsUseCase(

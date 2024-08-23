@@ -80,7 +80,7 @@ class AlbumPhotosViewController: BaseViewController<AlbumPhotosRootView> {
   }
   
   private func resetPage() {
-    PrepareParameters.page = .zero
+    PrepareParameters.photosPage = .zero
   }
   
   private func configureDownloadSession() {

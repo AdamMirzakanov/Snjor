@@ -18,12 +18,6 @@ protocol SearchResultScreenFactoryProtocol {
     overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable
   
-  func mekeTopicPhotosCoordinator(
-    topic: Topic,
-    navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
-  ) -> any Coordinatable
-  
   func mekeAlbumPhotosCoordinator(
     album: Album,
     navigation: any Navigable,

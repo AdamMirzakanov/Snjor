@@ -8,31 +8,36 @@
 typealias Parameters = [String: String]
 
 enum PrepareParameters {
-  // MARK: - Private  Properties
-  static var page: Int = .page
+  
+  // MARK: - Internal Properties
+  static var photosPage: Int = .page
   static var searchPhotosPage: Int = .page
+  static var albumsPage: Int = .page
+  static var searchAlbumsPage: Int = .page
+  
+  // MARK: - Private  Properties
   private static let perPage: Int = .perPage
 
   // MARK: - Internal Methods
   static func preparePhotoParameters() -> Parameters {
-    nextPage()
-    var parameters: [String: String] = [:]
-    parameters[.page] = String(page)
+    nextPhotosPage()
+    var parameters: Parameters = [:]
+    parameters[.page] = String(photosPage)
     parameters[.perPage] = String(perPage)
     return parameters
   }
   
   static func prepareAlbumParameters() -> Parameters {
-    nextPage()
-    var parameters: [String: String] = [:]
-    parameters[.page] = String(page)
+    nextAlbumsPage()
+    var parameters: Parameters = [:]
+    parameters[.page] = String(albumsPage)
     parameters[.perPage] = String(perPage)
     return parameters
   }
 
   static func prepareSearchPhotoParameters(with searchTerm: String) -> Parameters {
     nextSearchPhotosPage()
-    var parameters: [String: String] = [:]
+    var parameters: Parameters = [:]
     parameters[.query] = searchTerm
     parameters[.page] = String(searchPhotosPage)
     parameters[.perPage] = String(perPage)
@@ -41,12 +46,20 @@ enum PrepareParameters {
   }
   
   // MARK: - Private  Methods
-  private static func nextPage() {
-    page += 1
+  private static func nextPhotosPage() {
+    photosPage += 1
   }
   
   private static func nextSearchPhotosPage() {
     searchPhotosPage += 1
+  }
+  
+  private static func nextAlbumsPage() {
+    albumsPage += 1
+  }
+  
+  private static func nextSearchAlbumsPage() {
+    searchAlbumsPage += 1
   }
 }
 

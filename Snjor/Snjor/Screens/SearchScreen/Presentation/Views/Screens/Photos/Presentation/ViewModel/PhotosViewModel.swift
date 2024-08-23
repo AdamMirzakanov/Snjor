@@ -16,19 +16,16 @@ final class PhotosViewModel: PhotosViewModelProtocol {
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
   private let loadUseCase: any LoadPhotosUseCaseProtocol
-  private let loadSearchPhotosUseCase: any LoadSearchPhotosUseCaseProtocol
-  private var lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+  private var lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
     loadUseCase: any LoadPhotosUseCaseProtocol,
-    loadSearchPhotosUseCase: any LoadSearchPhotosUseCaseProtocol,
-    lastPageValidationUseCase: any lastPageValidationUseCaseProtocol
+    lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   ) {
     self.state = state
     self.loadUseCase = loadUseCase
-    self.loadSearchPhotosUseCase = loadSearchPhotosUseCase
     self.lastPageValidationUseCase = lastPageValidationUseCase
   }
   
@@ -37,13 +34,6 @@ final class PhotosViewModel: PhotosViewModelProtocol {
     state.send(.loading)
     Task {
       await loadPhotosUseCase()
-    }
-  }
-  
-  func loadSearchPhotos(with searchTerm: String) {
-    state.send(.loading)
-    Task {
-      await loadSearchPhotosUseCase(with: searchTerm)
     }
   }
   
@@ -69,11 +59,6 @@ final class PhotosViewModel: PhotosViewModelProtocol {
   // MARK: - Private Methods
   private func loadPhotosUseCase() async {
     let result = await loadUseCase.execute()
-    updateStateUI(with: result)
-  }
-  
-  private func loadSearchPhotosUseCase(with searchTerm: String) async {
-    let result = await loadSearchPhotosUseCase.execute(with: searchTerm)
     updateStateUI(with: result)
   }
   
