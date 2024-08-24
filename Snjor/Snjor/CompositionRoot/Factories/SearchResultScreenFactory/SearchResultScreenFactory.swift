@@ -12,14 +12,17 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   // MARK: - Private Properties
   private let viewModelFactory: any SearchResultScreenViewModelFactoryProtocol
   private let layoutProvider: LayoutProvider
+  private let searchTerm: String
   
   // MARK: - Initializers
   init(
     viewModelFactory: any SearchResultScreenViewModelFactoryProtocol = SearchResultScreenViewModelFactory(),
-    layoutProvider: LayoutProvider = LayoutProvider()
+    layoutProvider: LayoutProvider = LayoutProvider(),
+    with searchTerm: String
   ) {
     self.viewModelFactory = viewModelFactory
     self.layoutProvider = layoutProvider
+    self.searchTerm = searchTerm
   }
   
   // MARK: - Internal Methods
@@ -66,6 +69,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
       photosViewModel: photosViewModel
     )
     setupLayouts(module: module)
+    module.fetchMatchingItems(with: searchTerm)
     return module
   }
   

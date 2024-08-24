@@ -80,7 +80,6 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   
   private func setupNavigationItem() {
     navigationItem.hidesSearchBarWhenScrolling = false
-    navigationItem.title = "Photos"
   }
   
   private func setupDataSource() {

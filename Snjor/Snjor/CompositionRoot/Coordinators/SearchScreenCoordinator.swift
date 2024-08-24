@@ -5,6 +5,8 @@
 //  Created by Адам Мирзаканов on 07.08.2024.
 //
 
+import UIKit
+
 final class SearchScreenCoordinator: Coordinatable {
   // MARK: - Internal Properties
   var navigation: any Navigable
@@ -53,6 +55,15 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
   func albumcCellDidSelect(_ album: Album) {
     let coordinator = factory.mekeAlbumPhotosCoordinator(
       album: album,
+      navigation: navigation,
+      overlordCoordinator: self
+    )
+    addAndStartChildCoordinator(coordinator)
+  }
+  
+  func searchButtonClicked(with searchTerm: String) {
+    let coordinator = factory.makeSearchResultScreenCoordinator(
+      with: searchTerm,
       navigation: navigation,
       overlordCoordinator: self
     )

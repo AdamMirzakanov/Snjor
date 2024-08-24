@@ -12,6 +12,7 @@ protocol SearchScreenViewControllerDelegate: AnyObject {
   func photoCellDidSelect(_ photo: Photo)
   func topicCellDidSelect(_ topic: Topic)
   func albumcCellDidSelect(_ album: Album)
+  func searchButtonClicked(with searchTerm: String)
 }
 
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
@@ -25,7 +26,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Private Properties
   
-  lazy var searchController = UISearchController(searchResultsController: getController())
+  lazy var searchController = UISearchController()
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
@@ -37,11 +38,11 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     in: .userDomainMask
   ).first!
   
-  func getController() -> UIViewController {
-    let factory = SearchResultScreenFactory()
-    let modul = factory.makeModule()
-    return modul
-  }
+//  func getController() -> UIViewController {
+//    let factory = SearchResultScreenFactory()
+//    let modul = factory.makeModule()
+//    return modul
+//  }
   
   // MARK: - Initializers
   init(
@@ -96,7 +97,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   }
   
   private func configureSearchController() {
-    searchController.searchResultsUpdater = self
+//    searchController.searchResultsUpdater = self
     searchController.searchBar.delegate = self
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.automaticallyShowsSearchResultsController = true
