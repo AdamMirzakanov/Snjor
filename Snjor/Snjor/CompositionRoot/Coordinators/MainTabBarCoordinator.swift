@@ -27,6 +27,7 @@ final class MainTabBarCoordinator: Coordinatable {
     let navigationTabBar = factory.makeMainTabBarController()
     navigation.pushViewController(navigationTabBar, animated: false)
     navigation.navigationBar.isHidden = true
+    
     childCoordinators = factory.makeChildCoordinators()
     childCoordinators.forEach { $0.start() }
     let childNavigation = childCoordinators.map { $0.navigation.rootViewController }

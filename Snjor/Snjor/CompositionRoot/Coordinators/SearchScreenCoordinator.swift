@@ -28,8 +28,9 @@ final class SearchScreenCoordinator: Coordinatable {
   func start() {
     let controller = factory.makeModule(delegate: self)
 //    factory.makeTabBarItem(navigation: navigation)
-    navigation.pushViewController(controller, animated: true) 
     navigation.navigationBar.prefersLargeTitles = true
+    navigation.pushViewController(controller, animated: true)
+    
   }
 }
 
@@ -64,10 +65,19 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
   func searchButtonClicked(with searchTerm: String) {
     let coordinator = factory.makeSearchResultScreenCoordinator(
       with: searchTerm,
-      navigation: navigation,
+//      navigation: navigation,
       overlordCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
+    
+    navigation.present(
+      coordinator.navigation.rootViewController,
+      animated: true
+    )
+    
+    coordinator.navigation.dismissNavigation = { [weak self] in
+      self?.removeChildCoordinator(coordinator)
+    }
   }
 }
 

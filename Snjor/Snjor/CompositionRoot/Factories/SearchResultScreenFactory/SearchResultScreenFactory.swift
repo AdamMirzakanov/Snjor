@@ -65,9 +65,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   ) -> UIViewController {
     let photosViewModel = viewModelFactory.createSearchPhotosViewModel()
 //    let albumsViewModel = viewModelFactory.createSearchAlbumsViewModel()
-    let module = SearchResultScreenViewController(
-      photosViewModel: photosViewModel
-    )
+    let module = SearchResultScreenViewController(photosViewModel: photosViewModel)
     setupLayouts(module: module)
     module.fetchMatchingItems(with: searchTerm)
     return module

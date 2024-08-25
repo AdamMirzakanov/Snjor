@@ -25,7 +25,7 @@ final class SearchResultScreenCoordinator: Coordinatable {
   // MARK: - Internal Methods
   func start() {
     let controller = factory.makeModule(/*delegate: self*/)
-    navigation.present(controller, animated: true)
+    navigation.viewControllers = [controller]
   }
 }
 
