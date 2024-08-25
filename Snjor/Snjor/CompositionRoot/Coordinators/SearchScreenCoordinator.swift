@@ -68,12 +68,12 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
       delegate: self
     )
     addAndStartChildCoordinator(coordinator)
-    navigation.present(
-      coordinator.navigation.rootViewController,
-      animated: true
-    )
+    navigation.present(coordinator.navigation.rootViewController, animated: true)
     coordinator.navigation.dismissNavigation = { [weak self] in
-      self?.removeChildCoordinator(coordinator)
+      guard let self = self else {
+        return
+      }
+      self.removeChildCoordinator(coordinator)
     }
   }
 }

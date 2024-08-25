@@ -46,7 +46,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   }
   
   deinit {
-    print("ДЕИНИЦИАЛИЗИРОВАН 🔴")
+    print(#function, Self.self)
   }
   
   // MARK: - View Lifecycle
@@ -64,9 +64,18 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     PrepareParameters.searchPhotosPage = .zero
+    navigationController?.presentationController?.delegate = self
   }
   
   // MARK: - Internal Methods
+  func resetSearchState() {
+    photosDataSource = nil
+    photosSections.removeAll()
+    currentScopeIndex = .zero
+    cancellable.removeAll()
+    downloadService.invalidateSession(withID: Self.sessionID)
+  }
+  
   func fetchMatchingItems(with searchTerm: String) {
     guard !searchTerm.isEmpty else { return }
     photosViewModel.photos.removeAll()
@@ -132,8 +141,11 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   
   private func closeFlowAction() -> UIAction {
     UIAction { [weak self] _ in
-      guard let self = self else { return }
+      guard let self = self else {
+        return
+      }
       delegate?.didFinishFlow()
+      resetSearchState()
     }
   }
   

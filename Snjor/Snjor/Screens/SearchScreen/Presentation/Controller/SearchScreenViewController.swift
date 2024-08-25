@@ -25,7 +25,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   var currentScopeIndex: Int = 0
   
   // MARK: - Private Properties
-  
   lazy var searchController = UISearchController()
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
@@ -37,12 +36,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     for: .documentDirectory,
     in: .userDomainMask
   ).first!
-  
-//  func getController() -> UIViewController {
-//    let factory = SearchResultScreenFactory()
-//    let modul = factory.makeModule()
-//    return modul
-//  }
   
   // MARK: - Initializers
   init(
@@ -77,15 +70,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     setupNavigationItem()
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-  }
-  
   // MARK: - Private Methods
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
@@ -97,7 +81,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   }
   
   private func configureSearchController() {
-//    searchController.searchResultsUpdater = self
     searchController.searchBar.delegate = self
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.automaticallyShowsSearchResultsController = true

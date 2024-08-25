@@ -31,4 +31,15 @@ extension SearchScreenViewController: UISearchBarDelegate {
       print(#function)
     }
   }
+  
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    guard let query = searchBar.text, !query.isEmpty else {
+      return
+    }
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.hideCustomTabBar()
+    }
+    delegate?.searchButtonClicked(with: query)
+  }
 }
