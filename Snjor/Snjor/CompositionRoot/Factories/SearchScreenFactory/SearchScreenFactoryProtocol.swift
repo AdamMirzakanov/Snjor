@@ -33,6 +33,7 @@ protocol SearchScreenFactoryProtocol {
   func makeSearchResultScreenCoordinator(
     with searchTerm: String,
 //    navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+//    overlordCoordinator: any ParentCoordinator
+    delegate: any SearchResultScreenCoordinatorDelegate
   ) -> any Coordinatable
 }

@@ -9,7 +9,7 @@ import UIKit
 
 protocol SearchResultScreenFactoryProtocol {
   func makeModule(
-//    delegate: any SearchResultScreenViewControllerDelegate
+    delegate: any SearchResultScreenViewControllerDelegate
   ) -> UIViewController
   
   func mekePhotoDetailCoordinator(

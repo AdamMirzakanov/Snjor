@@ -65,16 +65,13 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
   func searchButtonClicked(with searchTerm: String) {
     let coordinator = factory.makeSearchResultScreenCoordinator(
       with: searchTerm,
-//      navigation: navigation,
-      overlordCoordinator: self
+      delegate: self
     )
     addAndStartChildCoordinator(coordinator)
-    
     navigation.present(
       coordinator.navigation.rootViewController,
       animated: true
     )
-    
     coordinator.navigation.dismissNavigation = { [weak self] in
       self?.removeChildCoordinator(coordinator)
     }
@@ -83,3 +80,11 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
 
 // MARK: - ParentCoordinator
 extension SearchScreenCoordinator: ParentCoordinator { }
+
+extension SearchScreenCoordinator: SearchResultScreenCoordinatorDelegate {
+  func didFinish(childCoordinator: any Coordinatable) {
+    childCoordinator.navigation.dismissNavigation = nil
+    removeChildCoordinator(childCoordinator)
+    navigation.dismiss(animated: true)
+  }
+}

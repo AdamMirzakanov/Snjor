@@ -27,9 +27,9 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   
   // MARK: - Internal Methods
   func makeModule(
-//    delegate: any SearchResultScreenViewControllerDelegate
+    delegate: any SearchResultScreenViewControllerDelegate
   ) -> UIViewController {
-    let module = getModule()
+    let module = getModule(delegate)
     return module
   }
   
@@ -61,11 +61,14 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   
   // MARK: - Private Methods
   private func getModule(
-//    _ delegate: any SearchResultScreenViewControllerDelegate
+    _ delegate: any SearchResultScreenViewControllerDelegate
   ) -> UIViewController {
     let photosViewModel = viewModelFactory.createSearchPhotosViewModel()
 //    let albumsViewModel = viewModelFactory.createSearchAlbumsViewModel()
-    let module = SearchResultScreenViewController(photosViewModel: photosViewModel)
+    let module = SearchResultScreenViewController(
+      photosViewModel: photosViewModel,
+      delegate: delegate
+    )
     setupLayouts(module: module)
     module.fetchMatchingItems(with: searchTerm)
     return module

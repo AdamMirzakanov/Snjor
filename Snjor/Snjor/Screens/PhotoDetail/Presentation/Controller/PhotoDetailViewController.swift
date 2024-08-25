@@ -48,7 +48,7 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailRootView> {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     showCustomTabBar()
-    if self.isMovingFromParent || self.isBeingDismissed {
+    if self.isMovingFromParent {
       downloadService.invalidateSession(withID: Self.sessionID)
     }
   }

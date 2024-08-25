@@ -9,8 +9,9 @@ import UIKit
 import Combine
 
 protocol SearchResultScreenViewControllerDelegate: AnyObject {
+  func didFinishFlow()
   func searchPhotoCellDidSelect(_ photo: Photo)
-//  func albumcCellDidSelect(_ album: Album)
+  //  func albumcCellDidSelect(_ album: Album)
 }
 
 final class SearchResultScreenViewController: BaseViewController<SearchResultScreenRootView> {
@@ -32,9 +33,11 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   
   // MARK: - Initializers
   init(
-    photosViewModel: any SearchResultPhotosViewModelProtocol
+    photosViewModel: any SearchResultPhotosViewModelProtocol,
+    delegate: any SearchResultScreenViewControllerDelegate
   ) {
     self.photosViewModel = photosViewModel
+    self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -55,6 +58,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     configureDownloadSession()
     setupVisibleContainers()
     setupNavigationItem()
+    setupUI()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -124,5 +128,20 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     case .fail(error: let error):
       presentAlert(message: error, title: AppLocalized.error)
     }
+  }
+  
+  private func closeFlowAction() -> UIAction {
+    UIAction { [weak self] _ in
+      guard let self = self else { return }
+      delegate?.didFinishFlow()
+    }
+  }
+  
+  private func setupUI() {
+    let closeButton = UIBarButtonItem(
+      systemItem: .close,
+      primaryAction: closeFlowAction()
+    )
+    navigationItem.leftBarButtonItem = closeButton
   }
 }
