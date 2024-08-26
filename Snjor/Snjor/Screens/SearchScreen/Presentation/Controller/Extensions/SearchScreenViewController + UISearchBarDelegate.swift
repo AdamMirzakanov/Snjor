@@ -37,9 +37,6 @@ extension SearchScreenViewController: UISearchBarDelegate {
     guard let query = searchBar.text, !query.isEmpty else {
       return
     }
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomTabBar()
-    }
     delegate?.searchButtonClicked(with: query)
     
     /// Это небольшая задержка для того что бы скрыть визуальные артефакты, 
