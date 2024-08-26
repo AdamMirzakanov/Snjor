@@ -71,11 +71,10 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   
   func makeSearchResultScreenCoordinator(
     with searchTerm: String,
-//    navigation: any Navigable,
-//    overlordCoordinator: any ParentCoordinator,
     delegate: any SearchResultScreenCoordinatorDelegate
   ) -> any Coordinatable {
     let navigationController = UINavigationController()
+    //navigationController.modalPresentationStyle = .fullScreen
     let factory = SearchResultScreenFactory(with: searchTerm)
     let navigation = Navigation(rootViewController: navigationController)
     return SearchResultScreenCoordinator(

@@ -12,16 +12,14 @@ protocol ParentCoordinator: AnyObject {
 // MARK: - Default Methods
 extension ParentCoordinator {
   func addAndStartChildCoordinator(
-    _ coordinator: (any Coordinatable)?
+_ coordinator: (any Coordinatable)?
   ) {
     guard let childCoordinator = coordinator else { return }
     childCoordinators.append(childCoordinator)
     childCoordinator.start()
   }
 
-  func removeChildCoordinator(
-    _ coordinator: any Coordinatable
-  ) {
+  func removeChildCoordinator(_ coordinator: any Coordinatable) {
     childCoordinators = childCoordinators.filter { $0 !== coordinator }
   }
 

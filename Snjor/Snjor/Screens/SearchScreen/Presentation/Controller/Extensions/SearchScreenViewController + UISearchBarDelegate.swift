@@ -41,5 +41,11 @@ extension SearchScreenViewController: UISearchBarDelegate {
       tabBar.hideCustomTabBar()
     }
     delegate?.searchButtonClicked(with: query)
+    
+    /// Это небольшая задержка для того что бы скрыть визуальные артефакты, 
+    /// до появления модального окна.
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+      self?.searchController.isActive = false
+    }
   }
 }

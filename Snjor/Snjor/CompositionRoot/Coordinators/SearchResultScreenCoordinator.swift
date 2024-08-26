@@ -34,8 +34,6 @@ final class SearchResultScreenCoordinator: Coordinatable {
     let controller = factory.makeModule(delegate: self)
     // тут контроллре добавляется в навигационный стек
     navigation.viewControllers = [controller]
-    
-    
   }
 }
 

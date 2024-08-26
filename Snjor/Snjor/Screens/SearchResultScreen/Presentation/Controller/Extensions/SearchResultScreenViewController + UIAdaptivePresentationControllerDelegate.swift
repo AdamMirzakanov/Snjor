@@ -13,5 +13,6 @@ extension SearchResultScreenViewController: UIAdaptivePresentationControllerDele
   ) {
     resetSearchState()
     navigationController?.viewControllers.removeAll { $0 === self }
+    print(#function, Self.self)
   }
 }

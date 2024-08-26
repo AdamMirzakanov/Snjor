@@ -13,5 +13,6 @@ extension Navigation: UIAdaptivePresentationControllerDelegate {
   ) {
     dismissNavigation?()
     dismissNavigation = nil
+    print(#function, "🟩")
   }
 }
