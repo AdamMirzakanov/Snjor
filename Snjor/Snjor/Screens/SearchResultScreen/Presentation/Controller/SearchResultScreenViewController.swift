@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol SearchResultScreenViewControllerDelegate: AnyObject {
-  func didFinishFlow()
+//  func didFinishFlow()
   func searchPhotoCellDidSelect(_ photo: Photo)
   //  func albumcCellDidSelect(_ album: Album)
 }
@@ -58,13 +58,19 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     configureDownloadSession()
     setupVisibleContainers()
     setupNavigationItem()
-    setupUI()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     PrepareParameters.searchPhotosPage = .zero
     navigationController?.presentationController?.delegate = self
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    if self.isMovingFromParent {
+      resetSearchState()
+    }
   }
   
   // MARK: - Internal Methods
@@ -137,23 +143,5 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     case .fail(error: let error):
       presentAlert(message: error, title: AppLocalized.error)
     }
-  }
-  
-  private func closeFlowAction() -> UIAction {
-    UIAction { [weak self] _ in
-      guard let self = self else {
-        return
-      }
-      delegate?.didFinishFlow()
-      resetSearchState()
-    }
-  }
-  
-  private func setupUI() {
-    let closeButton = UIBarButtonItem(
-      systemItem: .close,
-      primaryAction: closeFlowAction()
-    )
-    navigationItem.leftBarButtonItem = closeButton
   }
 }

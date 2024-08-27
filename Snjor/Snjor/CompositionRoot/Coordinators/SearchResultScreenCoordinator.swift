@@ -5,43 +5,37 @@
 //  Created by Адам Мирзаканов on 24.08.2024.
 //
 
-protocol SearchResultScreenCoordinatorDelegate: AnyObject {
-  func didFinish(childCoordinator: any Coordinatable)
-}
-
 final class SearchResultScreenCoordinator: Coordinatable {
   // MARK: - Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
-  private weak var delegate: (any SearchResultScreenCoordinatorDelegate)?
   
   // MARK: - Private Properties
   private let factory: any SearchResultScreenFactoryProtocol
+  private weak var overlordCoordinator: (any ParentCoordinator)?
   
   // MARK: - Initializers
   init(
     factory: any SearchResultScreenFactoryProtocol,
     navigation: any Navigable,
-    delegate: any SearchResultScreenCoordinatorDelegate
+    overlordCoordinator: (any ParentCoordinator)?
   ) {
     self.factory = factory
     self.navigation = navigation
-    self.delegate = delegate
+    self.overlordCoordinator = overlordCoordinator
   }
    
   // MARK: - Internal Methods
   func start() {
     let controller = factory.makeModule(delegate: self)
-    // тут контроллре добавляется в навигационный стек
-    navigation.viewControllers = [controller]
+    navigation.pushViewController(controller, animated: true) { [weak self] in
+      guard let self = self else { return }
+      self.overlordCoordinator?.removeChildCoordinator(self)
+    }
   }
 }
 
 extension SearchResultScreenCoordinator: SearchResultScreenViewControllerDelegate {
-  func didFinishFlow() {
-    delegate?.didFinish(childCoordinator: self)
-  }
-  
   func searchPhotoCellDidSelect(_ photo: Photo) {
     let coordinator = factory.mekePhotoDetailCoordinator(
       photo: photo,
