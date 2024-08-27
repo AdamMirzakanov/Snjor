@@ -40,14 +40,8 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailRootView> {
     configureDownloadSession()
   }
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    hideCustomTabBar()
-  }
-
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    showCustomTabBar()
     if self.isMovingFromParent {
       downloadService.invalidateSession(withID: Self.sessionID)
     }
@@ -58,18 +52,6 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailRootView> {
   }
   
   // MARK: - Private Methods
-  private func hideCustomTabBar() {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomTabBar()
-    }
-  }
-
-  private func showCustomTabBar() {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.showCustomTabBar()
-    }
-  }
-
   private func configureDownloadSession() {
     downloadService.configureSession(
       delegate: self,

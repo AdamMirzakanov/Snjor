@@ -70,6 +70,16 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     setupNavigationItem()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    showCustomTabBar()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    hideCustomTabBar()
+  }
+  
   // MARK: - Internal Methods
   func hideCustomTabBar() {
     if let tabBar = tabBarController as? MainTabBarController {
