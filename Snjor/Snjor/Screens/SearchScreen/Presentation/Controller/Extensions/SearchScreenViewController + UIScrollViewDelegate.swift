@@ -13,15 +13,11 @@ extension SearchScreenViewController {
   }
   
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomTabBar()
-    }
+    hideCustomTabBar()
   }
   
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.showCustomTabBar()
-    }
+    showCustomTabBar()
   }
   
   func scrollViewDidEndDragging(
@@ -29,10 +25,9 @@ extension SearchScreenViewController {
     willDecelerate decelerate: Bool
   ) {
     if !decelerate {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-        if let tabBar = self.tabBarController as? MainTabBarController {
-          tabBar.showCustomTabBar()
-        }
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        guard let self = self else { return }
+        self.showCustomTabBar()
       }
     }
   }

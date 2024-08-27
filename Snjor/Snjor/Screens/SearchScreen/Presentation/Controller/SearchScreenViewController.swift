@@ -70,6 +70,19 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     setupNavigationItem()
   }
   
+  // MARK: - Internal Methods
+  func hideCustomTabBar() {
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.hideCustomTabBar()
+    }
+  }
+  
+  func showCustomTabBar() {
+    if let tabBar = self.tabBarController as? MainTabBarController {
+      tabBar.showCustomTabBar()
+    }
+  }
+  
   // MARK: - Private Methods
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
