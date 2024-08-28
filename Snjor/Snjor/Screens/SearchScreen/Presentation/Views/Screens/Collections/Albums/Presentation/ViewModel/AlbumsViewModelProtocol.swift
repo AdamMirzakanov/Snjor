@@ -5,8 +5,6 @@
 //  Created by Адам Мирзаканов on 08.08.2024.
 //
 
-import UIKit
-
 protocol AlbumsViewModelProtocol: BaseViewModelProtocol {
   var albums: [Album] { get }
   func getAlbum(at index: Int) -> Album

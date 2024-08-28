@@ -24,9 +24,9 @@ class SearchResultScreenViewModelFactory: SearchResultScreenViewModelFactoryProt
     )
   }
   
-  func createSearchAlbumsViewModel() -> AlbumsViewModel {
+  func createSearchAlbumsViewModel() -> SearchResultAlbumsViewModel {
     let loadAlbumsUseCase = getSearchAlbumsUseCase(networkService)
-    return AlbumsViewModel(
+    return SearchResultAlbumsViewModel(
       state: state,
       loadUseCase: loadAlbumsUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
@@ -43,16 +43,9 @@ class SearchResultScreenViewModelFactory: SearchResultScreenViewModelFactoryProt
   
   private func getSearchAlbumsUseCase(
     _ networkService: NetworkService
-  ) -> LoadAlbumsUseCase {
-    let loadAlbumsRepository = LoadAlbumsRepository(networkService: networkService)
-    return LoadAlbumsUseCase(repository: loadAlbumsRepository)
-  }
-  
-  private func getSearchTopicsUseCase(
-    _ networkService: NetworkService
-  ) -> LoadTopicsUseCase {
-    let loadTopicsRepository = LoadTopicsPageRepository(networkService: networkService)
-    return LoadTopicsUseCase(repository: loadTopicsRepository)
+  ) -> LoadSearchAlbumsUseCase {
+    let loadAlbumsRepository = LoadSearchAlbumsRepository(networkService: networkService)
+    return LoadSearchAlbumsUseCase(repository: loadAlbumsRepository)
   }
 }
 

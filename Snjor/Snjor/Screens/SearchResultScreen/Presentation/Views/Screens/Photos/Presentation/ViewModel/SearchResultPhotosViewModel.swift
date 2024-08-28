@@ -9,12 +9,8 @@ import Combine
 
 
 final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
-  func viewDidLoad() {
-    //code:
-  }
 
   // MARK: - Internal Properties
-  var photosCount: Int { photos.count }
   var photos: [Photo] = []
   var searchTerm: String? // Добавлено для хранения поискового запроса
 
@@ -35,6 +31,10 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
   }
   
   // MARK: - Internal Methods
+  func viewDidLoad() {
+    //code:
+  }
+
   func loadSearchPhotos(with searchTerm: String) {
     self.searchTerm = searchTerm // Сохраняем поисковый запрос
     state.send(.loading)

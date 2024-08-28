@@ -74,7 +74,6 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     navigation: any Navigable,
     overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
-    let navigationController = UINavigationController()
     let factory = SearchResultScreenFactory(with: searchTerm)
     return SearchResultScreenCoordinator(
       factory: factory,

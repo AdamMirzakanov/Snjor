@@ -9,18 +9,20 @@ import UIKit
 import Combine
 
 protocol SearchResultScreenViewControllerDelegate: AnyObject {
-//  func didFinishFlow()
   func searchPhotoCellDidSelect(_ photo: Photo)
-  //  func albumcCellDidSelect(_ album: Album)
+  func searchAlbumcCellDidSelect(_ album: Album)
 }
 
 final class SearchResultScreenViewController: BaseViewController<SearchResultScreenRootView> {
   
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>?
+  var collectionsDataSource: UICollectionViewDiffableDataSource<SearchResultCollectionsSection, Album>?
   var photosSections: [SearchResultPhotosSection] = []
+  var collectionsSections: [SearchResultCollectionsSection] = []
   var currentScopeIndex: Int = .zero
   var photosViewModel: any SearchResultPhotosViewModelProtocol
+  var albumsViewModel: any SearchResultAlbumsViewModelProtocol
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -34,9 +36,11 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   // MARK: - Initializers
   init(
     photosViewModel: any SearchResultPhotosViewModelProtocol,
+    albumsViewModel: any SearchResultAlbumsViewModelProtocol,
     delegate: any SearchResultScreenViewControllerDelegate
   ) {
     self.photosViewModel = photosViewModel
+    self.albumsViewModel = albumsViewModel
     self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
@@ -63,7 +67,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     PrepareParameters.searchPhotosPage = .zero
-    navigationController?.presentationController?.delegate = self
+    PrepareParameters.searchAlbumsPage = .zero
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -83,9 +87,8 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   }
   
   func fetchMatchingItems(with searchTerm: String) {
-    guard !searchTerm.isEmpty else { return }
-    photosViewModel.photos.removeAll()
     photosViewModel.loadSearchPhotos(with: searchTerm)
+//    albumsViewModel.loadSearchAlbums(with: searchTerm)
   }
   
   // MARK: - Private Methods
@@ -117,6 +120,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   
   private func stateController() {
     photosState()
+    albumsState()
   }
   
   private func photosState() {
@@ -127,6 +131,19 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
         guard let self = self else { return }
         self.handleState(state) {
           self.applyPhotosSnapshot()
+        }
+      }
+      .store(in: &cancellable)
+  }
+  
+  private func albumsState() {
+    albumsViewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        self.handleState(state) {
+          self.applyCollectionsSnapshot()
         }
       }
       .store(in: &cancellable)

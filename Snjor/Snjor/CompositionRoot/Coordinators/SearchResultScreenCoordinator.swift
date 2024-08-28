@@ -36,6 +36,7 @@ final class SearchResultScreenCoordinator: Coordinatable {
 }
 
 extension SearchResultScreenCoordinator: SearchResultScreenViewControllerDelegate {
+  
   func searchPhotoCellDidSelect(_ photo: Photo) {
     let coordinator = factory.mekePhotoDetailCoordinator(
       photo: photo,
@@ -44,24 +45,15 @@ extension SearchResultScreenCoordinator: SearchResultScreenViewControllerDelegat
     )
     addAndStartChildCoordinator(coordinator)
   }
-  
-//  func topicCellDidSelect(_ topic: Topic) {
-//    let coordinator = factory.mekeTopicPhotosCoordinator(
-//      topic: topic,
-//      navigation: navigation,
-//      overlordCoordinator: self
-//    )
-//    addAndStartChildCoordinator(coordinator)
-//  }
-//  
-//  func albumcCellDidSelect(_ album: Album) {
-//    let coordinator = factory.mekeAlbumPhotosCoordinator(
-//      album: album,
-//      navigation: navigation,
-//      overlordCoordinator: self
-//    )
-//    addAndStartChildCoordinator(coordinator)
-//  }
+
+  func searchAlbumcCellDidSelect(_ album: Album) {
+    let coordinator = factory.mekeAlbumPhotosCoordinator(
+      album: album,
+      navigation: navigation,
+      overlordCoordinator: self
+    )
+    addAndStartChildCoordinator(coordinator)
+  }
 }
 
 // MARK: - ParentCoordinator

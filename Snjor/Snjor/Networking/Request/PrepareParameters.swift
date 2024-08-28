@@ -41,7 +41,15 @@ enum PrepareParameters {
     parameters[.query] = searchTerm
     parameters[.page] = String(searchPhotosPage)
     parameters[.perPage] = String(perPage)
-    print(searchPhotosPage)
+    return parameters
+  }
+  
+  static func prepareSearchAlbumsParameters(with searchTerm: String) -> Parameters {
+    nextSearchAlbumsPage()
+    var parameters: Parameters = [:]
+    parameters[.query] = searchTerm
+    parameters[.page] = String(searchAlbumsPage)
+    parameters[.perPage] = String(perPage)
     return parameters
   }
   

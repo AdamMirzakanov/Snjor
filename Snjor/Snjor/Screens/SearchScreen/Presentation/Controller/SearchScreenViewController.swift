@@ -22,10 +22,25 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, CollectionsItem>?
   var photosSections: [PhotosSection] = []
   var collectionsSections: [CollectionsSection] = []
-  var currentScopeIndex: Int = 0
+  var currentScopeIndex: Int = .zero
   
   // MARK: - Private Properties
-  lazy var searchController = UISearchController()
+  lazy var searchController: UISearchController = {
+    let searchController = UISearchController(searchResultsController: nil)
+    searchController.obscuresBackgroundDuringPresentation = true
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.searchBar.showsScopeBar = true
+    searchController.searchBar.delegate = self
+    searchController.searchBar.autocapitalizationType = .none
+    searchController.searchBar.placeholder = "Search photos"
+    searchController.searchBar.scopeButtonTitles = [
+      "Photos",
+      "Collections",
+      "Users"
+    ]
+    return searchController
+  }()
+  
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
@@ -78,6 +93,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     hideCustomTabBar()
+    searchController.isActive = false
   }
   
   // MARK: - Internal Methods
@@ -104,16 +120,6 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   }
   
   private func configureSearchController() {
-    searchController.searchBar.delegate = self
-    searchController.obscuresBackgroundDuringPresentation = false
-    searchController.automaticallyShowsSearchResultsController = true
-    searchController.searchBar.showsScopeBar = true
-    searchController.searchBar.scopeButtonTitles = [
-      "Photos",
-      "Collections",
-      "Users"
-    ]
-    searchController.searchBar.placeholder = "Search photos, collections, users"
     navigationItem.hidesSearchBarWhenScrolling = true
   }
   

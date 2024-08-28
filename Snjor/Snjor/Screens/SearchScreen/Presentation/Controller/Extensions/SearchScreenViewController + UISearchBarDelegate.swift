@@ -32,17 +32,10 @@ extension SearchScreenViewController: UISearchBarDelegate {
     }
   }
   
-  
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    guard let query = searchBar.text, !query.isEmpty else {
+    guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
       return
     }
-    delegate?.searchButtonClicked(with: query)
-    
-    /// Это небольшая задержка для того что бы скрыть визуальные артефакты
-    /// деактивации поисковой строки, до появления модального окна.
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-      self?.searchController.isActive = false
-    }
+    delegate?.searchButtonClicked(with: searchTerm)
   }
 }

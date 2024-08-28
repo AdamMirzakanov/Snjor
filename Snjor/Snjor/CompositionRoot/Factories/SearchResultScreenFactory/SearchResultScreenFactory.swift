@@ -64,9 +64,10 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     _ delegate: any SearchResultScreenViewControllerDelegate
   ) -> UIViewController {
     let photosViewModel = viewModelFactory.createSearchPhotosViewModel()
-//    let albumsViewModel = viewModelFactory.createSearchAlbumsViewModel()
+    let albumsViewModel = viewModelFactory.createSearchAlbumsViewModel()
     let module = SearchResultScreenViewController(
-      photosViewModel: photosViewModel,
+      photosViewModel: photosViewModel, 
+      albumsViewModel: albumsViewModel,
       delegate: delegate
     )
     setupLayouts(module: module)

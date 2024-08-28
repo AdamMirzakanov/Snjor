@@ -14,3 +14,4 @@ struct AlbumsViewModelItem {
     album.regularURL
   }
 }
+
