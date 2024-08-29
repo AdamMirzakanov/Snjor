@@ -117,6 +117,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   
   private func setupCollectionViewDelegate() {
     rootView.photosCollectionView.delegate = self
+    rootView.albumsCollectionView.delegate = self
   }
   
   private func setupNavigationItem() {

@@ -17,13 +17,11 @@ extension SearchResultScreenViewController: UICollectionViewDelegate {
     case .zero:
       let photo = photosViewModel.getPhoto(at: indexPath.item)
       delegate.searchPhotoCellDidSelect(photo)
+    case 1:
+      let album = albumsViewModel.getAlbum(at: indexPath.item)
+      delegate.searchAlbumcCellDidSelect(album)
     default:
-      switch indexPath.section {
-      case .zero:
-        print(#function, currentScopeIndex)
-      default:
-        print(#function, currentScopeIndex)
-      }
+      print(#function, Self.self)
     }
   }
 }
