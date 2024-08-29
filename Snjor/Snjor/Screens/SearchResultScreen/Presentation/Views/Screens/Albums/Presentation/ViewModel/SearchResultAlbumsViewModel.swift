@@ -54,10 +54,11 @@ final class SearchResultAlbumsViewModel: SearchResultAlbumsViewModelProtocol {
   }
   
   func checkAndLoadMoreAlbums(at index: Int) {
+    guard let searchTerm = searchTerm else { return }
     lastPageValidationUseCase.checkAndLoadMoreItems(
       at: index,
       actualItems: albums.count,
-      action: viewDidLoad
+      action: { self.loadSearchAlbums(with: searchTerm) }
     )
   }
   
