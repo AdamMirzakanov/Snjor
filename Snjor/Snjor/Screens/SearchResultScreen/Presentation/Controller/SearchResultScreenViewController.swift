@@ -87,13 +87,13 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   }
   
   func fetchMatchingItems(with searchTerm: String) {
-    photosViewModel.loadSearchPhotos(with: searchTerm)
-//    albumsViewModel.loadSearchAlbums(with: searchTerm)
+//    photosViewModel.loadSearchPhotos(with: searchTerm)
+    albumsViewModel.loadSearchAlbums(with: searchTerm)
   }
   
   // MARK: - Private Methods
   private func setupVisibleContainers() {
-    rootView.albumsCollectionView.removeFromSuperview()
+//    rootView.albumsCollectionView.removeFromSuperview()
   }
   
   private func setupCollectionViewDelegate() {
@@ -109,6 +109,9 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
       for: rootView.photosCollectionView,
       delegate: self
     )
+    createCollectionsDataSource(
+      for: rootView.albumsCollectionView
+    )
   }
   
   private func configureDownloadSession() {
@@ -119,7 +122,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   }
   
   private func stateController() {
-    photosState()
+//    photosState()
     albumsState()
   }
   

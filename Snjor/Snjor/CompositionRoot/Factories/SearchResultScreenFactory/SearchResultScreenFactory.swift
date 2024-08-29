@@ -78,6 +78,6 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   private func setupLayouts(module: SearchResultScreenViewController) {
     let cascadeLayout = MultiColumnCascadeLayout(with: module)
     module.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
-//    module.rootView.albumsCollectionView.collectionViewLayout = layoutProvider.createCollectionsLayout(module: module)
+    module.rootView.albumsCollectionView.collectionViewLayout = layoutProvider.createAlbumsLayout(module: module)
   }
 }

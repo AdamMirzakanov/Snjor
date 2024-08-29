@@ -35,6 +35,20 @@ struct LayoutProvider {
     return layout
   }
   
+  func createAlbumsLayout(
+    module: SearchResultScreenViewController
+  ) -> UICollectionViewLayout {
+    let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
+      let section = module.collectionsSections[sectionIndex]
+      switch section {
+      case .albums:
+        let section = albumsLayoutFactory.createAlbumLayout()
+        return section
+      }
+    }
+    return layout
+  }
+  
   // MARK: - Private Methods
   private func makeLineItem(
     layoutEnvironment: any NSCollectionLayoutEnvironment
