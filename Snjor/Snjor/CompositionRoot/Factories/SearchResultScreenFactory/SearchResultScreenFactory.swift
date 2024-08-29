@@ -13,13 +13,16 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   private let viewModelFactory: any SearchResultScreenViewModelFactoryProtocol
   private let layoutProvider: LayoutProvider
   private let searchTerm: String
+  private let currentScopeIndex: Int
   
   // MARK: - Initializers
   init(
+    currentScopeIndex: Int,
     viewModelFactory: any SearchResultScreenViewModelFactoryProtocol = SearchResultScreenViewModelFactory(),
     layoutProvider: LayoutProvider = LayoutProvider(),
     with searchTerm: String
   ) {
+    self.currentScopeIndex = currentScopeIndex
     self.viewModelFactory = viewModelFactory
     self.layoutProvider = layoutProvider
     self.searchTerm = searchTerm
@@ -66,7 +69,8 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     let photosViewModel = viewModelFactory.createSearchPhotosViewModel()
     let albumsViewModel = viewModelFactory.createSearchAlbumsViewModel()
     let module = SearchResultScreenViewController(
-      photosViewModel: photosViewModel, 
+      currentScopeIndex: currentScopeIndex,
+      photosViewModel: photosViewModel,
       albumsViewModel: albumsViewModel,
       delegate: delegate
     )

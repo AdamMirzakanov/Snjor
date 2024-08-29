@@ -18,15 +18,18 @@ extension SearchScreenViewController: UISearchBarDelegate {
       rootView.albumsCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.photosCollectionView)
       rootView.photosCollectionView.fillSuperView()
+      searchBar.placeholder = "Search photos"
       navigationItem.title = "Photos"
     case 1:
       rootView.photosCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.albumsCollectionView)
       rootView.albumsCollectionView.fillSuperView()
+      searchBar.placeholder = "Search Albums"
       navigationItem.title = "Collections"
     default:
       rootView.photosCollectionView.isHidden = true
       rootView.albumsCollectionView.isHidden = true
+      searchBar.placeholder = "Search users"
       navigationItem.title = "Users"
       print(#function)
     }
@@ -36,6 +39,6 @@ extension SearchScreenViewController: UISearchBarDelegate {
     guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
       return
     }
-    delegate?.searchButtonClicked(with: searchTerm)
+    delegate?.searchButtonClicked(with: searchTerm, currentScopeIndex: currentScopeIndex)
   }
 }

@@ -70,11 +70,15 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   }
   
   func makeSearchResultScreenCoordinator(
+    currentScopeIndex: Int,
     with searchTerm: String,
     navigation: any Navigable,
     overlordCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
-    let factory = SearchResultScreenFactory(with: searchTerm)
+    let factory = SearchResultScreenFactory(
+      currentScopeIndex: currentScopeIndex,
+      with: searchTerm
+    )
     return SearchResultScreenCoordinator(
       factory: factory,
       navigation: navigation,

@@ -62,8 +62,9 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
     addAndStartChildCoordinator(coordinator)
   }
   
-  func searchButtonClicked(with searchTerm: String) {
+  func searchButtonClicked(with searchTerm: String, currentScopeIndex: Int) {
     let coordinator = factory.makeSearchResultScreenCoordinator(
+      currentScopeIndex: currentScopeIndex, 
       with: searchTerm,
       navigation: navigation,
       overlordCoordinator: self

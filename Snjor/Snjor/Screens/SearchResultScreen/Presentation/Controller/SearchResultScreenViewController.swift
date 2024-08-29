@@ -20,7 +20,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   var collectionsDataSource: UICollectionViewDiffableDataSource<SearchResultCollectionsSection, Album>?
   var photosSections: [SearchResultPhotosSection] = []
   var collectionsSections: [SearchResultCollectionsSection] = []
-  var currentScopeIndex: Int = .zero
+  var currentScopeIndex: Int
   var photosViewModel: any SearchResultPhotosViewModelProtocol
   var albumsViewModel: any SearchResultAlbumsViewModelProtocol
   
@@ -35,10 +35,12 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   
   // MARK: - Initializers
   init(
+    currentScopeIndex: Int,
     photosViewModel: any SearchResultPhotosViewModelProtocol,
     albumsViewModel: any SearchResultAlbumsViewModelProtocol,
     delegate: any SearchResultScreenViewControllerDelegate
   ) {
+    self.currentScopeIndex = currentScopeIndex
     self.photosViewModel = photosViewModel
     self.albumsViewModel = albumsViewModel
     self.delegate = delegate
@@ -87,13 +89,30 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   }
   
   func fetchMatchingItems(with searchTerm: String) {
-//    photosViewModel.loadSearchPhotos(with: searchTerm)
-    albumsViewModel.loadSearchAlbums(with: searchTerm)
+    switch currentScopeIndex {
+    case .zero:
+      photosViewModel.loadSearchPhotos(with: searchTerm)
+    case 1:
+      albumsViewModel.loadSearchAlbums(with: searchTerm)
+    default:
+      print(#function)
+    }
   }
   
   // MARK: - Private Methods
   private func setupVisibleContainers() {
-//    rootView.albumsCollectionView.removeFromSuperview()
+    switch currentScopeIndex {
+    case .zero:
+      rootView.albumsCollectionView.removeFromSuperview()
+      rootView.addSubview(rootView.photosCollectionView)
+      rootView.photosCollectionView.fillSuperView()
+    case 1:
+      rootView.photosCollectionView.removeFromSuperview()
+      rootView.addSubview(rootView.albumsCollectionView)
+      rootView.albumsCollectionView.fillSuperView()
+    default:
+      print(#function)
+    }
   }
   
   private func setupCollectionViewDelegate() {
@@ -122,7 +141,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   }
   
   private func stateController() {
-//    photosState()
+    photosState()
     albumsState()
   }
   
