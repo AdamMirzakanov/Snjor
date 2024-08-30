@@ -12,7 +12,6 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
 
   // MARK: - Internal Properties
   var photos: [Photo] = []
-  var searchTerm: String? // Добавлено для хранения поискового запроса
 
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
@@ -36,7 +35,6 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
   }
 
   func loadSearchPhotos(with searchTerm: String) {
-    self.searchTerm = searchTerm // Сохраняем поисковый запрос
     state.send(.loading)
     Task {
       await loadSearchPhotosUseCase(with: searchTerm)
@@ -46,15 +44,16 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
   func getPhoto(at index: Int) -> Photo {
     photos[index]
   }
-
-  func getPhotoListViewModelItem(at index: Int) -> SearchResultPhotosViewModelItem {
-    checkAndLoadMorePhotos(at: index)
+  
+  func getPhotoListViewModelItem(
+    at index: Int,
+    with searchTerm: String
+  ) -> SearchResultPhotosViewModelItem {
+    checkAndLoadMorePhotos(at: index, with: searchTerm)
     return makePhotoListViewModelItem(at: index)
   }
 
-  // Метод реализует пагинацию, подгружая страницы
-  func checkAndLoadMorePhotos(at index: Int) {
-    guard let searchTerm = searchTerm else { return }
+  func checkAndLoadMorePhotos(at index: Int, with searchTerm: String) {
     lastPageValidationUseCase.checkAndLoadMoreItems(
       at: index,
       actualItems: photos.count,
@@ -81,7 +80,9 @@ final class SearchResultPhotosViewModel: SearchResultPhotosViewModelProtocol {
     }
   }
 
-  private func makePhotoListViewModelItem(at index: Int) -> SearchResultPhotosViewModelItem {
+  private func makePhotoListViewModelItem(
+    at index: Int
+  ) -> SearchResultPhotosViewModelItem {
     let photo = photos[index]
     return SearchResultPhotosViewModelItem(photo: photo)
   }

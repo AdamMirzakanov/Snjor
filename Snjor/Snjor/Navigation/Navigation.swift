@@ -19,6 +19,5 @@ final class Navigation: NSObject {
     super.init()
     rootViewController.presentationController?.delegate = self
     rootViewController.delegate = self
-    print(rootViewController, "🔶")
   }
 }

@@ -8,7 +8,10 @@
 protocol SearchResultAlbumsViewModelProtocol: BaseViewModelProtocol {
   var albums: [Album] { get }
   func getAlbum(at index: Int) -> Album
-  func getAlbumsViewModelItem(at index: Int) -> SearchResultAlbumsViewModelItem
+  func checkAndLoadMoreAlbums(at index: Int, with searchTerm: String)
   func loadSearchAlbums(with searchTerm: String)
-  func checkAndLoadMoreAlbums(at index: Int)
+  func getAlbumsViewModelItem(
+    at index: Int,
+    with searchTerm: String
+  ) -> SearchResultAlbumsViewModelItem
 }

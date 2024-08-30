@@ -11,7 +11,6 @@ final class SearchResultAlbumsViewModel: SearchResultAlbumsViewModelProtocol {
   
   // MARK: - Internal Properties
   var albums: [Album] = []
-  var searchTerm: String?
   
   // MARK: - Private Properties
   private(set) var state: PassthroughSubject<StateController, Never>
@@ -35,7 +34,6 @@ final class SearchResultAlbumsViewModel: SearchResultAlbumsViewModelProtocol {
   }
   
   func loadSearchAlbums(with searchTerm: String) {
-    self.searchTerm = searchTerm // Сохраняем поисковый запрос
     state.send(.loading)
     Task {
       await loadSearchAlbumsUseCase(with: searchTerm)
@@ -47,14 +45,14 @@ final class SearchResultAlbumsViewModel: SearchResultAlbumsViewModelProtocol {
   }
   
   func getAlbumsViewModelItem(
-    at index: Int
+    at index: Int,
+    with searchTerm: String
   ) -> SearchResultAlbumsViewModelItem {
-    checkAndLoadMoreAlbums(at: index)
+    checkAndLoadMoreAlbums(at: index, with: searchTerm)
     return makeAlbumListViewModelItem(at: index)
   }
   
-  func checkAndLoadMoreAlbums(at index: Int) {
-    guard let searchTerm = searchTerm else { return }
+  func checkAndLoadMoreAlbums(at index: Int, with searchTerm: String) {
     lastPageValidationUseCase.checkAndLoadMoreItems(
       at: index,
       actualItems: albums.count,

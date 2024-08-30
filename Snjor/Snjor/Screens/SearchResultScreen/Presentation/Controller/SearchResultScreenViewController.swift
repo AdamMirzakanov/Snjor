@@ -23,6 +23,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   var currentScopeIndex: Int
   var photosViewModel: any SearchResultPhotosViewModelProtocol
   var albumsViewModel: any SearchResultAlbumsViewModelProtocol
+  var currentSearchTerm: String?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -89,6 +90,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   }
   
   func fetchMatchingItems(with searchTerm: String) {
+    self.currentSearchTerm = searchTerm
     switch currentScopeIndex {
     case .zero:
       photosViewModel.loadSearchPhotos(with: searchTerm)

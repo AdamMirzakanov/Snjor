@@ -62,7 +62,6 @@ extension SearchResultScreenViewController {
     indexPath: IndexPath,
     item: Album
   ) -> UICollectionViewCell {
-    let cell = UICollectionViewCell()
     let section = collectionsSections[indexPath.section]
     switch section {
     case .albums:
@@ -123,7 +122,14 @@ extension SearchResultScreenViewController {
     else {
       return UICollectionViewCell()
     }
-    let viewModelItem = albumsViewModel.getAlbumsViewModelItem(at: indexPath.item)
+    
+    guard let currentSearchTerm = self.currentSearchTerm else {
+      return cell
+    }
+    let viewModelItem = albumsViewModel.getAlbumsViewModelItem(
+      at: indexPath.item,
+      with: currentSearchTerm
+    )
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }

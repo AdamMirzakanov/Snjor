@@ -11,6 +11,6 @@ protocol LastPageValidationUseCaseProtocol {
   func checkAndLoadMoreItems(
     at itemIndex: Int,
     actualItems: Int,
-    action: () -> Void
+    action: @escaping () -> Void
   )
 }

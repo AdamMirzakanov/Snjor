@@ -17,8 +17,6 @@ final class AlbumsCollectionView: UICollectionView {
     configureLayout()
     cellRegister()
     reusableViewRegister()
-    showsHorizontalScrollIndicator = false
-    showsVerticalScrollIndicator = false
   }
   
   required init?(coder: NSCoder) {
@@ -29,7 +27,6 @@ final class AlbumsCollectionView: UICollectionView {
   private func configureLayout() {
     flowlayout.scrollDirection = .vertical
     backgroundColor = .clear
-    showsHorizontalScrollIndicator = false
   }
   
   private func cellRegister() {

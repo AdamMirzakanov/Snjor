@@ -17,7 +17,7 @@ extension SearchResultScreenViewController {
     photosSections = snapshot.sectionIdentifiers
     return snapshot
   }
-
+  
   // MARK: - Internal Methods
   func applyPhotosSnapshot() {
     guard let dataSource = photosDataSource else { return }
@@ -37,16 +37,12 @@ extension SearchResultScreenViewController {
     ) { [weak self] collectionView, indexPath, photo in
       let cell = UICollectionViewCell()
       guard let strongSelf = self else { return cell }
-      let section = strongSelf.photosSections[indexPath.section]
-      switch section {
-      case .main:
-        return strongSelf.configureCell(
-          collectionView: collectionView,
-          indexPath: indexPath,
-          photo: photo,
-          delegate: delegate
-        )
-      }
+      return strongSelf.configureCell(
+        collectionView: collectionView,
+        indexPath: indexPath,
+        photo: photo,
+        delegate: delegate
+      )
     }
   }
   
@@ -56,19 +52,40 @@ extension SearchResultScreenViewController {
     photo: Photo,
     delegate: any SearchResultPhotoCellDelegate
   ) -> UICollectionViewCell {
-    guard
-      let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: SearchResultPhotoCell.reuseID,
-        for: indexPath
-      ) as? SearchResultPhotoCell
-    else {
+    let section = photosSections[indexPath.section]
+    switch section {
+    case .main:
+      return configurePhotoCell(
+        collectionView: collectionView,
+        indexPath: indexPath,
+        photo: photo,
+        delegate: delegate
+      )
+    }
+  }
+  
+  private func configurePhotoCell(
+    collectionView: UICollectionView,
+    indexPath: IndexPath,
+    photo: Photo,
+    delegate: any SearchResultPhotoCellDelegate
+  ) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: SearchResultPhotoCell.reuseID,
+      for: indexPath
+    ) as? SearchResultPhotoCell else {
       return UICollectionViewCell()
     }
     
+    guard let currentSearchTerm = self.currentSearchTerm else {
+      return cell
+    }
+    let viewModelItem = photosViewModel.getPhotoListViewModelItem(
+      at: indexPath.item,
+      with: currentSearchTerm
+    )
     cell.delegate = delegate
-    let viewModelItem = photosViewModel.getPhotoListViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
 }
-

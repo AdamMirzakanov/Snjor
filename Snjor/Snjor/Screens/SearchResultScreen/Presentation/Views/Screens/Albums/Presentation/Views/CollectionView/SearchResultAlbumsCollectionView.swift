@@ -16,8 +16,6 @@ final class SearchResultAlbumsCollectionView: UICollectionView {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     configureLayout()
     cellRegister()
-    showsHorizontalScrollIndicator = false
-    showsVerticalScrollIndicator = false
   }
   
   required init?(coder: NSCoder) {
@@ -28,7 +26,6 @@ final class SearchResultAlbumsCollectionView: UICollectionView {
   private func configureLayout() {
     flowlayout.scrollDirection = .vertical
     backgroundColor = .clear
-    showsHorizontalScrollIndicator = false
   }
   
   private func cellRegister() {

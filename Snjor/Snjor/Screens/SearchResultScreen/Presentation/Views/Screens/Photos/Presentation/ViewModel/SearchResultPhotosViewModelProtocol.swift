@@ -8,7 +8,10 @@
 protocol SearchResultPhotosViewModelProtocol: BaseViewModelProtocol {
   var photos: [Photo] { get set }
   func getPhoto(at index: Int) -> Photo
-  func getPhotoListViewModelItem(at index: Int) -> SearchResultPhotosViewModelItem
-  func checkAndLoadMorePhotos(at index: Int)
+  func checkAndLoadMorePhotos(at index: Int, with searchTerm: String)
   func loadSearchPhotos(with searchTerm: String)
+  func getPhotoListViewModelItem(
+    at index: Int,
+    with searchTerm: String
+  ) -> SearchResultPhotosViewModelItem
 }

@@ -26,7 +26,6 @@ final class SearchResultPhotosCollectionView: UICollectionView {
   private func configureLayout() {
     flowlayout.scrollDirection = .horizontal
     backgroundColor = .clear
-    showsHorizontalScrollIndicator = false
   }
   
   private func cellRegister() {
