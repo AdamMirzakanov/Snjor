@@ -30,7 +30,7 @@ extension SearchResultScreenViewController {
   // MARK: - Create Data Source
   func createPhotosDataSource(
     for collectionView: UICollectionView,
-    delegate: any SearchResultPhotoCellDelegate
+    delegate: any PhotoCellDelegate
   ) {
     photosDataSource = UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>(
       collectionView: collectionView
@@ -50,7 +50,7 @@ extension SearchResultScreenViewController {
     collectionView: UICollectionView,
     indexPath: IndexPath,
     photo: Photo,
-    delegate: any SearchResultPhotoCellDelegate
+    delegate: any PhotoCellDelegate
   ) -> UICollectionViewCell {
     let section = photosSections[indexPath.section]
     switch section {
@@ -68,19 +68,19 @@ extension SearchResultScreenViewController {
     collectionView: UICollectionView,
     indexPath: IndexPath,
     photo: Photo,
-    delegate: any SearchResultPhotoCellDelegate
+    delegate: any PhotoCellDelegate
   ) -> UICollectionViewCell {
     guard let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: SearchResultPhotoCell.reuseID,
+      withReuseIdentifier: PhotoCell.reuseID,
       for: indexPath
-    ) as? SearchResultPhotoCell else {
+    ) as? PhotoCell else {
       return UICollectionViewCell()
     }
     
     guard let currentSearchTerm = self.currentSearchTerm else {
       return cell
     }
-    let viewModelItem = photosViewModel.getPhotoListViewModelItem(
+    let viewModelItem = photosViewModel.getSearchPhotosViewModelItem(
       at: indexPath.item,
       with: currentSearchTerm
     )

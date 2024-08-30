@@ -10,7 +10,7 @@ import UIKit
 struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   
   // MARK: - Private Properties
-  private let viewModelFactory: any SearchResultScreenViewModelFactoryProtocol
+  private let viewModelFactory: any SearchScreenViewModelFactoryProtocol
   private let layoutProvider: LayoutProvider
   private let searchTerm: String
   private let currentScopeIndex: Int
@@ -18,7 +18,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   // MARK: - Initializers
   init(
     currentScopeIndex: Int,
-    viewModelFactory: any SearchResultScreenViewModelFactoryProtocol = SearchResultScreenViewModelFactory(),
+    viewModelFactory: any SearchScreenViewModelFactoryProtocol = SearchScreenViewModelFactory(),
     layoutProvider: LayoutProvider = LayoutProvider(),
     with searchTerm: String
   ) {
@@ -66,8 +66,8 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   private func getModule(
     _ delegate: any SearchResultScreenViewControllerDelegate
   ) -> UIViewController {
-    let photosViewModel = viewModelFactory.createSearchPhotosViewModel()
-    let albumsViewModel = viewModelFactory.createSearchAlbumsViewModel()
+    let photosViewModel = viewModelFactory.createPhotosViewModel()
+    let albumsViewModel = viewModelFactory.createAlbumsViewModel()
     let module = SearchResultScreenViewController(
       currentScopeIndex: currentScopeIndex,
       photosViewModel: photosViewModel,

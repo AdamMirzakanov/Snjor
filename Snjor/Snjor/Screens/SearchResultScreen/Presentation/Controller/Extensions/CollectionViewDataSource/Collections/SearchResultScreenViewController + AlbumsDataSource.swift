@@ -116,9 +116,9 @@ extension SearchResultScreenViewController {
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: SearchResultAlbumCell.reuseID,
+        withReuseIdentifier: AlbumCell.reuseID,
         for: indexPath
-      ) as? SearchResultAlbumCell
+      ) as? AlbumCell
     else {
       return UICollectionViewCell()
     }
@@ -126,7 +126,7 @@ extension SearchResultScreenViewController {
     guard let currentSearchTerm = self.currentSearchTerm else {
       return cell
     }
-    let viewModelItem = albumsViewModel.getAlbumsViewModelItem(
+    let viewModelItem = albumsViewModel.getSearchAlbumsViewModelItem(
       at: indexPath.item,
       with: currentSearchTerm
     )

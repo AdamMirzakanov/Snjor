@@ -10,13 +10,13 @@ import UIKit
 class SearchResultScreenRootView: UIView {
   
   // MARK: - Collection Views
-  let photosCollectionView: SearchResultPhotosCollectionView = {
+  let photosCollectionView: PhotosCollectionView = {
     return $0
-  }(SearchResultPhotosCollectionView())
+  }(PhotosCollectionView())
   
-  let albumsCollectionView: SearchResultAlbumsCollectionView = {
+  let albumsCollectionView: AlbumsCollectionView = {
     return $0
-  }(SearchResultAlbumsCollectionView())
+  }(AlbumsCollectionView())
   
   // MARK: - Initializers
   init() {

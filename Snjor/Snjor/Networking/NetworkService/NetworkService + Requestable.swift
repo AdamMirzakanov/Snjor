@@ -36,6 +36,7 @@ extension NetworkService: Requestable {
 
     switch httpResponse.statusCode {
     case HTTPResponseStatus.success:
+      print(#function, "code:", httpResponse.statusCode)
       return try decodeResponse(data: request.data)
     case HTTPResponseStatus.clientError:
       print(#function, "code:", httpResponse.statusCode)

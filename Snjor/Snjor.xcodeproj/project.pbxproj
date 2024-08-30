@@ -598,7 +598,7 @@
 		371EE7CC2C63B3D0007538C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				37A502802C6B8044000221D1 /* Screens */,
+				37A502802C6B8044000221D1 /* Segments */,
 				371EE7D82C641757007538C2 /* RootView */,
 			);
 			path = Views;
@@ -1209,15 +1209,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		37A502802C6B8044000221D1 /* Screens */ = {
+		37A502802C6B8044000221D1 /* Segments */ = {
 			isa = PBXGroup;
 			children = (
-				37A5027D2C6B7BC9000221D1 /* Tags */,
 				37DABC462C6AA199009044D4 /* Photos */,
 				37A5029B2C6BA099000221D1 /* Collections */,
 				37DABC482C6AA1A8009044D4 /* Users */,
 			);
-			path = Screens;
+			path = Segments;
 			sourceTree = "<group>";
 		};
 		37A502832C6B8C98000221D1 /* Extensions */ = {
@@ -1459,7 +1458,7 @@
 		37B203E02C7695F80017E231 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				37B204012C769C1A0017E231 /* Screens */,
+				37B204012C769C1A0017E231 /* Segments */,
 				37B203E22C7696070017E231 /* RootView */,
 			);
 			path = Views;
@@ -1533,13 +1532,13 @@
 			path = ViewModelFactory;
 			sourceTree = "<group>";
 		};
-		37B204012C769C1A0017E231 /* Screens */ = {
+		37B204012C769C1A0017E231 /* Segments */ = {
 			isa = PBXGroup;
 			children = (
 				37B204022C769C230017E231 /* Photos */,
 				37ED5DC02C7FD06600891811 /* Albums */,
 			);
-			path = Screens;
+			path = Segments;
 			sourceTree = "<group>";
 		};
 		37B204022C769C230017E231 /* Photos */ = {
@@ -1669,6 +1668,7 @@
 		37DABC472C6AA1A1009044D4 /* Albums */ = {
 			isa = PBXGroup;
 			children = (
+				37A5027D2C6B7BC9000221D1 /* Tags */,
 				376EECEA2C73FE36009A2421 /* Presentation */,
 				376EECE82C73FD77009A2421 /* Domain */,
 			);

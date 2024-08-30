@@ -17,17 +17,21 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
   // MARK: - Internal Methods
   func createPhotosViewModel() -> PhotosViewModel {
     let loadPhotosUseCase = getPhotosUseCase(networkService)
+    let loadSearchPhotosUseCase = getSearchPhotosUseCase(networkService)
     return PhotosViewModel(
       state: state,
-      loadUseCase: loadPhotosUseCase,
+      loadUseCase: loadPhotosUseCase, 
+      loadSearchPhotosUseCase: loadSearchPhotosUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
     )
   }
   
   func createAlbumsViewModel() -> AlbumsViewModel {
     let loadAlbumsUseCase = getAlbumsUseCase(networkService)
+    let loadSearchAlbumsUseCase = getSearchAlbumsUseCase(networkService)
     return AlbumsViewModel(
-      state: state,
+      state: state, 
+      loadSearchAlbumsUseCase: loadSearchAlbumsUseCase,
       loadUseCase: loadAlbumsUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
     )
@@ -46,6 +50,13 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
     return LoadPhotosUseCase(repository: loadPhotosRepository)
   }
   
+  private func getSearchPhotosUseCase(
+    _ networkService: NetworkService
+  ) -> LoadSearchPhotosUseCase {
+    let loadPhotosRepository = LoadSearchPhotosRepository(networkService: networkService)
+    return LoadSearchPhotosUseCase(repository: loadPhotosRepository)
+  }
+  
   private func getAlbumsUseCase(
     _ networkService: NetworkService
   ) -> LoadAlbumsUseCase {
@@ -58,5 +69,12 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
   ) -> LoadTopicsUseCase {
     let loadTopicsRepository = LoadTopicsPageRepository(networkService: networkService)
     return LoadTopicsUseCase(repository: loadTopicsRepository)
+  }
+  
+  private func getSearchAlbumsUseCase(
+    _ networkService: NetworkService
+  ) -> LoadSearchAlbumsUseCase {
+    let loadAlbumsRepository = LoadSearchAlbumsRepository(networkService: networkService)
+    return LoadSearchAlbumsUseCase(repository: loadAlbumsRepository)
   }
 }

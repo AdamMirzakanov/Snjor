@@ -6,7 +6,7 @@
 //
 
 protocol SearchResultScreenViewModelFactoryProtocol {
-  func createSearchPhotosViewModel() -> SearchResultPhotosViewModel
-  func createSearchAlbumsViewModel() -> SearchResultAlbumsViewModel
+  func createSearchPhotosViewModel() -> PhotosViewModel
+  func createSearchAlbumsViewModel() -> AlbumsViewModel
 }
  

@@ -66,7 +66,7 @@ extension SearchScreenViewController {
     }
     
     cell.delegate = delegate
-    let viewModelItem = photosViewModel.getPhotoListViewModelItem(at: indexPath.item)
+    let viewModelItem = photosViewModel.getPhotosViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
