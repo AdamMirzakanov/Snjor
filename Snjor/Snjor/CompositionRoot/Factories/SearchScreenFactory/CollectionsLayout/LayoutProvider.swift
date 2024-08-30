@@ -38,10 +38,13 @@ struct LayoutProvider {
   func createAlbumsLayout(
     module: SearchResultScreenViewController
   ) -> UICollectionViewLayout {
-    let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
-      let section = module.collectionsSections[sectionIndex]
+    let layout = UICollectionViewCompositionalLayout { [weak module] sectionIndex, layoutEnvironment in
+      let section = module?.collectionsSections[sectionIndex]
       switch section {
       case .albums:
+        let section = albumsLayoutFactory.createAlbumLayout()
+        return section
+      default:
         let section = albumsLayoutFactory.createAlbumLayout()
         return section
       }
