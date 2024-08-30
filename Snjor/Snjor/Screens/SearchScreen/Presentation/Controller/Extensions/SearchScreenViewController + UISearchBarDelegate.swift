@@ -25,7 +25,7 @@ extension SearchScreenViewController: UISearchBarDelegate {
       rootView.addSubview(rootView.albumsCollectionView)
       rootView.albumsCollectionView.fillSuperView()
       searchBar.placeholder = "Search albums"
-      navigationItem.title = "Collections"
+      navigationItem.title = "Topics & Albums"
     default:
       rootView.photosCollectionView.isHidden = true
       rootView.albumsCollectionView.isHidden = true
