@@ -14,9 +14,9 @@ class SearchResultScreenRootView: UIView {
     return $0
   }(PhotosCollectionView())
   
-  let albumsCollectionView: TopicsAndAlbumsCollectionView = {
+  let albumsCollectionView: AlbumsCollectionView = {
     return $0
-  }(TopicsAndAlbumsCollectionView())
+  }(AlbumsCollectionView())
   
   // MARK: - Initializers
   init() {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlbumCell: UICollectionViewCell {
+final class AlbumCell: UICollectionViewCell {
   
   // MARK: - Views
   let mainView: AlbumCellMainView = {
@@ -123,4 +123,3 @@ class AlbumCell: UICollectionViewCell {
     }
   }
 }
-
