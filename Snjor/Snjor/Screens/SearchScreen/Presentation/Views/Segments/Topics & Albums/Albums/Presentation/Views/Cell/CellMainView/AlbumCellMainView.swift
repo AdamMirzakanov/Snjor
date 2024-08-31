@@ -28,6 +28,17 @@ final class AlbumCellMainView: BaseImageContainerView {
     return $0
   }(UIImageView())
   
+  // MARK: - Buttons
+  lazy var infoButton: UIButton = {
+    let icon = UIImage(systemName: "camera.macro")
+    $0.setImage(icon, for: .normal)
+    $0.tintColor = .white
+    $0.setTitleColor(.label, for: .normal)
+    $0.alpha = GlobalConst.defaultAlpha
+    return $0
+  }(UIButton(type: .custom))
+  
+  
   // MARK: - Gradient
   let gradientView: GradientView = {
     let color = UIColor(
@@ -131,6 +142,7 @@ final class AlbumCellMainView: BaseImageContainerView {
     addSubview(mainImageView)
     mainImageView.addSubview(gradientView)
     addSubview(titleLabel)
+    addSubview(infoButton)
   }
   
   private func setupConstraints() {
@@ -172,6 +184,19 @@ final class AlbumCellMainView: BaseImageContainerView {
       pTop: GlobalConst.defaultValue,
       pRight: GlobalConst.defaultValue,
       pLeft: GlobalConst.defaultValue
+    )
+    
+    setupInfoButtonBlurEffectConstraints()
+  }
+  
+  private func setupInfoButtonBlurEffectConstraints() {
+    infoButton.setConstraints(
+//      top: topAnchor,
+      right: rightAnchor,
+      bottom: bottomAnchor,
+//      pTop: GlobalConst.defaultValue,
+      pRight: 6,
+      pBottom: 6
     )
   }
 }

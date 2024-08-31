@@ -189,6 +189,7 @@ final class PhotoDetailRootView: UIView {
   let nameLabel: UILabel = {
     $0.text = .defaultUserName
     $0.textColor = .white
+    $0.numberOfLines = 2
     $0.font = UIFont(
       name: .nameFont,
       size: PhotoDetailRootViewConst.userNameFontSize
@@ -382,6 +383,7 @@ final class PhotoDetailRootView: UIView {
     $0.spacing = GlobalConst.middleValue
     $0.addArrangedSubview(profilePhotoView)
     $0.addArrangedSubview(nameLabel)
+    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(infoButton)
     return $0
   }(UIStackView())
