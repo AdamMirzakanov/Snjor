@@ -62,7 +62,7 @@ extension SearchResultScreenViewController: URLSessionDownloadDelegate {
   private func hideSpinner() {
     DispatchQueue.main.async {
       self.rootView.photosCollectionView.visibleCells
-        .compactMap { $0 as? PhotoCell }
+        .compactMap { $0 as? SearchScreenPhotoCell }
         .forEach { cell in
           cell.mainView.spinner.stopAnimating()
           cell.mainView.spinner.isHidden = true

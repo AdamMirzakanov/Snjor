@@ -1,19 +1,13 @@
 //
-//  PhotoListCell.swift
+//  PhotoCell.swift
 //  Snjor
 //
-//  Created by Адам on 16.06.2024.
+//  Created by Адам Мирзаканов on 31.08.2024.
 //
 
 import UIKit
 
-protocol PhotoCellDelegate: AnyObject {
-  func downloadTapped(_ cell: PhotoCell)
-}
-
-final class PhotoCell: UICollectionViewCell {
-  // MARK: - Delegate
-  weak var delegate: (any PhotoCellDelegate)?
+class PhotoCell: UICollectionViewCell {
 
   // MARK: - Main View
   let mainView: PhotoCellMainView = {
@@ -24,7 +18,6 @@ final class PhotoCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupMainView()
-    mainView.delegate = self
   }
 
   required init?(coder: NSCoder) {

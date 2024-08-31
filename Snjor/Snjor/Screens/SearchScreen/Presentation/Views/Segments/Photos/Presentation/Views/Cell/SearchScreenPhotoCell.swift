@@ -1,21 +1,21 @@
 //
-//  AlbumPhotoCell.swift
+//  PhotoListCell.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 18.08.2024.
+//  Created by Адам on 16.06.2024.
 //
 
 import UIKit
 
-protocol AlbumPhotoCellDelegate: AnyObject {
-  func downloadTapped(_ cell: AlbumPhotoCell)
+protocol SearchScreenPhotoCellDelegate: AnyObject {
+  func downloadTapped(_ cell: SearchScreenPhotoCell)
 }
 
-final class AlbumPhotoCell: PhotoCell {
+final class SearchScreenPhotoCell: PhotoCell {
   
   // MARK: - Delegate
-  weak var delegate: (any AlbumPhotoCellDelegate)?
-  
+  weak var delegate: (any SearchScreenPhotoCellDelegate)?
+
   // MARK: - Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)

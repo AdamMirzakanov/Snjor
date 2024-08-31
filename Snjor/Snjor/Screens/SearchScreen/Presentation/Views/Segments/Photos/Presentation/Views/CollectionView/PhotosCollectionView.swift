@@ -31,8 +31,8 @@ final class PhotosCollectionView: UICollectionView {
   
   private func cellRegister() {
     register(
-      PhotoCell.self,
-      forCellWithReuseIdentifier: PhotoCell.reuseID
+      SearchScreenPhotoCell.self,
+      forCellWithReuseIdentifier: SearchScreenPhotoCell.reuseID
     )
   }
 }

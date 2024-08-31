@@ -6,7 +6,7 @@
 //
 
 // MARK: - PhotoCellViewDelegate
-extension TopicPhotoCell: TopicPhotoCellMainViewDelegate {
+extension TopicPhotoCell: PhotoCellMainViewDelegate {
   func downloadTapped() {
     guard let delegate = delegate else { return }
     delegate.downloadTapped(self)
