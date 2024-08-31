@@ -7,7 +7,7 @@
 
 protocol AlbumPhotosViewModelProtocol: BaseViewModelProtocol {
   var photos: [Photo] { get }
-  func getAlbumPhotosViewModelItem(at index: Int) -> AlbumPhotosViewModelItem
+  func getAlbumPhotosViewModelItem(at index: Int) -> PhotosViewModelItem
   func getPhoto(at index: Int) -> Photo
   func checkAndLoadMorePhotos(at index: Int)
 }

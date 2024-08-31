@@ -40,7 +40,7 @@ final class AlbumPhotosViewModel: AlbumPhotosViewModelProtocol {
     photos[index]
   }
   
-  func getAlbumPhotosViewModelItem(at index: Int) -> AlbumPhotosViewModelItem {
+  func getAlbumPhotosViewModelItem(at index: Int) -> PhotosViewModelItem {
     checkAndLoadMorePhotos(at: index)
     return makeAlbumPhotosViewModelItem(at: index)
   }
@@ -72,8 +72,8 @@ final class AlbumPhotosViewModel: AlbumPhotosViewModelProtocol {
     }
   }
   
-  private func makeAlbumPhotosViewModelItem(at index: Int) -> AlbumPhotosViewModelItem {
+  private func makeAlbumPhotosViewModelItem(at index: Int) -> PhotosViewModelItem {
     let photo = photos[index]
-    return AlbumPhotosViewModelItem(photo: photo)
+    return PhotosViewModelItem(photo: photo)
   }
 }

@@ -39,7 +39,7 @@ final class TopicPhotoCell: UICollectionViewCell {
   }
 
   // MARK: - Setup Data
-  func configure(viewModelItem: TopicPhotosViewModelItem) {
+  func configure(viewModelItem: PhotosViewModelItem) {
     let photo = viewModelItem.photo
     let photoURL = viewModelItem.photoURL
     mainView.configure(with: photo, url: photoURL)

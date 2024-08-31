@@ -9,7 +9,7 @@ protocol TopicPhotosViewModelProtocol: BaseViewModelProtocol {
   var photos: [Photo] { get }
   func getTopicPhotoListViewModelItem(
     at index: Int
-  ) -> TopicPhotosViewModelItem
+  ) -> PhotosViewModelItem
   func getPhoto(at index: Int) -> Photo
   func checkAndLoadMorePhotos(at index: Int)
 }
