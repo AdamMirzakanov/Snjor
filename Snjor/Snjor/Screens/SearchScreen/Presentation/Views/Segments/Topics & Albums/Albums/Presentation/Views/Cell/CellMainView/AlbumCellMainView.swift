@@ -51,10 +51,10 @@ final class AlbumCellMainView: BaseImageContainerView {
   let titleLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: 25.0,
+      ofSize: 21.0,
       weight: .black
     )
-    $0.numberOfLines = 0
+    $0.numberOfLines = 6
     $0.alpha = 0.8
     $0.layer.shadowColor = UIColor.black.cgColor
     $0.layer.shadowOpacity = 1
