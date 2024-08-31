@@ -55,12 +55,7 @@ final class AlbumPhotosRootView: UIView {
   }
   
   private func setupConstraints() {
-    albumPhotosCollectionView.setConstraints(
-      top: topAnchor,
-      right: rightAnchor,
-      bottom: bottomAnchor,
-      left: leftAnchor
-    )
+    albumPhotosCollectionView.fillSuperView()
   }
   
   func setupBarButtonItems(

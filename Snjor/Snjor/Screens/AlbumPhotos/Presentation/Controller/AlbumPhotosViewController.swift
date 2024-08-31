@@ -30,8 +30,7 @@ class AlbumPhotosViewController: BaseViewController<AlbumPhotosRootView> {
   // MARK: - Initializers
   init(
     viewModel: any AlbumPhotosViewModelProtocol,
-    delegate: any AlbumPhotosViewControllerDelegate,
-    layout: UICollectionViewLayout
+    delegate: any AlbumPhotosViewControllerDelegate
   ) {
     self.viewModel = viewModel
     self.delegate = delegate

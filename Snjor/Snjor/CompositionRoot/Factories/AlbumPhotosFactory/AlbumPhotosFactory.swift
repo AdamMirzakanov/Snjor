@@ -56,11 +56,9 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     viewModel: AlbumPhotosViewModel,
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> AlbumPhotosViewController {
-    let defaultLayout = UICollectionViewLayout()
     let module = AlbumPhotosViewController(
       viewModel: viewModel,
-      delegate: delegate,
-      layout: defaultLayout
+      delegate: delegate
     )
     return module
   }
