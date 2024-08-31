@@ -14,14 +14,14 @@ final class AlbumCellMainView: BaseImageContainerView {
     UIScreen.main.scale
   }
 
-  let secondImageView: UIView = {
+  let secondBackgroundView: UIView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = 20.0
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
   
-  let thirdImageView: UIView = {
+  let thirdBackgroundView: UIView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = 22.0
     $0.clipsToBounds = true
@@ -104,8 +104,8 @@ final class AlbumCellMainView: BaseImageContainerView {
       photoID: album.id
     )
     titleLabel.text = album.title.uppercased()
-    secondImageView.backgroundColor = .systemGray3
-    thirdImageView.backgroundColor = .systemGray5
+    secondBackgroundView.backgroundColor = .systemGray3
+    thirdBackgroundView.backgroundColor = .systemGray5
   }
   
   func prepareForReuse() {
@@ -126,8 +126,8 @@ final class AlbumCellMainView: BaseImageContainerView {
   }
   
   private func addSubviews() {
-    addSubview(thirdImageView)
-    addSubview(secondImageView)
+    addSubview(thirdBackgroundView)
+    addSubview(secondBackgroundView)
     addSubview(mainImageView)
     mainImageView.addSubview(gradientView)
     addSubview(titleLabel)
@@ -135,8 +135,8 @@ final class AlbumCellMainView: BaseImageContainerView {
   
   private func setupConstraints() {
     mainImageView.translatesAutoresizingMaskIntoConstraints = false
-    secondImageView.translatesAutoresizingMaskIntoConstraints = false
-    thirdImageView.translatesAutoresizingMaskIntoConstraints = false
+    secondBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+    thirdBackgroundView.translatesAutoresizingMaskIntoConstraints = false
     gradientView.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
@@ -146,17 +146,17 @@ final class AlbumCellMainView: BaseImageContainerView {
       mainImageView.topAnchor.constraint(equalTo: topAnchor),
       mainImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
       
-      // secondImageView constraints
-      secondImageView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor, constant: 3),
-      secondImageView.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: -3),
-      secondImageView.topAnchor.constraint(equalTo: mainImageView.topAnchor, constant: -8),
-      secondImageView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 0),
+      // secondBackgroundView constraints
+      secondBackgroundView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor, constant: 3),
+      secondBackgroundView.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: -3),
+      secondBackgroundView.topAnchor.constraint(equalTo: mainImageView.topAnchor, constant: -8),
+      secondBackgroundView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 0),
       
-      // thirdImageView constraints
-      thirdImageView.leadingAnchor.constraint(equalTo: secondImageView.leadingAnchor, constant: 5),
-      thirdImageView.trailingAnchor.constraint(equalTo: secondImageView.trailingAnchor, constant: -5),
-      thirdImageView.topAnchor.constraint(equalTo: secondImageView.topAnchor, constant: -8),
-      thirdImageView.bottomAnchor.constraint(equalTo: secondImageView.bottomAnchor, constant: 0),
+      // thirdBackgroundView constraints
+      thirdBackgroundView.leadingAnchor.constraint(equalTo: secondBackgroundView.leadingAnchor, constant: 5),
+      thirdBackgroundView.trailingAnchor.constraint(equalTo: secondBackgroundView.trailingAnchor, constant: -5),
+      thirdBackgroundView.topAnchor.constraint(equalTo: secondBackgroundView.topAnchor, constant: -8),
+      thirdBackgroundView.bottomAnchor.constraint(equalTo: secondBackgroundView.bottomAnchor, constant: 0),
       
       // gradientView constraints
       gradientView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor),
