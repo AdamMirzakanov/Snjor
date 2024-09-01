@@ -446,7 +446,7 @@ final class PhotoDetailRootView: UIView {
   }(UIStackView())
 
   private lazy var resolutionStackView: UIStackView = {
-    $0.axis = .vertical
+    $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = GlobalConst.defaultValue
@@ -500,7 +500,7 @@ final class PhotoDetailRootView: UIView {
     $0.distribution = .fillProportionally
     $0.alignment = .leading
     $0.spacing = GlobalConst.middleValue
-//    $0.addArrangedSubview(cameraStackView)
+    $0.addArrangedSubview(cameraStackView)
     $0.addArrangedSubview(resolutionStackView)
     return $0
   }(UIStackView())
@@ -624,10 +624,10 @@ final class PhotoDetailRootView: UIView {
       pCenterY: PhotoDetailRootViewConst.centerYOffset
     )
     leftStackView.setConstraints(
-      right: rightAnchor,
+      right: centerLine.rightAnchor,
       left: leftAnchor,
-      pRight: PhotoDetailRootViewConst.halfRightPadding,
-      pLeft: 55
+      pRight: 5,
+      pLeft: PhotoDetailRootViewConst.leftPadding
     )
   }
 
