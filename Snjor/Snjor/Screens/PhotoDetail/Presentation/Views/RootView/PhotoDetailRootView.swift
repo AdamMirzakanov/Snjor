@@ -160,6 +160,9 @@ final class PhotoDetailRootView: UIView {
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
     $0.alpha = GlobalConst.defaultAlpha
+    
+    $0.setContentHuggingPriority(.required, for: .horizontal)
+    $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     return $0
   }(UIButton())
 
@@ -362,6 +365,15 @@ final class PhotoDetailRootView: UIView {
     ).isActive = true
     return $0
   }(UIView())
+  
+  private let thirdLine: UIView = {
+    $0.backgroundColor = .white
+    $0.alpha = GlobalConst.defaultAlpha
+    $0.heightAnchor.constraint(
+      equalToConstant: PhotoDetailRootViewConst.lineWidth
+    ).isActive = true
+    return $0
+  }(UIView())
 
   private let centerLine: UIView = {
     $0.backgroundColor = .white
@@ -383,7 +395,8 @@ final class PhotoDetailRootView: UIView {
     $0.spacing = GlobalConst.middleValue
     $0.addArrangedSubview(profilePhotoView)
     $0.addArrangedSubview(nameLabel)
-    $0.addArrangedSubview(UIView())
+    let spacerView = UIView()
+    $0.addArrangedSubview(spacerView)
     $0.addArrangedSubview(infoButton)
     return $0
   }(UIStackView())
@@ -405,6 +418,8 @@ final class PhotoDetailRootView: UIView {
     $0.spacing = GlobalConst.defaultValue
     $0.addArrangedSubview(downloadsImageView)
     $0.addArrangedSubview(downloadsLabel)
+    let spacerView = UIView()
+    $0.addArrangedSubview(spacerView)
     return $0
   }(UIStackView())
 
@@ -414,7 +429,6 @@ final class PhotoDetailRootView: UIView {
     $0.spacing = GlobalConst.fullValue
     $0.addArrangedSubview(likesStackView)
     $0.addArrangedSubview(downloadStackView)
-    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(createdLabel)
     return $0
   }(UIStackView())
@@ -426,12 +440,13 @@ final class PhotoDetailRootView: UIView {
     $0.spacing = GlobalConst.defaultValue
     $0.addArrangedSubview(cameraImageView)
     $0.addArrangedSubview(cameraModelLabel)
-    $0.addArrangedSubview(UIView())
+    let spacerView = UIView()
+    $0.addArrangedSubview(spacerView)
     return $0
   }(UIStackView())
 
   private lazy var resolutionStackView: UIStackView = {
-    $0.axis = .horizontal
+    $0.axis = .vertical
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = GlobalConst.defaultValue
@@ -485,7 +500,7 @@ final class PhotoDetailRootView: UIView {
     $0.distribution = .fillProportionally
     $0.alignment = .leading
     $0.spacing = GlobalConst.middleValue
-    $0.addArrangedSubview(cameraStackView)
+//    $0.addArrangedSubview(cameraStackView)
     $0.addArrangedSubview(resolutionStackView)
     return $0
   }(UIStackView())
@@ -612,7 +627,7 @@ final class PhotoDetailRootView: UIView {
       right: rightAnchor,
       left: leftAnchor,
       pRight: PhotoDetailRootViewConst.halfRightPadding,
-      pLeft: PhotoDetailRootViewConst.leftPadding
+      pLeft: 55
     )
   }
 
