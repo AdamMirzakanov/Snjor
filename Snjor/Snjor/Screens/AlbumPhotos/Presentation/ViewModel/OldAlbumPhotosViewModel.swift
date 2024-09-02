@@ -1,26 +1,26 @@
 //
-//  TopicPhotosViewModel.swift
+//  OldAlbumPhotosViewModel.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 17.08.2024.
+//  Created by Адам Мирзаканов on 18.08.2024.
 //
 
 import Combine
 
-final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
-  
+final class OldAlbumPhotosViewModel: OldAlbumPhotosViewModelProtocol {
+
   // MARK: - Internal Properties
   var state: PassthroughSubject<StateController, Never>
   var photos: [Photo] = []
   
   // MARK: - Private Properties
-  private let loadUseCase: any LoadTopicPhotosUseCaseProtocol
+  private let loadUseCase: any LoadAlbumPhotosUseCaseProtocol
   private var lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   
   // MARK: - Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadUseCase: any LoadTopicPhotosUseCaseProtocol,
+    loadUseCase: any LoadAlbumPhotosUseCaseProtocol,
     lastPageValidationUseCase: any LastPageValidationUseCaseProtocol
   ) {
     self.state = state
@@ -32,7 +32,7 @@ final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
   func viewDidLoad() {
     state.send(.loading)
     Task {
-      await loadTopicsPagePhotoListUseCase()
+       await loadAlbumPhotosUseCase()
     }
   }
   
@@ -40,11 +40,9 @@ final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
     photos[index]
   }
   
-  func getTopicPhotoListViewModelItem(
-    at index: Int
-  ) -> PhotosViewModelItem {
+  func getAlbumPhotosViewModelItem(at index: Int) -> OldPhotosViewModelItem {
     checkAndLoadMorePhotos(at: index)
-    return makeTopicPhotoListViewModelItem(at: index)
+    return makeAlbumPhotosViewModelItem(at: index)
   }
   
   func checkAndLoadMorePhotos(at index: Int) {
@@ -55,7 +53,7 @@ final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
     )
   }
   
-  func loadTopicsPagePhotoListUseCase() async {
+  func loadAlbumPhotosUseCase() async {
     let result = await loadUseCase.execute()
     updateStateUI(with: result)
   }
@@ -74,10 +72,8 @@ final class TopicPhotosViewModel: TopicPhotosViewModelProtocol {
     }
   }
   
-  private func makeTopicPhotoListViewModelItem(
-    at index: Int
-  ) -> PhotosViewModelItem {
+  private func makeAlbumPhotosViewModelItem(at index: Int) -> OldPhotosViewModelItem {
     let photo = photos[index]
-    return PhotosViewModelItem(photo: photo)
+    return OldPhotosViewModelItem(photo: photo)
   }
 }

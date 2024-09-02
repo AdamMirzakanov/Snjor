@@ -24,7 +24,7 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
       repository: repository,
       photo: photo
     )
-    let viewModel = PhotoDetailViewModel(
+    let viewModel = OldPhotoDetailViewModel(
       state: state,
       loadUseCase: loadUseCase
     )

@@ -27,7 +27,7 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
     let networkService = NetworkService()
     let repository = LoadTopicsPageRepository(networkService: networkService)
     let loadUseCase = LoadTopicsUseCase(repository: repository)
-    let viewModel = TopicsViewModel(state: state, loadUseCase: loadUseCase)
+    let viewModel = OldTopicsViewModel(state: state, loadUseCase: loadUseCase)
     let module = PageScreenViewController(viewModel: viewModel, coordinator: delegate)
     return module
   }

@@ -31,7 +31,7 @@ class PhotoCell: UICollectionViewCell {
   }
 
   // MARK: - Setup Data
-  func configure(viewModelItem: PhotosViewModelItem) {
+  func configure(viewModelItem: OldPhotosViewModelItem) {
     let photo = viewModelItem.photo
     let photoURL = viewModelItem.photoURL
     mainView.configure(with: photo, url: photoURL)

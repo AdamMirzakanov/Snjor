@@ -32,7 +32,7 @@ final class PageScreenTopicCell: UICollectionViewCell {
    }
 
    // MARK: - Setup Data
-   func configure(viewModelItem: TopicsViewModelItem) {
+   func configure(viewModelItem: OldTopicsViewModelItem) {
      topicTitleLabel.text = viewModelItem.topicTitle
    }
 

@@ -1,14 +1,14 @@
 //
-//  PhotosViewModelProtocol.swift
+//  OldPhotosViewModelProtocol.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
 //
 
-protocol PhotosViewModelProtocol: BaseViewModelProtocol {
+protocol OldPhotosViewModelProtocol: BaseViewModelProtocol {
   var photos: [Photo] { get }
   func getPhoto(at index: Int) -> Photo
-  func getPhotosViewModelItem(at index: Int) -> PhotosViewModelItem
+  func getPhotosViewModelItem(at index: Int) -> OldPhotosViewModelItem
   func checkAndLoadMorePhotos(at index: Int)
   
   func checkAndLoadMoreSearchPhotos(at index: Int, with searchTerm: String)
@@ -16,5 +16,5 @@ protocol PhotosViewModelProtocol: BaseViewModelProtocol {
   func getSearchPhotosViewModelItem(
     at index: Int,
     with searchTerm: String
-  ) -> PhotosViewModelItem
+  ) -> OldPhotosViewModelItem
 }

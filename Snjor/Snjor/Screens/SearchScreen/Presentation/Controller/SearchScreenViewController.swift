@@ -44,9 +44,9 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
-  private(set) var photosViewModel: any PhotosViewModelProtocol
-  private(set) var albumsViewModel: any AlbumsViewModelProtocol
-  private(set) var topicsViewModel: any TopicsViewModelProtocol
+  private(set) var photosViewModel: any OldPhotosViewModelProtocol
+  private(set) var albumsViewModel: any OldAlbumsViewModelProtocol
+  private(set) var topicsViewModel: any OldTopicsViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -54,9 +54,9 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Initializers
   init(
-    photosViewModel: any PhotosViewModelProtocol,
-    albumsViewModel: any AlbumsViewModelProtocol,
-    topicsViewModel: any TopicsViewModelProtocol,
+    photosViewModel: any OldPhotosViewModelProtocol,
+    albumsViewModel: any OldAlbumsViewModelProtocol,
+    topicsViewModel: any OldTopicsViewModelProtocol,
     delegate: any SearchScreenViewControllerDelegate
   ) {
     self.photosViewModel = photosViewModel

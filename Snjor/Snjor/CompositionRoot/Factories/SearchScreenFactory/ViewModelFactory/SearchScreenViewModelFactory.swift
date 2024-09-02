@@ -15,10 +15,10 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
   private let state = PassthroughSubject<StateController, Never>()
   
   // MARK: - Internal Methods
-  func createPhotosViewModel() -> PhotosViewModel {
+  func createPhotosViewModel() -> OldPhotosViewModel {
     let loadPhotosUseCase = getPhotosUseCase(networkService)
     let loadSearchPhotosUseCase = getSearchPhotosUseCase(networkService)
-    return PhotosViewModel(
+    return OldPhotosViewModel(
       state: state,
       loadUseCase: loadPhotosUseCase, 
       loadSearchPhotosUseCase: loadSearchPhotosUseCase,
@@ -26,10 +26,10 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
     )
   }
   
-  func createAlbumsViewModel() -> AlbumsViewModel {
+  func createAlbumsViewModel() -> OldAlbumsViewModel {
     let loadAlbumsUseCase = getAlbumsUseCase(networkService)
     let loadSearchAlbumsUseCase = getSearchAlbumsUseCase(networkService)
-    return AlbumsViewModel(
+    return OldAlbumsViewModel(
       state: state, 
       loadSearchAlbumsUseCase: loadSearchAlbumsUseCase,
       loadUseCase: loadAlbumsUseCase,
@@ -37,9 +37,9 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
     )
   }
   
-  func createTopicsViewModel() -> TopicsViewModel {
+  func createTopicsViewModel() -> OldTopicsViewModel {
     let loadTopicsUseCase = getTopicsUseCase(networkService)
-    return TopicsViewModel(state: state, loadUseCase: loadTopicsUseCase)
+    return OldTopicsViewModel(state: state, loadUseCase: loadTopicsUseCase)
   }
   
   // MARK: - Private Methods

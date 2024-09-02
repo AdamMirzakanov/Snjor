@@ -39,13 +39,13 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   }
   
   // MARK: - Private Methods
-  private func createViewModel() -> TopicPhotosViewModel {
+  private func createViewModel() -> OldTopicPhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let repository = LoadTopicPhotosRepository(networkService: networkService)
     let loadUseCase = LoadTopicPhotosUseCase(repository: repository, topic: topic)
-    return TopicPhotosViewModel(
+    return OldTopicPhotosViewModel(
       state: state,
       loadUseCase: loadUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase
@@ -53,7 +53,7 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   }
   
   private func createViewController(
-    viewModel: TopicPhotosViewModel,
+    viewModel: OldTopicPhotosViewModel,
     delegate: any TopicPhotosViewControllerDelegate
   ) -> TopicPhotosViewController {
     let defaultLayout = UICollectionViewLayout()

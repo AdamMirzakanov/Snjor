@@ -77,7 +77,7 @@ final class AlbumCell: UICollectionViewCell {
   }
   
   // MARK: - Setup Data
-  func configure(viewModelItem: AlbumsViewModelItem) {
+  func configure(viewModelItem: OldAlbumsViewModelItem) {
     let album = viewModelItem.album
     let coverPhotoURL = viewModelItem.coverPhoto
     mainView.configure(with: album, url: coverPhotoURL)

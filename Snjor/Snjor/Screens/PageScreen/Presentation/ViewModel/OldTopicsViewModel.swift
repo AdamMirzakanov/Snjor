@@ -1,5 +1,5 @@
 //
-//  TopicsViewModel.swift
+//  OldTopicsViewModel.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 23.07.2024.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class TopicsViewModel: TopicsViewModelProtocol {
+final class OldTopicsViewModel: OldTopicsViewModelProtocol {
   
   // MARK: - Internal Properties
   var topicsCount: Int { topics.count }
@@ -47,7 +47,7 @@ final class TopicsViewModel: TopicsViewModelProtocol {
     topics[index]
   }
   
-  func getTopicsPageViewModelItem(at index: Int) -> TopicsViewModelItem {
+  func getTopicsPageViewModelItem(at index: Int) -> OldTopicsViewModelItem {
     return makeViewModelItem(at: index)
   }
   
@@ -74,9 +74,9 @@ final class TopicsViewModel: TopicsViewModelProtocol {
   }
 
   // MARK: - Private Methods
-  private func makeViewModelItem(at index: Int) -> TopicsViewModelItem {
+  private func makeViewModelItem(at index: Int) -> OldTopicsViewModelItem {
     let topic = topics[index]
-    return TopicsViewModelItem(topic: topic)
+    return OldTopicsViewModelItem(topic: topic)
   }
   
   private func loadTopicsPageUseCase() async {

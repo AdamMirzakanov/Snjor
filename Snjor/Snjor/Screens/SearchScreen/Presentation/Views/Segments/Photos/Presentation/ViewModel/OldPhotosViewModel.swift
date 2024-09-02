@@ -1,5 +1,5 @@
 //
-//  PhotosViewModel.swift
+//  OldPhotosViewModel.swift
 //  Snjor
 //
 //  Created by Адам on 16.06.2024.
@@ -7,7 +7,7 @@
 
 import Combine
 
-final class PhotosViewModel: PhotosViewModelProtocol {
+final class OldPhotosViewModel: OldPhotosViewModelProtocol {
   
   // MARK: - Internal Properties
   var photos: [Photo] = []
@@ -52,7 +52,7 @@ final class PhotosViewModel: PhotosViewModelProtocol {
   
   func getPhotosViewModelItem(
     at index: Int
-  ) -> PhotosViewModelItem {
+  ) -> OldPhotosViewModelItem {
     checkAndLoadMorePhotos(at: index)
     return makePhotosViewModelItem(at: index)
   }
@@ -60,7 +60,7 @@ final class PhotosViewModel: PhotosViewModelProtocol {
   func getSearchPhotosViewModelItem(
     at index: Int,
     with searchTerm: String
-  ) -> PhotosViewModelItem {
+  ) -> OldPhotosViewModelItem {
     checkAndLoadMoreSearchPhotos(at: index, with: searchTerm)
     return makeSearchPhotosViewModelItem(at: index)
   }
@@ -92,16 +92,16 @@ final class PhotosViewModel: PhotosViewModelProtocol {
     updateStateUI(with: result)
   }
   
-  private func makePhotosViewModelItem(at index: Int) -> PhotosViewModelItem {
+  private func makePhotosViewModelItem(at index: Int) -> OldPhotosViewModelItem {
     let photo = photos[index]
-    return PhotosViewModelItem(photo: photo)
+    return OldPhotosViewModelItem(photo: photo)
   }
   
   private func makeSearchPhotosViewModelItem(
     at index: Int
-  ) -> PhotosViewModelItem {
+  ) -> OldPhotosViewModelItem {
     let photo = photos[index]
-    return PhotosViewModelItem(photo: photo)
+    return OldPhotosViewModelItem(photo: photo)
   }
   
   private func updateStateUI(with result: Result<[Photo], Error>) {

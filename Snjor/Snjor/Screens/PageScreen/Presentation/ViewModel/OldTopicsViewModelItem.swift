@@ -1,5 +1,5 @@
 //
-//  TopicsViewModelItem.swift
+//  OldTopicsViewModelItem.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 28.07.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TopicsViewModelItem {
+struct OldTopicsViewModelItem {
   
   private(set) var topic: Topic
   

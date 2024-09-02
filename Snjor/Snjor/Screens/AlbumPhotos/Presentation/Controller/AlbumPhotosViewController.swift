@@ -21,7 +21,7 @@ class AlbumPhotosViewController: BaseViewController<AlbumPhotosRootView> {
   private var cancellable = Set<AnyCancellable>()
   var dataSource: UICollectionViewDiffableDataSource<AlbumPhotosSection, Photo>?
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any AlbumPhotosViewModelProtocol
+  private(set) var viewModel: any OldAlbumPhotosViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -29,7 +29,7 @@ class AlbumPhotosViewController: BaseViewController<AlbumPhotosRootView> {
   
   // MARK: - Initializers
   init(
-    viewModel: any AlbumPhotosViewModelProtocol,
+    viewModel: any OldAlbumPhotosViewModelProtocol,
     delegate: any AlbumPhotosViewControllerDelegate
   ) {
     self.viewModel = viewModel

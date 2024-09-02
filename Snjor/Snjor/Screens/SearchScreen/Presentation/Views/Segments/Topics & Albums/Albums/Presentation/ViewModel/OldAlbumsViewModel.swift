@@ -1,5 +1,5 @@
 //
-//  AlbumsViewModel.swift
+//  OldAlbumsViewModel.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 08.08.2024.
@@ -7,7 +7,7 @@
 
 import Combine
 
-final class AlbumsViewModel: AlbumsViewModelProtocol {
+final class OldAlbumsViewModel: OldAlbumsViewModelProtocol {
   
   // MARK: - Internal Properties
   var albumsCount: Int { albums.count }
@@ -46,7 +46,7 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
   
   func getAlbumsViewModelItem(
     at index: Int
-  ) -> AlbumsViewModelItem {
+  ) -> OldAlbumsViewModelItem {
     checkAndLoadMoreAlbums(at: index)
     return makeAlbumListViewModelItem(at: index)
   }
@@ -60,9 +60,9 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
   }
   
   // MARK: - Private Methods
-  private func makeAlbumListViewModelItem(at index: Int) -> AlbumsViewModelItem {
+  private func makeAlbumListViewModelItem(at index: Int) -> OldAlbumsViewModelItem {
     let album = albums[index]
-    return AlbumsViewModelItem(album: album)
+    return OldAlbumsViewModelItem(album: album)
   }
   
   private func loadAlbumsUseCase() async {
@@ -103,7 +103,7 @@ final class AlbumsViewModel: AlbumsViewModelProtocol {
   func getSearchAlbumsViewModelItem(
     at index: Int,
     with searchTerm: String
-  ) -> AlbumsViewModelItem {
+  ) -> OldAlbumsViewModelItem {
     checkAndLoadMoreSearchAlbums(at: index, with: searchTerm)
     return makeAlbumListViewModelItem(at: index)
   }

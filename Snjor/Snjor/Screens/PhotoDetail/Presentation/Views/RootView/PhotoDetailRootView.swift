@@ -548,7 +548,7 @@ final class PhotoDetailRootView: UIView {
   }
 
   // MARK: - Setup Data
-  func setupData(viewModel: any PhotoDetailViewModelProtocol) {
+  func setupData(viewModel: any OldPhotoDetailViewModelProtocol) {
     let viewModelItem = viewModel.getPhotoDetailViewModelItem()
     guard let viewModelItem = viewModelItem else { return }
     let photo = viewModelItem.photo
@@ -563,7 +563,7 @@ final class PhotoDetailRootView: UIView {
     pxLabel.text = viewModelItem.pixels
   }
 
-  func setupPhotoInfoData(viewModel: any PhotoDetailViewModelProtocol) {
+  func setupPhotoInfoData(viewModel: any OldPhotoDetailViewModelProtocol) {
     let viewModelItem = viewModel.getPhotoDetailViewModelItem()
     guard let viewModelItem = viewModelItem else { return }
     downloadsLabel.text = viewModelItem.downloads

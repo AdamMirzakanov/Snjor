@@ -11,13 +11,13 @@ import Combine
 final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   
   // MARK: - Private Properties
-  private(set) var viewModel: any TopicsViewModelProtocol
+  private(set) var viewModel: any OldTopicsViewModelProtocol
   private var cancellable = Set<AnyCancellable>()
   private(set) var coordinator: any PageScreenTopicPhotosViewControllerDelegate
   
   // MARK: - Initializers
   init(
-    viewModel: any TopicsViewModelProtocol,
+    viewModel: any OldTopicsViewModelProtocol,
     coordinator: any PageScreenTopicPhotosViewControllerDelegate
   ) {
     self.viewModel = viewModel
