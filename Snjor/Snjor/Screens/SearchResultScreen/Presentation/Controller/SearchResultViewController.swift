@@ -53,7 +53,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   }
   
   deinit {
-    print(#function, Self.self)
+    print(#function, Self.self, "🔴")
   }
   
   // MARK: - View Lifecycle

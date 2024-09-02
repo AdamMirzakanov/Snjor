@@ -42,7 +42,7 @@ final class PageScreenPhotosViewController: MainViewController <PageScreenPhotos
   }
   
   deinit {
-    cancellable.forEach { $0.cancel() }
+    print(#function, Self.self, "🟡")
   }
   
   // MARK: - View Lifecycle

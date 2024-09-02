@@ -42,8 +42,7 @@ class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   }
   
   deinit {
-    cancellable.forEach { $0.cancel() }
-    print(#function, Self.self, "деинициализирован")
+    print(#function, Self.self, "🟠")
   }
   
   // MARK: - View Lifecycle

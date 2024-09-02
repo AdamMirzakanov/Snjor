@@ -48,7 +48,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
   }
 
   deinit {
-    print(#function, Self.self, "деинициализирован")
+    print(#function, Self.self, "🟢")
   }
   
   // MARK: - Private Methods
