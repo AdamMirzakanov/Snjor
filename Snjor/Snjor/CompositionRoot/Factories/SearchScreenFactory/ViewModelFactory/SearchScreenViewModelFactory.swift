@@ -26,14 +26,14 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
     )
   }
   
-  func createAlbumsViewModel() -> OldAlbumsViewModel {
+  func createAlbumsViewModel() -> AlbumsViewModel {
     let loadAlbumsUseCase = getAlbumsUseCase(networkService)
     let loadSearchAlbumsUseCase = getSearchAlbumsUseCase(networkService)
-    return OldAlbumsViewModel(
-      state: state, 
-      loadSearchAlbumsUseCase: loadSearchAlbumsUseCase,
+    return AlbumsViewModel(
       loadUseCase: loadAlbumsUseCase,
-      lastPageValidationUseCase: lastPageValidationUseCase
+      loadSearchPhotosUseCase: loadSearchAlbumsUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase,
+      state: state
     )
   }
   

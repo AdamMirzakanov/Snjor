@@ -18,7 +18,7 @@ extension SearchResultScreenViewController: UICollectionViewDelegate {
       let photo = photosViewModel.getItem(at: indexPath.item)
       delegate.searchPhotoCellDidSelect(photo)
     case 1:
-      let album = albumsViewModel.getAlbum(at: indexPath.item)
+      let album = albumsViewModel.getItem(at: indexPath.item)
       delegate.searchAlbumcCellDidSelect(album)
     default:
       print(#function, Self.self)

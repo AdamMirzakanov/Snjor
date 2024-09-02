@@ -45,7 +45,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
   private(set) var photosViewModel: any SearchViewModelProtocol <Photo>
-  private(set) var albumsViewModel: any OldAlbumsViewModelProtocol
+  private(set) var albumsViewModel: any SearchViewModelProtocol <Album>
   private(set) var topicsViewModel: any OldTopicsViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
@@ -55,7 +55,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   // MARK: - Initializers
   init(
     photosViewModel: any SearchViewModelProtocol <Photo>,
-    albumsViewModel: any OldAlbumsViewModelProtocol,
+    albumsViewModel: any SearchViewModelProtocol <Album>,
     topicsViewModel: any OldTopicsViewModelProtocol,
     delegate: any SearchScreenViewControllerDelegate
   ) {

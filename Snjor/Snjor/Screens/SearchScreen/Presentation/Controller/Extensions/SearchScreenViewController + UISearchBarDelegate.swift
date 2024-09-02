@@ -31,7 +31,6 @@ extension SearchScreenViewController: UISearchBarDelegate {
       rootView.albumsCollectionView.isHidden = true
       searchBar.placeholder = "Search users"
       navigationItem.title = "Users"
-      print(#function)
     }
   }
   

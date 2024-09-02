@@ -1,17 +1,17 @@
+////
+////  OldAlbumsViewModelItem.swift
+////  Snjor
+////
+////  Created by Адам Мирзаканов on 08.08.2024.
+////
 //
-//  OldAlbumsViewModelItem.swift
-//  Snjor
+//import Foundation
 //
-//  Created by Адам Мирзаканов on 08.08.2024.
+//struct OldAlbumsViewModelItem {
+//  private(set) var album: Album
+//  
+//  var coverPhoto: URL? {
+//    album.regularURL
+//  }
+//}
 //
-
-import Foundation
-
-struct OldAlbumsViewModelItem {
-  private(set) var album: Album
-  
-  var coverPhoto: URL? {
-    album.regularURL
-  }
-}
-

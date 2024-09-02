@@ -18,8 +18,14 @@ struct Album: Decodable, Hashable {
 }
 
 // MARK: - Extension
-extension Album {
+extension Album: HasRegularURL {
   var regularURL: URL? {
-    return self.previewPhotos[0].urls.regular
+    return self.previewPhotos[.zero].urls.regular
+  }
+}
+
+extension Album: Downloadable {
+  var downloadURL: URL? {
+    return self.previewPhotos[.zero].urls.full
   }
 }

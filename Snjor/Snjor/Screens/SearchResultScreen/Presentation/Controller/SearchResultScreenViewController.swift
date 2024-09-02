@@ -22,7 +22,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   var collectionsSections: [SearchResultCollectionsSection] = []
   var currentScopeIndex: Int
   var photosViewModel: any SearchViewModelProtocol <Photo>
-  var albumsViewModel: any OldAlbumsViewModelProtocol
+  var albumsViewModel: any SearchViewModelProtocol <Album>
   var currentSearchTerm: String?
   
   // MARK: - Private Properties
@@ -38,7 +38,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   init(
     currentScopeIndex: Int,
     photosViewModel: any SearchViewModelProtocol <Photo>,
-    albumsViewModel: any OldAlbumsViewModelProtocol,
+    albumsViewModel: any SearchViewModelProtocol <Album>,
     delegate: any SearchResultScreenViewControllerDelegate
   ) {
     self.currentScopeIndex = currentScopeIndex
@@ -95,8 +95,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     case .zero:
       photosViewModel.search(with: searchTerm)
     case 1:
-      albumsViewModel.loadSearchAlbums(with: searchTerm)
-      print(#function)
+      albumsViewModel.search(with: searchTerm)
     default:
       print(#function)
     }

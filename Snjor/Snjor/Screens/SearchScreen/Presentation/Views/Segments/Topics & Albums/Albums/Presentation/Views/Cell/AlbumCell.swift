@@ -73,16 +73,16 @@ final class AlbumCell: UICollectionViewCell {
     super.prepareForReuse()
     mainView.prepareForReuse()
     tagsCollectionView.tags = []
-    tagsCollectionView.reloadData()
+//    tagsCollectionView.reloadData()
   }
   
   // MARK: - Setup Data
-  func configure(viewModelItem: OldAlbumsViewModelItem) {
-    let album = viewModelItem.album
-    let coverPhotoURL = viewModelItem.coverPhoto
+  func configure(viewModelItem: ViewModelItem <Album> ) {
+    let album = viewModelItem.item
+    let coverPhotoURL = viewModelItem.photoURL
     mainView.configure(with: album, url: coverPhotoURL)
     tagsCollectionView.tags = album.tags ?? []
-    tagsCollectionView.reloadData()
+//    tagsCollectionView.reloadData()
   }
   
   // MARK: - Setup Views

@@ -15,7 +15,7 @@ extension SearchResultScreenViewController {
   private var collectionsSnapshot: Snapshot {
     var snapshot = Snapshot()
     snapshot.appendSections([.albums])
-    snapshot.appendItems(albumsViewModel.albums, toSection: .albums)
+    snapshot.appendItems(albumsViewModel.items, toSection: .albums)
     collectionsSections = snapshot.sectionIdentifiers
     return snapshot
   }
@@ -126,7 +126,7 @@ extension SearchResultScreenViewController {
     guard let currentSearchTerm = self.currentSearchTerm else {
       return cell
     }
-    let viewModelItem = albumsViewModel.getSearchAlbumsViewModelItem(
+    let viewModelItem = albumsViewModel.getSearchItemsViewModelItem(
       at: indexPath.item,
       with: currentSearchTerm
     )
