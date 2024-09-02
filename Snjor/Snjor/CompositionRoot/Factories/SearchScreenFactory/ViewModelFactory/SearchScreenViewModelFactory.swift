@@ -37,9 +37,13 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
     )
   }
   
-  func createTopicsViewModel() -> OldTopicsViewModel {
+  func createTopicsViewModel() -> TopicsViewModel {
     let loadTopicsUseCase = getTopicsUseCase(networkService)
-    return OldTopicsViewModel(state: state, loadUseCase: loadTopicsUseCase)
+    return TopicsViewModel(
+      loadUseCase: loadTopicsUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase,
+      state: state
+    )
   }
   
   // MARK: - Private Methods

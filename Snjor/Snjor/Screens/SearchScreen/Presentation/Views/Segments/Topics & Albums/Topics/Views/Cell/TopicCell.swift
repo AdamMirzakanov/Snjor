@@ -31,9 +31,9 @@ final class TopicCell: UICollectionViewCell {
   }
   
   // MARK: - Setup Data
-  func configure(viewModelItem: OldTopicsViewModelItem) {
-    let topic = viewModelItem.topic
-    let coverPhotoURL = viewModelItem.coverPhoto
+  func configure(viewModelItem: ViewModelItem <Topic>) {
+    let topic = viewModelItem.item
+    let coverPhotoURL = viewModelItem.photoURL
     mainView.configure(with: topic, url: coverPhotoURL)
   }
   

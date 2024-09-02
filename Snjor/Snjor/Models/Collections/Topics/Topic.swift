@@ -17,8 +17,14 @@ struct Topic: Decodable, Hashable {
 }
 
 // MARK: - Extension
-extension Topic {
-  var coverPhotoURL: URL? {
+extension Topic: HasRegularURL {
+  var regularURL: URL? {
     return self.coverPhoto.urls.regular
+  }
+}
+
+extension Topic: Downloadable {
+  var downloadURL: URL? {
+    return self.coverPhoto.urls.full
   }
 }

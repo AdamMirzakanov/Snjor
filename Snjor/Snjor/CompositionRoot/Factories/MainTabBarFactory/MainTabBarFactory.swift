@@ -16,12 +16,12 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
   }
 
   func makeChildCoordinators() -> [any Coordinatable] {
-//    let topicsPageCoordinator = makeTopicsPageCoordinator()
+    let topicsPageCoordinator = makeTopicsPageCoordinator()
 //    let photoListCoordinator = makePhotosCoordinator()
     let searchScreenCoordinator = makeSearchScreenCoordinator()
     return [
-//      topicsPageCoordinator,
-      searchScreenCoordinator
+      searchScreenCoordinator,
+      topicsPageCoordinator
     ]
   }
 

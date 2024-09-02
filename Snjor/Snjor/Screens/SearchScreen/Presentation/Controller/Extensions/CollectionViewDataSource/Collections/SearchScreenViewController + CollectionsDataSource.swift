@@ -184,7 +184,7 @@ extension SearchScreenViewController {
     else {
       return UICollectionViewCell()
     }
-    let viewModelItem = topicsViewModel.getTopicsPageViewModelItem(at: indexPath.item)
+    let viewModelItem = topicsViewModel.getViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }

@@ -20,6 +20,6 @@ struct OldTopicsViewModelItem {
   }
   
   var coverPhoto: URL? {
-    topic.coverPhotoURL
+    topic.regularURL
   }
 }

@@ -20,7 +20,7 @@ extension SearchScreenViewController: UICollectionViewDelegate {
     default:
       switch indexPath.section {
       case .zero:
-        let topic = topicsViewModel.getTopic(at: indexPath.item)
+        let topic = topicsViewModel.getItem(at: indexPath.item)
         delegate.topicCellDidSelect(topic)
       default:
         let album = albumsViewModel.getItem(at: indexPath.item)

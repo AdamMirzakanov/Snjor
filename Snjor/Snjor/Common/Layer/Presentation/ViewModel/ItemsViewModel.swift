@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 // MARK: - Protocol
-protocol ItemsViewModelProtocol: BaseViewModelProtocol {
+protocol ItemsViewModelProtocol <Item> : BaseViewModelProtocol {
   associatedtype Item: HasRegularURL, Downloadable
   var items: [Item] { get }
   func getItem(at index: Int) -> Item
@@ -87,5 +87,8 @@ class ItemsViewModel <Element: HasRegularURL & Downloadable>: ItemsViewModelProt
 
 struct ViewModelItem<T: HasRegularURL & Downloadable> {
   private(set) var item: T
+  
+  var itemTitle: String { item.title }
+  var itemID: String { item.id }
   var photoURL: URL? { item.regularURL }
 }

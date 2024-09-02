@@ -8,5 +8,5 @@
 protocol SearchScreenViewModelFactoryProtocol {
   func createPhotosViewModel() -> DiscoverViewModel
   func createAlbumsViewModel() -> AlbumsViewModel
-  func createTopicsViewModel() -> OldTopicsViewModel
+  func createTopicsViewModel() -> TopicsViewModel
 }
