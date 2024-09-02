@@ -19,9 +19,9 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<PhotosSection, Photo>?
-  var collectionsDataSource: UICollectionViewDiffableDataSource<CollectionsSection, CollectionsItem>?
+  var collectionsDataSource: UICollectionViewDiffableDataSource<TopicsAndAlbumsSection, CollectionsItem>?
   var photosSections: [PhotosSection] = []
-  var collectionsSections: [CollectionsSection] = []
+  var collectionsSections: [TopicsAndAlbumsSection] = []
   var currentScopeIndex: Int = .zero
   
   // MARK: - Private Properties

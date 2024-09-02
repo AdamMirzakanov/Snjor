@@ -1,5 +1,5 @@
 //
-//  SearchScreenViewController + AlbumsDataSource.swift
+//  SearchScreenViewController + TopicsAndAlbumsDataSource.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 13.08.2024.
@@ -9,14 +9,14 @@ import UIKit
 
 extension SearchScreenViewController {
   
-  private typealias DataSource = UICollectionViewDiffableDataSource<CollectionsSection, CollectionsItem>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot<CollectionsSection, CollectionsItem>
+  private typealias DataSource = UICollectionViewDiffableDataSource<TopicsAndAlbumsSection, CollectionsItem>
+  private typealias Snapshot = NSDiffableDataSourceSnapshot<TopicsAndAlbumsSection, CollectionsItem>
   
   // MARK: - Private Properties
   private var collectionsSnapshot: Snapshot {
     var snapshot = Snapshot()
-    let topicSection = CollectionsSection.topics
-    let albumSection = CollectionsSection.albums("Albums")
+    let topicSection = TopicsAndAlbumsSection.topics
+    let albumSection = TopicsAndAlbumsSection.albums("Albums")
     snapshot.appendSections([topicSection, albumSection])
     snapshot.appendItems(CollectionsItem.topics, toSection: topicSection)
     snapshot.appendItems(CollectionsItem.albums, toSection: albumSection)
