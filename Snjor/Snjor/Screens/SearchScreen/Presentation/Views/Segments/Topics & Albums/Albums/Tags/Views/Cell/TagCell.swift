@@ -9,6 +9,7 @@ import UIKit
 
 final class TagCell: UICollectionViewCell {
   
+  // MARK: Views
   private let tagLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 11, weight: .regular)
@@ -21,23 +22,28 @@ final class TagCell: UICollectionViewCell {
     return label
   }()
   
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
-    contentView.addSubview(tagLabel)
-    tagLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      tagLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      tagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      tagLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-      tagLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-    ])
+    setupViews()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: Cell Config
   func configure(with tag: Tag) {
     tagLabel.text = "# " + tag.title
+  }
+  
+  // MARK: Setup Views
+  private func setupViews() {
+    contentView.addSubview(tagLabel)
+    setupTagLabelConstraints()
+  }
+  
+  private func setupTagLabelConstraints() {
+    tagLabel.fillSuperView()
   }
 }
