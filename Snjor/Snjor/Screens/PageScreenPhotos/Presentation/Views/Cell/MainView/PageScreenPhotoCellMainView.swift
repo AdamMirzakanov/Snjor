@@ -59,6 +59,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
   // MARK: - Labels
   let userNameLabel: UILabel = {
     $0.textColor = .white
+    $0.numberOfLines = .zero
     $0.font = .systemFont(
       ofSize: 17,
       weight: .medium
