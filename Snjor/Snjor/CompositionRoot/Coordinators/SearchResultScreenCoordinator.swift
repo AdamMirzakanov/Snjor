@@ -53,7 +53,6 @@ extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
       overlordCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
-    print(#function, Self.self)
   }
 }
 
