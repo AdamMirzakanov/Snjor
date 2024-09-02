@@ -7,7 +7,7 @@
 
 import Combine
 
-class DiscoverViewModel: SearchViewModel <Photo> {
+final class DiscoverViewModel: SearchViewModel <Photo> {
   
   private let loadUseCase: any LoadPhotosUseCaseProtocol
   private let loadSearchPhotosUseCase: any LoadSearchPhotosUseCaseProtocol

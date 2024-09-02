@@ -31,7 +31,6 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
     let loadUseCase = LoadTopicsUseCase(repository: repository)
     let viewModel = TopicsViewModel(
       loadUseCase: loadUseCase,
-      lastPageValidationUseCase: lastPageValidationUseCase,
       state: state
     )
     let module = PageScreenViewController(viewModel: viewModel, coordinator: delegate)

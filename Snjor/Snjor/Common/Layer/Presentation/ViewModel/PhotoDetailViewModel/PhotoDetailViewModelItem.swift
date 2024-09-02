@@ -1,11 +1,11 @@
 //
-//  OldPhotoDetailViewModelItem.swift
+//  PhotoDetailViewModelItem.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 31.07.2024.
 //
 
-struct OldPhotoDetailViewModelItem {
+struct PhotoDetailViewModelItem {
   var photo: Photo
   
   var displayName: String {

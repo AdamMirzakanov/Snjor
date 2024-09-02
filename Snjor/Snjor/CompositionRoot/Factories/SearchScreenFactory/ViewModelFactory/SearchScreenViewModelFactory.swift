@@ -41,7 +41,6 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
     let loadTopicsUseCase = getTopicsUseCase(networkService)
     return TopicsViewModel(
       loadUseCase: loadTopicsUseCase,
-      lastPageValidationUseCase: lastPageValidationUseCase,
       state: state
     )
   }

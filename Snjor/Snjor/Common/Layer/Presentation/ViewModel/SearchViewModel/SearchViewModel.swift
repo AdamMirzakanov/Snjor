@@ -5,18 +5,6 @@
 //  Created by Адам Мирзаканов on 02.09.2024.
 //
 
-// MARK: - Protocol
-protocol SearchViewModelProtocol <Item> : ContentManagingProtocol {
-  func search(with searchTerm: String)
-  func searchUseCase(with searchTerm: String) async
-  func checkAndLoadMoreSearchItems(at index: Int, with searchTerm: String)
-  func getSearchItemsViewModelItem(
-    at index: Int,
-    with searchTerm: String
-  ) -> ViewModelItem<Item>
-}
-
-// MARK: - Class
 class SearchViewModel <Element: ViewModelItemRepresentable & Downloadable> : BaseViewModel <Element>, SearchViewModelProtocol {
   
   func search(with searchTerm: String) {
@@ -31,7 +19,7 @@ class SearchViewModel <Element: ViewModelItemRepresentable & Downloadable> : Bas
   }
   
   func checkAndLoadMoreSearchItems(at index: Int, with searchTerm: String) {
-    lastPageValidationUseCase.checkAndLoadMoreItems(
+    lastPageValidationUseCase?.checkAndLoadMoreItems(
       at: index,
       actualItems: items.count,
       action: { self.search(with: searchTerm) }
@@ -41,7 +29,7 @@ class SearchViewModel <Element: ViewModelItemRepresentable & Downloadable> : Bas
   func getSearchItemsViewModelItem(
     at index: Int,
     with searchTerm: String
-  ) -> ViewModelItem <Element> {
+  ) -> BaseViewModelItem <Element> {
     checkAndLoadMoreSearchItems(at: index, with: searchTerm)
     return makeViewModelItem(at: index)
   }

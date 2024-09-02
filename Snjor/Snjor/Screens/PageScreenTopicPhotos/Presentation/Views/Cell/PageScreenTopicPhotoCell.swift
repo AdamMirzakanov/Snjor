@@ -31,7 +31,7 @@ final class PageScreenTopicPhotoCell: UICollectionViewCell {
   }
 
   // MARK: - Setup Data
-  func configure(viewModelItem: ViewModelItem <Photo>) {
+  func configure(viewModelItem: BaseViewModelItem <Photo>) {
     let photo = viewModelItem.item
     let photoURL = viewModelItem.photoURL
     mainView.configure(with: photo, url: photoURL)

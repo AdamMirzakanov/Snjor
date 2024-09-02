@@ -7,21 +7,17 @@
 
 import Combine
 
-class TopicsViewModel: BaseViewModel <Topic> {
+final class TopicsViewModel: BaseViewModel <Topic> {
   
   private let loadUseCase: any LoadTopicsUseCaseProtocol
   
   // MARK: Initializers
   init(
     loadUseCase: any LoadTopicsUseCaseProtocol,
-    lastPageValidationUseCase: any LastPageValidationUseCaseProtocol,
     state: PassthroughSubject<StateController, Never>
   ) {
     self.loadUseCase = loadUseCase
-    super.init(
-      lastPageValidationUseCase: lastPageValidationUseCase,
-      state: state
-    )
+    super.init(state: state)
   }
   
   // MARK: Private Methods

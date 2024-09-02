@@ -13,14 +13,14 @@ final class PhotoDetailViewController: BaseViewController<PhotoDetailRootView> {
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any OldPhotoDetailViewModelProtocol
+  private(set) var viewModel: any PhotoDetailViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
   ).first!
 
   // MARK: - Initializers
-  init(viewModel: any OldPhotoDetailViewModelProtocol
+  init(viewModel: any PhotoDetailViewModelProtocol
   ) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)

@@ -1,5 +1,5 @@
 //
-//  OldPhotoDetailViewModel.swift
+//  PhotoDetailViewModel.swift
 //  Snjor
 //
 //  Created by Адам on 21.06.2024.
@@ -7,7 +7,7 @@
 
 import Combine
 
-final class OldPhotoDetailViewModel: OldPhotoDetailViewModelProtocol {
+final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   
   // MARK: - Internal Properties
   var state: PassthroughSubject<StateController, Never>
@@ -33,9 +33,9 @@ final class OldPhotoDetailViewModel: OldPhotoDetailViewModelProtocol {
     }
   }
   
-  func getPhotoDetailViewModelItem() -> OldPhotoDetailViewModelItem? {
+  func getPhotoDetailViewModelItem() -> PhotoDetailViewModelItem? {
     guard let photo = photo else { return nil }
-    return OldPhotoDetailViewModelItem(photo: photo)
+    return PhotoDetailViewModelItem(photo: photo)
   }
   
   // MARK: - Private Methods
