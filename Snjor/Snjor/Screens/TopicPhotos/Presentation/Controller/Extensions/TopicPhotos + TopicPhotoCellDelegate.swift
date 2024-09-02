@@ -8,7 +8,7 @@
 extension TopicPhotosViewController: TopicPhotoCellDelegate {
   func downloadTapped(_ cell: TopicPhotoCell) {
     if let indexPath = rootView.topicPhotosCollectionView.indexPath(for: cell) {
-      let photo = viewModel.getPhoto(at: indexPath.item)
+      let photo = viewModel.getItem(at: indexPath.item)
       downloadService.startDownload(photo, sessionID: Self.sessionID)
     }
   }
