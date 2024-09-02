@@ -24,21 +24,21 @@ struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
   }
   
   // MARK: - Private Methods
-  private func createViewModel() -> PageScreenTopicPhotosViewModel {
+  private func createViewModel() -> TopicPhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let repository = LoadTopicPhotosRepository(networkService: networkService)
     let loadUseCase = LoadTopicPhotosUseCase(repository: repository, topic: topic)
-    return PageScreenTopicPhotosViewModel(
-      state: state,
+    return TopicPhotosViewModel(
       loadUseCase: loadUseCase,
-      lastPageValidationUseCase: lastPageValidationUseCase
+      lastPageValidationUseCase: lastPageValidationUseCase,
+      state: state
     )
   }
   
   private func createViewController(
-    viewModel: PageScreenTopicPhotosViewModel,
+    viewModel: TopicPhotosViewModel,
     delegate: any PageScreenTopicPhotosViewControllerDelegate
   ) -> PageScreenTopicPhotosViewController {
     let defaultLayout = UICollectionViewLayout()

@@ -17,17 +17,18 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   // MARK: - Internal Properties
   var topicID: String?
   var pageIndex: Int?
+  var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
   
   // MARK: - Delegate
   private(set) weak var delegate: (any PageScreenTopicPhotosViewControllerDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) var viewModel: any PageScreenTopicPhotosViewModelProtocol
+  private(set) var viewModel: any ItemsViewModelProtocol <Photo>
   
   // MARK: - Initializers
   init(
-    viewModel: any PageScreenTopicPhotosViewModelProtocol,
+    viewModel: any ItemsViewModelProtocol <Photo>,
     delegate: any PageScreenTopicPhotosViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
@@ -56,7 +57,7 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   
   // MARK: - Private Methods
   private func setupDataSource() {
-    viewModel.createDataSource(
+    createDataSource(
       for: rootView.pageScreenTopicPhotosCollectionView
     )
   }
@@ -73,7 +74,7 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
         guard let self = self else { return }
         switch state {
         case .success:
-          self.viewModel.applySnapshot()
+          self.applySnapshot()
         case .loading: break
         case .fail(error: let error):
           presentAlert(message: error, title: AppLocalized.error)
