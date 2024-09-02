@@ -21,7 +21,7 @@
 		3723E38D2C4F0F6300C3AE3E /* PageScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E38C2C4F0F6300C3AE3E /* PageScreenViewController.swift */; };
 		3723E38F2C4F0FF600C3AE3E /* PageScreen + UIPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E38E2C4F0FF600C3AE3E /* PageScreen + UIPageViewControllerDataSource.swift */; };
 		3723E3912C4F0FFF00C3AE3E /* PageScreen + UIPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E3902C4F0FFF00C3AE3E /* PageScreen + UIPageViewControllerDelegate.swift */; };
-		3723E3932C4F102D00C3AE3E /* PageScreen + UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E3922C4F102D00C3AE3E /* PageScreen + UICollectionViewDataSource.swift */; };
+		3723E3932C4F102D00C3AE3E /* PageScreen + CollectionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E3922C4F102D00C3AE3E /* PageScreen + CollectionsDataSource.swift */; };
 		3723E3952C4F103400C3AE3E /* PageScreen + UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E3942C4F103400C3AE3E /* PageScreen + UICollectionViewDelegate.swift */; };
 		3723E3972C4F105F00C3AE3E /* OldTopicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E3962C4F105F00C3AE3E /* OldTopicsViewModel.swift */; };
 		3723E3992C4F108700C3AE3E /* OldTopicsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E3982C4F108700C3AE3E /* OldTopicsViewModelProtocol.swift */; };
@@ -284,7 +284,7 @@
 		3723E38C2C4F0F6300C3AE3E /* PageScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageScreenViewController.swift; sourceTree = "<group>"; };
 		3723E38E2C4F0FF600C3AE3E /* PageScreen + UIPageViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreen + UIPageViewControllerDataSource.swift"; sourceTree = "<group>"; };
 		3723E3902C4F0FFF00C3AE3E /* PageScreen + UIPageViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreen + UIPageViewControllerDelegate.swift"; sourceTree = "<group>"; };
-		3723E3922C4F102D00C3AE3E /* PageScreen + UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreen + UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		3723E3922C4F102D00C3AE3E /* PageScreen + CollectionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreen + CollectionsDataSource.swift"; sourceTree = "<group>"; };
 		3723E3942C4F103400C3AE3E /* PageScreen + UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreen + UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		3723E3962C4F105F00C3AE3E /* OldTopicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldTopicsViewModel.swift; sourceTree = "<group>"; };
 		3723E3982C4F108700C3AE3E /* OldTopicsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldTopicsViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -721,7 +721,7 @@
 		3723E3682C4F0D5A00C3AE3E /* CollectionView  */ = {
 			isa = PBXGroup;
 			children = (
-				3723E3922C4F102D00C3AE3E /* PageScreen + UICollectionViewDataSource.swift */,
+				3723E3922C4F102D00C3AE3E /* PageScreen + CollectionsDataSource.swift */,
 				3723E3942C4F103400C3AE3E /* PageScreen + UICollectionViewDelegate.swift */,
 				37EFC4A52C54442A001D3581 /* PageScreen + UICollectionViewDelegateFlowLayout.swift */,
 			);
@@ -2546,7 +2546,7 @@
 				664A512B2C1DD5D9003491BA /* UIColor + DecodeHex.swift in Sources */,
 				664BF2C02BF6472C00C9D29E /* SceneDelegate.swift in Sources */,
 				3723E3582C4F0D3400C3AE3E /* TopicsPageCoordinator.swift in Sources */,
-				3723E3932C4F102D00C3AE3E /* PageScreen + UICollectionViewDataSource.swift in Sources */,
+				3723E3932C4F102D00C3AE3E /* PageScreen + CollectionsDataSource.swift in Sources */,
 				3770E18A2C72074D0017ECBB /* AlbumPhotos + TopicPhotoCellDelegate.swift in Sources */,
 				37BE0AC32C5256EF00C8D45F /* LoadTopicPhotosUseCase.swift in Sources */,
 				378B83582C85EC10001463FE /* TopicsViewModel.swift in Sources */,

@@ -10,6 +10,8 @@ import Combine
 
 struct PageScreenFactory: PageScreenFactoryProtocol {
   
+  private let lastPageValidationUseCase = LastPageValidationUseCase()
+  
   // MARK: - Internal Methods
   func makeTabBarItem(navigation: any Navigable) {
     makeTabBarItem(
@@ -27,7 +29,11 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
     let networkService = NetworkService()
     let repository = LoadTopicsPageRepository(networkService: networkService)
     let loadUseCase = LoadTopicsUseCase(repository: repository)
-    let viewModel = OldTopicsViewModel(state: state, loadUseCase: loadUseCase)
+    let viewModel = TopicsViewModel(
+      loadUseCase: loadUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase,
+      state: state
+    )
     let module = PageScreenViewController(viewModel: viewModel, coordinator: delegate)
     return module
   }

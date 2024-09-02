@@ -37,8 +37,8 @@ extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
   
   // MARK: -  Private Methods
   private func calculateItemWidth(for index: Int) -> CGFloat {
-    let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
-    let width = topicsPageViewModelItem.topicTitle.size(
+    let topicsPageViewModelItem = viewModel.getViewModelItem(at: index)
+    let width = topicsPageViewModelItem.itemTitle.size(
       withAttributes: [
         NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
       ]

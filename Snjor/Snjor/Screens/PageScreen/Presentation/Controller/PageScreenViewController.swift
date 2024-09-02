@@ -11,13 +11,14 @@ import Combine
 final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   
   // MARK: - Private Properties
-  private(set) var viewModel: any OldTopicsViewModelProtocol
+  private(set) var viewModel: any ItemsViewModelProtocol <Topic>
   private var cancellable = Set<AnyCancellable>()
   private(set) var coordinator: any PageScreenTopicPhotosViewControllerDelegate
+  var dataSource: UICollectionViewDiffableDataSource<TopicsSection, Topic>?
   
   // MARK: - Initializers
   init(
-    viewModel: any OldTopicsViewModelProtocol,
+    viewModel: any ItemsViewModelProtocol <Topic>,
     coordinator: any PageScreenTopicPhotosViewControllerDelegate
   ) {
     self.viewModel = viewModel
@@ -62,14 +63,14 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   ) -> UIViewController? {
     guard
       index >= 0,
-      index < viewModel.topicsCount else {
+      index < viewModel.items.count else {
       return nil
     }
     
-    let topicsPageViewModelItem = viewModel.getTopicsPageViewModelItem(at: index)
-    let topic = topicsPageViewModelItem.topic
+    let topicsPageViewModelItem = viewModel.getViewModelItem(at: index)
+    let topic = topicsPageViewModelItem.item
     let topicPhotoListFactory = PageScreenTopicPhotosFactory(topic: topic)
-    let topicID = topicsPageViewModelItem.topicID
+    let topicID = topicsPageViewModelItem.itemID
     let viewController = topicPhotoListFactory.makeModule(delegate: coordinator)
     
     guard let topicPhotoListCollectionViewController = (
@@ -86,7 +87,7 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   
   // MARK: - Private Methods
   private func setupDataSource() {
-    viewModel.createDataSource(
+    createDataSource(
       for: rootView.topicsCollectionView
     )
   }
@@ -99,7 +100,7 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
         guard let self = self else { return }
         switch state {
         case .success:
-          viewModel.applySnapshot()
+          applySnapshot()
           setFirstPage()
         case .loading: break
         case .fail(error: let error):
@@ -131,7 +132,6 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   }
   
   private func configCategoryCollectionView() {
-    //        rootView.categoryCollectionView.dataSource = self
     rootView.topicsCollectionView.delegate = self
   }
   
@@ -148,4 +148,8 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
     }
     rootView.topicsCollectionView.updateIndicatorPosition(for: cell)
   }
+}
+
+enum Section: CaseIterable {
+  case main
 }

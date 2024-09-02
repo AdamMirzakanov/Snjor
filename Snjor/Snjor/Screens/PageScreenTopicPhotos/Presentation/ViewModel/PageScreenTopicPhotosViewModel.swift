@@ -10,7 +10,7 @@ import Combine
 
 final class PageScreenTopicPhotosViewModel: PageScreenTopicPhotosViewModelProtocol {
   
-  private typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
+//  private typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>?
   
   // MARK: - Internal Properties
 //  var photosCount: Int { photos.count }
@@ -151,6 +151,6 @@ final class PageScreenTopicPhotosViewModel: PageScreenTopicPhotosViewModelProtoc
 }
 
 // MARK: - Section
-private enum Section: CaseIterable {
-  case main
-}
+//private enum Section: CaseIterable {
+//  case main
+//}
