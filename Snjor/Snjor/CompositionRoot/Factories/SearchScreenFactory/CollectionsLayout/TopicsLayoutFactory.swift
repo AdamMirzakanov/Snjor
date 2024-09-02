@@ -52,7 +52,7 @@ struct TopicsLayoutFactory {
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .groupPagingCentered
     section.contentInsets = NSDirectionalEdgeInsets(
-      top: 12,
+      top: 6.0,
       leading: 4.0,
       bottom: 4.0 * 5,
       trailing: 4.0
