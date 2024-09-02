@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TopicCellMainView: BaseImageContainerView {
+final class TopicCellMainView: MainImageContainerView {
 
   // MARK: - Private Properties
   private var screenScale: CGFloat {

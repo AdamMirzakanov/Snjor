@@ -12,7 +12,7 @@ protocol PageScreenPhotosDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-final class PageScreenPhotosViewController: BaseViewController <PageScreenPhotosRootView> {
+final class PageScreenPhotosViewController: MainViewController <PageScreenPhotosRootView> {
   
   // MARK: - Internal Properties
   var topicID: String?

@@ -7,21 +7,21 @@
 
 import UIKit
 
-final class PhotoDetailPhotoView: BaseImageContainerView {
+final class PhotoDetailPhotoView: MainImageContainerView {
   // MARK: - Gradient
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: BasePhotoViewConst.gradientAlpha
+      alpha: MainPhotoViewConst.gradientAlpha
     )
     $0.setColors([
       GradientView.Color(
         color: .clear,
-        location: BasePhotoViewConst.downLocation
+        location: MainPhotoViewConst.downLocation
       ),
       GradientView.Color(
         color: color,
-        location: BasePhotoViewConst.upLocation
+        location: MainPhotoViewConst.upLocation
       )
     ])
     return $0

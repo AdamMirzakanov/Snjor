@@ -13,7 +13,7 @@ protocol SearchResultViewControllerDelegate: AnyObject {
   func searchAlbumcCellDidSelect(_ album: Album)
 }
 
-final class SearchResultViewController: BaseViewController<SearchResultScreenRootView> {
+final class SearchResultViewController: MainViewController<SearchResultScreenRootView> {
   
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>?

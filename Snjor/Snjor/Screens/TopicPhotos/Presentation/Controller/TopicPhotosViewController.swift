@@ -12,7 +12,7 @@ protocol TopicPhotosViewControllerDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
+final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   
   // MARK: - Delegate
   private(set) weak var delegate: (any TopicPhotosViewControllerDelegate)?

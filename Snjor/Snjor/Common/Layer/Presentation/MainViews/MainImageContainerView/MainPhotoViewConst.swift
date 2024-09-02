@@ -1,5 +1,5 @@
 //
-//  BasePhotoViewConst.swift
+//  MainPhotoViewConst.swift
 //  Snjor
 //
 //  Created by Адам on 15.07.2024.
@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-enum BasePhotoViewConst {
+enum MainPhotoViewConst {
   //blur hash
   static let blurSize = CGSize(width: 32.0, height: 32.0)
 

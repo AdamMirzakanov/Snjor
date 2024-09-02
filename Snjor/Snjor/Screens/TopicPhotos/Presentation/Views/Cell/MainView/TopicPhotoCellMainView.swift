@@ -11,7 +11,7 @@ protocol TopicPhotoCellMainViewDelegate: AnyObject {
   func downloadTapped()
 }
 
-final class TopicPhotoCellMainView: BaseImageContainerView {
+final class TopicPhotoCellMainView: MainImageContainerView {
   
   // MARK: - Delegate
   weak var delegate: (any TopicPhotoCellMainViewDelegate)?
@@ -32,16 +32,16 @@ final class TopicPhotoCellMainView: BaseImageContainerView {
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: BasePhotoViewConst.gradientAlpha
+      alpha: MainPhotoViewConst.gradientAlpha
     )
     $0.setColors([
       GradientView.Color(
         color: .clear,
-        location: BasePhotoViewConst.downLocation
+        location: MainPhotoViewConst.downLocation
       ),
       GradientView.Color(
         color: color,
-        location: BasePhotoViewConst.upLocation
+        location: MainPhotoViewConst.upLocation
       )
     ])
     return $0

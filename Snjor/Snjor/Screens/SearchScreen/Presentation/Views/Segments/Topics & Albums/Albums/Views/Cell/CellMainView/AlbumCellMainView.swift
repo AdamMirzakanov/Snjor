@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AlbumCellMainView: BaseImageContainerView {
+final class AlbumCellMainView: MainImageContainerView {
   
   // MARK: - Private Properties
   private var screenScale: CGFloat {
@@ -52,7 +52,7 @@ final class AlbumCellMainView: BaseImageContainerView {
       ),
       GradientView.Color(
         color: color,
-        location: BasePhotoViewConst.upLocation
+        location: MainPhotoViewConst.upLocation
       )
     ])
     return $0

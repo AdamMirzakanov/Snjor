@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PageScreenPhotoCellMainView: BaseImageContainerView {
+final class PageScreenPhotoCellMainView: MainImageContainerView {
 
   // MARK: - Private Properties
   private var screenScale: CGFloat {
@@ -25,16 +25,16 @@ final class PageScreenPhotoCellMainView: BaseImageContainerView {
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: BasePhotoViewConst.gradientAlpha
+      alpha: MainPhotoViewConst.gradientAlpha
     )
     $0.setColors([
       GradientView.Color(
         color: .clear,
-        location: BasePhotoViewConst.downLocation
+        location: MainPhotoViewConst.downLocation
       ),
       GradientView.Color(
         color: color,
-        location: BasePhotoViewConst.upLocation
+        location: MainPhotoViewConst.upLocation
       )
     ])
     return $0

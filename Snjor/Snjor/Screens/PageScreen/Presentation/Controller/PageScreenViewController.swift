@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PageScreenViewController: BaseViewController<PageScreenRootView> {
+final class PageScreenViewController: MainViewController<PageScreenRootView> {
   
   // MARK: - Private Properties
   private(set) var viewModel: any ContentManagingProtocol <Topic>

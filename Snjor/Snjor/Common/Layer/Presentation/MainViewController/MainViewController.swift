@@ -1,5 +1,5 @@
 //
-//  BaseViewController.swift
+//  MainViewController.swift
 //  Snjor
 //
 //  Created by Адам on 04.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewController<ViewType: UIView>: UIViewController {
+class MainViewController<ViewType: UIView>: UIViewController {
   typealias RootView = ViewType
   override func loadView() {
     let customView = RootView()
@@ -15,4 +15,4 @@ class BaseViewController<ViewType: UIView>: UIViewController {
   }
 }
 
-extension BaseViewController: ViewLoadable { }
+extension MainViewController: ViewLoadable { }

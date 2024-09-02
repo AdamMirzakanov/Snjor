@@ -15,7 +15,7 @@ protocol SearchScreenViewControllerDelegate: AnyObject {
   func searchButtonClicked(with searchTerm: String, currentScopeIndex: Int)
 }
 
-final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
+final class SearchScreenViewController: MainViewController<SearchScreenRootView> {
   
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<PhotosSection, Photo>?

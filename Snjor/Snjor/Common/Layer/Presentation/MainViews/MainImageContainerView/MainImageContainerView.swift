@@ -1,5 +1,5 @@
 //
-//  BaseImageContainerView.swift
+//  MainImageContainerView.swift
 //  Snjor
 //
 //  Created by Адам on 18.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseImageContainerView: UIView {
+class MainImageContainerView: UIView {
   // MARK: - Properties
   var imageDownloader = ImageDownloader()
   var currentPhotoID: String?
@@ -40,7 +40,7 @@ class BaseImageContainerView: UIView {
     photoID: String? = nil
   ) {
     currentPhotoID = photoID
-    let size = BasePhotoViewConst.blurSize
+    let size = MainPhotoViewConst.blurSize
     if let blurHash = blurHash {
       mainImageView.image = UIImage(blurHash: blurHash, size: size)
       downloadImage(url, photoID)
@@ -91,7 +91,7 @@ class BaseImageContainerView: UIView {
   private func animateImageView(_ imageView: UIImageView, _ image: UIImage?) {
     UIView.transition(
       with: self,
-      duration: BasePhotoViewConst.duration,
+      duration: MainPhotoViewConst.duration,
       options: [.transitionCrossDissolve]
     ) {
       imageView.image = image
