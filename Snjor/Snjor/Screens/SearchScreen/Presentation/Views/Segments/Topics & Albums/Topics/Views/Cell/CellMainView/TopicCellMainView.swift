@@ -30,6 +30,7 @@ final class TopicCellMainView: MainImageContainerView {
       effect: UIBlurEffect(style: .systemUltraThinMaterialDark)
     )
     visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+    visualEffectView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     return visualEffectView
   }()
   
@@ -97,14 +98,22 @@ final class TopicCellMainView: MainImageContainerView {
   }
   
   private func setupConstraints() {
-    NSLayoutConstraint.activate([
-      titleLabel.centerYAnchor.constraint(equalTo: visualEffectView.centerYAnchor),
-      titleLabel.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor),
-
-      visualEffectView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor),
-      visualEffectView.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor),
-      visualEffectView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor),
-      visualEffectView.heightAnchor.constraint(equalToConstant: 50)
-    ])
+    setupTitleLabelConstraints()
+    setupVisualEffectViewConstraints()
+  }
+  
+  private func setupTitleLabelConstraints() {
+    titleLabel.setConstraints(
+      centerY: visualEffectView.centerYAnchor,
+      centerX: visualEffectView.centerXAnchor
+    )
+  }
+  
+  private func setupVisualEffectViewConstraints() {
+    visualEffectView.setConstraints(
+      right: mainImageView.rightAnchor,
+      bottom: mainImageView.bottomAnchor,
+      left: mainImageView.leftAnchor
+    )
   }
 }
