@@ -10,7 +10,7 @@ import UIKit
 protocol PageScreenFactoryProtocol {
   func makeTabBarItem(navigation: any Navigable)
   func makeModule(
-    delegate: any PageScreenTopicPhotosViewControllerDelegate
+    delegate: any PageScreenPhotosDelegate
   ) -> UIViewController
   func makePhotoDetailCoordinator(
     navigation: Navigable,

@@ -15,7 +15,7 @@ struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
   
   // MARK: - Internal Methods
   func makeModule(
-    delegate: any PageScreenTopicPhotosViewControllerDelegate
+    delegate: any PageScreenPhotosDelegate
   ) -> UIViewController {
     let viewModel = createViewModel()
     let module = createViewController(viewModel: viewModel, delegate: delegate)
@@ -39,22 +39,22 @@ struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
   
   private func createViewController(
     viewModel: TopicPhotosViewModel,
-    delegate: any PageScreenTopicPhotosViewControllerDelegate
-  ) -> PageScreenTopicPhotosViewController {
+    delegate: any PageScreenPhotosDelegate
+  ) -> PageScreenPhotosViewController {
     let defaultLayout = UICollectionViewLayout()
-    let module = PageScreenTopicPhotosViewController(
+    let module = PageScreenPhotosViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout
     )
-    module.rootView.pageScreenTopicPhotosCollectionView.showsVerticalScrollIndicator = false
+    module.rootView.pageScreenPhotosCollectionView.showsVerticalScrollIndicator = false
     return module
   }
   
   private func configureLayout(
-    for module: PageScreenTopicPhotosViewController
+    for module: PageScreenPhotosViewController
   ) {
     let cascadeLayout = SingleColumnCascadeLayout(with: module)
-    module.rootView.pageScreenTopicPhotosCollectionView.collectionViewLayout = cascadeLayout
+    module.rootView.pageScreenPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }

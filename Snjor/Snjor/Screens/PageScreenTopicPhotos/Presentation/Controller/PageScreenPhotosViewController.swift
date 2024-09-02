@@ -1,5 +1,5 @@
 //
-//  PageScreenTopicPhotosViewController.swift
+//  PageScreenPhotosViewController.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 25.07.2024.
@@ -8,19 +8,19 @@
 import UIKit
 import Combine
 
-protocol PageScreenTopicPhotosViewControllerDelegate: AnyObject {
+protocol PageScreenPhotosDelegate: AnyObject {
   func didSelect(_ photo: Photo)
 }
 
-final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTopicPhotosRootView> {
+final class PageScreenPhotosViewController: BaseViewController <PageScreenPhotosRootView> {
   
   // MARK: - Internal Properties
   var topicID: String?
   var pageIndex: Int?
-  var dataSource: UICollectionViewDiffableDataSource<Section, Photo>?
+  var dataSource: UICollectionViewDiffableDataSource<PageScreenPhotosSection, Photo>?
   
   // MARK: - Delegate
-  private(set) weak var delegate: (any PageScreenTopicPhotosViewControllerDelegate)?
+  private(set) weak var delegate: (any PageScreenPhotosDelegate)?
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -29,7 +29,7 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   // MARK: - Initializers
   init(
     viewModel: any ContentManagingProtocol <Photo>,
-    delegate: any PageScreenTopicPhotosViewControllerDelegate,
+    delegate: any PageScreenPhotosDelegate,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel
@@ -58,7 +58,7 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   // MARK: - Private Methods
   private func setupDataSource() {
     createDataSource(
-      for: rootView.pageScreenTopicPhotosCollectionView
+      for: rootView.pageScreenPhotosCollectionView
     )
   }
   
@@ -84,6 +84,6 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   }
   
   private func configCollectionView() {
-    rootView.pageScreenTopicPhotosCollectionView.delegate = self
+    rootView.pageScreenPhotosCollectionView.delegate = self
   }
 }

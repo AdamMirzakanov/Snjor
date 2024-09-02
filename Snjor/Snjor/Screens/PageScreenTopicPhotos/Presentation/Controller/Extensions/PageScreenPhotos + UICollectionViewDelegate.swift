@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension PageScreenTopicPhotosViewController: UICollectionViewDelegate {
+extension PageScreenPhotosViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath

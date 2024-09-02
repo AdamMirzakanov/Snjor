@@ -30,7 +30,7 @@ final class TopicsPageCoordinator: Coordinatable {
   }
 }
 
-extension TopicsPageCoordinator: PageScreenTopicPhotosViewControllerDelegate {
+extension TopicsPageCoordinator: PageScreenPhotosDelegate {
   func didSelect(_ photo: Photo) {
     let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
       navigation: navigation,

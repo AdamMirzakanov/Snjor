@@ -1,5 +1,5 @@
 //
-//  PageScreenTopicPhotos + TopicPhotosDataSource.swift
+//  PageScreenPhotos + PageScreenPhotosDataSource.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 02.09.2024.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-extension PageScreenTopicPhotosViewController {
+extension PageScreenPhotosViewController {
   
-  private typealias DataSource = UICollectionViewDiffableDataSource<Section, Photo>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Photo>
+  private typealias DataSource = UICollectionViewDiffableDataSource<PageScreenPhotosSection, Photo>
+  private typealias Snapshot = NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo>
   
   // MARK: - Private Properties
-  private var snapshot: NSDiffableDataSourceSnapshot<Section, Photo> {
-    var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+  private var snapshot: NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo> {
+    var snapshot = NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo>()
     snapshot.appendSections([.main])
     snapshot.appendItems(viewModel.items)
     return snapshot
@@ -32,7 +32,7 @@ extension PageScreenTopicPhotosViewController {
   func createDataSource(
     for collectionView: UICollectionView
   ) {
-    dataSource = UICollectionViewDiffableDataSource<Section, Photo>(
+    dataSource = UICollectionViewDiffableDataSource<PageScreenPhotosSection, Photo>(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
       guard let strongSelf = self else { return UICollectionViewCell() }
@@ -42,7 +42,6 @@ extension PageScreenTopicPhotosViewController {
         photo: photo
       )
     }
-//    configureSectionHeaders(dataSource: dataSource)
   }
   
   private func configureCell(
@@ -52,9 +51,9 @@ extension PageScreenTopicPhotosViewController {
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: PageScreenTopicPhotoCell.reuseID,
+        withReuseIdentifier: PageScreenPhotoCell.reuseID,
         for: indexPath
-      ) as? PageScreenTopicPhotoCell
+      ) as? PageScreenPhotoCell
     else {
       return UICollectionViewCell()
     }
@@ -63,21 +62,4 @@ extension PageScreenTopicPhotosViewController {
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
-  
-//  private func configureSectionHeaders(dataSource: DataSource) {
-//    dataSource?.supplementaryViewProvider = {
-//      collectionView, kind, indexPath -> UICollectionReusableView? in
-//      guard kind == UICollectionView.elementKindSectionHeader else {
-//        return nil
-//      }
-//      let headerView = collectionView.dequeueReusableSupplementaryView(
-//        ofKind: kind,
-//        withReuseIdentifier: SectionHeaderView.reuseID,
-//        for: indexPath
-//      ) as! SectionHeaderView
-//      headerView.setImage()
-//      return headerView
-//    }
-//  }
-  
 }

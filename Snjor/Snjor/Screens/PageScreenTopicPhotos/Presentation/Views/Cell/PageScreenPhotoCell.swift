@@ -1,5 +1,5 @@
 //
-//  PageScreenTopicPhotoCell.swift
+//  PageScreenPhotoCell.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 30.07.2024.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class PageScreenTopicPhotoCell: UICollectionViewCell {
+final class PageScreenPhotoCell: UICollectionViewCell {
 
   // MARK: - Main View
-  let mainView: PageScreenTopicPhotoCellMainView = {
+  let mainView: PageScreenPhotoCellMainView = {
     return $0
-  }(PageScreenTopicPhotoCellMainView())
+  }(PageScreenPhotoCellMainView())
   
   // MARK: - Initializers
   override init(frame: CGRect) {

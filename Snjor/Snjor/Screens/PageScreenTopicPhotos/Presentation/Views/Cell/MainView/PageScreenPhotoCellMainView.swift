@@ -1,5 +1,5 @@
 //
-//  PageScreenTopicPhotoCellMainView.swift
+//  PageScreenPhotoCellMainView.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 30.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PageScreenTopicPhotoCellMainView: BaseImageContainerView {
+final class PageScreenPhotoCellMainView: BaseImageContainerView {
 
   // MARK: - Private Properties
   private var screenScale: CGFloat {

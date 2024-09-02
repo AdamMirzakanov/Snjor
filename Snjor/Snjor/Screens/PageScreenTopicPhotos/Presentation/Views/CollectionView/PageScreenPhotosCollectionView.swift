@@ -1,5 +1,5 @@
 //
-//  PageScreenTopicPhotosCollectionView.swift
+//  PageScreenPhotosCollectionView.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 01.08.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PageScreenTopicPhotosCollectionView: UICollectionView {
+final class PageScreenPhotosCollectionView: UICollectionView {
   // MARK: - Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
   
@@ -24,8 +24,8 @@ final class PageScreenTopicPhotosCollectionView: UICollectionView {
   // MARK: - Private Methods
   private func cellRegister() {
     register(
-      PageScreenTopicPhotoCell.self,
-      forCellWithReuseIdentifier: PageScreenTopicPhotoCell.reuseID
+      PageScreenPhotoCell.self,
+      forCellWithReuseIdentifier: PageScreenPhotoCell.reuseID
     )
   }
 }

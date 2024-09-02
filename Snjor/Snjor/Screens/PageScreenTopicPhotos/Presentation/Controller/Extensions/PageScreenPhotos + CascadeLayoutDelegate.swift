@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension PageScreenTopicPhotosViewController: CascadeLayoutDelegate {
+extension PageScreenPhotosViewController: CascadeLayoutDelegate {
   func cascadeLayout(
     _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath

@@ -13,13 +13,13 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   // MARK: - Private Properties
   private(set) var viewModel: any ContentManagingProtocol <Topic>
   private var cancellable = Set<AnyCancellable>()
-  private(set) var coordinator: any PageScreenTopicPhotosViewControllerDelegate
+  private(set) var coordinator: any PageScreenPhotosDelegate
   var dataSource: UICollectionViewDiffableDataSource<TopicsSection, Topic>?
   
   // MARK: - Initializers
   init(
     viewModel: any ContentManagingProtocol <Topic>,
-    coordinator: any PageScreenTopicPhotosViewControllerDelegate
+    coordinator: any PageScreenPhotosDelegate
   ) {
     self.viewModel = viewModel
     self.coordinator = coordinator
@@ -59,7 +59,7 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   // MARK: - Internal Methods
   func viewControllerForTopic(
     at index: Int,
-    delegate: any PageScreenTopicPhotosViewControllerDelegate
+    delegate: any PageScreenPhotosDelegate
   ) -> UIViewController? {
     guard
       index >= 0,
@@ -74,7 +74,7 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
     let viewController = topicPhotoListFactory.makeModule(delegate: coordinator)
     
     guard let topicPhotoListCollectionViewController = (
-      viewController as? PageScreenTopicPhotosViewController
+      viewController as? PageScreenPhotosViewController
     ) else {
       return viewController
     }
@@ -150,6 +150,6 @@ final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   }
 }
 
-enum Section: CaseIterable {
-  case main
-}
+//enum Section: CaseIterable {
+//  case main
+//}

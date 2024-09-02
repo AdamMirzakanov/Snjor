@@ -23,7 +23,7 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
   }
   
   func makeModule(
-    delegate: any PageScreenTopicPhotosViewControllerDelegate
+    delegate: any PageScreenPhotosDelegate
   ) -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
     let networkService = NetworkService()

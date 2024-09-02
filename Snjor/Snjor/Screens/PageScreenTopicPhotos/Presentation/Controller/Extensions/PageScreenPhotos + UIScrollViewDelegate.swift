@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension PageScreenTopicPhotosViewController {
+extension PageScreenPhotosViewController {
   override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
     return .bottom
   }
