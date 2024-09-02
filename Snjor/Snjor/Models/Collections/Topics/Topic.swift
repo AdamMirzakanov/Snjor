@@ -17,7 +17,7 @@ struct Topic: Decodable, Hashable {
 }
 
 // MARK: - Extension
-extension Topic: HasRegularURL {
+extension Topic: ViewModelItemRepresentable {
   var regularURL: URL? {
     return self.coverPhoto.urls.regular
   }

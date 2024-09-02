@@ -46,7 +46,7 @@ extension Photo: Downloadable {
   }
 }
 
-extension Photo: HasRegularURL {
+extension Photo: ViewModelItemRepresentable {
   var title: String {
     return self.user.displayName
   }
@@ -60,11 +60,4 @@ extension Photo {
   var profileImageURL: URL? {
     return self.user.profileImage[.medium]
   }
-}
-
-// MARK: - HasRegularURL
-protocol HasRegularURL {
-  var regularURL: URL? { get }
-  var id: String { get }
-  var title: String { get }
 }

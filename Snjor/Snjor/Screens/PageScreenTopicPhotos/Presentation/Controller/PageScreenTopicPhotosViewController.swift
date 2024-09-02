@@ -24,11 +24,11 @@ final class PageScreenTopicPhotosViewController: BaseViewController<PageScreenTo
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) var viewModel: any ItemsViewModelProtocol <Photo>
+  private(set) var viewModel: any ContentManagingProtocol <Photo>
   
   // MARK: - Initializers
   init(
-    viewModel: any ItemsViewModelProtocol <Photo>,
+    viewModel: any ContentManagingProtocol <Photo>,
     delegate: any PageScreenTopicPhotosViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {

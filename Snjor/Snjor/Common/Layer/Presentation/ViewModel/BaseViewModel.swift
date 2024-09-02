@@ -1,5 +1,5 @@
 //
-//  ItemsViewModel.swift
+//  BaseViewModel.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 02.09.2024.
@@ -9,16 +9,27 @@ import Combine
 import Foundation
 
 // MARK: - Protocol
-protocol ItemsViewModelProtocol <Item> : BaseViewModelProtocol {
-  associatedtype Item: HasRegularURL, Downloadable
+protocol BaseViewModelProtocol {
+  var state: PassthroughSubject <StateController, Never> { get }
+  func viewDidLoad()
+}
+
+protocol ContentManagingProtocol <Item> : BaseViewModelProtocol {
+  associatedtype Item: ViewModelItemRepresentable, Downloadable
   var items: [Item] { get }
   func getItem(at index: Int) -> Item
   func getViewModelItem(at index: Int) -> ViewModelItem <Item>
   func loadItemsUseCase() async
 }
 
+protocol ViewModelItemRepresentable {
+  var regularURL: URL? { get }
+  var id: String { get }
+  var title: String { get }
+}
+
 // MARK: - Class
-class ItemsViewModel <Element: HasRegularURL & Downloadable>: ItemsViewModelProtocol {
+class BaseViewModel <Element: ViewModelItemRepresentable & Downloadable> : ContentManagingProtocol {
   
   typealias Item = Element
   
@@ -85,10 +96,12 @@ class ItemsViewModel <Element: HasRegularURL & Downloadable>: ItemsViewModelProt
   }
 }
 
-struct ViewModelItem<T: HasRegularURL & Downloadable> {
+struct ViewModelItem <T: ViewModelItemRepresentable & Downloadable> {
+
   private(set) var item: T
   
   var itemTitle: String { item.title }
   var itemID: String { item.id }
   var photoURL: URL? { item.regularURL }
 }
+

@@ -7,7 +7,7 @@
 
 import Combine
 
-final class TopicPhotosViewModel: ItemsViewModel <Photo> {
+final class TopicPhotosViewModel: BaseViewModel <Photo> {
   
   private let loadUseCase: any LoadTopicPhotosUseCaseProtocol
   

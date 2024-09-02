@@ -7,7 +7,7 @@
 
 import Combine
 
-class TopicsViewModel: ItemsViewModel <Topic> {
+class TopicsViewModel: BaseViewModel <Topic> {
   
   private let loadUseCase: any LoadTopicsUseCaseProtocol
   

@@ -18,7 +18,7 @@ struct Album: Decodable, Hashable {
 }
 
 // MARK: - Extension
-extension Album: HasRegularURL {
+extension Album: ViewModelItemRepresentable {
   var regularURL: URL? {
     return self.previewPhotos[.zero].urls.regular
   }

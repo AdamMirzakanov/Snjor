@@ -21,7 +21,7 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   private var cancellable = Set<AnyCancellable>()
   var dataSource: UICollectionViewDiffableDataSource<TopicPhotosSection, Photo>?
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any ItemsViewModelProtocol <Photo>
+  private(set) var viewModel: any ContentManagingProtocol <Photo>
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -29,7 +29,7 @@ final class TopicPhotosViewController: BaseViewController<TopicPhotosRootView> {
   
   // MARK: - Initializers
   init(
-    viewModel: any ItemsViewModelProtocol <Photo>,
+    viewModel: any ContentManagingProtocol <Photo>,
     delegate: any TopicPhotosViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {

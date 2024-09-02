@@ -6,7 +6,7 @@
 //
 
 // MARK: - Protocol
-protocol SearchViewModelProtocol <Item> : ItemsViewModelProtocol {
+protocol SearchViewModelProtocol <Item> : ContentManagingProtocol {
   func search(with searchTerm: String)
   func searchUseCase(with searchTerm: String) async
   func checkAndLoadMoreSearchItems(at index: Int, with searchTerm: String)
@@ -17,7 +17,7 @@ protocol SearchViewModelProtocol <Item> : ItemsViewModelProtocol {
 }
 
 // MARK: - Class
-class SearchViewModel <Element: HasRegularURL & Downloadable> : ItemsViewModel<Element>, SearchViewModelProtocol {
+class SearchViewModel <Element: ViewModelItemRepresentable & Downloadable> : BaseViewModel <Element>, SearchViewModelProtocol {
   
   func search(with searchTerm: String) {
     state.send(.loading)
