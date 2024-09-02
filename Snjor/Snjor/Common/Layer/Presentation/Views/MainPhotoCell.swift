@@ -1,5 +1,5 @@
 //
-//  PhotoCell.swift
+//  MainPhotoCell.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 31.08.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoCell: UICollectionViewCell {
+class MainPhotoCell: UICollectionViewCell {
 
   // MARK: - Main View
   let mainView: PhotoCellMainView = {

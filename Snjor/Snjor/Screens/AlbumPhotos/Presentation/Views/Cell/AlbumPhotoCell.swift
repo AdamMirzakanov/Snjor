@@ -11,7 +11,7 @@ protocol AlbumPhotoCellDelegate: AnyObject {
   func downloadTapped(_ cell: AlbumPhotoCell)
 }
 
-final class AlbumPhotoCell: PhotoCell {
+final class AlbumPhotoCell: MainPhotoCell {
   
   // MARK: - Delegate
   weak var delegate: (any AlbumPhotoCellDelegate)?

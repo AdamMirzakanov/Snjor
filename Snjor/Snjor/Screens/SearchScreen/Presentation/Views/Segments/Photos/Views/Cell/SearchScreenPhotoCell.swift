@@ -11,7 +11,7 @@ protocol SearchScreenPhotoCellDelegate: AnyObject {
   func downloadTapped(_ cell: SearchScreenPhotoCell)
 }
 
-final class SearchScreenPhotoCell: PhotoCell {
+final class SearchScreenPhotoCell: MainPhotoCell {
   
   // MARK: - Delegate
   weak var delegate: (any SearchScreenPhotoCellDelegate)?

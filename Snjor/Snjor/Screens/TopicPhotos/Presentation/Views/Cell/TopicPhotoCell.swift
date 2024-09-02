@@ -11,7 +11,7 @@ protocol TopicPhotoCellDelegate: AnyObject {
   func downloadTapped(_ cell: TopicPhotoCell)
 }
 
-final class TopicPhotoCell: PhotoCell {
+final class TopicPhotoCell: MainPhotoCell {
   
   // MARK: - Delegate
   weak var delegate: (any TopicPhotoCellDelegate)?
