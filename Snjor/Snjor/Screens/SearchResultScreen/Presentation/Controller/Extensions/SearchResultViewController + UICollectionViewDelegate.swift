@@ -1,5 +1,5 @@
 //
-//  SearchResultScreenViewController + UICollectionViewDelegate.swift
+//  SearchResultViewController + UICollectionViewDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.08.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension SearchResultScreenViewController: UICollectionViewDelegate {
+extension SearchResultViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath

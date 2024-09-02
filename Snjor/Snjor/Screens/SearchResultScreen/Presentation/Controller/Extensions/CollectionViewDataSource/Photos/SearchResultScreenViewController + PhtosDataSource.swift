@@ -1,5 +1,5 @@
 //
-//  SearchResultScreenViewController + PhtosDataSource.swift
+//  SearchResultViewController + PhtosDataSource.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.08.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension SearchResultScreenViewController {
+extension SearchResultViewController {
   
   // MARK: - Private Properties
   private var photosSnapshot: NSDiffableDataSourceSnapshot<SearchResultPhotosSection, Photo> {

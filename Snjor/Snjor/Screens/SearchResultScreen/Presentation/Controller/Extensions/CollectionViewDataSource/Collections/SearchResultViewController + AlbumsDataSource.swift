@@ -1,5 +1,5 @@
 //
-//  SearchResultScreenViewController + AlbumsDataSource.swift
+//  SearchResultViewController + AlbumsDataSource.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 29.08.2024.
@@ -7,9 +7,10 @@
 
 import UIKit
 
-extension SearchResultScreenViewController {
-  private typealias DataSource = UICollectionViewDiffableDataSource<SearchResultCollectionsSection, Album>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot<SearchResultCollectionsSection, Album>
+extension SearchResultViewController {
+  
+  private typealias DataSource = UICollectionViewDiffableDataSource<AlbumsSection, Album>
+  private typealias Snapshot = NSDiffableDataSourceSnapshot<AlbumsSection, Album>
   
   // MARK: - Private Properties
   private var collectionsSnapshot: Snapshot {

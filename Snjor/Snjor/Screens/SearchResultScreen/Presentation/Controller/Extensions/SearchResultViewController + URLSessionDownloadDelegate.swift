@@ -1,5 +1,5 @@
 //
-//  SearchResultScreenViewController + URLSessionDownloadDelegate.swift
+//  SearchResultViewController + URLSessionDownloadDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.08.2024.
@@ -8,7 +8,7 @@
 import Foundation
 import Photos
 
-extension SearchResultScreenViewController: URLSessionDownloadDelegate {
+extension SearchResultViewController: URLSessionDownloadDelegate {
   // MARK: - URL Session Download Delegate
   func urlSession(
     _ session: URLSession,

@@ -1,5 +1,5 @@
 //
-//  SearchResultScreenViewController.swift
+//  SearchResultViewController.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 21.08.2024.
@@ -8,18 +8,18 @@
 import UIKit
 import Combine
 
-protocol SearchResultScreenViewControllerDelegate: AnyObject {
+protocol SearchResultViewControllerDelegate: AnyObject {
   func searchPhotoCellDidSelect(_ photo: Photo)
   func searchAlbumcCellDidSelect(_ album: Album)
 }
 
-final class SearchResultScreenViewController: BaseViewController<SearchResultScreenRootView> {
+final class SearchResultViewController: BaseViewController<SearchResultScreenRootView> {
   
   // MARK: - Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>?
-  var collectionsDataSource: UICollectionViewDiffableDataSource<SearchResultCollectionsSection, Album>?
+  var collectionsDataSource: UICollectionViewDiffableDataSource<AlbumsSection, Album>?
   var photosSections: [SearchResultPhotosSection] = []
-  var collectionsSections: [SearchResultCollectionsSection] = []
+  var collectionsSections: [AlbumsSection] = []
   var currentScopeIndex: Int
   var photosViewModel: any SearchViewModelProtocol <Photo>
   var albumsViewModel: any SearchViewModelProtocol <Album>
@@ -27,7 +27,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
   
   // MARK: - Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) weak var delegate: (any SearchResultScreenViewControllerDelegate)?
+  private(set) weak var delegate: (any SearchResultViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
@@ -39,7 +39,7 @@ final class SearchResultScreenViewController: BaseViewController<SearchResultScr
     currentScopeIndex: Int,
     photosViewModel: any SearchViewModelProtocol <Photo>,
     albumsViewModel: any SearchViewModelProtocol <Album>,
-    delegate: any SearchResultScreenViewControllerDelegate
+    delegate: any SearchResultViewControllerDelegate
   ) {
     self.currentScopeIndex = currentScopeIndex
     self.photosViewModel = photosViewModel

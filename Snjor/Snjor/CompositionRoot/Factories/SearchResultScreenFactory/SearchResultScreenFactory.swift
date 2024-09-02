@@ -30,7 +30,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   
   // MARK: - Internal Methods
   func makeModule(
-    delegate: any SearchResultScreenViewControllerDelegate
+    delegate: any SearchResultViewControllerDelegate
   ) -> UIViewController {
     let module = getModule(delegate)
     return module
@@ -64,11 +64,11 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   
   // MARK: - Private Methods
   private func getModule(
-    _ delegate: any SearchResultScreenViewControllerDelegate
+    _ delegate: any SearchResultViewControllerDelegate
   ) -> UIViewController {
     let photosViewModel = viewModelFactory.createPhotosViewModel()
     let albumsViewModel = viewModelFactory.createAlbumsViewModel()
-    let module = SearchResultScreenViewController(
+    let module = SearchResultViewController(
       currentScopeIndex: currentScopeIndex,
       photosViewModel: photosViewModel,
       albumsViewModel: albumsViewModel,
@@ -79,7 +79,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     return module
   }
   
-  private func setupLayouts(module: SearchResultScreenViewController) {
+  private func setupLayouts(module: SearchResultViewController) {
     let cascadeLayout = MultiColumnCascadeLayout(with: module)
     module.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
     module.rootView.albumsCollectionView.collectionViewLayout = layoutProvider.createAlbumsLayout(module: module)
