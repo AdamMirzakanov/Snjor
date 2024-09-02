@@ -146,37 +146,23 @@ final class AlbumCellMainView: MainImageContainerView {
   }
   
   private func setupConstraints() {
-    mainImageView.translatesAutoresizingMaskIntoConstraints = false
-    secondBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-    thirdBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-    gradientView.translatesAutoresizingMaskIntoConstraints = false
-    
-    NSLayoutConstraint.activate([
-      // mainImageView constraints
-      mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      mainImageView.topAnchor.constraint(equalTo: topAnchor),
-      mainImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      
-      // secondBackgroundView constraints
-      secondBackgroundView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor, constant: 3),
-      secondBackgroundView.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: -3),
-      secondBackgroundView.topAnchor.constraint(equalTo: mainImageView.topAnchor, constant: -8),
-      secondBackgroundView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 0),
-      
-      // thirdBackgroundView constraints
-      thirdBackgroundView.leadingAnchor.constraint(equalTo: secondBackgroundView.leadingAnchor, constant: 5),
-      thirdBackgroundView.trailingAnchor.constraint(equalTo: secondBackgroundView.trailingAnchor, constant: -5),
-      thirdBackgroundView.topAnchor.constraint(equalTo: secondBackgroundView.topAnchor, constant: -8),
-      thirdBackgroundView.bottomAnchor.constraint(equalTo: secondBackgroundView.bottomAnchor, constant: 0),
-      
-      // gradientView constraints
-      gradientView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor),
-      gradientView.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor),
-      gradientView.topAnchor.constraint(equalTo: mainImageView.topAnchor),
-      gradientView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor)
-    ])
-    
+    setupSecondBackgroundViewConstraints()
+    setupThirdBackgroundViewConstraints()
+    setupGradientConstraints()
+    setupTitleConstraints()
+    setupInfoButtonConstraints()
+  }
+  
+  private func setupInfoButtonConstraints() {
+    infoButton.setConstraints(
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      pRight: GlobalConst.defaultValue,
+      pBottom: GlobalConst.defaultValue
+    )
+  }
+  
+  private func setupTitleConstraints() {
     titleLabel.setConstraints(
       top: mainImageView.topAnchor,
       right: mainImageView.rightAnchor,
@@ -185,18 +171,33 @@ final class AlbumCellMainView: MainImageContainerView {
       pRight: GlobalConst.defaultValue,
       pLeft: GlobalConst.defaultValue
     )
-    
-    setupInfoButtonBlurEffectConstraints()
   }
   
-  private func setupInfoButtonBlurEffectConstraints() {
-    infoButton.setConstraints(
-//      top: topAnchor,
-      right: rightAnchor,
-      bottom: bottomAnchor,
-//      pTop: GlobalConst.defaultValue,
-      pRight: 6,
-      pBottom: 6
+  private func setupGradientConstraints() {
+    gradientView.fillSuperView()
+  }
+  
+  private func setupSecondBackgroundViewConstraints() {
+    secondBackgroundView.setConstraints(
+      top: mainImageView.topAnchor,
+      right: mainImageView.rightAnchor,
+      bottom: mainImageView.bottomAnchor,
+      left: mainImageView.leftAnchor,
+      pTop: -10,
+      pRight: 3,
+      pLeft: 3
+    )
+  }
+  
+  private func setupThirdBackgroundViewConstraints() {
+    thirdBackgroundView.setConstraints(
+      top: secondBackgroundView.topAnchor,
+      right: secondBackgroundView.rightAnchor,
+      bottom: secondBackgroundView.bottomAnchor,
+      left: secondBackgroundView.leftAnchor,
+      pTop: -10,
+      pRight: 5,
+      pLeft: 5
     )
   }
 }
