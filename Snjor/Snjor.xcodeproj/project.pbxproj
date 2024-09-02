@@ -1837,7 +1837,6 @@
 			isa = PBXGroup;
 			children = (
 				663769332C45738A006AB620 /* Controller */,
-				6637693A2C457530006AB620 /* ViewModel */,
 				669861452C4488470085D789 /* Views */,
 				6637693B2C457589006AB620 /* Components */,
 				37EFC4A42C543E6B001D3581 /* Layout */,
@@ -1845,7 +1844,7 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		6637693A2C457530006AB620 /* ViewModel */ = {
+		6637693A2C457530006AB620 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				378B83792C862BDF001463FE /* BaseViewModel */,
@@ -1857,7 +1856,7 @@
 				378B83712C862B73001463FE /* TopicPhotosViewModel */,
 				378B836E2C862B42001463FE /* PhotoDetailViewModel */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		6637693B2C457589006AB620 /* Components */ = {
@@ -1880,6 +1879,7 @@
 		6637693E2C4578E5006AB620 /* CompositionRoot */ = {
 			isa = PBXGroup;
 			children = (
+				6637693A2C457530006AB620 /* ViewModels */,
 				664BF2FB2BF681DF00C9D29E /* Factories */,
 				664BF2EB2BF6632400C9D29E /* Coordinators */,
 			);
