@@ -22,12 +22,15 @@ final class AlbumCell: UICollectionViewCell {
   private let rightGradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.isUserInteractionEnabled = false
+    $0.widthAnchor.constraint(equalToConstant: 22).isActive = true
+    $0.transform = CGAffineTransform(rotationAngle: .pi / 2)
     return $0
   }(GradientView())
   
   private let leftGradientView: GradientView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
     $0.isUserInteractionEnabled = false
+    $0.widthAnchor.constraint(equalToConstant: 22).isActive = true
+    $0.transform = CGAffineTransform(rotationAngle: .pi * 1.5)
     return $0
   }(GradientView())
   
@@ -42,25 +45,8 @@ final class AlbumCell: UICollectionViewCell {
   // MARK: - Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupMainView()
-    addSubview(rightGradientView)
-    addSubview(leftGradientView)
-    NSLayoutConstraint.activate([
-      rightGradientView.trailingAnchor.constraint(equalTo: tagsCollectionView.trailingAnchor),
-      rightGradientView.topAnchor.constraint(equalTo: tagsCollectionView.topAnchor),
-      rightGradientView.bottomAnchor.constraint(equalTo: tagsCollectionView.bottomAnchor),
-      rightGradientView.widthAnchor.constraint(equalToConstant: 22)
-    ])
-    rightGradientView.transform = CGAffineTransform(rotationAngle: .pi / 2)
-    
-    NSLayoutConstraint.activate([
-      leftGradientView.leadingAnchor.constraint(equalTo: tagsCollectionView.leadingAnchor),
-      leftGradientView.topAnchor.constraint(equalTo: tagsCollectionView.topAnchor),
-      leftGradientView.bottomAnchor.constraint(equalTo: tagsCollectionView.bottomAnchor),
-      leftGradientView.widthAnchor.constraint(equalToConstant: 22)
-    ])
-    leftGradientView.transform = CGAffineTransform(rotationAngle: .pi * 1.5)
-    
+    setupViews()
+    setupConstraints()
     updateGradientColors()
   }
   
@@ -73,7 +59,6 @@ final class AlbumCell: UICollectionViewCell {
     super.prepareForReuse()
     mainView.prepareForReuse()
     tagsCollectionView.tags = []
-//    tagsCollectionView.reloadData()
   }
   
   // MARK: - Setup Data
@@ -82,13 +67,40 @@ final class AlbumCell: UICollectionViewCell {
     let coverPhotoURL = viewModelItem.photoURL
     mainView.configure(with: album, url: coverPhotoURL)
     tagsCollectionView.tags = album.tags ?? []
-//    tagsCollectionView.reloadData()
   }
   
   // MARK: - Setup Views
-  private func setupMainView() {
+  private func setupViews() {
+    addSubviews()
+    setupConstraints()
+  }
+  
+  private func addSubviews() {
     contentView.addSubview(mainViewAndTagsCollectionStackView)
+    addSubview(rightGradientView)
+    addSubview(leftGradientView)
+  }
+  
+  private func setupConstraints() {
     mainViewAndTagsCollectionStackView.fillSuperView()
+    setupLeftGradientViewConstraints()
+    setupRightGradientViewConstraints()
+  }
+  
+  private func setupLeftGradientViewConstraints() {
+    leftGradientView.setConstraints(
+      top: tagsCollectionView.topAnchor,
+      bottom: tagsCollectionView.bottomAnchor,
+      left: tagsCollectionView.leftAnchor
+    )
+  }
+  
+  private func setupRightGradientViewConstraints() {
+    rightGradientView.setConstraints(
+      top: tagsCollectionView.topAnchor,
+      right: tagsCollectionView.rightAnchor,
+      bottom: tagsCollectionView.bottomAnchor
+    )
   }
   
   // MARK: - Update Gradient Colors
@@ -116,9 +128,13 @@ final class AlbumCell: UICollectionViewCell {
     ])
   }
   
-  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+  override func traitCollectionDidChange(
+    _ previousTraitCollection: UITraitCollection?
+  ) {
     super.traitCollectionDidChange(previousTraitCollection)
-    if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+    if traitCollection.hasDifferentColorAppearance(
+      comparedTo: previousTraitCollection
+    ) {
       updateGradientColors()
     }
   }

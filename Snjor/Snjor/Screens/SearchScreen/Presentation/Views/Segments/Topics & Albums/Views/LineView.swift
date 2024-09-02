@@ -39,18 +39,27 @@ class SectionHeaderView: UICollectionReusableView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-
-    addSubview(titleLabel)
-    NSLayoutConstraint.activate([
-      titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-      titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-      titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-      titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-    ])
+    setupViews()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  private func setupViews() {
+    addSubview(titleLabel)
+    setupTitleLabelConstraints()
+  }
+  
+  private func setupTitleLabelConstraints() {
+    titleLabel.setConstraints(
+      top: topAnchor,
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      left: leftAnchor,
+      pTop: 10,
+      pBottom: 10
+    )
   }
 }
 
