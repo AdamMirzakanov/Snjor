@@ -39,21 +39,21 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
   }
   
   // MARK: - Private Methods
-  private func createViewModel() -> OldAlbumPhotosViewModel {
+  private func createViewModel() -> AlbumPhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let repository = LoadAlbumPhotosRepository(networkService: networkService)
     let loadUseCase = LoadAlbumPhotosUseCase(repository: repository, album: album)
-    return OldAlbumPhotosViewModel(
-      state: state,
+    return AlbumPhotosViewModel(
       loadUseCase: loadUseCase,
-      lastPageValidationUseCase: lastPageValidationUseCase
+      lastPageValidationUseCase: lastPageValidationUseCase,
+      state: state
     )
   }
   
   private func createViewController(
-    viewModel: OldAlbumPhotosViewModel,
+    viewModel: AlbumPhotosViewModel,
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> AlbumPhotosViewController {
     let module = AlbumPhotosViewController(

@@ -15,7 +15,7 @@ extension AlbumPhotosViewController {
   private var snapshot: Snapshot {
     var snapshot = Snapshot()
     snapshot.appendSections([.main])
-    snapshot.appendItems(viewModel.photos)
+    snapshot.appendItems(viewModel.items)
     return snapshot
   }
   
@@ -61,9 +61,8 @@ extension AlbumPhotosViewController {
       return UICollectionViewCell()
     }
     cell.delegate = delegate
-    viewModel.checkAndLoadMorePhotos(at: indexPath.item)
-    let viewModelItem = viewModel.getAlbumPhotosViewModelItem(at: indexPath.item)
-//    cell.configure(viewModelItem: viewModelItem)
+    let viewModelItem = viewModel.getViewModelItem(at: indexPath.item)
+    cell.configure(viewModelItem: viewModelItem)
     return cell
   }
 }
