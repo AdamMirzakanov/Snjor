@@ -15,14 +15,14 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
   private let state = PassthroughSubject<StateController, Never>()
   
   // MARK: - Internal Methods
-  func createPhotosViewModel() -> OldPhotosViewModel {
+  func createPhotosViewModel() -> DiscoverViewModel {
     let loadPhotosUseCase = getPhotosUseCase(networkService)
     let loadSearchPhotosUseCase = getSearchPhotosUseCase(networkService)
-    return OldPhotosViewModel(
-      state: state,
-      loadUseCase: loadPhotosUseCase, 
+    return DiscoverViewModel(
+      loadUseCase: loadPhotosUseCase,
       loadSearchPhotosUseCase: loadSearchPhotosUseCase,
-      lastPageValidationUseCase: lastPageValidationUseCase
+      lastPageValidationUseCase: lastPageValidationUseCase,
+      state: state
     )
   }
   

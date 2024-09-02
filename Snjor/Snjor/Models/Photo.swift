@@ -46,7 +46,7 @@ extension Photo: Downloadable {
   }
 }
 
-extension Photo {
+extension Photo: HasRegularURL {
   var regularURL: URL? {
     return self.urls[.regular]
   }
@@ -56,4 +56,10 @@ extension Photo {
   var profileImageURL: URL? {
     return self.user.profileImage[.medium]
   }
+}
+
+// MARK: - HasRegularURL
+protocol HasRegularURL {
+  var regularURL: URL? { get }
+  var id: String { get }
 }

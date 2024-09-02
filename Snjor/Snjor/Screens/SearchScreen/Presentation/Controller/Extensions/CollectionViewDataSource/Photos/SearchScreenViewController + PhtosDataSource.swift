@@ -13,7 +13,7 @@ extension SearchScreenViewController {
   private var photosSnapshot: NSDiffableDataSourceSnapshot<PhotosSection, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<PhotosSection, Photo>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(photosViewModel.photos, toSection: .main)
+    snapshot.appendItems(photosViewModel.items, toSection: .main)
     photosSections = snapshot.sectionIdentifiers
     return snapshot
   }
@@ -66,7 +66,7 @@ extension SearchScreenViewController {
     }
     
     cell.delegate = delegate
-    let viewModelItem = photosViewModel.getPhotosViewModelItem(at: indexPath.item)
+    let viewModelItem = photosViewModel.getViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }

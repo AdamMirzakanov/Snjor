@@ -15,7 +15,7 @@ extension SearchResultScreenViewController: UICollectionViewDelegate {
     guard let delegate = delegate else { return }
     switch currentScopeIndex {
     case .zero:
-      let photo = photosViewModel.getPhoto(at: indexPath.item)
+      let photo = photosViewModel.getItem(at: indexPath.item)
       delegate.searchPhotoCellDidSelect(photo)
     case 1:
       let album = albumsViewModel.getAlbum(at: indexPath.item)

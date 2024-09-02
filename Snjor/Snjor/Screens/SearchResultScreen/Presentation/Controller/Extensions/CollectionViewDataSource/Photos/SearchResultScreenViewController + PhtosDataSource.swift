@@ -13,7 +13,7 @@ extension SearchResultScreenViewController {
   private var photosSnapshot: NSDiffableDataSourceSnapshot<SearchResultPhotosSection, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<SearchResultPhotosSection, Photo>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(photosViewModel.photos, toSection: .main)
+    snapshot.appendItems(photosViewModel.items, toSection: .main)
     photosSections = snapshot.sectionIdentifiers
     return snapshot
   }
@@ -80,7 +80,7 @@ extension SearchResultScreenViewController {
     guard let currentSearchTerm = self.currentSearchTerm else {
       return cell
     }
-    let viewModelItem = photosViewModel.getSearchPhotosViewModelItem(
+    let viewModelItem = photosViewModel.getSearchItemsViewModelItem(
       at: indexPath.item,
       with: currentSearchTerm
     )

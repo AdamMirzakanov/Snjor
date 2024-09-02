@@ -64,7 +64,7 @@ extension TopicPhotosViewController {
     cell.delegate = delegate
     viewModel.checkAndLoadMorePhotos(at: indexPath.item)
     let viewModelItem = viewModel.getTopicPhotoListViewModelItem(at: indexPath.item)
-    cell.configure(viewModelItem: viewModelItem)
+//    cell.configure(viewModelItem: viewModelItem)
     return cell
   }
 }

@@ -12,7 +12,7 @@ extension SearchScreenViewController: CascadeLayoutDelegate {
     _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
-    let photo = photosViewModel.getPhoto(at: indexPath.item)
+    let photo = photosViewModel.getItem(at: indexPath.item)
     return CGSize(width: photo.width, height: photo.height)
   }
 }

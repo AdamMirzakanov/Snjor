@@ -8,7 +8,7 @@
 extension SearchScreenViewController: SearchScreenPhotoCellDelegate {
   func downloadTapped(_ cell: SearchScreenPhotoCell) {
     if let indexPath = rootView.photosCollectionView.indexPath(for: cell) {
-      let photo = photosViewModel.getPhoto(at: indexPath.item)
+      let photo = photosViewModel.getItem(at: indexPath.item)
       downloadService.startDownload(photo, sessionID: Self.sessionID)
     }
   }
