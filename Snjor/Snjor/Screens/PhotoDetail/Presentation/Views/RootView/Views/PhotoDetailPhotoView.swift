@@ -12,16 +12,16 @@ final class PhotoDetailPhotoView: MainImageContainerView {
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: MainPhotoViewConst.gradientAlpha
+      alpha: PhotoDetailPhotoViewConst.gradientOpacity
     )
     $0.setColors([
       GradientView.Color(
         color: .clear,
-        location: MainPhotoViewConst.downLocation
+        location: PhotoDetailPhotoViewConst.gradientStartLocation
       ),
       GradientView.Color(
         color: color,
-        location: MainPhotoViewConst.upLocation
+        location: PhotoDetailPhotoViewConst.gradientEndLocation
       )
     ])
     return $0

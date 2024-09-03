@@ -125,7 +125,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   
   private func setupNavigationItem() {
     navigationItem.hidesSearchBarWhenScrolling = false
-    navigationItem.title = "Photos"
+    navigationItem.title = .discoverTitle
     navigationItem.searchController = searchController
   }
   
@@ -204,3 +204,4 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     }
   }
 }
+

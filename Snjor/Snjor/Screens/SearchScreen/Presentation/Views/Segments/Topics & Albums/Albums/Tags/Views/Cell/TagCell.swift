@@ -12,12 +12,15 @@ final class TagCell: UICollectionViewCell {
   // MARK: Views
   private let tagLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 11, weight: .regular)
+    label.font = .systemFont(
+      ofSize: TagCellConst.tagFontSize,
+      weight: .regular
+    )
     label.textColor = .label
-    label.alpha = 0.6
+    label.alpha = TagCellConst.tagLabelOpacity
     label.textAlignment = .center
     label.backgroundColor = .systemGray4
-    label.layer.cornerRadius = 8
+    label.layer.cornerRadius = TagCellConst.tagLabelCornerRadius
     label.layer.masksToBounds = true
     return label
   }()
@@ -34,7 +37,7 @@ final class TagCell: UICollectionViewCell {
   
   // MARK: Cell Config
   func configure(with tag: Tag) {
-    tagLabel.text = "# " + tag.title
+    tagLabel.text = .hash + tag.title
   }
   
   // MARK: Setup Views

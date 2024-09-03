@@ -21,7 +21,3 @@ extension MessageDisplayable where Self: UIViewController {
     self.present(alertController, animated: true)
   }
 }
-
-private extension String {
-  static let ok = "Ok"
-}

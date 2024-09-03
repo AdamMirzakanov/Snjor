@@ -16,9 +16,9 @@ final class AlbumPhotosRootView: UIView {
   
   // MARK: - Button Background View
   private let backBarButtonBackgroundView: UIView = {
-    $0.frame.size.width = GlobalConst.fullValue
-    $0.frame.size.height = GlobalConst.fullValue
-    $0.layer.cornerRadius = GlobalConst.circle
+    $0.frame.size.width = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
+    $0.frame.size.height = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
+    $0.layer.cornerRadius = AlbumPhotosRootViewConst.backBarButtonBackgroundViewCircle
     $0.clipsToBounds = true
     $0.backgroundColor = .label
     return $0

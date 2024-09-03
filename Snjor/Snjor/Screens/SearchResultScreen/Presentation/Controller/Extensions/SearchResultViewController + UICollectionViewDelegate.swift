@@ -14,10 +14,10 @@ extension SearchResultViewController: UICollectionViewDelegate {
   ) {
     guard let delegate = delegate else { return }
     switch currentScopeIndex {
-    case .zero:
+    case .discover:
       let photo = photosViewModel.getItem(at: indexPath.item)
       delegate.searchPhotoCellDidSelect(photo)
-    case 1:
+    case .topicAndAlbums:
       let album = albumsViewModel.getItem(at: indexPath.item)
       delegate.searchAlbumcCellDidSelect(album)
     default:

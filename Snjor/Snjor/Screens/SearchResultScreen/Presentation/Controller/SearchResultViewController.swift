@@ -92,9 +92,9 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   func fetchMatchingItems(with searchTerm: String) {
     self.currentSearchTerm = searchTerm
     switch currentScopeIndex {
-    case .zero:
+    case .discover:
       photosViewModel.search(with: searchTerm)
-    case 1:
+    case .topicAndAlbums:
       albumsViewModel.search(with: searchTerm)
     default:
       print(#function)
@@ -104,11 +104,11 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   // MARK: - Private Methods
   private func setupVisibleContainers() {
     switch currentScopeIndex {
-    case .zero:
+    case .discover:
       rootView.albumsCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.photosCollectionView)
       rootView.photosCollectionView.fillSuperView()
-    case 1:
+    case .topicAndAlbums:
       rootView.photosCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.albumsCollectionView)
       rootView.albumsCollectionView.fillSuperView()

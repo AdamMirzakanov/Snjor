@@ -27,8 +27,8 @@ extension UIImage {
         data: nil,
         width: width,
         height: height,
-        bitsPerComponent: 8,
-        bytesPerRow: width * 4,
+        bitsPerComponent: PreloadedConst.bitsPerComponent,
+        bytesPerRow: width * PreloadedConst.bytesPerRow,
         space: colourSpace,
         bitmapInfo: bitmapInfo
       )
@@ -55,4 +55,10 @@ extension UIImage {
     }
     return self
   }
+}
+
+// MARK: - Constants
+private enum PreloadedConst {
+  static let bitsPerComponent = 8
+  static let bytesPerRow = 4
 }

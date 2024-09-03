@@ -28,9 +28,9 @@ extension TagsCollectionView: UICollectionViewDelegateFlowLayout {
   ) -> UIEdgeInsets {
     return UIEdgeInsets(
       top: .zero,
-      left: 10,
+      left: TagsCollectionViewConst.defaultMargins,
       bottom: .zero,
-      right: 10
+      right: TagsCollectionViewConst.defaultMargins
     )
   }
   
@@ -41,9 +41,9 @@ extension TagsCollectionView: UICollectionViewDelegateFlowLayout {
       withAttributes: [
         NSAttributedString
           .Key
-          .font: UIFont.systemFont(ofSize: 13)
+          .font: UIFont.systemFont(ofSize: TagsCollectionViewConst.defaultFontSize)
       ]
-    ).width + 20
+    ).width + TagsCollectionViewConst.defaultMargins
     return width
   }
 }

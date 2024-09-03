@@ -11,7 +11,7 @@ final class LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
   // MARK: - Private Properties
   private let loadQueue = DispatchQueue(label: "loadQueue", qos: .userInitiated)
   private(set) var lastPage = false
-  private var threshold = 10
+  private var threshold = LastPageValidationUseCaseConst.thresholdValue
   private var isLoading = false
   private var loadWorkItem: DispatchWorkItem?
   
@@ -41,7 +41,10 @@ final class LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
       self.startLoading(action: action)
     }
     if let loadWorkItem = loadWorkItem {
-      loadQueue.asyncAfter(deadline: .now() + 0.3, execute: loadWorkItem)
+      loadQueue.asyncAfter(
+        deadline: .now() + .deadline,
+        execute: loadWorkItem
+      )
     }
   }
 
@@ -50,4 +53,9 @@ final class LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
     action()
     self.isLoading = false
   }
+}
+
+// MARK: - Double
+private extension Double {
+  static let deadline = 0.3
 }

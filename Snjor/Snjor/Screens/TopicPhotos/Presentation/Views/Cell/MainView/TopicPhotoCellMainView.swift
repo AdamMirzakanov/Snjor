@@ -23,8 +23,8 @@ final class TopicPhotoCellMainView: MainImageContainerView {
   
   private var showsUsername = true {
     didSet {
-      userNameLabel.alpha = showsUsername ? GlobalConst.maxAlpha : .zero
-      gradientView.alpha = showsUsername ? GlobalConst.maxAlpha : .zero
+      userNameLabel.alpha = showsUsername ? TopicPhotoCellMainViewConst.maxOpacity : .zero
+      gradientView.alpha = showsUsername ? TopicPhotoCellMainViewConst.maxOpacity : .zero
     }
   }
   
@@ -32,16 +32,16 @@ final class TopicPhotoCellMainView: MainImageContainerView {
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: MainPhotoViewConst.gradientAlpha
+      alpha: TopicPhotoCellMainViewConst.gradientOpacity
     )
     $0.setColors([
       GradientView.Color(
         color: .clear,
-        location: MainPhotoViewConst.downLocation
+        location: TopicPhotoCellMainViewConst.gradientStartLocation
       ),
       GradientView.Color(
         color: color,
-        location: MainPhotoViewConst.upLocation
+        location: TopicPhotoCellMainViewConst.gradientEndLocation
       )
     ])
     return $0
@@ -55,25 +55,25 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     $0.stopAnimating()
     $0.color = .label
     $0.transform = CGAffineTransform(
-      scaleX: PhotoDetailRootViewConst.spinnerScale, 
-      y: PhotoDetailRootViewConst.spinnerScale
+      scaleX: TopicPhotoCellMainViewConst.spinnerScale,
+      y: TopicPhotoCellMainViewConst.spinnerScale
     )
-    $0.alpha = GlobalConst.defaultAlpha
+    $0.alpha = TopicPhotoCellMainViewConst.defaultOpacity
     $0.isHidden = true
     return $0
   }(UIActivityIndicatorView(style: .medium))
   
   // MARK: - Blur Effects
   let downloadButtonBlurEffect: UIVisualEffectView = {
-    $0.frame.size.width = GlobalConst.fullValue
-    $0.frame.size.height = GlobalConst.fullValue
-    $0.layer.cornerRadius = GlobalConst.defaultValue
+    $0.frame.size.width = TopicPhotoCellMainViewConst.fullValue
+    $0.frame.size.height = TopicPhotoCellMainViewConst.fullValue
+    $0.layer.cornerRadius = TopicPhotoCellMainViewConst.defaultValue
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: GlobalConst.fullValue
+      equalToConstant: TopicPhotoCellMainViewConst.fullValue
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: GlobalConst.fullValue
+      equalToConstant: TopicPhotoCellMainViewConst.fullValue
     ).isActive = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
@@ -84,7 +84,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
-    $0.alpha = GlobalConst.defaultAlpha
+    $0.alpha = TopicPhotoCellMainViewConst.defaultOpacity
     $0.frame = downloadButtonBlurEffect.bounds
     return $0
   }(UIButton(type: .custom))
@@ -93,7 +93,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
   let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: GlobalConst.defaultFontSize,
+      ofSize: TopicPhotoCellMainViewConst.userNameLabelFontSize,
       weight: .medium
     )
     $0.numberOfLines = 0
@@ -186,8 +186,8 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     downloadButtonBlurEffect.setConstraints(
       top: topAnchor,
       right: rightAnchor,
-      pTop: GlobalConst.defaultValue,
-      pRight: GlobalConst.defaultValue
+      pTop: TopicPhotoCellMainViewConst.defaultValue,
+      pRight: TopicPhotoCellMainViewConst.defaultValue
     )
   }
 
@@ -196,9 +196,9 @@ final class TopicPhotoCellMainView: MainImageContainerView {
       right:  mainImageView.rightAnchor,
       bottom: mainImageView.bottomAnchor,
       left: mainImageView.leftAnchor,
-      pRight: GlobalConst.defaultValue,
-      pBottom: GlobalConst.defaultValue,
-      pLeft: GlobalConst.defaultValue
+      pRight: TopicPhotoCellMainViewConst.defaultValue,
+      pBottom: TopicPhotoCellMainViewConst.defaultValue,
+      pLeft: TopicPhotoCellMainViewConst.defaultValue
     )
   }
 
@@ -230,14 +230,14 @@ final class TopicPhotoCellMainView: MainImageContainerView {
 
   // MARK: - Animate Buttons
   private func animateButton() {
-    UIView.animate(withDuration: PhotoCellMainViewConst.duration) {
+    UIView.animate(withDuration: TopicPhotoCellMainViewConst.duration) {
       let scaleTransform = CGAffineTransform(
         scaleX: PhotoCellMainViewConst.scale,
         y: PhotoCellMainViewConst.scale
       )
       self.downloadButtonBlurEffect.transform = scaleTransform
     } completion: { _ in
-      UIView.animate(withDuration: PhotoCellMainViewConst.duration) {
+      UIView.animate(withDuration: TopicPhotoCellMainViewConst.duration) {
         self.downloadButton.isHidden = true
         self.spinner.isHidden = false
         self.spinner.startAnimating()

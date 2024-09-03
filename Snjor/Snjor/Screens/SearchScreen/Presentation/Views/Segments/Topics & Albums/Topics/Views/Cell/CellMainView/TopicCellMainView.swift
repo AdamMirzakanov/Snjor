@@ -18,9 +18,12 @@ final class TopicCellMainView: MainImageContainerView {
   let titleLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
-    label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+    label.font = UIFont.systemFont(
+      ofSize: TopicCellMainViewConst.titleLabelFontSize,
+      weight: .regular
+    )
     label.textColor = .white
-    label.alpha = 0.7
+    label.alpha = TopicCellMainViewConst.titleLabelOpacity
     label.setContentHuggingPriority(.required, for: .vertical)
     return label
   }()
@@ -30,14 +33,16 @@ final class TopicCellMainView: MainImageContainerView {
       effect: UIBlurEffect(style: .systemUltraThinMaterialDark)
     )
     visualEffectView.translatesAutoresizingMaskIntoConstraints = false
-    visualEffectView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    visualEffectView.heightAnchor.constraint(
+      equalToConstant: TopicCellMainViewConst.visualEffectViewHeight
+    ).isActive = true
     return visualEffectView
   }()
   
   // MARK: - Initializers
   override init() {
     super.init()
-    mainImageView.layer.cornerRadius = 15.0
+    mainImageView.layer.cornerRadius = TopicCellMainViewConst.cellCornerRadius
     setupTopicCellViews()
   }
   

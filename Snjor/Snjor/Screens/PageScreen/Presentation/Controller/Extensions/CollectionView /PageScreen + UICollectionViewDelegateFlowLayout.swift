@@ -29,9 +29,9 @@ extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
   ) -> UIEdgeInsets {
     return UIEdgeInsets(
       top: .zero,
-      left: 10,
+      left: PageScreenViewControllerConst.middleValue,
       bottom: .zero,
-      right: 10
+      right: PageScreenViewControllerConst.middleValue
     )
   }
   
@@ -40,9 +40,19 @@ extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
     let topicsPageViewModelItem = viewModel.getViewModelItem(at: index)
     let width = topicsPageViewModelItem.itemTitle.size(
       withAttributes: [
-        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
+        NSAttributedString.Key.font: UIFont.systemFont(
+          ofSize: PageScreenViewControllerConst.middleValue
+        )
       ]
-    ).width + 11
+    ).width + PageScreenViewControllerConst.middleValue
     return width
+  }
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    minimumInteritemSpacingForSectionAt section: Int
+  ) -> CGFloat {
+    return PageScreenViewControllerConst.middleValue
   }
 }

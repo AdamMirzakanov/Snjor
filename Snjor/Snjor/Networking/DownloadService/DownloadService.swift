@@ -41,7 +41,3 @@ final class DownloadService {
     sessions[id] = nil
   }
 }
-
-extension String {
-  static let jpegExt = "jpg"
-}

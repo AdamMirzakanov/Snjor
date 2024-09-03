@@ -11,7 +11,11 @@ final class PageScreenTopicCell: UICollectionViewCell {
   // MARK: - View
   private let topicTitleLabel: UILabel = {
     $0.textColor = .white
-    $0.font = .systemFont(ofSize: 16, weight: .medium)
+    $0.textAlignment = .center
+    $0.font = .systemFont(
+      ofSize: PageScreenTopicCellConst.topicTitleLabelFontSize,
+      weight: .medium
+    )
     return $0
   }(UILabel())
   

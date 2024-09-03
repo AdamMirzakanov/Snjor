@@ -15,22 +15,32 @@ final class AlbumCell: UICollectionViewCell {
   }(AlbumCellMainView())
   
   let tagsCollectionView: TagsCollectionView = {
-    $0.heightAnchor.constraint(equalToConstant: 22).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: AlbumCellConst.gradientWidthSize
+    ).isActive = true
     return $0
   }(TagsCollectionView())
-  
+
   private let rightGradientView: GradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.isUserInteractionEnabled = false
-    $0.widthAnchor.constraint(equalToConstant: 22).isActive = true
-    $0.transform = CGAffineTransform(rotationAngle: .pi / 2)
+    $0.widthAnchor.constraint(
+      equalToConstant: AlbumCellConst.gradientWidthSize
+    ).isActive = true
+    $0.transform = CGAffineTransform(
+      rotationAngle: .pi / AlbumCellConst.rightGradientViewRotationAngle
+    )
     return $0
   }(GradientView())
   
   private let leftGradientView: GradientView = {
     $0.isUserInteractionEnabled = false
-    $0.widthAnchor.constraint(equalToConstant: 22).isActive = true
-    $0.transform = CGAffineTransform(rotationAngle: .pi * 1.5)
+    $0.widthAnchor.constraint(
+      equalToConstant: AlbumCellConst.gradientWidthSize
+    ).isActive = true
+    $0.transform = CGAffineTransform(
+      rotationAngle: .pi * AlbumCellConst.leftGradientViewRotationAngle
+    )
     return $0
   }(GradientView())
   
@@ -38,7 +48,7 @@ final class AlbumCell: UICollectionViewCell {
     $0.axis = .vertical
     $0.addArrangedSubview(mainView)
     $0.addArrangedSubview(tagsCollectionView)
-    $0.spacing = 10
+    $0.spacing = AlbumCellConst.stackViewSpacing
     return $0
   }(UIStackView())
   
@@ -107,23 +117,23 @@ final class AlbumCell: UICollectionViewCell {
   private func updateGradientColors() {
     rightGradientView.setColors([
       GradientView.Color(
-        color: UIColor.systemBackground.withAlphaComponent(1.0),
-        location: 0.1
+        color: UIColor.systemBackground.withAlphaComponent(AlbumCellConst.maxOpacity),
+        location: AlbumCellConst.gradientStartLocation
       ),
       GradientView.Color(
-        color: UIColor.systemBackground.withAlphaComponent(0.0),
-        location: 0.6
+        color: UIColor.systemBackground.withAlphaComponent(.zero),
+        location: AlbumCellConst.gradientEndLocation
       ),
     ])
     
     leftGradientView.setColors([
       GradientView.Color(
-        color: UIColor.systemBackground.withAlphaComponent(1.0),
-        location: 0.1
+        color: UIColor.systemBackground.withAlphaComponent(AlbumCellConst.maxOpacity),
+        location: AlbumCellConst.gradientStartLocation
       ),
       GradientView.Color(
-        color: UIColor.systemBackground.withAlphaComponent(0.0),
-        location: 0.6
+        color: UIColor.systemBackground.withAlphaComponent(.zero),
+        location: AlbumCellConst.gradientEndLocation
       ),
     ])
   }

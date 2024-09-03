@@ -16,9 +16,9 @@ final class TopicPhotosRootView: UIView {
   
   // MARK: - Button Background View
   private let backBarButtonBackgroundView: UIView = {
-    $0.frame.size.width = GlobalConst.fullValue
-    $0.frame.size.height = GlobalConst.fullValue
-    $0.layer.cornerRadius = GlobalConst.circle
+    $0.frame.size.width = TopicPhotosRootViewConst.backBarButtonBackgroundViewSize
+    $0.frame.size.height = TopicPhotosRootViewConst.backBarButtonBackgroundViewSize
+    $0.layer.cornerRadius = TopicPhotosRootViewConst.backBarButtonBackgroundViewCircle
     $0.clipsToBounds = true
     $0.backgroundColor = .label
     return $0

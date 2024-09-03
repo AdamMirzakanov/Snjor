@@ -25,10 +25,17 @@ extension SearchScreenViewController {
     willDecelerate decelerate: Bool
   ) {
     if !decelerate {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+      DispatchQueue.main.asyncAfter(
+        deadline: .now() + .deadline
+      ) { [weak self] in
         guard let self = self else { return }
         self.showCustomTabBar()
       }
     }
   }
+}
+
+// MARK: - Double
+private extension Double {
+  static let deadline = 0.3
 }

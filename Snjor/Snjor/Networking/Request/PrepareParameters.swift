@@ -5,9 +5,9 @@
 //  Created by Адам on 15.06.2024.
 //
 
-typealias Parameters = [String: String]
-
 enum PrepareParameters {
+  
+  typealias Parameters = [String: String]
   
   // MARK: - Internal Properties
   static var photosPage: Int = .page
@@ -55,23 +55,23 @@ enum PrepareParameters {
   
   // MARK: - Private  Methods
   private static func nextPhotosPage() {
-    photosPage += 1
+    photosPage += .page
   }
   
   private static func nextSearchPhotosPage() {
-    searchPhotosPage += 1
+    searchPhotosPage += .page
   }
   
   private static func nextAlbumsPage() {
-    albumsPage += 1
+    albumsPage += .page
   }
   
   private static func nextSearchAlbumsPage() {
-    searchAlbumsPage += 1
+    searchAlbumsPage += .page
   }
 }
 
-// MARK: - String Extension
+// MARK: - Extensions
 extension String {
   static let page = "page"
   static let perPage = "per_page"
@@ -80,7 +80,6 @@ extension String {
   static let devicePixelRatio = "dpr"
 }
 
-// MARK: - Int Extension
 private extension Int {
   static var page = 1
   static let perPage = 30

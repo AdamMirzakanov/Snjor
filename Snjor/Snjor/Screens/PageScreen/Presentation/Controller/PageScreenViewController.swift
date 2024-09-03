@@ -62,7 +62,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     delegate: any PageScreenPhotosDelegate
   ) -> UIViewController? {
     guard
-      index >= 0,
+      index >= .zero,
       index < viewModel.items.count else {
       return nil
     }
@@ -149,7 +149,3 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     rootView.topicsCollectionView.updateIndicatorPosition(for: cell)
   }
 }
-
-//enum Section: CaseIterable {
-//  case main
-//}

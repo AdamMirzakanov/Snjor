@@ -14,23 +14,23 @@ extension SearchScreenViewController: UISearchBarDelegate {
   ) {
     currentScopeIndex = selectedScope
     switch selectedScope {
-    case .zero:
+    case .discover:
       rootView.albumsCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.photosCollectionView)
       rootView.photosCollectionView.fillSuperView()
-      searchBar.placeholder = "Search photos"
-      navigationItem.title = "Photos"
-    case 1:
+      searchBar.placeholder = .searchPhotos
+      navigationItem.title = .discoverTitle
+    case .topicAndAlbums:
       rootView.photosCollectionView.removeFromSuperview()
       rootView.addSubview(rootView.albumsCollectionView)
       rootView.albumsCollectionView.fillSuperView()
-      searchBar.placeholder = "Search albums"
-      navigationItem.title = "Topics & Albums"
+      searchBar.placeholder = .searchAlbums
+      navigationItem.title = .topicsAndAlbumsTitle
     default:
       rootView.photosCollectionView.isHidden = true
       rootView.albumsCollectionView.isHidden = true
-      searchBar.placeholder = "Search users"
-      navigationItem.title = "Users"
+      searchBar.placeholder = .searchUsers
+      navigationItem.title = .usersTitle
     }
   }
   

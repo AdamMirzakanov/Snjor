@@ -40,7 +40,7 @@ class MainImageContainerView: UIView {
     photoID: String? = nil
   ) {
     currentPhotoID = photoID
-    let size = MainPhotoViewConst.blurSize
+    let size = MainImageContainerViewConst.blurSize
     if let blurHash = blurHash {
       mainImageView.image = UIImage(blurHash: blurHash, size: size)
       downloadImage(url, photoID)
@@ -91,7 +91,7 @@ class MainImageContainerView: UIView {
   private func animateImageView(_ imageView: UIImageView, _ image: UIImage?) {
     UIView.transition(
       with: self,
-      duration: MainPhotoViewConst.duration,
+      duration: MainImageContainerViewConst.duration,
       options: [.transitionCrossDissolve]
     ) {
       imageView.image = image
