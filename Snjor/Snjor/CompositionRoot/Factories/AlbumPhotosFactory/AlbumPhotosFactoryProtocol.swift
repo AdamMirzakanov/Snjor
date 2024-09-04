@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AlbumPhotosFactoryProtocol {
-  func makeModule(
+  func makeController(
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> UIViewController
   

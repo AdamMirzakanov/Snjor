@@ -23,11 +23,10 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   }
   
   // MARK: Internal Methods
-  func makeModule(
+  func makeController(
     delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController {
-    let module = getModule(delegate)
-    return module
+    return getController(delegate)
   }
   
   func mekePhotoDetailCoordinator(
@@ -87,26 +86,26 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   }
   
   // MARK: Private Methods
-  private func getModule(
+  private func getController(
     _ delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController {
     let photosViewModel = viewModelFactory.createPhotosViewModel()
     let albumsViewModel = viewModelFactory.createAlbumsViewModel()
     let topicsViewModel = viewModelFactory.createTopicsViewModel()
-    let module = SearchScreenViewController(
+    let controller = SearchScreenViewController(
       photosViewModel: photosViewModel,
       albumsViewModel: albumsViewModel, 
       topicsViewModel: topicsViewModel,
       delegate: delegate
     )
-    setupLayouts(module: module)
-    return module
+    setupLayouts(controller: controller)
+    return controller
   }
   
-  private func setupLayouts(module: SearchScreenViewController) {
-    let cascadeLayout = MultiColumnCascadeLayout(with: module)
-    module.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
-    let collectionsLayout = layoutProvider.createCollectionsLayout(module: module)
-    module.rootView.albumsCollectionView.collectionViewLayout = collectionsLayout
+  private func setupLayouts(controller: SearchScreenViewController) {
+    let cascadeLayout = MultiColumnCascadeLayout(with: controller)
+    controller.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
+    let collectionsLayout = layoutProvider.createCollectionsLayout(controller: controller)
+    controller.rootView.albumsCollectionView.collectionViewLayout = collectionsLayout
   }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchScreenFactoryProtocol {
-  func makeModule(
+  func makeController(
     delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController
   

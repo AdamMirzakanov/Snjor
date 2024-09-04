@@ -8,5 +8,5 @@
 import UIKit
 
 protocol PhotoDetailFactoryProtocol {
-  func makeModule() -> UIViewController
+  func makeController() -> UIViewController
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PageScreenTopicPhotosFactoryProtocol {
-  func makeModule(
+  func makeController(
     delegate: any PageScreenPhotosDelegate
   ) -> UIViewController
 }

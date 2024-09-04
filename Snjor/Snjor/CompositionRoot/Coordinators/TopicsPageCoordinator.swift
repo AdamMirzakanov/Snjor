@@ -25,8 +25,7 @@ final class TopicsPageCoordinator: Coordinatable {
   
   // MARK: Internal Methods
   func start() {
-    let controller = factory.makeModule(delegate: self)
-    factory.makeTabBarItem(navigation: navigation)
+    let controller = factory.makeController(delegate: self)
     navigation.pushViewController(controller, animated: true)
   }
 }

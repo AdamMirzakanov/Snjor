@@ -73,7 +73,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     let topic = topicsPageViewModelItem.item
     let topicPhotoListFactory = PageScreenTopicPhotosFactory(topic: topic)
     let topicID = topicsPageViewModelItem.itemID
-    let viewController = topicPhotoListFactory.makeModule(delegate: coordinator)
+    let viewController = topicPhotoListFactory.makeController(delegate: coordinator)
     
     guard let topicPhotoListCollectionViewController = (
       viewController as? PageScreenPhotosViewController

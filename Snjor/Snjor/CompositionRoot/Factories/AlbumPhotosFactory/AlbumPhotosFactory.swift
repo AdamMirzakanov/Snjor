@@ -14,14 +14,14 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
   let album: Album
   
   // MARK: Internal Methods
-  func makeModule(
+  func makeController(
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> UIViewController {
     let viewModel = createViewModel()
-    let module = createViewController(viewModel: viewModel, delegate: delegate)
-    module.navigationItem.title = album.title.uppercased()
-    configureLayout(for: module)
-    return module
+    let controller = createViewController(viewModel: viewModel, delegate: delegate)
+    controller.navigationItem.title = album.title.uppercased()
+    configureLayout(for: controller)
+    return controller
   }
   
   func makePhotoDetailCoordinator(
@@ -56,18 +56,17 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     viewModel: AlbumPhotosViewModel,
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> AlbumPhotosViewController {
-    let module = AlbumPhotosViewController(
+    return AlbumPhotosViewController(
       viewModel: viewModel,
       delegate: delegate
     )
-    return module
   }
   
   private func configureLayout(
-    for module: AlbumPhotosViewController
+    for controller: AlbumPhotosViewController
   ) {
-    let cascadeLayout = MultiColumnCascadeLayout(with: module)
-    module.rootView.albumPhotosCollectionView.collectionViewLayout = cascadeLayout
+    let cascadeLayout = MultiColumnCascadeLayout(with: controller)
+    controller.rootView.albumPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }
 

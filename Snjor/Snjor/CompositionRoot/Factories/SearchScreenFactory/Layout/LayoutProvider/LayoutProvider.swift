@@ -15,10 +15,10 @@ struct LayoutProvider {
   
   // MARK: Internal Methods
   func createCollectionsLayout(
-    module: SearchScreenViewController
+    controller: SearchScreenViewController
   ) -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
-      let section = module.collectionsSections[sectionIndex]
+      let section = controller.collectionsSections[sectionIndex]
       switch section {
       case .topics:
         let lineItem = makeLineItem(layoutEnvironment: layoutEnvironment)
@@ -36,12 +36,12 @@ struct LayoutProvider {
   }
   
   func createAlbumsLayout(
-    module: SearchResultViewController
+    controller: SearchResultViewController
   ) -> UICollectionViewLayout {
-    let layout = UICollectionViewCompositionalLayout { [weak module] (
+    let layout = UICollectionViewCompositionalLayout { [weak controller] (
       sectionIndex, layoutEnvironment
     ) in
-      let section = module?.collectionsSections[sectionIndex]
+      let section = controller?.collectionsSections[sectionIndex]
       switch section {
       case .albums:
         let section = albumsLayoutFactory.createAlbumLayout()

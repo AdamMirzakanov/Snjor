@@ -27,7 +27,7 @@ final class SearchScreenCoordinator: Coordinatable {
   
   // MARK: Internal Methods
   func start() {
-    let controller = factory.makeModule(delegate: self)
+    let controller = factory.makeController(delegate: self)
     navigation.navigationBar.prefersLargeTitles = true
     navigation.pushViewController(controller, animated: true)
     

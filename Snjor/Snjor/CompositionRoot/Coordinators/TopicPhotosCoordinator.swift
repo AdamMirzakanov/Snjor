@@ -28,7 +28,7 @@ final class TopicPhotosCoordinator: Coordinatable {
 
   // MARK: Internal Methods
   func start() {
-    let controller = factory.makeModule(delegate: self)
+    let controller = factory.makeController(delegate: self)
     navigation.pushViewController(controller, animated: true) { [weak self] in
       guard let self = self else { return }
       self.parentCoordinator?.removeChildCoordinator(self)

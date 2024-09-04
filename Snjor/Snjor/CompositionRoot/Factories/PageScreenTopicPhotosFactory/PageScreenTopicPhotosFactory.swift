@@ -14,14 +14,14 @@ struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
   let topic: Topic
   
   // MARK: Internal Methods
-  func makeModule(
+  func makeController(
     delegate: any PageScreenPhotosDelegate
   ) -> UIViewController {
     let viewModel = createViewModel()
-    let module = createViewController(viewModel: viewModel, delegate: delegate)
-    configureLayout(for: module)
-    return module
-  } 
+    let controller = createViewController(viewModel: viewModel, delegate: delegate)
+    configureLayout(for: controller)
+    return controller
+  }
   
   // MARK: Private Methods
   private func createViewModel() -> TopicPhotosViewModel {
@@ -42,19 +42,19 @@ struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
     delegate: any PageScreenPhotosDelegate
   ) -> PageScreenPhotosViewController {
     let defaultLayout = UICollectionViewLayout()
-    let module = PageScreenPhotosViewController(
+    let controller = PageScreenPhotosViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout
     )
-    module.rootView.pageScreenPhotosCollectionView.showsVerticalScrollIndicator = false
-    return module
+    controller.rootView.pageScreenPhotosCollectionView.showsVerticalScrollIndicator = false
+    return controller
   }
   
   private func configureLayout(
-    for module: PageScreenPhotosViewController
+    for controller: PageScreenPhotosViewController
   ) {
-    let cascadeLayout = SingleColumnCascadeLayout(with: module)
-    module.rootView.pageScreenPhotosCollectionView.collectionViewLayout = cascadeLayout
+    let cascadeLayout = SingleColumnCascadeLayout(with: controller)
+    controller.rootView.pageScreenPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }

@@ -259,7 +259,6 @@
 		664BF2EE2BF6634500C9D29E /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2ED2BF6634500C9D29E /* Coordinatable.swift */; };
 		664BF2F22BF6676E00C9D29E /* ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F12BF6676E00C9D29E /* ParentCoordinator.swift */; };
 		664BF2F72BF67DC000C9D29E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */; };
-		664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */; };
 		664BF2FD2BF681FA00C9D29E /* MainTabBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */; };
 		664BF3012BF6999800C9D29E /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */; };
 		664BF3032BF6AD3900C9D29E /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BF3022BF6AD3900C9D29E /* AppFactory.swift */; };
@@ -552,7 +551,6 @@
 		664BF2ED2BF6634500C9D29E /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		664BF2F12BF6676E00C9D29E /* ParentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCoordinator.swift; sourceTree = "<group>"; };
 		664BF2F62BF67DC000C9D29E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemFactory.swift; sourceTree = "<group>"; };
 		664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarFactory.swift; sourceTree = "<group>"; };
 		664BF3002BF6999800C9D29E /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		664BF3022BF6AD3900C9D29E /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
@@ -1501,7 +1499,7 @@
 			path = CellMainView;
 			sourceTree = "<group>";
 		};
-		37A502B72C6E4804000221D1 /* CollectionsLayout */ = {
+		37A502B72C6E4804000221D1 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
 				370A00962C87D857006B87DD /* LayoutProvider */,
@@ -1509,7 +1507,7 @@
 				370A00992C87D951006B87DD /* AlbumsLayoutFactory */,
 				37A502B82C6E4822000221D1 /* SupplementaryViewKind.swift */,
 			);
-			path = CollectionsLayout;
+			path = Layout;
 			sourceTree = "<group>";
 		};
 		37A502BA2C6E4877000221D1 /* SearchScreenFactory */ = {
@@ -1517,8 +1515,8 @@
 			children = (
 				37A502C02C6E4917000221D1 /* SearchScreenFactoryProtocol.swift */,
 				37ED3E9A2C69652E00EA96FE /* SearchScreenFactory.swift */,
-				37A502CE2C6E4D87000221D1 /* ViewModelFactory */,
-				37A502B72C6E4804000221D1 /* CollectionsLayout */,
+				37A502CE2C6E4D87000221D1 /* ViewModelProvider */,
+				37A502B72C6E4804000221D1 /* Layout */,
 			);
 			path = SearchScreenFactory;
 			sourceTree = "<group>";
@@ -1553,7 +1551,6 @@
 		37A502BE2C6E48D0000221D1 /* MainTabBarFactory */ = {
 			isa = PBXGroup;
 			children = (
-				664BF2F92BF67F1A00C9D29E /* TabBarItemFactory.swift */,
 				37A502C82C6E4B4A000221D1 /* MainTabBarFactoryProtocol.swift */,
 				664BF2FC2BF681FA00C9D29E /* MainTabBarFactory.swift */,
 			);
@@ -1569,13 +1566,13 @@
 			path = AppFactory;
 			sourceTree = "<group>";
 		};
-		37A502CE2C6E4D87000221D1 /* ViewModelFactory */ = {
+		37A502CE2C6E4D87000221D1 /* ViewModelProvider */ = {
 			isa = PBXGroup;
 			children = (
 				37A502CC2C6E4D6D000221D1 /* SearchScreenViewModelProviderProtocol.swift */,
 				37ED3E9C2C69655F00EA96FE /* SearchScreenViewModelProvider.swift */,
 			);
-			path = ViewModelFactory;
+			path = ViewModelProvider;
 			sourceTree = "<group>";
 		};
 		37A502D72C6EB663000221D1 /* Photos */ = {
@@ -2404,7 +2401,6 @@
 				3770E13C2C6FFD3E0017ECBB /* TopicPhotosViewController.swift in Sources */,
 				37A502AE2C6CA419000221D1 /* CollectionsItem.swift in Sources */,
 				3723E38F2C4F0FF600C3AE3E /* PageScreen + UIPageViewControllerDataSource.swift in Sources */,
-				664BF2FA2BF67F1A00C9D29E /* TabBarItemFactory.swift in Sources */,
 				37D65F5C2C59253E006994B2 /* PageScreenPhotos + Reusable.swift in Sources */,
 				3770E18E2C7207760017ECBB /* AlbumPhotos + URLSessionDownloadDelegate.swift in Sources */,
 				66D082482C24DA4F000574A7 /* PhotoDetailCoordinator.swift in Sources */,

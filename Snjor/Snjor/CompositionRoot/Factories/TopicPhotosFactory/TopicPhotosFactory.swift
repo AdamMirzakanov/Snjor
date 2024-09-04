@@ -14,14 +14,14 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   let topic: Topic
   
   // MARK: Internal Methods
-  func makeModule(
+  func makeController(
     delegate: any TopicPhotosViewControllerDelegate
   ) -> UIViewController {
     let viewModel = createViewModel()
-    let module = createViewController(viewModel: viewModel, delegate: delegate)
-    module.navigationItem.title = topic.title
-    configureLayout(for: module)
-    return module
+    let controller = createViewController(viewModel: viewModel, delegate: delegate)
+    controller.navigationItem.title = topic.title
+    configureLayout(for: controller)
+    return controller
   }
   
   func makePhotoDetailCoordinator(
@@ -57,19 +57,19 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
     delegate: any TopicPhotosViewControllerDelegate
   ) -> TopicPhotosViewController {
     let defaultLayout = UICollectionViewLayout()
-    let module = TopicPhotosViewController(
+    let controller = TopicPhotosViewController(
       viewModel: viewModel,
       delegate: delegate,
       layout: defaultLayout
     )
-    module.rootView.topicPhotosCollectionView.showsVerticalScrollIndicator = false
-    return module
+    controller.rootView.topicPhotosCollectionView.showsVerticalScrollIndicator = false
+    return controller
   }
   
   private func configureLayout(
-    for module: TopicPhotosViewController
+    for controller: TopicPhotosViewController
   ) {
-    let cascadeLayout = MultiColumnCascadeLayout(with: module)
-    module.rootView.topicPhotosCollectionView.collectionViewLayout = cascadeLayout
+    let cascadeLayout = MultiColumnCascadeLayout(with: controller)
+    controller.rootView.topicPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }

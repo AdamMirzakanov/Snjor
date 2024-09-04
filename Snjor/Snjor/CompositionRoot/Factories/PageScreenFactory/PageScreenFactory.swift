@@ -13,16 +13,7 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
   private let lastPageValidationUseCase = LastPageValidationUseCase()
   
   // MARK: Internal Methods
-  func makeTabBarItem(navigation: any Navigable) {
-    makeTabBarItem(
-      navigation: navigation,
-      title: ".photoListTitle",
-      systemImageName: ".photoListItemImage",
-      selectedSystemImageName: ".photoListSelectedItemImage"
-    )
-  }
-  
-  func makeModule(
+  func makeController(
     delegate: any PageScreenPhotosDelegate
   ) -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
@@ -33,8 +24,7 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
       loadUseCase: loadUseCase,
       state: state
     )
-    let module = PageScreenViewController(viewModel: viewModel, coordinator: delegate)
-    return module
+    return PageScreenViewController(viewModel: viewModel, coordinator: delegate)
   }
   
   func makePhotoDetailCoordinator(
@@ -51,6 +41,3 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
     return coordinator
   }
 }
-
-// MARK: - TabBarItemFactory
-extension PageScreenFactory: TabBarItemFactory { }
