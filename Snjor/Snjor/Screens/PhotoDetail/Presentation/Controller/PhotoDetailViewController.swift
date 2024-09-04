@@ -33,7 +33,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    rootView.delegate = self
+    setupRootViewDelegate()
     setupUI()
     stateController()
     viewModel.viewDidLoad()
@@ -82,5 +82,9 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
       navigationItem: navigationItem,
       navigationController: navigationController
     )
+  }
+  
+  func setupRootViewDelegate() {
+    rootView.delegate = self
   }
 }
