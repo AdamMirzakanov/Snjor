@@ -30,7 +30,7 @@ extension AlbumPhotosViewController {
   ) {
     if !decelerate {
       DispatchQueue.main.asyncAfter(
-        deadline: .now() + .deadline
+        deadline: .now() + .tabBarShowDelay
       ) {
         if let tabBar = self.tabBarController as? MainTabBarController {
           tabBar.showCustomTabBar()
@@ -38,9 +38,4 @@ extension AlbumPhotosViewController {
       }
     }
   }
-}
-
-// MARK: - Double
-private extension Double {
-  static let deadline = 0.3
 }

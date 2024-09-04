@@ -42,7 +42,7 @@ final class LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
     }
     if let loadWorkItem = loadWorkItem {
       loadQueue.asyncAfter(
-        deadline: .now() + .deadline,
+        deadline: .now() + .loadDelay,
         execute: loadWorkItem
       )
     }
@@ -57,7 +57,7 @@ final class LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
 
 // MARK: - Double
 private extension Double {
-  static let deadline = 0.3
+  static let loadDelay = 0.3
 }
 
 // MARK: - String
