@@ -10,12 +10,12 @@ import UIKit
 struct SearchScreenFactory: SearchScreenFactoryProtocol {
   
   // MARK: Private Properties
-  private let viewModelFactory: any SearchScreenViewModelFactoryProtocol
+  private let viewModelFactory: any SearchScreenViewModelProviderProtocol
   private let layoutProvider: LayoutProvider
   
   // MARK: Initializers
   init(
-    viewModelFactory: any SearchScreenViewModelFactoryProtocol = SearchScreenViewModelFactory(),
+    viewModelFactory: any SearchScreenViewModelProviderProtocol = SearchScreenViewModelProvider(),
     layoutProvider: LayoutProvider = LayoutProvider()
   ) {
     self.viewModelFactory = viewModelFactory

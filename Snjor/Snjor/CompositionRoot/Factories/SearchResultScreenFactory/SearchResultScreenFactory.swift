@@ -10,7 +10,7 @@ import UIKit
 struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   
   // MARK: Private Properties
-  private let viewModelFactory: any SearchScreenViewModelFactoryProtocol
+  private let viewModelFactory: any SearchScreenViewModelProviderProtocol
   private let layoutProvider: LayoutProvider
   private let searchTerm: String
   private let currentScopeIndex: Int
@@ -18,7 +18,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   // MARK: Initializers
   init(
     currentScopeIndex: Int,
-    viewModelFactory: any SearchScreenViewModelFactoryProtocol = SearchScreenViewModelFactory(),
+    viewModelFactory: any SearchScreenViewModelProviderProtocol = SearchScreenViewModelProvider(),
     layoutProvider: LayoutProvider = LayoutProvider(),
     with searchTerm: String
   ) {

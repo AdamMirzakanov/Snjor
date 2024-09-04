@@ -1,5 +1,5 @@
 //
-//  SearchScreenViewModelFactory.swift
+//  SearchScreenViewModelProvider.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 12.08.2024.
@@ -7,7 +7,7 @@
 
 import Combine
 
-class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
+class SearchScreenViewModelProvider: SearchScreenViewModelProviderProtocol {
   
   // MARK: Private Properties
   private let networkService = NetworkService()
