@@ -54,7 +54,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setupUI()
+    setupNavigationItems()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -105,7 +105,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     rootView.albumPhotosCollectionView.delegate = self
   }
   
-  private func setupUI() {
+  private func setupNavigationItems() {
     rootView.setupBarButtonItems(
       navigationItem: navigationItem,
       navigationController: navigationController

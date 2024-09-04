@@ -34,10 +34,14 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupRootViewDelegate()
-    setupUI()
     stateController()
     viewModel.viewDidLoad()
     configureDownloadSession()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setupNavigationItems()
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -76,7 +80,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
       .store(in: &cancellable)
   }
 
-  private func setupUI() {
+  private func setupNavigationItems() {
     rootView.setupData(viewModel: viewModel)
     rootView.setupBarButtonItems(
       navigationItem: navigationItem,

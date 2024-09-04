@@ -55,7 +55,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setupUI()
+    setupNavigationItems()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -106,7 +106,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
     rootView.topicPhotosCollectionView.delegate = self
   }
   
-  private func setupUI() {
+  private func setupNavigationItems() {
     rootView.setupBarButtonItems(
       navigationItem: navigationItem,
       navigationController: navigationController

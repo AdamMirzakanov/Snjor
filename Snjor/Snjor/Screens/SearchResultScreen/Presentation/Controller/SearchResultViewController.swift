@@ -64,7 +64,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setupUI()
+    setupNavigationItems()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -183,7 +183,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     }
   }
   
-  private func setupUI() {
+  private func setupNavigationItems() {
     rootView.setupBarButtonItems(
       navigationItem: navigationItem,
       navigationController: navigationController
