@@ -9,12 +9,12 @@ import UIKit
 
 final class TopicCell: UICollectionViewCell {
 
-  // MARK: - Views
+  // MARK: Views
   let mainView: TopicCellMainView = {
     return $0
   }(TopicCellMainView())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupMainView()
@@ -24,20 +24,20 @@ final class TopicCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Override Methods
+  // MARK: Override Methods
   override func prepareForReuse() {
     super.prepareForReuse()
     mainView.prepareForReuse()
   }
   
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(viewModelItem: BaseViewModelItem <Topic>) {
     let topic = viewModelItem.item
     let coverPhotoURL = viewModelItem.photoURL
     mainView.configure(with: topic, url: coverPhotoURL)
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupMainView() {
     contentView.addSubview(mainView)
     mainView.fillSuperView()

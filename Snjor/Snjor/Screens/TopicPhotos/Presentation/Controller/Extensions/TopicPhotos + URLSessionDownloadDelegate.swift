@@ -9,7 +9,8 @@ import Foundation
 import Photos
 
 extension TopicPhotosViewController: URLSessionDownloadDelegate {
-  // MARK: - URL Session Download Delegate
+  
+  // MARK:  URL Session Download Delegate
   func urlSession(
     _ session: URLSession,
     downloadTask: URLSessionDownloadTask,
@@ -30,7 +31,7 @@ extension TopicPhotosViewController: URLSessionDownloadDelegate {
     }
   }
 
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func saveImageToGallery(at url: URL) {
     PHPhotoLibrary.requestAuthorization { status in
       guard status == .authorized else { return }

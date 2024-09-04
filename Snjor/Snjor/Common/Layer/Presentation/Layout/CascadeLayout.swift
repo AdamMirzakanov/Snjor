@@ -7,27 +7,12 @@
 
 import UIKit
 
-protocol CascadeLayoutDelegate: AnyObject {
-  func cascadeLayout(
-    _ layout: any CascadeLayoutConformable,
-    sizeForItemAt indexPath: IndexPath
-  ) -> CGSize
-}
-
-protocol CascadeLayoutConformable { }
-
-class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
-  // MARK: - Private Properties
-  weak var delegate: (any CascadeLayoutDelegate)?
-  private var layoutAttributes: [UICollectionViewLayoutAttributes] = []
-//  var headerAttributes: [UICollectionViewLayoutAttributes] = []
+class CascadeLayout: UICollectionViewLayout {
   
-  private var frames: [CGRect] = []
-  private var pagingViewAttributes: UICollectionViewLayoutAttributes?
+  // MARK: Internal Properties
   var contentHeight: CGFloat = .zero
   var numberOfColumns: Int = .zero
   var isSingleColumn: Bool { numberOfColumns == .zero }
-  
   var topInset: CGFloat = CascadeLayoutConst.topInset
   var headerHeight: CGFloat = CascadeLayoutConst.headerHeight
   var columnSpacing = CascadeLayoutConst.columnSpacing
@@ -47,19 +32,25 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     return columnWidth
   }
   
-  // MARK: - Override Properties
+  // MARK: Private Properties
+  private weak var delegate: (any CascadeLayoutDelegate)?
+  private var layoutAttributes: [UICollectionViewLayoutAttributes] = []
+  private var frames: [CGRect] = []
+  private var pagingViewAttributes: UICollectionViewLayoutAttributes?
+  
+  // MARK: Override Properties
   override var collectionViewContentSize: CGSize {
     guard let collectionView = collectionView else {
       return CGSize.zero
     }
-    var width = collectionView.frame.width
+    let width = collectionView.frame.width
     return CGSize(
       width: width,
       height: contentHeight
     )
   }
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(with delegate: CascadeLayoutDelegate?) {
     self.delegate = delegate
     super.init()
@@ -71,20 +62,22 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     super.init(coder: aDecoder)
   }
   
-  // MARK: - Override Methods
+  // MARK: Override Methods
   override func layoutAttributesForElements(
     in rect: CGRect
   ) -> [UICollectionViewLayoutAttributes]? {
     var attributes: [UICollectionViewLayoutAttributes] = []
-    var firstFrameIndex: Int = 0
+    var firstFrameIndex: Int = .zero
     var framesCount: Int = frames.count
     
-    for index in 0 ..< framesCount where rect.intersects(frames[index]) {
+    for index in .zero ..< framesCount where rect.intersects(frames[index]) {
       firstFrameIndex = index
       break
     }
     
-    for index in (0 ..< frames.count).reversed() where rect.intersects(frames[index]) {
+    for index in (
+      .zero ..< frames.count
+    ).reversed() where rect.intersects(frames[index]) {
       framesCount = min((index + 1), layoutAttributes.count)
       break
     }
@@ -93,11 +86,6 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
       let attr = layoutAttributes[index]
       attributes.append(attr)
     }
-    
-    // Добавляем атрибуты заголовков
-//    for attr in headerAttributes where rect.intersects(attr.frame) {
-//      attributes.append(attr)
-//    }
     
     if let pagingViewAttributes = pagingViewAttributes,
        pagingViewAttributes.frame.intersects(rect) {
@@ -112,8 +100,11 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     return layoutAttributes[indexPath.item]
   }
   
-  func originForColumn(_ columnIndex: Int, collectionView: UICollectionView?, columnHeights: [CGFloat]) -> CGPoint {
-    
+  func originForColumn(
+    _ columnIndex: Int,
+    collectionView: UICollectionView?,
+    columnHeights: [CGFloat]
+  ) -> CGPoint {
     let pointX = isSingleColumn ? .zero : CGFloat(columnIndex) * (columnWidth + itemSpacing)
     let pointY = columnHeights[columnIndex]
     return CGPoint(x: pointX, y: pointY)
@@ -133,14 +124,13 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     guard
       let collectionView = collectionView,
       let delegate = delegate,
-      self.numberOfColumns > 0
+      self.numberOfColumns > .zero
     else {
       return
     }
     
     let itemSpacing = self.itemSpacing
     let numberOfColumns = self.numberOfColumns
-    let isSingleColumn = self.isSingleColumn
     let columnWidth = self.columnWidth
     
     // начало коллекции
@@ -158,28 +148,20 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
       return columnHeights.firstIndex { $0 == minHeight } ?? .zero
     }
     
-    (0 ..< collectionView.numberOfSections).forEach {
+    (.zero ..< collectionView.numberOfSections).forEach {
       numberOfItems += collectionView.numberOfItems(inSection: $0)
     }
     
-    // атрибуты для заголовков секций
-//    for section in 0 ..< collectionView.numberOfSections {
-//      let headerIndexPath = IndexPath(item: 0, section: section)
-//      let headerAttr = layoutAttributesForSupplementaryView(
-//        ofKind: UICollectionView.elementKindSectionHeader,
-//        at: headerIndexPath
-//      )
-//      if let headerAttr = headerAttr {
-//        headerAttributes.append(headerAttr)
-//      }
-//    }
-    
-    for index in 0 ..< numberOfItems {
+    for index in .zero ..< numberOfItems {
       let indexPath = IndexPath(item: index, section: .zero)
       let photoSize = delegate.cascadeLayout(self, sizeForItemAt: indexPath)
       let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
       let columnIndex = indexOfNextColumn()
-      let origin = originForColumn(columnIndex, collectionView: collectionView, columnHeights: columnHeights)
+      let origin = originForColumn(
+        columnIndex,
+        collectionView: collectionView,
+        columnHeights: columnHeights
+      )
       let newSize = self.scaledSizeForColumnWidth(from: photoSize, with: columnWidth)
       columnHeights[columnIndex] = origin.y + newSize.height + itemSpacing
       attributes.frame = CGRect(origin: origin, size: newSize)
@@ -190,7 +172,7 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     contentHeight += itemSpacing
   }
   
-  // MARK: - SupplementaryView
+  // MARK: SupplementaryView
   override func layoutAttributesForSupplementaryView(
     ofKind elementKind: String,
     at indexPath: IndexPath
@@ -203,17 +185,10 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
       forSupplementaryViewOfKind: elementKind,
       with: indexPath
     )
-//    attributes.frame = CGRect(
-//      x: .zero,
-//      y: .zero,
-//      width: collectionView?.frame.width ?? .zero,
-//      height: self.headerHeight // высота заголовка
-//    )
-
     return attributes
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   func setUpDefaultOfColumns() {
     let iPad = CascadeLayoutConst.iPadColumns
     let iPhone = CascadeLayoutConst.iPhoneColumns
@@ -227,10 +202,9 @@ class CascadeLayout: UICollectionViewLayout, CascadeLayoutConformable {
     layoutAttributes.removeAll()
     frames.removeAll()
     contentHeight = .zero
-//    headerAttributes.removeAll() // Добавляем сброс атрибутов заголовков
   }
   
-  // MARK: - Utilities
+  // MARK: Utilities
   private func scaledSizeForColumnWidth(
     from originalSize: CGSize,
     with columnWidth: CGFloat

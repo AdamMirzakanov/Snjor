@@ -8,23 +8,16 @@
 import UIKit
 import Combine
 
-protocol SearchScreenViewControllerDelegate: AnyObject {
-  func photoCellDidSelect(_ photo: Photo)
-  func topicCellDidSelect(_ topic: Topic)
-  func albumcCellDidSelect(_ album: Album)
-  func searchButtonClicked(with searchTerm: String, currentScopeIndex: Int)
-}
-
 final class SearchScreenViewController: MainViewController<SearchScreenRootView> {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<PhotosSection, Photo>?
   var collectionsDataSource: UICollectionViewDiffableDataSource<TopicsAndAlbumsSection, CollectionsItem>?
   var photosSections: [PhotosSection] = []
   var collectionsSections: [TopicsAndAlbumsSection] = []
   var currentScopeIndex: Int = .zero
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   lazy var searchController: UISearchController = {
     let searchController = UISearchController(searchResultsController: nil)
     searchController.obscuresBackgroundDuringPresentation = true
@@ -52,7 +45,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     in: .userDomainMask
   ).first!
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     photosViewModel: any SearchViewModelProtocol <Photo>,
     albumsViewModel: any SearchViewModelProtocol <Album>,
@@ -70,7 +63,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - View Lifecycle
+  // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionViewDelegate()
@@ -96,7 +89,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     searchController.isActive = false
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func hideCustomTabBar() {
     if let tabBar = tabBarController as? MainTabBarController {
       tabBar.hideCustomTabBar()
@@ -109,7 +102,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     }
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
   }
@@ -204,4 +197,3 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     }
   }
 }
-

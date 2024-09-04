@@ -14,7 +14,6 @@ extension String {
   static let discoverTitle = "Discover"
   static let topicsAndAlbumsTitle = "Topics & Albums"
   static let usersTitle = "Users"
-  
   static let searchPhotos = "Search photos"
   static let searchAlbums = "Search albums"
   static let searchUsers = "Search users"

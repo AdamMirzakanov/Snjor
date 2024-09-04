@@ -8,21 +8,20 @@
 import Foundation
 
 struct Topic: Decodable, Hashable {
-  
-  // MARK: - Internal Properties
   let id: String
   let title: String
   let description: String
   let coverPhoto: TopicCoverPhoto
 }
 
-// MARK: - Extension
+// MARK: - ViewModelItemRepresentable
 extension Topic: ViewModelItemRepresentable {
   var regularURL: URL? {
     return self.coverPhoto.urls.regular
   }
 }
 
+// MARK: - Downloadable
 extension Topic: Downloadable {
   var downloadURL: URL? {
     return self.coverPhoto.urls.full

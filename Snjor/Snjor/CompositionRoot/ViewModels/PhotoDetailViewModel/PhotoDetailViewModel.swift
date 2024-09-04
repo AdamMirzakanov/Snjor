@@ -9,14 +9,14 @@ import Combine
 
 final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   var state: PassthroughSubject<StateController, Never>
   var photo: Photo?
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let loadUseCase: any LoadPhotoDetailUseCaseProtocol
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
     loadUseCase: any LoadPhotoDetailUseCaseProtocol
@@ -25,7 +25,7 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
     self.loadUseCase = loadUseCase
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func viewDidLoad() {
     state.send(.loading)
     Task {
@@ -38,7 +38,7 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
     return PhotoDetailViewModelItem(photo: photo)
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func loadPhotoDetailUseCase() async {
     do {
       let photo = try await loadUseCase.execute()

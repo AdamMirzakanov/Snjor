@@ -10,13 +10,15 @@ import Combine
 
 final class PageScreenViewController: MainViewController<PageScreenRootView> {
   
-  // MARK: - Private Properties
-  private(set) var viewModel: any ContentManagingProtocol <Topic>
-  private var cancellable = Set<AnyCancellable>()
-  private(set) var coordinator: any PageScreenPhotosDelegate
+  // MARK: Internal Properties
   var dataSource: UICollectionViewDiffableDataSource<TopicsSection, Topic>?
   
-  // MARK: - Initializers
+  // MARK: Private Properties
+  private var cancellable = Set<AnyCancellable>()
+  private(set) var viewModel: any ContentManagingProtocol <Topic>
+  private(set) var coordinator: any PageScreenPhotosDelegate
+  
+  // MARK: Initializers
   init(
     viewModel: any ContentManagingProtocol <Topic>,
     coordinator: any PageScreenPhotosDelegate
@@ -30,7 +32,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - View Lifecycle
+  // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupDataSource()
@@ -56,7 +58,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     setNavigationBarHidden(false, animated: animated)
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func viewControllerForTopic(
     at index: Int,
     delegate: any PageScreenPhotosDelegate
@@ -85,7 +87,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   }
   
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func setupDataSource() {
     createDataSource(
       for: rootView.topicsCollectionView

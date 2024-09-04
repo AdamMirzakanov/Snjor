@@ -8,10 +8,11 @@
 import UIKit
 
 final class PageScreenPhotosCollectionView: UICollectionView {
-  // MARK: - Private Properties
+  
+  // MARK: Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     cellRegister()
@@ -21,7 +22,7 @@ final class PageScreenPhotosCollectionView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func cellRegister() {
     register(
       PageScreenPhotoCell.self,

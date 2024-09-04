@@ -29,7 +29,4 @@ extension PageScreenViewController: UICollectionViewDelegate {
       animated: true
     )
   }
-  
 }
-
-

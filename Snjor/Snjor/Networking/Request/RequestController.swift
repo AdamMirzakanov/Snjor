@@ -8,14 +8,14 @@
 import Foundation
 
 enum RequestController {
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private static var photos: Endpoints { .photos }
   private static var topics: Endpoints { .topics }
   private static var searchPhotos: Endpoints { .searchPhotos }
   private static var albums: Endpoints { .collections }
   private static var searchCollections: Endpoints { .searchCollections }
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   /// Список фотографий
   static func photosRequest() throws -> URLRequest {
     let path = photos.rawValue
@@ -66,7 +66,7 @@ enum RequestController {
     let id = topic.id
     let photosPath = photos.rawValue
     let parameters = PrepareParameters.preparePhotoParameters()
-    let request = try PrepareRequests.prepareTopicsPhotosAPIRequest(
+    let request = try PrepareRequests.prepareTopicPhotosAPIRequest(
       topics: topicsPath,
       id: id,
       phtos: photosPath,

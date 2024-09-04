@@ -8,7 +8,8 @@
 import UIKit
 
 struct TopicsLayoutFactory {
-  // MARK: - Internal Methods
+  
+  // MARK: Internal Methods
   func createTopicLayout() -> NSCollectionLayoutSection {
     let item = makeItem()
     let group = makeGroup(item: item)
@@ -16,7 +17,7 @@ struct TopicsLayoutFactory {
     return section
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func makeItem() -> NSCollectionLayoutItem {
     let itemSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(TopicsLayoutFactoryConst.itemWidthDimension),

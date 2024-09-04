@@ -8,10 +8,10 @@
 import Foundation
 
 final class DownloadService {
-  // MARK: - Private Properties
+  // MARK: Private Properties
   var sessions: [String: URLSession] = [:]
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func configureSession(
     delegate: URLSessionDelegate?,
     id: String

@@ -10,10 +10,10 @@ import Combine
 
 struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   let topic: Topic
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func makeModule(
     delegate: any PageScreenPhotosDelegate
   ) -> UIViewController {
@@ -21,9 +21,9 @@ struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
     let module = createViewController(viewModel: viewModel, delegate: delegate)
     configureLayout(for: module)
     return module
-  }
+  } 
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func createViewModel() -> TopicPhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()

@@ -7,7 +7,6 @@
 
 import UIKit
 
-// MARK: - UIPageViewControllerDataSource
 extension PageScreenViewController: UIPageViewControllerDataSource {
   func pageViewController(
     _ pageViewController: UIPageViewController,

@@ -5,15 +5,16 @@
 //  Created by Адам on 16.06.2024.
 //
 
+// MARK: - Protocol
 protocol LoadPhotosUseCaseProtocol {
   func execute() async -> Result<[Photo], any Error>
 }
 
+// MARK: - Struct
 struct LoadPhotosUseCase: LoadPhotosUseCaseProtocol {
-  // MARK: - Internal Properties
+  
   let repository: any LoadPhotosRepositoryProtocol
 
-  // MARK: - Internal Methods
   func execute() async -> Result<[Photo], any Error> {
     do {
       let request = try RequestController.photosRequest()

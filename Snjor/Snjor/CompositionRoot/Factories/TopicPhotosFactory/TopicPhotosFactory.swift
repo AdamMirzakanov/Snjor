@@ -10,10 +10,10 @@ import Combine
 
 struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   let topic: Topic
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func makeModule(
     delegate: any TopicPhotosViewControllerDelegate
   ) -> UIViewController {
@@ -38,7 +38,7 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
     return coordinator
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func createViewModel() -> TopicPhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()

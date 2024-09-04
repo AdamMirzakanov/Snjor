@@ -35,7 +35,15 @@ extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
     )
   }
   
-  // MARK: -  Private Methods
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    minimumInteritemSpacingForSectionAt section: Int
+  ) -> CGFloat {
+    return PageScreenViewControllerConst.middleValue
+  }
+  
+  // MARK: Private Methods
   private func calculateItemWidth(for index: Int) -> CGFloat {
     let topicsPageViewModelItem = viewModel.getViewModelItem(at: index)
     let width = topicsPageViewModelItem.itemTitle.size(
@@ -46,13 +54,5 @@ extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
       ]
     ).width + PageScreenViewControllerConst.middleValue
     return width
-  }
-  
-  func collectionView(
-    _ collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    minimumInteritemSpacingForSectionAt section: Int
-  ) -> CGFloat {
-    return PageScreenViewControllerConst.middleValue
   }
 }

@@ -63,7 +63,7 @@ struct PhotoDetailViewModelItem {
     return time == .dash ? time : time + .second
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func determineResolutionCategory(width: Int, height: Int) -> String {
     let maxDimension = max(width, height)
     switch maxDimension {

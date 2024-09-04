@@ -9,13 +9,13 @@ import UIKit
 
 struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let viewModelFactory: any SearchScreenViewModelFactoryProtocol
   private let layoutProvider: LayoutProvider
   private let searchTerm: String
   private let currentScopeIndex: Int
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     currentScopeIndex: Int,
     viewModelFactory: any SearchScreenViewModelFactoryProtocol = SearchScreenViewModelFactory(),
@@ -28,7 +28,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     self.searchTerm = searchTerm
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func makeModule(
     delegate: any SearchResultViewControllerDelegate
   ) -> UIViewController {
@@ -62,7 +62,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     )
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func getModule(
     _ delegate: any SearchResultViewControllerDelegate
   ) -> UIViewController {
@@ -82,6 +82,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   private func setupLayouts(module: SearchResultViewController) {
     let cascadeLayout = MultiColumnCascadeLayout(with: module)
     module.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
-    module.rootView.albumsCollectionView.collectionViewLayout = layoutProvider.createAlbumsLayout(module: module)
+    let albumsLayout = layoutProvider.createAlbumsLayout(module: module)
+    module.rootView.albumsCollectionView.collectionViewLayout = albumsLayout
   }
 }

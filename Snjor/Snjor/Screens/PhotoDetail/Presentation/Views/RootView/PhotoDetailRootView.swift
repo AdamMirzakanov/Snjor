@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol PhotoDetailRootViewDelegate: AnyObject {
-  func didTapDownloadButton()
-}
-
 // swiftlint:disable all
 final class PhotoDetailRootView: UIView {
 
@@ -40,7 +36,7 @@ final class PhotoDetailRootView: UIView {
     return $0
   }(PhotoDetailPhotoView())
 
-  // MARK: - Gesture
+  // MARK: Gesture
   private lazy var tapGesture: UITapGestureRecognizer = {
     return $0
   }(
@@ -59,7 +55,7 @@ final class PhotoDetailRootView: UIView {
     }
   }
 
-  // MARK: - Gradient
+  // MARK: Gradient
  private let gradientView: GradientView = {
    $0.isUserInteractionEnabled = false
     let color = UIColor(
@@ -79,7 +75,7 @@ final class PhotoDetailRootView: UIView {
     return $0
   }(GradientView())
 
-  // MARK: - Spinner
+  // MARK: Spinner
   lazy var spinner: UIActivityIndicatorView = {
     let xCenter = self.downloadBarButtonBlurEffect.contentView.bounds.midX
     let yCenter = self.downloadBarButtonBlurEffect.contentView.bounds.midY
@@ -94,7 +90,7 @@ final class PhotoDetailRootView: UIView {
     return $0
   }(UIActivityIndicatorView(style: .medium))
 
-  // MARK: - Blur Effects
+  // MARK: Blur Effects
   private let backBarButtonBlurEffect: UIVisualEffectView = {
     $0.frame.size.width = PhotoDetailRootViewConst.fullValue
     $0.frame.size.height = PhotoDetailRootViewConst.fullValue
@@ -119,7 +115,7 @@ final class PhotoDetailRootView: UIView {
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
 
-  // MARK: - Buttons
+  // MARK: Buttons
   private lazy var backBarButton: UIButton = {
     let icon = UIImage(systemName: .backBarButtonImage)
     $0.setImage(icon, for: .normal)
@@ -165,7 +161,7 @@ final class PhotoDetailRootView: UIView {
     return $0
   }(UIButton())
 
-  // MARK: - ImageViews
+  // MARK: ImageViews
   private let heartImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .heartImage)
@@ -187,7 +183,7 @@ final class PhotoDetailRootView: UIView {
     return $0
   }(UIImageView())
 
-  // MARK: - Labels
+  // MARK: Labels
   let nameLabel: UILabel = {
     $0.textColor = .white
     $0.numberOfLines = .zero
@@ -345,7 +341,7 @@ final class PhotoDetailRootView: UIView {
     return $0
   }(UILabel())
 
-  // MARK: - Lines
+  // MARK: Lines
   private let firstLine: UIView = {
     $0.backgroundColor = .white
     $0.alpha = PhotoDetailRootViewConst.defaultOpacity
@@ -385,7 +381,7 @@ final class PhotoDetailRootView: UIView {
     return $0
   }(UIView())
 
-  // MARK: - StackViews
+  // MARK: StackViews
   private lazy var profileAndInfoButtonStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -545,7 +541,7 @@ final class PhotoDetailRootView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func setupData(viewModel: any PhotoDetailViewModelProtocol) {
     let viewModelItem = viewModel.getPhotoDetailViewModelItem()
     guard let viewModelItem = viewModelItem else { return }
@@ -572,7 +568,7 @@ final class PhotoDetailRootView: UIView {
     exposureTimeValueLabel.text = viewModelItem.exposureTime
   }
 
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()
@@ -642,7 +638,7 @@ final class PhotoDetailRootView: UIView {
     )
   }
 
-  // MARK: - Setup Navigation Items
+  // MARK: Setup Navigation Items
   func setupBarButtonItems(
     navigationItem: UINavigationItem,
     navigationController: UINavigationController?
@@ -679,7 +675,7 @@ final class PhotoDetailRootView: UIView {
     return barButtonItems
   }
 
-  // MARK: - Config Navigation Item Actions
+  // MARK: Config Navigation Item Actions
   private func configBackButtonAction(
     _ navigationController: UINavigationController?
   ) {
@@ -733,7 +729,7 @@ final class PhotoDetailRootView: UIView {
     self.isAspectFill.toggle()
   }
 
-  // MARK: - Animate Buttons
+  // MARK: Animate Buttons
  private func animateDownloadButton() {
     UIView.animate(
       withDuration: PhotoDetailRootViewConst.minDuration
@@ -811,7 +807,7 @@ final class PhotoDetailRootView: UIView {
   }
 
 
-  // MARK: - Config Button Actions
+  // MARK: Config Button Actions
   private func configInfoButtonAction() {
     let infoButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }
@@ -820,7 +816,7 @@ final class PhotoDetailRootView: UIView {
     infoButton.addAction(infoButtonAction, for: .touchUpInside)
   }
 
-  // MARK: - Helper
+  // MARK: Helper
   private func createdAt(from date: String) {
     guard let date = ISO8601DateFormatter().date(from: date) else { return }
     let dateFormatter = DateFormatter()

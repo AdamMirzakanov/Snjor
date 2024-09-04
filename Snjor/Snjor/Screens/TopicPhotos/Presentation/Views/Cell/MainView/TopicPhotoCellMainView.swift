@@ -7,16 +7,12 @@
 
 import UIKit
 
-protocol TopicPhotoCellMainViewDelegate: AnyObject {
-  func downloadTapped()
-}
-
 final class TopicPhotoCellMainView: MainImageContainerView {
   
-  // MARK: - Delegate
+  // MARK: Delegate
   weak var delegate: (any TopicPhotoCellMainViewDelegate)?
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale
   }
@@ -28,7 +24,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     }
   }
   
-  // MARK: - Gradient
+  // MARK: Views
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
@@ -47,7 +43,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     return $0
   }(GradientView())
   
-  // MARK: - Spinner
+  // MARK: Spinner
   lazy var spinner: UIActivityIndicatorView = {
     let xCenter = self.downloadButtonBlurEffect.contentView.bounds.midX
     let yCenter = self.downloadButtonBlurEffect.contentView.bounds.midY
@@ -63,7 +59,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     return $0
   }(UIActivityIndicatorView(style: .medium))
   
-  // MARK: - Blur Effects
+  // MARK: Blur Effects
   let downloadButtonBlurEffect: UIVisualEffectView = {
     $0.frame.size.width = TopicPhotoCellMainViewConst.fullValue
     $0.frame.size.height = TopicPhotoCellMainViewConst.fullValue
@@ -78,7 +74,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
   
-  // MARK: - Buttons
+  // MARK: Buttons
   lazy var downloadButton: UIButton = {
     let icon = UIImage(systemName: .downloadCellButtonImage)
     $0.setImage(icon, for: .normal)
@@ -89,7 +85,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     return $0
   }(UIButton(type: .custom))
   
-  // MARK: - Labels
+  // MARK: Labels
   let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
@@ -100,7 +96,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     return $0
   }(UILabel())
 
-  // MARK: - Initializers
+  // MARK: Initializers
   override init() {
     super.init()
     configDownloadButtonAction()
@@ -111,7 +107,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Sized Image
+  // MARK: Sized Image
   override func sizedImageURL(from url: URL) -> URL {
     layoutIfNeeded()
     let widthValue = String(describing: frame.width)
@@ -129,7 +125,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     )
   }
 
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(
     with photo: Photo,
     showsUsername: Bool = true,
@@ -158,7 +154,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     spinner.stopAnimating()
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupPhotoCellViews() {
     addSubviews()
     setupConstraints()
@@ -202,7 +198,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     )
   }
 
-  // MARK: - Config Actions
+  // MARK: Config Actions
   private func configDownloadButtonAction() {
     let downloadButtonAction = downloadAction()
     addAction(downloadButtonAction)
@@ -228,7 +224,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
     )
   }
 
-  // MARK: - Animate Buttons
+  // MARK: Animate Buttons
   private func animateButton() {
     UIView.animate(withDuration: TopicPhotoCellMainViewConst.duration) {
       let scaleTransform = CGAffineTransform(

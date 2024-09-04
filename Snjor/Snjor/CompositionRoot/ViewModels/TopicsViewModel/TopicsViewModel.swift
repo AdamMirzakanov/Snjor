@@ -7,8 +7,9 @@
 
 import Combine
 
-final class TopicsViewModel: BaseViewModel <Topic> {
+final class TopicsViewModel: BaseViewModel<Topic> {
   
+  // MARK: Private Properties
   private let loadUseCase: any LoadTopicsUseCaseProtocol
   
   // MARK: Initializers
@@ -20,7 +21,7 @@ final class TopicsViewModel: BaseViewModel <Topic> {
     super.init(state: state)
   }
   
-  // MARK: Private Methods
+  // MARK: Override Methods
   override func loadItemsUseCase() async {
     let result = await loadUseCase.execute()
     updateStateUI(with: result)

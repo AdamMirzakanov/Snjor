@@ -9,7 +9,7 @@ import UIKit
 
 final class PageScreenRootView: UIView {
   
-  // MARK: - Internal Views
+  // MARK: Internal Views
   let pageViewController: UIPageViewController = {
     $0.view.backgroundColor = .clear
     return $0
@@ -26,7 +26,7 @@ final class PageScreenRootView: UIView {
     return $0
   }(PageScreenTopicsCollectionView())
   
-  // MARK: - Private Views
+  // MARK: Private Views
   private let appNameLabel: UILabel = {
     let text = "Snjør"
     let fontSize = UIFont.systemFont(
@@ -61,7 +61,7 @@ final class PageScreenRootView: UIView {
     return $0
   }(GradientView())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero)
     setupViews()
@@ -71,7 +71,7 @@ final class PageScreenRootView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()

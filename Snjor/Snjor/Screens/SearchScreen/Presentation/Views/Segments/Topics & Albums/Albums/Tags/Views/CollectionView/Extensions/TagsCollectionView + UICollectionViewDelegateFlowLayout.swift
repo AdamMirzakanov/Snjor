@@ -34,7 +34,7 @@ extension TagsCollectionView: UICollectionViewDelegateFlowLayout {
     )
   }
   
-  // MARK: -  Private Methods
+  // MARK: Private Methods
   private func calculateItemWidth(for index: Int) -> CGFloat {
     let tag = tags[index]
     let width = tag.title.size(

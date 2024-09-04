@@ -8,18 +8,14 @@
 import UIKit
 import Combine
 
-protocol TopicPhotosViewControllerDelegate: AnyObject {
-  func didSelect(_ photo: Photo)
-}
-
 final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   
-  // MARK: - Delegate
-  private(set) weak var delegate: (any TopicPhotosViewControllerDelegate)?
-  
-  // MARK: - Private Properties
-  private var cancellable = Set<AnyCancellable>()
+  // MARK: internal Properties
   var dataSource: UICollectionViewDiffableDataSource<TopicPhotosSection, Photo>?
+  
+  // MARK: Private Properties
+  private var cancellable = Set<AnyCancellable>()
+  private(set) weak var delegate: (any TopicPhotosViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
   private(set) var viewModel: any ContentManagingProtocol <Photo>
   private(set) var documentsPath = FileManager.default.urls(
@@ -27,7 +23,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
     in: .userDomainMask
   ).first!
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     viewModel: any ContentManagingProtocol <Photo>,
     delegate: any TopicPhotosViewControllerDelegate,
@@ -46,7 +42,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
     print(#function, Self.self, "🟣")
   }
   
-  // MARK: - View Lifecycle
+  // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     configCollectionView()
@@ -70,7 +66,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
     }
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func setupDataSource() {
     createDataSource(
       for: rootView.topicPhotosCollectionView, 

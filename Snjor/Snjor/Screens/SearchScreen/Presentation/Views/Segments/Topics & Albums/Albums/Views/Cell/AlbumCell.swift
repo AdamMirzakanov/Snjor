@@ -9,7 +9,7 @@ import UIKit
 
 final class AlbumCell: UICollectionViewCell {
   
-  // MARK: - Views
+  // MARK: Views
   let mainView: AlbumCellMainView = {
     return $0
   }(AlbumCellMainView())
@@ -52,7 +52,7 @@ final class AlbumCell: UICollectionViewCell {
     return $0
   }(UIStackView())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupViews()
@@ -64,14 +64,14 @@ final class AlbumCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Override Methods
+  // MARK: Override Methods
   override func prepareForReuse() {
     super.prepareForReuse()
     mainView.prepareForReuse()
     tagsCollectionView.tags = []
   }
   
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(viewModelItem: BaseViewModelItem <Album> ) {
     let album = viewModelItem.item
     let coverPhotoURL = viewModelItem.photoURL
@@ -79,7 +79,7 @@ final class AlbumCell: UICollectionViewCell {
     tagsCollectionView.tags = album.tags ?? []
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()
@@ -113,7 +113,7 @@ final class AlbumCell: UICollectionViewCell {
     )
   }
   
-  // MARK: - Update Gradient Colors
+  // MARK: Update Gradient Colors
   private func updateGradientColors() {
     rightGradientView.setColors([
       GradientView.Color(

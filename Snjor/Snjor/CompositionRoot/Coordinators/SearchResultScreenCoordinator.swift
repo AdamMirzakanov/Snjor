@@ -6,15 +6,16 @@
 //
 
 final class SearchResultScreenCoordinator: Coordinatable {
-  // MARK: - Internal Properties
+  
+  // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let factory: any SearchResultScreenFactoryProtocol
   private weak var overlordCoordinator: (any ParentCoordinator)?
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     factory: any SearchResultScreenFactoryProtocol,
     navigation: any Navigable,
@@ -25,7 +26,7 @@ final class SearchResultScreenCoordinator: Coordinatable {
     self.overlordCoordinator = overlordCoordinator
   }
    
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func start() {
     let controller = factory.makeModule(delegate: self)
     navigation.pushViewController(controller, animated: true) { [weak self] in
@@ -35,6 +36,7 @@ final class SearchResultScreenCoordinator: Coordinatable {
   }
 }
 
+// MARK: - SearchResultViewControllerDelegate
 extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
   
   func searchPhotoCellDidSelect(_ photo: Photo) {

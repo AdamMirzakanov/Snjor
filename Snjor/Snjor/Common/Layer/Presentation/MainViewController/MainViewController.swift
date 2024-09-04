@@ -14,5 +14,3 @@ class MainViewController<ViewType: UIView>: UIViewController {
     view = customView
   }
 }
-
-extension MainViewController: ViewLoadable { }

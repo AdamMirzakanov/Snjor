@@ -12,7 +12,6 @@ extension TopicPhotosViewController {
   private typealias DataSource = UICollectionViewDiffableDataSource<TopicPhotosSection, Photo>
   private typealias Snapshot = NSDiffableDataSourceSnapshot<TopicPhotosSection, Photo>
   
-  // MARK: - Private Properties
   private var snapshot: Snapshot {
     var snapshot = Snapshot()
     snapshot.appendSections([.main])
@@ -20,7 +19,6 @@ extension TopicPhotosViewController {
     return snapshot
   }
   
-  // MARK: - Internal Methods
   func applySnapshot() {
     guard let dataSource = dataSource else { return }
     dataSource.apply(
@@ -29,7 +27,7 @@ extension TopicPhotosViewController {
     )
   }
   
-  // MARK: - Create Data Source
+  // MARK: Create Data Source
   func createDataSource(
     for collectionView: UICollectionView,
     delegate: any TopicPhotoCellDelegate

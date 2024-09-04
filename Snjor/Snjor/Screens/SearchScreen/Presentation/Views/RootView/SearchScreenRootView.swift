@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SearchScreenRootView: UIView {
+final class SearchScreenRootView: UIView {
   
-  // MARK: - Collection Views
+  // MARK: Views
   let photosCollectionView: PhotosCollectionView = {
     return $0
   }(PhotosCollectionView())
@@ -22,21 +22,21 @@ class SearchScreenRootView: UIView {
 //    return $0
 //  }(UsersCollectionView())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero)
     setupViews()
-    backgroundColor = .systemBackground
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()
+    backgroundColor = .systemBackground
   }
   
   private func addSubviews() {

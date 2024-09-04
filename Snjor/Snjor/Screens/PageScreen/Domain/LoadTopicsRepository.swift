@@ -7,15 +7,16 @@
 
 import Foundation
 
+// MARK: - Protocol
 protocol LoadTopicsPageRepositoryProtocol {
   func fetchTopic(request: URLRequest) async throws -> [Topic]
 }
 
+// MARK: - Struct
 struct LoadTopicsPageRepository: LoadTopicsPageRepositoryProtocol {
-  // MARK: - Internal Properties
+  
   let networkService: any Requestable
 
-  // MARK: - Internal Methods
   func fetchTopic(request: URLRequest) async throws -> [Topic] {
     return try await networkService.request(
       request: request,

@@ -7,16 +7,12 @@
 
 import UIKit
 
-protocol SearchScreenPhotoCellDelegate: AnyObject {
-  func downloadTapped(_ cell: SearchScreenPhotoCell)
-}
-
 final class SearchScreenPhotoCell: MainPhotoCell {
   
-  // MARK: - Delegate
+  // MARK: Delegate
   weak var delegate: (any SearchScreenPhotoCellDelegate)?
 
-  // MARK: - Initializers
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     mainView.delegate = self

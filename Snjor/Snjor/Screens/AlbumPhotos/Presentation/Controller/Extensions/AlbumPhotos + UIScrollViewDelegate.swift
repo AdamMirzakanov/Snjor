@@ -40,6 +40,7 @@ extension AlbumPhotosViewController {
   }
 }
 
+// MARK: - Double
 private extension Double {
   static let deadline = 0.3
 }

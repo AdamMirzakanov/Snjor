@@ -8,13 +8,14 @@
 import UIKit
 
 protocol Navigable {
-  // MARK: - Properties
+  
+  // MARK: Properties
   var rootViewController: UINavigationController { get }
   var navigationBar: UINavigationBar { get }
   var viewControllers: [UIViewController] { get set }
   var dismissNavigation: (() -> Void)? { get set }
 
-  // MARK: - Methods
+  // MARK: Methods
   func present(
     _ viewController: UIViewController,
     animated: Bool
@@ -29,7 +30,7 @@ protocol Navigable {
   func dismiss(animated: Bool)
 }
 
-// MARK: - Default Methods
+// MARK: - Default method implementation
 extension Navigable {
   func pushViewController(
     _ viewControllerToPresent: UIViewController,

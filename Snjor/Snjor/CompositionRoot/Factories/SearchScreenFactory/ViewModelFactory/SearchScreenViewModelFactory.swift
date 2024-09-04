@@ -9,12 +9,12 @@ import Combine
 
 class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let networkService = NetworkService()
   private let lastPageValidationUseCase = LastPageValidationUseCase()
   private let state = PassthroughSubject<StateController, Never>()
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func createPhotosViewModel() -> DiscoverViewModel {
     let loadPhotosUseCase = getPhotosUseCase(networkService)
     let loadSearchPhotosUseCase = getSearchPhotosUseCase(networkService)
@@ -45,7 +45,7 @@ class SearchScreenViewModelFactory: SearchScreenViewModelFactoryProtocol {
     )
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func getPhotosUseCase(
     _ networkService: NetworkService
   ) -> LoadPhotosUseCase {

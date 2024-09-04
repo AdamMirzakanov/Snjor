@@ -5,15 +5,16 @@
 //  Created by Адам Мирзаканов on 08.08.2024.
 //
 
+// MARK: - Protocol
 protocol LoadAlbumsUseCaseProtocol {
   func execute() async -> Result<[Album], any Error>
 }
 
+// MARK: - Struct
 struct LoadAlbumsUseCase: LoadAlbumsUseCaseProtocol {
-  // MARK: - Internal Properties
+  
   let repository: any LoadAlbumsRepositoryProtocol
   
-  // MARK: - Internal Methods
   func execute() async -> Result<[Album], any Error> {
     do {
       let request = try RequestController.albumsRequest()

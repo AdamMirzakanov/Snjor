@@ -8,13 +8,14 @@
 import UIKit
 
 final class AppCoordinator: Coordinatable {
-  // MARK: - Internal Properties
+  
+  // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   var factory: (any AppFactoryProtocol)?
   var window: UIWindow?
 
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     navigation: any Navigable,
     window: UIWindow?,
@@ -25,13 +26,13 @@ final class AppCoordinator: Coordinatable {
     self.factory = factory
   }
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func start() {
     configWindow()
     startSomeCoordinator()
   }
 
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func configWindow() {
     window?.rootViewController = navigation.rootViewController
     window?.makeKeyAndVisible()

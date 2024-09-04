@@ -6,14 +6,15 @@
 //
 
 final class TopicsPageCoordinator: Coordinatable {
-  // MARK: - Internal Properties
+  
+  // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let factory: any PageScreenFactoryProtocol
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     factory: any PageScreenFactoryProtocol,
     navigation: any Navigable
@@ -22,7 +23,7 @@ final class TopicsPageCoordinator: Coordinatable {
     self.navigation = navigation
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func start() {
     let controller = factory.makeModule(delegate: self)
     factory.makeTabBarItem(navigation: navigation)
@@ -30,6 +31,7 @@ final class TopicsPageCoordinator: Coordinatable {
   }
 }
 
+// MARK: - PageScreenPhotosDelegate
 extension TopicsPageCoordinator: PageScreenPhotosDelegate {
   func didSelect(_ photo: Photo) {
     let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
@@ -41,4 +43,5 @@ extension TopicsPageCoordinator: PageScreenPhotosDelegate {
   }
 }
 
+// MARK: - ParentCoordinator
 extension TopicsPageCoordinator: ParentCoordinator { }

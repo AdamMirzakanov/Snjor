@@ -12,7 +12,7 @@ extension SearchResultViewController {
   private typealias DataSource = UICollectionViewDiffableDataSource<AlbumsSection, Album>
   private typealias Snapshot = NSDiffableDataSourceSnapshot<AlbumsSection, Album>
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var collectionsSnapshot: Snapshot {
     var snapshot = Snapshot()
     snapshot.appendSections([.albums])
@@ -21,7 +21,7 @@ extension SearchResultViewController {
     return snapshot
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func applyCollectionsSnapshot() {
     guard let dataSource = collectionsDataSource else { return }
     dataSource.apply(
@@ -30,7 +30,7 @@ extension SearchResultViewController {
     )
   }
   
-  // MARK: - Create Data Source
+  // MARK: Create Data Source
   func createCollectionsDataSource(for collectionView: UICollectionView) {
     collectionsDataSource = DataSource(
       collectionView: collectionView
@@ -109,7 +109,7 @@ extension SearchResultViewController {
     }
   }
   
-  // MARK: - Configure Cells
+  // MARK: Configure Cells
   private func configureAlbumCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,

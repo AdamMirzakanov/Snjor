@@ -12,7 +12,7 @@ final class PageScreenTopicsCollectionView: UICollectionView {
   // MARK: - Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
   
-  // MARK: - Views
+  // MARK: Views
   private let lineView: UIView = {
     $0.backgroundColor = .white
     $0.alpha = PageScreenTopicsCollectionViewConst.lineViewOpacity
@@ -24,7 +24,7 @@ final class PageScreenTopicsCollectionView: UICollectionView {
     return $0
   }(UIView())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     configureLayout()
@@ -36,13 +36,13 @@ final class PageScreenTopicsCollectionView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Override Methods
+  // MARK: Override Methods
   override func layoutSubviews() {
     super.layoutSubviews()
     updateLineViewAndIndicatorPosition()
   }
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func updateIndicatorPosition(for cell: UICollectionViewCell) {
     let cellFrame = cell.frame
     let indicatorHeight: CGFloat = traitCollection.displayScale * PageScreenTopicsCollectionViewConst.indicatorHeightMultiplier
@@ -58,7 +58,7 @@ final class PageScreenTopicsCollectionView: UICollectionView {
     animateCellIndicator(indicatorView: indicatorView, newFrame: newFrame)
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func addSubviews() {
     addSubview(lineView)
     addSubview(indicatorView)

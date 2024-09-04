@@ -10,10 +10,10 @@ import Combine
 
 struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   let album: Album
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func makeModule(
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> UIViewController {
@@ -38,7 +38,7 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     return coordinator
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func createViewModel() -> AlbumPhotosViewModel {
     let networkService = NetworkService()
     let lastPageValidationUseCase = LastPageValidationUseCase()

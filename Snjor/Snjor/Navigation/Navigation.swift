@@ -8,12 +8,12 @@
 import UIKit
 
 final class Navigation: NSObject {
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   var rootViewController: UINavigationController
   var dismissNavigation: (() -> Void)?
   var backCompletions: [UIViewController: () -> Void] = [:]
 
-  // MARK: - Initializers
+  // MARK: Initializers
   init(rootViewController: UINavigationController) {
     self.rootViewController = rootViewController
     super.init()

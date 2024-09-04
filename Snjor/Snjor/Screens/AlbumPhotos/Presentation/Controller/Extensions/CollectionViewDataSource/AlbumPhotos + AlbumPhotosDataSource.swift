@@ -8,10 +8,10 @@
 import UIKit
 
 extension AlbumPhotosViewController {
+
   private typealias DataSource = UICollectionViewDiffableDataSource<AlbumPhotosSection, Photo>
   private typealias Snapshot = NSDiffableDataSourceSnapshot<AlbumPhotosSection, Photo>
   
-  // MARK: - Private Properties
   private var snapshot: Snapshot {
     var snapshot = Snapshot()
     snapshot.appendSections([.main])
@@ -19,7 +19,6 @@ extension AlbumPhotosViewController {
     return snapshot
   }
   
-  // MARK: - Internal Methods
   func applySnapshot() {
     guard let dataSource = dataSource else { return }
     dataSource.apply(
@@ -28,7 +27,7 @@ extension AlbumPhotosViewController {
     )
   }
   
-  // MARK: - Create Data Source
+  // MARK: Create Data Source
   func createDataSource(
     for collectionView: UICollectionView,
     delegate: any AlbumPhotoCellDelegate

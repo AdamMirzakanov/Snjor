@@ -8,7 +8,8 @@
 import Foundation
 
 struct User: Decodable, Hashable {
-  // MARK: - Internal Properties
+  
+  // MARK: Internal Properties
   let firstName: String?
   let lastName: String?
   let name: String?
@@ -24,7 +25,7 @@ struct User: Decodable, Hashable {
   let id: String
   let social: Social?
 
-  // MARK: - Internal Enum
+  // MARK: Internal Enum
   enum ProfileImageSize: String, Decodable {
     case small
     case medium
@@ -39,7 +40,7 @@ struct User: Decodable, Hashable {
   }
 }
 
-// MARK: - Display Name
+// MARK: - Get display name
 extension User {
   var displayName: String {
     if let name = name {

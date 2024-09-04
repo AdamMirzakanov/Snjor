@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class BaseViewModel <Element: ViewModelItemRepresentable & Downloadable> : ContentManagingProtocol {
+class BaseViewModel<Element: ViewModelItemRepresentable & Downloadable>: ContentManagingProtocol {
   
   typealias Item = Element
   
@@ -38,7 +38,7 @@ class BaseViewModel <Element: ViewModelItemRepresentable & Downloadable> : Conte
     items[index]
   }
   
-  func getViewModelItem(at index: Int) -> BaseViewModelItem <Element> {
+  func getViewModelItem(at index: Int) -> BaseViewModelItem<Element> {
     checkAndLoadMoreItems(at: index)
     return makeViewModelItem(at: index)
   }
@@ -61,7 +61,7 @@ class BaseViewModel <Element: ViewModelItemRepresentable & Downloadable> : Conte
   }
   
   // MARK: Private Methods
-  func makeViewModelItem(at index: Int) -> BaseViewModelItem <Element> {
+  func makeViewModelItem(at index: Int) -> BaseViewModelItem<Element> {
     let photo = items[index]
     return BaseViewModelItem(item: photo)
   }

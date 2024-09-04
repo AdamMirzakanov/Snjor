@@ -8,25 +8,19 @@
 import UIKit
 import Combine
 
-protocol PageScreenPhotosDelegate: AnyObject {
-  func didSelect(_ photo: Photo)
-}
-
 final class PageScreenPhotosViewController: MainViewController <PageScreenPhotosRootView> {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   var topicID: String?
   var pageIndex: Int?
   var dataSource: UICollectionViewDiffableDataSource<PageScreenPhotosSection, Photo>?
   
-  // MARK: - Delegate
-  private(set) weak var delegate: (any PageScreenPhotosDelegate)?
-  
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
+  private(set) weak var delegate: (any PageScreenPhotosDelegate)?
   private(set) var viewModel: any ContentManagingProtocol <Photo>
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     viewModel: any ContentManagingProtocol <Photo>,
     delegate: any PageScreenPhotosDelegate,
@@ -45,7 +39,7 @@ final class PageScreenPhotosViewController: MainViewController <PageScreenPhotos
     print(#function, Self.self, "🟡")
   }
   
-  // MARK: - View Lifecycle
+  // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     configCollectionView()
@@ -55,7 +49,7 @@ final class PageScreenPhotosViewController: MainViewController <PageScreenPhotos
     stateController()
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func setupDataSource() {
     createDataSource(
       for: rootView.pageScreenPhotosCollectionView

@@ -9,7 +9,7 @@ protocol ParentCoordinator: AnyObject {
   var childCoordinators: [any Coordinatable] { get set }
 }
 
-// MARK: - Default Methods
+// MARK: - Default method implementation
 extension ParentCoordinator {
   func addAndStartChildCoordinator(
 _ coordinator: (any Coordinatable)?

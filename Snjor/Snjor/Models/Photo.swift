@@ -8,7 +8,8 @@
 import Foundation
 
 struct Photo: Decodable, Hashable {
-  // MARK: - Internal Properties
+  
+  // MARK: Internal Properties
   let width: Int
   let height: Int
   let urls: [URLKind: URL]
@@ -22,7 +23,7 @@ struct Photo: Decodable, Hashable {
   let createdAt: String
   let location: Location?
 
-  // MARK: - Internal Enum
+  // MARK: Internal Enums
   enum URLKind: String, Decodable {
     case raw
     case full
@@ -39,13 +40,14 @@ struct Photo: Decodable, Hashable {
   }
 }
 
-// MARK: - URLs
+// MARK: - Downloadable
 extension Photo: Downloadable {
   var downloadURL: URL? {
     return self.urls[.regular]
   }
 }
 
+// MARK: - ViewModelItemRepresentable
 extension Photo: ViewModelItemRepresentable {
   var title: String {
     return self.user.displayName
@@ -56,6 +58,7 @@ extension Photo: ViewModelItemRepresentable {
   }
 }
 
+// MARK: - Get profile image URL
 extension Photo {
   var profileImageURL: URL? {
     return self.user.profileImage[.medium]

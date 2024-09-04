@@ -8,10 +8,10 @@
 import Foundation
 
 struct NetworkService {
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   let session: URLSession
 
-  // MARK: - Initializers
+  // MARK: Initializers
   init(session: URLSession = URLSession.shared) {
     self.session = session
   }

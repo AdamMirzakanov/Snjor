@@ -7,16 +7,12 @@
 
 import UIKit
 
-protocol TopicPhotoCellDelegate: AnyObject {
-  func downloadTapped(_ cell: TopicPhotoCell)
-}
-
 final class TopicPhotoCell: MainPhotoCell {
   
-  // MARK: - Delegate
+  // MARK: Delegate
   weak var delegate: (any TopicPhotoCellDelegate)?
   
-  // MARK: - Initializers
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     mainView.delegate = self

@@ -8,18 +8,18 @@
 import UIKit
 
 class MainImageContainerView: UIView {
-  // MARK: - Properties
-  var imageDownloader = ImageDownloader()
+  
+  // MARK: Internal Properties
   var currentPhotoID: String?
-
-  // MARK: - Main Photo
+  let imageDownloader = ImageDownloader()
+  
   let mainImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
 
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero)
     setupViews()
@@ -29,7 +29,7 @@ class MainImageContainerView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Setup Data
+  // MARK: Setup Data
   /// Configure the view with a photo, url, and optional blur hash.
   /// - Parameters:
   ///   - url: The URL of the photo.
@@ -49,13 +49,13 @@ class MainImageContainerView: UIView {
     }
   }
 
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubview(mainImageView)
     mainImageView.fillSuperView()
   }
 
-  // MARK: - Download Image
+  // MARK: Download Image
   /// Override this method to provide a custom sized image URL.
   /// - Parameter url: The original URL of the image.
   /// - Returns: The sized image URL.

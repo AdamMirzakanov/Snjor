@@ -8,7 +8,8 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-  // MARK: - Private Properties
+  
+  // MARK: Private Properties
   private var selected: Int = .zero
 
   // Buttons
@@ -97,7 +98,7 @@ final class MainTabBarController: UITabBarController {
     return $0
   }(GradientView())
 
-  // MARK: - View Lifecycle
+  // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(gradientView)
@@ -107,7 +108,7 @@ final class MainTabBarController: UITabBarController {
     tabBar.isHidden = true
   }
 
-  // MARK: - Internal  Methods
+  // MARK: Internal  Methods
   func hideCustomTabBar() {
     UIView.animate(withDuration: 0.8) {
       self.customBar.transform = CGAffineTransform(translationX: 0, y: self.view.bounds.height)
@@ -130,7 +131,7 @@ final class MainTabBarController: UITabBarController {
     }
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func getButton(
     icon: String,
     tag: Int,

@@ -9,7 +9,7 @@ import UIKit
 
 extension SearchScreenViewController {
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var photosSnapshot: NSDiffableDataSourceSnapshot<PhotosSection, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<PhotosSection, Photo>()
     snapshot.appendSections([.main])
@@ -18,7 +18,7 @@ extension SearchScreenViewController {
     return snapshot
   }
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func applyPhotosSnapshot() {
     guard let dataSource = photosDataSource else { return }
     dataSource.apply(
@@ -27,7 +27,7 @@ extension SearchScreenViewController {
     )
   }
   
-  // MARK: - Create Data Source
+  // MARK: Create Data Source
   func createPhotosDataSource(
     for collectionView: UICollectionView,
     delegate: any SearchScreenPhotoCellDelegate

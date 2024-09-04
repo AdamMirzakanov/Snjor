@@ -8,7 +8,8 @@
 import UIKit
 
 final class PhotoDetailPhotoView: MainImageContainerView {
-  // MARK: - Gradient
+  
+  // MARK: View
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
@@ -27,7 +28,7 @@ final class PhotoDetailPhotoView: MainImageContainerView {
     return $0
   }(GradientView())
 
-  // MARK: - Initializers
+  // MARK: Initializers
   override init() {
     super.init()
     setupPhotoDetailViews()
@@ -37,7 +38,7 @@ final class PhotoDetailPhotoView: MainImageContainerView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(
     with photo: Photo,
     url: URL?
@@ -48,7 +49,7 @@ final class PhotoDetailPhotoView: MainImageContainerView {
     )
   }
 
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupPhotoDetailViews() {
     addSubviews()
     setupConstraints()

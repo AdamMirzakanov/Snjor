@@ -7,15 +7,16 @@
 
 import Foundation
 
+// MARK: - Protocol
 protocol LoadTopicPhotosRepositoryProtocol {
   func fetchTopicsPhotoList(request: URLRequest) async throws -> [Photo]
 }
 
+// MARK: - Struct
 struct LoadTopicPhotosRepository: LoadTopicPhotosRepositoryProtocol {
-  // MARK: - Internal Properties
+  
   let networkService: any Requestable
   
-  // MARK: - Internal Methods
   func fetchTopicsPhotoList(request: URLRequest) async throws -> [Photo] {
     return try await networkService.request(
       request: request,

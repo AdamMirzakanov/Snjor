@@ -9,12 +9,11 @@ import UIKit
 
 final class TopicPhotosRootView: UIView {
   
-  // MARK: - CollectionView
+  // MARK: Views
   let topicPhotosCollectionView: TopicPhotosCollectionView = {
     return $0
   }(TopicPhotosCollectionView())
   
-  // MARK: - Button Background View
   private let backBarButtonBackgroundView: UIView = {
     $0.frame.size.width = TopicPhotosRootViewConst.backBarButtonBackgroundViewSize
     $0.frame.size.height = TopicPhotosRootViewConst.backBarButtonBackgroundViewSize
@@ -24,7 +23,6 @@ final class TopicPhotosRootView: UIView {
     return $0
   }(UIView())
   
-  // MARK: - Buttons
   private lazy var backBarButton: UIButton = {
     let icon = UIImage(systemName: .backBarButtonImage)
     $0.setImage(icon, for: .normal)
@@ -33,7 +31,7 @@ final class TopicPhotosRootView: UIView {
     return $0
   }(UIButton())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero)
     setupViews()
@@ -43,7 +41,7 @@ final class TopicPhotosRootView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()
@@ -71,7 +69,7 @@ final class TopicPhotosRootView: UIView {
     configBackButtonAction(navigationController)
   }
   
-  // MARK: - Config Navigation Item Actions
+  // MARK: Config Navigation Item Actions
   private func configBackButtonAction(
     _ navigationController: UINavigationController?
   ) {

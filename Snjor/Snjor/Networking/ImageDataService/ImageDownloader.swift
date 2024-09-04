@@ -8,11 +8,11 @@
 import UIKit
 
 final class ImageDownloader {
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var imageDataTask: URLSessionDataTask?
   private let cache = ImageCacheService.cache
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func downloadPhoto(
     with url: URL,
     completion: @escaping ((UIImage?, Bool) -> Void)
@@ -25,7 +25,9 @@ final class ImageDownloader {
       return
     }
 
-    imageDataTask = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+    imageDataTask = URLSession.shared.dataTask(with: url) { [weak self] (
+      data, response, error
+    ) in
       guard let self = self else { return }
       self.imageDataTask = nil
 

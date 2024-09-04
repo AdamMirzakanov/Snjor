@@ -9,11 +9,11 @@ import UIKit
 
 struct SearchScreenFactory: SearchScreenFactoryProtocol {
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let viewModelFactory: any SearchScreenViewModelFactoryProtocol
   private let layoutProvider: LayoutProvider
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     viewModelFactory: any SearchScreenViewModelFactoryProtocol = SearchScreenViewModelFactory(),
     layoutProvider: LayoutProvider = LayoutProvider()
@@ -22,7 +22,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     self.layoutProvider = layoutProvider
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func makeModule(
     delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController {
@@ -86,7 +86,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     )
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func getModule(
     _ delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController {
@@ -106,6 +106,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   private func setupLayouts(module: SearchScreenViewController) {
     let cascadeLayout = MultiColumnCascadeLayout(with: module)
     module.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
-    module.rootView.albumsCollectionView.collectionViewLayout = layoutProvider.createCollectionsLayout(module: module)
+    let collectionsLayout = layoutProvider.createCollectionsLayout(module: module)
+    module.rootView.albumsCollectionView.collectionViewLayout = collectionsLayout
   }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 final class AlbumCellMainView: MainImageContainerView {
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale
   }
@@ -28,7 +28,7 @@ final class AlbumCellMainView: MainImageContainerView {
     return $0
   }(UIImageView())
   
-  // MARK: - Buttons
+  // MARK: Buttons
   lazy var infoButton: UIButton = {
     let icon = UIImage(systemName: .cameraMacro)
     $0.setImage(icon, for: .normal)
@@ -39,7 +39,7 @@ final class AlbumCellMainView: MainImageContainerView {
   }(UIButton(type: .custom))
   
   
-  // MARK: - Gradient
+  // MARK: Gradient
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
@@ -58,7 +58,7 @@ final class AlbumCellMainView: MainImageContainerView {
     return $0
   }(GradientView())
   
-  // MARK: - Labels
+  // MARK: Labels
   let titleLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
@@ -78,7 +78,7 @@ final class AlbumCellMainView: MainImageContainerView {
     return $0
   }(UILabel())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   override init() {
     super.init()
     setupViews()
@@ -88,7 +88,7 @@ final class AlbumCellMainView: MainImageContainerView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Sized Image
+  // MARK: Sized Image
   override func sizedImageURL(from url: URL) -> URL {
     layoutIfNeeded()
     let widthValue = String(describing: frame.width)
@@ -106,7 +106,7 @@ final class AlbumCellMainView: MainImageContainerView {
     )
   }
   
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(
     with album: Album,
     url: URL?
@@ -132,7 +132,7 @@ final class AlbumCellMainView: MainImageContainerView {
     imageDownloader.cancel()
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()

@@ -7,15 +7,15 @@
 
 final class AlbumPhotosCoordinator: Coordinatable {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let factory: any AlbumPhotosFactoryProtocol
   private weak var overlordCoordinator: (any ParentCoordinator)?
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     factory: any AlbumPhotosFactoryProtocol,
     navigation: any Navigable,
@@ -26,7 +26,7 @@ final class AlbumPhotosCoordinator: Coordinatable {
     self.overlordCoordinator = overlordCoordinator
   }
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func start() {
     let controller = factory.makeModule(delegate: self)
     navigation.pushViewController(controller, animated: true) { [weak self] in
@@ -37,6 +37,7 @@ final class AlbumPhotosCoordinator: Coordinatable {
   }
 }
 
+// MARK: - AlbumPhotosViewControllerDelegate
 extension AlbumPhotosCoordinator: AlbumPhotosViewControllerDelegate {
   func didSelect(_ photo: Photo) {
     let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
@@ -48,4 +49,5 @@ extension AlbumPhotosCoordinator: AlbumPhotosViewControllerDelegate {
   }
 }
 
+// MARK: - ParentCoordinator
 extension AlbumPhotosCoordinator: ParentCoordinator { }

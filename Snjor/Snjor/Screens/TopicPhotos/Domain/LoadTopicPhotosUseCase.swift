@@ -5,12 +5,14 @@
 //  Created by Адам Мирзаканов on 25.07.2024.
 //
 
+// MARK: - Protocol
 protocol LoadTopicPhotosUseCaseProtocol {
   func execute() async -> Result<[Photo], any Error>
 }
 
+// MARK: - Struct
 struct LoadTopicPhotosUseCase: LoadTopicPhotosUseCaseProtocol {
-  // MARK: - Internal Properties
+  
   let repository: any LoadTopicPhotosRepositoryProtocol
   let topic: Topic
   

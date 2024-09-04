@@ -9,12 +9,12 @@ import UIKit
 
 final class AlbumPhotosRootView: UIView {
   
-  // MARK: - CollectionView
+  // MARK: CollectionView
   let albumPhotosCollectionView: AlbumPhotosCollectionView = {
     return $0
   }(AlbumPhotosCollectionView())
   
-  // MARK: - Button Background View
+  // MARK: Button Background View
   private let backBarButtonBackgroundView: UIView = {
     $0.frame.size.width = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
     $0.frame.size.height = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
@@ -24,7 +24,7 @@ final class AlbumPhotosRootView: UIView {
     return $0
   }(UIView())
   
-  // MARK: - Buttons
+  // MARK: Buttons
   private lazy var backBarButton: UIButton = {
     let icon = UIImage(systemName: .backBarButtonImage)
     $0.setImage(icon, for: .normal)
@@ -33,7 +33,7 @@ final class AlbumPhotosRootView: UIView {
     return $0
   }(UIButton())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero)
     setupViews()
@@ -43,7 +43,7 @@ final class AlbumPhotosRootView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()
@@ -66,7 +66,7 @@ final class AlbumPhotosRootView: UIView {
     configBackButtonAction(navigationController)
   }
   
-  // MARK: - Config Navigation Item Actions
+  // MARK: Config Navigation Item Actions
   private func configBackButtonAction(
     _ navigationController: UINavigationController?
   ) {

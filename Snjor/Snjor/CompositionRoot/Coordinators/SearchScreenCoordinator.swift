@@ -8,14 +8,15 @@
 import UIKit
 
 final class SearchScreenCoordinator: Coordinatable {
-  // MARK: - Internal Properties
+ 
+  // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let factory: any SearchScreenFactoryProtocol
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     factory: any SearchScreenFactoryProtocol,
     navigation: any Navigable
@@ -24,10 +25,9 @@ final class SearchScreenCoordinator: Coordinatable {
     self.navigation = navigation
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func start() {
     let controller = factory.makeModule(delegate: self)
-//    factory.makeTabBarItem(navigation: navigation)
     navigation.navigationBar.prefersLargeTitles = true
     navigation.pushViewController(controller, animated: true)
     
@@ -75,11 +75,3 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
 
 // MARK: - ParentCoordinator
 extension SearchScreenCoordinator: ParentCoordinator { }
-
-//extension SearchScreenCoordinator: SearchResultScreenCoordinatorDelegate {
-//  func didFinish(childCoordinator: any Coordinatable) {
-//    childCoordinator.navigation.dismissNavigation = nil
-//    removeChildCoordinator(childCoordinator)
-//    navigation.dismiss(animated: true)
-//  }
-//}

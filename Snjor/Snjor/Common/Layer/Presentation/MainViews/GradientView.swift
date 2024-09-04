@@ -8,27 +8,27 @@
 import UIKit
 
 final class GradientView: UIView {
-  // MARK: - Internal Struct
+  // MARK: Internal Struct
   struct Color {
     let color: UIColor
     let location: CGFloat
   }
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var colors: [Color] = []
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func setColors(_ colors: [Color]) {
     self.colors = colors
     updateGradient()
   }
 
-  // MARK: - Override Methods
+  // MARK: Override Methods
   override class var layerClass: AnyClass {
     return CAGradientLayer.self
   }
 
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func updateGradient() {
     guard let gradientLayer = layer as? CAGradientLayer else { return }
     gradientLayer.colors = colors.map { $0.color.cgColor }

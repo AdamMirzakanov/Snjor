@@ -6,14 +6,15 @@
 //
 
 final class PhotoDetailCoordinator: Coordinatable {
-  // MARK: - Internal Properties
+  
+  // MARK: Internal Properties
   var navigation: any Navigable
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let factory: any PhotoDetailFactoryProtocol
   private weak var overlordCoordinator: (any ParentCoordinator)?
 
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     factory: any PhotoDetailFactoryProtocol,
     navigation: any Navigable,
@@ -24,7 +25,7 @@ final class PhotoDetailCoordinator: Coordinatable {
     self.overlordCoordinator = overlordCoordinator
   }
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func start() {
     let controller = factory.makeModule()
     navigation.pushViewController(controller, animated: true) { [weak self] in

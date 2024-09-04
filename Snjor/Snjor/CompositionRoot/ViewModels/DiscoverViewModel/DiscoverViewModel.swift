@@ -9,6 +9,7 @@ import Combine
 
 final class DiscoverViewModel: SearchViewModel <Photo> {
   
+  // MARK: Private Properties
   private let loadUseCase: any LoadPhotosUseCaseProtocol
   private let loadSearchPhotosUseCase: any LoadSearchPhotosUseCaseProtocol
    
@@ -27,7 +28,7 @@ final class DiscoverViewModel: SearchViewModel <Photo> {
     )
   }
   
-  // MARK: Private Methods
+  // MARK: Override Methods
   override func loadItemsUseCase() async {
     let result = await loadUseCase.execute()
     updateStateUI(with: result)

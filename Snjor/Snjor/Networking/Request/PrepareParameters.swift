@@ -6,19 +6,16 @@
 //
 
 enum PrepareParameters {
-  
-  typealias Parameters = [String: String]
-  
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   static var photosPage: Int = .page
-  static var searchPhotosPage: Int = .page
   static var albumsPage: Int = .page
+  static var searchPhotosPage: Int = .page
   static var searchAlbumsPage: Int = .page
   
-  // MARK: - Private  Properties
+  // MARK: Private  Properties
   private static let perPage: Int = .perPage
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   static func preparePhotoParameters() -> Parameters {
     nextPhotosPage()
     var parameters: Parameters = [:]
@@ -53,7 +50,7 @@ enum PrepareParameters {
     return parameters
   }
   
-  // MARK: - Private  Methods
+  // MARK: Private  Methods
   private static func nextPhotosPage() {
     photosPage += .page
   }

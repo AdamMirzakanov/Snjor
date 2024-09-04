@@ -6,8 +6,6 @@
 //
 
 struct AlbumPreviewPhoto: Decodable, Hashable {
-  
-  // MARK: - Internal Properties
   let slug: String
   let blurHash: String?
   let urls: AlbumPreviewPhotoURL

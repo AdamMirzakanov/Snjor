@@ -7,7 +7,6 @@
 
 import UIKit
 
-// MARK: - UIPageViewControllerDelegate
 extension PageScreenViewController: UIPageViewControllerDelegate { 
   func pageViewController(
     _ pageViewController: UIPageViewController,
@@ -19,7 +18,7 @@ extension PageScreenViewController: UIPageViewControllerDelegate {
     handlePageViewControllerTransition(pageViewController)
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func handlePageViewControllerTransition(
     _ pageViewController: UIPageViewController
   ) {
@@ -50,5 +49,4 @@ extension PageScreenViewController: UIPageViewControllerDelegate {
       scrollPosition: .centeredHorizontally
     )
   }
-  
 }

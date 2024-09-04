@@ -7,7 +7,9 @@
 
 import UIKit
 
-class SectionHeaderView: UICollectionReusableView {
+final class SectionHeaderView: UICollectionReusableView {
+  
+  // MARK: Internal Properties
   let titleLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -19,10 +21,7 @@ class SectionHeaderView: UICollectionReusableView {
     return label
   }()
   
-  func setTitle(_ title: String) {
-    titleLabel.text = title
-  }
-  
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupViews()
@@ -32,6 +31,12 @@ class SectionHeaderView: UICollectionReusableView {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: Internal Methods
+  func setTitle(_ title: String) {
+    titleLabel.text = title
+  }
+  
+  // MARK: Private Methods
   private func setupViews() {
     addSubview(titleLabel)
     setupTitleLabelConstraints()

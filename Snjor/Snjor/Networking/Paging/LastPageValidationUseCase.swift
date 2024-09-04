@@ -8,14 +8,14 @@
 import Foundation
 
 final class LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
-  // MARK: - Private Properties
-  private let loadQueue = DispatchQueue(label: "loadQueue", qos: .userInitiated)
+  // MARK: Private Properties
+  private let loadQueue = DispatchQueue(label: .loadQueue, qos: .userInitiated)
+  private let threshold = LastPageValidationUseCaseConst.thresholdValue
   private(set) var lastPage = false
-  private var threshold = LastPageValidationUseCaseConst.thresholdValue
   private var isLoading = false
   private var loadWorkItem: DispatchWorkItem?
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func updateLastPage(itemsCount: Int) {
     if itemsCount < threshold {
       lastPage = true
@@ -48,7 +48,7 @@ final class LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
     }
   }
 
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func startLoading(action: @escaping () -> Void) {
     action()
     self.isLoading = false
@@ -58,4 +58,9 @@ final class LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
 // MARK: - Double
 private extension Double {
   static let deadline = 0.3
+}
+
+// MARK: - String
+private extension String {
+  static let loadQueue = "loadQueue"
 }

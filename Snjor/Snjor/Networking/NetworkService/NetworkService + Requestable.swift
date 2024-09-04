@@ -8,7 +8,7 @@
 import Foundation
 
 extension NetworkService: Requestable {
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func request<T>(
     request: URLRequest,
     type: T.Type
@@ -17,7 +17,7 @@ extension NetworkService: Requestable {
     return try await makeRequest(request: request)
   }
 
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func makeRequest<T>(
     request: URLRequest
   ) async throws -> T

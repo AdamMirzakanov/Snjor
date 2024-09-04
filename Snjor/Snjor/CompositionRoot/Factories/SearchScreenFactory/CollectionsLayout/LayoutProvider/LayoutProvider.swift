@@ -9,11 +9,11 @@ import UIKit
 
 struct LayoutProvider {
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let albumsLayoutFactory = AlbumsLayoutFactory()
   private let topicsLayoutFactory = TopicsLayoutFactory()
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func createCollectionsLayout(
     module: SearchScreenViewController
   ) -> UICollectionViewLayout {
@@ -54,7 +54,7 @@ struct LayoutProvider {
     return layout
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func makeLineItem(
     layoutEnvironment: any NSCollectionLayoutEnvironment
   ) -> NSCollectionLayoutBoundarySupplementaryItem {

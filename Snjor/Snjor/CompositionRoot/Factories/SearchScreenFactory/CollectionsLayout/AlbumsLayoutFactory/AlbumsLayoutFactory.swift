@@ -9,7 +9,7 @@ import UIKit
 
 struct AlbumsLayoutFactory {
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func createAlbumLayout() -> NSCollectionLayoutSection {
     let item = makeItem()
     let verticalGroup = makeVerticalGroup(item: item)
@@ -17,7 +17,7 @@ struct AlbumsLayoutFactory {
     return section
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func makeItem() -> NSCollectionLayoutItem {
     let itemSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(AlbumsLayoutFactoryConst.itemWidthDimension),

@@ -9,12 +9,12 @@ import UIKit
 
 final class TopicCellMainView: MainImageContainerView {
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale
   }
   
-  // MARK: - Labels
+  // MARK: Labels
   let titleLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +39,7 @@ final class TopicCellMainView: MainImageContainerView {
     return visualEffectView
   }()
   
-  // MARK: - Initializers
+  // MARK: Initializers
   override init() {
     super.init()
     mainImageView.layer.cornerRadius = TopicCellMainViewConst.cellCornerRadius
@@ -50,7 +50,7 @@ final class TopicCellMainView: MainImageContainerView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Sized Image
+  // MARK: Sized Image
   override func sizedImageURL(from url: URL) -> URL {
     layoutIfNeeded()
     let widthValue = String(describing: frame.width)
@@ -68,7 +68,7 @@ final class TopicCellMainView: MainImageContainerView {
     )
   }
   
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(
     with topic: Topic,
     url: URL?

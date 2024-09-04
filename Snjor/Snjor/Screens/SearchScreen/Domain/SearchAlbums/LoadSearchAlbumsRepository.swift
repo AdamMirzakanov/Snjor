@@ -7,15 +7,16 @@
 
 import Foundation
 
+// MARK: - Protocol
 protocol LoadSearchAlbumsRepositoryProtocol {
   func fetchSearchAlbums(request: URLRequest) async throws -> SearchAlbums
 }
 
+// MARK: - Struct
 struct LoadSearchAlbumsRepository: LoadSearchAlbumsRepositoryProtocol {
-  // MARK: - Internal Properties
+  
   let networkService: any Requestable
   
-  // MARK: - Internal Methods
   func fetchSearchAlbums(request: URLRequest) async throws -> SearchAlbums {
     return try await networkService.request(
       request: request,

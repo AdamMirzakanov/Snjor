@@ -9,10 +9,10 @@ import UIKit
 
 class MainCollectionView: UICollectionView {
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     configureLayout()
@@ -24,16 +24,16 @@ class MainCollectionView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func cellRegister() {
-    
+
   }
   
   func reusableViewRegister() {
     
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func configureLayout() {
     flowlayout.scrollDirection = .vertical
     showsVerticalScrollIndicator = false

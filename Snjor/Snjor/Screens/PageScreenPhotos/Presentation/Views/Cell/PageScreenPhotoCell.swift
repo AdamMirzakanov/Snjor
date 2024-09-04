@@ -9,12 +9,12 @@ import UIKit
 
 final class PageScreenPhotoCell: UICollectionViewCell {
 
-  // MARK: - Main View
+  // MARK: Views
   let mainView: PageScreenPhotoCellMainView = {
     return $0
   }(PageScreenPhotoCellMainView())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupPhotoView()
@@ -24,20 +24,20 @@ final class PageScreenPhotoCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Override Methods
+  // MARK: Override Methods
   override func prepareForReuse() {
     super.prepareForReuse()
     mainView.prepareForReuse()
   }
 
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(viewModelItem: BaseViewModelItem <Photo>) {
     let photo = viewModelItem.item
     let photoURL = viewModelItem.photoURL
     mainView.configure(with: photo, url: photoURL)
   }
 
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupPhotoView() {
     contentView.addSubview(mainView)
     mainView.fillSuperView()

@@ -8,7 +8,8 @@
 import UIKit
 
 final class PageScreenTopicCell: UICollectionViewCell {
-  // MARK: - View
+  
+  // MARK: Views
   private let topicTitleLabel: UILabel = {
     $0.textColor = .white
     $0.textAlignment = .center
@@ -19,7 +20,7 @@ final class PageScreenTopicCell: UICollectionViewCell {
     return $0
   }(UILabel())
   
-  // MARK: - Initializers
+  // MARK: Initializers
    override init(frame: CGRect) {
      super.init(frame: frame)
      setupViews()
@@ -29,18 +30,18 @@ final class PageScreenTopicCell: UICollectionViewCell {
      fatalError("init(coder:) has not been implemented")
    }
 
-   // MARK: - Override Methods
+   // MARK: Override Methods
    override func prepareForReuse() {
      super.prepareForReuse()
      topicTitleLabel.text = nil
    }
 
-   // MARK: - Setup Data
+   // MARK: Setup Data
    func configure(viewModelItem: BaseViewModelItem <Topic>) {
      topicTitleLabel.text = viewModelItem.itemTitle
    }
 
-   // MARK: - Setup Views
+   // MARK: Setup Views
    private func setupViews() {
      contentView.addSubview(topicTitleLabel)
      topicTitleLabel.centerXY()

@@ -7,16 +7,12 @@
 
 import UIKit
 
-protocol PhotoCellMainViewDelegate: AnyObject {
-  func downloadTapped()
-}
-
 final class PhotoCellMainView: MainImageContainerView {
 
-  // MARK: - Delegate
+  // MARK: Delegate
   weak var delegate: (any PhotoCellMainViewDelegate)?
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale
   }
@@ -27,7 +23,7 @@ final class PhotoCellMainView: MainImageContainerView {
     }
   }
 
-  // MARK: - Gradient
+  // MARK: Gradient
   let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
@@ -46,7 +42,7 @@ final class PhotoCellMainView: MainImageContainerView {
     return $0
   }(GradientView())
 
-  // MARK: - Spinner
+  // MARK: Spinner
   lazy var spinner: UIActivityIndicatorView = {
     let xCenter = self.downloadButtonBlurEffect.contentView.bounds.midX
     let yCenter = self.downloadButtonBlurEffect.contentView.bounds.midY
@@ -62,7 +58,7 @@ final class PhotoCellMainView: MainImageContainerView {
     return $0
   }(UIActivityIndicatorView(style: .medium))
 
-  // MARK: - Blur Effects
+  // MARK: Blur Effects
   let downloadButtonBlurEffect: UIVisualEffectView = {
     $0.frame.size.width = PhotoCellMainViewConst.fullValue
     $0.frame.size.height = PhotoCellMainViewConst.fullValue
@@ -77,7 +73,7 @@ final class PhotoCellMainView: MainImageContainerView {
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
   
-  // MARK: - Buttons
+  // MARK: Buttons
   lazy var downloadButton: UIButton = {
     let icon = UIImage(systemName: .downloadCellButtonImage)
     $0.setImage(icon, for: .normal)
@@ -88,7 +84,7 @@ final class PhotoCellMainView: MainImageContainerView {
     return $0
   }(UIButton(type: .custom))
   
-  // MARK: - Labels
+  // MARK: Labels
   let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
@@ -110,7 +106,7 @@ final class PhotoCellMainView: MainImageContainerView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Sized Image
+  // MARK: Sized Image
   override func sizedImageURL(from url: URL) -> URL {
     layoutIfNeeded()
     let widthValue = String(describing: frame.width)
@@ -128,7 +124,7 @@ final class PhotoCellMainView: MainImageContainerView {
     )
   }
 
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(
     with photo: Photo,
     showsUsername: Bool = true,
@@ -147,7 +143,7 @@ final class PhotoCellMainView: MainImageContainerView {
     reset()
   }
 
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupPhotoCellViews() {
     addSubviews()
     setupConstraints()
@@ -201,7 +197,7 @@ final class PhotoCellMainView: MainImageContainerView {
     spinner.stopAnimating()
   }
 
-  // MARK: - Config Actions
+  // MARK: Config Actions
   private func configDownloadButtonAction() {
     let downloadButtonAction = downloadAction()
     addAction(downloadButtonAction)
@@ -227,7 +223,7 @@ final class PhotoCellMainView: MainImageContainerView {
     )
   }
 
-  // MARK: - Animate Buttons
+  // MARK: Animate Buttons
   private func animateButton() {
     UIView.animate(withDuration: PhotoCellMainViewConst.duration) {
       let scaleTransform = CGAffineTransform(

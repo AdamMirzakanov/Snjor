@@ -9,13 +9,13 @@ import UIKit
 
 final class TagsCollectionView: UICollectionView {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   var tags: [Tag] = []
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero, collectionViewLayout: flowlayout)
     delegate = self
@@ -28,7 +28,7 @@ final class TagsCollectionView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func configureLayout() {
     flowlayout.scrollDirection = .horizontal
     backgroundColor = .clear

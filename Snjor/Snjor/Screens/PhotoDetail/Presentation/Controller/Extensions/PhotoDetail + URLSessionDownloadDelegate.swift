@@ -9,7 +9,8 @@ import UIKit
 import Photos
 
 extension PhotoDetailViewController: URLSessionDownloadDelegate {
-  // MARK: - URL Session Download Delegate
+  
+  // MARK: URL Session Download Delegate
   func urlSession(
     _ session: URLSession,
     downloadTask: URLSessionDownloadTask,
@@ -29,9 +30,9 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
       )
     }
   }
-
-  // MARK: - Private Methods
-  func saveImageToGallery(at url: URL) {
+  
+  // MARK: Private Methods
+  private func saveImageToGallery(at url: URL) {
     PHPhotoLibrary.requestAuthorization { status in
       guard status == .authorized else { return }
       PHPhotoLibrary.shared().performChanges {
@@ -46,15 +47,15 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
       }
     }
   }
-
-  func localFilePath(for url: URL) -> URL {
+  
+  private func localFilePath(for url: URL) -> URL {
     var destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
     if destinationURL.pathExtension.isEmpty {
       destinationURL = destinationURL.appendingPathExtension(.jpegExt)
     }
     return destinationURL
   }
-
+  
   private func hideSpinnerAndReverseAnimateDownloadButton() {
     DispatchQueue.main.async{
       self.rootView.reverseAnimateDownloadButton()

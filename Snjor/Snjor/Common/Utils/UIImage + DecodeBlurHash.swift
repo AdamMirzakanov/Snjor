@@ -9,7 +9,7 @@ import UIKit
 
 // swiftlint:disable all
 extension UIImage {
-  // MARK: - Initializers 
+  // MARK: Initializers
   convenience init?(
     blurHash: String,
     size: CGSize,
@@ -91,7 +91,7 @@ extension UIImage {
   }
 }
 
-// MARK: - String Extension
+// MARK: String Extension
 extension String {
   func decode83() -> Int {
     var value: Int = 0
@@ -104,7 +104,7 @@ extension String {
   }
 }
 
-// MARK: - Private String Extension
+// MARK: Private String Extension
 private extension String {
   subscript (offset: Int) -> Character {
     return self[index(startIndex, offsetBy: offset)]
@@ -123,7 +123,7 @@ private extension String {
   }
 }
 
-// MARK: - Private Closures
+// MARK: Private Closures
 private let encodeCharacters: [String] = {
   return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~".map { String($0) }
 }()
@@ -136,7 +136,7 @@ private let decodeCharacters: [String: Int] = {
   return dict
 }()
 
-// MARK: - Private Functions
+// MARK: Private Functions
 private func decodeDC(_ value: Int) -> (Float, Float, Float) {
   let intR = value >> 16
   let intG = (value >> 8) & 255

@@ -8,14 +8,15 @@
 import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-  // MARK: - Internal Properties
+
+  // MARK: Internal Properties
   var window: UIWindow?
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var appCoordinator: AppCoordinator?
   private var appFactory: (any AppFactoryProtocol)?
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func scene(
     _ scene: UIScene,
     willConnectTo session: UISceneSession,
@@ -33,10 +34,4 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     )
     appCoordinator?.start()
   }
-
-  func sceneDidDisconnect(_ scene: UIScene) { }
-  func sceneDidBecomeActive(_ scene: UIScene) { }
-  func sceneWillResignActive(_ scene: UIScene) { }
-  func sceneWillEnterForeground(_ scene: UIScene) { }
-  func sceneDidEnterBackground(_ scene: UIScene) { }
 }

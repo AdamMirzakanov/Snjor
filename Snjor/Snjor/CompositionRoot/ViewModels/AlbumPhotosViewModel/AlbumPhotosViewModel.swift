@@ -7,10 +7,12 @@
 
 import Combine
 
-final class AlbumPhotosViewModel: BaseViewModel <Photo> {
+final class AlbumPhotosViewModel: BaseViewModel<Photo> {
   
+  // MARK: Private Properties
   private let loadUseCase: any LoadAlbumPhotosUseCaseProtocol
   
+  // MARK: Initializers
   init(
     loadUseCase: any LoadAlbumPhotosUseCaseProtocol,
     lastPageValidationUseCase: any LastPageValidationUseCaseProtocol,
@@ -23,6 +25,7 @@ final class AlbumPhotosViewModel: BaseViewModel <Photo> {
     )
   }
   
+  // MARK: Override Methods
   override func loadItemsUseCase() async {
     let result = await loadUseCase.execute()
     updateStateUI(with: result)

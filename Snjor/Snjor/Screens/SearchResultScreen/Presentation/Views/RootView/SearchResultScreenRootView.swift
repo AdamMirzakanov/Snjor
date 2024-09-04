@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SearchResultScreenRootView: UIView {
+final class SearchResultScreenRootView: UIView {
   
-  // MARK: - Collection Views
+  // MARK: Collection Views
   let photosCollectionView: PhotosCollectionView = {
     return $0
   }(PhotosCollectionView())
@@ -18,7 +18,7 @@ class SearchResultScreenRootView: UIView {
     return $0
   }(AlbumsCollectionView())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero)
     setupViews()
@@ -29,7 +29,7 @@ class SearchResultScreenRootView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()

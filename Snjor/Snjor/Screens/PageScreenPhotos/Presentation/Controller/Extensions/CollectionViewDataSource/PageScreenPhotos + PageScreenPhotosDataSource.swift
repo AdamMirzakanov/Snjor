@@ -12,7 +12,6 @@ extension PageScreenPhotosViewController {
   private typealias DataSource = UICollectionViewDiffableDataSource<PageScreenPhotosSection, Photo>
   private typealias Snapshot = NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo>
   
-  // MARK: - Private Properties
   private var snapshot: NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo> {
     var snapshot = NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo>()
     snapshot.appendSections([.main])
@@ -20,7 +19,6 @@ extension PageScreenPhotosViewController {
     return snapshot
   }
   
-  // MARK: - Internal Methods
   func applySnapshot() {
     guard let dataSource = dataSource else { return }
     dataSource.apply(
@@ -29,6 +27,7 @@ extension PageScreenPhotosViewController {
     )
   }
   
+  // MARK: Create Data Source
   func createDataSource(
     for collectionView: UICollectionView
   ) {

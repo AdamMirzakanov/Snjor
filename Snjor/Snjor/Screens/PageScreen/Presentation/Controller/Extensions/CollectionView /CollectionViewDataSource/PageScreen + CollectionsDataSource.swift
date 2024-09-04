@@ -8,10 +8,11 @@
 import UIKit
 
 extension PageScreenViewController {
+  
   private typealias DataSource = UICollectionViewDiffableDataSource <TopicsSection, Topic>
   private typealias Snapshot = NSDiffableDataSourceSnapshot <TopicsSection, Topic>
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var snapshot: Snapshot {
     var snapshot = Snapshot()
     snapshot.appendSections([.main])
@@ -19,7 +20,7 @@ extension PageScreenViewController {
     return snapshot
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func applySnapshot() {
     guard let dataSource = dataSource else { return }
     dataSource.apply(
@@ -59,8 +60,4 @@ extension PageScreenViewController {
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }
-}
-
-enum TopicsSection: CaseIterable {
-  case main
 }

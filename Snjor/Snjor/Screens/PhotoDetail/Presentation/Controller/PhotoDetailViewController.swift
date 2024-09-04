@@ -10,7 +10,7 @@ import Combine
 
 final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var downloadService = DownloadService()
   private(set) var viewModel: any PhotoDetailViewModelProtocol
@@ -19,7 +19,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
     in: .userDomainMask
   ).first!
 
-  // MARK: - Initializers
+  // MARK: Initializers
   init(viewModel: any PhotoDetailViewModelProtocol
   ) {
     self.viewModel = viewModel
@@ -30,7 +30,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - View Lifecycle
+  // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     rootView.delegate = self
@@ -51,7 +51,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
     print(#function, Self.self, "🟢")
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func configureDownloadSession() {
     downloadService.configureSession(
       delegate: self,

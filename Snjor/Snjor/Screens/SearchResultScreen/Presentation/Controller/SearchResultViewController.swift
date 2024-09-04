@@ -8,14 +8,9 @@
 import UIKit
 import Combine
 
-protocol SearchResultViewControllerDelegate: AnyObject {
-  func searchPhotoCellDidSelect(_ photo: Photo)
-  func searchAlbumcCellDidSelect(_ album: Album)
-}
-
 final class SearchResultViewController: MainViewController<SearchResultScreenRootView> {
   
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   var photosDataSource: UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>?
   var collectionsDataSource: UICollectionViewDiffableDataSource<AlbumsSection, Album>?
   var photosSections: [SearchResultPhotosSection] = []
@@ -25,7 +20,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   var albumsViewModel: any SearchViewModelProtocol <Album>
   var currentSearchTerm: String?
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchResultViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
@@ -34,7 +29,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     in: .userDomainMask
   ).first!
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     currentScopeIndex: Int,
     photosViewModel: any SearchViewModelProtocol <Photo>,
@@ -56,7 +51,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     print(#function, Self.self, "🔴")
   }
   
-  // MARK: - View Lifecycle
+  // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setupCollectionViewDelegate()
@@ -80,7 +75,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     }
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func resetSearchState() {
     photosDataSource = nil
     photosSections.removeAll()
@@ -101,7 +96,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     }
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func setupVisibleContainers() {
     switch currentScopeIndex {
     case .discover:

@@ -9,12 +9,12 @@ import UIKit
 
 class MainPhotoCell: UICollectionViewCell {
 
-  // MARK: - Main View
+  // MARK: Main View
   let mainView: PhotoCellMainView = {
     return $0
   }(PhotoCellMainView())
 
-  // MARK: - Initializers
+  // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupMainView()
@@ -24,20 +24,20 @@ class MainPhotoCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Override Methods
+  // MARK: Override Methods
   override func prepareForReuse() {
     super.prepareForReuse()
     mainView.prepareForReuse()
   }
 
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(viewModelItem: BaseViewModelItem <Photo>) {
     let photo = viewModelItem.item
     let photoURL = viewModelItem.photoURL
     mainView.configure(with: photo, url: photoURL)
   }
 
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupMainView() {
     contentView.addSubview(mainView)
     mainView.fillSuperView()

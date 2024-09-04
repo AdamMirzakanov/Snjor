@@ -5,15 +5,16 @@
 //  Created by Адам Мирзаканов on 29.08.2024.
 //
 
+// MARK: - Protocol
 protocol LoadSearchAlbumsUseCaseProtocol {
   func execute(with searchTerm: String) async -> Result<[Album], any Error>
 }
 
+// MARK: - Struct
 struct LoadSearchAlbumsUseCase: LoadSearchAlbumsUseCaseProtocol {
-  // MARK: - Internal Properties
+  
   let repository: any LoadSearchAlbumsRepositoryProtocol
   
-  // MARK: - Internal Methods
   func execute(with searchTerm: String) async -> Result<[Album], any Error> {
     do {
       let request = try RequestController.searchAlbumsRequest(with: searchTerm)

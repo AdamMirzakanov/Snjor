@@ -12,7 +12,7 @@ extension SearchScreenViewController {
   private typealias DataSource = UICollectionViewDiffableDataSource<TopicsAndAlbumsSection, CollectionsItem>
   private typealias Snapshot = NSDiffableDataSourceSnapshot<TopicsAndAlbumsSection, CollectionsItem>
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var collectionsSnapshot: Snapshot {
     var snapshot = Snapshot()
     let topicSection = TopicsAndAlbumsSection.topics
@@ -24,7 +24,7 @@ extension SearchScreenViewController {
     return snapshot
   }
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func applyCollectionsSnapshot() {
     guard let dataSource = collectionsDataSource else { return }
     dataSource.apply(
@@ -33,7 +33,7 @@ extension SearchScreenViewController {
     )
   }
   
-  // MARK: - Create Data Source
+  // MARK: Create Data Source
   func createCollectionsDataSource(for collectionView: UICollectionView) {
     collectionsDataSource = DataSource(
       collectionView: collectionView
@@ -152,7 +152,7 @@ extension SearchScreenViewController {
     return lineView
   }
   
-  // MARK: - Configure Cells
+  // MARK: Configure Cells
   private func configureAlbumCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,

@@ -9,12 +9,12 @@ import UIKit
 
 final class PageScreenPhotosRootView: UIView {
   
-  // MARK: - Views
+  // MARK: Views
   let pageScreenPhotosCollectionView: PageScreenPhotosCollectionView = {
     return $0
   }(PageScreenPhotosCollectionView())
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init() {
     super.init(frame: .zero)
     setupViews()
@@ -24,7 +24,7 @@ final class PageScreenPhotosRootView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupViews() {
     addSubviews()
     setupConstraints()

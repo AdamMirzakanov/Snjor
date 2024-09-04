@@ -8,8 +8,6 @@
 import Foundation
 
 struct Album: Decodable, Hashable {
-  
-  // MARK: - Internal Properties
   let id: String
   let title: String
   let previewPhotos: [AlbumPreviewPhoto]
@@ -17,13 +15,14 @@ struct Album: Decodable, Hashable {
   let tags: [Tag]?
 }
 
-// MARK: - Extension
+// MARK: - ViewModelItemRepresentable
 extension Album: ViewModelItemRepresentable {
   var regularURL: URL? {
     return self.previewPhotos[.zero].urls.regular
   }
 }
 
+// MARK: - Downloadable
 extension Album: Downloadable {
   var downloadURL: URL? {
     return self.previewPhotos[.zero].urls.full

@@ -12,7 +12,7 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
   
   private let lastPageValidationUseCase = LastPageValidationUseCase()
   
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func makeTabBarItem(navigation: any Navigable) {
     makeTabBarItem(
       navigation: navigation,

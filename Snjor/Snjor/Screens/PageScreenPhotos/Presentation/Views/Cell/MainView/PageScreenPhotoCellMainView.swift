@@ -9,7 +9,7 @@ import UIKit
 
 final class PageScreenPhotoCellMainView: MainImageContainerView {
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale
   }
@@ -21,8 +21,8 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     }
   }
   
-  // MARK: - Gradient
-  let gradientView: GradientView = {
+  // MARK: Views
+  private let gradientView: GradientView = {
     let color = UIColor(
       white: .zero,
       alpha: PageScreenPhotoCellMainViewConst.gradientOpacity
@@ -40,8 +40,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     return $0
   }(GradientView())
   
-  // MARK: - Profile Photo
-  let profilePhotoView: PhotoDetailPhotoView = {
+  private let profilePhotoView: PhotoDetailPhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = PageScreenPhotoCellMainViewConst.profilePhotoViewCircle
     $0.clipsToBounds = true
@@ -55,8 +54,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     return $0
   }(PhotoDetailPhotoView())
   
-  // MARK: - Labels
-  let userNameLabel: UILabel = {
+  private let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.numberOfLines = .zero
     $0.font = .systemFont(
@@ -66,7 +64,6 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     return $0
   }(UILabel())
   
-  // MARK: - ImageViews
   private let heartImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .heartImage)
@@ -74,7 +71,6 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     return $0
   }(UIImageView())
   
-  // MARK: - StackViews
   private lazy var profileStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -85,7 +81,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     return $0
   }(UIStackView())
 
-  // MARK: - Initializers
+  // MARK: Initializers
   override init() {
     super.init()
     setupPhotoCellViews()
@@ -95,7 +91,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: - Sized Image
+  // MARK: Sized Image
   override func sizedImageURL(from url: URL) -> URL {
     layoutIfNeeded()
     let widthValue = String(describing: frame.width)
@@ -113,7 +109,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     )
   }
 
-  // MARK: - Setup Data
+  // MARK: Setup Data
   func configure(
     with photo: Photo,
     showsUsername: Bool = true,
@@ -132,7 +128,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     )
   }
   
-  // MARK: - Setup Views
+  // MARK: Setup Views
   private func setupPhotoCellViews() {
     addSubviews()
     setupConstraints()

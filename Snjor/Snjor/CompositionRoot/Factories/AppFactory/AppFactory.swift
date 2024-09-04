@@ -6,8 +6,6 @@
 //
 
 struct AppFactory: AppFactoryProtocol {
-
-  // MARK: - Internal Methods
   func makeMainTabBarCoordinator(_ navigation: any Navigable) -> any Coordinatable {
     let factory = MainTabBarFactory()
     let coordinator = MainTabBarCoordinator(

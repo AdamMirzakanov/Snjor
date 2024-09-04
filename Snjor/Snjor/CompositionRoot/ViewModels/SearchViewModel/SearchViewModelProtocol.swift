@@ -5,7 +5,7 @@
 //  Created by Адам Мирзаканов on 02.09.2024.
 //
 
-protocol SearchViewModelProtocol <Item> : ContentManagingProtocol {
+protocol SearchViewModelProtocol<Item>: ContentManagingProtocol {
   func search(with searchTerm: String)
   func searchUseCase(with searchTerm: String) async
   func checkAndLoadMoreSearchItems(at index: Int, with searchTerm: String)

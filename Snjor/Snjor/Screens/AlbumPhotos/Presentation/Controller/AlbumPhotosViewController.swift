@@ -8,18 +8,14 @@
 import UIKit
 import Combine
 
-protocol AlbumPhotosViewControllerDelegate: AnyObject {
-  func didSelect(_ photo: Photo)
-}
-
-class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
+final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   
-  // MARK: - Delegate
-  private(set) weak var delegate: (any AlbumPhotosViewControllerDelegate)?
-  
-  // MARK: - Private Properties
-  private var cancellable = Set<AnyCancellable>()
+  // MARK: Internal Properties
   var dataSource: UICollectionViewDiffableDataSource<AlbumPhotosSection, Photo>?
+  
+  // MARK: Private Properties
+  private var cancellable = Set<AnyCancellable>()
+  private(set) weak var delegate: (any AlbumPhotosViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
   private(set) var viewModel: any ContentManagingProtocol <Photo>
   private(set) var documentsPath = FileManager.default.urls(
@@ -27,7 +23,7 @@ class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     in: .userDomainMask
   ).first!
   
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     viewModel: any ContentManagingProtocol <Photo>,
     delegate: any AlbumPhotosViewControllerDelegate
@@ -45,7 +41,7 @@ class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     print(#function, Self.self, "🟠")
   }
   
-  // MARK: - View Lifecycle
+  // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     configCollectionView()
@@ -69,7 +65,7 @@ class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     }
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func setupDataSource() {
     createDataSource(
       for: rootView.albumPhotosCollectionView,

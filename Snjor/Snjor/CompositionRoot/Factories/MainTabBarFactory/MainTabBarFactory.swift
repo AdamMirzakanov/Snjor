@@ -9,7 +9,7 @@ import UIKit
 
 struct MainTabBarFactory: MainTabBarFactoryProtocol {
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func makeMainTabBarController() -> UITabBarController {
     let mainTabBarController = MainTabBarController()
     return mainTabBarController
@@ -25,7 +25,7 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
     ]
   }
 
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func makeTopicsPageCoordinator() -> any Coordinatable {
     let factory = PageScreenFactory()
     let navigationController = UINavigationController()

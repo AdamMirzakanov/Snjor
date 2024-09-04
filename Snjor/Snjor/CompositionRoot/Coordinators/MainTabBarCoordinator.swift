@@ -6,14 +6,15 @@
 //
 
 final class MainTabBarCoordinator: Coordinatable {
-  // MARK: - Internal Properties
+  
+  // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
 
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let factory: any MainTabBarFactoryProtocol
 
-  // MARK: - Initializers
+  // MARK: Initializers
   init(
     navigation: any Navigable,
     factory: any MainTabBarFactoryProtocol
@@ -22,7 +23,7 @@ final class MainTabBarCoordinator: Coordinatable {
     self.factory = factory
   }
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   func start() {
     let navigationTabBar = factory.makeMainTabBarController()
     navigation.pushViewController(navigationTabBar, animated: false)

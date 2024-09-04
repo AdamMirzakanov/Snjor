@@ -7,15 +7,16 @@
 
 import Foundation
 
+// MARK: - Protocol
 protocol LoadTopicsUseCaseProtocol {
   func execute() async -> Result<[Topic], any Error>
 }
 
+// MARK: - Struct
 struct LoadTopicsUseCase: LoadTopicsUseCaseProtocol {
-  // MARK: - Private Properties
+  
   let repository: any LoadTopicsPageRepositoryProtocol
   
-  // MARK: - Internal Methods
   func execute() async -> Result<[Topic], any Error> {
     do {
       let request = try RequestController.topicsTitleRequest()

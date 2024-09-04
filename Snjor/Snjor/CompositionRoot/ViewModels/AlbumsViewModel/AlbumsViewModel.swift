@@ -7,8 +7,9 @@
 
 import Combine
 
-final class AlbumsViewModel: SearchViewModel <Album> {
+final class AlbumsViewModel: SearchViewModel<Album> {
   
+  // MARK: Private Properties
   private let loadUseCase: any LoadAlbumsUseCaseProtocol
   private let loadSearchAlbumsUseCase: any LoadSearchAlbumsUseCaseProtocol
   
@@ -27,6 +28,7 @@ final class AlbumsViewModel: SearchViewModel <Album> {
     )
   }
   
+  // MARK: Override Methods
   override func loadItemsUseCase() async {
     let result = await loadUseCase.execute()
     updateStateUI(with: result)

@@ -8,13 +8,13 @@
 import Foundation
 
 enum PrepareRequests {
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private static var getHTTP: HTTPMethod { .get }
   private static var scheme: API { .scheme }
   private static var host: API { .host }
   private static var accessKey: Authorization { .accessKey }
 
-  // MARK: - Internal Methods
+  // MARK: Internal Methods
   static func prepareTopicsTitleAPIRequest(topics: String) throws -> URLRequest {
     guard let url = prepareURL(from: topics) else {
       throw APIError.URLError
@@ -23,11 +23,11 @@ enum PrepareRequests {
     return request
   }
   
-  static func prepareTopicsPhotosAPIRequest(
+  static func prepareTopicPhotosAPIRequest(
     topics: String,
     id: String,
     phtos: String,
-    parameters: [String: String]
+    parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: topics, parameters: parameters) else {
       throw APIError.URLError
@@ -42,7 +42,7 @@ enum PrepareRequests {
     albums: String,
     id: String,
     phtos: String,
-    parameters: [String: String]
+    parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: albums, parameters: parameters) else {
       throw APIError.URLError
@@ -67,7 +67,7 @@ enum PrepareRequests {
 
   static func prepareAPIRequest(
     path: String,
-    parameters: [String: String]
+    parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
@@ -76,7 +76,7 @@ enum PrepareRequests {
     return request
   }
 
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private static func prepareURLRequest(url: URL) -> URLRequest {
     var request = URLRequest(url: url)
     request.allHTTPHeaderFields = prepareHeaders()
@@ -86,7 +86,7 @@ enum PrepareRequests {
   
   private static func prepareURL(
     from path: String,
-    parameters: [String: String]? = nil
+    parameters: Parameters? = nil
   ) -> URL? {
     if let parameters = parameters {
       let components = prepareURLComponents(from: path, parameters: parameters)
@@ -99,7 +99,7 @@ enum PrepareRequests {
 
   private static func prepareURLComponents(
     from path: String,
-    parameters: [String: String]? = nil
+    parameters: Parameters? = nil
   ) -> URLComponents {
     var components = URLComponents()
     components.scheme = scheme.rawValue
@@ -112,7 +112,7 @@ enum PrepareRequests {
   }
 
   private static func prepareQueryItems(
-    parameters: [String: String]
+    parameters: Parameters
   ) -> [URLQueryItem] {
     parameters.map { URLQueryItem(
       name: $0.key,
@@ -120,8 +120,8 @@ enum PrepareRequests {
     }
   }
 
-  private static func prepareHeaders() -> [String: String] {
-    var headers: [String: String] = [:]
+  private static func prepareHeaders() -> Parameters {
+    var headers: Parameters = [:]
     headers["Authorization"] = "Client-ID " + accessKey.rawValue
     return headers
   }

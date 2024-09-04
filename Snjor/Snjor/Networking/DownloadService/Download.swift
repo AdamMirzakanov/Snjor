@@ -8,11 +8,11 @@
 import Foundation
 
 final class Download {
-  // MARK: - Internal Properties
+  // MARK: Internal Properties
   var item: any Downloadable
   var task: URLSessionDownloadTask?
 
-  // MARK: - Initializers
+  // MARK: Initializers
   init(item: any Downloadable) {
     self.item = item
   }
