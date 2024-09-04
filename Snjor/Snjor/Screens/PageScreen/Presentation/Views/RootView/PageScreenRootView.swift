@@ -20,16 +20,21 @@ final class PageScreenRootView: UIView {
   ))
   
   let topicsCollectionView: PageScreenTopicsCollectionView = {
-    $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: PageScreenRootViewConst.topicsCollectionViewHeight
+    ).isActive = true
     return $0
   }(PageScreenTopicsCollectionView())
   
   // MARK: - Private Views
   private let appNameLabel: UILabel = {
     let text = "Snjør"
-    let fontSize = UIFont.systemFont(ofSize: 20, weight: .bold)
+    let fontSize = UIFont.systemFont(
+      ofSize: PageScreenRootViewConst.appNameLabelFontSize,
+      weight: .bold
+    )
     let attributes: [NSAttributedString.Key: Any] = [
-      .kern: 0.5,
+      .kern: PageScreenRootViewConst.appNameLabelTextKern,
       .font: fontSize
     ]
     $0.attributedText = NSAttributedString(string: text, attributes: attributes)
@@ -41,12 +46,15 @@ final class PageScreenRootView: UIView {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.setColors([
       GradientView.Color(
-        color: UIColor(white: 0, alpha: 1.0),
-        location: 0.1
+        color: UIColor(
+          white: .zero,
+          alpha: PageScreenRootViewConst.gradientOpacity
+        ),
+        location: PageScreenRootViewConst.gradientStartLocation
       ),
       GradientView.Color(
         color: .clear,
-        location: 0.25
+        location: PageScreenRootViewConst.gradientEndLocation
       ),
     ])
     $0.isUserInteractionEnabled = false
@@ -88,7 +96,7 @@ final class PageScreenRootView: UIView {
       top: safeAreaLayoutGuide.topAnchor,
       right: rightAnchor,
       left: leftAnchor,
-      pTop: 45
+      pTop: PageScreenRootViewConst.topicsCollectionViewTopAnchor
     )
   }
   
@@ -102,7 +110,7 @@ final class PageScreenRootView: UIView {
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pTop: -40
+      pTop: PageScreenRootViewConst.gradientViewTopAnchor
     )
   }
   
@@ -110,7 +118,7 @@ final class PageScreenRootView: UIView {
     appNameLabel.centerX()
     appNameLabel.setConstraints(
       top: safeAreaLayoutGuide.topAnchor,
-      pTop: 15
+      pTop: PageScreenRootViewConst.appNameLabelTopAnchor
     )
   }
 }

@@ -29,11 +29,17 @@ extension AlbumPhotosViewController {
     willDecelerate decelerate: Bool
   ) {
     if !decelerate {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+      DispatchQueue.main.asyncAfter(
+        deadline: .now() + .deadline
+      ) {
         if let tabBar = self.tabBarController as? MainTabBarController {
           tabBar.showCustomTabBar()
         }
       }
     }
   }
+}
+
+private extension Double {
+  static let deadline = 0.3
 }

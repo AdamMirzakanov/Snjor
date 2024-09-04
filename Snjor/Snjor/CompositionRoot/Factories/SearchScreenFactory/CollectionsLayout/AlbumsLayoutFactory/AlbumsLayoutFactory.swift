@@ -20,14 +20,14 @@ struct AlbumsLayoutFactory {
   // MARK: - Private Methods
   private func makeItem() -> NSCollectionLayoutItem {
     let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(0.5),
-      heightDimension: .fractionalHeight(1)
+      widthDimension: .fractionalWidth(AlbumsLayoutFactoryConst.itemWidthDimension),
+      heightDimension: .fractionalHeight(AlbumsLayoutFactoryConst.itemHeightDimension)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(
       top: .zero,
       leading: .zero,
-      bottom: 32,
+      bottom: AlbumsLayoutFactoryConst.itemBottomMargin,
       trailing: .zero
     )
     return item
@@ -37,14 +37,16 @@ struct AlbumsLayoutFactory {
     item: NSCollectionLayoutItem
   ) -> NSCollectionLayoutGroup {
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1),
-      heightDimension: .fractionalWidth(0.63)
+      widthDimension: .fractionalWidth(AlbumsLayoutFactoryConst.groupWidthDimension),
+      heightDimension: .fractionalWidth(AlbumsLayoutFactoryConst.groupHeightDimension)
     )
     let horizontalGroup = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
       subitems: [item]
     )
-    horizontalGroup.interItemSpacing = .fixed(8)
+    horizontalGroup.interItemSpacing = .fixed(
+      AlbumsLayoutFactoryConst.horizontalGroupInterItemSpacing
+    )
     let verticalGroup = NSCollectionLayoutGroup.vertical(
       layoutSize: groupSize,
       subitems: [horizontalGroup]
@@ -57,10 +59,10 @@ struct AlbumsLayoutFactory {
   ) -> NSCollectionLayoutSection {
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets = NSDirectionalEdgeInsets(
-      top: 24.0,
-      leading: 16.0,
+      top: AlbumsLayoutFactoryConst.sectionTopMargin,
+      leading: AlbumsLayoutFactoryConst.sectionMargin,
       bottom: .zero,
-      trailing: 16.0
+      trailing: AlbumsLayoutFactoryConst.sectionMargin
     )
     return section
   }

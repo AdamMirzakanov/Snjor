@@ -60,7 +60,7 @@ struct LayoutProvider {
   ) -> NSCollectionLayoutBoundarySupplementaryItem {
     let lineItemHeight = 1 / layoutEnvironment.traitCollection.displayScale
     let lineItemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(0.88),
+      widthDimension: .fractionalWidth(LayoutProviderConst.lineItemWidthDimension),
       heightDimension: .absolute(lineItemHeight)
     )
     return NSCollectionLayoutBoundarySupplementaryItem(
@@ -72,8 +72,8 @@ struct LayoutProvider {
   
   private func makeHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
     let headerItemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(0.92),
-      heightDimension: .estimated(44)
+      widthDimension: .fractionalWidth(LayoutProviderConst.headerItemWidthDimension),
+      heightDimension: .estimated(LayoutProviderConst.headerItemHeightDimension)
     )
     return NSCollectionLayoutBoundarySupplementaryItem(
       layoutSize: headerItemSize,

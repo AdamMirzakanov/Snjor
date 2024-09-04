@@ -19,15 +19,15 @@ struct TopicsLayoutFactory {
   // MARK: - Private Methods
   private func makeItem() -> NSCollectionLayoutItem {
     let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(1),
-      heightDimension: .fractionalHeight(0.5)
+      widthDimension: .fractionalWidth(TopicsLayoutFactoryConst.itemWidthDimension),
+      heightDimension: .fractionalHeight(TopicsLayoutFactoryConst.itemHeightDimension)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(
       top: .zero,
-      leading: 4.0,
+      leading: TopicsLayoutFactoryConst.smallValue,
       bottom: .zero,
-      trailing: 4.0
+      trailing: TopicsLayoutFactoryConst.smallValue
     )
     return item
   }
@@ -36,8 +36,8 @@ struct TopicsLayoutFactory {
     item: NSCollectionLayoutItem
   ) -> NSCollectionLayoutGroup {
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(0.94),
-      heightDimension: .estimated(400)
+      widthDimension: .fractionalWidth(TopicsLayoutFactoryConst.groupWidthDimension),
+      heightDimension: .estimated(TopicsLayoutFactoryConst.groupHeightDimension)
     )
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
@@ -52,10 +52,10 @@ struct TopicsLayoutFactory {
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .groupPagingCentered
     section.contentInsets = NSDirectionalEdgeInsets(
-      top: 6.0,
-      leading: 4.0,
-      bottom: 4.0 * 5,
-      trailing: 4.0
+      top: TopicsLayoutFactoryConst.topSection,
+      leading: TopicsLayoutFactoryConst.smallValue,
+      bottom: TopicsLayoutFactoryConst.bottomSection,
+      trailing: TopicsLayoutFactoryConst.smallValue
     )
     return section
   }

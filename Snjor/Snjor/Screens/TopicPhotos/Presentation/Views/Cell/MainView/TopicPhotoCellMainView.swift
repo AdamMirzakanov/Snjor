@@ -96,7 +96,7 @@ final class TopicPhotoCellMainView: MainImageContainerView {
       ofSize: TopicPhotoCellMainViewConst.userNameLabelFontSize,
       weight: .medium
     )
-    $0.numberOfLines = 0
+    $0.numberOfLines = .zero
     return $0
   }(UILabel())
 

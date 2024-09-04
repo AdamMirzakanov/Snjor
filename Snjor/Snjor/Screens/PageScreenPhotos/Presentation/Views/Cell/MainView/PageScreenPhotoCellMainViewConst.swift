@@ -16,4 +16,5 @@ enum PageScreenPhotoCellMainViewConst {
   static let profilePhotoViewSize: CGFloat = 40.0
   static let profilePhotoViewCircle: CGFloat = profilePhotoViewSize / 2
   static let defaultValue: CGFloat = 16.0
+  static let userNameLabelFontSize: CGFloat = 17.0
 }

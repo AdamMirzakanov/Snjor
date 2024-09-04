@@ -17,11 +17,11 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
 
   func makeChildCoordinators() -> [any Coordinatable] {
     let topicsPageCoordinator = makeTopicsPageCoordinator()
-//    let photoListCoordinator = makePhotosCoordinator()
     let searchScreenCoordinator = makeSearchScreenCoordinator()
     return [
+//      topicsPageCoordinator,
       searchScreenCoordinator,
-      topicsPageCoordinator
+      
     ]
   }
 
@@ -35,17 +35,6 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
       navigation: navigation)
     return coordinator
   }
-  
-//  private func makePhotosCoordinator() -> any Coordinatable {
-//    let factory = PhotoListFactory()
-//    let navigationController = UINavigationController()
-//    let navigation = Navigation(rootViewController: navigationController)
-//    let coordinator = PhotoListCoordinator(
-//      factory: factory,
-//      navigation: navigation
-//    )
-//    return coordinator
-//  }
   
   private func makeSearchScreenCoordinator() -> any Coordinatable {
     let factory = SearchScreenFactory()

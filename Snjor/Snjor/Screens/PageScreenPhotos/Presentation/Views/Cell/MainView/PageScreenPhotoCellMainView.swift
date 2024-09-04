@@ -60,16 +60,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     $0.textColor = .white
     $0.numberOfLines = .zero
     $0.font = .systemFont(
-      ofSize: 17,
-      weight: .medium
-    )
-    return $0
-  }(UILabel())
-  
-  let likesLabel: UILabel = {
-    $0.textColor = .white
-    $0.font = .systemFont(
-      ofSize: 15,
+      ofSize: PageScreenPhotoCellMainViewConst.userNameLabelFontSize,
       weight: .medium
     )
     return $0
@@ -139,8 +130,6 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
       with: photo,
       url: photo.profileImageURL
     )
-    guard let likes = photo.likes else { return }
-    likesLabel.text = String(describing: likes)
   }
   
   // MARK: - Setup Views
