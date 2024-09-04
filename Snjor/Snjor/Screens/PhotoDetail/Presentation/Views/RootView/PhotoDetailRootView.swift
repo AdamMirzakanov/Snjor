@@ -24,7 +24,7 @@ final class PhotoDetailRootView: UIView {
 
   let profilePhotoView: PhotoDetailPhotoView = {
     $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = PhotoDetailRootViewConst.middleCircle
+    $0.layer.cornerRadius = PhotoDetailRootViewConst.profilePhotoViewCircle
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
       equalToConstant: PhotoDetailRootViewConst.ultraValue
