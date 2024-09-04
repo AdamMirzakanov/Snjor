@@ -15,7 +15,7 @@ struct LayoutProvider {
   
   // MARK: Internal Methods
   func createCollectionsLayout(
-    controller: SearchScreenViewController
+    _ controller: SearchScreenViewController
   ) -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
       let section = controller.collectionsSections[sectionIndex]
@@ -36,7 +36,7 @@ struct LayoutProvider {
   }
   
   func createAlbumsLayout(
-    controller: SearchResultViewController
+    _ controller: SearchResultViewController
   ) -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { [weak controller] (
       sectionIndex, layoutEnvironment

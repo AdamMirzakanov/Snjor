@@ -81,7 +81,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   private func setupLayouts(_ controller: SearchResultViewController) {
     let cascadeLayout = MultiColumnCascadeLayout(with: controller)
     controller.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
-    let albumsLayout = layoutProvider.createAlbumsLayout(controller: controller)
+    let albumsLayout = layoutProvider.createAlbumsLayout(controller)
     controller.rootView.albumsCollectionView.collectionViewLayout = albumsLayout
   }
 }

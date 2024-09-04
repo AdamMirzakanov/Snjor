@@ -98,14 +98,14 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
       topicsViewModel: topicsViewModel,
       delegate: delegate
     )
-    setupLayouts(controller: controller)
+    setupLayouts(controller)
     return controller
   }
   
-  private func setupLayouts(controller: SearchScreenViewController) {
+  private func setupLayouts(_ controller: SearchScreenViewController) {
     let cascadeLayout = MultiColumnCascadeLayout(with: controller)
     controller.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
-    let collectionsLayout = layoutProvider.createCollectionsLayout(controller: controller)
+    let collectionsLayout = layoutProvider.createCollectionsLayout(controller)
     controller.rootView.albumsCollectionView.collectionViewLayout = collectionsLayout
   }
 }
