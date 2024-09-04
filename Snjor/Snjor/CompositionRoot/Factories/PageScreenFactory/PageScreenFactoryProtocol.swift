@@ -9,7 +9,7 @@ import UIKit
 
 protocol PageScreenFactoryProtocol {
   func makeController(
-    delegate: any PageScreenPhotosDelegate
+    delegate: any PageScreenPhotosViewControllerDelegate
   ) -> UIViewController
   func makePhotoDetailCoordinator(
     navigation: Navigable,

@@ -16,12 +16,12 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var viewModel: any ContentManagingProtocol <Topic>
-  private(set) var coordinator: any PageScreenPhotosDelegate
+  private(set) var coordinator: any PageScreenPhotosViewControllerDelegate
   
   // MARK: Initializers
   init(
     viewModel: any ContentManagingProtocol <Topic>,
-    coordinator: any PageScreenPhotosDelegate
+    coordinator: any PageScreenPhotosViewControllerDelegate
   ) {
     self.viewModel = viewModel
     self.coordinator = coordinator
@@ -61,7 +61,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   // MARK: Internal Methods
   func viewControllerForTopic(
     at index: Int,
-    delegate: any PageScreenPhotosDelegate
+    delegate: any PageScreenPhotosViewControllerDelegate
   ) -> UIViewController? {
     guard
       index >= .zero,

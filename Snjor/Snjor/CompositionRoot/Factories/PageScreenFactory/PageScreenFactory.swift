@@ -14,7 +14,7 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
   
   // MARK: Internal Methods
   func makeController(
-    delegate: any PageScreenPhotosDelegate
+    delegate: any PageScreenPhotosViewControllerDelegate
   ) -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
     let networkService = NetworkService()

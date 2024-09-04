@@ -15,7 +15,7 @@ struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
   
   // MARK: Internal Methods
   func makeController(
-    delegate: any PageScreenPhotosDelegate
+    delegate: any PageScreenPhotosViewControllerDelegate
   ) -> UIViewController {
     let viewModel = createViewModel()
     let controller = createViewController(viewModel: viewModel, delegate: delegate)
@@ -39,7 +39,7 @@ struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
   
   private func createViewController(
     viewModel: TopicPhotosViewModel,
-    delegate: any PageScreenPhotosDelegate
+    delegate: any PageScreenPhotosViewControllerDelegate
   ) -> PageScreenPhotosViewController {
     let defaultLayout = UICollectionViewLayout()
     let controller = PageScreenPhotosViewController(

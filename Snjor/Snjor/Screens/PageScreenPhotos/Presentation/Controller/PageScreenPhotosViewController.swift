@@ -17,13 +17,13 @@ final class PageScreenPhotosViewController: MainViewController <PageScreenPhotos
   
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) weak var delegate: (any PageScreenPhotosDelegate)?
+  private(set) weak var delegate: (any PageScreenPhotosViewControllerDelegate)?
   private(set) var viewModel: any ContentManagingProtocol <Photo>
   
   // MARK: Initializers
   init(
     viewModel: any ContentManagingProtocol <Photo>,
-    delegate: any PageScreenPhotosDelegate,
+    delegate: any PageScreenPhotosViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {
     self.viewModel = viewModel
