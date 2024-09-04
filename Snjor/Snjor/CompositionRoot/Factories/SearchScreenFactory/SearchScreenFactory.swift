@@ -33,39 +33,39 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   func mekePhotoDetailCoordinator(
     photo: Photo,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
     let factory = PhotoDetailFactory(photo: photo)
     return PhotoDetailCoordinator(
       factory: factory,
       navigation: navigation,
-      overlordCoordinator: overlordCoordinator
+      parentCoordinator: parentCoordinator
     )
   }
   
   func mekeTopicPhotosCoordinator(
     topic: Topic,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
     let factory = TopicPhotosFactory(topic: topic)
     return TopicPhotosCoordinator(
       factory: factory,
       navigation: navigation,
-      overlordCoordinator: overlordCoordinator
+      parentCoordinator: parentCoordinator
     )
   }
   
   func mekeAlbumPhotosCoordinator(
     album: Album,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
     let factory = AlbumPhotosFactory(album: album)
     return AlbumPhotosCoordinator(
       factory: factory,
       navigation: navigation,
-      overlordCoordinator: overlordCoordinator
+      parentCoordinator: parentCoordinator
     )
   }
   
@@ -73,7 +73,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     currentScopeIndex: Int,
     with searchTerm: String,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable {
     let factory = SearchResultScreenFactory(
       currentScopeIndex: currentScopeIndex,
@@ -82,7 +82,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     return SearchResultScreenCoordinator(
       factory: factory,
       navigation: navigation,
-      overlordCoordinator: overlordCoordinator
+      parentCoordinator: parentCoordinator
     )
   }
   

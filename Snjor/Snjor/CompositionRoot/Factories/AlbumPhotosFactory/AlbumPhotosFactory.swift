@@ -33,7 +33,7 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     let coordinator = PhotoDetailCoordinator(
       factory: factory,
       navigation: navigation,
-      overlordCoordinator: parentCoordinator
+      parentCoordinator: parentCoordinator
     )
     return coordinator
   }

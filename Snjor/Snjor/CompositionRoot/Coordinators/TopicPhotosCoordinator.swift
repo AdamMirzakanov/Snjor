@@ -13,17 +13,17 @@ final class TopicPhotosCoordinator: Coordinatable {
   
   // MARK: Private Properties
   private let factory: any TopicPhotosFactoryProtocol
-  private weak var overlordCoordinator: (any ParentCoordinator)?
+  private weak var parentCoordinator: (any ParentCoordinator)?
   
   // MARK: Initializers
   init(
     factory: any TopicPhotosFactoryProtocol,
     navigation: any Navigable,
-    overlordCoordinator: (any ParentCoordinator)?
+    parentCoordinator: (any ParentCoordinator)?
   ) {
     self.factory = factory
     self.navigation = navigation
-    self.overlordCoordinator = overlordCoordinator
+    self.parentCoordinator = parentCoordinator
   }
 
   // MARK: Internal Methods
@@ -31,7 +31,7 @@ final class TopicPhotosCoordinator: Coordinatable {
     let controller = factory.makeModule(delegate: self)
     navigation.pushViewController(controller, animated: true) { [weak self] in
       guard let self = self else { return }
-      self.overlordCoordinator?.removeChildCoordinator(self)
+      self.parentCoordinator?.removeChildCoordinator(self)
     }
   }
 }

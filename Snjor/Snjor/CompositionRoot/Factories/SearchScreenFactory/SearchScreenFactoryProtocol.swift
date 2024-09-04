@@ -15,25 +15,25 @@ protocol SearchScreenFactoryProtocol {
   func mekePhotoDetailCoordinator(
     photo: Photo,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
   
   func mekeTopicPhotosCoordinator(
     topic: Topic,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
   
   func mekeAlbumPhotosCoordinator(
     album: Album,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
   
   func makeSearchResultScreenCoordinator(
     currentScopeIndex: Int,
     with searchTerm: String,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
 }

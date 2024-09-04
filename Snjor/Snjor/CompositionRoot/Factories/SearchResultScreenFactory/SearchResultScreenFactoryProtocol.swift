@@ -15,12 +15,12 @@ protocol SearchResultScreenFactoryProtocol {
   func mekePhotoDetailCoordinator(
     photo: Photo,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
   
   func mekeAlbumPhotosCoordinator(
     album: Album,
     navigation: any Navigable,
-    overlordCoordinator: any ParentCoordinator
+    parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
 }

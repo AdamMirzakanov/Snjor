@@ -39,7 +39,7 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
     let coordinator = factory.mekePhotoDetailCoordinator(
       photo: photo,
       navigation: navigation,
-      overlordCoordinator: self
+      parentCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
   }
@@ -48,7 +48,7 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
     let coordinator = factory.mekeTopicPhotosCoordinator(
       topic: topic,
       navigation: navigation,
-      overlordCoordinator: self
+      parentCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
   }
@@ -57,7 +57,7 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
     let coordinator = factory.mekeAlbumPhotosCoordinator(
       album: album,
       navigation: navigation,
-      overlordCoordinator: self
+      parentCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
   }
@@ -67,7 +67,7 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
       currentScopeIndex: currentScopeIndex, 
       with: searchTerm,
       navigation: navigation,
-      overlordCoordinator: self
+      parentCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
   }

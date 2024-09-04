@@ -46,7 +46,7 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
     let coordinator = PhotoDetailCoordinator(
       factory: factory,
       navigation: navigation,
-      overlordCoordinator: parentCoordinator
+      parentCoordinator: parentCoordinator
     )
     return coordinator
   }

@@ -13,17 +13,17 @@ final class SearchResultScreenCoordinator: Coordinatable {
   
   // MARK: Private Properties
   private let factory: any SearchResultScreenFactoryProtocol
-  private weak var overlordCoordinator: (any ParentCoordinator)?
+  private weak var parentCoordinator: (any ParentCoordinator)?
   
   // MARK: Initializers
   init(
     factory: any SearchResultScreenFactoryProtocol,
     navigation: any Navigable,
-    overlordCoordinator: (any ParentCoordinator)?
+    parentCoordinator: (any ParentCoordinator)?
   ) {
     self.factory = factory
     self.navigation = navigation
-    self.overlordCoordinator = overlordCoordinator
+    self.parentCoordinator = parentCoordinator
   }
    
   // MARK: Internal Methods
@@ -31,7 +31,7 @@ final class SearchResultScreenCoordinator: Coordinatable {
     let controller = factory.makeModule(delegate: self)
     navigation.pushViewController(controller, animated: true) { [weak self] in
       guard let self = self else { return }
-      self.overlordCoordinator?.removeChildCoordinator(self)
+      self.parentCoordinator?.removeChildCoordinator(self)
     }
   }
 }
@@ -43,7 +43,7 @@ extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
     let coordinator = factory.mekePhotoDetailCoordinator(
       photo: photo,
       navigation: navigation,
-      overlordCoordinator: self
+      parentCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
   }
@@ -52,7 +52,7 @@ extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
     let coordinator = factory.mekeAlbumPhotosCoordinator(
       album: album,
       navigation: navigation,
-      overlordCoordinator: self
+      parentCoordinator: self
     )
     addAndStartChildCoordinator(coordinator)
   }
