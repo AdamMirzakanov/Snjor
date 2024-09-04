@@ -9,13 +9,16 @@ import UIKit
 
 final class AlbumPhotosRootView: UIView {
   
+  // MARK: Private Properties
+  private var backButtonAction: (() -> Void)?
+  
   // MARK: CollectionView
   let albumPhotosCollectionView: AlbumPhotosCollectionView = {
     return $0
   }(AlbumPhotosCollectionView())
   
   // MARK: Button Background View
-  private let backBarButtonBackgroundView: UIView = {
+   let backBarButtonBackgroundView: UIView = {
     $0.frame.size.width = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
     $0.frame.size.height = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
     $0.layer.cornerRadius = AlbumPhotosRootViewConst.backBarButtonBackgroundViewCircle
@@ -25,7 +28,7 @@ final class AlbumPhotosRootView: UIView {
   }(UIView())
   
   // MARK: Buttons
-  private lazy var backBarButton: UIButton = {
+   lazy var backBarButton: UIButton = {
     let icon = UIImage(systemName: .backBarButtonImage)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .systemBackground
@@ -62,29 +65,22 @@ final class AlbumPhotosRootView: UIView {
     navigationItem: UINavigationItem,
     navigationController: UINavigationController?
   ) {
-    setupNavigationItems(navigationItem)
-    configBackButtonAction(navigationController)
-  }
-  
-  // MARK: Config Navigation Item Actions
-  private func configBackButtonAction(
-    _ navigationController: UINavigationController?
-  ) {
-    let backButtonAction = UIAction { _ in
+    
+    backButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
     }
-    backBarButton.addAction(
-      backButtonAction,
+    
+    backBarButton.addTarget(
+      self,
+      action: #selector(backButtonTapped),
       for: .touchUpInside
     )
-  }
-  
-  private func setupNavigationItems(_ navigationItem: UINavigationItem) {
-    navigationItem.leftBarButtonItem = makeLeftBarButtons()
-  }
-  
-  private func makeLeftBarButtons() -> UIBarButtonItem {
+    
     let backBarButton = UIBarButtonItem(customView: backBarButtonBackgroundView)
-    return backBarButton
+    navigationItem.leftBarButtonItem = backBarButton
+  }
+  
+  @objc private func backButtonTapped() {
+    backButtonAction?()
   }
 }
