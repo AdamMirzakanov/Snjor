@@ -64,8 +64,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    PrepareParameters.searchPhotosPage = .zero
-    PrepareParameters.searchAlbumsPage = .zero
+    setupUI()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -77,6 +76,8 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   
   // MARK: Internal Methods
   func resetSearchState() {
+    PrepareParameters.searchPhotosPage = .zero
+    PrepareParameters.searchAlbumsPage = .zero
     photosDataSource = nil
     photosSections.removeAll()
     currentScopeIndex = .zero
@@ -180,5 +181,12 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     case .fail(error: let error):
       presentAlert(message: error, title: AppLocalized.error)
     }
+  }
+  
+  private func setupUI() {
+    rootView.setupBarButtonItems(
+      navigationItem: navigationItem,
+      navigationController: navigationController
+    )
   }
 }

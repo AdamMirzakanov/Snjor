@@ -85,7 +85,6 @@ final class AlbumPhotosRootView: UIView {
   
   private func makeLeftBarButtons() -> UIBarButtonItem {
     let backBarButton = UIBarButtonItem(customView: backBarButtonBackgroundView)
-    let barButtonItem = backBarButton
-    return barButtonItem
+    return backBarButton
   }
 }
