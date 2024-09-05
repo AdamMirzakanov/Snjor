@@ -18,4 +18,5 @@ extension String {
   static let cameraMacro = "camera.macro"
   static let photoListItemImage = "photo.on.rectangle"
   static let photoListSelectedItemImage = "photo.fill.on.rectangle.fill"
+  static let calendar = "calendar"
 }

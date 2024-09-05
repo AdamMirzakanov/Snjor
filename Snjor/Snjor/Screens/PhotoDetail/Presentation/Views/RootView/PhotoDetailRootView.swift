@@ -35,10 +35,10 @@ final class PhotoDetailRootView: UIView {
     $0.layer.cornerRadius = PhotoDetailRootViewConst.profilePhotoViewCircle
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: PhotoDetailRootViewConst.ultraValue
+      equalToConstant: PhotoDetailRootViewConst.profilePhotoViewSize
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: PhotoDetailRootViewConst.ultraValue
+      equalToConstant: PhotoDetailRootViewConst.profilePhotoViewSize
     ).isActive = true
     $0.backgroundColor = .systemPurple
     return $0
@@ -180,6 +180,13 @@ final class PhotoDetailRootView: UIView {
   private let downloadsImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .downloadsImage)
+    $0.tintColor = .white
+    return $0
+  }(UIImageView())
+  
+  private let createdImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(systemName: .calendar)
     $0.tintColor = .white
     return $0
   }(UIImageView())
@@ -424,14 +431,24 @@ final class PhotoDetailRootView: UIView {
     $0.addArrangedSubview(spacerView)
     return $0
   }(UIStackView())
+  
+  private lazy var createdStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = PhotoDetailRootViewConst.defaultValue
+    $0.addArrangedSubview(createdImageView)
+    $0.addArrangedSubview(createdLabel)
+    return $0
+  }(UIStackView())
 
   private lazy var profitStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
-    $0.spacing = PhotoDetailRootViewConst.fullValue
+    $0.spacing = PhotoDetailRootViewConst.profitStackViewSpacing
     $0.addArrangedSubview(likesStackView)
     $0.addArrangedSubview(downloadStackView)
-    $0.addArrangedSubview(createdLabel)
+    $0.addArrangedSubview(createdStackView)
     return $0
   }(UIStackView())
 
@@ -575,6 +592,10 @@ final class PhotoDetailRootView: UIView {
     focalLengthValueLabel.text = viewModelItem.focalLength
     apertureValueLabel.text = viewModelItem.aperture
     exposureTimeValueLabel.text = viewModelItem.exposureTime
+    getTags(viewModelItem)
+  }
+  
+  private func getTags(_ viewModelItem: PhotoDetailViewModelItem) {
     tagsCollectionView.tags = viewModelItem.tags ?? []
     tagsCollectionView.reloadData()
   }

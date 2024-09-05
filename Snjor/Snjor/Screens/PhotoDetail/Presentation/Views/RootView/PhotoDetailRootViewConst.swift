@@ -10,10 +10,10 @@ import CoreGraphics
 enum PhotoDetailRootViewConst {
   static let verticalTranslation: CGFloat = -120.0
   static let centerYOffset: CGFloat = 120.0
-  static let leftStackViewCenterYOffset: CGFloat = 140.0
-  static let rightStackViewCenterYOffset: CGFloat = 140.0
+  static let leftStackViewCenterYOffset: CGFloat = 148.0
+  static let rightStackViewCenterYOffset: CGFloat = 148.0
   static let tagsCollectionViewHeight: CGFloat = 22.0
-  static let centerLineTopOffset: CGFloat = 165.0
+  static let centerLineTopOffset: CGFloat = 173.0
   static let downloadButtonWidth: CGFloat = 72.0
   static let resolutionLabelWidth: CGFloat = 66.0
   static let resolutionLabelHeight: CGFloat = resolutionLabelWidth / 3
@@ -27,7 +27,7 @@ enum PhotoDetailRootViewConst {
   static let leftPadding: CGFloat = 20.0
   static let rightPadding: CGFloat = 20.0
   static let halfRightPadding: CGFloat = -10.0
-  static let mainStackViewBottomPadding: CGFloat = 40.0
+  static let mainStackViewBottomPadding: CGFloat = 50.0
   static let infoIconSize: CGFloat = 23.0
   static let defaultDuration: CGFloat = 0.7
   static let minDuration: CGFloat = 0.2
@@ -46,14 +46,15 @@ enum PhotoDetailRootViewConst {
   static let middleFontSize: CGFloat = 16.0
   static let fullFontSize: CGFloat = 24.0
   static let tagFontSize: CGFloat = 11.0
-  static let smallValue = half * half                   // 4
-  static let defaultValue = smallValue * half           // 8
-  static let middleValue = defaultValue * half          // 16
-  static let fullValue = middleValue * half             // 32
-  static let maxValue = fullValue + smallValue          // 36
-  static let ultraValue = maxValue + smallValue         // 40
-  static let defaultCircle = fullValue / half           // 16
-  static let profilePhotoViewCircle = ultraValue / half // 20
+  static let profitStackViewSpacing: CGFloat = 25.0
+  static let smallValue = half * half                             // 4
+  static let defaultValue = smallValue * half                     // 8
+  static let middleValue = defaultValue * half                    // 16
+  static let fullValue = middleValue * half                       // 32
+  static let maxValue = fullValue + smallValue                    // 36
+  static let profilePhotoViewSize = maxValue + defaultValue       // 44
+  static let defaultCircle = fullValue / half                     // 16
+  static let profilePhotoViewCircle = profilePhotoViewSize / half // 20
 }
 
 // MARK: - String

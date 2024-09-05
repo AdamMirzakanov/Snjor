@@ -18,4 +18,9 @@ final class PhotoDetailTagsCollectionView: MainTagsCollectionView {
       forCellWithReuseIdentifier: PhotoDetailTagCell.reuseID
     )
   }
+  
+  override func configureLayout() {
+    super.configureLayout()
+    bounces = false
+  }
 }
