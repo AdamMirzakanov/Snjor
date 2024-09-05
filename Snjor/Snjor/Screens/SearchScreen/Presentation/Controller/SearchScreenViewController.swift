@@ -18,22 +18,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   var currentScopeIndex: Int = .zero
   
   // MARK: Private Properties
-  lazy var searchController: UISearchController = {
-    let searchController = UISearchController(searchResultsController: nil)
-    searchController.obscuresBackgroundDuringPresentation = true
-    searchController.hidesNavigationBarDuringPresentation = false
-    searchController.searchBar.showsScopeBar = true
-    searchController.searchBar.delegate = self
-    searchController.searchBar.autocapitalizationType = .none
-    searchController.searchBar.placeholder = "Search photos"
-    searchController.searchBar.scopeButtonTitles = [
-      "Photos",
-      "Collections",
-      "Users"
-    ]
-    return searchController
-  }()
-  
+  private let searchController = UISearchController(searchResultsController: nil)
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
@@ -66,6 +51,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupSearchController()
     setupCollectionViewDelegate()
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
@@ -86,7 +72,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     hideCustomTabBar()
-    searchController.isActive = false
+    deactivateSearchController()
   }
   
   // MARK: Internal Methods
@@ -103,6 +89,27 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   }
   
   // MARK: Private Methods
+  private func setupSearchController() {
+    searchController.obscuresBackgroundDuringPresentation = true
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.searchBar.showsScopeBar = true
+    searchController.searchBar.delegate = self
+    searchController.searchBar.autocapitalizationType = .none
+    searchController.searchBar.autocapitalizationType = .sentences
+    searchController.searchBar.placeholder = .searchPhotos
+    searchController.searchBar.scopeButtonTitles = [
+      .discoverTitle,
+      .topicsAndAlbumsTitle,
+      .usersTitle
+    ]
+  }
+  
+  private func deactivateSearchController() {
+    if searchController.isActive {
+      searchController.isActive = false
+    }
+  }
+  
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
   }
