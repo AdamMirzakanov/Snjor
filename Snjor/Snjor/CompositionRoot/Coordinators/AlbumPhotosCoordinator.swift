@@ -33,7 +33,7 @@ final class AlbumPhotosCoordinator: Coordinatable {
       guard let self = self else { return }
       self.parentCoordinator?.removeChildCoordinator(self)
     }
-    controller.navigationItem.largeTitleDisplayMode = .never
+//    controller.navigationItem.largeTitleDisplayMode = .never
   }
 }
 

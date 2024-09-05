@@ -59,12 +59,12 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     setupDataSource()
     configureDownloadSession()
     setupVisibleContainers()
-    setupNavigationItem()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setupNavigationItems()
+    setupNavigationTitle()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -116,10 +116,6 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   private func setupCollectionViewDelegate() {
     rootView.photosCollectionView.delegate = self
     rootView.albumsCollectionView.delegate = self
-  }
-  
-  private func setupNavigationItem() {
-    navigationItem.hidesSearchBarWhenScrolling = false
   }
   
   private func setupDataSource() {
@@ -188,7 +184,9 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
       navigationItem: navigationItem,
       navigationController: navigationController
     )
-    
+  }
+  
+  private func setupNavigationTitle() {
     navigationItem.title = currentSearchTerm
   }
 }

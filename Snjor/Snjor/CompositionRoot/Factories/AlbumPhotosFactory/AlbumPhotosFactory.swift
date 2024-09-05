@@ -18,10 +18,7 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> UIViewController {
     let viewModel = createViewModel()
-    let controller = createViewController(viewModel: viewModel, delegate: delegate)
-    controller.navigationItem.title = album.title.uppercased()
-    configureLayout(for: controller)
-    return controller
+    return createViewController(viewModel: viewModel, delegate: delegate)
   }
   
   func makePhotoDetailCoordinator(
@@ -56,10 +53,12 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     viewModel: AlbumPhotosViewModel,
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> AlbumPhotosViewController {
-    return AlbumPhotosViewController(
+    let controller = AlbumPhotosViewController(
       viewModel: viewModel,
       delegate: delegate
     )
+    configureLayout(for: controller)
+    return controller
   }
   
   private func configureLayout(

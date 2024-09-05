@@ -55,6 +55,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setupNavigationItems()
+    setupNavigationTitle()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -110,5 +111,9 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
       navigationItem: navigationItem,
       navigationController: navigationController
     )
+  }
+  
+  private func setupNavigationTitle() {
+    navigationItem.title = .albumPhotos
   }
 }

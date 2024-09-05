@@ -75,7 +75,6 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     )
     setupLayouts(controller)
     controller.fetchMatchingItems(with: searchTerm)
-//    controller.navigationItem.title = controller.currentSearchTerm
     return controller
   }
   
