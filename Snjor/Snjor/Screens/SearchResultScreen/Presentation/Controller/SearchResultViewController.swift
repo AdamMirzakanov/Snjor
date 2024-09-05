@@ -188,5 +188,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
       navigationItem: navigationItem,
       navigationController: navigationController
     )
+    
+    navigationItem.title = currentSearchTerm
   }
 }

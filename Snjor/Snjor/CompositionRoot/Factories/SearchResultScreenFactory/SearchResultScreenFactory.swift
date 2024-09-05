@@ -64,7 +64,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   // MARK: Private Methods
   private func getController(
     _ delegate: any SearchResultViewControllerDelegate
-  ) -> UIViewController {
+  ) -> SearchResultViewController {
     let photosViewModel = viewModelFactory.createPhotosViewModel()
     let albumsViewModel = viewModelFactory.createAlbumsViewModel()
     let controller = SearchResultViewController(
@@ -75,6 +75,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     )
     setupLayouts(controller)
     controller.fetchMatchingItems(with: searchTerm)
+//    controller.navigationItem.title = controller.currentSearchTerm
     return controller
   }
   
