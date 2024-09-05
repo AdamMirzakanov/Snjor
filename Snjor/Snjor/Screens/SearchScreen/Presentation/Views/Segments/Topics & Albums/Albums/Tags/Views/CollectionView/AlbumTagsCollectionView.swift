@@ -10,6 +10,7 @@ import UIKit
 final class AlbumTagsCollectionView: MainTagsCollectionView {
   
   override func setupDelegate() {
+    delegate = self
     dataSource = self
   }
   

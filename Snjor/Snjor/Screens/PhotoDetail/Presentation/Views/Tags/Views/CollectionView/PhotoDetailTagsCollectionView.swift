@@ -8,6 +8,7 @@
 final class PhotoDetailTagsCollectionView: MainTagsCollectionView {
   
   override func setupDelegate() {
+    delegate = self
     dataSource = self
   }
   

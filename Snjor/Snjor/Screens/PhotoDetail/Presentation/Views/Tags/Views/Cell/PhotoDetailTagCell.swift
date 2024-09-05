@@ -8,6 +8,7 @@
 final class PhotoDetailTagCell: MainTagCell {
   override func configTagLabel() {
     super.configTagLabel()
-    tagLabel.backgroundColor = .systemOrange
+    tagLabel.backgroundColor = .white
+    tagLabel.textColor = .black
   }
 }
