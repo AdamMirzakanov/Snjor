@@ -69,6 +69,7 @@ final class AlbumCell: UICollectionViewCell {
     super.prepareForReuse()
     mainView.prepareForReuse()
     tagsCollectionView.tags = []
+    tagsCollectionView.reloadData()
   }
   
   // MARK: Setup Data

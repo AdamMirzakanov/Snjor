@@ -8,6 +8,7 @@
 import CoreGraphics
 
 enum TagsCollectionViewConst {
-  static let defaultMargins: CGFloat = 10.0
-  static let defaultFontSize: CGFloat = 14.0
+  static let defaultValue: CGFloat = 10.0
+  static let fullValue: CGFloat = 20.0
+  static let attributedStringFontSize: CGFloat = 14.0
 }

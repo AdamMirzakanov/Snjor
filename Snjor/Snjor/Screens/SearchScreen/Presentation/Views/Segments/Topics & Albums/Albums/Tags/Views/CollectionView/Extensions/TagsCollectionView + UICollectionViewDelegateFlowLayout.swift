@@ -28,10 +28,18 @@ extension TagsCollectionView: UICollectionViewDelegateFlowLayout {
   ) -> UIEdgeInsets {
     return UIEdgeInsets(
       top: .zero,
-      left: TagsCollectionViewConst.defaultMargins,
+      left: TagsCollectionViewConst.defaultValue,
       bottom: .zero,
-      right: TagsCollectionViewConst.defaultMargins
+      right: TagsCollectionViewConst.defaultValue
     )
+  }
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    minimumInteritemSpacingForSectionAt section: Int
+  ) -> CGFloat {
+    return TagsCollectionViewConst.defaultValue
   }
   
   // MARK: Private Methods
@@ -41,9 +49,9 @@ extension TagsCollectionView: UICollectionViewDelegateFlowLayout {
       withAttributes: [
         NSAttributedString
           .Key
-          .font: UIFont.systemFont(ofSize: TagsCollectionViewConst.defaultFontSize)
+          .font: UIFont.systemFont(ofSize: TagsCollectionViewConst.attributedStringFontSize)
       ]
-    ).width + TagsCollectionViewConst.defaultMargins
+    ).width + TagsCollectionViewConst.fullValue
     return width
   }
 }
