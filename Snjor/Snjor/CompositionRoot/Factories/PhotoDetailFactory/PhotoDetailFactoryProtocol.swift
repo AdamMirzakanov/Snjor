@@ -8,5 +8,14 @@
 import UIKit
 
 protocol PhotoDetailFactoryProtocol {
-  func makeController() -> UIViewController
+  func makeController(
+    delegate: any PhotoDetailViewControllerDelegate
+  ) -> UIViewController
+  
+  func makeSearchResultScreenCoordinator(
+    currentScopeIndex: Int,
+    with searchTerm: String,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable
 }

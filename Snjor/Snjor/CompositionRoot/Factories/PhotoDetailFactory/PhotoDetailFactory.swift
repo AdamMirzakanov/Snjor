@@ -12,7 +12,9 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
   
   let photo: Photo
 
-  func makeController() -> UIViewController {
+  func makeController(
+    delegate: any PhotoDetailViewControllerDelegate
+  ) -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
     let networkService = NetworkService()
     let repository = LoadPhotoDetailRepository(
@@ -27,6 +29,26 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
       loadUseCase: loadUseCase
     )
     viewModel.photo = photo
-    return PhotoDetailViewController(viewModel: viewModel)
+    return PhotoDetailViewController(
+      viewModel: viewModel, 
+      delegate: delegate
+    )
+  }
+  
+  func makeSearchResultScreenCoordinator(
+    currentScopeIndex: Int,
+    with searchTerm: String,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable {
+    let factory = SearchResultScreenFactory(
+      currentScopeIndex: currentScopeIndex,
+      with: searchTerm
+    )
+    return SearchResultScreenCoordinator(
+      factory: factory,
+      navigation: navigation,
+      parentCoordinator: parentCoordinator
+    )
   }
 }

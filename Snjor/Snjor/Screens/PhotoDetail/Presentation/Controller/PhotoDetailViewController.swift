@@ -12,6 +12,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
 
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
+  private(set) weak var delegate: (any PhotoDetailViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
   private(set) var viewModel: any PhotoDetailViewModelProtocol
   private(set) var documentsPath = FileManager.default.urls(
@@ -20,9 +21,12 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
   ).first!
 
   // MARK: Initializers
-  init(viewModel: any PhotoDetailViewModelProtocol
+  init(
+    viewModel: any PhotoDetailViewModelProtocol,
+    delegate: any PhotoDetailViewControllerDelegate
   ) {
     self.viewModel = viewModel
+    self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -90,5 +94,6 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
   
   func setupRootViewDelegate() {
     rootView.delegate = self
+    rootView.tagsCollectionView.tagsDelegate = self
   }
 }

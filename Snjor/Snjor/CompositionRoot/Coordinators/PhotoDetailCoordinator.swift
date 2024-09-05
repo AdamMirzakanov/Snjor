@@ -9,7 +9,8 @@ final class PhotoDetailCoordinator: Coordinatable {
   
   // MARK: Internal Properties
   var navigation: any Navigable
-
+  var childCoordinators: [any Coordinatable] = []
+  
   // MARK: Private Properties
   private let factory: any PhotoDetailFactoryProtocol
   private weak var parentCoordinator: (any ParentCoordinator)?
@@ -27,10 +28,30 @@ final class PhotoDetailCoordinator: Coordinatable {
 
   // MARK: Internal Methods
   func start() {
-    let controller = factory.makeController()
+    let controller = factory.makeController(delegate: self)
     navigation.pushViewController(controller, animated: true) { [weak self] in
       guard let self = self else { return }
       self.parentCoordinator?.removeChildCoordinator(self)
     }
   }
 }
+
+// MARK: - PhotoDetailViewControllerDelegate
+extension PhotoDetailCoordinator: PhotoDetailViewControllerDelegate {
+  func tagCellDidSelect(
+    _ tag: Tag,
+    with searchTerm: String,
+    currentScopeIndex: Int
+  ) {
+    let coordinator = factory.makeSearchResultScreenCoordinator(
+      currentScopeIndex: currentScopeIndex,
+      with: searchTerm,
+      navigation: navigation,
+      parentCoordinator: self
+    )
+    addAndStartChildCoordinator(coordinator)
+  }
+}
+
+// MARK: - ParentCoordinator
+extension PhotoDetailCoordinator: ParentCoordinator { }
