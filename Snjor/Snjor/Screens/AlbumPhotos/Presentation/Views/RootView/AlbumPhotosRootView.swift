@@ -61,23 +61,33 @@ final class AlbumPhotosRootView: UIView {
     albumPhotosCollectionView.fillSuperView()
   }
   
-  func setupBarButtonItems(
-    navigationItem: UINavigationItem,
-    navigationController: UINavigationController?
-  ) {
-    
+  // MARK: Config Navigation Item Actions
+  private func setupBackButtonAction(navigationController: UINavigationController?) {
     backButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
     }
-    
+  }
+  
+  private func setupBackButtonTarget() {
     backBarButton.addTarget(
       self,
       action: #selector(backButtonTapped),
       for: .touchUpInside
     )
-    
+  }
+  
+  private func setupBackBarButton(navigationItem: UINavigationItem) {
     let backBarButton = UIBarButtonItem(customView: backBarButtonBackgroundView)
     navigationItem.leftBarButtonItem = backBarButton
+  }
+  
+  func setupBarButtonItems(
+    navigationItem: UINavigationItem,
+    navigationController: UINavigationController?
+  ) {
+    setupBackButtonAction(navigationController: navigationController)
+    setupBackButtonTarget()
+    setupBackBarButton(navigationItem: navigationItem)
   }
   
   @objc private func backButtonTapped() {

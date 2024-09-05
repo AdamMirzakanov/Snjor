@@ -9,6 +9,9 @@ import UIKit
 
 final class TopicPhotosRootView: UIView {
   
+  // MARK: Private Properties
+  private var backButtonAction: (() -> Void)?
+  
   // MARK: Views
   let topicPhotosCollectionView: TopicPhotosCollectionView = {
     return $0
@@ -61,34 +64,36 @@ final class TopicPhotosRootView: UIView {
     )
   }
   
-  func setupBarButtonItems(
-    navigationItem: UINavigationItem,
-    navigationController: UINavigationController?
-  ) {
-    setupNavigationItems(navigationItem)
-    configBackButtonAction(navigationController)
-  }
-  
   // MARK: Config Navigation Item Actions
-  private func configBackButtonAction(
-    _ navigationController: UINavigationController?
-  ) {
-    let backButtonAction = UIAction { _ in
+  private func setupBackButtonAction(navigationController: UINavigationController?) {
+    backButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
     }
-    backBarButton.addAction(
-      backButtonAction,
+  }
+  
+  private func setupBackButtonTarget() {
+    backBarButton.addTarget(
+      self,
+      action: #selector(backButtonTapped),
       for: .touchUpInside
     )
   }
   
-  private func setupNavigationItems(_ navigationItem: UINavigationItem) {
-    navigationItem.leftBarButtonItem = makeLeftBarButtons()
+  private func setupBackBarButton(navigationItem: UINavigationItem) {
+    let backBarButton = UIBarButtonItem(customView: backBarButtonBackgroundView)
+    navigationItem.leftBarButtonItem = backBarButton
   }
   
-  private func makeLeftBarButtons() -> UIBarButtonItem {
-    let backBarButton = UIBarButtonItem(customView: backBarButtonBackgroundView)
-    let barButtonItem = backBarButton
-    return barButtonItem
+  func setupBarButtonItems(
+    navigationItem: UINavigationItem,
+    navigationController: UINavigationController?
+  ) {
+    setupBackButtonAction(navigationController: navigationController)
+    setupBackButtonTarget()
+    setupBackBarButton(navigationItem: navigationItem)
+  }
+  
+  @objc private func backButtonTapped() {
+    backButtonAction?()
   }
 }
