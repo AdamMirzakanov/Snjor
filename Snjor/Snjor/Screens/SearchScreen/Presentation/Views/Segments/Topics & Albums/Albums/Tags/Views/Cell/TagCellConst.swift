@@ -10,5 +10,5 @@ import CoreGraphics
 enum TagCellConst {
   static let tagLabelOpacity: CGFloat = 0.6
   static let tagFontSize: CGFloat = 11.0
-  static let tagLabelCornerRadius: CGFloat = 8.0
+  static let tagLabelCornerRadius: CGFloat = 11.0
 }
