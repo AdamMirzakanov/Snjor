@@ -32,7 +32,7 @@ final class PageScreenPhotosViewController: MainViewController <PageScreenPhotos
   }
   
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    fatalError(.requiredInitFatalErrorText)
   }
   
   deinit {

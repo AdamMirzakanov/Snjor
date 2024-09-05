@@ -44,7 +44,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   }
   
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    fatalError(.requiredInitFatalErrorText)
   }
   
   deinit {

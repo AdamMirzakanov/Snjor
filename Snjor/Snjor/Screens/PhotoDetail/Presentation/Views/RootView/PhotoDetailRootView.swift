@@ -538,7 +538,7 @@ final class PhotoDetailRootView: UIView {
   }
 
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    fatalError(.requiredInitFatalErrorText)
   }
 
   // MARK: Setup Data

@@ -21,7 +21,7 @@ class MainCollectionView: UICollectionView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    fatalError(.requiredInitFatalErrorText)
   }
   
   // MARK: Internal Methods
