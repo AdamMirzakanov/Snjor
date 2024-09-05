@@ -25,23 +25,23 @@ final class AlbumPhotoCellMainView: MainImageContainerView {
   }
   
   // MARK: Views
-  let gradientView: GradientView = {
+  let gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
       alpha: AlbumPhotoCellMainViewConst.gradientOpacity
     )
     $0.setColors([
-      GradientView.Color(
+      MainGradientView.Color(
         color: .clear,
         location: AlbumPhotoCellMainViewConst.gradientStartLocation
       ),
-      GradientView.Color(
+      MainGradientView.Color(
         color: color,
         location: AlbumPhotoCellMainViewConst.gradientEndLocation
       )
     ])
     return $0
-  }(GradientView())
+  }(MainGradientView())
 
   lazy var spinner: UIActivityIndicatorView = {
     let xCenter = self.downloadButtonBlurEffect.contentView.bounds.midX

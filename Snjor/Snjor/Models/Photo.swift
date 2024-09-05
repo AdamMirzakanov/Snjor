@@ -22,6 +22,7 @@ struct Photo: Decodable, Hashable {
   let links: [LinkKind: URL]
   let createdAt: String
   let location: Location?
+  let tags: [Tag]?
 
   // MARK: Internal Enums
   enum URLKind: String, Decodable {

@@ -1,5 +1,5 @@
 //
-//  TagsCollectionView + UICollectionViewDelegateFlowLayout.swift
+//  MainTagsCollectionView + UICollectionViewDelegateFlowLayout.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 18.08.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TagsCollectionView: UICollectionViewDelegateFlowLayout {
+extension MainTagsCollectionView: UICollectionViewDelegateFlowLayout {
   func collectionView(
     _ collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
@@ -49,7 +49,9 @@ extension TagsCollectionView: UICollectionViewDelegateFlowLayout {
       withAttributes: [
         NSAttributedString
           .Key
-          .font: UIFont.systemFont(ofSize: TagsCollectionViewConst.attributedStringFontSize)
+          .font: UIFont.systemFont(
+            ofSize: TagsCollectionViewConst.attributedStringFontSize
+          )
       ]
     ).width + TagsCollectionViewConst.tagsWidthPadding
     return width

@@ -22,23 +22,23 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
   }
   
   // MARK: Views
-  private let gradientView: GradientView = {
+  private let gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
       alpha: PageScreenPhotoCellMainViewConst.gradientOpacity
     )
     $0.setColors([
-      GradientView.Color(
+      MainGradientView.Color(
         color: .clear,
         location: PageScreenPhotoCellMainViewConst.gradientStartLocation
       ),
-      GradientView.Color(
+      MainGradientView.Color(
         color: color,
         location: PageScreenPhotoCellMainViewConst.gradientEndLocation
       )
     ])
     return $0
-  }(GradientView())
+  }(MainGradientView())
   
   private let profilePhotoView: PhotoDetailPhotoView = {
     $0.contentMode = .scaleAspectFill

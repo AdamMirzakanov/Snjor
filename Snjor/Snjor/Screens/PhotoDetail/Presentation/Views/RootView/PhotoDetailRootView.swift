@@ -16,8 +16,16 @@ final class PhotoDetailRootView: UIView {
   // MARK: - Private Properties
   private var isAspectFill = true
   private var isPhotoInfo = true
+  
+  // MARK: - Tags Collection View
+  let tagsCollectionView: PhotoDetailTagsCollectionView = {
+    $0.heightAnchor.constraint(
+      equalToConstant: PhotoDetailRootViewConst.tagsCollectionViewHeight
+    ).isActive = true
+    return $0
+  }(PhotoDetailTagsCollectionView())
 
-  // MARK: - Photo Views
+  // MARK: Photo View
   let photoView: PhotoDetailPhotoView = {
     return $0
   }(PhotoDetailPhotoView())
@@ -56,24 +64,24 @@ final class PhotoDetailRootView: UIView {
   }
 
   // MARK: Gradient
- private let gradientView: GradientView = {
+ private let gradientView: MainGradientView = {
    $0.isUserInteractionEnabled = false
     let color = UIColor(
       white: .zero,
       alpha: PhotoDetailRootViewConst.gradientOpacity
     )
     $0.setColors([
-      GradientView.Color(
+      MainGradientView.Color(
         color: .clear,
         location: PhotoDetailRootViewConst.gradientEndLocation
       ),
-      GradientView.Color(
+      MainGradientView.Color(
         color: color,
         location: PhotoDetailRootViewConst.gradientStartLocation
       )
     ])
     return $0
-  }(GradientView())
+  }(MainGradientView())
 
   // MARK: Spinner
   lazy var spinner: UIActivityIndicatorView = {
@@ -518,6 +526,7 @@ final class PhotoDetailRootView: UIView {
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitStackView)
     $0.addArrangedSubview(secondLine)
+    $0.addArrangedSubview(tagsCollectionView)
     return $0
   }(UIStackView())
 
@@ -566,6 +575,8 @@ final class PhotoDetailRootView: UIView {
     focalLengthValueLabel.text = viewModelItem.focalLength
     apertureValueLabel.text = viewModelItem.aperture
     exposureTimeValueLabel.text = viewModelItem.exposureTime
+    tagsCollectionView.tags = viewModelItem.tags ?? []
+    tagsCollectionView.reloadData()
   }
 
   // MARK: Setup Views
@@ -599,7 +610,7 @@ final class PhotoDetailRootView: UIView {
       bottom: bottomAnchor,
       left: leftAnchor,
       pRight: PhotoDetailRootViewConst.rightPadding,
-      pBottom: PhotoDetailRootViewConst.bottomPadding,
+      pBottom: PhotoDetailRootViewConst.mainStackViewBottomPadding,
       pLeft: PhotoDetailRootViewConst.leftPadding
     )
   }
@@ -608,14 +619,14 @@ final class PhotoDetailRootView: UIView {
     centerLine.centerX()
     centerLine.setConstraints(
       top: mainStackView.topAnchor,
-      pTop: PhotoDetailRootViewConst.topOffset
+      pTop: PhotoDetailRootViewConst.centerLineTopOffset
     )
   }
 
   private func setupLeftStackViewConstraints() {
     leftStackView.setConstraints(
       centerY: mainStackView.centerYAnchor,
-      pCenterY: PhotoDetailRootViewConst.centerYOffset
+      pCenterY: PhotoDetailRootViewConst.leftStackViewCenterYOffset
     )
     leftStackView.setConstraints(
       right: centerLine.rightAnchor,
@@ -628,7 +639,7 @@ final class PhotoDetailRootView: UIView {
   private func setupRightStackViewConstraints() {
     rightStackView.setConstraints(
       centerY: mainStackView.centerYAnchor,
-      pCenterY: PhotoDetailRootViewConst.centerYOffset
+      pCenterY: PhotoDetailRootViewConst.rightStackViewCenterYOffset
     )
     rightStackView.setConstraints(
       right: rightAnchor,

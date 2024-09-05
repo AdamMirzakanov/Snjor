@@ -10,23 +10,23 @@ import UIKit
 final class PhotoDetailPhotoView: MainImageContainerView {
   
   // MARK: View
-  let gradientView: GradientView = {
+  let gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
       alpha: PhotoDetailPhotoViewConst.gradientOpacity
     )
     $0.setColors([
-      GradientView.Color(
+      MainGradientView.Color(
         color: .clear,
         location: PhotoDetailPhotoViewConst.gradientStartLocation
       ),
-      GradientView.Color(
+      MainGradientView.Color(
         color: color,
         location: PhotoDetailPhotoViewConst.gradientEndLocation
       )
     ])
     return $0
-  }(GradientView())
+  }(MainGradientView())
 
   // MARK: Initializers
   override init() {

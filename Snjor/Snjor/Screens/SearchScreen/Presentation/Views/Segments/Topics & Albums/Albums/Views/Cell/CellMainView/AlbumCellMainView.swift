@@ -40,23 +40,23 @@ final class AlbumCellMainView: MainImageContainerView {
   
   
   // MARK: Gradient
-  let gradientView: GradientView = {
+  let gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
       alpha: AlbumCellMainViewConst.gradientOpacity
     )
     $0.setColors([
-      GradientView.Color(
+      MainGradientView.Color(
         color: .clear,
         location: AlbumCellMainViewConst.gradientStartLocation
       ),
-      GradientView.Color(
+      MainGradientView.Color(
         color: color,
         location: AlbumCellMainViewConst.gradientEndLocation
       )
     ])
     return $0
-  }(GradientView())
+  }(MainGradientView())
   
   // MARK: Labels
   let titleLabel: UILabel = {

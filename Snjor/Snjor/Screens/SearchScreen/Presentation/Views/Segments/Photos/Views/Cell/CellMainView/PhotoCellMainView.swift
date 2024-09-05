@@ -24,23 +24,23 @@ final class PhotoCellMainView: MainImageContainerView {
   }
 
   // MARK: Gradient
-  let gradientView: GradientView = {
+  let gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
       alpha: PhotoCellMainViewConst.gradientOpacity
     )
     $0.setColors([
-      GradientView.Color(
+      MainGradientView.Color(
         color: .clear,
         location: PhotoCellMainViewConst.gradientStartLocation
       ),
-      GradientView.Color(
+      MainGradientView.Color(
         color: color,
         location: PhotoCellMainViewConst.gradientEndLocation
       )
     ])
     return $0
-  }(GradientView())
+  }(MainGradientView())
 
   // MARK: Spinner
   lazy var spinner: UIActivityIndicatorView = {

@@ -42,24 +42,24 @@ final class PageScreenRootView: UIView {
     return $0
   }(UILabel())
   
-  private let gradientView: GradientView = {
+  private let gradientView: MainGradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.setColors([
-      GradientView.Color(
+      MainGradientView.Color(
         color: UIColor(
           white: .zero,
           alpha: PageScreenRootViewConst.gradientOpacity
         ),
         location: PageScreenRootViewConst.gradientStartLocation
       ),
-      GradientView.Color(
+      MainGradientView.Color(
         color: .clear,
         location: PageScreenRootViewConst.gradientEndLocation
       ),
     ])
     $0.isUserInteractionEnabled = false
     return $0
-  }(GradientView())
+  }(MainGradientView())
   
   // MARK: Initializers
   init() {

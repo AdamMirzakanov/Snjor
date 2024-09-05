@@ -10,7 +10,7 @@ import UIKit
 class MainCollectionView: UICollectionView {
 
   // MARK: Private Properties
-  private let flowlayout = UICollectionViewFlowLayout()
+  var flowlayout = UICollectionViewFlowLayout()
   
   // MARK: Initializers
   init() {
@@ -18,6 +18,7 @@ class MainCollectionView: UICollectionView {
     configureLayout()
     cellRegister()
     reusableViewRegister()
+    setupDelegate()
   }
   
   required init?(coder: NSCoder) {
@@ -33,8 +34,11 @@ class MainCollectionView: UICollectionView {
     
   }
   
-  // MARK: Private Methods
-  private func configureLayout() {
+  func setupDelegate() {
+    
+  }
+  
+  func configureLayout() {
     flowlayout.scrollDirection = .vertical
     showsVerticalScrollIndicator = false
   }

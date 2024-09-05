@@ -1,5 +1,5 @@
 //
-//  GradientView.swift
+//  MainGradientView.swift
 //  Snjor
 //
 //  Created by Адам on 17.06.2024.
@@ -7,7 +7,8 @@
 
 import UIKit
 
-final class GradientView: UIView {
+final class MainGradientView: UIView {
+  
   // MARK: Internal Struct
   struct Color {
     let color: UIColor

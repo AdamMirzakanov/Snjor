@@ -73,7 +73,7 @@ final class MainTabBarController: UITabBarController {
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial)))
   
-  private lazy var gradientView: GradientView = {
+  private lazy var gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
       alpha: 1
@@ -86,17 +86,17 @@ final class MainTabBarController: UITabBarController {
       height: 250
     )
     $0.setColors([
-      GradientView.Color(
+      MainGradientView.Color(
         color: .clear,
         location: 0.05
       ),
-      GradientView.Color(
+      MainGradientView.Color(
         color: color,
         location: 0.7
       )
     ])
     return $0
-  }(GradientView())
+  }(MainGradientView())
 
   // MARK: View Lifecycle
   override func viewDidLoad() {

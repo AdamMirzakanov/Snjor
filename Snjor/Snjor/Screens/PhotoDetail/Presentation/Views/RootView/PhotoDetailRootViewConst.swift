@@ -10,7 +10,10 @@ import CoreGraphics
 enum PhotoDetailRootViewConst {
   static let verticalTranslation: CGFloat = -120.0
   static let centerYOffset: CGFloat = 120.0
-  static let topOffset: CGFloat = 125.0
+  static let leftStackViewCenterYOffset: CGFloat = 140.0
+  static let rightStackViewCenterYOffset: CGFloat = 140.0
+  static let tagsCollectionViewHeight: CGFloat = 22.0
+  static let centerLineTopOffset: CGFloat = 165.0
   static let downloadButtonWidth: CGFloat = 72.0
   static let resolutionLabelWidth: CGFloat = 66.0
   static let resolutionLabelHeight: CGFloat = resolutionLabelWidth / 3
@@ -24,7 +27,7 @@ enum PhotoDetailRootViewConst {
   static let leftPadding: CGFloat = 20.0
   static let rightPadding: CGFloat = 20.0
   static let halfRightPadding: CGFloat = -10.0
-  static let bottomPadding: CGFloat = 50.0
+  static let mainStackViewBottomPadding: CGFloat = 40.0
   static let infoIconSize: CGFloat = 23.0
   static let defaultDuration: CGFloat = 0.7
   static let minDuration: CGFloat = 0.2
