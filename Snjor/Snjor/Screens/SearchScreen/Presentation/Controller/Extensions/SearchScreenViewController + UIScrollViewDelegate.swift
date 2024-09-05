@@ -8,9 +8,6 @@
 import UIKit
 
 extension SearchScreenViewController {
-  override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-    return .bottom
-  }
   
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     hideCustomTabBar()

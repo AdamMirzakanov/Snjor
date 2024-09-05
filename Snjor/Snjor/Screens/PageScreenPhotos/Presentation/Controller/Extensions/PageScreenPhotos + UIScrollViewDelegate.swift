@@ -8,9 +8,6 @@
 import UIKit
 
 extension PageScreenPhotosViewController {
-  override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-    return .bottom
-  }
 
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     if let tabBar = tabBarController as? MainTabBarController {
