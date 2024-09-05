@@ -46,7 +46,7 @@ enum PhotoDetailRootViewConst {
   static let middleFontSize: CGFloat = 16.0
   static let fullFontSize: CGFloat = 24.0
   static let tagFontSize: CGFloat = 11.0
-  static let profitStackViewSpacing: CGFloat = 25.0
+  static let profitStackViewSpacing: CGFloat = 20.0
   static let smallValue = half * half                             // 4
   static let defaultValue = smallValue * half                     // 8
   static let middleValue = defaultValue * half                    // 16
