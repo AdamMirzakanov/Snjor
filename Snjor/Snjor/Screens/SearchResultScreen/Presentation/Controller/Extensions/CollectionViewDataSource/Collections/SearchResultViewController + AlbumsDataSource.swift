@@ -31,17 +31,24 @@ extension SearchResultViewController {
   }
   
   // MARK: Create Data Source
-  func createCollectionsDataSource(for collectionView: UICollectionView) {
+  func createCollectionsDataSource(
+    for collectionView: UICollectionView,
+    delegate: any AlbumCellDelegate
+  ) {
     collectionsDataSource = DataSource(
       collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, item in
-      guard let strongSelf = self else {
+    ) { [weak self, weak delegate] collectionView, indexPath, item in
+      guard
+        let strongSelf = self,
+        let delegate = delegate
+      else {
         return UICollectionViewCell()
       }
       return strongSelf.configureCell(
         collectionView: collectionView,
         indexPath: indexPath,
-        item: item
+        item: item,
+        delegate: delegate
       )
     }
     
@@ -61,7 +68,8 @@ extension SearchResultViewController {
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
-    item: Album
+    item: Album,
+    delegate: any AlbumCellDelegate
   ) -> UICollectionViewCell {
     let section = collectionsSections[indexPath.section]
     switch section {
@@ -69,7 +77,8 @@ extension SearchResultViewController {
       return configureAlbumCell(
         collectionView: collectionView,
         indexPath: indexPath,
-        album: item
+        album: item,
+        delegate: delegate
       )
     }
   }
@@ -113,7 +122,8 @@ extension SearchResultViewController {
   private func configureAlbumCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
-    album: Album
+    album: Album,
+    delegate: any AlbumCellDelegate
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
@@ -127,6 +137,7 @@ extension SearchResultViewController {
     guard let currentSearchTerm = self.currentSearchTerm else {
       return cell
     }
+    cell.delegate = delegate
     let viewModelItem = albumsViewModel.getSearchItemsViewModelItem(
       at: indexPath.item,
       with: currentSearchTerm

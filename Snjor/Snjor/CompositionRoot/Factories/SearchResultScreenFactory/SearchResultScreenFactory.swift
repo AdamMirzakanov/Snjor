@@ -61,6 +61,23 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     )
   }
   
+  func makeSearchResultScreenCoordinator(
+    currentScopeIndex: Int,
+    with searchTerm: String,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable {
+    let factory = SearchResultScreenFactory(
+      currentScopeIndex: currentScopeIndex,
+      with: searchTerm
+    )
+    return SearchResultScreenCoordinator(
+      factory: factory,
+      navigation: navigation,
+      parentCoordinator: parentCoordinator
+    )
+  }
+  
   // MARK: Private Methods
   private func getController(
     _ delegate: any SearchResultViewControllerDelegate

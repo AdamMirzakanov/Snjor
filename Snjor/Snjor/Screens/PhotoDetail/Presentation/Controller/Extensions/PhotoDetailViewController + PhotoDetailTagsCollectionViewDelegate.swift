@@ -10,7 +10,7 @@ extension PhotoDetailViewController: PhotoDetailTagsCollectionViewDelegate {
     delegate?.tagCellDidSelect(
       tag,
       with: tag.title,
-      currentScopeIndex: .zero
+      currentScopeIndex: .discover
     )
   }
 }

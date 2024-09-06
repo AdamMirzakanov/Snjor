@@ -56,6 +56,20 @@ extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
     )
     addAndStartChildCoordinator(coordinator)
   }
+  
+  func tagCellDidSelect(
+    _ tag: Tag,
+    with searchTerm: String,
+    currentScopeIndex: Int
+  ) {
+    let coordinator = factory.makeSearchResultScreenCoordinator(
+      currentScopeIndex: currentScopeIndex,
+      with: searchTerm,
+      navigation: navigation,
+      parentCoordinator: self
+    )
+    addAndStartChildCoordinator(coordinator)
+  }
 }
 
 // MARK: - ParentCoordinator

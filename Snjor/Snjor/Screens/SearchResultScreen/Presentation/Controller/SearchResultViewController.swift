@@ -69,9 +69,9 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    if self.isMovingFromParent {
+//    if self.isMovingFromParent {
       resetSearchState()
-    }
+//    }
   }
   
   // MARK: Internal Methods
@@ -124,7 +124,8 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
       delegate: self
     )
     createCollectionsDataSource(
-      for: rootView.albumsCollectionView
+      for: rootView.albumsCollectionView,
+      delegate: self
     )
   }
   
