@@ -48,14 +48,18 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
     setupNavigationItems()
     configureDownloadSession()
   }
-
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-//    if self.isMovingFromParent {
-      downloadService.invalidateSession(withID: Self.sessionID)
-//    }
+    resetSearchState()
   }
-
+  
+  func resetSearchState() {
+    if self.isMovingFromParent {
+      downloadService.invalidateSession(withID: Self.sessionID)
+    }
+  }
+  
   deinit {
     print(#function, Self.self, "🟢")
   }

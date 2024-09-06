@@ -69,20 +69,20 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-//    if self.isMovingFromParent {
-      resetSearchState()
-//    }
+    resetSearchState()
   }
   
   // MARK: Internal Methods
   func resetSearchState() {
-    PrepareParameters.searchPhotosPage = .zero
-    PrepareParameters.searchAlbumsPage = .zero
-    photosDataSource = nil
-    photosSections.removeAll()
-    currentScopeIndex = .zero
-    cancellable.removeAll()
-    downloadService.invalidateSession(withID: Self.sessionID)
+    if self.isMovingFromParent {
+      PrepareParameters.searchPhotosPage = .zero
+      PrepareParameters.searchAlbumsPage = .zero
+      photosDataSource = nil
+      photosSections.removeAll()
+      currentScopeIndex = .zero
+      cancellable.removeAll()
+      downloadService.invalidateSession(withID: Self.sessionID)
+    }
   }
   
   func fetchMatchingItems(with searchTerm: String) {
