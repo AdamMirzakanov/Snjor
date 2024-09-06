@@ -16,6 +16,7 @@ class BaseViewModel<Element: ViewModelItemRepresentable & Downloadable>: Content
   var items: [Element] = []
   var lastPageValidationUseCase: (any LastPageValidationUseCaseProtocol)?
   var state: PassthroughSubject<StateController, Never>
+  var itemsCount: Int { return items.count }
   
   // MARK: Initializers
   init(
@@ -39,7 +40,7 @@ class BaseViewModel<Element: ViewModelItemRepresentable & Downloadable>: Content
   }
   
   func getViewModelItem(at index: Int) -> BaseViewModelItem<Element> {
-    checkAndLoadMoreItems(at: index)
+//    checkAndLoadMoreItems(at: index)
     return makeViewModelItem(at: index)
   }
   

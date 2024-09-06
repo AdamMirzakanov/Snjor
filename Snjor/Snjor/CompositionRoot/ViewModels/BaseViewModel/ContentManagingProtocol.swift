@@ -7,6 +7,7 @@
 
 protocol ContentManagingProtocol<Item>: BaseViewModelProtocol {
   associatedtype Item: ViewModelItemRepresentable, Downloadable
+  var itemsCount: Int { get }
   var items: [Item] { get }
   func getItem(at index: Int) -> Item
   func getViewModelItem(at index: Int) -> BaseViewModelItem<Item>

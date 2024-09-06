@@ -14,10 +14,10 @@ extension SearchScreenViewController: UICollectionViewDelegate {
   ) {
     guard let delegate = delegate else { return }
     switch currentScopeIndex {
-    case .zero:
+    case .discover:
       let photo = photosViewModel.getItem(at: indexPath.item)
       delegate.photoCellDidSelect(photo)
-    default:
+    case .topicAndAlbums:
       switch indexPath.section {
       case .zero:
         let topic = topicsViewModel.getItem(at: indexPath.item)
@@ -26,6 +26,33 @@ extension SearchScreenViewController: UICollectionViewDelegate {
         let album = albumsViewModel.getItem(at: indexPath.item)
         delegate.albumcCellDidSelect(album)
       }
+    default :
+      break
     }
+  }
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    willDisplay cell: UICollectionViewCell,
+    forItemAt indexPath: IndexPath
+  ) {
+    switch currentScopeIndex {
+    case .discover:
+      handleWillDisplay(for: indexPath, viewModel: photosViewModel)
+    case .topicAndAlbums:
+      handleWillDisplay(for: indexPath, viewModel: albumsViewModel)
+    default:
+      break
+    }
+  }
+  
+  private func handleWillDisplay(
+    for indexPath: IndexPath,
+    viewModel: any SearchViewModelProtocol
+  ) {
+    guard indexPath.item == viewModel.itemsCount - .thresholdValue else {
+      return
+    }
+    viewModel.viewDidLoad()
   }
 }

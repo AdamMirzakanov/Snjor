@@ -24,4 +24,32 @@ extension SearchResultViewController: UICollectionViewDelegate {
       print(#function, Self.self)
     }
   }
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    willDisplay cell: UICollectionViewCell,
+    forItemAt indexPath: IndexPath
+  ) {
+    switch currentScopeIndex {
+    case .discover:
+      handleWillDisplay(for: indexPath, viewModel: photosViewModel)
+    case .topicAndAlbums:
+      handleWillDisplay(for: indexPath, viewModel: albumsViewModel)
+    default:
+      break
+    }
+  }
+  
+  private func handleWillDisplay(
+    for indexPath: IndexPath,
+    viewModel: any SearchViewModelProtocol
+  ) {
+    guard
+      indexPath.item == viewModel.itemsCount - .thresholdValue,
+      let currentSearchTerm = currentSearchTerm
+    else {
+      return
+    }
+    viewModel.search(with: currentSearchTerm)
+  }
 }
