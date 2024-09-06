@@ -135,7 +135,8 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
       delegate: self
     )
     createCollectionsDataSource(
-      for: rootView.albumsCollectionView
+      for: rootView.albumsCollectionView,
+      delegate: self
     )
   }
   

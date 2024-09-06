@@ -9,6 +9,10 @@ import UIKit
 
 final class AlbumTagsCollectionView: MainTagsCollectionView {
   
+  // MARK: Internal Properties
+  weak var tagsDelegate: (any AlbumTagsCollectionViewDelegate)?
+  
+  // MARK: Internal Methods
   override func setupDelegate() {
     delegate = self
     dataSource = self

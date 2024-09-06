@@ -9,6 +9,9 @@ import UIKit
 
 final class AlbumCell: UICollectionViewCell {
   
+  // MARK: Internal Properties
+  weak var delegate: (any AlbumCellDelegate)?
+  
   // MARK: Views
   let mainView: AlbumCellMainView = {
     return $0
@@ -20,7 +23,7 @@ final class AlbumCell: UICollectionViewCell {
     ).isActive = true
     return $0
   }(AlbumTagsCollectionView())
-
+  
   private let rightGradientView: MainGradientView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.isUserInteractionEnabled = false
@@ -58,6 +61,7 @@ final class AlbumCell: UICollectionViewCell {
     setupViews()
     setupConstraints()
     updateGradientColors()
+    tagsCollectionView.tagsDelegate = self
   }
   
   required init?(coder: NSCoder) {
@@ -148,5 +152,12 @@ final class AlbumCell: UICollectionViewCell {
     ) {
       updateGradientColors()
     }
+  }
+}
+
+extension AlbumCell: AlbumTagsCollectionViewDelegate {
+  func tagCellDidSelect(_ tag: Tag) {
+    delegate?.tagCellDidSelect(tag, self)
+    print(#function, Self.self, tag.title)
   }
 }

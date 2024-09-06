@@ -34,7 +34,10 @@ extension SearchScreenViewController {
   }
   
   // MARK: Create Data Source
-  func createCollectionsDataSource(for collectionView: UICollectionView) {
+  func createCollectionsDataSource(
+    for collectionView: UICollectionView,
+    delegate: any AlbumCellDelegate
+  ) {
     collectionsDataSource = DataSource(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, item in
@@ -44,7 +47,8 @@ extension SearchScreenViewController {
       return strongSelf.configureCell(
         collectionView: collectionView,
         indexPath: indexPath,
-        item: item
+        item: item,
+        delegate: delegate
       )
     }
     
@@ -64,7 +68,8 @@ extension SearchScreenViewController {
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
-    item: CollectionsItem
+    item: CollectionsItem,
+    delegate: any AlbumCellDelegate
   ) -> UICollectionViewCell {
     let cell = UICollectionViewCell()
     let section = collectionsSections[indexPath.section]
@@ -84,7 +89,8 @@ extension SearchScreenViewController {
         return configureAlbumCell(
           collectionView: collectionView,
           indexPath: indexPath,
-          album: album
+          album: album,
+          delegate: delegate
         )
       } else {
         return cell
@@ -156,7 +162,8 @@ extension SearchScreenViewController {
   private func configureAlbumCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
-    album: Album
+    album: Album,
+    delegate: any AlbumCellDelegate
   ) -> UICollectionViewCell {
     guard
       let cell = collectionView.dequeueReusableCell(
@@ -166,6 +173,7 @@ extension SearchScreenViewController {
     else {
       return UICollectionViewCell()
     }
+    cell.delegate = delegate
     let viewModelItem = albumsViewModel.getViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell

@@ -10,4 +10,9 @@ protocol SearchScreenViewControllerDelegate: AnyObject {
   func topicCellDidSelect(_ topic: Topic)
   func albumcCellDidSelect(_ album: Album)
   func searchButtonClicked(with searchTerm: String, currentScopeIndex: Int)
+  func tagCellDidSelect(
+    _ tag: Tag,
+    with searchTerm: String,
+    currentScopeIndex: Int
+  )
 }
