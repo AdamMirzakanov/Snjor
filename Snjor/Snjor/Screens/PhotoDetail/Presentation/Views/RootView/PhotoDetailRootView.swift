@@ -19,6 +19,7 @@ final class PhotoDetailRootView: UIView {
   private var backBarButtonAction: (() -> Void)?
   private var downloadBarButtonAction: (() -> Void)?
   private var toggleContentModeBarButtonAction: (() -> Void)?
+  private var infoButtonAction: (() -> Void)?
   
   // MARK: - Tags Collection View
   let tagsCollectionView: PhotoDetailTagsCollectionView = {
@@ -710,7 +711,29 @@ final class PhotoDetailRootView: UIView {
     return barButtonItems
   }
   
-  // MARK: - Config Navigation Item Actions
+  @objc private func infoButtonTapped() {
+    infoButtonAction?()
+  }
+  
+  private func configInfoButtonAction() {
+    setupInfoButtonAction()
+    setupInfoButtonTarget()
+  }
+  
+  private func setupInfoButtonAction() {
+    infoButtonAction = { [weak self] in
+      self?.showAndHidePhotoInfo()
+    }
+  }
+  
+  private func setupInfoButtonTarget() {
+    infoButton.addTarget(
+      self,
+      action: #selector(infoButtonTapped),
+      for: .touchUpInside
+    )
+  }
+  
   @objc private func backBarButtonTapped() {
     backBarButtonAction?()
   }
@@ -895,15 +918,6 @@ final class PhotoDetailRootView: UIView {
       self.centerLine.transform = transform
       self.photoInfoStackView.isHidden = false
     }
-  }
-  
-  // MARK: Config Button Actions
-  private func configInfoButtonAction() {
-    let infoButtonAction = UIAction { [weak self] _ in
-      guard let self = self else { return }
-      self.showAndHidePhotoInfo()
-    }
-    infoButton.addAction(infoButtonAction, for: .touchUpInside)
   }
   
   // MARK: Helper
