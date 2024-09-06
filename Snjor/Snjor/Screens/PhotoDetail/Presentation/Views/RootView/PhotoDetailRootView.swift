@@ -16,7 +16,7 @@ final class PhotoDetailRootView: UIView {
   // MARK: - Private Properties
   private var isAspectFill = true
   private var isPhotoInfo = true
-  private var backButtonAction: (() -> Void)?
+  private var backBarButtonAction: (() -> Void)?
   
   // MARK: - Tags Collection View
   let tagsCollectionView: PhotoDetailTagsCollectionView = {
@@ -708,39 +708,40 @@ final class PhotoDetailRootView: UIView {
     return barButtonItems
   }
   
-  // MARK: Config Navigation Item Actions
+  // MARK: - Config Navigation Item Actions
+  @objc private func backBarButtonTapped() {
+    backBarButtonAction?()
+  }
+  
   func configBacBarButtonItem(
     _ navigationItem: UINavigationItem,
     _ navigationController: UINavigationController?
   ) {
-    setupBackButtonAction(navigationController: navigationController)
-    setupBackButtonTarget()
-    setupBackBarButton(navigationItem: navigationItem)
+    setupBackBarButton(navigationItem)
+    setupBackButtonAction(navigationController)
+    setupBackBarButtonTarget()
   }
   
-  private func setupBackButtonAction(navigationController: UINavigationController?) {
-    backButtonAction = { [weak navigationController] in
+  private func setupBackButtonAction(_ navigationController: UINavigationController?) {
+    backBarButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
     }
   }
   
-  private func setupBackButtonTarget() {
+  private func setupBackBarButtonTarget() {
     backBarButton.addTarget(
       self,
-      action: #selector(backButtonTapped),
+      action: #selector(backBarButtonTapped),
       for: .touchUpInside
     )
   }
   
-  private func setupBackBarButton(navigationItem: UINavigationItem) {
+  private func setupBackBarButton(_ navigationItem: UINavigationItem) {
     let backBarButton = UIBarButtonItem(customView: backBarButtonBlurEffect)
     navigationItem.leftBarButtonItem = backBarButton
   }
   
-  @objc private func backButtonTapped() {
-    backButtonAction?()
-  }
-  
+  // MARK: -
   private func configDownloadButtonAction() {
     let downloadButtonAction = UIAction { [weak self] _ in
       guard
@@ -758,6 +759,7 @@ final class PhotoDetailRootView: UIView {
     )
   }
   
+  // MARK: -
   private func configToggleContentModeButtonAction() {
     let toggleContentModeButtonAction = UIAction { [weak self] _ in
       guard let self = self else { return }

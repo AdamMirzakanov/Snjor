@@ -40,19 +40,20 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
     setupRootViewDelegate()
     stateController()
     viewModel.viewDidLoad()
-    configureDownloadSession()
+//    configureDownloadSession()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setupNavigationItems()
+    configureDownloadSession()
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    if self.isMovingFromParent {
+//    if self.isMovingFromParent {
       downloadService.invalidateSession(withID: Self.sessionID)
-    }
+//    }
   }
 
   deinit {
