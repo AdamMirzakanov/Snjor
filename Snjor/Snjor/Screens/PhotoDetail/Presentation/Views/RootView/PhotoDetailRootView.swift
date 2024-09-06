@@ -17,6 +17,8 @@ final class PhotoDetailRootView: UIView {
   private var isAspectFill = true
   private var isPhotoInfo = true
   private var backBarButtonAction: (() -> Void)?
+  private var downloadBarButtonAction: (() -> Void)?
+  private var toggleContentModeBarButtonAction: (() -> Void)?
   
   // MARK: - Tags Collection View
   let tagsCollectionView: PhotoDetailTagsCollectionView = {
@@ -679,14 +681,14 @@ final class PhotoDetailRootView: UIView {
     setupBarButtons()
     setupNavigationItems(navigationItem)
     configInfoButtonAction()
-    configToggleContentModeButtonAction()
-    configDownloadButtonAction()
+    configToggleContentModeBarButtonItem(navigationItem)
+    configDownloadBarButtonItem(navigationItem)
     configBacBarButtonItem(navigationItem, navigationController)
   }
   
   private func setupNavigationItems(_ navigationItem: UINavigationItem) {
-    navigationItem.rightBarButtonItems = makeRightBarButtons()
     navigationItem.leftBarButtonItems = makeLeftBarButtons()
+    navigationItem.rightBarButtonItems = makeRightBarButtons()
   }
   
   private func setupBarButtons() {
@@ -717,7 +719,6 @@ final class PhotoDetailRootView: UIView {
     _ navigationItem: UINavigationItem,
     _ navigationController: UINavigationController?
   ) {
-    setupBackBarButton(navigationItem)
     setupBackButtonAction(navigationController)
     setupBackBarButtonTarget()
   }
@@ -742,33 +743,68 @@ final class PhotoDetailRootView: UIView {
   }
   
   // MARK: -
-  private func configDownloadButtonAction() {
-    let downloadButtonAction = UIAction { [weak self] _ in
-      guard
-        let self = self,
-        let delegate = delegate
-      else {
-        return
-      }
-      animateDownloadButton()
-      delegate.didTapDownloadButton()
+  @objc private func downloadBarButtonTapped() {
+    downloadBarButtonAction?()
+  }
+  
+  func configDownloadBarButtonItem(
+    _ navigationItem: UINavigationItem
+  ) {
+    setupDownloadButtonAction()
+    setupDownloadBarButtonTarget()
+  }
+  
+  private func setupDownloadButtonAction() {
+    downloadBarButtonAction = { [weak self] in
+      self?.animateDownloadButton()
+      self?.delegate?.didTapDownloadButton()
     }
-    downloadBarButton.addAction(
-      downloadButtonAction,
+  }
+  
+  private func setupDownloadBarButtonTarget() {
+    downloadBarButton.addTarget(
+      self,
+      action: #selector(downloadBarButtonTapped),
       for: .touchUpInside
     )
   }
   
+  private func setupDownloadBarButton(_ navigationItem: UINavigationItem) {
+    let downloadButton = UIBarButtonItem(customView: downloadBarButtonBlurEffect)
+    navigationItem.rightBarButtonItem = downloadButton
+  }
+  
   // MARK: -
-  private func configToggleContentModeButtonAction() {
-    let toggleContentModeButtonAction = UIAction { [weak self] _ in
-      guard let self = self else { return }
-      configToggleContentMode()
+  @objc private func toggleContentModeBarButtonTapped() {
+    toggleContentModeBarButtonAction?()
+  }
+  
+  func configToggleContentModeBarButtonItem(
+    _ navigationItem: UINavigationItem
+  ) {
+    setupToggleContentModeBarButtonAction()
+    setupToggleContentModeBarButtonTarget()
+  }
+  
+  private func setupToggleContentModeBarButtonAction() {
+    toggleContentModeBarButtonAction = { [weak self] in
+      self?.configToggleContentMode()
     }
-    toggleContentModeButton.addAction(
-      toggleContentModeButtonAction,
+  }
+  
+  private func setupToggleContentModeBarButtonTarget() {
+    toggleContentModeButton.addTarget(
+      self,
+      action: #selector(toggleContentModeBarButtonTapped),
       for: .touchUpInside
     )
+  }
+  
+  private func setupToggleContentModeBarButton(_ navigationItem: UINavigationItem) {
+    let toggleContentModeButton = UIBarButtonItem(
+      customView: toggleContentModePhotoButtonBlurEffect
+    )
+    navigationItem.rightBarButtonItem = toggleContentModeButton
   }
   
   private func configToggleContentMode() {
