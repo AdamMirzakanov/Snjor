@@ -11,7 +11,7 @@ import Combine
 final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   
   // MARK: Internal Properties
-  var dataSource: UICollectionViewDiffableDataSource<AlbumPhotosSection, Photo>?
+  var dataSource: AlbumPhotosDataSource?
   
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()

@@ -9,20 +9,19 @@ import UIKit
 
 extension AlbumPhotosViewController {
 
-  private typealias DataSource = UICollectionViewDiffableDataSource<AlbumPhotosSection, Photo>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot<AlbumPhotosSection, Photo>
-  
-  private var snapshot: Snapshot {
-    var snapshot = Snapshot()
+  // MARK: Private Properties
+  private var albumPhotosSnapshot: AlbumPhotosSnapshot {
+    var snapshot = AlbumPhotosSnapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(viewModel.items)
     return snapshot
   }
   
+  // MARK: Internal Methods
   func applySnapshot() {
     guard let dataSource = dataSource else { return }
     dataSource.apply(
-      snapshot,
+      albumPhotosSnapshot,
       animatingDifferences: true
     )
   }
@@ -32,7 +31,7 @@ extension AlbumPhotosViewController {
     for collectionView: UICollectionView,
     delegate: any AlbumPhotoCellDelegate
   ) {
-    dataSource = DataSource(
+    dataSource = AlbumPhotosDataSource(
       collectionView: collectionView
     ) { [weak self, weak delegate] collectionView, indexPath, photo in
       guard let self = self,
@@ -49,6 +48,7 @@ extension AlbumPhotosViewController {
     }
   }
   
+  // MARK: Configure Cells
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,

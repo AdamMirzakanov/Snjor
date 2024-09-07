@@ -10,7 +10,7 @@ import UIKit
 extension SearchResultViewController {
   
   // MARK: Private Properties
-  private var AlbumsSnapshot: SearchResultAlbumsSnapshot {
+  private var albumsSnapshot: SearchResultAlbumsSnapshot {
     var snapshot = SearchResultAlbumsSnapshot()
     snapshot.appendSections([.albums])
     snapshot.appendItems(albumsViewModel.items, toSection: .albums)
@@ -22,7 +22,7 @@ extension SearchResultViewController {
   func applyAlbumsSnapshot() {
     guard let dataSource = albumsDataSource else { return }
     dataSource.apply(
-      AlbumsSnapshot,
+      albumsSnapshot,
       animatingDifferences: true
     )
   }
@@ -50,6 +50,7 @@ extension SearchResultViewController {
     }
   }
   
+  // MARK: Configure Cells
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
@@ -68,7 +69,6 @@ extension SearchResultViewController {
     }
   }
   
-  // MARK: Configure Cells
   private func configureAlbumCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
