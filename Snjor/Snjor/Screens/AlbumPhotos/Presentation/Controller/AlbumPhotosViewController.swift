@@ -60,13 +60,18 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    if self.isMovingFromParent || self.isBeingDismissed {
-      downloadService.invalidateSession(withID: Self.sessionID)
-      dataSource = nil
-    }
+    resetState()
   }
   
   // MARK: Private Methods
+  private func resetState() {
+    if self.isMovingFromParent {
+      dataSource = nil
+      cancellable.removeAll()
+      downloadService.invalidateSession(withID: Self.sessionID)
+    }
+  }
+  
   private func setupDataSource() {
     createDataSource(
       for: rootView.albumPhotosCollectionView,
