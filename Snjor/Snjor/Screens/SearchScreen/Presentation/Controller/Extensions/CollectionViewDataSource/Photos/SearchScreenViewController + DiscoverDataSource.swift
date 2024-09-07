@@ -1,5 +1,5 @@
 //
-//  SearchScreenViewController + PhtosDataSource.swift
+//  SearchScreenViewController + DiscoverDataSource.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 13.08.2024.
@@ -10,7 +10,7 @@ import UIKit
 extension SearchScreenViewController {
   
   // MARK: Private Properties
-  private var photosSnapshot: DiscoverSnapshot {
+  private var discoverSnapshot: DiscoverSnapshot {
     var snapshot = DiscoverSnapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(photosViewModel.items, toSection: .main)
@@ -22,7 +22,7 @@ extension SearchScreenViewController {
   func applyPhotosSnapshot() {
     guard let dataSource = discoverDataSource else { return }
     dataSource.apply(
-      photosSnapshot,
+      discoverSnapshot,
       animatingDifferences: true
     )
   }

@@ -142,7 +142,7 @@
 		3794762F2C652220004AFF0E /* AlbumCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3794762E2C652220004AFF0E /* AlbumCellMainView.swift */; };
 		379476312C65847B004AFF0E /* AlbumListCell + Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379476302C65847B004AFF0E /* AlbumListCell + Reusable.swift */; };
 		379955372C6F77C500D20F24 /* TopicPhotosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379955362C6F77C500D20F24 /* TopicPhotosCoordinator.swift */; };
-		37A502852C6B8CAA000221D1 /* SearchScreenViewController + PhtosDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A502842C6B8CAA000221D1 /* SearchScreenViewController + PhtosDataSource.swift */; };
+		37A502852C6B8CAA000221D1 /* SearchScreenViewController + DiscoverDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A502842C6B8CAA000221D1 /* SearchScreenViewController + DiscoverDataSource.swift */; };
 		37A502872C6B8CC3000221D1 /* SearchScreenViewController + TopicsAndAlbumsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A502862C6B8CC3000221D1 /* SearchScreenViewController + TopicsAndAlbumsDataSource.swift */; };
 		37A5028A2C6B8D6F000221D1 /* SearchScreenViewController + UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A502892C6B8D6F000221D1 /* SearchScreenViewController + UISearchBarDelegate.swift */; };
 		37A5028C2C6B8D8F000221D1 /* SearchScreenViewController + MessageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5028B2C6B8D8F000221D1 /* SearchScreenViewController + MessageDisplayable.swift */; };
@@ -449,7 +449,7 @@
 		3794762E2C652220004AFF0E /* AlbumCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCellMainView.swift; sourceTree = "<group>"; };
 		379476302C65847B004AFF0E /* AlbumListCell + Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumListCell + Reusable.swift"; sourceTree = "<group>"; };
 		379955362C6F77C500D20F24 /* TopicPhotosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPhotosCoordinator.swift; sourceTree = "<group>"; };
-		37A502842C6B8CAA000221D1 /* SearchScreenViewController + PhtosDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchScreenViewController + PhtosDataSource.swift"; sourceTree = "<group>"; };
+		37A502842C6B8CAA000221D1 /* SearchScreenViewController + DiscoverDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchScreenViewController + DiscoverDataSource.swift"; sourceTree = "<group>"; };
 		37A502862C6B8CC3000221D1 /* SearchScreenViewController + TopicsAndAlbumsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchScreenViewController + TopicsAndAlbumsDataSource.swift"; sourceTree = "<group>"; };
 		37A502892C6B8D6F000221D1 /* SearchScreenViewController + UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchScreenViewController + UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		37A5028B2C6B8D8F000221D1 /* SearchScreenViewController + MessageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchScreenViewController + MessageDisplayable.swift"; sourceTree = "<group>"; };
@@ -1598,7 +1598,7 @@
 			isa = PBXGroup;
 			children = (
 				37A502D52C6EB64A000221D1 /* DiscoverSection.swift */,
-				37A502842C6B8CAA000221D1 /* SearchScreenViewController + PhtosDataSource.swift */,
+				37A502842C6B8CAA000221D1 /* SearchScreenViewController + DiscoverDataSource.swift */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
@@ -2771,7 +2771,7 @@
 				3770E1AF2C722F3F0017ECBB /* AlbumTagCell + Reusable.swift in Sources */,
 				372B34682C8883B7008FCC88 /* SearchScreenPhotoCellDelegate.swift in Sources */,
 				3770E1532C70A9BF0017ECBB /* TopicPhotosFactoryProtocol.swift in Sources */,
-				37A502852C6B8CAA000221D1 /* SearchScreenViewController + PhtosDataSource.swift in Sources */,
+				37A502852C6B8CAA000221D1 /* SearchScreenViewController + DiscoverDataSource.swift in Sources */,
 				3770E18C2C72075B0017ECBB /* AlbumPhotos + SessionIdentifiable.swift in Sources */,
 				664A51432C1DFA38003491BA /* HTTPMethod.swift in Sources */,
 				664A51562C1E40B2003491BA /* StateController.swift in Sources */,
