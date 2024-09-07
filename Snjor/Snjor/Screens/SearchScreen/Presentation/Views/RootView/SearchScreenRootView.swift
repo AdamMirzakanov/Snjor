@@ -17,9 +17,10 @@ final class SearchScreenRootView: UIView {
     return $0
   }(TopicsAndAlbumsCollectionView())
   
-//  let usersCollectionView: UsersCollectionView = {
-//    return $0
-//  }(UsersCollectionView())
+  let usersTableViewView: UITableView = {
+    $0.backgroundColor = .systemBlue
+    return $0
+  }(UITableView())
   
   // MARK: Initializers
   init() {
@@ -41,11 +42,12 @@ final class SearchScreenRootView: UIView {
   private func addSubviews() {
     addSubview(photosCollectionView)
     addSubview(albumsCollectionView)
+    addSubview(usersTableViewView)
   }
   
   private func setupConstraints() {
     photosCollectionView.fillSuperView()
     albumsCollectionView.fillSuperView()
-//    usersCollectionView.fillSuperView()
+    usersTableViewView.fillSuperView()
   }
 }

@@ -115,6 +115,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   
   private func setupVisibleContainers() {
     rootView.albumsCollectionView.removeFromSuperview()
+    rootView.usersTableViewView.removeFromSuperview()
   }
   
   private func setupCollectionViewDelegate() {

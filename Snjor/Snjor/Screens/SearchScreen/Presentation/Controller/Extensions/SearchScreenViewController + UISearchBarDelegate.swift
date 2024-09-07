@@ -34,6 +34,7 @@ extension SearchScreenViewController: UISearchBarDelegate {
   // MARK: Private Methods
   private func configureForDiscoverMode(_ searchBar: UISearchBar) {
     rootView.albumsCollectionView.removeFromSuperview()
+    rootView.usersTableViewView.removeFromSuperview()
     rootView.addSubview(rootView.photosCollectionView)
     rootView.photosCollectionView.fillSuperView()
     searchBar.placeholder = .searchPhotos
@@ -42,6 +43,7 @@ extension SearchScreenViewController: UISearchBarDelegate {
   
   private func configureForTopicAndAlbumsMode(_ searchBar: UISearchBar) {
     rootView.photosCollectionView.removeFromSuperview()
+    rootView.usersTableViewView.removeFromSuperview()
     rootView.addSubview(rootView.albumsCollectionView)
     rootView.albumsCollectionView.fillSuperView()
     searchBar.placeholder = .searchAlbums
@@ -49,8 +51,10 @@ extension SearchScreenViewController: UISearchBarDelegate {
   }
   
   private func configureForUserMode(_ searchBar: UISearchBar) {
-    rootView.photosCollectionView.isHidden = true
-    rootView.albumsCollectionView.isHidden = true
+    rootView.photosCollectionView.removeFromSuperview()
+    rootView.albumsCollectionView.removeFromSuperview()
+    rootView.addSubview(rootView.usersTableViewView)
+    rootView.usersTableViewView.fillSuperView()
     searchBar.placeholder = .searchUsers
     navigationItem.title = .usersTitle
   }
