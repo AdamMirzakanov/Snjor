@@ -15,16 +15,14 @@ extension SearchResultViewController: UICollectionViewDelegate {
     guard let delegate = delegate else { return }
     switch currentScopeIndex {
     case .discover:
-      let photo = photosViewModel.getItem(at: indexPath.item)
-      delegate.searchPhotoCellDidSelect(photo)
+      handlePhotoSelection(at: indexPath, delegate: delegate)
     case .topicAndAlbums:
-      let album = albumsViewModel.getItem(at: indexPath.item)
-      delegate.searchAlbumcCellDidSelect(album)
+      handleAlbumSelection(at: indexPath, delegate: delegate)
     default:
-      print(#function, Self.self)
+      handleUserSelection()
     }
   }
-  
+
   func collectionView(
     _ collectionView: UICollectionView,
     willDisplay cell: UICollectionViewCell,
@@ -40,6 +38,7 @@ extension SearchResultViewController: UICollectionViewDelegate {
     }
   }
   
+  // MARK: - Private Methods
   private func handleWillDisplay(
     for indexPath: IndexPath,
     viewModel: any SearchViewModelProtocol
@@ -51,5 +50,25 @@ extension SearchResultViewController: UICollectionViewDelegate {
       return
     }
     viewModel.executeSearch(with: currentSearchTerm)
+  }
+  
+  private func handlePhotoSelection(
+    at indexPath: IndexPath,
+    delegate: any SearchResultViewControllerDelegate
+  ) {
+    let photo = photosViewModel.getItem(at: indexPath.item)
+    delegate.searchPhotoCellDidSelect(photo)
+  }
+  
+  private func handleAlbumSelection(
+    at indexPath: IndexPath,
+    delegate: any SearchResultViewControllerDelegate
+  ) {
+    let album = albumsViewModel.getItem(at: indexPath.item)
+    delegate.searchAlbumcCellDidSelect(album)
+  }
+  
+  private func handleUserSelection() {
+    print(#function, Self.self)
   }
 }
