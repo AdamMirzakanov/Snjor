@@ -53,7 +53,7 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
     addAndStartChildCoordinator(coordinator)
   }
   
-  func albumcCellDidSelect(_ album: Album) {
+  func albumCellDidSelect(_ album: Album) {
     let coordinator = factory.mekeAlbumPhotosCoordinator(
       album: album,
       navigation: navigation,

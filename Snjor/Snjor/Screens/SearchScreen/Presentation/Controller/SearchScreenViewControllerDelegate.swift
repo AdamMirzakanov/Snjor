@@ -8,7 +8,7 @@
 protocol SearchScreenViewControllerDelegate: AnyObject {
   func photoCellDidSelect(_ photo: Photo)
   func topicCellDidSelect(_ topic: Topic)
-  func albumcCellDidSelect(_ album: Album)
+  func albumCellDidSelect(_ album: Album)
   func searchButtonClicked(with searchTerm: String, currentScopeIndex: Int)
   func tagCellDidSelect(
     _ tag: Tag,
