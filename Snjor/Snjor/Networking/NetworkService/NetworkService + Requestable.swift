@@ -8,6 +8,9 @@
 import Foundation
 
 extension NetworkService: Requestable {
+  
+  typealias NetworkResponse = (data: Data, httpResponse: URLResponse)
+  
   // MARK: Internal Methods
   func request<T>(
     request: URLRequest,
@@ -27,9 +30,8 @@ extension NetworkService: Requestable {
   }
 
   private func validateResponse<T>(
-    request: (data: Data, httpResponse: URLResponse)
-  ) throws -> T
-  where T: Decodable {
+    request: NetworkResponse
+  ) throws -> T where T: Decodable {
     guard let httpResponse = request.httpResponse as? HTTPURLResponse else {
       throw APIError.responseError
     }

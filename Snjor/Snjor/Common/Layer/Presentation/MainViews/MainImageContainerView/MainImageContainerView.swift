@@ -40,9 +40,9 @@ class MainImageContainerView: UIView {
     photoID: String? = nil
   ) {
     currentPhotoID = photoID
-    let size = MainImageContainerViewConst.blurSize
+    let blurSize = MainImageContainerViewConst.blurSize
     if let blurHash = blurHash {
-      mainImageView.image = UIImage(blurHash: blurHash, size: size)
+      mainImageView.image = UIImage(blurHash: blurHash, size: blurSize)
       downloadImage(url, photoID)
     } else {
       downloadImage(url, photoID)
@@ -81,9 +81,7 @@ class MainImageContainerView: UIView {
   private func updateImage(_ image: UIImage?, _ isCached: Bool) {
     if isCached {
       mainImageView.image = image
-//      print(#function, "Кэш")
     } else {
-//      print(#function, "Интерент")
       animateImageView(mainImageView, image)
     }
   }

@@ -7,10 +7,12 @@
 
 import UIKit
 
+// MARK: - Protocol
 protocol ViewLoadable {
   associatedtype RootView: UIView
 }
 
+// MARK: - Protocol Extension
 extension ViewLoadable where Self: UIViewController {
   var rootView: RootView {
     guard let customView = view as? RootView else {
