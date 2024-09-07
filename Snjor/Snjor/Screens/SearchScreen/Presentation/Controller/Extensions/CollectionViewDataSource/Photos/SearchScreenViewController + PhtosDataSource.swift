@@ -34,13 +34,17 @@ extension SearchScreenViewController {
   ) {
     photosDataSource = UICollectionViewDiffableDataSource<PhotosSection, Photo>(
       collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, photo in
+    ) { [weak self, weak delegate] collectionView, indexPath, photo in
       let cell = UICollectionViewCell()
-      guard let strongSelf = self else { return cell }
-      let section = strongSelf.photosSections[indexPath.section]
+      guard let self = self,
+            let delegate = delegate
+      else {
+        return cell
+      }
+      let section = self.photosSections[indexPath.section]
       switch section {
       case .main:
-        return strongSelf.configureCell(
+        return self.configureCell(
           collectionView: collectionView,
           indexPath: indexPath,
           photo: photo,

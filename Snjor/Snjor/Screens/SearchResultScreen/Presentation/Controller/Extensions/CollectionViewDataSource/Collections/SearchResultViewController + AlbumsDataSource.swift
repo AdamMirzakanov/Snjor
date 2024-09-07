@@ -39,12 +39,12 @@ extension SearchResultViewController {
       collectionView: collectionView
     ) { [weak self, weak delegate] collectionView, indexPath, item in
       guard
-        let strongSelf = self,
+        let self = self,
         let delegate = delegate
       else {
         return UICollectionViewCell()
       }
-      return strongSelf.configureCell(
+      return self.configureCell(
         collectionView: collectionView,
         indexPath: indexPath,
         item: item,

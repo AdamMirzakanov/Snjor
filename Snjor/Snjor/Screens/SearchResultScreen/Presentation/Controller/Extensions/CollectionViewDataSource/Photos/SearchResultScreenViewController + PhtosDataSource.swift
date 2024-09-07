@@ -34,10 +34,14 @@ extension SearchResultViewController {
   ) {
     photosDataSource = UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>(
       collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, photo in
+    ) { [weak self, weak delegate] collectionView, indexPath, photo in
       let cell = UICollectionViewCell()
-      guard let strongSelf = self else { return cell }
-      return strongSelf.configureCell(
+      guard
+        let self = self,
+        let delegate = delegate else {
+        return cell
+      }
+      return self.configureCell(
         collectionView: collectionView,
         indexPath: indexPath,
         photo: photo,

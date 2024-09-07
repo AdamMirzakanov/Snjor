@@ -40,11 +40,14 @@ extension SearchScreenViewController {
   ) {
     collectionsDataSource = DataSource(
       collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, item in
-      guard let strongSelf = self else {
-        return UICollectionViewCell()
+    ) { [weak self, weak delegate] collectionView, indexPath, item in
+      let cell = UICollectionViewCell()
+      guard
+        let self = self,
+        let delegate = delegate else {
+        return cell
       }
-      return strongSelf.configureCell(
+      return self.configureCell(
         collectionView: collectionView,
         indexPath: indexPath,
         item: item,
@@ -54,10 +57,10 @@ extension SearchScreenViewController {
     
     collectionsDataSource?.supplementaryViewProvider = { 
       [weak self] collectionView, kind, indexPath in
-      guard let strongSelf = self else {
+      guard let self = self else {
         return UICollectionReusableView()
       }
-      return strongSelf.configureSupplementaryView(
+      return self.configureSupplementaryView(
         collectionView: collectionView,
         kind: kind,
         indexPath: indexPath

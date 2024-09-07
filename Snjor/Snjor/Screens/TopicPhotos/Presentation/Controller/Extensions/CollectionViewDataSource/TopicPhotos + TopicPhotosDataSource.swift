@@ -34,9 +34,13 @@ extension TopicPhotosViewController {
   ) {
     dataSource = DataSource(
       collectionView: collectionView
-    ) { [weak self] collectionView, indexPath, photo in
-      guard let strongSelf = self else { return UICollectionViewCell() }
-      return strongSelf.configureCell(
+    ) { [weak self, weak delegate] collectionView, indexPath, photo in
+      guard let self = self,
+            let delegate = delegate
+      else {
+        return UICollectionViewCell()
+      }
+      return self.configureCell(
         collectionView: collectionView,
         indexPath: indexPath,
         photo: photo,
