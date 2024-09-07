@@ -41,7 +41,7 @@ class BaseViewModel<Element: ElementProtocol>: ContentManagingProtocol {
   }
   
   func getViewModelItem(at index: Int) -> BaseViewModelItem<Element> {
-//    checkAndLoadMoreItems(at: index)
+    checkAndLoadMoreItems(at: index)
     return makeViewModelItem(at: index)
   }
   

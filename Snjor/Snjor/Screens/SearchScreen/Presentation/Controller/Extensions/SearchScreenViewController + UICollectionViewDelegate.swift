@@ -46,7 +46,7 @@ extension SearchScreenViewController: UICollectionViewDelegate {
     guard indexPath.item == viewModel.itemsCount - .thresholdValue else {
       return
     }
-    viewModel.viewDidLoad()
+//    viewModel.viewDidLoad()
   }
   
   private func handleDiscoverSelection(
