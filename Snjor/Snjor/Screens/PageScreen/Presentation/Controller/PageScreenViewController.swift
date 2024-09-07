@@ -46,6 +46,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setNavigationBarHidden(true, animated: animated)
+    showCustomTabBar()
   }
   
   override func viewDidLayoutSubviews() {
@@ -56,6 +57,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     setNavigationBarHidden(false, animated: animated)
+    hideCustomTabBar()
   }
   
   // MARK: Internal Methods
@@ -88,6 +90,18 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   
   
   // MARK: Private Methods
+  private func hideCustomTabBar() {
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.hideCustomTabBar()
+    }
+  }
+  
+  private func showCustomTabBar() {
+    if let tabBar = self.tabBarController as? MainTabBarController {
+      tabBar.showCustomTabBar()
+    }
+  }
+  
   private func setupDataSource() {
     createDataSource(
       for: rootView.topicsCollectionView

@@ -10,17 +10,13 @@ import UIKit
 extension PageScreenPhotosViewController {
 
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomTabBar()
-    }
+    hideCustomTabBar()
   }
-
+  
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.showCustomTabBar()
-    }
+    showCustomTabBar()
   }
-
+  
   func scrollViewDidEndDragging(
     _ scrollView: UIScrollView,
     willDecelerate decelerate: Bool
@@ -28,11 +24,23 @@ extension PageScreenPhotosViewController {
     if !decelerate {
       DispatchQueue.main.asyncAfter(
         deadline: .now() + .tabBarShowDelay
-      ) {
-        if let tabBar = self.tabBarController as? MainTabBarController {
-          tabBar.showCustomTabBar()
-        }
+      ) { [weak self] in
+        guard let self = self else { return }
+        self.showCustomTabBar()
       }
+    }
+  }
+  
+  // MARK: Private Methods
+  private func hideCustomTabBar() {
+    if let tabBar = tabBarController as? MainTabBarController {
+      tabBar.hideCustomTabBar()
+    }
+  }
+  
+  private func showCustomTabBar() {
+    if let tabBar = self.tabBarController as? MainTabBarController {
+      tabBar.showCustomTabBar()
     }
   }
 }

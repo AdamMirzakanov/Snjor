@@ -16,4 +16,25 @@ extension PageScreenPhotosViewController: UICollectionViewDelegate {
     let photo = viewModel.getItem(at: indexPath.item)
     delegate.didSelect(photo)
   }
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    willDisplay cell: UICollectionViewCell,
+    forItemAt indexPath: IndexPath
+  ) {
+    handleWillDisplay(for: indexPath, viewModel: viewModel)
+  }
+  
+  // MARK: Private Methods
+  private func handleWillDisplay(
+    for indexPath: IndexPath,
+    viewModel: any ContentManagingProtocol
+  ) {
+    guard
+      indexPath.item == viewModel.itemsCount - .thresholdValue
+    else {
+      return
+    }
+    viewModel.viewDidLoad()
+  }
 }
