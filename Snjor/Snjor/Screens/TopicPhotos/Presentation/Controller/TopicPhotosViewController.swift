@@ -48,7 +48,6 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
     configCollectionView()
     setupDataSource()
     configureDownloadSession()
-    resetPage()
     viewModel.viewDidLoad()
     stateController()
   }
@@ -60,24 +59,26 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    if self.isMovingFromParent || self.isBeingDismissed {
-      downloadService.invalidateSession(withID: Self.sessionID)
-      dataSource = nil
-    }
+    resetState()
   }
   
   // MARK: Private Methods
+  private func resetState() {
+    if self.isMovingFromParent {
+      PrepareParameters.photosPage = .zero
+      dataSource = nil
+      cancellable.removeAll()
+      downloadService.invalidateSession(withID: Self.sessionID)
+    }
+  }
+  
   private func setupDataSource() {
     createDataSource(
       for: rootView.topicPhotosCollectionView, 
       delegate: self
     )
   }
-  
-  private func resetPage() {
-    PrepareParameters.photosPage = .zero
-  }
-  
+
   private func configureDownloadSession() {
     downloadService.configureSession(
       delegate: self,

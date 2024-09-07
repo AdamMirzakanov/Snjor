@@ -25,6 +25,7 @@ extension AlbumPhotosViewController: UICollectionViewDelegate {
     handleWillDisplay(for: indexPath, viewModel: viewModel)
   }
   
+  // MARK: Private Methods
   private func handleWillDisplay(
     for indexPath: IndexPath,
     viewModel: any ContentManagingProtocol

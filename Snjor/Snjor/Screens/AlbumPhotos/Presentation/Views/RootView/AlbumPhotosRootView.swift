@@ -18,7 +18,7 @@ final class AlbumPhotosRootView: UIView {
   }(AlbumPhotosCollectionView())
   
   // MARK: Button Background View
-   let backBarButtonBackgroundView: UIView = {
+  let backBarButtonBackgroundView: UIView = {
     $0.frame.size.width = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
     $0.frame.size.height = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
     $0.layer.cornerRadius = AlbumPhotosRootViewConst.backBarButtonBackgroundViewCircle
@@ -28,7 +28,7 @@ final class AlbumPhotosRootView: UIView {
   }(UIView())
   
   // MARK: Buttons
-   lazy var backBarButton: UIButton = {
+  lazy var backBarButton: UIButton = {
     let icon = UIImage(systemName: .backBarButtonImage)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .systemBackground
@@ -62,6 +62,15 @@ final class AlbumPhotosRootView: UIView {
   }
   
   // MARK: Config Navigation Item Actions
+  func setupBarButtonItems(
+    navigationItem: UINavigationItem,
+    navigationController: UINavigationController?
+  ) {
+    setupBackButtonAction(navigationController: navigationController)
+    setupBackButtonTarget()
+    setupBackBarButton(navigationItem: navigationItem)
+  }
+  
   private func setupBackButtonAction(navigationController: UINavigationController?) {
     backButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
@@ -79,15 +88,6 @@ final class AlbumPhotosRootView: UIView {
   private func setupBackBarButton(navigationItem: UINavigationItem) {
     let backBarButton = UIBarButtonItem(customView: backBarButtonBackgroundView)
     navigationItem.leftBarButtonItem = backBarButton
-  }
-  
-  func setupBarButtonItems(
-    navigationItem: UINavigationItem,
-    navigationController: UINavigationController?
-  ) {
-    setupBackButtonAction(navigationController: navigationController)
-    setupBackButtonTarget()
-    setupBackBarButton(navigationItem: navigationItem)
   }
   
   @objc private func backButtonTapped() {
