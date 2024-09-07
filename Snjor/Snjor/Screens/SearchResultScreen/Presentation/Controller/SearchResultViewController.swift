@@ -11,8 +11,8 @@ import Combine
 final class SearchResultViewController: MainViewController<SearchResultScreenRootView> {
   
   // MARK: Internal Properties
-  var photosDataSource: PhotosDataSource?
-  var collectionsDataSource: AlbumsDataSource?
+  var photosDataSource: SearchResultPhotosDataSource?
+  var collectionsDataSource: SearchResultAlbumsDataSource?
   var photosSections: [SearchResultPhotosSection] = []
   var collectionsSections: [AlbumsSection] = []
   var currentScopeIndex: Int

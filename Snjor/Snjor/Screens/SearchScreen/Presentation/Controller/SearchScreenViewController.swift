@@ -11,9 +11,9 @@ import Combine
 final class SearchScreenViewController: MainViewController<SearchScreenRootView> {
   
   // MARK: Internal Properties
-  var photosDataSource: UICollectionViewDiffableDataSource<PhotosSection, Photo>?
-  var collectionsDataSource: UICollectionViewDiffableDataSource<TopicsAndAlbumsSection, CollectionsItem>?
-  var photosSections: [PhotosSection] = []
+  var discoverDataSource: DiscoverDataSource?
+  var topicsAndAlbumsDataSource: TopicsAndAlbumsDataSource?
+  var discoverSections: [DiscoverSection] = []
   var collectionsSections: [TopicsAndAlbumsSection] = []
   var currentScopeIndex: Int = .zero
   

@@ -9,3 +9,7 @@ enum TopicsAndAlbumsSection: Hashable {
   case topics
   case albums(String)
 }
+
+extension String {
+  static let albumsSectionName = "Albums"
+}

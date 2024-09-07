@@ -7,8 +7,10 @@
 
 import UIKit
 
-typealias PhotosDataSource = UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>
-typealias AlbumsDataSource = UICollectionViewDiffableDataSource<AlbumsSection, Album>
+//DataSource
+typealias SearchResultPhotosDataSource = UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>
+typealias SearchResultAlbumsDataSource = UICollectionViewDiffableDataSource<AlbumsSection, Album>
 
-typealias PhotosSnapshot = NSDiffableDataSourceSnapshot<SearchResultPhotosSection, Photo>
-typealias AlbumsSnapshot = NSDiffableDataSourceSnapshot<AlbumsSection, Album>
+//Snapshot
+typealias SearchResultPhotosSnapshot = NSDiffableDataSourceSnapshot<SearchResultPhotosSection, Photo>
+typealias SearchResultAlbumsSnapshot = NSDiffableDataSourceSnapshot<AlbumsSection, Album>

@@ -10,17 +10,17 @@ import UIKit
 extension SearchScreenViewController {
   
   // MARK: Private Properties
-  private var photosSnapshot: NSDiffableDataSourceSnapshot<PhotosSection, Photo> {
-    var snapshot = NSDiffableDataSourceSnapshot<PhotosSection, Photo>()
+  private var photosSnapshot: DiscoverSnapshot {
+    var snapshot = DiscoverSnapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(photosViewModel.items, toSection: .main)
-    photosSections = snapshot.sectionIdentifiers
+    discoverSections = snapshot.sectionIdentifiers
     return snapshot
   }
 
   // MARK: Internal Methods
   func applyPhotosSnapshot() {
-    guard let dataSource = photosDataSource else { return }
+    guard let dataSource = discoverDataSource else { return }
     dataSource.apply(
       photosSnapshot,
       animatingDifferences: true
@@ -32,16 +32,17 @@ extension SearchScreenViewController {
     for collectionView: UICollectionView,
     delegate: any SearchScreenPhotoCellDelegate
   ) {
-    photosDataSource = UICollectionViewDiffableDataSource<PhotosSection, Photo>(
+    discoverDataSource = DiscoverDataSource(
       collectionView: collectionView
     ) { [weak self, weak delegate] collectionView, indexPath, photo in
       let cell = UICollectionViewCell()
-      guard let self = self,
-            let delegate = delegate
+      guard
+        let self = self,
+        let delegate = delegate
       else {
         return cell
       }
-      let section = self.photosSections[indexPath.section]
+      let section = self.discoverSections[indexPath.section]
       switch section {
       case .main:
         return self.configureCell(
