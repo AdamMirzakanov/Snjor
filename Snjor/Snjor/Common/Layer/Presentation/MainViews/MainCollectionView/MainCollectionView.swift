@@ -8,7 +8,6 @@
 import UIKit
 
 class MainCollectionView: UICollectionView {
-
   // MARK: Private Properties
   var flowlayout = UICollectionViewFlowLayout()
   

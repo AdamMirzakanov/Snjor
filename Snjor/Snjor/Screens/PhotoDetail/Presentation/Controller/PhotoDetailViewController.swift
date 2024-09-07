@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
-
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any PhotoDetailViewControllerDelegate)?

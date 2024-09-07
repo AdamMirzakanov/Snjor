@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class SearchResultViewController: MainViewController<SearchResultScreenRootView> {
-  
   // MARK: Internal Properties
   var photosDataSource: SearchResultPhotosDataSource?
   var albumsDataSource: SearchResultAlbumsDataSource?

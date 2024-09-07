@@ -8,7 +8,6 @@
 import UIKit
 
 extension AlbumPhotosViewController {
-
   // MARK: Private Properties
   private var albumPhotosSnapshot: AlbumPhotosSnapshot {
     var snapshot = AlbumPhotosSnapshot()

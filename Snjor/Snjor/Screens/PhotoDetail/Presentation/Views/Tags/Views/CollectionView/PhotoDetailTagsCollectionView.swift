@@ -6,7 +6,6 @@
 //
 
 final class PhotoDetailTagsCollectionView: MainTagsCollectionView {
-  
   // MARK: Internal Properties
   weak var tagsDelegate: (any PhotoDetailTagsCollectionViewDelegate)?
   

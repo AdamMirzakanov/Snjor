@@ -8,7 +8,6 @@
 import UIKit
 
 final class AlbumCellMainView: MainImageContainerView {
-  
   // MARK: Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale
@@ -37,7 +36,6 @@ final class AlbumCellMainView: MainImageContainerView {
     $0.alpha = AlbumCellMainViewConst.infoButtonOpacity
     return $0
   }(UIButton(type: .custom))
-  
   
   // MARK: Gradient
   let gradientView: MainGradientView = {

@@ -8,7 +8,6 @@
 import UIKit
 
 final class PageScreenPhotoCellMainView: MainImageContainerView {
-
   // MARK: Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale

@@ -8,7 +8,6 @@
 import UIKit
 
 struct AlbumsLayoutFactory {
-
   // MARK: Internal Methods
   func createAlbumLayout() -> NSCollectionLayoutSection {
     let item = makeItem()

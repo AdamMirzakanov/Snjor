@@ -8,7 +8,6 @@
 import Foundation
 
 struct Photo: Decodable, Hashable {
-  
   // MARK: Internal Properties
   let width: Int
   let height: Int

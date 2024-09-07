@@ -12,7 +12,6 @@ protocol LoadSearchAlbumsUseCaseProtocol {
 
 // MARK: - Struct
 struct LoadSearchAlbumsUseCase: LoadSearchAlbumsUseCaseProtocol {
-  
   let repository: any LoadSearchAlbumsRepositoryProtocol
   
   func execute(with searchTerm: String) async -> Result<[Album], any Error> {

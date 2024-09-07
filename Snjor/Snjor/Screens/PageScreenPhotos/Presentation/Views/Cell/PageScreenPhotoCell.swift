@@ -8,7 +8,6 @@
 import UIKit
 
 final class PageScreenPhotoCell: UICollectionViewCell {
-
   // MARK: Views
   let mainView: PageScreenPhotoCellMainView = {
     return $0

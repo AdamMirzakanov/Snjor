@@ -8,7 +8,6 @@
 import UIKit
 
 struct TopicsLayoutFactory {
-  
   // MARK: Internal Methods
   func createTopicLayout() -> NSCollectionLayoutSection {
     let item = makeItem()

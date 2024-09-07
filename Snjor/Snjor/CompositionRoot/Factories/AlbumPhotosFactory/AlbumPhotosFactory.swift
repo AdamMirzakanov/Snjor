@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
-  
   // MARK: Internal Properties
   let album: Album
   

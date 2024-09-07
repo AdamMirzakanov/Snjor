@@ -12,7 +12,6 @@ protocol LoadSearchPhotosUseCaseProtocol {
 
 // MARK: - Struct
 struct LoadSearchPhotosUseCase: LoadSearchPhotosUseCaseProtocol {
-  
   let repository: any LoadSearchPhotosRepositoryProtocol
   
   func execute(with searchTerm: String) async -> Result<[Photo], any Error> {

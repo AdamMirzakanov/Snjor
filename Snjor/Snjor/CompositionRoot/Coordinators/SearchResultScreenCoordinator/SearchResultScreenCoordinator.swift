@@ -6,7 +6,6 @@
 //
 
 final class SearchResultScreenCoordinator: Coordinatable {
-  
   // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []

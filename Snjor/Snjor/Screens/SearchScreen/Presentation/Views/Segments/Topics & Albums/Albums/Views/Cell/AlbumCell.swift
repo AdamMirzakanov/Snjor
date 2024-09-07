@@ -8,7 +8,6 @@
 import UIKit
 
 final class AlbumCell: UICollectionViewCell {
-  
   // MARK: Internal Properties
   weak var delegate: (any AlbumCellDelegate)?
   
@@ -151,12 +150,5 @@ final class AlbumCell: UICollectionViewCell {
     ) {
       updateGradientColors()
     }
-  }
-}
-
-extension AlbumCell: AlbumTagsCollectionViewDelegate {
-  func tagCellDidSelect(_ tag: Tag) {
-    delegate?.tagCellDidSelect(tag)
-    print(#function, Self.self, tag.title)
   }
 }

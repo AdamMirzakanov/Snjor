@@ -14,7 +14,6 @@ protocol LoadTopicsPageRepositoryProtocol {
 
 // MARK: - Struct
 struct LoadTopicsPageRepository: LoadTopicsPageRepositoryProtocol {
-  
   let networkService: any Requestable
 
   func fetchTopic(request: URLRequest) async throws -> [Topic] {

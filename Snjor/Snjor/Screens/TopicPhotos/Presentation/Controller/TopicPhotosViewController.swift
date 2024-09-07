@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
-  
   // MARK: internal Properties
   var topicPhotosDataSource: TopicPhotosDataSource?
   

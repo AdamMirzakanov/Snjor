@@ -8,7 +8,6 @@
 import UIKit
 
 class MainTagsCollectionView: MainCollectionView {
-  
   // MARK: Internal Properties
   var tags: [Tag] = []
   

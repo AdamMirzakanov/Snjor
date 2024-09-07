@@ -8,7 +8,6 @@
 import UIKit
 
 final class SearchScreenCoordinator: Coordinatable {
- 
   // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
@@ -33,8 +32,3 @@ final class SearchScreenCoordinator: Coordinatable {
     
   }
 }
-
-
-
-// MARK: - SearchScreenCoordinator + ParentCoordinator
-

@@ -9,7 +9,6 @@ import UIKit
 import Photos
 
 extension PhotoDetailViewController: URLSessionDownloadDelegate {
-  
   // MARK: URL Session Download Delegate
   func urlSession(
     _ session: URLSession,

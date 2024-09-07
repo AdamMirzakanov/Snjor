@@ -8,7 +8,6 @@
 import UIKit
 
 final class PageScreenTopicCell: UICollectionViewCell {
-  
   // MARK: Views
   private let topicTitleLabel: UILabel = {
     $0.textColor = .white

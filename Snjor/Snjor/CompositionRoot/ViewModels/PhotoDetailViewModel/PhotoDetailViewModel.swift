@@ -8,7 +8,6 @@
 import Combine
 
 final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
-  
   // MARK: Internal Properties
   var state: PassthroughSubject<StateController, Never>
   var photo: Photo?

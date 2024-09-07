@@ -9,7 +9,6 @@ import UIKit
 
 // swiftlint:disable all
 final class PhotoDetailRootView: UIView {
-  
   // MARK: - Delegate
   weak var delegate: PhotoDetailRootViewDelegate?
   

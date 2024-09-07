@@ -14,7 +14,6 @@ protocol LoadAlbumsRepositoryProtocol {
 
 // MARK: - Struct
 struct LoadAlbumsRepository: LoadAlbumsRepositoryProtocol {
-  
   let networkService: any Requestable
 
   func fetchAlbumList(request: URLRequest) async throws -> [Album] {

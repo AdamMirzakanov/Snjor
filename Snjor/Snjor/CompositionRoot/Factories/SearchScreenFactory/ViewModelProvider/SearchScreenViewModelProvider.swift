@@ -7,8 +7,7 @@
 
 import Combine
 
-class SearchScreenViewModelProvider: SearchScreenViewModelProviderProtocol {
-  
+final class SearchScreenViewModelProvider: SearchScreenViewModelProviderProtocol {
   // MARK: Private Properties
   private let networkService = NetworkService()
   private let lastPageValidationUseCase = LastPageValidationUseCase()

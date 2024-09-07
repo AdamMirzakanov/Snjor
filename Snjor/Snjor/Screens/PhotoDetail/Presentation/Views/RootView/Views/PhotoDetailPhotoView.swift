@@ -8,7 +8,6 @@
 import UIKit
 
 final class PhotoDetailPhotoView: MainImageContainerView {
-  
   // MARK: View
   let gradientView: MainGradientView = {
     let color = UIColor(

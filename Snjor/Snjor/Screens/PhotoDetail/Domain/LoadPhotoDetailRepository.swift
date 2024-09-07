@@ -14,7 +14,6 @@ protocol LoadPhotoDetailRepositoryProtocol {
 
 // MARK: - Struct
 struct LoadPhotoDetailRepository: LoadPhotoDetailRepositoryProtocol {
-
   let networkService: any Requestable
 
   func fetchPhoto(request: URLRequest) async throws -> Photo {

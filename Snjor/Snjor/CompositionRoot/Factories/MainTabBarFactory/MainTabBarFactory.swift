@@ -8,7 +8,6 @@
 import UIKit
 
 struct MainTabBarFactory: MainTabBarFactoryProtocol {
-
   // MARK: Internal Methods
   func makeMainTabBarController() -> UITabBarController {
     let mainTabBarController = MainTabBarController()

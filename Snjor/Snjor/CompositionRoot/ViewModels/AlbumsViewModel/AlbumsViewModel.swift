@@ -8,7 +8,6 @@
 import Combine
 
 final class AlbumsViewModel: SearchViewModel<Album> {
-  
   // MARK: Private Properties
   private let loadUseCase: any LoadAlbumsUseCaseProtocol
   private let loadSearchAlbumsUseCase: any LoadSearchAlbumsUseCaseProtocol

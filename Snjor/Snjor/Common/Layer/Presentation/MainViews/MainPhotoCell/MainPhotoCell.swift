@@ -8,7 +8,6 @@
 import UIKit
 
 class MainPhotoCell: UICollectionViewCell {
-
   // MARK: Main View
   let mainView: PhotoCellMainView = {
     return $0

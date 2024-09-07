@@ -8,7 +8,6 @@
 import Combine
 
 final class TopicPhotosViewModel: BaseViewModel<Photo> {
-  
   // MARK: Private Properties
   private let loadUseCase: any LoadTopicPhotosUseCaseProtocol
   

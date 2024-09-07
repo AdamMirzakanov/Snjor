@@ -8,7 +8,6 @@
 import UIKit
 
 class MainTagCell: UICollectionViewCell {
-  
   // MARK: Views
   var tagLabel = UILabel()
   

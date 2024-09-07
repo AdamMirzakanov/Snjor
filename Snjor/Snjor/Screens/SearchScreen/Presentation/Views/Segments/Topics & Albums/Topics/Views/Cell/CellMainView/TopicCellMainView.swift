@@ -8,7 +8,6 @@
 import UIKit
 
 final class TopicCellMainView: MainImageContainerView {
-
   // MARK: Private Properties
   private var screenScale: CGFloat {
     UIScreen.main.scale

@@ -8,7 +8,6 @@
 import UIKit
 
 extension SearchScreenViewController {
-  
   // MARK: Private Properties
   private var discoverSnapshot: DiscoverSnapshot {
     var snapshot = DiscoverSnapshot()

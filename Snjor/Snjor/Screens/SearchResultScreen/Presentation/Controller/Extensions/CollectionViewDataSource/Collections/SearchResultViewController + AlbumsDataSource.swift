@@ -8,7 +8,6 @@
 import UIKit
 
 extension SearchResultViewController {
-  
   // MARK: Private Properties
   private var albumsSnapshot: SearchResultAlbumsSnapshot {
     var snapshot = SearchResultAlbumsSnapshot()

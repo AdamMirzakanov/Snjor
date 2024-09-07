@@ -8,7 +8,6 @@
 import UIKit
 
 class MainImageContainerView: UIView {
-  
   // MARK: Internal Properties
   var currentPhotoID: String?
   let imageDownloader = ImageDownloader()

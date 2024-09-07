@@ -12,7 +12,6 @@ protocol LoadPhotoDetailUseCaseProtocol {
 
 // MARK: - Struct
 struct LoadPhotoDetailUseCase: LoadPhotoDetailUseCaseProtocol {
-  
   let repository: any LoadPhotoDetailRepositoryProtocol
   let photo: Photo
 

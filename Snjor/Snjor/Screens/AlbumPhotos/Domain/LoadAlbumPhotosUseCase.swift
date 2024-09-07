@@ -12,7 +12,6 @@ protocol LoadAlbumPhotosUseCaseProtocol {
 
 // MARK: - Struct
 struct LoadAlbumPhotosUseCase: LoadAlbumPhotosUseCaseProtocol {
-  
   let repository: any LoadAlbumPhotosRepositoryProtocol
   let album: Album
   

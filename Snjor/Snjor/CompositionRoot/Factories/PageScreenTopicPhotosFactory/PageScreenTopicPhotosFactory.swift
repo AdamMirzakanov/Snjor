@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 struct PageScreenTopicPhotosFactory: PageScreenTopicPhotosFactoryProtocol {
-  
   // MARK: Internal Properties
   let topic: Topic
   

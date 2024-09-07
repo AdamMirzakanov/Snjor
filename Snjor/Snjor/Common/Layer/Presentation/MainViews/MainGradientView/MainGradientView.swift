@@ -8,7 +8,6 @@
 import UIKit
 
 final class MainGradientView: UIView {
-  
   // MARK: Internal Struct
   struct Color {
     let color: UIColor

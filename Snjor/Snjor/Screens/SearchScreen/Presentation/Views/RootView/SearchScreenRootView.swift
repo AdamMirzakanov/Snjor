@@ -8,7 +8,6 @@
 import UIKit
 
 final class SearchScreenRootView: UIView {
-  
   // MARK: Views
   let photosCollectionView: PhotosCollectionView = {
     return $0

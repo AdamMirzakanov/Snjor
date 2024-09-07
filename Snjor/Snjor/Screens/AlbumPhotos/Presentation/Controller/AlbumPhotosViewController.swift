@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
-  
   // MARK: Internal Properties
   var albumPhotosDataSource: AlbumPhotosDataSource?
   

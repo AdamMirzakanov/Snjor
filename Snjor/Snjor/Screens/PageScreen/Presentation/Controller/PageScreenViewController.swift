@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class PageScreenViewController: MainViewController<PageScreenRootView> {
-  
   // MARK: Internal Properties
   var categoriesdataSource: СategoriesDataSource?
   

@@ -6,7 +6,6 @@
 //
 
 extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
-  
   func searchPhotoCellDidSelect(_ photo: Photo) {
     let coordinator = factory.mekePhotoDetailCoordinator(
       photo: photo,

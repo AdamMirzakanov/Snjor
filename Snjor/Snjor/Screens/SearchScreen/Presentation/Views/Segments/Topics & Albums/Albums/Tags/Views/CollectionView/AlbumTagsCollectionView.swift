@@ -8,7 +8,6 @@
 import UIKit
 
 final class AlbumTagsCollectionView: MainTagsCollectionView {
-  
   // MARK: Internal Properties
   weak var tagsDelegate: (any AlbumTagsCollectionViewDelegate)?
   

@@ -8,7 +8,6 @@
 import UIKit
 
 final class AlbumPhotoCell: MainPhotoCell {
-  
   // MARK: Delegate
   weak var delegate: (any AlbumPhotoCellDelegate)?
   

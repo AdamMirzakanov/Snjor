@@ -8,7 +8,6 @@
 import UIKit
 
 final class TopicCell: UICollectionViewCell {
-
   // MARK: Views
   let mainView: TopicCellMainView = {
     return $0

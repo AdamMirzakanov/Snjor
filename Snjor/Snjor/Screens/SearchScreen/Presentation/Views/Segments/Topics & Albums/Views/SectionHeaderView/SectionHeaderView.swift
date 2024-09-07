@@ -8,7 +8,6 @@
 import UIKit
 
 final class SectionHeaderView: UICollectionReusableView {
-  
   // MARK: Internal Properties
   let titleLabel: UILabel = {
     let label = UILabel()

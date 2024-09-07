@@ -8,7 +8,6 @@
 import UIKit
 
 class CascadeLayout: UICollectionViewLayout {
-  
   // MARK: Internal Properties
   var contentHeight: CGFloat = .zero
   var numberOfColumns: Int = .zero

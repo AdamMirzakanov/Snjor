@@ -6,7 +6,6 @@
 //
 
 struct LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
-  
   // MARK: Private Properties
   private var threshold: Int = LastPageValidationUseCaseConst.thresholdValue
   private(set) var lastPage = false

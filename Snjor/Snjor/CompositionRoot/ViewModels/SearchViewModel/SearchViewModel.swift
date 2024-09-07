@@ -5,10 +5,7 @@
 //  Created by Адам Мирзаканов on 02.09.2024.
 //
 
-typealias SearchElement = ViewModelItemRepresentable & Downloadable
-
-class SearchViewModel<Element: SearchElement>: BaseViewModel<Element>, SearchViewModelProtocol {
-  
+class SearchViewModel<Element: ElementProtocol>: BaseViewModel<Element>, SearchViewModelProtocol {
   func executeSearch(with searchTerm: String) {
     state.send(.loading)
     Task {

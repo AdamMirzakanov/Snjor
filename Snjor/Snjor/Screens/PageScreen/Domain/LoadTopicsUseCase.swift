@@ -14,7 +14,6 @@ protocol LoadTopicsUseCaseProtocol {
 
 // MARK: - Struct
 struct LoadTopicsUseCase: LoadTopicsUseCaseProtocol {
-  
   let repository: any LoadTopicsPageRepositoryProtocol
   
   func execute() async -> Result<[Topic], any Error> {

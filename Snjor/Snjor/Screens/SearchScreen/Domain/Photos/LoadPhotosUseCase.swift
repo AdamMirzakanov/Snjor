@@ -12,7 +12,6 @@ protocol LoadPhotosUseCaseProtocol {
 
 // MARK: - Struct
 struct LoadPhotosUseCase: LoadPhotosUseCaseProtocol {
-  
   let repository: any LoadPhotosRepositoryProtocol
 
   func execute() async -> Result<[Photo], any Error> {

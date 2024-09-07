@@ -8,7 +8,6 @@
 import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-  
   // MARK: Internal Properties
   var window: UIWindow?
   

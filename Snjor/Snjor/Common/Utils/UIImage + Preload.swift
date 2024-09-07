@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIImage {
-  
   func preloadedImage() -> UIImage {
     guard let imageRef = self.cgImage else {
       return self

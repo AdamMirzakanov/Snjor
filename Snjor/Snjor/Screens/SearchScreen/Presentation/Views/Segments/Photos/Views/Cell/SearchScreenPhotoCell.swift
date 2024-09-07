@@ -8,7 +8,6 @@
 import UIKit
 
 final class SearchScreenPhotoCell: MainPhotoCell {
-  
   // MARK: Delegate
   weak var delegate: (any SearchScreenPhotoCellDelegate)?
 

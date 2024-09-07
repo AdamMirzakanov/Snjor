@@ -8,7 +8,6 @@
 import UIKit
 
 final class PageScreenPhotosCollectionView: UICollectionView {
-  
   // MARK: Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
   

@@ -8,8 +8,9 @@
 import Combine
 import Foundation
 
-class BaseViewModel<Element: ViewModelItemRepresentable & Downloadable>: ContentManagingProtocol {
-  
+typealias ElementProtocol = ViewModelItemRepresentable & Downloadable
+
+class BaseViewModel<Element: ElementProtocol>: ContentManagingProtocol {
   typealias Item = Element
   
   // MARK: Internal Properties

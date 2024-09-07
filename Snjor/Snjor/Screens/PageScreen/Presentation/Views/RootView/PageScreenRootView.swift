@@ -8,7 +8,6 @@
 import UIKit
 
 final class PageScreenRootView: UIView {
-  
   // MARK: Internal Views
   let pageViewController: UIPageViewController = {
     $0.view.backgroundColor = .clear

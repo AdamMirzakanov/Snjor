@@ -8,7 +8,6 @@
 import UIKit
 
 extension PageScreenPhotosViewController {
-  
   // MARK: Private Properties
   private var pageScreenPhotosSnapshot: PageScreenPhotosSnapshot {
     var snapshot = PageScreenPhotosSnapshot()

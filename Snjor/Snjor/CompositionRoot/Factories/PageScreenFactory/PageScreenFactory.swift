@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 struct PageScreenFactory: PageScreenFactoryProtocol {
-  
   // MARK: Internal Methods
   func makeController(
     delegate: any PageScreenPhotosViewControllerDelegate

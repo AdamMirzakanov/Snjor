@@ -6,7 +6,6 @@
 //
 
 final class TopicsAndAlbumsCollectionView: MainCollectionView {
-  
   override func cellRegister() {
     register(
       AlbumCell.self,

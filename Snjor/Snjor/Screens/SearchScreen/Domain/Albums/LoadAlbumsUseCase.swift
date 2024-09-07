@@ -12,7 +12,6 @@ protocol LoadAlbumsUseCaseProtocol {
 
 // MARK: - Struct
 struct LoadAlbumsUseCase: LoadAlbumsUseCaseProtocol {
-  
   let repository: any LoadAlbumsRepositoryProtocol
   
   func execute() async -> Result<[Album], any Error> {

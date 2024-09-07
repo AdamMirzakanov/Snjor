@@ -8,7 +8,6 @@
 import Foundation
 
 struct User: Decodable, Hashable {
-  
   // MARK: Internal Properties
   let firstName: String?
   let lastName: String?

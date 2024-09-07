@@ -8,7 +8,6 @@
 import UIKit
 
 extension PageScreenPhotosViewController {
-
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     hideCustomTabBar()
   }

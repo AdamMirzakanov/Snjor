@@ -9,7 +9,6 @@ import Foundation
 import Photos
 
 extension SearchScreenViewController: URLSessionDownloadDelegate {
-
   // MARK: URL Session Download Delegate
   func urlSession(
     _ session: URLSession,

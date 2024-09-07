@@ -8,7 +8,6 @@
 import UIKit
 
 final class PageScreenPhotosRootView: UIView {
-  
   // MARK: Views
   let pageScreenPhotosCollectionView: PageScreenPhotosCollectionView = {
     return $0

@@ -8,7 +8,6 @@
 import UIKit
 
 extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
-  
   func collectionView(
     _ collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,

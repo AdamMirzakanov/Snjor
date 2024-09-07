@@ -9,7 +9,6 @@ import Foundation
 import Photos
 
 extension AlbumPhotosViewController: URLSessionDownloadDelegate {
-  
   // MARK: URL Session Download Delegate
   func urlSession(
     _ session: URLSession,
@@ -50,7 +49,7 @@ extension AlbumPhotosViewController: URLSessionDownloadDelegate {
       }
     }
   }
-
+  
   private func localFilePath(for url: URL) -> URL {
     let component = url.lastPathComponent
     var destinationURL = documentsPath.appendingPathComponent(component)

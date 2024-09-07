@@ -8,7 +8,6 @@
 import UIKit
 
 struct LayoutProvider {
-  
   // MARK: Private Properties
   private let albumsLayoutFactory = AlbumsLayoutFactory()
   private let topicsLayoutFactory = TopicsLayoutFactory()

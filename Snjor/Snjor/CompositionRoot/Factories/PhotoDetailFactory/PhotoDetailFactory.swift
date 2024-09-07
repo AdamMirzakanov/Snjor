@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
-  
   // MARK: Internal Properties
   let photo: Photo
 

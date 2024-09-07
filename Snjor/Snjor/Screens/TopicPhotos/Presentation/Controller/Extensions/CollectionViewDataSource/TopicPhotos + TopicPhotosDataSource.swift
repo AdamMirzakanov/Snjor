@@ -8,7 +8,6 @@
 import UIKit
 
 extension TopicPhotosViewController {
-  
   // MARK: Private Properties
   private var topicPhotosSnapshot: TopicPhotosSnapshot {
     var snapshot = TopicPhotosSnapshot()

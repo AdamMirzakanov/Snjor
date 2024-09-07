@@ -8,7 +8,6 @@
 import UIKit
 
 extension PageScreenViewController {
-  
   // MARK: Private Properties
   private var snapshot: СategoriesSnapshot {
     var snapshot = СategoriesSnapshot()

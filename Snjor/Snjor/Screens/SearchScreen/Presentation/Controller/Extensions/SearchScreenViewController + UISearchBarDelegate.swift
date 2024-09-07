@@ -31,7 +31,7 @@ extension SearchScreenViewController: UISearchBarDelegate {
     }
   }
   
-  // MARK: - Private Methods
+  // MARK: Private Methods
   private func configureForDiscoverMode(_ searchBar: UISearchBar) {
     rootView.albumsCollectionView.removeFromSuperview()
     rootView.addSubview(rootView.photosCollectionView)

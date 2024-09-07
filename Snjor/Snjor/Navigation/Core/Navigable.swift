@@ -8,7 +8,6 @@
 import UIKit
 
 protocol Navigable {
-  
   // MARK: Properties
   var rootViewController: UINavigationController { get }
   var navigationBar: UINavigationBar { get }

@@ -8,7 +8,6 @@
 import UIKit
 
 final class TopicPhotoCellMainView: MainImageContainerView {
-  
   // MARK: Delegate
   weak var delegate: (any TopicPhotoCellMainViewDelegate)?
   

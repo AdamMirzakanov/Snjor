@@ -8,7 +8,6 @@
 import UIKit
 
 final class SearchResultScreenRootView: UIView {
-  
   // MARK: Private Properties
   private var backButtonAction: (() -> Void)?
   

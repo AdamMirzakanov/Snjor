@@ -8,7 +8,6 @@
 import Foundation
 
 enum ImageCacheService {
-  
   // MARK: Internal Properties
   private static let memoryCapacity: Int = 50.megabytes
   private static let diskCapacity: Int = 100.megabytes
