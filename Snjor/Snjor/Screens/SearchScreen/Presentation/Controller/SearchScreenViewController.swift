@@ -53,9 +53,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     super.viewDidLoad()
     setupSearchController()
     setupCollectionViewDelegate()
-    photosViewModel.viewDidLoad()
-    albumsViewModel.viewDidLoad()
-    topicsViewModel.viewDidLoad()
+    initializeViewModels()
     stateController()
     setupDataSource()
     configureDownloadSession()
@@ -89,6 +87,12 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   }
   
   // MARK: Private Methods
+  func initializeViewModels() {
+    photosViewModel.viewDidLoad()
+    albumsViewModel.viewDidLoad()
+    topicsViewModel.viewDidLoad()
+  }
+  
   private func setupSearchController() {
     searchController.obscuresBackgroundDuringPresentation = true
     searchController.hidesNavigationBarDuringPresentation = false
