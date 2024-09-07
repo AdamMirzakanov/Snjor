@@ -1,11 +1,11 @@
 //
-//  TopicsPageCoordinator + PageScreenPhotosViewControllerDelegate.swift
+//  PageScreenCoordinator + PageScreenPhotosViewControllerDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 07.09.2024.
 //
 
-extension TopicsPageCoordinator: PageScreenPhotosViewControllerDelegate {
+extension PageScreenCoordinator: PageScreenPhotosViewControllerDelegate {
   func didSelect(_ photo: Photo) {
     let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
       navigation: navigation,

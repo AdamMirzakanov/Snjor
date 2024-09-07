@@ -1,11 +1,11 @@
 //
-//  TopicsPageCoordinator.swift
+//  PageScreenCoordinator.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 22.07.2024.
 //
 
-final class TopicsPageCoordinator: Coordinatable {
+final class PageScreenCoordinator: Coordinatable {
   
   // MARK: Internal Properties
   var navigation: any Navigable

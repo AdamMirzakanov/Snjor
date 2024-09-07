@@ -30,7 +30,7 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
     let factory = PageScreenFactory()
     let navigationController = UINavigationController()
     let navigation = Navigation(rootViewController: navigationController)
-    let coordinator = TopicsPageCoordinator(
+    let coordinator = PageScreenCoordinator(
       factory: factory,
       navigation: navigation)
     return coordinator

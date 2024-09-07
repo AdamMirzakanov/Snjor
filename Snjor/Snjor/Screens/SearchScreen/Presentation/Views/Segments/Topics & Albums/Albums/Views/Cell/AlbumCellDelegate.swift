@@ -6,5 +6,5 @@
 //
 
 protocol AlbumCellDelegate: AnyObject {
-  func tagCellDidSelect(_ tag: Tag, _ cell: AlbumCell)
+  func tagCellDidSelect(_ tag: Tag)
 }

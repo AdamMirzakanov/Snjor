@@ -156,7 +156,7 @@ final class AlbumCell: UICollectionViewCell {
 
 extension AlbumCell: AlbumTagsCollectionViewDelegate {
   func tagCellDidSelect(_ tag: Tag) {
-    delegate?.tagCellDidSelect(tag, self)
+    delegate?.tagCellDidSelect(tag)
     print(#function, Self.self, tag.title)
   }
 }
