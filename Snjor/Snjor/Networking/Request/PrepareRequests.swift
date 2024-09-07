@@ -12,7 +12,6 @@ enum PrepareRequests {
   private static var getHTTP: HTTPMethod { .get }
   private static var scheme: API { .scheme }
   private static var host: API { .host }
-//  private static var accessKey: Authorization { .accessKey }
 
   // MARK: Internal Methods
   static func prepareTopicsTitleAPIRequest(topics: String) throws -> URLRequest {
