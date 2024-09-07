@@ -8,36 +8,50 @@
 import UIKit
 
 extension SearchScreenViewController: UISearchBarDelegate {
-  func searchBar(
-    _ searchBar: UISearchBar,
-    selectedScopeButtonIndexDidChange selectedScope: Int
-  ) {
-    currentScopeIndex = selectedScope
-    switch selectedScope {
-    case .discover:
-      rootView.albumsCollectionView.removeFromSuperview()
-      rootView.addSubview(rootView.photosCollectionView)
-      rootView.photosCollectionView.fillSuperView()
-      searchBar.placeholder = .searchPhotos
-      navigationItem.title = .discoverTitle
-    case .topicAndAlbums:
-      rootView.photosCollectionView.removeFromSuperview()
-      rootView.addSubview(rootView.albumsCollectionView)
-      rootView.albumsCollectionView.fillSuperView()
-      searchBar.placeholder = .searchAlbums
-      navigationItem.title = .topicsAndAlbumsTitle
-    default:
-      rootView.photosCollectionView.isHidden = true
-      rootView.albumsCollectionView.isHidden = true
-      searchBar.placeholder = .searchUsers
-      navigationItem.title = .usersTitle
-    }
-  }
-  
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
       return
     }
     delegate?.searchButtonClicked(with: searchTerm, currentScopeIndex: currentScopeIndex)
+  }
+  
+  func searchBar(
+    _ searchBar: UISearchBar,
+    selectedScopeButtonIndexDidChange selectedScope: Int
+  ) {
+    currentScopeIndex = selectedScope
+
+    switch selectedScope {
+    case .discover:
+      configureForDiscoverMode(searchBar)
+    case .topicAndAlbums:
+      configureForTopicAndAlbumsMode(searchBar)
+    default:
+      configureForUserMode(searchBar)
+    }
+  }
+  
+  // MARK: - Private Methods
+  private func configureForDiscoverMode(_ searchBar: UISearchBar) {
+    rootView.albumsCollectionView.removeFromSuperview()
+    rootView.addSubview(rootView.photosCollectionView)
+    rootView.photosCollectionView.fillSuperView()
+    searchBar.placeholder = .searchPhotos
+    navigationItem.title = .discoverTitle
+  }
+  
+  private func configureForTopicAndAlbumsMode(_ searchBar: UISearchBar) {
+    rootView.photosCollectionView.removeFromSuperview()
+    rootView.addSubview(rootView.albumsCollectionView)
+    rootView.albumsCollectionView.fillSuperView()
+    searchBar.placeholder = .searchAlbums
+    navigationItem.title = .topicsAndAlbumsTitle
+  }
+  
+  private func configureForUserMode(_ searchBar: UISearchBar) {
+    rootView.photosCollectionView.isHidden = true
+    rootView.albumsCollectionView.isHidden = true
+    searchBar.placeholder = .searchUsers
+    navigationItem.title = .usersTitle
   }
 }
