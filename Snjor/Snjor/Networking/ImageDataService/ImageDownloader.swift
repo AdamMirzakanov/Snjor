@@ -11,77 +11,57 @@ final class ImageDownloader {
   // MARK: Private Properties
   private var imageDataTask: URLSessionDataTask?
   private let cache = ImageCacheService.cache
-  
+
   // MARK: Internal Methods
-  func cancel() {
-    imageDataTask?.cancel()
-  }
-  
   func downloadPhoto(
     with url: URL,
-    completion: @escaping (UIImage?, Bool) -> Void
+    completion: @escaping ((UIImage?, Bool) -> Void)
   ) {
     let urlRequest = URLRequest(url: url)
-    if let cachedImage = getCachedImage(for: urlRequest) {
-      completion(cachedImage, true)
+
+    if let cachedResponse = cache.cachedResponse(for: urlRequest),
+    let image = UIImage(data: cachedResponse.data) {
+      completion(image, true)
       return
     }
-    fetchImage(from: url) { [weak self] data, response in
+
+    imageDataTask = URLSession.shared.dataTask(with: url) { [weak self] (
+      data, response, error
+    ) in
+      guard let self = self else { return }
+      self.imageDataTask = nil
+
       guard
-        let self = self,
         let data = data,
         let response = response,
-        let image = UIImage(data: data)
+        let image = UIImage(data: data),
+        error == nil
       else {
-        completion(nil, false)
         return
       }
-      self.cacheImage(data, response: response, for: urlRequest)
-      decodeImageInBackground(image, completion: completion)
-    }
-  }
-  
-  // MARK: Private Methods
-  private func getCachedImage(for request: URLRequest) -> UIImage? {
-    if let cachedResponse = cache.cachedResponse(for: request),
-       let image = UIImage(data: cachedResponse.data) {
-      return image
-    }
-    return nil
-  }
-  
-  private func fetchImage(
-    from url: URL,
-    completion: @escaping (Data?, URLResponse?) -> Void
-  ) {
-    imageDataTask = URLSession.shared.dataTask(with: url) { data, response, error in
-      guard error == nil else {
-        completion(nil, nil)
-        return
+
+      let urlRequest = URLRequest(url: url)
+      let cachedResponse = CachedURLResponse(
+        response: response,
+        data: data
+      )
+      self.cache.storeCachedResponse(
+        cachedResponse,
+        for: urlRequest
+      )
+
+      // Decode the JPEG image in a background thread
+      DispatchQueue.global(qos: .userInteractive).async {
+        let decodedImage = image.preloadedImage()
+        DispatchQueue.main.async {
+          completion(decodedImage, false)
+        }
       }
-      completion(data, response)
     }
     imageDataTask?.resume()
   }
-  
-  private func cacheImage(
-    _ data: Data,
-    response: URLResponse,
-    for request: URLRequest
-  ) {
-    let cachedResponse = CachedURLResponse(response: response, data: data)
-    cache.storeCachedResponse(cachedResponse, for: request)
-  }
 
-  private func decodeImageInBackground(
-    _ image: UIImage,
-    completion: @escaping (UIImage?, Bool) -> Void
-  ) {
-    DispatchQueue.global(qos: .userInteractive).async {
-      let decodedImage = image.preloadedImage()
-      DispatchQueue.main.async {
-        completion(decodedImage, false)
-      }
-    }
+  func cancel() {
+    imageDataTask?.cancel()
   }
 }
