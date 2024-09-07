@@ -12,7 +12,7 @@ final class TopicsPageCoordinator: Coordinatable {
   var childCoordinators: [any Coordinatable] = []
   
   // MARK: Private Properties
-  private let factory: any PageScreenFactoryProtocol
+  private(set) var factory: any PageScreenFactoryProtocol
   
   // MARK: Initializers
   init(
@@ -29,18 +29,3 @@ final class TopicsPageCoordinator: Coordinatable {
     navigation.pushViewController(controller, animated: true)
   }
 }
-
-// MARK: - PageScreenPhotosViewControllerDelegate
-extension TopicsPageCoordinator: PageScreenPhotosViewControllerDelegate {
-  func didSelect(_ photo: Photo) {
-    let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
-      navigation: navigation,
-      photo: photo,
-      parentCoordinator: self
-    )
-    addAndStartChildCoordinator(photoDetailCoordinator)
-  }
-}
-
-// MARK: - ParentCoordinator
-extension TopicsPageCoordinator: ParentCoordinator { }

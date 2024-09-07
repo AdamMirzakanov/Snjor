@@ -53,6 +53,3 @@ final class AppCoordinator: Coordinatable {
     startSomeCoordinator()
   }
 }
-
-// MARK: - ParentCoordinator
-extension AppCoordinator: ParentCoordinator { }

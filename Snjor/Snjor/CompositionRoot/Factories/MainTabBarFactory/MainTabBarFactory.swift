@@ -19,7 +19,7 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
     let topicsPageCoordinator = makeTopicsPageCoordinator()
     let searchScreenCoordinator = makeSearchScreenCoordinator()
     return [
-      topicsPageCoordinator,
+//      topicsPageCoordinator,
       searchScreenCoordinator,
       
     ]

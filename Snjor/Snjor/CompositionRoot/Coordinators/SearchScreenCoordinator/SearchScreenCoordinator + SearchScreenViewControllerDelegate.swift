@@ -1,38 +1,9 @@
 //
-//  SearchScreenCoordinator.swift
+//  SearchScreenCoordinator + SearchScreenViewControllerDelegate.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 07.08.2024.
+//  Created by Адам Мирзаканов on 07.09.2024.
 //
-
-import UIKit
-
-final class SearchScreenCoordinator: Coordinatable {
- 
-  // MARK: Internal Properties
-  var navigation: any Navigable
-  var childCoordinators: [any Coordinatable] = []
-  
-  // MARK: Private Properties
-  private let factory: any SearchScreenFactoryProtocol
-  
-  // MARK: Initializers
-  init(
-    factory: any SearchScreenFactoryProtocol,
-    navigation: any Navigable
-  ) {
-    self.factory = factory
-    self.navigation = navigation
-  }
-  
-  // MARK: Internal Methods
-  func start() {
-    let controller = factory.makeController(delegate: self)
-    navigation.navigationBar.prefersLargeTitles = true
-    navigation.pushViewController(controller, animated: true)
-    
-  }
-}
 
 extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
   func photoCellDidSelect(_ photo: Photo) {
@@ -64,7 +35,7 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
   
   func searchButtonClicked(with searchTerm: String, currentScopeIndex: Int) {
     let coordinator = factory.makeSearchResultScreenCoordinator(
-      currentScopeIndex: currentScopeIndex, 
+      currentScopeIndex: currentScopeIndex,
       with: searchTerm,
       navigation: navigation,
       parentCoordinator: self
@@ -82,6 +53,3 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
     addAndStartChildCoordinator(coordinator)
   }
 }
-
-// MARK: - ParentCoordinator
-extension SearchScreenCoordinator: ParentCoordinator { }

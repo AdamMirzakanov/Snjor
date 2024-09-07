@@ -1,23 +1,23 @@
 //
-//  TopicPhotosCoordinator.swift
+//  PhotoDetailCoordinator.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 16.08.2024.
+//  Created by Адам on 21.06.2024.
 //
 
-final class TopicPhotosCoordinator: Coordinatable {
+final class PhotoDetailCoordinator: Coordinatable {
   
   // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   
   // MARK: Private Properties
-  private let factory: any TopicPhotosFactoryProtocol
+  private(set) var factory: any PhotoDetailFactoryProtocol
   private weak var parentCoordinator: (any ParentCoordinator)?
-  
+
   // MARK: Initializers
   init(
-    factory: any TopicPhotosFactoryProtocol,
+    factory: any PhotoDetailFactoryProtocol,
     navigation: any Navigable,
     parentCoordinator: (any ParentCoordinator)?
   ) {
@@ -35,18 +35,3 @@ final class TopicPhotosCoordinator: Coordinatable {
     }
   }
 }
-
-// MARK: - TopicPhotosViewControllerDelegate
-extension TopicPhotosCoordinator: TopicPhotosViewControllerDelegate {
-  func didSelect(_ photo: Photo) {
-    let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
-      navigation: navigation,
-      photo: photo,
-      parentCoordinator: self
-    )
-    addAndStartChildCoordinator(photoDetailCoordinator)
-  }
-}
-
-// MARK: - ParentCoordinator
-extension TopicPhotosCoordinator: ParentCoordinator { }

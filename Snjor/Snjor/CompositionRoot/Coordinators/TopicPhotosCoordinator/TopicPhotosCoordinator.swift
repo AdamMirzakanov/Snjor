@@ -1,23 +1,23 @@
 //
-//  AlbumPhotosCoordinator.swift
+//  TopicPhotosCoordinator.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 18.08.2024.
+//  Created by Адам Мирзаканов on 16.08.2024.
 //
 
-final class AlbumPhotosCoordinator: Coordinatable {
+final class TopicPhotosCoordinator: Coordinatable {
   
   // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   
   // MARK: Private Properties
-  private let factory: any AlbumPhotosFactoryProtocol
+  private(set) var factory: any TopicPhotosFactoryProtocol
   private weak var parentCoordinator: (any ParentCoordinator)?
   
   // MARK: Initializers
   init(
-    factory: any AlbumPhotosFactoryProtocol,
+    factory: any TopicPhotosFactoryProtocol,
     navigation: any Navigable,
     parentCoordinator: (any ParentCoordinator)?
   ) {
@@ -33,21 +33,5 @@ final class AlbumPhotosCoordinator: Coordinatable {
       guard let self = self else { return }
       self.parentCoordinator?.removeChildCoordinator(self)
     }
-//    controller.navigationItem.largeTitleDisplayMode = .never
   }
 }
-
-// MARK: - AlbumPhotosViewControllerDelegate
-extension AlbumPhotosCoordinator: AlbumPhotosViewControllerDelegate {
-  func didSelect(_ photo: Photo) {
-    let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
-      navigation: navigation,
-      photo: photo,
-      parentCoordinator: self
-    )
-    addAndStartChildCoordinator(photoDetailCoordinator)
-  }
-}
-
-// MARK: - ParentCoordinator
-extension AlbumPhotosCoordinator: ParentCoordinator { }

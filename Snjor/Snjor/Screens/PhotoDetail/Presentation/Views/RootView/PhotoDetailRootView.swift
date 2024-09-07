@@ -13,7 +13,7 @@ final class PhotoDetailRootView: UIView {
   // MARK: - Delegate
   weak var delegate: PhotoDetailRootViewDelegate?
   
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private var isAspectFill = true
   private var isPhotoInfo = true
   private var backBarButtonAction: (() -> Void)?
@@ -765,7 +765,6 @@ final class PhotoDetailRootView: UIView {
     navigationItem.leftBarButtonItem = backBarButton
   }
   
-  // MARK: -
   @objc private func downloadBarButtonTapped() {
     downloadBarButtonAction?()
   }

@@ -35,6 +35,3 @@ final class MainTabBarCoordinator: Coordinatable {
     navigationTabBar.viewControllers = childNavigation
   }
 }
-
-// MARK: - ParentCoordinator
-extension MainTabBarCoordinator: ParentCoordinator { }

@@ -40,7 +40,6 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
     setupRootViewDelegate()
     stateController()
     viewModel.viewDidLoad()
-//    configureDownloadSession()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +96,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailRootView> {
     )
   }
   
-  func setupRootViewDelegate() {
+  private func setupRootViewDelegate() {
     rootView.delegate = self
     rootView.tagsCollectionView.tagsDelegate = self
   }

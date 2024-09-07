@@ -22,6 +22,7 @@ extension PageScreenViewController: UICollectionViewDelegate {
     rootView.topicsCollectionView.updateIndicatorPosition(for: cell)
   }
   
+  // MARK: Private Methods
   private func setPage(page: UIViewController) {
     rootView.pageViewController.setViewControllers(
       [page],

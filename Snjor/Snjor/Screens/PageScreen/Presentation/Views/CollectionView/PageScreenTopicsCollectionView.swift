@@ -8,8 +8,7 @@
 import UIKit
 
 final class PageScreenTopicsCollectionView: UICollectionView {
-  
-  // MARK: - Private Properties
+  // MARK: Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
   
   // MARK: Views

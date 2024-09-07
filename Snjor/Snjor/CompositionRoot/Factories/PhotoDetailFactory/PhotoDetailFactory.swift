@@ -10,8 +10,10 @@ import Combine
 
 struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
   
+  // MARK: Internal Properties
   let photo: Photo
 
+  // MARK: Internal Methods
   func makeController(
     delegate: any PhotoDetailViewControllerDelegate
   ) -> UIViewController {

@@ -10,8 +10,6 @@ import Combine
 
 struct PageScreenFactory: PageScreenFactoryProtocol {
   
-  private let lastPageValidationUseCase = LastPageValidationUseCase()
-  
   // MARK: Internal Methods
   func makeController(
     delegate: any PageScreenPhotosViewControllerDelegate

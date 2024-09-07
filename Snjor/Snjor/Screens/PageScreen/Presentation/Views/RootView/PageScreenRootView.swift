@@ -28,7 +28,7 @@ final class PageScreenRootView: UIView {
   
   // MARK: Private Views
   private let appNameLabel: UILabel = {
-    let text = "Snjør"
+    let text = "Snjør".uppercased()
     let fontSize = UIFont.systemFont(
       ofSize: PageScreenRootViewConst.appNameLabelFontSize,
       weight: .bold
