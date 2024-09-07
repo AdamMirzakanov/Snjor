@@ -41,7 +41,7 @@ struct LayoutProvider {
     let layout = UICollectionViewCompositionalLayout { [weak controller] (
       sectionIndex, layoutEnvironment
     ) in
-      let section = controller?.collectionsSections[sectionIndex]
+      let section = controller?.albumsSections[sectionIndex]
       switch section {
       case .albums:
         let section = albumsLayoutFactory.createAlbumLayout()

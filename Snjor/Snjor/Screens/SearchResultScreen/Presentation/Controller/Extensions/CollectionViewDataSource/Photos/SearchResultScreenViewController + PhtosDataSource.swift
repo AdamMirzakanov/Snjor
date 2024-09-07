@@ -50,6 +50,7 @@ extension SearchResultViewController {
     }
   }
   
+  // MARK: Configure Cell
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,

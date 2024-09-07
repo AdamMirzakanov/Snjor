@@ -224,7 +224,7 @@
 		37ED5DD92C7FDA0200891811 /* LoadSearchAlbumsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED5DD82C7FDA0200891811 /* LoadSearchAlbumsRepository.swift */; };
 		37ED5DDB2C7FDA1E00891811 /* LoadSearchAlbumsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED5DDA2C7FDA1E00891811 /* LoadSearchAlbumsUseCase.swift */; };
 		37ED5DDD2C7FDAAD00891811 /* SearchAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED5DDC2C7FDAAD00891811 /* SearchAlbums.swift */; };
-		37ED5DE02C7FE68F00891811 /* AlbumsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED5DDF2C7FE68F00891811 /* AlbumsSection.swift */; };
+		37ED5DE02C7FE68F00891811 /* SearchResultAlbumsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED5DDF2C7FE68F00891811 /* SearchResultAlbumsSection.swift */; };
 		37ED5DE22C7FE70000891811 /* SearchResultViewController + AlbumsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED5DE12C7FE70000891811 /* SearchResultViewController + AlbumsDataSource.swift */; };
 		37EFC4A62C54442A001D3581 /* PageScreen + UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFC4A52C54442A001D3581 /* PageScreen + UICollectionViewDelegateFlowLayout.swift */; };
 		37F292AF2C660F5B00890DAC /* AlbumPreviewPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F292AE2C660F5B00890DAC /* AlbumPreviewPhoto.swift */; };
@@ -531,7 +531,7 @@
 		37ED5DD82C7FDA0200891811 /* LoadSearchAlbumsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSearchAlbumsRepository.swift; sourceTree = "<group>"; };
 		37ED5DDA2C7FDA1E00891811 /* LoadSearchAlbumsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSearchAlbumsUseCase.swift; sourceTree = "<group>"; };
 		37ED5DDC2C7FDAAD00891811 /* SearchAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAlbums.swift; sourceTree = "<group>"; };
-		37ED5DDF2C7FE68F00891811 /* AlbumsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsSection.swift; sourceTree = "<group>"; };
+		37ED5DDF2C7FE68F00891811 /* SearchResultAlbumsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAlbumsSection.swift; sourceTree = "<group>"; };
 		37ED5DE12C7FE70000891811 /* SearchResultViewController + AlbumsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultViewController + AlbumsDataSource.swift"; sourceTree = "<group>"; };
 		37EFC4A52C54442A001D3581 /* PageScreen + UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreen + UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		37F292AE2C660F5B00890DAC /* AlbumPreviewPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPreviewPhoto.swift; sourceTree = "<group>"; };
@@ -1906,7 +1906,7 @@
 		37ED5DDE2C7FE66800891811 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
-				37ED5DDF2C7FE68F00891811 /* AlbumsSection.swift */,
+				37ED5DDF2C7FE68F00891811 /* SearchResultAlbumsSection.swift */,
 				37ED5DE12C7FE70000891811 /* SearchResultViewController + AlbumsDataSource.swift */,
 			);
 			path = Collections;
@@ -2717,7 +2717,7 @@
 				37EFC4A62C54442A001D3581 /* PageScreen + UICollectionViewDelegateFlowLayout.swift in Sources */,
 				3770E1902C7207DA0017ECBB /* AlbumPhotos + CascadeLayoutDelegate.swift in Sources */,
 				37C00C862C89E59100F63CEC /* String + RequiredInitFatalError.swift in Sources */,
-				37ED5DE02C7FE68F00891811 /* AlbumsSection.swift in Sources */,
+				37ED5DE02C7FE68F00891811 /* SearchResultAlbumsSection.swift in Sources */,
 				370A00942C87D7FA006B87DD /* TopicsLayoutFactoryConst.swift in Sources */,
 				37C00CA82C8A4F9600F63CEC /* PhotoDetailViewControllerDelegate.swift in Sources */,
 				66BE9C5B2C1F10680006011A /* CascadeLayoutConst.swift in Sources */,

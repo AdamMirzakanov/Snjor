@@ -12,9 +12,9 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   
   // MARK: Internal Properties
   var photosDataSource: SearchResultPhotosDataSource?
-  var collectionsDataSource: SearchResultAlbumsDataSource?
+  var albumsDataSource: SearchResultAlbumsDataSource?
   var photosSections: [SearchResultPhotosSection] = []
-  var collectionsSections: [AlbumsSection] = []
+  var albumsSections: [SearchResultAlbumsSection] = []
   var currentScopeIndex: Int
   var photosViewModel: any SearchViewModelProtocol <Photo>
   var albumsViewModel: any SearchViewModelProtocol <Album>
@@ -161,7 +161,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
       .sink { [weak self] state in
         guard let self = self else { return }
         self.handleState(state) {
-          self.applyCollectionsSnapshot()
+          self.applyAlbumsSnapshot()
         }
       }
       .store(in: &cancellable)
