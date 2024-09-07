@@ -10,12 +10,6 @@ import Combine
 
 final class SearchResultViewController: MainViewController<SearchResultScreenRootView> {
   
-  typealias PhotosDataSource = UICollectionViewDiffableDataSource<SearchResultPhotosSection, Photo>
-  typealias AlbumsDataSource = UICollectionViewDiffableDataSource<AlbumsSection, Album>
-  
-  typealias PhotosSnapsho = NSDiffableDataSourceSnapshot<SearchResultPhotosSection, Photo>
-  typealias AlbumsSnapsho = NSDiffableDataSourceSnapshot<AlbumsSection, Album>
-  
   // MARK: Internal Properties
   var photosDataSource: PhotosDataSource?
   var collectionsDataSource: AlbumsDataSource?

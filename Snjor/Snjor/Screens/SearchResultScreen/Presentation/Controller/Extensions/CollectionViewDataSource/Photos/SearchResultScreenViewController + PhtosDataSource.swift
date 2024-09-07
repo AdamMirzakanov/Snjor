@@ -10,8 +10,8 @@ import UIKit
 extension SearchResultViewController {
   
   // MARK: Private Properties
-  private var photosSnapshot: PhotosSnapsho {
-    var snapshot = PhotosSnapsho()
+  private var photosSnapshot: PhotosSnapshot {
+    var snapshot = PhotosSnapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(photosViewModel.items, toSection: .main)
     photosSections = snapshot.sectionIdentifiers
