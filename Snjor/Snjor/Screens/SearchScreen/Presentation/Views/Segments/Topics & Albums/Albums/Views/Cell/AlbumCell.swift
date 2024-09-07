@@ -120,7 +120,17 @@ final class AlbumCell: UICollectionViewCell {
   
   // MARK: Update Gradient Colors
   private func updateGradientColors() {
-    rightGradientView.setColors([
+    configureGradientView(for: rightGradientView)
+    configureGradientView(for: leftGradientView)
+  }
+  
+  private func configureGradientView(for gradientView: MainGradientView) {
+    let colors = createGradientColors()
+    gradientView.setColors(colors)
+  }
+  
+  private func createGradientColors() -> [MainGradientView.Color] {
+    return [
       MainGradientView.Color(
         color: UIColor.systemBackground.withAlphaComponent(AlbumCellConst.maxOpacity),
         location: AlbumCellConst.gradientStartLocation
@@ -128,19 +138,8 @@ final class AlbumCell: UICollectionViewCell {
       MainGradientView.Color(
         color: UIColor.systemBackground.withAlphaComponent(.zero),
         location: AlbumCellConst.gradientEndLocation
-      ),
-    ])
-    
-    leftGradientView.setColors([
-      MainGradientView.Color(
-        color: UIColor.systemBackground.withAlphaComponent(AlbumCellConst.maxOpacity),
-        location: AlbumCellConst.gradientStartLocation
-      ),
-      MainGradientView.Color(
-        color: UIColor.systemBackground.withAlphaComponent(.zero),
-        location: AlbumCellConst.gradientEndLocation
-      ),
-    ])
+      )
+    ]
   }
   
   override func traitCollectionDidChange(
