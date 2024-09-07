@@ -19,7 +19,7 @@ extension AlbumPhotosViewController {
   
   // MARK: Internal Methods
   func applySnapshot() {
-    guard let dataSource = dataSource else { return }
+    guard let dataSource = albumPhotosDataSource else { return }
     dataSource.apply(
       albumPhotosSnapshot,
       animatingDifferences: true
@@ -31,7 +31,7 @@ extension AlbumPhotosViewController {
     for collectionView: UICollectionView,
     delegate: any AlbumPhotoCellDelegate
   ) {
-    dataSource = AlbumPhotosDataSource(
+    albumPhotosDataSource = AlbumPhotosDataSource(
       collectionView: collectionView
     ) { [weak self, weak delegate] collectionView, indexPath, photo in
       guard let self = self,

@@ -11,7 +11,7 @@ import Combine
 final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   
   // MARK: Internal Properties
-  var dataSource: AlbumPhotosDataSource?
+  var albumPhotosDataSource: AlbumPhotosDataSource?
   
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -66,7 +66,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   // MARK: Private Methods
   private func resetState() {
     if self.isMovingFromParent {
-      dataSource = nil
+      albumPhotosDataSource = nil
       cancellable.removeAll()
       downloadService.invalidateSession(withID: Self.sessionID)
     }

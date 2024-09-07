@@ -9,20 +9,19 @@ import UIKit
 
 extension PageScreenPhotosViewController {
   
-  private typealias DataSource = UICollectionViewDiffableDataSource<PageScreenPhotosSection, Photo>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo>
-  
-  private var snapshot: NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo> {
-    var snapshot = NSDiffableDataSourceSnapshot<PageScreenPhotosSection, Photo>()
+  // MARK: Private Properties
+  private var pageScreenPhotosSnapshot: PageScreenPhotosSnapshot {
+    var snapshot = PageScreenPhotosSnapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(viewModel.items)
     return snapshot
   }
   
+  // MARK: Internal Methods
   func applySnapshot() {
-    guard let dataSource = dataSource else { return }
+    guard let dataSource = pageScreenPhotosDataSource else { return }
     dataSource.apply(
-      snapshot,
+      pageScreenPhotosSnapshot,
       animatingDifferences: true
     )
   }
@@ -31,7 +30,7 @@ extension PageScreenPhotosViewController {
   func createDataSource(
     for collectionView: UICollectionView
   ) {
-    dataSource = UICollectionViewDiffableDataSource<PageScreenPhotosSection, Photo>(
+    pageScreenPhotosDataSource = PageScreenPhotosDataSource(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
       guard let strongSelf = self else { return UICollectionViewCell() }
@@ -43,6 +42,7 @@ extension PageScreenPhotosViewController {
     }
   }
   
+  // MARK: Configure Cells
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,

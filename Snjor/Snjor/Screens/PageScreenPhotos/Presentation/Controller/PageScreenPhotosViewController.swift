@@ -8,12 +8,12 @@
 import UIKit
 import Combine
 
-final class PageScreenPhotosViewController: MainViewController <PageScreenPhotosRootView> {
+final class PageScreenPhotosViewController: MainViewController<PageScreenPhotosRootView> {
   
   // MARK: Internal Properties
   var topicID: String?
   var pageIndex: Int?
-  var dataSource: UICollectionViewDiffableDataSource<PageScreenPhotosSection, Photo>?
+  var pageScreenPhotosDataSource: PageScreenPhotosDataSource?
   
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()

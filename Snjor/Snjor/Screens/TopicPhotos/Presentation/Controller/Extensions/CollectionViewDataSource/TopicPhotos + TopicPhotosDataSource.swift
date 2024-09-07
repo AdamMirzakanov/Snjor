@@ -9,20 +9,19 @@ import UIKit
 
 extension TopicPhotosViewController {
   
-  private typealias DataSource = UICollectionViewDiffableDataSource<TopicPhotosSection, Photo>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot<TopicPhotosSection, Photo>
-  
-  private var snapshot: Snapshot {
-    var snapshot = Snapshot()
+  // MARK: Private Properties
+  private var topicPhotosSnapshot: TopicPhotosSnapshot {
+    var snapshot = TopicPhotosSnapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(viewModel.items)
     return snapshot
   }
   
+  // MARK: Internal Methods
   func applySnapshot() {
-    guard let dataSource = dataSource else { return }
+    guard let dataSource = topicPhotosDataSource else { return }
     dataSource.apply(
-      snapshot,
+      topicPhotosSnapshot,
       animatingDifferences: true
     )
   }
@@ -32,7 +31,7 @@ extension TopicPhotosViewController {
     for collectionView: UICollectionView,
     delegate: any TopicPhotoCellDelegate
   ) {
-    dataSource = DataSource(
+    topicPhotosDataSource = TopicPhotosDataSource(
       collectionView: collectionView
     ) { [weak self, weak delegate] collectionView, indexPath, photo in
       guard let self = self,
@@ -49,6 +48,7 @@ extension TopicPhotosViewController {
     }
   }
   
+  // MARK: Configure Cells
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,

@@ -11,7 +11,7 @@ import Combine
 final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   
   // MARK: internal Properties
-  var dataSource: UICollectionViewDiffableDataSource<TopicPhotosSection, Photo>?
+  var topicPhotosDataSource: TopicPhotosDataSource?
   
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -66,7 +66,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   private func resetState() {
     if self.isMovingFromParent {
       PrepareParameters.photosPage = .zero
-      dataSource = nil
+      topicPhotosDataSource = nil
       cancellable.removeAll()
       downloadService.invalidateSession(withID: Self.sessionID)
     }

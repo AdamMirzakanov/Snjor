@@ -65,6 +65,15 @@ final class TopicPhotosRootView: UIView {
   }
   
   // MARK: Config Navigation Item Actions
+  func setupBarButtonItems(
+    navigationItem: UINavigationItem,
+    navigationController: UINavigationController?
+  ) {
+    setupBackButtonAction(navigationController: navigationController)
+    setupBackButtonTarget()
+    setupBackBarButton(navigationItem: navigationItem)
+  }
+  
   private func setupBackButtonAction(navigationController: UINavigationController?) {
     backButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
@@ -82,15 +91,6 @@ final class TopicPhotosRootView: UIView {
   private func setupBackBarButton(navigationItem: UINavigationItem) {
     let backBarButton = UIBarButtonItem(customView: backBarButtonBackgroundView)
     navigationItem.leftBarButtonItem = backBarButton
-  }
-  
-  func setupBarButtonItems(
-    navigationItem: UINavigationItem,
-    navigationController: UINavigationController?
-  ) {
-    setupBackButtonAction(navigationController: navigationController)
-    setupBackButtonTarget()
-    setupBackBarButton(navigationItem: navigationItem)
   }
   
   @objc private func backButtonTapped() {
