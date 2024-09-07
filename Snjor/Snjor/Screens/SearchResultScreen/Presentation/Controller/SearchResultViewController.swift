@@ -101,18 +101,30 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   private func setupVisibleContainers() {
     switch currentScopeIndex {
     case .discover:
-      rootView.albumsCollectionView.removeFromSuperview()
-      rootView.addSubview(rootView.photosCollectionView)
-      rootView.photosCollectionView.fillSuperView()
+      showPhotosCollectionView()
     case .topicAndAlbums:
-      rootView.photosCollectionView.removeFromSuperview()
-      rootView.addSubview(rootView.albumsCollectionView)
-      rootView.albumsCollectionView.fillSuperView()
+      showAlbumsCollectionView()
     default:
-      print(#function)
+      showUserContainer()
     }
   }
   
+  private func showPhotosCollectionView() {
+    rootView.albumsCollectionView.removeFromSuperview()
+    rootView.addSubview(rootView.photosCollectionView)
+    rootView.photosCollectionView.fillSuperView()
+  }
+  
+  private func showAlbumsCollectionView() {
+    rootView.photosCollectionView.removeFromSuperview()
+    rootView.addSubview(rootView.albumsCollectionView)
+    rootView.albumsCollectionView.fillSuperView()
+  }
+  
+  private func showUserContainer() {
+    print(#function)
+  }
+
   private func setupCollectionViewDelegate() {
     rootView.photosCollectionView.delegate = self
     rootView.albumsCollectionView.delegate = self
