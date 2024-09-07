@@ -50,6 +50,6 @@ extension SearchResultViewController: UICollectionViewDelegate {
     else {
       return
     }
-    viewModel.search(with: currentSearchTerm)
+    viewModel.executeSearch(with: currentSearchTerm)
   }
 }

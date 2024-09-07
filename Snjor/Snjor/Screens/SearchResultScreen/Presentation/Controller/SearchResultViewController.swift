@@ -89,9 +89,9 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     self.currentSearchTerm = searchTerm
     switch currentScopeIndex {
     case .discover:
-      photosViewModel.search(with: searchTerm)
+      photosViewModel.executeSearch(with: searchTerm)
     case .topicAndAlbums:
-      albumsViewModel.search(with: searchTerm)
+      albumsViewModel.executeSearch(with: searchTerm)
     default:
       print(#function)
     }

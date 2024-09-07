@@ -9,7 +9,7 @@ typealias SearchElement = ViewModelItemRepresentable & Downloadable
 
 class SearchViewModel<Element: SearchElement>: BaseViewModel<Element>, SearchViewModelProtocol {
   
-  func search(with searchTerm: String) {
+  func executeSearch(with searchTerm: String) {
     state.send(.loading)
     Task {
       await searchUseCase(with: searchTerm)
@@ -24,7 +24,7 @@ class SearchViewModel<Element: SearchElement>: BaseViewModel<Element>, SearchVie
     lastPageValidationUseCase?.checkAndLoadMoreItems(
       at: index,
       actualItems: items.count,
-      action: { self.search(with: searchTerm) }
+      action: { self.executeSearch(with: searchTerm) }
     )
   }
   

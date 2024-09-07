@@ -6,7 +6,7 @@
 //
 
 protocol SearchViewModelProtocol<Item>: ContentManagingProtocol {
-  func search(with searchTerm: String)
+  func executeSearch(with searchTerm: String)
   func searchUseCase(with searchTerm: String) async
   func checkAndLoadMoreSearchItems(at index: Int, with searchTerm: String)
   func getSearchItemsViewModelItem(
