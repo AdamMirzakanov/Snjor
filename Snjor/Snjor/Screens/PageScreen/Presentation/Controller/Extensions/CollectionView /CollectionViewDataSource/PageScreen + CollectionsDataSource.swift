@@ -9,12 +9,9 @@ import UIKit
 
 extension PageScreenViewController {
   
-  private typealias DataSource = UICollectionViewDiffableDataSource <TopicsSection, Topic>
-  private typealias Snapshot = NSDiffableDataSourceSnapshot <TopicsSection, Topic>
-  
   // MARK: Private Properties
-  private var snapshot: Snapshot {
-    var snapshot = Snapshot()
+  private var snapshot: СategoriesSnapshot {
+    var snapshot = СategoriesSnapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(viewModel.items)
     return snapshot
@@ -22,17 +19,18 @@ extension PageScreenViewController {
   
   // MARK: Internal Methods
   func applySnapshot() {
-    guard let dataSource = dataSource else { return }
+    guard let dataSource = categoriesdataSource else { return }
     dataSource.apply(
       snapshot,
       animatingDifferences: true
     )
   }
   
+  // MARK: Create Data Source
   func createDataSource(
     for collectionView: UICollectionView
   ) {
-    dataSource = DataSource(
+    categoriesdataSource = СategoriesDataSource(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, topicItem in
       return self?.configureCell(
@@ -43,6 +41,7 @@ extension PageScreenViewController {
     }
   }
   
+  // MARK: Configure Cells
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,

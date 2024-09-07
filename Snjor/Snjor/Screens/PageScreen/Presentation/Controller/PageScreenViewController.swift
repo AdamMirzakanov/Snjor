@@ -11,7 +11,7 @@ import Combine
 final class PageScreenViewController: MainViewController<PageScreenRootView> {
   
   // MARK: Internal Properties
-  var dataSource: UICollectionViewDiffableDataSource<TopicsSection, Topic>?
+  var categoriesdataSource: СategoriesDataSource?
   
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
