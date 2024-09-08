@@ -28,6 +28,11 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     in: .userDomainMask
   ).first!
   
+  // MARK: Override Properties
+  override var shouldShowTabBarOnScroll: Bool {
+    return false
+  }
+  
   // MARK: Initializers
   init(
     currentScopeIndex: Int,
