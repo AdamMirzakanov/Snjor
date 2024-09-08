@@ -10,17 +10,21 @@ import UIKit
 final class UserTableViewCellMainView: MainImageContainerView {
   // MARK: Private Views
   private let userNameLabel: UILabel = {
-    let label = UILabel()
-    label.translatesAutoresizingMaskIntoConstraints = false
-    label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-    label.textColor = .label
-    return label
-  }()
+    $0.font = UIFont.systemFont(
+      ofSize: UserTableViewCellMainViewConst.userNameFontSize,
+      weight: .medium
+    )
+    $0.textColor = .label
+    return $0
+  }(UILabel())
   
-  lazy var stackView: UIStackView = {
-    $0.spacing = 10
+  lazy var mainStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.spacing = UserTableViewCellMainViewConst.stackViewSpacing
+    $0.alignment = .center
     $0.addArrangedSubview(mainImageView)
     $0.addArrangedSubview(userNameLabel)
+    $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
   
@@ -28,39 +32,16 @@ final class UserTableViewCellMainView: MainImageContainerView {
   override init() {
     super.init()
     setupViews()
+    configImage()
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError("init(coder:) has not been implemented")
   }
-  // MARK: Sized Image
-//  override func sizedImageURL(from url: URL) -> URL {
-//    layoutIfNeeded()
-//    let widthValue = String(describing: frame.width)
-//    let screenScaleValue = String(describing: Int(screenScale))
-//    let widthQueryItem = URLQueryItem(
-//      name: .width,
-//      value: widthValue
-//    )
-//    let screenScaleQueryItem = URLQueryItem(
-//      name: .devicePixelRatio,
-//      value: screenScaleValue
-//    )
-//    return url.appending(
-//      queryItems: [widthQueryItem, screenScaleQueryItem]
-//    )
-//  }
   
   // MARK: Setup Data
-  func configure(
-    with user: User,
-    showsUsername: Bool = false,
-    url: URL?
-  ) {
-    super.configure(
-      url: url,
-      photoID: user.id
-    )
+  func configure(with user: User, showsUsername: Bool = false, url: URL?) {
+    super.configure(url: url, photoID: user.id)
     userNameLabel.text = user.displayName
   }
   
@@ -77,15 +58,31 @@ final class UserTableViewCellMainView: MainImageContainerView {
   
   // MARK: Setup Views
   private func setupViews() {
-    addSubviews()
+    addSubview(mainStackView)
     setupConstraints()
   }
   
-  private func addSubviews() {
-    addSubview(stackView)
+  private func setupConstraints() {
+    mainStackView.setConstraints(
+      top: topAnchor,
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      left: leftAnchor,
+      pTop: UserTableViewCellMainViewConst.topPadding,
+      pRight: UserTableViewCellMainViewConst.rightPadding,
+      pBottom: UserTableViewCellMainViewConst.bottomPadding,
+      pLeft: UserTableViewCellMainViewConst.leftPadding)
   }
   
-  private func setupConstraints() {
-    stackView.fillSuperView()
+  private func configImage() {
+    let cornerRadius = UserTableViewCellMainViewConst.mainImageViewCornerRadius
+    mainImageView.layer.cornerRadius = cornerRadius
+    mainImageView.widthAnchor.constraint(
+      equalToConstant: UserTableViewCellMainViewConst.mainImageViewSize
+    ).isActive = true
+    mainImageView.heightAnchor.constraint(
+      equalToConstant: UserTableViewCellMainViewConst.mainImageViewSize
+    ).isActive = true
+    mainImageView.clipsToBounds = true
   }
 }
