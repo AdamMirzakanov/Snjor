@@ -29,7 +29,7 @@ class SearchViewModel<Element: ElementProtocol>: BaseViewModel<Element>, SearchV
     at index: Int,
     with searchTerm: String
   ) -> BaseViewModelItem <Element> {
-//    checkAndLoadMoreSearchItems(at: index, with: searchTerm)
+    checkAndLoadMoreSearchItems(at: index, with: searchTerm)
     return makeViewModelItem(at: index)
   }
 }

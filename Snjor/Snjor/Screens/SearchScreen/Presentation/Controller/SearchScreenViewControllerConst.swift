@@ -17,4 +17,5 @@ extension String {
   static let searchPhotos = "Search photos"
   static let searchAlbums = "Search albums"
   static let searchUsers = "Search users"
+  static let initialUserSearchQuery = "Adam"
 }

@@ -77,7 +77,10 @@ extension SearchScreenViewController {
       return UITableViewCell()
     }
     
-    let viewModelItem = usersViewModel.getViewModelItem(at: indexPath.item)
+    let viewModelItem = usersViewModel.getSearchItemsViewModelItem(
+      at: indexPath.row,
+      with: .initialUserSearchQuery
+    )
     cell.configure(viewModelItem: viewModelItem)
     return cell
   }

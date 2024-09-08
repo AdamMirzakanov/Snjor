@@ -95,7 +95,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
     topicsViewModel.viewDidLoad()
-    usersViewModel.executeSearch(with: "Adam")
+    usersViewModel.executeSearch(with: .initialUserSearchQuery)
   }
   
   private func setupSearchController() {
