@@ -28,6 +28,6 @@ final class TopicsViewModel: BaseViewModel<Topic> {
   
   override func updateStateUI(with result: Result<[Topic], any Error>) {
     super.updateStateUI(with: result)
-    CollectionsItem.topics = self.items.map { CollectionsItem.topic ($0) }
+    TopicsAndAlbumsItem.topics = self.items.map { TopicsAndAlbumsItem.topic ($0) }
   }
 }

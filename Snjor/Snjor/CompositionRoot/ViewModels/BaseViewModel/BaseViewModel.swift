@@ -46,7 +46,7 @@ class BaseViewModel<Element: ElementProtocol>: ContentManagingProtocol {
   }
   
   func loadItemsUseCase() async {
-    fatalError("This method must be overridden in a subclass")
+    
   }
   
   func updateStateUI(with result: Result<[Element], Error>) {

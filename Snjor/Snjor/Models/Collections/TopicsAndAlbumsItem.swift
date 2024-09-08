@@ -1,11 +1,11 @@
 //
-//  CollectionsItem.swift
+//  TopicsAndAlbumsItem.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 14.08.2024.
 //
 
-enum CollectionsItem: Hashable {
+enum TopicsAndAlbumsItem: Hashable {
   case topic(Topic)
   case album(Album)
   
@@ -26,6 +26,6 @@ enum CollectionsItem: Hashable {
     }
   }
   
-  static var albums: [CollectionsItem] = []
-  static var topics: [CollectionsItem] = []
+  static var albums: [TopicsAndAlbumsItem] = []
+  static var topics: [TopicsAndAlbumsItem] = []
 }

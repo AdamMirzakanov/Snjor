@@ -7,8 +7,12 @@
 
 import UIKit
 
+//DataSource
 typealias DiscoverDataSource = UICollectionViewDiffableDataSource<DiscoverSection, Photo>
-typealias TopicsAndAlbumsDataSource = UICollectionViewDiffableDataSource<TopicsAndAlbumsSection, CollectionsItem>
+typealias TopicsAndAlbumsDataSource = UICollectionViewDiffableDataSource<TopicsAndAlbumsSection, TopicsAndAlbumsItem>
+typealias UsersDataSource = UITableViewDiffableDataSource<UsersSection, User>
 
+//Snapshot
 typealias DiscoverSnapshot = NSDiffableDataSourceSnapshot<DiscoverSection, Photo>
-typealias TopicsAndAlbumsSnapshot = NSDiffableDataSourceSnapshot<TopicsAndAlbumsSection, CollectionsItem>
+typealias TopicsAndAlbumsSnapshot = NSDiffableDataSourceSnapshot<TopicsAndAlbumsSection, TopicsAndAlbumsItem>
+typealias UsersSnapshot = NSDiffableDataSourceSnapshot<UsersSection, User>

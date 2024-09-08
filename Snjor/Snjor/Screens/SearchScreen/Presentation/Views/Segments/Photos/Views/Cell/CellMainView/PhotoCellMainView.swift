@@ -98,7 +98,7 @@ final class PhotoCellMainView: MainImageContainerView {
   override init() {
     super.init()
     configDownloadButtonAction()
-    setupPhotoCellViews()
+    setupViews()
   }
 
   required init?(coder: NSCoder) {
@@ -141,9 +141,19 @@ final class PhotoCellMainView: MainImageContainerView {
   func prepareForReuse() {
     reset()
   }
+  
+  private func reset() {
+    currentPhotoID = nil
+    mainImageView.image = nil
+    userNameLabel.text = nil
+    imageDownloader.cancel()
+    downloadButton.isHidden = false
+    spinner.isHidden = true
+    spinner.stopAnimating()
+  }
 
   // MARK: Setup Views
-  private func setupPhotoCellViews() {
+  private func setupViews() {
     addSubviews()
     setupConstraints()
   }
@@ -184,16 +194,6 @@ final class PhotoCellMainView: MainImageContainerView {
       pBottom: PhotoCellMainViewConst.defaultValue,
       pLeft: PhotoCellMainViewConst.defaultValue
     )
-  }
-
-  private func reset() {
-    currentPhotoID = nil
-    mainImageView.image = nil
-    userNameLabel.text = nil
-    imageDownloader.cancel()
-    downloadButton.isHidden = false
-    spinner.isHidden = true
-    spinner.stopAnimating()
   }
 
   // MARK: Config Actions

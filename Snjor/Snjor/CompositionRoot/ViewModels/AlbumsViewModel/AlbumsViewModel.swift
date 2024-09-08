@@ -40,6 +40,6 @@ final class AlbumsViewModel: SearchViewModel<Album> {
   
   override func updateStateUI(with result: Result<[Album], any Error>) {
     super.updateStateUI(with: result)
-    CollectionsItem.albums = self.items.map { CollectionsItem.album ($0) }
+    TopicsAndAlbumsItem.albums = self.items.map { TopicsAndAlbumsItem.album ($0) }
   }
 }

@@ -17,7 +17,7 @@ struct LayoutProvider {
     _ controller: SearchScreenViewController
   ) -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
-      let section = controller.collectionsSections[sectionIndex]
+      let section = controller.topicsAndAlbumsSections[sectionIndex]
       switch section {
       case .topics:
         let lineItem = makeLineItem(layoutEnvironment: layoutEnvironment)

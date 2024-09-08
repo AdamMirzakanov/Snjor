@@ -9,28 +9,28 @@ import UIKit
 
 extension SearchScreenViewController {
   // MARK: Private Properties
-  private var collectionsSnapshot: TopicsAndAlbumsSnapshot {
+  private var topicsAndAlbumsSnapshot: TopicsAndAlbumsSnapshot {
     var snapshot = TopicsAndAlbumsSnapshot()
     let topicSection = TopicsAndAlbumsSection.topics
     let albumSection = TopicsAndAlbumsSection.albums(.albumsSectionName)
     snapshot.appendSections([topicSection, albumSection])
-    snapshot.appendItems(CollectionsItem.topics, toSection: topicSection)
-    snapshot.appendItems(CollectionsItem.albums, toSection: albumSection)
-    collectionsSections = snapshot.sectionIdentifiers
+    snapshot.appendItems(TopicsAndAlbumsItem.topics, toSection: topicSection)
+    snapshot.appendItems(TopicsAndAlbumsItem.albums, toSection: albumSection)
+    topicsAndAlbumsSections = snapshot.sectionIdentifiers
     return snapshot
   }
   
   // MARK: Internal Methods
-  func applyCollectionsSnapshot() {
+  func applyTopicsAndAlbumsSnapshot() {
     guard let dataSource = topicsAndAlbumsDataSource else { return }
     dataSource.apply(
-      collectionsSnapshot,
+      topicsAndAlbumsSnapshot,
       animatingDifferences: true
     )
   }
   
   // MARK: Create Data Source
-  func createCollectionsDataSource(
+  func createTopicsAndAlbumsDataSource(
     for collectionView: UICollectionView,
     delegate: any AlbumCellDelegate
   ) {
@@ -91,7 +91,7 @@ extension SearchScreenViewController {
     collectionView: UICollectionView,
     indexPath: IndexPath
   ) -> UICollectionReusableView {
-    let section = collectionsSections[indexPath.section]
+    let section = topicsAndAlbumsSections[indexPath.section]
     let defoultHeaderView = collectionView.dequeueReusableSupplementaryView(
       ofKind: SupplementaryViewKind.header,
       withReuseIdentifier: SectionHeaderView.reuseID,
@@ -129,10 +129,10 @@ extension SearchScreenViewController {
   private func configureCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
-    item: CollectionsItem,
+    item: TopicsAndAlbumsItem,
     delegate: any AlbumCellDelegate
   ) -> UICollectionViewCell {
-    let section = collectionsSections[indexPath.section]
+    let section = topicsAndAlbumsSections[indexPath.section]
     switch section {
     case .topics:
       return configureTopicCellIfNeeded(
@@ -153,7 +153,7 @@ extension SearchScreenViewController {
   private func configureTopicCellIfNeeded(
     collectionView: UICollectionView,
     indexPath: IndexPath,
-    item: CollectionsItem
+    item: TopicsAndAlbumsItem
   ) -> UICollectionViewCell {
     if let topic = item.topic {
       return configureTopicCell(
@@ -187,7 +187,7 @@ extension SearchScreenViewController {
   private func configureAlbumCellIfNeeded(
     collectionView: UICollectionView,
     indexPath: IndexPath,
-    item: CollectionsItem,
+    item: TopicsAndAlbumsItem,
     delegate: any AlbumCellDelegate
   ) -> UICollectionViewCell {
     if let album = item.album {

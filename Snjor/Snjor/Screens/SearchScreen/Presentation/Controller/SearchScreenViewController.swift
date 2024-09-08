@@ -12,8 +12,10 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   // MARK: Internal Properties
   var discoverDataSource: DiscoverDataSource?
   var topicsAndAlbumsDataSource: TopicsAndAlbumsDataSource?
+  var usersDataSource: UsersDataSource?
   var discoverSections: [DiscoverSection] = []
-  var collectionsSections: [TopicsAndAlbumsSection] = []
+  var topicsAndAlbumsSections: [TopicsAndAlbumsSection] = []
+  var usersSections: [UsersSection] = []
   var currentScopeIndex: Int = .zero
   
   // MARK: Private Properties
@@ -142,10 +144,11 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
       for: rootView.photosCollectionView,
       delegate: self
     )
-    createCollectionsDataSource(
+    createTopicsAndAlbumsDataSource(
       for: rootView.albumsCollectionView,
       delegate: self
     )
+    createUsersDataSource(for: rootView.usersTableViewView)
   }
   
   private func configureDownloadSession() {
@@ -157,8 +160,9 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   
   private func stateController() {
     photosState()
-    albumsState()
     topicsState()
+    albumsState()
+    usersState()
   }
   
   private func photosState() {
@@ -181,7 +185,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
       .sink { [weak self] state in
         guard let self = self else { return }
         self.handleState(state) {
-          self.applyCollectionsSnapshot()
+          self.applyTopicsAndAlbumsSnapshot()
         }
       }
       .store(in: &cancellable)
@@ -194,7 +198,20 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
       .sink { [weak self] state in
         guard let self = self else { return }
         self.handleState(state) {
-          self.applyCollectionsSnapshot()
+          self.applyTopicsAndAlbumsSnapshot()
+        }
+      }
+      .store(in: &cancellable)
+  }
+  
+  func usersState() {
+    usersViewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        self.handleState(state) {
+          self.applyUsersSnapshot()
         }
       }
       .store(in: &cancellable)
