@@ -22,6 +22,11 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     in: .userDomainMask
   ).first!
   
+  // MARK: Override Properties
+  override var shouldShowTabBarOnScroll: Bool {
+    return false
+  }
+  
   // MARK: Initializers
   init(
     viewModel: any ContentManagingProtocol <Photo>,

@@ -87,20 +87,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     return topicPhotoListCollectionViewController
   }
   
-  
   // MARK: Private Methods
-  private func hideCustomTabBar() {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomTabBar()
-    }
-  }
-  
-  private func showCustomTabBar() {
-    if let tabBar = self.tabBarController as? MainTabBarController {
-      tabBar.showCustomTabBar()
-    }
-  }
-  
   private func setupDataSource() {
     createDataSource(
       for: rootView.topicsCollectionView

@@ -77,19 +77,6 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     deactivateSearchController()
   }
   
-  // MARK: Internal Methods
-  func hideCustomTabBar() {
-    if let tabBar = tabBarController as? MainTabBarController {
-      tabBar.hideCustomTabBar()
-    }
-  }
-  
-  func showCustomTabBar() {
-    if let tabBar = self.tabBarController as? MainTabBarController {
-      tabBar.showCustomTabBar()
-    }
-  }
-  
   // MARK: Private Methods
   func initializeViewModels() {
     photosViewModel.viewDidLoad()
@@ -127,6 +114,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   private func setupCollectionViewDelegate() {
     rootView.photosCollectionView.delegate = self
     rootView.albumsCollectionView.delegate = self
+    rootView.usersTableViewView.delegate = self
   }
   
   private func configureSearchController() {
