@@ -41,8 +41,13 @@ class MainImageContainerView: UIView {
     currentPhotoID = photoID
     let blurSize = MainImageContainerViewConst.blurSize
     if let blurHash = blurHash {
-      mainImageView.image = UIImage(blurHash: blurHash, size: blurSize)
-      downloadImage(url, photoID)
+      DispatchQueue.global(qos: .userInitiated).async {
+        let blureImage = UIImage(blurHash: blurHash, size: blurSize)
+        DispatchQueue.main.async {
+          self.mainImageView.image = blureImage
+          self.downloadImage(url, photoID)
+        }
+      }
     } else {
       downloadImage(url, photoID)
     }

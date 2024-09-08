@@ -51,11 +51,11 @@ class BaseViewModel<Element: ElementProtocol>: ContentManagingProtocol {
   
   func updateStateUI(with result: Result<[Element], Error>) {
     switch result {
-    case .success(let photos):
-      let existingPhotoIDs = self.items.map { $0.id }
-      let newPhotos = photos.filter { !existingPhotoIDs.contains($0.id) }
-      lastPageValidationUseCase?.updateLastPage(itemsCount: photos.count)
-      self.items.append(contentsOf: newPhotos)
+    case .success(let items):
+      let existingItemIDs = self.items.map { $0.id }
+      let newItems = items.filter { !existingItemIDs.contains($0.id) }
+      lastPageValidationUseCase?.updateLastPage(itemsCount: newItems.count)
+      self.items.append(contentsOf: newItems)
       state.send(.success)
     case .failure(let error):
       state.send(.fail(error: error.localizedDescription))
@@ -64,14 +64,14 @@ class BaseViewModel<Element: ElementProtocol>: ContentManagingProtocol {
   
   // MARK: Private Methods
   func makeViewModelItem(at index: Int) -> BaseViewModelItem<Element> {
-    let photo = items[index]
-    return BaseViewModelItem(item: photo)
+    let item = items[index]
+    return BaseViewModelItem(item: item)
   }
   
   func checkAndLoadMoreItems(at index: Int) {
     lastPageValidationUseCase?.checkAndLoadMoreItems(
       at: index,
-      actualItems: items.count,
+      actualItems: itemsCount,
       action: viewDidLoad
     )
   }

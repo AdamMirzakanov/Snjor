@@ -8,7 +8,7 @@
 import CoreGraphics
 
 enum MainImageContainerViewConst {
-  static let blurSize = CGSize(width: 22.0, height: 22.0)
+  static let blurSize = CGSize(width: 12.0, height: 12.0)
   static let duration: CGFloat = 0.25
 }
 

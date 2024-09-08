@@ -37,24 +37,37 @@ extension SearchScreenViewController {
       let cell = UICollectionViewCell()
       guard
         let self = self,
-        let delegate = delegate
-      else {
+        let delegate = delegate else {
         return cell
       }
-      let section = self.discoverSections[indexPath.section]
-      switch section {
-      case .main:
-        return self.configureCell(
-          collectionView: collectionView,
-          indexPath: indexPath,
-          photo: photo,
-          delegate: delegate
-        )
-      }
+      return self.configureCell(
+        collectionView: collectionView,
+        indexPath: indexPath,
+        photo: photo,
+        delegate: delegate
+      )
     }
   }
   
   private func configureCell(
+    collectionView: UICollectionView,
+    indexPath: IndexPath,
+    photo: Photo,
+    delegate: any SearchScreenPhotoCellDelegate
+  ) -> UICollectionViewCell {
+    let section = discoverSections[indexPath.section]
+    switch section {
+    case .main:
+      return configurePhotoCell(
+        collectionView: collectionView,
+        indexPath: indexPath,
+        photo: photo,
+        delegate: delegate
+      )
+    }
+  }
+  
+  private func configurePhotoCell(
     collectionView: UICollectionView,
     indexPath: IndexPath,
     photo: Photo,
