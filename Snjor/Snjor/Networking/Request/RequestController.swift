@@ -14,6 +14,7 @@ enum RequestController {
   private static var searchPhotos: Endpoints { .searchPhotos }
   private static var albums: Endpoints { .collections }
   private static var searchCollections: Endpoints { .searchCollections }
+  private static var searchUsers: Endpoints { .searchUsers }
 
   // MARK: Internal Methods
   /// Список фотографий
@@ -40,6 +41,16 @@ enum RequestController {
   static func searchAlbumsRequest(with searchTerm: String) throws -> URLRequest {
     let path = searchCollections.rawValue
     let parameters = PrepareParameters.prepareSearchAlbumsParameters(with: searchTerm)
+    let request = try PrepareRequests.prepareAPIRequest(
+      path: path,
+      parameters: parameters
+    )
+    return request
+  }
+  
+  static func searchUsersRequest(with searchTerm: String) throws -> URLRequest {
+    let path = searchUsers.rawValue
+    let parameters = PrepareParameters.prepareSearchUsersParameters(with: searchTerm)
     let request = try PrepareRequests.prepareAPIRequest(
       path: path,
       parameters: parameters

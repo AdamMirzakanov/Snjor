@@ -7,6 +7,7 @@
 
 protocol SearchScreenViewModelProviderProtocol {
   func createPhotosViewModel() -> DiscoverViewModel
-  func createAlbumsViewModel() -> AlbumsViewModel
   func createTopicsViewModel() -> TopicsViewModel
+  func createAlbumsViewModel() -> AlbumsViewModel
+  func createUsersViewModel() -> UsersViewModel
 }

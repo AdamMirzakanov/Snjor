@@ -17,9 +17,9 @@ struct LoadSearchAlbumsUseCase: LoadSearchAlbumsUseCaseProtocol {
   func execute(with searchTerm: String) async -> Result<[Album], any Error> {
     do {
       let request = try RequestController.searchAlbumsRequest(with: searchTerm)
-      let searchPhotos = try await repository.fetchSearchAlbums(request: request)
-      let photos = searchPhotos.results
-      return .success(photos)
+      let searchAlbums = try await repository.fetchSearchAlbums(request: request)
+      let albums = searchAlbums.results
+      return .success(albums)
     } catch {
       return .failure(error)
     }

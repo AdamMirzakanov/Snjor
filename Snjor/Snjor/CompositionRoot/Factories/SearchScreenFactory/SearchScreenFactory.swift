@@ -9,7 +9,7 @@ import UIKit
 
 struct SearchScreenFactory: SearchScreenFactoryProtocol {
   // MARK: Private Properties
-  private let viewModelFactory: any SearchScreenViewModelProviderProtocol
+  private let viewModelProvider: any SearchScreenViewModelProviderProtocol
   private let layoutProvider: LayoutProvider
   
   // MARK: Initializers
@@ -17,7 +17,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     viewModelFactory: any SearchScreenViewModelProviderProtocol = SearchScreenViewModelProvider(),
     layoutProvider: LayoutProvider = LayoutProvider()
   ) {
-    self.viewModelFactory = viewModelFactory
+    self.viewModelProvider = viewModelFactory
     self.layoutProvider = layoutProvider
   }
   
@@ -88,13 +88,15 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   private func getController(
     _ delegate: any SearchScreenViewControllerDelegate
   ) -> UIViewController {
-    let photosViewModel = viewModelFactory.createPhotosViewModel()
-    let albumsViewModel = viewModelFactory.createAlbumsViewModel()
-    let topicsViewModel = viewModelFactory.createTopicsViewModel()
+    let photosViewModel = viewModelProvider.createPhotosViewModel()
+    let albumsViewModel = viewModelProvider.createAlbumsViewModel()
+    let topicsViewModel = viewModelProvider.createTopicsViewModel()
+    let usersViewModel = viewModelProvider.createUsersViewModel()
     let controller = SearchScreenViewController(
       photosViewModel: photosViewModel,
       albumsViewModel: albumsViewModel, 
       topicsViewModel: topicsViewModel,
+      usersViewModel: usersViewModel,
       delegate: delegate
     )
     setupLayouts(controller)

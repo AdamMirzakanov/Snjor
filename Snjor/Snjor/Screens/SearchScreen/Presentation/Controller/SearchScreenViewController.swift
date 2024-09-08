@@ -21,9 +21,10 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any SearchScreenViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
-  private(set) var photosViewModel: any SearchViewModelProtocol <Photo>
-  private(set) var albumsViewModel: any SearchViewModelProtocol <Album>
-  private(set) var topicsViewModel: any ContentManagingProtocol <Topic>
+  private(set) var photosViewModel: any SearchViewModelProtocol<Photo>
+  private(set) var albumsViewModel: any SearchViewModelProtocol<Album>
+  private(set) var topicsViewModel: any ContentManagingProtocol<Topic>
+  private(set) var usersViewModel: any SearchViewModelProtocol<User>
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -31,14 +32,16 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   
   // MARK: Initializers
   init(
-    photosViewModel: any SearchViewModelProtocol <Photo>,
-    albumsViewModel: any SearchViewModelProtocol <Album>,
-    topicsViewModel: any ContentManagingProtocol <Topic>,
+    photosViewModel: any SearchViewModelProtocol<Photo>,
+    albumsViewModel: any SearchViewModelProtocol<Album>,
+    topicsViewModel: any ContentManagingProtocol<Topic>,
+    usersViewModel: any SearchViewModelProtocol<User>,
     delegate: any SearchScreenViewControllerDelegate
   ) {
     self.photosViewModel = photosViewModel
     self.albumsViewModel = albumsViewModel
     self.topicsViewModel = topicsViewModel
+    self.usersViewModel = usersViewModel
     self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
@@ -90,6 +93,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
     topicsViewModel.viewDidLoad()
+    usersViewModel.executeSearch(with: "Adam")
   }
   
   private func setupSearchController() {

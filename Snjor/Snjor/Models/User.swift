@@ -60,3 +60,21 @@ extension User {
     return URL(string: "https://unsplash.com/@\(username)")
   }
 }
+
+// MARK: - Downloadable
+extension User: Downloadable {
+  var downloadURL: URL? {
+    return self.profileImage[.large]
+  }
+}
+
+// MARK: - ViewModelItemRepresentable
+extension User: ViewModelItemRepresentable {
+  var title: String {
+    return self.displayName
+  }
+  
+  var regularURL: URL? {
+    return self.profileImage[.large]
+  }
+}

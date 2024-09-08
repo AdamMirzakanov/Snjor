@@ -15,12 +15,12 @@ final class AlbumsViewModel: SearchViewModel<Album> {
   // MARK: Initializers
   init(
     loadUseCase: any LoadAlbumsUseCaseProtocol,
-    loadSearchPhotosUseCase: any LoadSearchAlbumsUseCaseProtocol,
+    loadSearchAlbumsUseCase: any LoadSearchAlbumsUseCaseProtocol,
     lastPageValidationUseCase: any LastPageValidationUseCaseProtocol,
     state: PassthroughSubject<StateController, Never>
   ) {
     self.loadUseCase = loadUseCase
-    self.loadSearchAlbumsUseCase = loadSearchPhotosUseCase
+    self.loadSearchAlbumsUseCase = loadSearchAlbumsUseCase
     super.init(
       lastPageValidationUseCase: lastPageValidationUseCase,
       state: state

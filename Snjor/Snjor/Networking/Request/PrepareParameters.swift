@@ -11,6 +11,7 @@ enum PrepareParameters {
   static var albumsPage: Int = .page
   static var searchPhotosPage: Int = .page
   static var searchAlbumsPage: Int = .page
+  static var searchUsersPage: Int = .page
   
   // MARK: Private  Properties
   private static let perPage: Int = .perPage
@@ -50,6 +51,15 @@ enum PrepareParameters {
     return parameters
   }
   
+  static func prepareSearchUsersParameters(with searchTerm: String) -> Parameters {
+    nextSearchUsersPage()
+    var parameters: Parameters = [:]
+    parameters[.query] = searchTerm
+    parameters[.page] = String(searchUsersPage)
+    parameters[.perPage] = String(perPage)
+    return parameters
+  }
+  
   // MARK: Private  Methods
   private static func nextPhotosPage() {
     photosPage += .page
@@ -65,6 +75,10 @@ enum PrepareParameters {
   
   private static func nextSearchAlbumsPage() {
     searchAlbumsPage += .page
+  }
+  
+  private static func nextSearchUsersPage() {
+    searchUsersPage += .page
   }
 }
 

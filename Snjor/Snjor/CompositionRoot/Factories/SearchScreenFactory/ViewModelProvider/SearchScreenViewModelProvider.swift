@@ -25,21 +25,30 @@ final class SearchScreenViewModelProvider: SearchScreenViewModelProviderProtocol
     )
   }
   
+  func createTopicsViewModel() -> TopicsViewModel {
+    let loadTopicsUseCase = getTopicsUseCase(networkService)
+    return TopicsViewModel(
+      loadUseCase: loadTopicsUseCase,
+      state: state
+    )
+  }
+  
   func createAlbumsViewModel() -> AlbumsViewModel {
     let loadAlbumsUseCase = getAlbumsUseCase(networkService)
     let loadSearchAlbumsUseCase = getSearchAlbumsUseCase(networkService)
     return AlbumsViewModel(
       loadUseCase: loadAlbumsUseCase,
-      loadSearchPhotosUseCase: loadSearchAlbumsUseCase,
+      loadSearchAlbumsUseCase: loadSearchAlbumsUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase,
       state: state
     )
   }
   
-  func createTopicsViewModel() -> TopicsViewModel {
-    let loadTopicsUseCase = getTopicsUseCase(networkService)
-    return TopicsViewModel(
-      loadUseCase: loadTopicsUseCase,
+  func createUsersViewModel() -> UsersViewModel {
+    let loadSearchUsersUseCase = getSearchUsersUseCase(networkService)
+    return UsersViewModel(
+      loadSearchUsersUseCase: loadSearchUsersUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase,
       state: state
     )
   }
@@ -59,13 +68,6 @@ final class SearchScreenViewModelProvider: SearchScreenViewModelProviderProtocol
     return LoadSearchPhotosUseCase(repository: loadPhotosRepository)
   }
   
-  private func getAlbumsUseCase(
-    _ networkService: NetworkService
-  ) -> LoadAlbumsUseCase {
-    let loadAlbumsRepository = LoadAlbumsRepository(networkService: networkService)
-    return LoadAlbumsUseCase(repository: loadAlbumsRepository)
-  }
-  
   private func getTopicsUseCase(
     _ networkService: NetworkService
   ) -> LoadTopicsUseCase {
@@ -73,10 +75,24 @@ final class SearchScreenViewModelProvider: SearchScreenViewModelProviderProtocol
     return LoadTopicsUseCase(repository: loadTopicsRepository)
   }
   
+  private func getAlbumsUseCase(
+    _ networkService: NetworkService
+  ) -> LoadAlbumsUseCase {
+    let loadAlbumsRepository = LoadAlbumsRepository(networkService: networkService)
+    return LoadAlbumsUseCase(repository: loadAlbumsRepository)
+  }
+  
   private func getSearchAlbumsUseCase(
     _ networkService: NetworkService
   ) -> LoadSearchAlbumsUseCase {
     let loadAlbumsRepository = LoadSearchAlbumsRepository(networkService: networkService)
     return LoadSearchAlbumsUseCase(repository: loadAlbumsRepository)
+  }
+  
+  private func getSearchUsersUseCase(
+    _ networkService: NetworkService
+  ) -> LoadSearchUsersUseCase {
+    let loadUsersRepository = LoadSearchUsersRepository(networkService: networkService)
+    return LoadSearchUsersUseCase(repository: loadUsersRepository)
   }
 }

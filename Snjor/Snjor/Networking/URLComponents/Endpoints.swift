@@ -11,4 +11,5 @@ enum Endpoints: String {
   case topics = "/topics"
   case collections = "/collections"
   case searchCollections = "/search/collections"
+  case searchUsers = "/search/users"
 }
