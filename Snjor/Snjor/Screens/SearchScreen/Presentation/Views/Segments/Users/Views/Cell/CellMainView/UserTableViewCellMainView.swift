@@ -18,6 +18,13 @@ final class UserTableViewCellMainView: MainImageContainerView {
     return $0
   }(UILabel())
   
+  private let heartImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(systemName: .rightChevron)
+    $0.tintColor = .label
+    return $0
+  }(UIImageView())
+  
   lazy var mainStackView: UIStackView = {
     $0.axis = .horizontal
     $0.spacing = UserTableViewCellMainViewConst.stackViewSpacing
@@ -25,6 +32,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
     $0.addArrangedSubview(mainImageView)
     $0.addArrangedSubview(userNameLabel)
     $0.addArrangedSubview(UIView())
+    $0.addArrangedSubview(heartImageView)
     return $0
   }(UIStackView())
   

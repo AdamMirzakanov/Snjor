@@ -19,4 +19,5 @@ extension String {
   static let photoListItemImage = "photo.on.rectangle"
   static let photoListSelectedItemImage = "photo.fill.on.rectangle.fill"
   static let calendar = "calendar"
+  static let rightChevron = "chevron.right"
 }
