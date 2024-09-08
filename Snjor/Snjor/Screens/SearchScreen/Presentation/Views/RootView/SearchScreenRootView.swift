@@ -18,8 +18,10 @@ final class SearchScreenRootView: UIView {
   }(TopicsAndAlbumsCollectionView())
   
   let usersTableViewView: UITableView = {
-    $0.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.reuseID)
-    $0.backgroundColor = .systemBlue
+    $0.register(
+      UserTableViewCell.self,
+      forCellReuseIdentifier: UserTableViewCell.reuseID
+    )
     return $0
   }(UITableView())
   
