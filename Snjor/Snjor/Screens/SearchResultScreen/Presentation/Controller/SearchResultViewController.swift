@@ -109,7 +109,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     case .topicAndAlbums:
       showAlbumsCollectionView()
     default:
-      showUserContainer()
+      showUserCollectionView()
     }
   }
   
@@ -125,7 +125,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     rootView.albumsCollectionView.fillSuperView()
   }
   
-  private func showUserContainer() {
+  private func showUserCollectionView() {
     print(#function)
   }
 

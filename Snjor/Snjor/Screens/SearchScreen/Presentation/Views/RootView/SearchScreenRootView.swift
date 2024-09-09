@@ -17,13 +17,13 @@ final class SearchScreenRootView: UIView {
     return $0
   }(TopicsAndAlbumsCollectionView())
   
-  let usersTableViewView: UITableView = {
+  let usersTableViewView: UsersTableView = {
     $0.register(
       UserTableViewCell.self,
       forCellReuseIdentifier: UserTableViewCell.reuseID
     )
     return $0
-  }(UITableView())
+  }(UsersTableView())
   
   // MARK: Initializers
   init() {

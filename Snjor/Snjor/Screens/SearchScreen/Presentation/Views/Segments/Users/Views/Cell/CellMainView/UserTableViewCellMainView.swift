@@ -44,7 +44,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    fatalError(.requiredInitFatalErrorText)
   }
   
   // MARK: Setup Data
