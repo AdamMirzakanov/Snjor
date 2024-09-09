@@ -27,7 +27,7 @@ extension SearchScreenViewController: UISearchBarDelegate {
     case .topicAndAlbums:
       configureForTopicAndAlbumsMode(searchBar)
     default:
-      configureForUserMode(searchBar)
+      configureForUsersMode(searchBar)
     }
   }
   
@@ -50,7 +50,7 @@ extension SearchScreenViewController: UISearchBarDelegate {
     navigationItem.title = .topicsAndAlbumsTitle
   }
   
-  private func configureForUserMode(_ searchBar: UISearchBar) {
+  private func configureForUsersMode(_ searchBar: UISearchBar) {
     rootView.photosCollectionView.removeFromSuperview()
     rootView.albumsCollectionView.removeFromSuperview()
     rootView.addSubview(rootView.usersTableViewView)

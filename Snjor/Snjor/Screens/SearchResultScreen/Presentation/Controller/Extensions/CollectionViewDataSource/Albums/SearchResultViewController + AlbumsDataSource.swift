@@ -27,7 +27,7 @@ extension SearchResultViewController {
   }
   
   // MARK: Create Data Source
-  func createCollectionsDataSource(
+  func createAlbumsDataSource(
     for collectionView: UICollectionView,
     delegate: any AlbumCellDelegate
   ) {

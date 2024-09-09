@@ -18,10 +18,6 @@ final class SearchScreenRootView: UIView {
   }(TopicsAndAlbumsCollectionView())
   
   let usersTableViewView: UsersTableView = {
-    $0.register(
-      UserTableViewCell.self,
-      forCellReuseIdentifier: UserTableViewCell.reuseID
-    )
     return $0
   }(UsersTableView())
   

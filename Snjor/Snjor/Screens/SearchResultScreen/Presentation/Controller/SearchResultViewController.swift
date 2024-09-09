@@ -12,11 +12,14 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   // MARK: Internal Properties
   var photosDataSource: SearchResultPhotosDataSource?
   var albumsDataSource: SearchResultAlbumsDataSource?
+  var usersDataSource: SearchResultUsersDataSource?
   var photosSections: [SearchResultPhotosSection] = []
   var albumsSections: [SearchResultAlbumsSection] = []
+  var usersSections: [SearchResultUsersSection] = []
   var currentScopeIndex: Int
-  var photosViewModel: any SearchViewModelProtocol <Photo>
-  var albumsViewModel: any SearchViewModelProtocol <Album>
+  var photosViewModel: any SearchViewModelProtocol<Photo>
+  var albumsViewModel: any SearchViewModelProtocol<Album>
+  var usersViewModel: any SearchViewModelProtocol<User>
   var currentSearchTerm: String?
   
   // MARK: Private Properties
@@ -38,11 +41,13 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     currentScopeIndex: Int,
     photosViewModel: any SearchViewModelProtocol <Photo>,
     albumsViewModel: any SearchViewModelProtocol <Album>,
+    usersViewModel: any SearchViewModelProtocol<User>,
     delegate: any SearchResultViewControllerDelegate
   ) {
     self.currentScopeIndex = currentScopeIndex
     self.photosViewModel = photosViewModel
     self.albumsViewModel = albumsViewModel
+    self.usersViewModel = usersViewModel
     self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
@@ -97,7 +102,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     case .topicAndAlbums:
       albumsViewModel.executeSearch(with: searchTerm)
     default:
-      print(#function)
+      usersViewModel.executeSearch(with: searchTerm)
     }
   }
   
@@ -105,33 +110,39 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   private func setupVisibleContainers() {
     switch currentScopeIndex {
     case .discover:
-      showPhotosCollectionView()
+      configureForPhotosMode()
     case .topicAndAlbums:
-      showAlbumsCollectionView()
+      configureForAlbumsMode()
     default:
-      showUserCollectionView()
+      configureForUsersMode()
     }
   }
   
-  private func showPhotosCollectionView() {
+  private func configureForPhotosMode() {
     rootView.albumsCollectionView.removeFromSuperview()
+    rootView.usersTableViewView.removeFromSuperview()
     rootView.addSubview(rootView.photosCollectionView)
     rootView.photosCollectionView.fillSuperView()
   }
   
-  private func showAlbumsCollectionView() {
+  private func configureForAlbumsMode() {
     rootView.photosCollectionView.removeFromSuperview()
+    rootView.usersTableViewView.removeFromSuperview()
     rootView.addSubview(rootView.albumsCollectionView)
     rootView.albumsCollectionView.fillSuperView()
   }
   
-  private func showUserCollectionView() {
-    print(#function)
+  private func configureForUsersMode() {
+    rootView.photosCollectionView.removeFromSuperview()
+    rootView.albumsCollectionView.removeFromSuperview()
+    rootView.addSubview(rootView.usersTableViewView)
+    rootView.usersTableViewView.fillSuperView()
   }
 
   private func setupCollectionViewDelegate() {
     rootView.photosCollectionView.delegate = self
     rootView.albumsCollectionView.delegate = self
+//    rootView.usersTableViewView.delegate = self
   }
   
   private func setupDataSource() {
@@ -139,9 +150,12 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
       for: rootView.photosCollectionView,
       delegate: self
     )
-    createCollectionsDataSource(
+    createAlbumsDataSource(
       for: rootView.albumsCollectionView,
       delegate: self
+    )
+    createUsersDataSource(
+      for: rootView.usersTableViewView
     )
   }
   
@@ -155,6 +169,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   private func stateController() {
     photosState()
     albumsState()
+    usersState()
   }
   
   private func photosState() {
@@ -178,6 +193,19 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
         guard let self = self else { return }
         self.handleState(state) {
           self.applyAlbumsSnapshot()
+        }
+      }
+      .store(in: &cancellable)
+  }
+  
+  private func usersState() {
+    usersViewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        self.handleState(state) {
+          self.applyUsersSnapshot()
         }
       }
       .store(in: &cancellable)

@@ -9,7 +9,7 @@ import UIKit
 
 struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   // MARK: Private Properties
-  private let viewModelFactory: any SearchScreenViewModelProviderProtocol
+  private let viewModelProvider: any SearchScreenViewModelProviderProtocol
   private let layoutProvider: LayoutProvider
   private let searchTerm: String
   private let currentScopeIndex: Int
@@ -22,7 +22,7 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
     with searchTerm: String
   ) {
     self.currentScopeIndex = currentScopeIndex
-    self.viewModelFactory = viewModelFactory
+    self.viewModelProvider = viewModelFactory
     self.layoutProvider = layoutProvider
     self.searchTerm = searchTerm
   }
@@ -81,12 +81,14 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
   private func getController(
     _ delegate: any SearchResultViewControllerDelegate
   ) -> SearchResultViewController {
-    let photosViewModel = viewModelFactory.createPhotosViewModel()
-    let albumsViewModel = viewModelFactory.createAlbumsViewModel()
+    let photosViewModel = viewModelProvider.createPhotosViewModel()
+    let albumsViewModel = viewModelProvider.createAlbumsViewModel()
+    let usersViewModel = viewModelProvider.createUsersViewModel()
     let controller = SearchResultViewController(
       currentScopeIndex: currentScopeIndex,
       photosViewModel: photosViewModel,
-      albumsViewModel: albumsViewModel,
+      albumsViewModel: albumsViewModel, 
+      usersViewModel: usersViewModel,
       delegate: delegate
     )
     setupLayouts(controller)

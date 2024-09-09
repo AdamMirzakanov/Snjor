@@ -20,6 +20,10 @@ final class SearchResultScreenRootView: UIView {
     return $0
   }(AlbumsCollectionView())
   
+  let usersTableViewView: UsersTableView = {
+    return $0
+  }(UsersTableView())
+  
   private let backBarButtonBackgroundView: UIView = {
     $0.frame.size.width = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
     $0.frame.size.height = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
@@ -56,12 +60,14 @@ final class SearchResultScreenRootView: UIView {
   private func addSubviews() {
     addSubview(photosCollectionView)
     addSubview(albumsCollectionView)
+    addSubview(usersTableViewView)
     backBarButtonBackgroundView.addSubview(backBarButton)
   }
   
   private func setupConstraints() {
     photosCollectionView.fillSuperView()
     albumsCollectionView.fillSuperView()
+    usersTableViewView.fillSuperView()
   }
   
   // MARK: Config Navigation Item Actions
