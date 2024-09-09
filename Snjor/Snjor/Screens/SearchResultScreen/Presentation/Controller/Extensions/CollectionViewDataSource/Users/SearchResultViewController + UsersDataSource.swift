@@ -77,9 +77,13 @@ extension SearchResultViewController {
       return UITableViewCell()
     }
     
+    guard let currentSearchTerm = self.currentSearchTerm else {
+      return cell
+    }
+    
     let viewModelItem = usersViewModel.getSearchItemsViewModelItem(
       at: indexPath.row,
-      with: .initialUserSearchQuery
+      with: currentSearchTerm
     )
     cell.configure(viewModelItem: viewModelItem)
     return cell

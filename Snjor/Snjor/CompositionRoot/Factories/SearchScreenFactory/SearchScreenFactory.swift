@@ -28,7 +28,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     return getController(delegate)
   }
   
-  func mekePhotoDetailCoordinator(
+  func makePhotoDetailCoordinator(
     photo: Photo,
     navigation: any Navigable,
     parentCoordinator: any ParentCoordinator
@@ -41,7 +41,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     )
   }
   
-  func mekeTopicPhotosCoordinator(
+  func makeTopicPhotosCoordinator(
     topic: Topic,
     navigation: any Navigable,
     parentCoordinator: any ParentCoordinator
@@ -54,7 +54,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     )
   }
   
-  func mekeAlbumPhotosCoordinator(
+  func makeAlbumPhotosCoordinator(
     album: Album,
     navigation: any Navigable,
     parentCoordinator: any ParentCoordinator

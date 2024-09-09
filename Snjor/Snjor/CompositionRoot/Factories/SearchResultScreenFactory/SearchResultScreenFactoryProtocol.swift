@@ -12,13 +12,13 @@ protocol SearchResultScreenFactoryProtocol {
     delegate: any SearchResultViewControllerDelegate
   ) -> UIViewController
   
-  func mekePhotoDetailCoordinator(
+  func makePhotoDetailCoordinator(
     photo: Photo,
     navigation: any Navigable,
     parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
   
-  func mekeAlbumPhotosCoordinator(
+  func makeAlbumPhotosCoordinator(
     album: Album,
     navigation: any Navigable,
     parentCoordinator: any ParentCoordinator

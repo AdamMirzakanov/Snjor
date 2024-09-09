@@ -7,7 +7,7 @@
 
 extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
   func searchPhotoCellDidSelect(_ photo: Photo) {
-    let coordinator = factory.mekePhotoDetailCoordinator(
+    let coordinator = factory.makePhotoDetailCoordinator(
       photo: photo,
       navigation: navigation,
       parentCoordinator: self
@@ -16,7 +16,7 @@ extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
   }
 
   func searchAlbumcCellDidSelect(_ album: Album) {
-    let coordinator = factory.mekeAlbumPhotosCoordinator(
+    let coordinator = factory.makeAlbumPhotosCoordinator(
       album: album,
       navigation: navigation,
       parentCoordinator: self
