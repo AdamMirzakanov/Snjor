@@ -23,32 +23,7 @@ extension SearchScreenViewController: UICollectionViewDelegate {
     }
   }
   
-  func collectionView(
-    _ collectionView: UICollectionView,
-    willDisplay cell: UICollectionViewCell,
-    forItemAt indexPath: IndexPath
-  ) {
-    switch currentScopeIndex {
-    case .discover:
-      handleWillDisplay(for: indexPath, viewModel: photosViewModel)
-    case .topicAndAlbums:
-      handleWillDisplay(for: indexPath, viewModel: albumsViewModel)
-    default:
-      break
-    }
-  }
-  
   // MARK: - Private Methods
-  private func handleWillDisplay(
-    for indexPath: IndexPath,
-    viewModel: any SearchViewModelProtocol
-  ) {
-    guard indexPath.item == viewModel.itemsCount - .thresholdValue else {
-      return
-    }
-//    viewModel.viewDidLoad()
-  }
-  
   private func handleDiscoverSelection(
     at indexPath: IndexPath,
     delegate: any SearchScreenViewControllerDelegate
