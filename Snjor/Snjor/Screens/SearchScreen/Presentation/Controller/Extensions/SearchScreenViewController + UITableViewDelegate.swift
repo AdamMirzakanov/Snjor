@@ -7,4 +7,13 @@
 
 import UIKit
 
-extension SearchScreenViewController: UITableViewDelegate { }
+extension SearchScreenViewController: UITableViewDelegate {
+  func tableView(
+    _ tableView: UITableView,
+    didSelectRowAt indexPath: IndexPath
+  ) {
+    guard let delegate = delegate else { return }
+    let user = usersViewModel.getItem(at: indexPath.row)
+    delegate.userRowDidSelect(user)
+  }
+}

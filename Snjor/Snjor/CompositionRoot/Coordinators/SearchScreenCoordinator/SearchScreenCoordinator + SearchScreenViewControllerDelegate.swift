@@ -33,6 +33,15 @@ extension SearchScreenCoordinator: SearchScreenViewControllerDelegate {
     addAndStartChildCoordinator(coordinator)
   }
   
+  func userRowDidSelect(_ user: User) {
+    let coordinator = factory.makeUserProfileCoordinator(
+      user: user,
+      navigation: navigation,
+      parentCoordinator: self
+    )
+    addAndStartChildCoordinator(coordinator)
+  }
+  
   func searchButtonClicked(with searchTerm: String, currentScopeIndex: Int) {
     let coordinator = factory.makeSearchResultScreenCoordinator(
       currentScopeIndex: currentScopeIndex,

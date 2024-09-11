@@ -84,6 +84,19 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     )
   }
   
+  func makeUserProfileCoordinator(
+    user: User,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable {
+    let factory = UserProfileFactory(user: user)
+    return UserProfileCoordinator(
+      factory: factory,
+      navigation: navigation,
+      parentCoordinator: parentCoordinator
+    )
+  }
+  
   // MARK: Private Methods
   private func getController(
     _ delegate: any SearchScreenViewControllerDelegate

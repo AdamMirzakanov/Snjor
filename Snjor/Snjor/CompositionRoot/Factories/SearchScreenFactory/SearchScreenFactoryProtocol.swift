@@ -36,4 +36,10 @@ protocol SearchScreenFactoryProtocol {
     navigation: any Navigable,
     parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
+  
+  func makeUserProfileCoordinator(
+    user: User,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable
 }

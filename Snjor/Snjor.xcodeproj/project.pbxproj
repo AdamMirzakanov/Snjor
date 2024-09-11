@@ -201,6 +201,10 @@
 		37AF3C492C90EC0C0048FB9C /* UserProfileViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF3C482C90EC0C0048FB9C /* UserProfileViewModelItem.swift */; };
 		37AF3C4B2C90EF500048FB9C /* LoadUserProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF3C4A2C90EF500048FB9C /* LoadUserProfileUseCase.swift */; };
 		37AF3C4D2C90EFC60048FB9C /* LoadUserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF3C4C2C90EFC60048FB9C /* LoadUserProfileRepository.swift */; };
+		37AF3C502C91BA5B0048FB9C /* UserProfileFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF3C4F2C91BA5B0048FB9C /* UserProfileFactoryProtocol.swift */; };
+		37AF3C522C91BAC50048FB9C /* UserProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF3C512C91BAC50048FB9C /* UserProfileFactory.swift */; };
+		37AF3C552C91BF9F0048FB9C /* UserProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF3C542C91BF9F0048FB9C /* UserProfileCoordinator.swift */; };
+		37AF3C572C91BFB50048FB9C /* UserProfileCoordinator + ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF3C562C91BFB50048FB9C /* UserProfileCoordinator + ParentCoordinator.swift */; };
 		37B203D92C761BB70017E231 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B203D82C761BB70017E231 /* SearchResultViewController.swift */; };
 		37B203E72C7696F90017E231 /* SearchResultViewController + CascadeLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B203E62C7696F90017E231 /* SearchResultViewController + CascadeLayoutDelegate.swift */; };
 		37B203E92C7697030017E231 /* SearchResultViewController + PhotoCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B203E82C7697030017E231 /* SearchResultViewController + PhotoCellDelegate.swift */; };
@@ -547,6 +551,10 @@
 		37AF3C482C90EC0C0048FB9C /* UserProfileViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModelItem.swift; sourceTree = "<group>"; };
 		37AF3C4A2C90EF500048FB9C /* LoadUserProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserProfileUseCase.swift; sourceTree = "<group>"; };
 		37AF3C4C2C90EFC60048FB9C /* LoadUserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserProfileRepository.swift; sourceTree = "<group>"; };
+		37AF3C4F2C91BA5B0048FB9C /* UserProfileFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFactoryProtocol.swift; sourceTree = "<group>"; };
+		37AF3C512C91BAC50048FB9C /* UserProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFactory.swift; sourceTree = "<group>"; };
+		37AF3C542C91BF9F0048FB9C /* UserProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCoordinator.swift; sourceTree = "<group>"; };
+		37AF3C562C91BFB50048FB9C /* UserProfileCoordinator + ParentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileCoordinator + ParentCoordinator.swift"; sourceTree = "<group>"; };
 		37B203D82C761BB70017E231 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		37B203E62C7696F90017E231 /* SearchResultViewController + CascadeLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultViewController + CascadeLayoutDelegate.swift"; sourceTree = "<group>"; };
 		37B203E82C7697030017E231 /* SearchResultViewController + PhotoCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultViewController + PhotoCellDelegate.swift"; sourceTree = "<group>"; };
@@ -1909,6 +1917,24 @@
 			path = UserProfileViewModel;
 			sourceTree = "<group>";
 		};
+		37AF3C4E2C91BA530048FB9C /* UserProfileFactory */ = {
+			isa = PBXGroup;
+			children = (
+				37AF3C4F2C91BA5B0048FB9C /* UserProfileFactoryProtocol.swift */,
+				37AF3C512C91BAC50048FB9C /* UserProfileFactory.swift */,
+			);
+			path = UserProfileFactory;
+			sourceTree = "<group>";
+		};
+		37AF3C532C91BF880048FB9C /* UserProfileCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				37AF3C542C91BF9F0048FB9C /* UserProfileCoordinator.swift */,
+				37AF3C562C91BFB50048FB9C /* UserProfileCoordinator + ParentCoordinator.swift */,
+			);
+			path = UserProfileCoordinator;
+			sourceTree = "<group>";
+		};
 		37B203DD2C7695AB0017E231 /* SearchResultScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -2601,6 +2627,7 @@
 		664BF2EB2BF6632400C9D29E /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				37AF3C532C91BF880048FB9C /* UserProfileCoordinator */,
 				376785A62C8CAE1E009B9BA6 /* MainTabBarCoordinator */,
 				376785A72C8CAE26009B9BA6 /* AppCoordinator */,
 				376785A82C8CAE2D009B9BA6 /* PhotoDetailCoordinator */,
@@ -2632,6 +2659,7 @@
 		664BF2FB2BF681DF00C9D29E /* Factories */ = {
 			isa = PBXGroup;
 			children = (
+				37AF3C4E2C91BA530048FB9C /* UserProfileFactory */,
 				37A502BF2C6E48FB000221D1 /* AppFactory */,
 				37A502BE2C6E48D0000221D1 /* MainTabBarFactory */,
 				37A502BD2C6E48C7000221D1 /* PhotoDetailFactory */,
@@ -2965,6 +2993,7 @@
 				372B34702C8888B5008FCC88 /* AlbumPhotoCellDelegate.swift in Sources */,
 				370A008C2C87CF59006B87DD /* SectionHeaderViewConst.swift in Sources */,
 				37C00C882C89FBFE00F63CEC /* MainTagCell.swift in Sources */,
+				37AF3C552C91BF9F0048FB9C /* UserProfileCoordinator.swift in Sources */,
 				3767859F2C8C99E6009B9BA6 /* AlbumPhotosViewController + Typealias.swift in Sources */,
 				373F88222C8C79B200329672 /* SearchResultViewController + Typealias.swift in Sources */,
 				3770E1942C7207EF0017ECBB /* AlbumPhotos + UICollectionViewDelegate.swift in Sources */,
@@ -3029,6 +3058,7 @@
 				3770E17E2C7205550017ECBB /* AlbumPhotoCell.swift in Sources */,
 				378B83702C862B4F001463FE /* PhotoDetailViewModelProtocol.swift in Sources */,
 				37CF7D9B2C8DDAF700724A58 /* UserTableViewCell + Reusable.swift in Sources */,
+				37AF3C572C91BFB50048FB9C /* UserProfileCoordinator + ParentCoordinator.swift in Sources */,
 				667A599C2C1F082900FE4985 /* SearchScreenPhotoCell.swift in Sources */,
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
 				37AF3C492C90EC0C0048FB9C /* UserProfileViewModelItem.swift in Sources */,
@@ -3064,6 +3094,7 @@
 				370A00942C87D7FA006B87DD /* TopicsLayoutFactoryConst.swift in Sources */,
 				37C00CA82C8A4F9600F63CEC /* PhotoDetailViewControllerDelegate.swift in Sources */,
 				66BE9C5B2C1F10680006011A /* CascadeLayoutConst.swift in Sources */,
+				37AF3C522C91BAC50048FB9C /* UserProfileFactory.swift in Sources */,
 				3723E38B2C4F0E5B00C3AE3E /* Topic.swift in Sources */,
 				667579F92C3445DC00A7DCC9 /* Download.swift in Sources */,
 				371EE7D72C63C3BB007538C2 /* SearchScreenCoordinator.swift in Sources */,
@@ -3112,6 +3143,7 @@
 				372B34782C888A95008FCC88 /* TopicPhotoCellMainViewDelegate.swift in Sources */,
 				378B83522C85C982001463FE /* SearchViewModel.swift in Sources */,
 				37F54FE02C8BB4BD002215FD /* SearchScreenViewController + AlbumCellDelegate.swift in Sources */,
+				37AF3C502C91BA5B0048FB9C /* UserProfileFactoryProtocol.swift in Sources */,
 				664BF2E22BF65D0C00C9D29E /* Navigation + Navigable.swift in Sources */,
 				372B34742C888997008FCC88 /* TopicPhotosViewControllerDelegate.swift in Sources */,
 				37A502C32C6E4A63000221D1 /* PageScreenTopicPhotosFactoryProtocol.swift in Sources */,
