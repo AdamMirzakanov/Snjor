@@ -30,6 +30,7 @@ class UserProfileViewController: MainViewController<UserProfileViewControllerRoo
     super.viewDidLoad()
     stateController()
     viewModel.viewDidLoad()
+    rootView.backgroundColor = .systemBackground
   }
   
   deinit {

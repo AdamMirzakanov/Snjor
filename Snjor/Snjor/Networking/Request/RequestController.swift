@@ -15,6 +15,7 @@ enum RequestController {
   private static var albums: Endpoints { .collections }
   private static var searchCollections: Endpoints { .searchCollections }
   private static var searchUsers: Endpoints { .searchUsers }
+  private static var userProfile: Endpoints { .userProfile }
 
   // MARK: Internal Methods
   /// Список фотографий
@@ -72,7 +73,7 @@ enum RequestController {
   }
   
   static func userProfileRequest(user: User) throws -> URLRequest {
-    let path = photos.rawValue
+    let path = userProfile.rawValue
     let username = user.username
     let request = try PrepareRequests.prepareUserProfileAPIRequest(
       path: path,
