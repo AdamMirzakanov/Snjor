@@ -35,19 +35,18 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(PhotoDetailPhotoView())
   
-  let profilePhotoView: PhotoDetailPhotoView = {
+  let profilePhotoView: UserProfilePhotoView = {
     $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = Const.profilePhotoViewCircle
+    $0.layer.cornerRadius = Const.profilePhotoCircle
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: Const.profilePhotoViewSize
+      equalToConstant: Const.profilePhotoSize
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: Const.profilePhotoViewSize
+      equalToConstant: Const.profilePhotoSize
     ).isActive = true
-    $0.backgroundColor = .systemPurple
     return $0
-  }(PhotoDetailPhotoView())
+  }(UserProfilePhotoView())
   
   // MARK: Gesture
   private lazy var tapGesture: UITapGestureRecognizer = {

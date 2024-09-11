@@ -55,5 +55,3 @@ class UserProfileViewController: MainViewController<UserProfileViewControllerRoo
       .store(in: &cancellable)
   }
 }
-
-extension UserProfileViewController: MessageDisplayable { }

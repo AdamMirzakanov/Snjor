@@ -14,6 +14,19 @@ final class UserProfileViewControllerRootView: UIView {
   
   
   // MARK: Views
+  let profilePhotoView: UserProfilePhotoView = {
+    $0.contentMode = .scaleAspectFill
+    $0.layer.cornerRadius = Const.profilePhotoCircle
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.profilePhotoSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.profilePhotoSize
+    ).isActive = true
+    return $0
+  }(UserProfilePhotoView())
+  
   private let gradientView: MainGradientView = {
     $0.isUserInteractionEnabled = false
     let color = UIColor(
@@ -60,13 +73,23 @@ final class UserProfileViewControllerRootView: UIView {
   }(UILabel())
   
   // MARK: - Initializers
+  init() {
+    super.init(frame: .zero)
+    setupViews()
+  }
   
+  required init?(coder: NSCoder) {
+    fatalError(.requiredInitFatalErrorText)
+  }
   
   // MARK: Setup Data
   func setupData(viewModel: any UserProfileViewModelProtocol) {
     let viewModelItem = viewModel.getUserProfileViewModelItem()
     guard let viewModelItem = viewModelItem else { return }
-    
+    let user = viewModelItem.user
+    let profilePhotoURL = user.regularURL
+    profilePhotoView.configure(with: user, url: profilePhotoURL)
+    nameLabel.text = viewModelItem.displayName
   }
   
   // MARK: Setup Views
@@ -76,11 +99,11 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func addSubviews() {
-     
+     addSubview(profilePhotoView)
   }
   
   private func setupConstraints() {
-    
+    profilePhotoView.centerXY()
   }
   
 }
@@ -91,4 +114,6 @@ enum UserProfileViewControllerRootViewConst {
   static let gradientEndLocation: CGFloat = 0.1
   static let defaultFontSize: CGFloat = 14.0
   static let userNameFontSize: CGFloat = 25.0
+  static let profilePhotoSize: CGFloat = 100.0
+  static let profilePhotoCircle: CGFloat = profilePhotoSize / 2
 }
