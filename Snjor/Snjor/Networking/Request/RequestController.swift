@@ -71,6 +71,16 @@ enum RequestController {
     return request
   }
   
+  static func userProfileRequest(user: User) throws -> URLRequest {
+    let path = photos.rawValue
+    let username = user.username
+    let request = try PrepareRequests.prepareUserProfileAPIRequest(
+      path: path,
+      username: username
+    )
+    return request
+  }
+  
   /// Фотографии внутри категории
   static func topicPhotosRequest(topic: Topic) throws -> URLRequest {
     let topicsPath = topics.rawValue

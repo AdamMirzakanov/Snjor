@@ -63,6 +63,18 @@ enum PrepareRequests {
     let request = prepareURLRequest(url: photoInfoURL)
     return request
   }
+  
+  static func prepareUserProfileAPIRequest(
+    path: String,
+    username: String
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path) else {
+      throw APIError.URLError
+    }
+    let photoInfoURL = url.appending(component: username)
+    let request = prepareURLRequest(url: photoInfoURL)
+    return request
+  }
 
   static func prepareAPIRequest(
     path: String,
