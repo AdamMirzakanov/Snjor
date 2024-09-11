@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = PhotoDetailViewControllerRootViewConst
+
 // swiftlint:disable all
 final class PhotoDetailViewControllerRootView: UIView {
   // MARK: - Delegate
@@ -23,7 +25,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   // MARK: - Tags Collection View
   let tagsCollectionView: PhotoDetailTagsCollectionView = {
     $0.heightAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.tagsCollectionViewHeight
+      equalToConstant: Const.tagsCollectionViewHeight
     ).isActive = true
     return $0
   }(PhotoDetailTagsCollectionView())
@@ -35,13 +37,13 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   let profilePhotoView: PhotoDetailPhotoView = {
     $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = PhotoDetailViewControllerRootViewConst.profilePhotoViewCircle
+    $0.layer.cornerRadius = Const.profilePhotoViewCircle
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.profilePhotoViewSize
+      equalToConstant: Const.profilePhotoViewSize
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.profilePhotoViewSize
+      equalToConstant: Const.profilePhotoViewSize
     ).isActive = true
     $0.backgroundColor = .systemPurple
     return $0
@@ -71,16 +73,16 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.isUserInteractionEnabled = false
     let color = UIColor(
       white: .zero,
-      alpha: PhotoDetailViewControllerRootViewConst.gradientOpacity
+      alpha: Const.gradientOpacity
     )
     $0.setColors([
       MainGradientView.Color(
         color: .clear,
-        location: PhotoDetailViewControllerRootViewConst.gradientEndLocation
+        location: Const.gradientEndLocation
       ),
       MainGradientView.Color(
         color: color,
-        location: PhotoDetailViewControllerRootViewConst.gradientStartLocation
+        location: Const.gradientStartLocation
       )
     ])
     return $0
@@ -94,34 +96,34 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.startAnimating()
     $0.color = .label
     $0.transform = CGAffineTransform(
-      scaleX: PhotoDetailViewControllerRootViewConst.spinnerScale,
-      y: PhotoDetailViewControllerRootViewConst.spinnerScale
+      scaleX: Const.spinnerScale,
+      y: Const.spinnerScale
     )
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UIActivityIndicatorView(style: .medium))
   
   // MARK: Blur Effects
   private let backBarButtonBlurEffect: UIVisualEffectView = {
-    $0.frame.size.width = PhotoDetailViewControllerRootViewConst.fullValue
-    $0.frame.size.height = PhotoDetailViewControllerRootViewConst.fullValue
-    $0.layer.cornerRadius = PhotoDetailViewControllerRootViewConst.defaultCircle
+    $0.frame.size.width = Const.fullValue
+    $0.frame.size.height = Const.fullValue
+    $0.layer.cornerRadius = Const.defaultCircle
     $0.clipsToBounds = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
   
   let downloadBarButtonBlurEffect: UIVisualEffectView = {
-    $0.frame.size.width = PhotoDetailViewControllerRootViewConst.downloadButtonWidth
-    $0.frame.size.height = PhotoDetailViewControllerRootViewConst.fullValue
-    $0.layer.cornerRadius = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.frame.size.width = Const.downloadButtonWidth
+    $0.frame.size.height = Const.fullValue
+    $0.layer.cornerRadius = Const.defaultValue
     $0.clipsToBounds = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
   
   private let toggleContentModePhotoButtonBlurEffect: UIVisualEffectView = {
-    $0.frame.size.width = PhotoDetailViewControllerRootViewConst.fullValue
-    $0.frame.size.height = PhotoDetailViewControllerRootViewConst.fullValue
-    $0.layer.cornerRadius = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.frame.size.width = Const.fullValue
+    $0.frame.size.height = Const.fullValue
+    $0.layer.cornerRadius = Const.defaultValue
     $0.clipsToBounds = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
@@ -131,7 +133,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     let icon = UIImage(systemName: .backBarButtonImage)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     $0.frame = backBarButtonBlurEffect.bounds
     return $0
   }(UIButton())
@@ -141,12 +143,12 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.setImage(icon, for: .normal)
     $0.setTitle(.jpeg, for: .normal)
     $0.titleLabel?.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     $0.frame = downloadBarButtonBlurEffect.bounds
     return $0
   }(UIButton())
@@ -156,7 +158,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     $0.frame = toggleContentModePhotoButtonBlurEffect.bounds
     return $0
   }(UIButton())
@@ -165,7 +167,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     let icon = UIImage(systemName: .infoButtonImage)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     
     $0.setContentHuggingPriority(.required, for: .horizontal)
     $0.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -207,7 +209,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.numberOfLines = .zero
     $0.font = UIFont(
       name: .timesNewRomanBold,
-      size: PhotoDetailViewControllerRootViewConst.userNameFontSize
+      size: Const.userNameFontSize
     )
     return $0
   }(UILabel())
@@ -215,7 +217,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   let likesLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     return $0
@@ -224,7 +226,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   let downloadsLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     return $0
@@ -233,7 +235,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   private let createdLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     return $0
@@ -243,7 +245,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.text = .defaultCamera
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .black
     )
     return $0
@@ -252,19 +254,19 @@ final class PhotoDetailViewControllerRootView: UIView {
   let resolutionLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     $0.textAlignment = .center
     $0.backgroundColor = .darkGray
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
-    $0.layer.cornerRadius = PhotoDetailViewControllerRootViewConst.smallValue
+    $0.alpha = Const.defaultOpacity
+    $0.layer.cornerRadius = Const.smallValue
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.resolutionLabelWidth
+      equalToConstant: Const.resolutionLabelWidth
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.resolutionLabelHeight
+      equalToConstant: Const.resolutionLabelHeight
     ).isActive = true
     return $0
   }(UILabel())
@@ -272,20 +274,20 @@ final class PhotoDetailViewControllerRootView: UIView {
   let pxLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UILabel())
   
   let isoValueLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UILabel())
   
@@ -293,7 +295,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.text = .iso
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     return $0
@@ -302,10 +304,10 @@ final class PhotoDetailViewControllerRootView: UIView {
   let apertureValueLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UILabel())
   
@@ -313,7 +315,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.text = .aperture
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     return $0
@@ -322,10 +324,10 @@ final class PhotoDetailViewControllerRootView: UIView {
   let focalLengthValueLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UILabel())
   
@@ -333,7 +335,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.text = .focalLengt
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     return $0
@@ -342,10 +344,10 @@ final class PhotoDetailViewControllerRootView: UIView {
   let exposureTimeValueLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UILabel())
   
@@ -353,7 +355,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.text = .exposure
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: PhotoDetailViewControllerRootViewConst.defaultFontSize,
+      ofSize: Const.defaultFontSize,
       weight: .medium
     )
     return $0
@@ -362,39 +364,39 @@ final class PhotoDetailViewControllerRootView: UIView {
   // MARK: Lines
   private let firstLine: UIView = {
     $0.backgroundColor = .white
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     $0.heightAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.lineWidth
+      equalToConstant: Const.lineWidth
     ).isActive = true
     return $0
   }(UIView())
   
   private let secondLine: UIView = {
     $0.backgroundColor = .white
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     $0.heightAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.lineWidth
+      equalToConstant: Const.lineWidth
     ).isActive = true
     return $0
   }(UIView())
   
   private let thirdLine: UIView = {
     $0.backgroundColor = .white
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     $0.heightAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.lineWidth
+      equalToConstant: Const.lineWidth
     ).isActive = true
     return $0
   }(UIView())
   
   private let centerLine: UIView = {
     $0.backgroundColor = .white
-    $0.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+    $0.alpha = Const.defaultOpacity
     $0.widthAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.lineWidth
+      equalToConstant: Const.lineWidth
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: PhotoDetailViewControllerRootViewConst.lineHeight
+      equalToConstant: Const.lineHeight
     ).isActive = true
     return $0
   }(UIView())
@@ -404,7 +406,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.middleValue
+    $0.spacing = Const.middleValue
     $0.addArrangedSubview(profilePhotoView)
     $0.addArrangedSubview(nameLabel)
     let spacerView = UIView()
@@ -417,7 +419,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(likesImageView)
     $0.addArrangedSubview(likesLabel)
     return $0
@@ -427,7 +429,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(downloadsImageView)
     $0.addArrangedSubview(downloadsLabel)
     let spacerView = UIView()
@@ -439,7 +441,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(createdImageView)
     $0.addArrangedSubview(createdLabel)
     return $0
@@ -448,7 +450,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   private lazy var profitStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
-    $0.spacing = PhotoDetailViewControllerRootViewConst.profitStackViewSpacing
+    $0.spacing = Const.profitStackViewSpacing
     $0.addArrangedSubview(likesStackView)
     $0.addArrangedSubview(downloadStackView)
     $0.addArrangedSubview(createdStackView)
@@ -459,7 +461,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(cameraImageView)
     $0.addArrangedSubview(cameraModelLabel)
     let spacerView = UIView()
@@ -471,7 +473,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(resolutionLabel)
     $0.addArrangedSubview(pxLabel)
     return $0
@@ -481,7 +483,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(isoLabel)
     $0.addArrangedSubview(isoValueLabel)
     return $0
@@ -491,7 +493,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(apertureLabel)
     $0.addArrangedSubview(apertureValueLabel)
     return $0
@@ -501,7 +503,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(focalLengthLabel)
     $0.addArrangedSubview(focalLengthValueLabel)
     return $0
@@ -511,7 +513,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(exposureTimeLabel)
     $0.addArrangedSubview(exposureTimeValueLabel)
     return $0
@@ -521,7 +523,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .vertical
     $0.distribution = .fillProportionally
     $0.alignment = .leading
-    $0.spacing = PhotoDetailViewControllerRootViewConst.middleValue
+    $0.spacing = Const.middleValue
     $0.addArrangedSubview(cameraStackView)
     $0.addArrangedSubview(resolutionStackView)
     return $0
@@ -531,7 +533,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .vertical
     $0.distribution = .equalSpacing
     $0.alignment = .leading
-    $0.spacing = PhotoDetailViewControllerRootViewConst.defaultValue
+    $0.spacing = Const.defaultValue
     $0.addArrangedSubview(isoStackView)
     $0.addArrangedSubview(focalLengthStackView)
     $0.addArrangedSubview(apertureStackView)
@@ -542,7 +544,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   private lazy var photoInfoStackView: UIStackView = {
     $0.axis = .vertical
     $0.distribution = .equalSpacing
-    $0.spacing = PhotoDetailViewControllerRootViewConst.middleValue
+    $0.spacing = Const.middleValue
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitStackView)
     $0.addArrangedSubview(secondLine)
@@ -553,7 +555,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   private lazy var mainStackView: UIStackView = {
     $0.axis = .vertical
     $0.distribution = .equalSpacing
-    $0.spacing = PhotoDetailViewControllerRootViewConst.middleValue
+    $0.spacing = Const.middleValue
     $0.addArrangedSubview(profileAndInfoButtonStackView)
     $0.addArrangedSubview(photoInfoStackView)
     return $0
@@ -633,9 +635,9 @@ final class PhotoDetailViewControllerRootView: UIView {
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pRight: PhotoDetailViewControllerRootViewConst.rightPadding,
-      pBottom: PhotoDetailViewControllerRootViewConst.mainStackViewBottomPadding,
-      pLeft: PhotoDetailViewControllerRootViewConst.leftPadding
+      pRight: Const.rightPadding,
+      pBottom: Const.mainStackViewBottomPadding,
+      pLeft: Const.leftPadding
     )
   }
   
@@ -643,33 +645,33 @@ final class PhotoDetailViewControllerRootView: UIView {
     centerLine.centerX()
     centerLine.setConstraints(
       top: mainStackView.topAnchor,
-      pTop: PhotoDetailViewControllerRootViewConst.centerLineTopOffset
+      pTop: Const.centerLineTopOffset
     )
   }
   
   private func setupLeftStackViewConstraints() {
     leftStackView.setConstraints(
       centerY: mainStackView.centerYAnchor,
-      pCenterY: PhotoDetailViewControllerRootViewConst.leftStackViewCenterYOffset
+      pCenterY: Const.leftStackViewCenterYOffset
     )
     leftStackView.setConstraints(
       right: centerLine.rightAnchor,
       left: leftAnchor,
-      pRight: PhotoDetailViewControllerRootViewConst.smallRightPadding,
-      pLeft: PhotoDetailViewControllerRootViewConst.leftPadding
+      pRight: Const.smallRightPadding,
+      pLeft: Const.leftPadding
     )
   }
   
   private func setupRightStackViewConstraints() {
     rightStackView.setConstraints(
       centerY: mainStackView.centerYAnchor,
-      pCenterY: PhotoDetailViewControllerRootViewConst.rightStackViewCenterYOffset
+      pCenterY: Const.rightStackViewCenterYOffset
     )
     rightStackView.setConstraints(
       right: rightAnchor,
       left: centerLine.leftAnchor,
-      pRight: PhotoDetailViewControllerRootViewConst.rightPadding,
-      pLeft: PhotoDetailViewControllerRootViewConst.leftPadding
+      pRight: Const.rightPadding,
+      pLeft: Const.leftPadding
     )
   }
   
@@ -694,12 +696,16 @@ final class PhotoDetailViewControllerRootView: UIView {
   private func setupBarButtons() {
     backBarButtonBlurEffect.contentView.addSubview(backBarButton)
     downloadBarButtonBlurEffect.contentView.addSubview(downloadBarButton)
-    toggleContentModePhotoButtonBlurEffect.contentView.addSubview(toggleContentModeButton)
+    toggleContentModePhotoButtonBlurEffect.contentView.addSubview(
+      toggleContentModeButton
+    )
   }
   
   private func makeRightBarButtons() -> [UIBarButtonItem] {
     let downloadBarButton = UIBarButtonItem(customView: downloadBarButtonBlurEffect)
-    let toggleContentModeButton = UIBarButtonItem(customView: toggleContentModePhotoButtonBlurEffect)
+    let toggleContentModeButton = UIBarButtonItem(
+      customView: toggleContentModePhotoButtonBlurEffect
+    )
     let barButtonItems = [toggleContentModeButton, downloadBarButton]
     return barButtonItems
   }
@@ -843,13 +849,13 @@ final class PhotoDetailViewControllerRootView: UIView {
   // MARK: Animate Buttons
   private func animateDownloadButton() {
     UIView.animate(
-      withDuration: PhotoDetailViewControllerRootViewConst.minDuration
+      withDuration: Const.minDuration
     ) {
-      self.downloadBarButtonBlurEffect.frame.origin.x = PhotoDetailViewControllerRootViewConst.translationX
-      self.downloadBarButtonBlurEffect.frame.size.width = PhotoDetailViewControllerRootViewConst.fullValue
-      self.downloadBarButtonBlurEffect.frame.size.height = PhotoDetailViewControllerRootViewConst.fullValue
+      self.downloadBarButtonBlurEffect.frame.origin.x = Const.translationX
+      self.downloadBarButtonBlurEffect.frame.size.width = Const.fullValue
+      self.downloadBarButtonBlurEffect.frame.size.height = Const.fullValue
       self.downloadBarButton.alpha = .zero
-      self.downloadBarButtonBlurEffect.layer.cornerRadius = PhotoDetailViewControllerRootViewConst.defaultCircle
+      self.downloadBarButtonBlurEffect.layer.cornerRadius = Const.defaultCircle
     } completion: { _ in
       self.downloadBarButton.removeFromSuperview()
       self.downloadBarButtonBlurEffect.contentView.addSubview(self.spinner)
@@ -858,26 +864,26 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   func reverseAnimateDownloadButton() {
     UIView.animate(
-      withDuration: PhotoDetailViewControllerRootViewConst.defaultDuration,
+      withDuration: Const.defaultDuration,
       delay: .zero,
-      usingSpringWithDamping: PhotoDetailViewControllerRootViewConst.defaultDamping,
-      initialSpringVelocity: PhotoDetailViewControllerRootViewConst.defaultVelocity
+      usingSpringWithDamping: Const.defaultDamping,
+      initialSpringVelocity: Const.defaultVelocity
     ) {
-      self.downloadBarButtonBlurEffect.frame.origin.x = -PhotoDetailViewControllerRootViewConst.translationX
-      self.downloadBarButtonBlurEffect.frame.size.width = PhotoDetailViewControllerRootViewConst.downloadButtonWidth
-      self.downloadBarButtonBlurEffect.frame.size.height = PhotoDetailViewControllerRootViewConst.fullValue
-      self.downloadBarButtonBlurEffect.layer.cornerRadius = PhotoDetailViewControllerRootViewConst.defaultValue
+      self.downloadBarButtonBlurEffect.frame.origin.x = -Const.translationX
+      self.downloadBarButtonBlurEffect.frame.size.width = Const.downloadButtonWidth
+      self.downloadBarButtonBlurEffect.frame.size.height = Const.fullValue
+      self.downloadBarButtonBlurEffect.layer.cornerRadius = Const.defaultValue
       self.spinner.removeFromSuperview()
       self.downloadBarButtonBlurEffect.contentView.addSubview(self.downloadBarButton)
-      self.downloadBarButton.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+      self.downloadBarButton.alpha = Const.defaultOpacity
     }
   }
   
   func hidePhotoInfo() {
-    UIView.animate(withDuration: PhotoDetailViewControllerRootViewConst.hidePhotoInfoDuration) {
+    UIView.animate(withDuration: Const.hidePhotoInfoDuration) {
       let transform = CGAffineTransform(
         translationX: .zero,
-        y: PhotoDetailViewControllerRootViewConst.translationY
+        y: Const.translationY
       )
       self.profileAndInfoButtonStackView.transform = transform
       self.mainStackView.transform = transform
@@ -888,26 +894,26 @@ final class PhotoDetailViewControllerRootView: UIView {
       self.leftStackView.alpha = .zero
       self.rightStackView.alpha = .zero
       self.centerLine.alpha = .zero
-      self.gradientView.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+      self.gradientView.alpha = Const.defaultOpacity
       self.photoInfoStackView.isHidden = true
     }
   }
   
   private func showPhotoInfo() {
     UIView.animate(
-      withDuration: PhotoDetailViewControllerRootViewConst.defaultDuration,
+      withDuration: Const.defaultDuration,
       delay: .zero,
-      usingSpringWithDamping: PhotoDetailViewControllerRootViewConst.defaultDamping,
-      initialSpringVelocity: PhotoDetailViewControllerRootViewConst.defaultDuration
+      usingSpringWithDamping: Const.defaultDamping,
+      initialSpringVelocity: Const.defaultDuration
     ) {
-      self.gradientView.alpha = PhotoDetailViewControllerRootViewConst.maxOpacity
-      self.photoInfoStackView.alpha = PhotoDetailViewControllerRootViewConst.maxOpacity
-      self.leftStackView.alpha = PhotoDetailViewControllerRootViewConst.maxOpacity
-      self.rightStackView.alpha = PhotoDetailViewControllerRootViewConst.maxOpacity
-      self.centerLine.alpha = PhotoDetailViewControllerRootViewConst.defaultOpacity
+      self.gradientView.alpha = Const.maxOpacity
+      self.photoInfoStackView.alpha = Const.maxOpacity
+      self.leftStackView.alpha = Const.maxOpacity
+      self.rightStackView.alpha = Const.maxOpacity
+      self.centerLine.alpha = Const.defaultOpacity
       let transform = CGAffineTransform(
         translationX: .zero,
-        y: PhotoDetailViewControllerRootViewConst.verticalTranslation
+        y: Const.verticalTranslation
       )
       self.mainStackView.transform = transform
       self.leftStackView.transform = transform
