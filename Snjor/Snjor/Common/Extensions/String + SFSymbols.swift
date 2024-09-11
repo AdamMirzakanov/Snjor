@@ -20,7 +20,9 @@ extension String {
   static let photoListSelectedItemImage = "photo.fill.on.rectangle.fill"
   static let calendar = "calendar"
   static let rightChevron = "chevron.right"
-  static let photosImage = "photo.fill.on.rectangle.fill"
+  static let photosImage = "photos"
   static let albumsImage = "rectangle.stack.fill"
   static let locationImage = "scope"
+  static let instIcon = "inst"
+  static let twitIcon = "twit"
 }

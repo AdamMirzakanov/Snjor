@@ -57,7 +57,13 @@ final class UserProfileViewControllerRootView: UIView {
   
   private let totalPhotosImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .photosImage)
+    $0.image = UIImage(named: .photosImage)
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.socialIconSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.socialIconSize
+    ).isActive = true
     $0.tintColor = .white
     return $0
   }(UIImageView())
@@ -76,6 +82,30 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
+  private let instImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(named: .instIcon)
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.socialIconSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.socialIconSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
+  private let twitImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(named: .twitIcon)
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.socialIconSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.socialIconSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
   // MARK: Labels
   let nameLabel: UILabel = {
     $0.textColor = .white
@@ -88,6 +118,28 @@ final class UserProfileViewControllerRootView: UIView {
   }(UILabel())
   
   let bioLabel: UILabel = {
+    $0.textColor = .white
+    $0.textAlignment = .left
+    $0.numberOfLines = .zero
+    $0.font = .systemFont(
+      ofSize: Const.defaultFontSize,
+      weight: .light
+    )
+    return $0
+  }(UILabel())
+  
+  let instLabel: UILabel = {
+    $0.textColor = .white
+    $0.textAlignment = .center
+    $0.numberOfLines = .zero
+    $0.font = .systemFont(
+      ofSize: Const.defaultFontSize,
+      weight: .medium
+    )
+    return $0
+  }(UILabel())
+  
+  let twitLabel: UILabel = {
     $0.textColor = .white
     $0.textAlignment = .center
     $0.numberOfLines = .zero
@@ -162,7 +214,26 @@ final class UserProfileViewControllerRootView: UIView {
     $0.addArrangedSubview(profilePhotoView)
     $0.addArrangedSubview(nameLabel)
     $0.addArrangedSubview(locationStackView)
-    $0.addArrangedSubview(bioLabel)
+    return $0
+  }(UIStackView())
+  
+  private lazy var instStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.stackViewSpacing
+    $0.addArrangedSubview(instImageView)
+    $0.addArrangedSubview(instLabel)
+    return $0
+  }(UIStackView())
+  
+  private lazy var twitStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .leading
+    $0.spacing = Const.stackViewSpacing
+    $0.addArrangedSubview(twitImageView)
+    $0.addArrangedSubview(twitLabel)
     return $0
   }(UIStackView())
   
@@ -170,9 +241,19 @@ final class UserProfileViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = Const.smallStackViewSpacing
+    $0.spacing = Const.halfStackViewSpacing
     $0.addArrangedSubview(locationImageView)
     $0.addArrangedSubview(locationLabel)
+    return $0
+  }(UIStackView())
+  
+  private lazy var socialStackView: UIStackView = {
+    $0.axis = .vertical
+    $0.distribution = .fill
+    $0.alignment = .leading
+    $0.spacing = Const.stackViewSpacing
+    $0.addArrangedSubview(instStackView)
+    $0.addArrangedSubview(twitStackView)
     return $0
   }(UIStackView())
   
@@ -180,7 +261,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = Const.smallStackViewSpacing
+    $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(totalLikesImageView)
     $0.addArrangedSubview(totalLikesLabel)
     return $0
@@ -190,7 +271,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = Const.smallStackViewSpacing
+    $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(totalPhotosImageView)
     $0.addArrangedSubview(totalPhotosLabel)
     return $0
@@ -200,7 +281,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = Const.smallStackViewSpacing
+    $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(totalAlbumsImageView)
     $0.addArrangedSubview(totalAlbumsLabel)
     return $0
@@ -221,11 +302,13 @@ final class UserProfileViewControllerRootView: UIView {
   private lazy var infoStackView: UIStackView = {
     $0.axis = .vertical
     $0.distribution = .equalSpacing
-    $0.spacing = Const.smallStackViewSpacing
+    $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(profilePhotoAndNameLabelStackView)
+    $0.addArrangedSubview(socialStackView)
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitStackView)
     $0.addArrangedSubview(secondLine)
+    $0.addArrangedSubview(bioLabel)
     return $0
   }(UIStackView())
   
@@ -252,6 +335,8 @@ final class UserProfileViewControllerRootView: UIView {
     totalPhotosLabel.text = viewModelItem.totalPhotos
     totalAlbumsLabel.text = viewModelItem.totalCollections
     locationLabel.text = viewModelItem.location
+    instLabel.text = viewModelItem.instagramUserName
+    twitLabel.text = viewModelItem.twitterUsername
   }
   
   // MARK: Setup Views
@@ -284,11 +369,12 @@ enum UserProfileViewControllerRootViewConst {
   static let gradientStartLocation: CGFloat = 0.9
   static let gradientEndLocation: CGFloat = 0.1
   static let defaultFontSize: CGFloat = 14.0
-  static let userNameFontSize: CGFloat = 35.0
-  static let profilePhotoSize: CGFloat = 100.0
+  static let userNameFontSize: CGFloat = 30.0
+  static let profilePhotoSize: CGFloat = 70.0
+  static let socialIconSize: CGFloat = 17.0
   static let profilePhotoCircle: CGFloat = profilePhotoSize / 2
-  static let smallStackViewSpacing: CGFloat = 16.0
-  static let stackViewSpacing: CGFloat = 32.0
+  static let halfStackViewSpacing: CGFloat = stackViewSpacing / 2
+  static let stackViewSpacing: CGFloat = 16.0
   static let defaultOpacity: CGFloat = 0.4
   static let lineWidth: CGFloat = 1.0
   static let rightPadding: CGFloat = 20.0
