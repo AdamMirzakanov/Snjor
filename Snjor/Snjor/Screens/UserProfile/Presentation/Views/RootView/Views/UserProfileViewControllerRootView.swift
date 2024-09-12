@@ -10,8 +10,17 @@ import UIKit
 fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
 final class UserProfileViewControllerRootView: UIView {
-  // MARK: Private Properties
+  // MARK: CollectinView
+  let mainHorizontalCollectionView: UserProfileCollectionView = {
+    $0.backgroundColor = .systemBlue
+    return $0
+  }(UserProfileCollectionView())
   
+  // MARK: Indicator
+  lazy var indicatorView: UIView = {
+    $0.backgroundColor = .systemBlue
+    return $0
+  }(UIView())
   
   // MARK: UserProfilePhoto
   let profilePhotoView: UserProfilePhotoView = {
@@ -346,22 +355,32 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func addSubviews() {
-    addSubview(gradientView)
-    addSubview(infoStackView)
+//    addSubview(gradientView)
+//    addSubview(infoStackView)
+//    addSubview(indicatorView)
+    addSubview(mainHorizontalCollectionView)
   }
   
   private func setupConstraints() {
-    gradientView.fillSuperView()
-    infoStackView.setConstraints(
+//    gradientView.fillSuperView()
+//    infoStackView.setConstraints(
+//      right: rightAnchor,
+//      bottom: bottomAnchor,
+//      left: leftAnchor,
+//      pRight: Const.rightPadding,
+//      pBottom: Const.bottomPadding,
+//      pLeft: Const.leftPadding
+//    )
+    mainHorizontalCollectionView.setConstraints(
+      top: topAnchor,
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
+      pTop: 600, 
       pRight: Const.rightPadding,
-      pBottom: Const.bottomPadding,
       pLeft: Const.leftPadding
     )
   }
-  
 }
 
 enum UserProfileViewControllerRootViewConst {

@@ -8,10 +8,15 @@
 import UIKit
 import Combine
 
-class UserProfileViewController: MainViewController<UserProfileViewControllerRootView> {
+final class UserProfileViewController: MainViewController<UserProfileViewControllerRootView> {
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var viewModel: any UserProfileViewModelProtocol
+  
+  // MARK: Override Properties
+  override var shouldShowTabBarOnScroll: Bool {
+    return false
+  }
   
   // MARK: Initializers
   init(
@@ -31,6 +36,8 @@ class UserProfileViewController: MainViewController<UserProfileViewControllerRoo
     stateController()
     viewModel.viewDidLoad()
     rootView.backgroundColor = .systemBackground
+    rootView.mainHorizontalCollectionView.delegate = self
+    rootView.mainHorizontalCollectionView.dataSource = self
   }
   
   deinit {
