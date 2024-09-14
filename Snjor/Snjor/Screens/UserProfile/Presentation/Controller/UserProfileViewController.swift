@@ -11,7 +11,8 @@ import Combine
 final class UserProfileViewController: MainViewController<UserProfileViewControllerRootView> {
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) var viewModel: any UserProfileViewModelProtocol
+  private(set) var userProfileViewModel: any UserProfileViewModelProtocol
+  private(set) var userLikedPhotosViewModel: any ContentManagingProtocol<Photo>
   
   // MARK: Override Properties
   override var shouldShowTabBarOnScroll: Bool {
@@ -20,9 +21,11 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   
   // MARK: Initializers
   init(
-    viewModel: any UserProfileViewModelProtocol
+    userProfileViewModel: any UserProfileViewModelProtocol,
+    userLikedPhotosViewModel: any ContentManagingProtocol<Photo>
   ) {
-    self.viewModel = viewModel
+    self.userProfileViewModel = userProfileViewModel
+    self.userLikedPhotosViewModel = userLikedPhotosViewModel
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -34,7 +37,8 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   override func viewDidLoad() {
     super.viewDidLoad()
     stateController()
-    viewModel.viewDidLoad()
+    userProfileViewModel.viewDidLoad()
+    userLikedPhotosViewModel.viewDidLoad()
     rootView.backgroundColor = .systemBackground
     rootView.mainHorizontalCollectionView.delegate = self
     rootView.mainHorizontalCollectionView.dataSource = self
@@ -45,20 +49,59 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   }
   
   // MARK: Private Methods
+//  private func statesController() {
+//    userProfileViewModel
+//      .state
+//      .receive(on: DispatchQueue.main)
+//      .sink { [weak self] state in
+//        guard let self = self else { return }
+//        switch state {
+//        case .success:
+//          rootView.setupData(viewModel: userProfileViewModel)
+//        case .loading: break
+//        case .fail(error: let error):
+//          presentAlert(message: error, title: AppLocalized.error)
+//        }
+//      }
+//      .store(in: &cancellable)
+//  }
+  
   private func stateController() {
-    viewModel
+    userProfileViewModel
       .state
-      .receive(on: RunLoop.current)
+      .receive(on: DispatchQueue.main)
       .sink { [weak self] state in
         guard let self = self else { return }
-        switch state {
-        case .success:
-          rootView.setupData(viewModel: viewModel)
-        case .loading: break
-        case .fail(error: let error):
-          presentAlert(message: error, title: AppLocalized.error)
+        self.handleState(state) {
+          self.rootView.setupData(viewModel: self.userProfileViewModel)
         }
       }
       .store(in: &cancellable)
+  }
+  
+  private func userLakedPhotosState() {
+    userLikedPhotosViewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        self.handleState(state) {
+          print(#function, Self.self)
+        }
+      }
+      .store(in: &cancellable)
+  }
+  
+  private func handleState(
+    _ state: StateController,
+    successAction: () -> Void
+  ) {
+    switch state {
+    case .success:
+      successAction()
+    case .loading: break
+    case .fail(error: let error):
+      presentAlert(message: error, title: AppLocalized.error)
+    }
   }
 }

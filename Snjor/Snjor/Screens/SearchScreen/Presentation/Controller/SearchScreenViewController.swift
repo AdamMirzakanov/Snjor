@@ -78,7 +78,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   }
   
   // MARK: Private Methods
-  func initializeViewModels() {
+  private func initializeViewModels() {
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
     topicsViewModel.viewDidLoad()
@@ -192,7 +192,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
       .store(in: &cancellable)
   }
   
-  func usersState() {
+  private func usersState() {
     usersViewModel
       .state
       .receive(on: DispatchQueue.main)

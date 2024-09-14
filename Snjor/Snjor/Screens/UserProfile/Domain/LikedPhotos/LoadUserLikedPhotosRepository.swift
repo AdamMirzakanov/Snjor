@@ -1,21 +1,21 @@
 //
-//  LoadPhotosRepository.swift
+//  LoadUserLikedPhotosRepository.swift
 //  Snjor
 //
-//  Created by Адам on 16.06.2024.
+//  Created by Адам Мирзаканов on 14.09.2024.
 //
 
 import Foundation
 
 // MARK: - Protocol
-protocol LoadPhotosRepositoryProtocol {
+protocol LoadUserLikedPhotosRepositoryProtocol {
   func fetchPhotos(request: URLRequest) async throws -> [Photo]
 }
 
 // MARK: - Struct
-struct LoadPhotosRepository: LoadPhotosRepositoryProtocol {
+struct LoadUserLikedPhotosRepository: LoadUserLikedPhotosRepositoryProtocol {
   let networkService: any Requestable
-
+  
   func fetchPhotos(request: URLRequest) async throws -> [Photo] {
     return try await networkService.request(
       request: request,

@@ -82,6 +82,17 @@ enum RequestController {
     return request
   }
   
+  /// Фотографии которые лайкал пользователь
+  static func userLikedPhotosRequest(user: User) throws -> URLRequest {
+    let path = userProfile.rawValue
+    let username = user.username
+    let request = try PrepareRequests.prepareUserLikedPhotosAPIRequest(
+      path: path,
+      username: username
+    )
+    return request
+  }
+  
   /// Фотографии внутри категории
   static func topicPhotosRequest(topic: Topic) throws -> URLRequest {
     let topicsPath = topics.rawValue

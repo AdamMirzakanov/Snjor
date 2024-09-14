@@ -27,16 +27,6 @@ class MainTagCell: UICollectionViewCell {
     tagLabel.text = .hash + tag.title
   }
   
-  // MARK: Setup Views
-  private func setupViews() {
-    contentView.addSubview(tagLabel)
-    setupTagLabelConstraints()
-  }
-  
-  private func setupTagLabelConstraints() {
-    tagLabel.fillSuperView()
-  }
-  
   func configTagLabel() {
     tagLabel.textAlignment = .center
     tagLabel.layer.cornerRadius = MainTagCellConst.tagLabelCornerRadius
@@ -45,5 +35,15 @@ class MainTagCell: UICollectionViewCell {
       ofSize: MainTagCellConst.tagFontSize,
       weight: .regular
     )
+  }
+  
+  // MARK: Setup Views
+  private func setupViews() {
+    contentView.addSubview(tagLabel)
+    setupTagLabelConstraints()
+  }
+  
+  private func setupTagLabelConstraints() {
+    tagLabel.fillSuperView()
   }
 }

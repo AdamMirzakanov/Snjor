@@ -14,10 +14,10 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   
   // MARK: Initializers
   init(
-    viewModelFactory: any SearchScreenViewModelProviderProtocol = SearchScreenViewModelProvider(),
+    viewModelProvider: any SearchScreenViewModelProviderProtocol = SearchScreenViewModelProvider(),
     layoutProvider: LayoutProvider = LayoutProvider()
   ) {
-    self.viewModelProvider = viewModelFactory
+    self.viewModelProvider = viewModelProvider
     self.layoutProvider = layoutProvider
   }
   

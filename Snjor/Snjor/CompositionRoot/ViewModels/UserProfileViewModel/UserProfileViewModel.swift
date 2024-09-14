@@ -7,9 +7,8 @@
 
 import Combine
 
-final class UserProfileViewModel: UserProfileViewModelProtocol {
+final class UserProfileViewModel: BaseViewModel<User>, UserProfileViewModelProtocol {
   // MARK: Internal Properties
-  var state: PassthroughSubject<StateController, Never>
   var user: User?
   
   // MARK: Private Properties
@@ -20,12 +19,12 @@ final class UserProfileViewModel: UserProfileViewModelProtocol {
     state: PassthroughSubject<StateController, Never>,
     loadUseCase: any LoadUserProfileUseCaseProtocol
   ) {
-    self.state = state
     self.loadUseCase = loadUseCase
+    super.init(state: state)
   }
   
   // MARK: Internal Methods
-  func viewDidLoad() {
+  override func viewDidLoad() {
     state.send(.loading)
     Task {
       await loadUserProfileUseCase()
@@ -37,6 +36,7 @@ final class UserProfileViewModel: UserProfileViewModelProtocol {
     return UserProfileViewModelItem(user: user)
   }
   
+  // MARK: Private Methods
   private func loadUserProfileUseCase() async {
     do {
       let user = try await loadUseCase.execute()

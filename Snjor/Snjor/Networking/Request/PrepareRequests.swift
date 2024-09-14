@@ -12,9 +12,11 @@ enum PrepareRequests {
   private static var getHTTP: HTTPMethod { .get }
   private static var scheme: API { .scheme }
   private static var host: API { .host }
-
+  
   // MARK: Internal Methods
-  static func prepareTopicsTitleAPIRequest(topics: String) throws -> URLRequest {
+  static func prepareTopicsTitleAPIRequest(
+    topics: String
+  ) throws -> URLRequest {
     guard let url = prepareURL(from: topics) else {
       throw APIError.URLError
     }
@@ -71,11 +73,24 @@ enum PrepareRequests {
     guard let url = prepareURL(from: path) else {
       throw APIError.URLError
     }
-    let photoInfoURL = url.appending(component: username)
-    let request = prepareURLRequest(url: photoInfoURL)
+    let profileURL = url.appending(component: username)
+    let request = prepareURLRequest(url: profileURL)
     return request
   }
-
+  
+  static func prepareUserLikedPhotosAPIRequest(
+    path: String,
+    username: String
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path) else {
+      throw APIError.URLError
+    }
+    let profileURL = url.appending(component: username)
+    let likedURL = profileURL.appending(component: "likes")
+    let request = prepareURLRequest(url: likedURL)
+    return request
+  }
+  
   static func prepareAPIRequest(
     path: String,
     parameters: Parameters
@@ -86,7 +101,7 @@ enum PrepareRequests {
     let request = prepareURLRequest(url: url)
     return request
   }
-
+  
   // MARK: Private Methods
   private static func prepareURLRequest(url: URL) -> URLRequest {
     var request = URLRequest(url: url)
@@ -107,7 +122,7 @@ enum PrepareRequests {
       return components.url
     }
   }
-
+  
   private static func prepareURLComponents(
     from path: String,
     parameters: Parameters? = nil
@@ -121,7 +136,7 @@ enum PrepareRequests {
     }
     return components
   }
-
+  
   private static func prepareQueryItems(
     parameters: Parameters
   ) -> [URLQueryItem] {
@@ -130,7 +145,7 @@ enum PrepareRequests {
       value: $0.value)
     }
   }
-
+  
   private static func prepareHeaders() -> Parameters {
     var headers: Parameters = [:]
     headers["Authorization"] = "Client-ID " + Authorization.accessKey
