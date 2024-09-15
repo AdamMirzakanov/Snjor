@@ -22,23 +22,23 @@ extension UserProfileViewController: UICollectionViewDataSource {
     switch indexPath.row {
     case 0:
       let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: "horizontalCellA",
+        withReuseIdentifier: FirstCell.reuseID,
         for: indexPath
-      ) as! HorizontalCollectionViewCellA
-      cell.configure()
+      ) as! FirstCell
+      cell.configure(with: userLikedPhotosViewModel.items)
       return cell
     case 1:
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: "horizontalCellB",
         for: indexPath
-      ) as! HorizontalCollectionViewCellB
+      ) as! SecondCell
       cell.configure()
       return cell
     default:
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: "horizontalCellC",
         for: indexPath
-      ) as! HorizontalCollectionViewCellC
+      ) as! ThirdCell
       cell.configure()
       return cell
     }

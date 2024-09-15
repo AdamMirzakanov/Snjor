@@ -9,15 +9,15 @@ final class UserProfileCollectionView: MainCollectionView {
   
   override func cellRegister() {
     register(
-      HorizontalCollectionViewCellA.self,
-      forCellWithReuseIdentifier: "horizontalCellA"
+      FirstCell.self,
+      forCellWithReuseIdentifier: FirstCell.reuseID
     )
     register(
-      HorizontalCollectionViewCellB.self,
+      SecondCell.self,
       forCellWithReuseIdentifier: "horizontalCellB"
     )
     register(
-      HorizontalCollectionViewCellC.self,
+      ThirdCell.self,
       forCellWithReuseIdentifier: "horizontalCellC"
     )
   }

@@ -36,7 +36,8 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    stateController()
+    userProfileState()
+    userLikedPhotosState()
     userProfileViewModel.viewDidLoad()
     userLikedPhotosViewModel.viewDidLoad()
     rootView.backgroundColor = .systemBackground
@@ -49,24 +50,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   }
   
   // MARK: Private Methods
-//  private func statesController() {
-//    userProfileViewModel
-//      .state
-//      .receive(on: DispatchQueue.main)
-//      .sink { [weak self] state in
-//        guard let self = self else { return }
-//        switch state {
-//        case .success:
-//          rootView.setupData(viewModel: userProfileViewModel)
-//        case .loading: break
-//        case .fail(error: let error):
-//          presentAlert(message: error, title: AppLocalized.error)
-//        }
-//      }
-//      .store(in: &cancellable)
-//  }
-  
-  private func stateController() {
+  private func userProfileState() {
     userProfileViewModel
       .state
       .receive(on: DispatchQueue.main)
@@ -79,7 +63,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
       .store(in: &cancellable)
   }
   
-  private func userLakedPhotosState() {
+  private func userLikedPhotosState() {
     userLikedPhotosViewModel
       .state
       .receive(on: DispatchQueue.main)
@@ -87,6 +71,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
         guard let self = self else { return }
         self.handleState(state) {
           print(#function, Self.self)
+          self.rootView.mainHorizontalCollectionView.reloadData()
         }
       }
       .store(in: &cancellable)

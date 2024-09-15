@@ -1,5 +1,5 @@
 //
-//  HorizontalCollectionViewCellC.swift
+//  SecondCell.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 12.09.2024.
@@ -7,32 +7,32 @@
 
 import UIKit
 
-class HorizontalCollectionViewCellC:
+class SecondCell:
   UICollectionViewCell,
   UICollectionViewDelegate,
   UICollectionViewDataSource,
   UICollectionViewDelegateFlowLayout {
   
-  let verticalCollectionViewC: UICollectionView
+  let verticalCollectionViewB: UICollectionView
   
   override init(frame: CGRect) {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    layout.minimumLineSpacing = 5
-    layout.minimumInteritemSpacing = 5
-    verticalCollectionViewC = UICollectionView(
+    layout.minimumLineSpacing = 15
+    layout.minimumInteritemSpacing = 15
+    verticalCollectionViewB = UICollectionView(
       frame: .zero,
       collectionViewLayout: layout
     )
     super.init(frame: frame)
     
-    verticalCollectionViewC.delegate = self
-    verticalCollectionViewC.dataSource = self
-    verticalCollectionViewC.register(
+    verticalCollectionViewB.delegate = self
+    verticalCollectionViewB.dataSource = self
+    verticalCollectionViewB.register(
       UICollectionViewCell.self,
-      forCellWithReuseIdentifier: "verticalCellC"
+      forCellWithReuseIdentifier: "verticalCellB"
     )
-    contentView.addSubview(verticalCollectionViewC)
+    contentView.addSubview(verticalCollectionViewB)
   }
   
   required init?(coder: NSCoder) {
@@ -41,11 +41,11 @@ class HorizontalCollectionViewCellC:
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    verticalCollectionViewC.frame = contentView.bounds
+    verticalCollectionViewB.frame = contentView.bounds
   }
   
   func configure() {
-    verticalCollectionViewC.reloadData()
+    verticalCollectionViewB.reloadData()
   }
   
   // UICollectionViewDataSource
@@ -53,7 +53,7 @@ class HorizontalCollectionViewCellC:
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
   ) -> Int {
-    return 15
+    return 7
   }
   
   func collectionView(
@@ -61,10 +61,10 @@ class HorizontalCollectionViewCellC:
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: "verticalCellC",
+      withReuseIdentifier: "verticalCellB",
       for: indexPath
     )
-    cell.backgroundColor = .systemBrown // Макет ячеек для типа C
+    cell.backgroundColor = .systemBrown // Макет ячеек для типа B
     return cell
   }
   
@@ -75,8 +75,8 @@ class HorizontalCollectionViewCellC:
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     return CGSize(
-      width: collectionView.frame.width - 10,
-      height: 200
+      width: collectionView.frame.width - 30,
+      height: 150
     )
   }
 }
