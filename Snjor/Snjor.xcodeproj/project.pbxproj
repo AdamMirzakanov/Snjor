@@ -280,6 +280,8 @@
 		37ECB3912C96FC3C003E063E /* UserLikedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB3902C96FC3C003E063E /* UserLikedPhotoCell.swift */; };
 		37ECB3942C96FC69003E063E /* UserLikedPhotoCell + Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB3932C96FC69003E063E /* UserLikedPhotoCell + Reusable.swift */; };
 		37ECB39C2C970800003E063E /* FirstCell + Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB39B2C970800003E063E /* FirstCell + Reusable.swift */; };
+		37ECB39E2C98683D003E063E /* FirstCell + CascadeLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB39D2C98683D003E063E /* FirstCell + CascadeLayoutDelegate.swift */; };
+		37ECB3A02C986871003E063E /* FirstCell + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ECB39F2C986871003E063E /* FirstCell + DataSource.swift */; };
 		37ED3E9B2C69652E00EA96FE /* SearchScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED3E9A2C69652E00EA96FE /* SearchScreenFactory.swift */; };
 		37ED3E9D2C69655F00EA96FE /* SearchScreenViewModelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED3E9C2C69655F00EA96FE /* SearchScreenViewModelProvider.swift */; };
 		37ED5D8A2C7A078E00891811 /* SearchResultScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED5D892C7A078E00891811 /* SearchResultScreenCoordinator.swift */; };
@@ -649,6 +651,8 @@
 		37ECB3902C96FC3C003E063E /* UserLikedPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLikedPhotoCell.swift; sourceTree = "<group>"; };
 		37ECB3932C96FC69003E063E /* UserLikedPhotoCell + Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserLikedPhotoCell + Reusable.swift"; sourceTree = "<group>"; };
 		37ECB39B2C970800003E063E /* FirstCell + Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirstCell + Reusable.swift"; sourceTree = "<group>"; };
+		37ECB39D2C98683D003E063E /* FirstCell + CascadeLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirstCell + CascadeLayoutDelegate.swift"; sourceTree = "<group>"; };
+		37ECB39F2C986871003E063E /* FirstCell + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirstCell + DataSource.swift"; sourceTree = "<group>"; };
 		37ED3E9A2C69652E00EA96FE /* SearchScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenFactory.swift; sourceTree = "<group>"; };
 		37ED3E9C2C69655F00EA96FE /* SearchScreenViewModelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewModelProvider.swift; sourceTree = "<group>"; };
 		37ED5D892C7A078E00891811 /* SearchResultScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultScreenCoordinator.swift; sourceTree = "<group>"; };
@@ -2413,6 +2417,8 @@
 			isa = PBXGroup;
 			children = (
 				37ECB39B2C970800003E063E /* FirstCell + Reusable.swift */,
+				37ECB39D2C98683D003E063E /* FirstCell + CascadeLayoutDelegate.swift */,
+				37ECB39F2C986871003E063E /* FirstCell + DataSource.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3147,6 +3153,7 @@
 				378B835C2C8609C8001463FE /* TopicPhotosViewModel.swift in Sources */,
 				664A515C2C1E458A003491BA /* Photo.swift in Sources */,
 				3770E19F2C7208B10017ECBB /* AlbumPhotosFactoryProtocol.swift in Sources */,
+				37ECB39E2C98683D003E063E /* FirstCell + CascadeLayoutDelegate.swift in Sources */,
 				37BE0AC12C524B4F00C8D45F /* PageScreenPhotosViewController.swift in Sources */,
 				665993592C20E15F00BA8C85 /* PhotoDetailViewController.swift in Sources */,
 				3770E1A12C7208D70017ECBB /* AlbumPhotosCoordinator.swift in Sources */,
@@ -3353,6 +3360,7 @@
 				6698613F2C43DB940085D789 /* PhotoDetail + MessageDisplayable.swift in Sources */,
 				37ECB3942C96FC69003E063E /* UserLikedPhotoCell + Reusable.swift in Sources */,
 				37BE0AC52C52571200C8D45F /* LoadTopicsPhotoListRepository.swift in Sources */,
+				37ECB3A02C986871003E063E /* FirstCell + DataSource.swift in Sources */,
 				370A00892C87CED9006B87DD /* SectionHeaderView + Reusable.swift in Sources */,
 				370A005D2C874F84006B87DD /* String + DownloadService.swift in Sources */,
 				664AA5AD2C49B29E00A393BD /* PhotoCell + Reusable.swift in Sources */,

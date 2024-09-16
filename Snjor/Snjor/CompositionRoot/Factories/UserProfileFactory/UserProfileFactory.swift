@@ -14,13 +14,16 @@ struct UserProfileFactory: UserProfileFactoryProtocol {
   
   // MARK: Private Properties
   private let viewModelProvider: any UserProfileViewModelProviderProtocol
+  private let layoutProvider: LayoutProvider
   
   // MARK: Initializers
   init(
     viewModelProvider: any UserProfileViewModelProviderProtocol = UserProfileViewModelProvider(),
+    layoutProvider: LayoutProvider = LayoutProvider(),
     user: User
   ) {
     self.viewModelProvider = viewModelProvider
+    self.layoutProvider = layoutProvider
     self.user = user
   }
   

@@ -21,10 +21,14 @@ extension UserProfileViewController: UICollectionViewDataSource {
   ) -> UICollectionViewCell {
     switch indexPath.item {
     case 0:
+      guard
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: FirstCell.reuseID,
         for: indexPath
-      ) as! FirstCell
+      ) as? FirstCell
+      else {
+        return UICollectionViewCell()
+      }
       cell.configure(with: userLikedPhotosViewModel)
       return cell
     case 1:

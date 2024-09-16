@@ -372,16 +372,14 @@ final class UserProfileViewControllerRootView: UIView {
 //      pLeft: Const.leftPadding
 //    )
     
-//    mainHorizontalCollectionView.setConstraints(
-//      top: topAnchor,
-//      right: rightAnchor,
-//      bottom: bottomAnchor,
-//      left: leftAnchor,
-//      pTop: 600, 
-//      pRight: Const.rightPadding,
-//      pLeft: Const.leftPadding
-//    )
-    
-    mainHorizontalCollectionView.fillSuperView()
+    mainHorizontalCollectionView.setConstraints(
+      top: topAnchor,
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      left: leftAnchor,
+      pTop: 600, 
+      pRight: Const.rightPadding,
+      pLeft: Const.leftPadding
+    )
   }
 }
