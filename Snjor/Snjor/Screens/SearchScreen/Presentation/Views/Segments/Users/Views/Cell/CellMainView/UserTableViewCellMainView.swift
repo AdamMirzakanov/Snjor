@@ -18,7 +18,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
     return $0
   }(UILabel())
   
-  private let heartImageView: UIImageView = {
+  private let chevronImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .rightChevron)
     $0.tintColor = .systemGray
@@ -32,7 +32,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
     $0.addArrangedSubview(mainImageView)
     $0.addArrangedSubview(userNameLabel)
     $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(heartImageView)
+    $0.addArrangedSubview(chevronImageView)
     return $0
   }(UIStackView())
   
@@ -50,7 +50,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
   // MARK: Setup Data
   func configure(with user: User, showsUsername: Bool = false, url: URL?) {
     super.configure(url: url, photoID: user.id)
-    userNameLabel.text = user.displayName
+    userNameLabel.text = String(user.totalLikes)
   }
   
   func prepareForReuse() {

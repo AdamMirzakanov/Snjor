@@ -19,13 +19,13 @@ extension UserProfileViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
-    switch indexPath.row {
+    switch indexPath.item {
     case 0:
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: FirstCell.reuseID,
         for: indexPath
       ) as! FirstCell
-      cell.configure(with: userLikedPhotosViewModel.items)
+      cell.configure(with: userLikedPhotosViewModel)
       return cell
     case 1:
       let cell = collectionView.dequeueReusableCell(
@@ -43,5 +43,4 @@ extension UserProfileViewController: UICollectionViewDataSource {
       return cell
     }
   }
- 
 }

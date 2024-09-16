@@ -80,9 +80,10 @@ enum PrepareRequests {
   
   static func prepareUserLikedPhotosAPIRequest(
     path: String,
-    username: String
+    username: String,
+    parameters: Parameters
   ) throws -> URLRequest {
-    guard let url = prepareURL(from: path) else {
+    guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
     let profileURL = url.appending(component: username)

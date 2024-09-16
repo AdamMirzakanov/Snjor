@@ -12,4 +12,5 @@ protocol ContentManagingProtocol<Item>: BaseViewModelProtocol {
   func getItem(at index: Int) -> Item
   func getViewModelItem(at index: Int) -> BaseViewModelItem<Item>
   func loadItemsUseCase() async
+  func checkAndLoadMoreItems(at index: Int)
 }

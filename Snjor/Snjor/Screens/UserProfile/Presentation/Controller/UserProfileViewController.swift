@@ -36,6 +36,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    resetPage()
     userProfileState()
     userLikedPhotosState()
     userProfileViewModel.viewDidLoad()
@@ -50,6 +51,10 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   }
   
   // MARK: Private Methods
+  private func resetPage() {
+    PrepareParameters.photosPage = .zero
+  }
+  
   private func userProfileState() {
     userProfileViewModel
       .state

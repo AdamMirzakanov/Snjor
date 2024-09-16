@@ -86,9 +86,11 @@ enum RequestController {
   static func userLikedPhotosRequest(user: User) throws -> URLRequest {
     let path = userProfile.rawValue
     let username = user.username
+    let parameters = PrepareParameters.preparePhotoParameters()
     let request = try PrepareRequests.prepareUserLikedPhotosAPIRequest(
       path: path,
-      username: username
+      username: username, 
+      parameters: parameters
     )
     return request
   }

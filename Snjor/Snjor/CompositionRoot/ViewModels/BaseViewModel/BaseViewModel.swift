@@ -62,12 +62,12 @@ class BaseViewModel<Element: ElementProtocol>: ContentManagingProtocol {
     }
   }
   
-  // MARK: Private Methods
   func makeViewModelItem(at index: Int) -> BaseViewModelItem<Element> {
     let item = items[index]
     return BaseViewModelItem(item: item)
   }
   
+  // MARK: Private Methods
   func checkAndLoadMoreItems(at index: Int) {
     lastPageValidationUseCase?.checkAndLoadMoreItems(
       at: index,
