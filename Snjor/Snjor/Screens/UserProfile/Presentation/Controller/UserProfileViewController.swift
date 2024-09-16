@@ -94,4 +94,14 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
       presentAlert(message: error, title: AppLocalized.error)
     }
   }
+  
+//  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//    super.scrollViewDidScroll(scrollView)
+//     let contentOffsetX = scrollView.contentOffset.x
+//     let scrollViewWidth = scrollView.frame.width
+//     let progress = contentOffsetX / scrollViewWidth
+//     let indicatorWidth = scrollViewWidth / 3
+//     rootView.indicatorView.frame.origin.x = progress * indicatorWidth + 20
+//     rootView.indicatorView.frame.size.width = indicatorWidth
+//   }
 }

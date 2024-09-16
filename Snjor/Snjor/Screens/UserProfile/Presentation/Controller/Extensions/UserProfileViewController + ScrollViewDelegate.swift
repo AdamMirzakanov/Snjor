@@ -8,14 +8,13 @@
 import UIKit
 
 extension UserProfileViewController {
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+ override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+   super.scrollViewDidScroll(scrollView)
     let contentOffsetX = scrollView.contentOffset.x
     let scrollViewWidth = scrollView.frame.width
     let progress = contentOffsetX / scrollViewWidth
     let indicatorWidth = scrollViewWidth / 3
-    
-    // Обновляем положение и ширину индикатора
-    rootView.indicatorView.frame.origin.x = progress * indicatorWidth
+    rootView.indicatorView.frame.origin.x = progress * indicatorWidth + 20
     rootView.indicatorView.frame.size.width = indicatorWidth
   }
 }

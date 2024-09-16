@@ -10,15 +10,26 @@ import UIKit
 fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
 final class UserProfileViewControllerRootView: UIView {
+  // MARK: Private Properties
+  private let screenWidth = UIScreen.main.bounds.width - 40
+  
   // MARK: CollectinView
   let mainHorizontalCollectionView: UserProfileCollectionView = {
-    $0.backgroundColor = .systemBlue
+    $0.heightAnchor.constraint(
+      equalToConstant: 300
+    ).isActive = true
     return $0
   }(UserProfileCollectionView())
   
   // MARK: Indicator
   lazy var indicatorView: UIView = {
-    $0.backgroundColor = .systemBlue
+    $0.backgroundColor = .white
+    $0.frame = CGRect(
+      x: 20,
+      y: infoStackView.bounds.height,
+      width: screenWidth / 3,
+      height: traitCollection.displayScale * 0.7
+    )
     return $0
   }(UIView())
   
@@ -128,7 +139,7 @@ final class UserProfileViewControllerRootView: UIView {
   
   let bioLabel: UILabel = {
     $0.textColor = .white
-    $0.textAlignment = .left
+    $0.textAlignment = .center
     $0.numberOfLines = .zero
     $0.font = .systemFont(
       ofSize: Const.defaultFontSize,
@@ -313,11 +324,12 @@ final class UserProfileViewControllerRootView: UIView {
     $0.distribution = .equalSpacing
     $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(profilePhotoAndNameLabelStackView)
-    $0.addArrangedSubview(socialStackView)
+    $0.addArrangedSubview(bioLabel)
+//    $0.addArrangedSubview(socialStackView)
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitStackView)
     $0.addArrangedSubview(secondLine)
-    $0.addArrangedSubview(bioLabel)
+    $0.addArrangedSubview(mainHorizontalCollectionView)
     return $0
   }(UIStackView())
   
@@ -355,30 +367,20 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func addSubviews() {
-//    addSubview(gradientView)
-//    addSubview(infoStackView)
-//    addSubview(indicatorView)
-    addSubview(mainHorizontalCollectionView)
+    addSubview(gradientView)
+    addSubview(infoStackView)
+    addSubview(indicatorView)
+//    addSubview(mainHorizontalCollectionView)
   }
   
   private func setupConstraints() {
-//    gradientView.fillSuperView()
-//    infoStackView.setConstraints(
-//      right: rightAnchor,
-//      bottom: bottomAnchor,
-//      left: leftAnchor,
-//      pRight: Const.rightPadding,
-//      pBottom: Const.bottomPadding,
-//      pLeft: Const.leftPadding
-//    )
-    
-    mainHorizontalCollectionView.setConstraints(
-      top: topAnchor,
+    gradientView.fillSuperView()
+    infoStackView.setConstraints(
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pTop: 600, 
       pRight: Const.rightPadding,
+      pBottom: Const.bottomPadding,
       pLeft: Const.leftPadding
     )
   }

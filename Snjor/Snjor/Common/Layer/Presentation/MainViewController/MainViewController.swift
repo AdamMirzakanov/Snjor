@@ -42,10 +42,6 @@ class MainViewController<ViewType: UIView>: UIViewController, UIScrollViewDelega
   }
   
   // MARK: UIScrollViewDelegate
-  func setScrollViewDelegate(for scrollView: UIScrollView) {
-    scrollView.delegate = self
-  }
-  
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     if shouldShowTabBarOnScroll {
       hideCustomTabBar()
@@ -72,5 +68,9 @@ class MainViewController<ViewType: UIView>: UIViewController, UIScrollViewDelega
         }
       }
     }
+  }
+  
+  @objc dynamic func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    
   }
 }

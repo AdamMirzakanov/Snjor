@@ -24,8 +24,6 @@ final class UserProfileCollectionView: MainCollectionView {
   
   override func configureLayout() {
     flowlayout.scrollDirection = .horizontal
-    flowlayout.minimumLineSpacing = .zero
-    flowlayout.minimumInteritemSpacing = .zero
     isPagingEnabled = true
     showsHorizontalScrollIndicator = false
   }
