@@ -10,6 +10,9 @@ import UIKit
 fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
 final class UserProfileViewControllerRootView: UIView {
+  // MARK: Internal Properties
+  var indicatorPosition: CGFloat = .zero
+  
   // MARK: Private Properties
   private let screenWidth = UIScreen.main.bounds.width - 40
   
@@ -24,12 +27,6 @@ final class UserProfileViewControllerRootView: UIView {
   // MARK: Indicator
   lazy var indicatorView: UIView = {
     $0.backgroundColor = .white
-    $0.frame = CGRect(
-      x: 20,
-      y: infoStackView.bounds.height,
-      width: screenWidth / 3,
-      height: traitCollection.displayScale * 0.7
-    )
     return $0
   }(UIView())
   
@@ -67,11 +64,32 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(MainGradientView())
   
+  
+  private let bottomGradientView: MainGradientView = {
+    $0.isUserInteractionEnabled = false
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.setColors([
+      MainGradientView.Color(
+        color: UIColor(
+          white: .zero,
+          alpha: PageScreenRootViewConst.gradientOpacity
+        ),
+        location: PageScreenRootViewConst.gradientStartLocation
+      ),
+      MainGradientView.Color(
+        color: .clear,
+        location: PageScreenRootViewConst.gradientEndLocation
+      ),
+    ])
+    $0.isUserInteractionEnabled = false
+    return $0
+  }(MainGradientView())
+  
   // MARK: ImageViews
   private let totalLikesImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .heartImage)
-    $0.tintColor = .systemPink
+    $0.tintColor = .white
     return $0
   }(UIImageView())
   
@@ -84,7 +102,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.heightAnchor.constraint(
       equalToConstant: Const.socialIconSize
     ).isActive = true
-    $0.tintColor = .white
+    $0.alpha = 0.5
     return $0
   }(UIImageView())
   
@@ -92,6 +110,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .albumsImage)
     $0.tintColor = .white
+    $0.alpha = 0.5
     return $0
   }(UIImageView())
   
@@ -170,11 +189,11 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UILabel())
   
-  let totalLikesLabel: UILabel = {
+  let indicatorPositionLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: Const.defaultFontSize,
-      weight: .medium
+      ofSize: 20,
+      weight: .black
     )
     return $0
   }(UILabel())
@@ -283,7 +302,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.alignment = .center
     $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(totalLikesImageView)
-    $0.addArrangedSubview(totalLikesLabel)
+//    $0.addArrangedSubview(totalLikesLabel)
     return $0
   }(UIStackView())
   
@@ -293,7 +312,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.alignment = .center
     $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(totalPhotosImageView)
-    $0.addArrangedSubview(totalPhotosLabel)
+//    $0.addArrangedSubview(totalPhotosLabel)
     return $0
   }(UIStackView())
   
@@ -303,7 +322,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.alignment = .center
     $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(totalAlbumsImageView)
-    $0.addArrangedSubview(totalAlbumsLabel)
+//    $0.addArrangedSubview(totalAlbumsLabel)
     return $0
   }(UIStackView())
   
@@ -313,7 +332,9 @@ final class UserProfileViewControllerRootView: UIView {
     $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(totalLikesStackView)
+    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(totalPhotosStackView)
+    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(totalAlbumsStackView)
     $0.addArrangedSubview(UIView())
     return $0
@@ -325,10 +346,10 @@ final class UserProfileViewControllerRootView: UIView {
     $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(profilePhotoAndNameLabelStackView)
     $0.addArrangedSubview(bioLabel)
-//    $0.addArrangedSubview(socialStackView)
     $0.addArrangedSubview(firstLine)
     $0.addArrangedSubview(profitStackView)
     $0.addArrangedSubview(secondLine)
+    $0.addArrangedSubview(indicatorPositionLabel)
     $0.addArrangedSubview(mainHorizontalCollectionView)
     return $0
   }(UIStackView())
@@ -344,6 +365,31 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   // MARK: Setup Data
+  func updateLabelBasedOnVisibleCell(viewModel: any UserProfileViewModelProtocol) {
+    guard let visibleIndexPath = mainHorizontalCollectionView.indexPathsForVisibleItems.first else {
+      return
+    }
+    let viewModelItem = viewModel.getUserProfileViewModelItem()
+    guard let viewModelItem = viewModelItem else { return }
+    switch visibleIndexPath.item {
+    case 0:
+      indicatorPositionLabel.text = "Liked " + viewModelItem.totalLikes + " photos"
+      totalLikesImageView.alpha = 1
+      totalPhotosImageView.alpha = 0.5
+      totalAlbumsImageView.alpha = 0.5
+    case 1:
+      indicatorPositionLabel.text = "User has " + viewModelItem.totalPhotos + " photos"
+      totalLikesImageView.alpha = 0.5
+      totalPhotosImageView.alpha = 1
+      totalAlbumsImageView.alpha = 0.5
+    default:
+      indicatorPositionLabel.text = "User has " + viewModelItem.totalCollections + " albums"
+      totalLikesImageView.alpha = 0.5
+      totalPhotosImageView.alpha = 0.5
+      totalAlbumsImageView.alpha = 1
+    }
+  }
+  
   func setupData(viewModel: any UserProfileViewModelProtocol) {
     let viewModelItem = viewModel.getUserProfileViewModelItem()
     guard let viewModelItem = viewModelItem else { return }
@@ -352,12 +398,10 @@ final class UserProfileViewControllerRootView: UIView {
     profilePhotoView.configure(with: user, url: profilePhotoURL)
     nameLabel.text = viewModelItem.displayName
     bioLabel.text = viewModelItem.userBio
-    totalLikesLabel.text = viewModelItem.totalLikes
-    totalPhotosLabel.text = viewModelItem.totalPhotos
-    totalAlbumsLabel.text = viewModelItem.totalCollections
+    indicatorPositionLabel.text = "Liked " + viewModelItem.totalLikes + " photos"
     locationLabel.text = viewModelItem.location
-    instLabel.text = viewModelItem.instagramUserName
-    twitLabel.text = viewModelItem.twitterUsername
+//    instLabel.text = viewModelItem.instagramUserName
+//    twitLabel.text = viewModelItem.twitterUsername
   }
   
   // MARK: Setup Views
@@ -370,11 +414,21 @@ final class UserProfileViewControllerRootView: UIView {
     addSubview(gradientView)
     addSubview(infoStackView)
     addSubview(indicatorView)
-//    addSubview(mainHorizontalCollectionView)
+    addSubview(bottomGradientView)
   }
   
   private func setupConstraints() {
+    setupGradientViewConstraints()
+    setupInfoStackViewConstraints()
+    setupIndicatorViewConstraints()
+    setupBottomGradientViewConstraints()
+  }
+  
+  private func setupGradientViewConstraints() {
     gradientView.fillSuperView()
+  }
+  
+  private func setupInfoStackViewConstraints() {
     infoStackView.setConstraints(
       right: rightAnchor,
       bottom: bottomAnchor,
@@ -383,5 +437,31 @@ final class UserProfileViewControllerRootView: UIView {
       pBottom: Const.bottomPadding,
       pLeft: Const.leftPadding
     )
+  }
+  
+  private func setupIndicatorViewConstraints() {
+    indicatorView.setConstraints(
+      top: secondLine.topAnchor,
+      left: secondLine.leftAnchor
+    )
+    indicatorView.heightAnchor.constraint(
+      equalTo: secondLine.heightAnchor,
+      constant: traitCollection.displayScale * 0.7
+    ).isActive = true
+    indicatorView.widthAnchor.constraint(
+      equalToConstant: screenWidth / 3
+    ).isActive = true
+  }
+  
+  private func setupBottomGradientViewConstraints() {
+    bottomGradientView.setConstraints(
+      top: topAnchor,
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      left: leftAnchor,
+      pBottom: -100
+    )
+    
+    bottomGradientView.transform = CGAffineTransform(rotationAngle: .pi)
   }
 }

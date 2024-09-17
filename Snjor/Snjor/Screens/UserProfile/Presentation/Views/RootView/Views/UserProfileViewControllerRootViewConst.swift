@@ -21,6 +21,6 @@ enum UserProfileViewControllerRootViewConst {
   static let defaultOpacity: CGFloat = 0.4
   static let lineWidth: CGFloat = 1.0
   static let rightPadding: CGFloat = 20.0
-  static let bottomPadding: CGFloat = .zero
+  static let bottomPadding: CGFloat = 0.0
   static let leftPadding: CGFloat = 20.0
 }

@@ -70,7 +70,6 @@ class MainViewController<ViewType: UIView>: UIViewController, UIScrollViewDelega
     }
   }
   
-  @objc dynamic func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    
-  }
+  /// Будет переопределен в подклассах где требуется специальное управление скролом.
+  @objc dynamic func scrollViewDidScroll(_ scrollView: UIScrollView) { }
 }

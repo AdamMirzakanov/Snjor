@@ -43,7 +43,7 @@ final class FirstCell: UICollectionViewCell {
   }
   
   private func setupLayout() {
-    let cascadeLayout = MultiColumnCascadeLayout(with: self)
+    let cascadeLayout = UserProfileCascadeLayout(with: self)
     userLikedPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }

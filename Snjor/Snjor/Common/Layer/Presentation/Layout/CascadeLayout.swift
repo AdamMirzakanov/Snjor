@@ -14,7 +14,7 @@ class CascadeLayout: UICollectionViewLayout {
   var isSingleColumn: Bool { numberOfColumns == .zero }
   var topInset: CGFloat = CascadeLayoutConst.topInset
   var headerHeight: CGFloat = CascadeLayoutConst.headerHeight
-  var columnSpacing = CascadeLayoutConst.columnSpacing
+  var columnSpacing: CGFloat = CascadeLayoutConst.columnSpacing
   
   var itemSpacing: CGFloat {
     let zero = CGFloat.zero

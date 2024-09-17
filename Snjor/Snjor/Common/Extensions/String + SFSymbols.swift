@@ -21,6 +21,7 @@ extension String {
   static let calendar = "calendar"
   static let rightChevron = "chevron.right"
   static let photosImage = "photos"
+  static let photo = "photo.fill"
   static let albumsImage = "rectangle.stack.fill"
   static let locationImage = "scope"
   static let instIcon = "inst"

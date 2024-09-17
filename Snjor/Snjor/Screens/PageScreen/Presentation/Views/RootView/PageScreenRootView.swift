@@ -42,7 +42,6 @@ final class PageScreenRootView: UIView {
   }(UILabel())
   
   private let gradientView: MainGradientView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
     $0.setColors([
       MainGradientView.Color(
         color: UIColor(
