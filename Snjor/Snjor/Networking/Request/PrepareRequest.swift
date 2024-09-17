@@ -1,5 +1,5 @@
 //
-//  PrepareRequests.swift
+//  PrepareRequest.swift
 //  Snjor
 //
 //  Created by Адам on 15.06.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PrepareRequests {
+enum PrepareRequest {
   // MARK: Private Properties
   private static var getHTTP: HTTPMethod { .get }
   private static var scheme: API { .scheme }
@@ -88,6 +88,20 @@ enum PrepareRequests {
     }
     let profileURL = url.appending(component: username)
     let likedURL = profileURL.appending(component: "likes")
+    let request = prepareURLRequest(url: likedURL)
+    return request
+  }
+  
+  static func prepareUserPhotosAPIRequest(
+    path: String,
+    username: String,
+    parameters: Parameters
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path, parameters: parameters) else {
+      throw APIError.URLError
+    }
+    let profileURL = url.appending(component: username)
+    let likedURL = profileURL.appending(component: "photos")
     let request = prepareURLRequest(url: likedURL)
     return request
   }

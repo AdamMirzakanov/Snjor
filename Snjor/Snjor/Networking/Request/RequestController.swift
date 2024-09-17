@@ -22,7 +22,7 @@ enum RequestController {
   static func photosRequest() throws -> URLRequest {
     let path = photos.rawValue
     let parameters = PrepareParameters.preparePhotoParameters()
-    let request = try PrepareRequests.prepareAPIRequest(
+    let request = try PrepareRequest.prepareAPIRequest(
       path: path,
       parameters: parameters
     )
@@ -32,7 +32,7 @@ enum RequestController {
   static func searchPhotosRequest(with searchTerm: String) throws -> URLRequest {
     let path = searchPhotos.rawValue
     let parameters = PrepareParameters.prepareSearchPhotoParameters(with: searchTerm)
-    let request = try PrepareRequests.prepareAPIRequest(
+    let request = try PrepareRequest.prepareAPIRequest(
       path: path,
       parameters: parameters
     )
@@ -42,7 +42,7 @@ enum RequestController {
   static func searchAlbumsRequest(with searchTerm: String) throws -> URLRequest {
     let path = searchCollections.rawValue
     let parameters = PrepareParameters.prepareSearchAlbumsParameters(with: searchTerm)
-    let request = try PrepareRequests.prepareAPIRequest(
+    let request = try PrepareRequest.prepareAPIRequest(
       path: path,
       parameters: parameters
     )
@@ -52,7 +52,7 @@ enum RequestController {
   static func searchUsersRequest(with searchTerm: String) throws -> URLRequest {
     let path = searchUsers.rawValue
     let parameters = PrepareParameters.prepareSearchUsersParameters(with: searchTerm)
-    let request = try PrepareRequests.prepareAPIRequest(
+    let request = try PrepareRequest.prepareAPIRequest(
       path: path,
       parameters: parameters
     )
@@ -68,14 +68,14 @@ enum RequestController {
   static func photoDetailRequest(photo: Photo) throws -> URLRequest {
     let path = photos.rawValue
     let id = photo.id
-    let request = try PrepareRequests.preparePhotoInfoAPIRequest(path: path, id: id)
+    let request = try PrepareRequest.preparePhotoInfoAPIRequest(path: path, id: id)
     return request
   }
   
   static func userProfileRequest(user: User) throws -> URLRequest {
     let path = userProfile.rawValue
     let username = user.username
-    let request = try PrepareRequests.prepareUserProfileAPIRequest(
+    let request = try PrepareRequest.prepareUserProfileAPIRequest(
       path: path,
       username: username
     )
@@ -87,9 +87,21 @@ enum RequestController {
     let path = userProfile.rawValue
     let username = user.username
     let parameters = PrepareParameters.preparePhotoParameters()
-    let request = try PrepareRequests.prepareUserLikedPhotosAPIRequest(
+    let request = try PrepareRequest.prepareUserLikedPhotosAPIRequest(
       path: path,
       username: username, 
+      parameters: parameters
+    )
+    return request
+  }
+  
+  static func userPhotosRequest(user: User) throws -> URLRequest {
+    let path = userProfile.rawValue
+    let username = user.username
+    let parameters = PrepareParameters.preparePhotoParameters()
+    let request = try PrepareRequest.prepareUserPhotosAPIRequest(
+      path: path,
+      username: username,
       parameters: parameters
     )
     return request
@@ -101,7 +113,7 @@ enum RequestController {
     let id = topic.id
     let photosPath = photos.rawValue
     let parameters = PrepareParameters.preparePhotoParameters()
-    let request = try PrepareRequests.prepareTopicPhotosAPIRequest(
+    let request = try PrepareRequest.prepareTopicPhotosAPIRequest(
       topics: topicsPath,
       id: id,
       phtos: photosPath,
@@ -116,7 +128,7 @@ enum RequestController {
     let id = album.id
     let photosPath = photos.rawValue
     let parameters = PrepareParameters.preparePhotoParameters()
-    let request = try PrepareRequests.prepareAlbumPhotosAPIRequest(
+    let request = try PrepareRequest.prepareAlbumPhotosAPIRequest(
       albums: albumsPath,
       id: id,
       phtos: photosPath,
@@ -128,7 +140,7 @@ enum RequestController {
   /// Категория
   static func topicsTitleRequest() throws -> URLRequest {
     let topicsPath = topics.rawValue
-    let request = try PrepareRequests.prepareTopicsTitleAPIRequest(topics: topicsPath)
+    let request = try PrepareRequest.prepareTopicsTitleAPIRequest(topics: topicsPath)
     return request
   }
   
@@ -136,7 +148,7 @@ enum RequestController {
   static func albumsRequest() throws -> URLRequest {
     let path = albums.rawValue
     let parameters = PrepareParameters.prepareAlbumParameters()
-    let request = try PrepareRequests.prepareAPIRequest(
+    let request = try PrepareRequest.prepareAPIRequest(
       path: path,
       parameters: parameters
     )

@@ -16,7 +16,7 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
   // MARK: Internal Methods
   func createUserProfileViewModel(user: User) -> UserProfileViewModel {
     let loadUserProfileUseCase = getUserProfileUseCase(
-      networkService, 
+      networkService,
       user: user
     )
     return UserProfileViewModel(
@@ -32,6 +32,18 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     )
     return UserLakedPhotosViewModel(
       loadUseCase: loadUserLakedPhotosUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase,
+      state: state
+    )
+  }
+  
+  func createUserPhotosViewModel(user: User) -> UserPhotosViewModel {
+    let loadUserPhotosUseCase = getUserPhotosUseCase(
+      networkService,
+      user: user
+    )
+    return UserPhotosViewModel(
+      loadUseCase: loadUserPhotosUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase,
       state: state
     )
@@ -60,6 +72,19 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     )
     return LoadUserLikedPhotosUseCase(
       repository: loadUserLakedPhotosRepository,
+      user: user
+    )
+  }
+  
+  private func getUserPhotosUseCase(
+    _ networkService: NetworkService,
+    user: User
+  ) -> LoadUserPhotosUseCase {
+    let loadUserPhotosRepository = LoadUserPhotosRepository(
+      networkService: networkService
+    )
+    return LoadUserPhotosUseCase(
+      repository: loadUserPhotosRepository,
       user: user
     )
   }

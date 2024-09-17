@@ -32,6 +32,7 @@ struct UserProfileFactory: UserProfileFactoryProtocol {
     return getController()
   }
   
+  // MARK: Private Methods
   private func getController() -> UIViewController {
     let userProfileViewModel = viewModelProvider.createUserProfileViewModel(
       user: user
@@ -39,9 +40,15 @@ struct UserProfileFactory: UserProfileFactoryProtocol {
     let userLakedPhotosViewModel = viewModelProvider.createUserLakedPhotosViewModel(
       user: user
     )
+    
+    let userPhotosViewModel = viewModelProvider.createUserPhotosViewModel(
+      user: user
+    )
+    
     let controller = UserProfileViewController(
       userProfileViewModel: userProfileViewModel,
-      userLikedPhotosViewModel: userLakedPhotosViewModel
+      userLikedPhotosViewModel: userLakedPhotosViewModel,
+      userPhotosViewModel: userPhotosViewModel
     )
     return controller
   }

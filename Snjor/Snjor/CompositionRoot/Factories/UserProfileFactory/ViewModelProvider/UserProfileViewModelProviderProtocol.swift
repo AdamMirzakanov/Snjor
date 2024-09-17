@@ -8,4 +8,5 @@
 protocol UserProfileViewModelProviderProtocol {
   func createUserProfileViewModel(user: User) -> UserProfileViewModel
   func createUserLakedPhotosViewModel(user: User) -> UserLakedPhotosViewModel
+  func createUserPhotosViewModel(user: User) -> UserPhotosViewModel
 }

@@ -13,6 +13,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   private var cancellable = Set<AnyCancellable>()
   private(set) var userProfileViewModel: any UserProfileViewModelProtocol
   private(set) var userLikedPhotosViewModel: any ContentManagingProtocol<Photo>
+  private(set) var userPhotosViewModel: any ContentManagingProtocol<Photo>
   
   // MARK: Override Properties
   override var shouldShowTabBarOnScroll: Bool {
@@ -22,10 +23,12 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   // MARK: Initializers
   init(
     userProfileViewModel: any UserProfileViewModelProtocol,
-    userLikedPhotosViewModel: any ContentManagingProtocol<Photo>
+    userLikedPhotosViewModel: any ContentManagingProtocol<Photo>,
+    userPhotosViewModel: any ContentManagingProtocol<Photo>
   ) {
     self.userProfileViewModel = userProfileViewModel
     self.userLikedPhotosViewModel = userLikedPhotosViewModel
+    self.userPhotosViewModel = userPhotosViewModel
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -39,8 +42,10 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     resetPage()
     userProfileState()
     userLikedPhotosState()
+    userPhotosState()
     userProfileViewModel.viewDidLoad()
     userLikedPhotosViewModel.viewDidLoad()
+    userPhotosViewModel.viewDidLoad()
     rootView.backgroundColor = .systemBackground
     rootView.userProfileCollectionView.delegate = self
     rootView.userProfileCollectionView.dataSource = self
@@ -70,6 +75,20 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   
   private func userLikedPhotosState() {
     userLikedPhotosViewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        self.handleState(state) {
+          print(#function, Self.self)
+          self.rootView.userProfileCollectionView.reloadData()
+        }
+      }
+      .store(in: &cancellable)
+  }
+  
+  private func userPhotosState() {
+    userPhotosViewModel
       .state
       .receive(on: DispatchQueue.main)
       .sink { [weak self] state in

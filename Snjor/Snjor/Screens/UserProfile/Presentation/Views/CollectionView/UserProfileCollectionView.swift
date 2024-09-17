@@ -14,7 +14,7 @@ final class UserProfileCollectionView: MainCollectionView {
     )
     register(
       SecondCell.self,
-      forCellWithReuseIdentifier: "horizontalCellB"
+      forCellWithReuseIdentifier: SecondCell.reuseID
     )
     register(
       ThirdCell.self,

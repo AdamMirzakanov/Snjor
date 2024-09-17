@@ -7,77 +7,44 @@
 
 import UIKit
 
-class SecondCell:
-  UICollectionViewCell,
-  UICollectionViewDelegate,
-  UICollectionViewDataSource,
-  UICollectionViewDelegateFlowLayout {
+final class SecondCell: UICollectionViewCell {
+  // MARK: Internal Properties
+  var userPhotosSections: [UserPhotosSection] = []
+  var userPhotosDataSource: UserPhotosDataSource?
+  var userPhotosViewModel: (any ContentManagingProtocol<Photo>)?
   
-  let verticalCollectionViewB: UICollectionView
+  // MARK: Views
+  private let userPhotosCollectionView: UserPhotosCollectionView = {
+    return $0
+  }(UserPhotosCollectionView())
   
+  // MARK: Initializers
   override init(frame: CGRect) {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .vertical
-    layout.minimumLineSpacing = 15
-    layout.minimumInteritemSpacing = 15
-    verticalCollectionViewB = UICollectionView(
-      frame: .zero,
-      collectionViewLayout: layout
-    )
     super.init(frame: frame)
-    
-    verticalCollectionViewB.delegate = self
-    verticalCollectionViewB.dataSource = self
-    verticalCollectionViewB.register(
-      UICollectionViewCell.self,
-      forCellWithReuseIdentifier: "verticalCellB"
-    )
-    contentView.addSubview(verticalCollectionViewB)
+    setupViews()
+    setupLayout()
+    createPhotosDataSource(for: userPhotosCollectionView)
   }
   
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    fatalError(.requiredInitFatalErrorText)
   }
   
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    verticalCollectionViewB.frame = contentView.bounds
+  // MARK: Internal Methods
+  func configure(with viewModel: any ContentManagingProtocol<Photo>) {
+    self.userPhotosViewModel = viewModel
+    applyPhotosSnapshot()
   }
   
-  func configure() {
-    verticalCollectionViewB.reloadData()
+  // MARK: Private Methods
+  private func setupViews() {
+    contentView.addSubview(userPhotosCollectionView)
+    userPhotosCollectionView.frame = contentView.bounds
   }
   
-  // UICollectionViewDataSource
-  func collectionView(
-    _ collectionView: UICollectionView,
-    numberOfItemsInSection section: Int
-  ) -> Int {
-    return 7
-  }
-  
-  func collectionView(
-    _ collectionView: UICollectionView,
-    cellForItemAt indexPath: IndexPath
-  ) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: "verticalCellB",
-      for: indexPath
-    )
-    cell.backgroundColor = .systemBrown // Макет ячеек для типа B
-    return cell
-  }
-  
-  // UICollectionViewDelegateFlowLayout
-  func collectionView(
-    _ collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    sizeForItemAt indexPath: IndexPath
-  ) -> CGSize {
-    return CGSize(
-      width: collectionView.frame.width - 30,
-      height: 150
-    )
+  private func setupLayout() {
+    let cascadeLayout = UserProfileCascadeLayout(with: self)
+    userPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }
 
