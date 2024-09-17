@@ -10,16 +10,13 @@ import UIKit
 fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
 final class UserProfileViewControllerRootView: UIView {
-  // MARK: Internal Properties
-  var indicatorPosition: CGFloat = .zero
-  
   // MARK: Private Properties
-  private let screenWidth = UIScreen.main.bounds.width - 40
+  private let screenWidth = UIScreen.main.bounds.width
   
   // MARK: CollectinView
-  let mainHorizontalCollectionView: UserProfileCollectionView = {
+  let userProfileCollectionView: UserProfileCollectionView = {
     $0.heightAnchor.constraint(
-      equalToConstant: 300
+      equalToConstant: Const.heightUserProfileCollectionView
     ).isActive = true
     return $0
   }(UserProfileCollectionView())
@@ -31,7 +28,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIView())
   
   // MARK: UserProfilePhoto
-  let profilePhotoView: UserProfilePhotoView = {
+  private let profilePhotoView: UserProfilePhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.profilePhotoCircle
     $0.clipsToBounds = true
@@ -102,7 +99,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.heightAnchor.constraint(
       equalToConstant: Const.socialIconSize
     ).isActive = true
-    $0.alpha = 0.5
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UIImageView())
   
@@ -110,7 +107,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .albumsImage)
     $0.tintColor = .white
-    $0.alpha = 0.5
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UIImageView())
   
@@ -121,32 +118,8 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
-  private let instImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(named: .instIcon)
-    $0.widthAnchor.constraint(
-      equalToConstant: Const.socialIconSize
-    ).isActive = true
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.socialIconSize
-    ).isActive = true
-    return $0
-  }(UIImageView())
-  
-  private let twitImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(named: .twitIcon)
-    $0.widthAnchor.constraint(
-      equalToConstant: Const.socialIconSize
-    ).isActive = true
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.socialIconSize
-    ).isActive = true
-    return $0
-  }(UIImageView())
-  
   // MARK: Labels
-  let nameLabel: UILabel = {
+  private let nameLabel: UILabel = {
     $0.textColor = .white
     $0.numberOfLines = .zero
     $0.font = UIFont(
@@ -156,7 +129,7 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UILabel())
   
-  let bioLabel: UILabel = {
+  private let bioLabel: UILabel = {
     $0.textColor = .white
     $0.textAlignment = .center
     $0.numberOfLines = .zero
@@ -167,56 +140,16 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UILabel())
   
-  let instLabel: UILabel = {
-    $0.textColor = .white
-    $0.textAlignment = .center
-    $0.numberOfLines = .zero
-    $0.font = .systemFont(
-      ofSize: Const.defaultFontSize,
-      weight: .medium
-    )
-    return $0
-  }(UILabel())
-  
-  let twitLabel: UILabel = {
-    $0.textColor = .white
-    $0.textAlignment = .center
-    $0.numberOfLines = .zero
-    $0.font = .systemFont(
-      ofSize: Const.defaultFontSize,
-      weight: .medium
-    )
-    return $0
-  }(UILabel())
-  
-  let indicatorPositionLabel: UILabel = {
+  private let indicatorPositionLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: 20,
+      ofSize: Const.indicatorPositionFontSize,
       weight: .black
     )
     return $0
   }(UILabel())
   
-  let totalPhotosLabel: UILabel = {
-    $0.textColor = .white
-    $0.font = .systemFont(
-      ofSize: Const.defaultFontSize,
-      weight: .medium
-    )
-    return $0
-  }(UILabel())
-  
-  let totalAlbumsLabel: UILabel = {
-    $0.textColor = .white
-    $0.font = .systemFont(
-      ofSize: Const.defaultFontSize,
-      weight: .medium
-    )
-    return $0
-  }(UILabel())
-  
-  let locationLabel: UILabel = {
+  private let locationLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
       ofSize: Const.defaultFontSize,
@@ -256,26 +189,6 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIStackView())
   
-  private lazy var instStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(instImageView)
-    $0.addArrangedSubview(instLabel)
-    return $0
-  }(UIStackView())
-  
-  private lazy var twitStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.distribution = .fill
-    $0.alignment = .leading
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(twitImageView)
-    $0.addArrangedSubview(twitLabel)
-    return $0
-  }(UIStackView())
-  
   private lazy var locationStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
@@ -286,56 +199,16 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIStackView())
   
-  private lazy var socialStackView: UIStackView = {
-    $0.axis = .vertical
-    $0.distribution = .fill
-    $0.alignment = .leading
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(instStackView)
-    $0.addArrangedSubview(twitStackView)
-    return $0
-  }(UIStackView())
-  
-  private lazy var totalLikesStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(totalLikesImageView)
-//    $0.addArrangedSubview(totalLikesLabel)
-    return $0
-  }(UIStackView())
-  
-  private lazy var totalPhotosStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(totalPhotosImageView)
-//    $0.addArrangedSubview(totalPhotosLabel)
-    return $0
-  }(UIStackView())
-  
-  private lazy var totalAlbumsStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(totalAlbumsImageView)
-//    $0.addArrangedSubview(totalAlbumsLabel)
-    return $0
-  }(UIStackView())
-  
-  private lazy var profitStackView: UIStackView = {
+  private lazy var iconsStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .equalSpacing
     $0.spacing = Const.stackViewSpacing
     $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(totalLikesStackView)
+    $0.addArrangedSubview(totalLikesImageView)
     $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(totalPhotosStackView)
+    $0.addArrangedSubview(totalPhotosImageView)
     $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(totalAlbumsStackView)
+    $0.addArrangedSubview(totalAlbumsImageView)
     $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
@@ -347,10 +220,30 @@ final class UserProfileViewControllerRootView: UIView {
     $0.addArrangedSubview(profilePhotoAndNameLabelStackView)
     $0.addArrangedSubview(bioLabel)
     $0.addArrangedSubview(firstLine)
-    $0.addArrangedSubview(profitStackView)
+    $0.widthAnchor.constraint(
+      equalToConstant: screenWidth - Const.infoStackViewPadding
+    ).isActive = true
+    return $0
+  }(UIStackView())
+  
+  private lazy var infoContainerStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .equalSpacing
+    $0.spacing = .zero
+    $0.addArrangedSubview(UIView())
+    $0.addArrangedSubview(infoStackView)
+    $0.addArrangedSubview(UIView())
+    return $0
+  }(UIStackView())
+  
+  private lazy var mainStackView: UIStackView = {
+    $0.axis = .vertical
+    $0.distribution = .equalSpacing
+    $0.spacing = Const.stackViewSpacing
+    $0.addArrangedSubview(infoContainerStackView)
+    $0.addArrangedSubview(iconsStackView)
     $0.addArrangedSubview(secondLine)
     $0.addArrangedSubview(indicatorPositionLabel)
-    $0.addArrangedSubview(mainHorizontalCollectionView)
     return $0
   }(UIStackView())
   
@@ -366,27 +259,29 @@ final class UserProfileViewControllerRootView: UIView {
   
   // MARK: Setup Data
   func updateLabelBasedOnVisibleCell(viewModel: any UserProfileViewModelProtocol) {
-    guard let visibleIndexPath = mainHorizontalCollectionView.indexPathsForVisibleItems.first else {
+    guard
+      let visibleIndexPath = userProfileCollectionView.indexPathsForVisibleItems.first
+    else {
       return
     }
     let viewModelItem = viewModel.getUserProfileViewModelItem()
     guard let viewModelItem = viewModelItem else { return }
     switch visibleIndexPath.item {
-    case 0:
-      indicatorPositionLabel.text = "Liked " + viewModelItem.totalLikes + " photos"
-      totalLikesImageView.alpha = 1
-      totalPhotosImageView.alpha = 0.5
-      totalAlbumsImageView.alpha = 0.5
-    case 1:
-      indicatorPositionLabel.text = "User has " + viewModelItem.totalPhotos + " photos"
-      totalLikesImageView.alpha = 0.5
-      totalPhotosImageView.alpha = 1
-      totalAlbumsImageView.alpha = 0.5
+    case .likedPhotos:
+      indicatorPositionLabel.text = .liked + viewModelItem.totalLikes + .photos
+      totalLikesImageView.alpha = Const.maxOpacity
+      totalPhotosImageView.alpha = Const.defaultOpacity
+      totalAlbumsImageView.alpha = Const.defaultOpacity
+    case .userHasPhotos:
+      indicatorPositionLabel.text = .userHas + viewModelItem.totalPhotos + .photos
+      totalLikesImageView.alpha = Const.defaultOpacity
+      totalPhotosImageView.alpha = Const.maxOpacity
+      totalAlbumsImageView.alpha = Const.defaultOpacity
     default:
-      indicatorPositionLabel.text = "User has " + viewModelItem.totalCollections + " albums"
-      totalLikesImageView.alpha = 0.5
-      totalPhotosImageView.alpha = 0.5
-      totalAlbumsImageView.alpha = 1
+      indicatorPositionLabel.text = .userHas + viewModelItem.totalCollections + .albums
+      totalLikesImageView.alpha = Const.defaultOpacity
+      totalPhotosImageView.alpha = Const.defaultOpacity
+      totalAlbumsImageView.alpha = Const.maxOpacity
     }
   }
   
@@ -398,10 +293,8 @@ final class UserProfileViewControllerRootView: UIView {
     profilePhotoView.configure(with: user, url: profilePhotoURL)
     nameLabel.text = viewModelItem.displayName
     bioLabel.text = viewModelItem.userBio
-    indicatorPositionLabel.text = "Liked " + viewModelItem.totalLikes + " photos"
+    indicatorPositionLabel.text = .liked + viewModelItem.totalLikes + .photos
     locationLabel.text = viewModelItem.location
-//    instLabel.text = viewModelItem.instagramUserName
-//    twitLabel.text = viewModelItem.twitterUsername
   }
   
   // MARK: Setup Views
@@ -412,8 +305,9 @@ final class UserProfileViewControllerRootView: UIView {
   
   private func addSubviews() {
     addSubview(gradientView)
-    addSubview(infoStackView)
+    addSubview(mainStackView)
     addSubview(indicatorView)
+    addSubview(userProfileCollectionView)
     addSubview(bottomGradientView)
   }
   
@@ -422,6 +316,7 @@ final class UserProfileViewControllerRootView: UIView {
     setupInfoStackViewConstraints()
     setupIndicatorViewConstraints()
     setupBottomGradientViewConstraints()
+    setupMainHorizontalCollectionViewConstraints()
   }
   
   private func setupGradientViewConstraints() {
@@ -429,12 +324,10 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func setupInfoStackViewConstraints() {
-    infoStackView.setConstraints(
+    mainStackView.setConstraints(
       right: rightAnchor,
-      bottom: bottomAnchor,
       left: leftAnchor,
       pRight: Const.rightPadding,
-      pBottom: Const.bottomPadding,
       pLeft: Const.leftPadding
     )
   }
@@ -446,10 +339,10 @@ final class UserProfileViewControllerRootView: UIView {
     )
     indicatorView.heightAnchor.constraint(
       equalTo: secondLine.heightAnchor,
-      constant: traitCollection.displayScale * 0.7
+      constant: traitCollection.displayScale * Const.indicatorHeightMultiplier
     ).isActive = true
     indicatorView.widthAnchor.constraint(
-      equalToConstant: screenWidth / 3
+      equalToConstant: screenWidth / Const.indicatorWidthDivision
     ).isActive = true
   }
   
@@ -459,9 +352,18 @@ final class UserProfileViewControllerRootView: UIView {
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pBottom: -100
+      pBottom: Const.bottomGradientViewBottomPadding
     )
-    
     bottomGradientView.transform = CGAffineTransform(rotationAngle: .pi)
+  }
+  
+  private func setupMainHorizontalCollectionViewConstraints() {
+    userProfileCollectionView.setConstraints(
+      top: mainStackView.bottomAnchor,
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      left: leftAnchor,
+      pTop: Const.mainCollectionViewTopPadding
+    )
   }
 }

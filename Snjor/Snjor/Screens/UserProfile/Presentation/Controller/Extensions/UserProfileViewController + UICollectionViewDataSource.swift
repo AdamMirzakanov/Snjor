@@ -7,12 +7,14 @@
 
 import UIKit
 
+fileprivate typealias Const = UserProfileViewControllerConst
+
 extension UserProfileViewController: UICollectionViewDataSource {
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
   ) -> Int {
-    return 3 // Количество вкладок
+    return Const.itemsCount
   }
   
   func collectionView(
@@ -20,7 +22,7 @@ extension UserProfileViewController: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     switch indexPath.item {
-    case 0:
+    case Const.firstCell:
       guard
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: FirstCell.reuseID,
@@ -31,7 +33,7 @@ extension UserProfileViewController: UICollectionViewDataSource {
       }
       cell.configure(with: userLikedPhotosViewModel)
       return cell
-    case 1:
+    case Const.secondCell:
       let cell = collectionView.dequeueReusableCell(
         withReuseIdentifier: "horizontalCellB",
         for: indexPath

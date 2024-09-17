@@ -7,11 +7,13 @@
 
 import Foundation
 
+fileprivate typealias Const = UserProfileCascadeLayoutConst
+
 final class UserProfileCascadeLayout: CascadeLayout {
   override init(with delegate: (any CascadeLayoutDelegate)?) {
     super.init(with: delegate)
-    columnSpacing = 10.0
-    numberOfColumns = 3
+    columnSpacing = Const.columnSpacing
+    numberOfColumns = Const.numberOfColumns
   }
   
   required init?(coder aDecoder: NSCoder) {

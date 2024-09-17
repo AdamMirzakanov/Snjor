@@ -42,8 +42,8 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     userProfileViewModel.viewDidLoad()
     userLikedPhotosViewModel.viewDidLoad()
     rootView.backgroundColor = .systemBackground
-    rootView.mainHorizontalCollectionView.delegate = self
-    rootView.mainHorizontalCollectionView.dataSource = self
+    rootView.userProfileCollectionView.delegate = self
+    rootView.userProfileCollectionView.dataSource = self
   }
   
   deinit {
@@ -76,7 +76,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
         guard let self = self else { return }
         self.handleState(state) {
           print(#function, Self.self)
-          self.rootView.mainHorizontalCollectionView.reloadData()
+          self.rootView.userProfileCollectionView.reloadData()
         }
       }
       .store(in: &cancellable)

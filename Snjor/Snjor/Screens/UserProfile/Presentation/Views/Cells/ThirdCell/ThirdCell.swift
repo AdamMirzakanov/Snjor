@@ -75,7 +75,7 @@ class ThirdCell:
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     return CGSize(
-      width: collectionView.frame.width,
+      width: collectionView.frame.width - 10,
       height: 200
     )
   }

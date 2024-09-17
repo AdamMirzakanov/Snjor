@@ -75,7 +75,7 @@ class SecondCell:
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     return CGSize(
-      width: collectionView.frame.width,
+      width: collectionView.frame.width - 30,
       height: 150
     )
   }

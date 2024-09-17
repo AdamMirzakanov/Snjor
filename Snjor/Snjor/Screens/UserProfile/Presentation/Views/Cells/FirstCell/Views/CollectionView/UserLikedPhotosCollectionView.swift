@@ -15,10 +15,4 @@ final class UserLikedPhotosCollectionView: MainCollectionView {
       forCellWithReuseIdentifier: UserLikedPhotoCell.reuseID
     )
   }
-  
-  override func configureLayout() {
-    super.configureLayout()
-    flowlayout.minimumLineSpacing = 10
-    flowlayout.minimumInteritemSpacing = 10
-  }
 }
