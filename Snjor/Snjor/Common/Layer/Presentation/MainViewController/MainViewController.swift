@@ -7,6 +7,14 @@
 
 import UIKit
 
+//class RootViewController<ViewType: UIView>:  UIViewController, ViewLoadable {
+//  typealias RootView = ViewType
+//  override func loadView() {
+//    let customView = RootView()
+//    view = customView
+//  }
+//}
+
 class MainViewController<ViewType: UIView>: UIViewController, UIScrollViewDelegate {
   
   typealias RootView = ViewType

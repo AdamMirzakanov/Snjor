@@ -12,14 +12,12 @@ fileprivate typealias Const = UserProfileViewControllerRootViewConst
 final class UserProfileViewControllerRootView: UIView {
   // MARK: Private Properties
   private let screenWidth = UIScreen.main.bounds.width
-  private let layoutFactory = UserProfileLayoutFactory()
   
   // MARK: CollectinView
   lazy var userProfileCollectionView: UserProfileCollectionView = {
     $0.heightAnchor.constraint(
       equalToConstant: Const.heightUserProfileCollectionView
     ).isActive = true
-    $0.collectionViewLayout = layoutFactory.createUserProfileCollecitonViewLayout()
     return $0
   }(UserProfileCollectionView())
   
@@ -244,7 +242,8 @@ final class UserProfileViewControllerRootView: UIView {
     $0.addArrangedSubview(infoContainerStackView)
     $0.addArrangedSubview(iconsStackView)
     $0.addArrangedSubview(secondLine)
-    $0.addArrangedSubview(indicatorPositionLabel)
+//    $0.addArrangedSubview(indicatorPositionLabel)
+    $0.addArrangedSubview(userProfileCollectionView)
     return $0
   }(UIStackView())
   
@@ -260,26 +259,26 @@ final class UserProfileViewControllerRootView: UIView {
   
   // MARK: Setup Data
   func updateLabelBasedOnVisibleCell(viewModel: any UserProfileViewModelProtocol) {
-    guard
-      let visibleIndexPath = userProfileCollectionView.indexPathsForVisibleItems.first
-    else {
-      return
-    }
-    let viewModelItem = viewModel.getUserProfileViewModelItem()
-    guard let viewModelItem = viewModelItem else { return }
-    switch visibleIndexPath.item {
+    let pageWidth = userProfileCollectionView.bounds.size.width
+    let contentOffsetX = userProfileCollectionView.contentOffset.x
+    let currentPage = round(contentOffsetX / pageWidth)
+    guard let viewModelItem = viewModel.getUserProfileViewModelItem() else { return }
+    switch Int(currentPage) {
     case .likedPhotos:
-      indicatorPositionLabel.text = .liked + viewModelItem.totalLikes + .photos
+      // Обновите UI в соответствии с `likedPhotos`
+//      indicatorPositionLabel.text = .liked + viewModelItem.totalLikes + .photos
       totalLikesImageView.alpha = Const.maxOpacity
       totalPhotosImageView.alpha = Const.defaultOpacity
       totalAlbumsImageView.alpha = Const.defaultOpacity
     case .userHasPhotos:
-      indicatorPositionLabel.text = .userHas + viewModelItem.totalPhotos + .photos
+      // Обновите UI в соответствии с `userHasPhotos`
+//      indicatorPositionLabel.text = .userHas + viewModelItem.totalPhotos + .photos
       totalLikesImageView.alpha = Const.defaultOpacity
       totalPhotosImageView.alpha = Const.maxOpacity
       totalAlbumsImageView.alpha = Const.defaultOpacity
     default:
-      indicatorPositionLabel.text = .userHas + viewModelItem.totalCollections + .albums
+      // Обновите UI в соответствии с `default`
+//      indicatorPositionLabel.text = .userHas + viewModelItem.totalCollections + .albums
       totalLikesImageView.alpha = Const.defaultOpacity
       totalPhotosImageView.alpha = Const.defaultOpacity
       totalAlbumsImageView.alpha = Const.maxOpacity
@@ -308,7 +307,7 @@ final class UserProfileViewControllerRootView: UIView {
     addSubview(gradientView)
     addSubview(mainStackView)
     addSubview(indicatorView)
-    addSubview(userProfileCollectionView)
+//    addSubview(userProfileCollectionView)
     addSubview(bottomGradientView)
   }
   
@@ -317,7 +316,7 @@ final class UserProfileViewControllerRootView: UIView {
     setupInfoStackViewConstraints()
     setupIndicatorViewConstraints()
     setupBottomGradientViewConstraints()
-    setupMainHorizontalCollectionViewConstraints()
+//    setupMainHorizontalCollectionViewConstraints()
   }
   
   private func setupGradientViewConstraints() {
@@ -327,6 +326,7 @@ final class UserProfileViewControllerRootView: UIView {
   private func setupInfoStackViewConstraints() {
     mainStackView.setConstraints(
       right: rightAnchor,
+      bottom: bottomAnchor,
       left: leftAnchor,
       pRight: Const.rightPadding,
       pLeft: Const.leftPadding
@@ -358,13 +358,13 @@ final class UserProfileViewControllerRootView: UIView {
     bottomGradientView.transform = CGAffineTransform(rotationAngle: .pi)
   }
   
-  private func setupMainHorizontalCollectionViewConstraints() {
-    userProfileCollectionView.setConstraints(
-      top: mainStackView.bottomAnchor,
-      right: rightAnchor,
-      bottom: bottomAnchor,
-      left: leftAnchor,
-      pTop: Const.mainCollectionViewTopPadding
-    )
-  }
+//  private func setupMainHorizontalCollectionViewConstraints() {
+//    userProfileCollectionView.setConstraints(
+//      top: mainStackView.bottomAnchor,
+//      right: rightAnchor,
+//      bottom: bottomAnchor,
+//      left: leftAnchor,
+//      pTop: Const.mainCollectionViewTopPadding
+//    )
+//  }
 }
