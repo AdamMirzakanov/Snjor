@@ -10,7 +10,7 @@ import Foundation
 struct Album: Decodable, Hashable {
   let id: String
   let title: String
-  let previewPhotos: [AlbumPreviewPhoto]
+  let previewPhotos: [AlbumPreviewPhoto]?
   let totalPhotos: Int
   let tags: [Tag]?
 }
@@ -18,13 +18,13 @@ struct Album: Decodable, Hashable {
 // MARK: - ViewModelItemRepresentable
 extension Album: ViewModelItemRepresentable {
   var regularURL: URL? {
-    return self.previewPhotos[.zero].urls.regular
+    return self.previewPhotos?[.zero].urls.regular
   }
 }
 
 // MARK: - Downloadable
 extension Album: Downloadable {
   var downloadURL: URL? {
-    return self.previewPhotos[.zero].urls.full
+    return self.previewPhotos?[.zero].urls.full
   }
 }

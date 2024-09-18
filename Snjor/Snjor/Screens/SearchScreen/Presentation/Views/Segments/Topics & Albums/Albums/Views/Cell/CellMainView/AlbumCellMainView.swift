@@ -111,7 +111,7 @@ final class AlbumCellMainView: MainImageContainerView {
   ) {
     super.configure(
       url: url,
-      blurHash: album.previewPhotos[.zero].blurHash,
+      blurHash: album.previewPhotos?[.zero].blurHash,
       photoID: album.id
     )
     titleLabel.text = album.title.uppercased()
