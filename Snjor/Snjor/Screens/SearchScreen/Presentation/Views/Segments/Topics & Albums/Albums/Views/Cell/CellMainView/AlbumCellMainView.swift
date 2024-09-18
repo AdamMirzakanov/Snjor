@@ -114,6 +114,9 @@ final class AlbumCellMainView: MainImageContainerView {
       blurHash: album.previewPhotos?[.zero].blurHash,
       photoID: album.id
     )
+    if album.previewPhotos == nil {
+      mainImageView.image = UIImage(named: .photoCap)
+    }
     titleLabel.text = album.title.uppercased()
     secondBackgroundView.backgroundColor = .systemGray3
     thirdBackgroundView.backgroundColor = .systemGray5

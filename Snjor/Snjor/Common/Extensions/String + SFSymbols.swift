@@ -26,4 +26,5 @@ extension String {
   static let locationImage = "scope"
   static let instIcon = "inst"
   static let twitIcon = "twit"
+  static let photoCap = "photoCap"
 }
