@@ -55,10 +55,6 @@ extension User {
 
     return username
   }
-
-  var profileURL: URL? {
-    return URL(string: "https://unsplash.com/@\(username)")
-  }
 }
 
 // MARK: - Downloadable

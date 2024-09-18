@@ -16,3 +16,4 @@ final class UserPhotosCollectionView: MainCollectionView {
     )
   }
 }
+

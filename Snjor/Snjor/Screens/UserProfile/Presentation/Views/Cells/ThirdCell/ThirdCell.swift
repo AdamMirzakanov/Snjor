@@ -7,77 +7,46 @@
 
 import UIKit
 
-class ThirdCell:
-  UICollectionViewCell,
-  UICollectionViewDelegate,
-  UICollectionViewDataSource,
-  UICollectionViewDelegateFlowLayout {
+class ThirdCell: UICollectionViewCell {
+  // MARK: Internal Properties
+  var userAlbumsSections: [UserAlbumsSection] = []
+  var userAlbumsDataSource: UserAlbumsDataSource?
+  var userAlbumsViewModel: (any ContentManagingProtocol<Album>)?
   
-  let verticalCollectionViewC: UICollectionView
+  // MARK: Private Properties
+  private let layoutFactory = UserAlbumsLayoutFactory()
   
+  // MARK: Views
+  private let userAlbumsCollectionView: UserAlbumsCollectionView = {
+    return $0
+  }(UserAlbumsCollectionView())
+  
+  // MARK: Initializers
   override init(frame: CGRect) {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .vertical
-    layout.minimumLineSpacing = 5
-    layout.minimumInteritemSpacing = 5
-    verticalCollectionViewC = UICollectionView(
-      frame: .zero,
-      collectionViewLayout: layout
-    )
     super.init(frame: frame)
-    
-    verticalCollectionViewC.delegate = self
-    verticalCollectionViewC.dataSource = self
-    verticalCollectionViewC.register(
-      UICollectionViewCell.self,
-      forCellWithReuseIdentifier: "verticalCellC"
-    )
-    contentView.addSubview(verticalCollectionViewC)
+    setupViews()
+    setupLayout()
+    createAlbumsDataSource(for: userAlbumsCollectionView)
   }
   
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    fatalError(.requiredInitFatalErrorText)
   }
   
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    verticalCollectionViewC.frame = contentView.bounds
+  // MARK: Internal Methods
+  func configure(with viewModel: any ContentManagingProtocol<Album>) {
+    self.userAlbumsViewModel = viewModel
+    applyAlbumsSnapshot()
   }
   
-  func configure() {
-    verticalCollectionViewC.reloadData()
+  // MARK: Private Methods
+  private func setupViews() {
+    contentView.addSubview(userAlbumsCollectionView)
+    userAlbumsCollectionView.frame = contentView.bounds
   }
   
-  // UICollectionViewDataSource
-  func collectionView(
-    _ collectionView: UICollectionView,
-    numberOfItemsInSection section: Int
-  ) -> Int {
-    return 15
-  }
-  
-  func collectionView(
-    _ collectionView: UICollectionView,
-    cellForItemAt indexPath: IndexPath
-  ) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: "verticalCellC",
-      for: indexPath
-    )
-    cell.backgroundColor = .systemBrown // Макет ячеек для типа C
-    return cell
-  }
-  
-  // UICollectionViewDelegateFlowLayout
-  func collectionView(
-    _ collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    sizeForItemAt indexPath: IndexPath
-  ) -> CGSize {
-    return CGSize(
-      width: collectionView.frame.width - 10,
-      height: 200
-    )
+  private func setupLayout() {
+    let layout = layoutFactory.createAlbumsLayout()
+    userAlbumsCollectionView.collectionViewLayout = layout
   }
 }
-

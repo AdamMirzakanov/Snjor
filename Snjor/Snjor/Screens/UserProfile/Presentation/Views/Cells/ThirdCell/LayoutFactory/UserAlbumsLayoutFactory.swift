@@ -1,5 +1,5 @@
 //
-//  UserProfileLayoutFactory.swift
+//  UserAlbumsLayoutFactory.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 18.09.2024.
@@ -7,34 +7,23 @@
 
 import UIKit
 
-fileprivate typealias Const = UserProfileLayoutFactoryConst
+fileprivate typealias Const = UserAlbumsLayoutFactoryConst
 
-enum UserProfileSection: Hashable {
-  case main
-}
-
-struct UserProfileLayoutFactory {
-  // MARK: Internal Properties
-  var userProfileSection: [UserProfileSection] = [.main]
-
+struct UserAlbumsLayoutFactory {
   // MARK: Internal Methods
-  func createUserProfileCollecitonViewLayout() -> UICollectionViewLayout {
+  func createAlbumsLayout() -> UICollectionViewLayout {
     let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
-      let section = userProfileSection[sectionIndex]
-      switch section {
-      case .main:
-        let section = createUserProfileSection()
-        return section
-      }
+      let section = createAlbumSection()
+      return section
     }
     return layout
   }
   
   // MARK: Private Methods
-  private func createUserProfileSection() -> NSCollectionLayoutSection {
+  private func createAlbumSection() -> NSCollectionLayoutSection {
     let item = makeItem()
-    let group = makeGroup(item: item)
-    let section = makeSection(group: group)
+    let verticalGroup = makeGroup(item: item)
+    let section = makeSection(group: verticalGroup)
     return section
   }
   
@@ -44,6 +33,12 @@ struct UserProfileLayoutFactory {
       heightDimension: .fractionalHeight(Const.itemHeightDimension)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    item.contentInsets = NSDirectionalEdgeInsets(
+      top: .zero,
+      leading: .zero,
+      bottom: Const.itemBottomMargin,
+      trailing: .zero
+    )
     return item
   }
   
@@ -52,21 +47,28 @@ struct UserProfileLayoutFactory {
   ) -> NSCollectionLayoutGroup {
     let groupSize = NSCollectionLayoutSize(
       widthDimension: .fractionalWidth(Const.groupWidthDimension),
-      heightDimension: .estimated(Const.groupHeightDimension)
+      heightDimension: .fractionalWidth(Const.groupHeightDimension)
     )
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
       subitems: [item]
     )
+    group.interItemSpacing = .fixed(
+      Const.groupInterItemSpacing
+    )
     return group
   }
-  
+
   private func makeSection(
     group: NSCollectionLayoutGroup
-  ) -> NSCollectionLayoutSection  {
+  ) -> NSCollectionLayoutSection {
     let section = NSCollectionLayoutSection(group: group)
-    section.orthogonalScrollingBehavior = .groupPagingCentered
-    section.interGroupSpacing = Const.interGroupSpacing
+    section.contentInsets = NSDirectionalEdgeInsets(
+      top: Const.sectionTopMargin,
+      leading: .zero,
+      bottom: .zero,
+      trailing: .zero
+    )
     return section
   }
 }

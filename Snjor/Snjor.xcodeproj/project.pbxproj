@@ -42,6 +42,13 @@
 		3723D1CC2C9AF7A8007F807A /* UserAlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1CB2C9AF7A8007F807A /* UserAlbumsViewModel.swift */; };
 		3723D1CF2C9B0781007F807A /* LoadUserAlbumsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1CE2C9B0781007F807A /* LoadUserAlbumsUseCase.swift */; };
 		3723D1D12C9B07CD007F807A /* LoadUserAlbumsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1D02C9B07CD007F807A /* LoadUserAlbumsRepository.swift */; };
+		3723D1D82C9B0D97007F807A /* UserAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1D72C9B0D97007F807A /* UserAlbumCell.swift */; };
+		3723D1DA2C9B0DBF007F807A /* UserAlbumCell + Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1D92C9B0DBF007F807A /* UserAlbumCell + Reusable.swift */; };
+		3723D1DC2C9B0DE0007F807A /* UserAlbumsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1DB2C9B0DE0007F807A /* UserAlbumsCollectionView.swift */; };
+		3723D1DE2C9B0E21007F807A /* ThirdCell + Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1DD2C9B0E21007F807A /* ThirdCell + Reusable.swift */; };
+		3723D1E02C9B0E2F007F807A /* ThirdCell + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1DF2C9B0E2F007F807A /* ThirdCell + DataSource.swift */; };
+		3723D1E32C9B24EB007F807A /* UserAlbumsLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1E22C9B24EB007F807A /* UserAlbumsLayoutFactory.swift */; };
+		3723D1E52C9B27D5007F807A /* UserAlbumsLayoutFactoryConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723D1E42C9B27D5007F807A /* UserAlbumsLayoutFactoryConst.swift */; };
 		3723E3562C4F0CFE00C3AE3E /* PageScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E3552C4F0CFE00C3AE3E /* PageScreenFactory.swift */; };
 		3723E3582C4F0D3400C3AE3E /* PageScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E3572C4F0D3400C3AE3E /* PageScreenCoordinator.swift */; };
 		3723E38B2C4F0E5B00C3AE3E /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723E38A2C4F0E5B00C3AE3E /* Topic.swift */; };
@@ -427,6 +434,13 @@
 		3723D1CB2C9AF7A8007F807A /* UserAlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAlbumsViewModel.swift; sourceTree = "<group>"; };
 		3723D1CE2C9B0781007F807A /* LoadUserAlbumsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserAlbumsUseCase.swift; sourceTree = "<group>"; };
 		3723D1D02C9B07CD007F807A /* LoadUserAlbumsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserAlbumsRepository.swift; sourceTree = "<group>"; };
+		3723D1D72C9B0D97007F807A /* UserAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAlbumCell.swift; sourceTree = "<group>"; };
+		3723D1D92C9B0DBF007F807A /* UserAlbumCell + Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserAlbumCell + Reusable.swift"; sourceTree = "<group>"; };
+		3723D1DB2C9B0DE0007F807A /* UserAlbumsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAlbumsCollectionView.swift; sourceTree = "<group>"; };
+		3723D1DD2C9B0E21007F807A /* ThirdCell + Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThirdCell + Reusable.swift"; sourceTree = "<group>"; };
+		3723D1DF2C9B0E2F007F807A /* ThirdCell + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThirdCell + DataSource.swift"; sourceTree = "<group>"; };
+		3723D1E22C9B24EB007F807A /* UserAlbumsLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAlbumsLayoutFactory.swift; sourceTree = "<group>"; };
+		3723D1E42C9B27D5007F807A /* UserAlbumsLayoutFactoryConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAlbumsLayoutFactoryConst.swift; sourceTree = "<group>"; };
 		3723E3552C4F0CFE00C3AE3E /* PageScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageScreenFactory.swift; sourceTree = "<group>"; };
 		3723E3572C4F0D3400C3AE3E /* PageScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageScreenCoordinator.swift; sourceTree = "<group>"; };
 		3723E38A2C4F0E5B00C3AE3E /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
@@ -978,6 +992,58 @@
 				3723D1D02C9B07CD007F807A /* LoadUserAlbumsRepository.swift */,
 			);
 			path = UserAlbums;
+			sourceTree = "<group>";
+		};
+		3723D1D22C9B0D48007F807A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3723D1D52C9B0D6C007F807A /* CollectionView */,
+				3723D1D42C9B0D64007F807A /* Cell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3723D1D32C9B0D51007F807A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3723D1DD2C9B0E21007F807A /* ThirdCell + Reusable.swift */,
+				3723D1DF2C9B0E2F007F807A /* ThirdCell + DataSource.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3723D1D42C9B0D64007F807A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3723D1D72C9B0D97007F807A /* UserAlbumCell.swift */,
+				3723D1D62C9B0D78007F807A /* Extensions */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3723D1D52C9B0D6C007F807A /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				3723D1DB2C9B0DE0007F807A /* UserAlbumsCollectionView.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		3723D1D62C9B0D78007F807A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3723D1D92C9B0DBF007F807A /* UserAlbumCell + Reusable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3723D1E12C9B24C6007F807A /* LayoutFactory */ = {
+			isa = PBXGroup;
+			children = (
+				3723D1E22C9B24EB007F807A /* UserAlbumsLayoutFactory.swift */,
+				3723D1E42C9B27D5007F807A /* UserAlbumsLayoutFactoryConst.swift */,
+			);
+			path = LayoutFactory;
 			sourceTree = "<group>";
 		};
 		3723E3592C4F0D5A00C3AE3E /* Domain */ = {
@@ -2471,6 +2537,9 @@
 			isa = PBXGroup;
 			children = (
 				37B25C932C924CBB00DE4BE3 /* ThirdCell.swift */,
+				3723D1E12C9B24C6007F807A /* LayoutFactory */,
+				3723D1D32C9B0D51007F807A /* Extensions */,
+				3723D1D22C9B0D48007F807A /* Views */,
 			);
 			path = ThirdCell;
 			sourceTree = "<group>";
@@ -3204,6 +3273,7 @@
 				370A007C2C87BD25006B87DD /* MainTagCellConst.swift in Sources */,
 				37A502C12C6E4917000221D1 /* SearchScreenFactoryProtocol.swift in Sources */,
 				372B347D2C888D3A008FCC88 /* TopicsSection.swift in Sources */,
+				3723D1E32C9B24EB007F807A /* UserAlbumsLayoutFactory.swift in Sources */,
 				37ED5DE22C7FE70000891811 /* SearchResultViewController + AlbumsDataSource.swift in Sources */,
 				3770E1442C6FFE6B0017ECBB /* TopicPhotoCellMainView.swift in Sources */,
 				378B83502C85C868001463FE /* BaseViewModel.swift in Sources */,
@@ -3248,6 +3318,7 @@
 				3770E15E2C70D6A00017ECBB /* TopicPhotos + SessionIdentifiable.swift in Sources */,
 				37A5028E2C6B8DB5000221D1 /* SearchScreenViewController + URLSessionDownloadDelegate.swift in Sources */,
 				37A502D22C6EAF77000221D1 /* SearchScreenViewController + UICollectionViewDelegate.swift in Sources */,
+				3723D1D82C9B0D97007F807A /* UserAlbumCell.swift in Sources */,
 				3770E1482C7002040017ECBB /* TopicPhotos + MessageDisplayable.swift in Sources */,
 				37A502872C6B8CC3000221D1 /* SearchScreenViewController + TopicsAndAlbumsDataSource.swift in Sources */,
 				37A502B22C6E3626000221D1 /* AlbumsLayoutFactory.swift in Sources */,
@@ -3374,6 +3445,7 @@
 				6684EF642C3F39A900498FE7 /* PhotoDetailPhotoView.swift in Sources */,
 				370A00982C87D916006B87DD /* LayoutProviderConst.swift in Sources */,
 				37A502B62C6E3CF1000221D1 /* LayoutProvider.swift in Sources */,
+				3723D1DE2C9B0E21007F807A /* ThirdCell + Reusable.swift in Sources */,
 				3770E14E2C7002520017ECBB /* TopicPhotos + CascadeLayoutDelegate.swift in Sources */,
 				373F88242C8C7B3500329672 /* SearchScreenViewController + Typealias.swift in Sources */,
 				3770E17E2C7205550017ECBB /* AlbumPhotoCell.swift in Sources */,
@@ -3390,6 +3462,7 @@
 				372B345C2C887265008FCC88 /* CascadeLayout + CascadeLayoutConformable.swift in Sources */,
 				66A3F3B32C35FD3F00F367A4 /* Downloadable.swift in Sources */,
 				3723E39B2C4F10D900C3AE3E /* PageScreenTopicCell.swift in Sources */,
+				3723D1DC2C9B0DE0007F807A /* UserAlbumsCollectionView.swift in Sources */,
 				37BE0AD92C52F91F00C8D45F /* SingleColumnCascadeLayout.swift in Sources */,
 				378B83782C862BB0001463FE /* SearchViewModelProtocol.swift in Sources */,
 				376785B72C8CAF26009B9BA6 /* TopicPhotosCoordinator + ParentCoordinator.swift in Sources */,
@@ -3467,6 +3540,7 @@
 				376785C12C8CAFFA009B9BA6 /* AlbumPhotosCoordinator + AlbumPhotosViewControllerDelegate.swift in Sources */,
 				37B203EF2C7697250017E231 /* SearchResultViewController + MessageDisplayable.swift in Sources */,
 				667A59982C1EFE4A00FE4985 /* ImageDownloader.swift in Sources */,
+				3723D1DA2C9B0DBF007F807A /* UserAlbumCell + Reusable.swift in Sources */,
 				3776D9E92C8352BE0021CE8C /* MainPhotoCell.swift in Sources */,
 				371EE7DA2C641789007538C2 /* SearchScreenRootView.swift in Sources */,
 				664AA5A42C494FD500A393BD /* PhotoDetail + PhotoDetailMainViewDelegate.swift in Sources */,
@@ -3498,6 +3572,8 @@
 				37ECB3A02C986871003E063E /* FirstCell + DataSource.swift in Sources */,
 				370A00892C87CED9006B87DD /* SectionHeaderView + Reusable.swift in Sources */,
 				370A005D2C874F84006B87DD /* String + DownloadService.swift in Sources */,
+				3723D1E52C9B27D5007F807A /* UserAlbumsLayoutFactoryConst.swift in Sources */,
+				3723D1E02C9B0E2F007F807A /* ThirdCell + DataSource.swift in Sources */,
 				664AA5AD2C49B29E00A393BD /* PhotoCell + Reusable.swift in Sources */,
 				370A00782C87BB38006B87DD /* TopicPhotosRootViewConst.swift in Sources */,
 				3770E1962C7207FE0017ECBB /* AlbumPhotos + MessageDisplayable.swift in Sources */,

@@ -10,6 +10,7 @@ import UIKit
 fileprivate typealias Const = UserProfileViewControllerConst
 
 extension UserProfileViewController: UICollectionViewDataSource {
+  // MARK: Collection View Data Source
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
@@ -23,34 +24,54 @@ extension UserProfileViewController: UICollectionViewDataSource {
   ) -> UICollectionViewCell {
     switch indexPath.item {
     case Const.firstCell:
-      guard
-        let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: FirstCell.reuseID,
-          for: indexPath
-        ) as? FirstCell
-      else {
-        return UICollectionViewCell()
-      }
-      cell.configure(with: userLikedPhotosViewModel)
-      return cell
+      return configureFirstCell(for: collectionView, at: indexPath)
     case Const.secondCell:
-      guard
-        let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: SecondCell.reuseID,
-          for: indexPath
-        ) as? SecondCell
-      else {
-        return UICollectionViewCell()
-      }
-      cell.configure(with: userPhotosViewModel)
-      return cell
+      return configureSecondCell(for: collectionView, at: indexPath)
     default:
-      let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: "horizontalCellC",
-        for: indexPath
-      ) as! ThirdCell
-      cell.configure()
-      return cell
+      return configureThirdCell(for: collectionView, at: indexPath)
     }
+  }
+  
+  // MARK: Configure Cells
+  private func configureFirstCell(
+    for collectionView: UICollectionView,
+    at indexPath: IndexPath
+  ) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: FirstCell.reuseID,
+      for: indexPath
+    ) as? FirstCell else {
+      return UICollectionViewCell()
+    }
+    cell.configure(with: userLikedPhotosViewModel)
+    return cell
+  }
+  
+  private func configureSecondCell(
+    for collectionView: UICollectionView,
+    at indexPath: IndexPath
+  ) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: SecondCell.reuseID,
+      for: indexPath
+    ) as? SecondCell else {
+      return UICollectionViewCell()
+    }
+    cell.configure(with: userPhotosViewModel)
+    return cell
+  }
+  
+  private func configureThirdCell(
+    for collectionView: UICollectionView,
+    at indexPath: IndexPath
+  ) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: ThirdCell.reuseID,
+      for: indexPath
+    ) as? ThirdCell else {
+      return UICollectionViewCell()
+    }
+    cell.configure(with: userAlbumsViewModel)
+    return cell
   }
 }

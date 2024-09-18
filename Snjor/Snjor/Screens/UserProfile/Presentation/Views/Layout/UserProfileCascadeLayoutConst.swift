@@ -8,6 +8,6 @@
 import CoreGraphics
 
 enum UserProfileCascadeLayoutConst {
-  static let columnSpacing: CGFloat = 10.0
+  static let columnSpacing: CGFloat = 8.0
   static let numberOfColumns: Int = 3
 }

@@ -12,4 +12,5 @@ enum UserProfileLayoutFactoryConst {
   static let itemHeightDimension = UserProfileLayoutFactoryConst.itemWidthDimension / 2
   static let groupWidthDimension: CGFloat = 1.0
   static let groupHeightDimension: CGFloat = 600.0
+  static let interGroupSpacing: CGFloat = 8.0
 }
