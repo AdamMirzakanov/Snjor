@@ -12,12 +12,15 @@ enum PrepareParameters {
   static var searchPhotosPage: Int = .page
   static var searchAlbumsPage: Int = .page
   static var searchUsersPage: Int = .page
+  static var userLikedPhotosPage: Int = .page
+  static var userPhotosPage: Int = .page
+  static var userAlbumsPage: Int = .page
   
   // MARK: Private  Properties
   private static let perPage: Int = .perPage
 
   // MARK: Internal Methods
-  static func preparePhotoParameters() -> Parameters {
+  static func preparePhotosParameters() -> Parameters {
     nextPhotosPage()
     var parameters: Parameters = [:]
     parameters[.page] = String(photosPage)
@@ -29,6 +32,30 @@ enum PrepareParameters {
     nextAlbumsPage()
     var parameters: Parameters = [:]
     parameters[.page] = String(albumsPage)
+    parameters[.perPage] = String(perPage)
+    return parameters
+  }
+  
+  static func prepareUserLikedPhotosParameters() -> Parameters {
+    nextUserLikedPhotosPage()
+    var parameters: Parameters = [:]
+    parameters[.page] = String(userLikedPhotosPage)
+    parameters[.perPage] = String(perPage)
+    return parameters
+  }
+  
+  static func prepareUserPhotosParameters() -> Parameters {
+    nextUserPhotosPage()
+    var parameters: Parameters = [:]
+    parameters[.page] = String(userPhotosPage)
+    parameters[.perPage] = String(perPage)
+    return parameters
+  }
+  
+  static func prepareUserAlbumsParameters() -> Parameters {
+    nextUserAlbumsPage()
+    var parameters: Parameters = [:]
+    parameters[.page] = String(userAlbumsPage)
     parameters[.perPage] = String(perPage)
     return parameters
   }
@@ -71,6 +98,18 @@ enum PrepareParameters {
   
   private static func nextAlbumsPage() {
     albumsPage += .page
+  }
+  
+  private static func nextUserLikedPhotosPage() {
+    userLikedPhotosPage += .page
+  }
+  
+  private static func nextUserPhotosPage() {
+    userPhotosPage += .page
+  }
+  
+  private static func nextUserAlbumsPage() {
+    userAlbumsPage += .page
   }
   
   private static func nextSearchAlbumsPage() {

@@ -106,6 +106,20 @@ enum PrepareRequest {
     return request
   }
   
+  static func prepareUserAlbumsAPIRequest(
+    path: String,
+    username: String,
+    parameters: Parameters
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path, parameters: parameters) else {
+      throw APIError.URLError
+    }
+    let profileURL = url.appending(component: username)
+    let likedURL = profileURL.appending(component: "collections")
+    let request = prepareURLRequest(url: likedURL)
+    return request
+  }
+  
   static func prepareAPIRequest(
     path: String,
     parameters: Parameters

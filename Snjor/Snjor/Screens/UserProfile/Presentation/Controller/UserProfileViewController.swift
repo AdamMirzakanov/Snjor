@@ -14,6 +14,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   private(set) var userProfileViewModel: any UserProfileViewModelProtocol
   private(set) var userLikedPhotosViewModel: any ContentManagingProtocol<Photo>
   private(set) var userPhotosViewModel: any ContentManagingProtocol<Photo>
+  private(set) var userAlbumsViewModel: any ContentManagingProtocol<Album>
   
   // MARK: Override Properties
   override var shouldShowTabBarOnScroll: Bool {
@@ -24,11 +25,13 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   init(
     userProfileViewModel: any UserProfileViewModelProtocol,
     userLikedPhotosViewModel: any ContentManagingProtocol<Photo>,
-    userPhotosViewModel: any ContentManagingProtocol<Photo>
+    userPhotosViewModel: any ContentManagingProtocol<Photo>,
+    userAlbumsViewModel: any ContentManagingProtocol<Album>
   ) {
     self.userProfileViewModel = userProfileViewModel
     self.userLikedPhotosViewModel = userLikedPhotosViewModel
     self.userPhotosViewModel = userPhotosViewModel
+    self.userAlbumsViewModel = userAlbumsViewModel
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -43,9 +46,11 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     userProfileState()
     userLikedPhotosState()
     userPhotosState()
+    userAlbumsState()
     userProfileViewModel.viewDidLoad()
     userLikedPhotosViewModel.viewDidLoad()
     userPhotosViewModel.viewDidLoad()
+    userAlbumsViewModel.viewDidLoad()
     rootView.backgroundColor = .systemBackground
     rootView.userProfileCollectionView.dataSource = self
   }
@@ -56,7 +61,9 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   
   // MARK: Private Methods
   private func resetPage() {
-    PrepareParameters.photosPage = .zero
+    PrepareParameters.userPhotosPage = .zero
+    PrepareParameters.userLikedPhotosPage = .zero
+    PrepareParameters.userAlbumsPage = .zero
   }
   
   private func userProfileState() {
@@ -94,6 +101,19 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
         guard let self = self else { return }
         self.handleState(state) {
           print(#function, Self.self)
+          self.rootView.userProfileCollectionView.reloadData()
+        }
+      }
+      .store(in: &cancellable)
+  }
+  
+  private func userAlbumsState() {
+    userAlbumsViewModel
+      .state
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] state in
+        guard let self = self else { return }
+        self.handleState(state) {
           self.rootView.userProfileCollectionView.reloadData()
         }
       }

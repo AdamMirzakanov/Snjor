@@ -21,7 +21,7 @@ enum RequestController {
   /// Список фотографий
   static func photosRequest() throws -> URLRequest {
     let path = photos.rawValue
-    let parameters = PrepareParameters.preparePhotoParameters()
+    let parameters = PrepareParameters.preparePhotosParameters()
     let request = try PrepareRequest.prepareAPIRequest(
       path: path,
       parameters: parameters
@@ -86,7 +86,7 @@ enum RequestController {
   static func userLikedPhotosRequest(user: User) throws -> URLRequest {
     let path = userProfile.rawValue
     let username = user.username
-    let parameters = PrepareParameters.preparePhotoParameters()
+    let parameters = PrepareParameters.prepareUserLikedPhotosParameters()
     let request = try PrepareRequest.prepareUserLikedPhotosAPIRequest(
       path: path,
       username: username, 
@@ -95,11 +95,25 @@ enum RequestController {
     return request
   }
   
+  /// Фотографии которые принадлежат пользователю
   static func userPhotosRequest(user: User) throws -> URLRequest {
     let path = userProfile.rawValue
     let username = user.username
-    let parameters = PrepareParameters.preparePhotoParameters()
+    let parameters = PrepareParameters.prepareUserPhotosParameters()
     let request = try PrepareRequest.prepareUserPhotosAPIRequest(
+      path: path,
+      username: username,
+      parameters: parameters
+    )
+    return request
+  }
+  
+  /// Альбомы которые принадлежат пользователю
+  static func userAlbumsRequest(user: User) throws -> URLRequest {
+    let path = userProfile.rawValue
+    let username = user.username
+    let parameters = PrepareParameters.prepareUserAlbumsParameters()
+    let request = try PrepareRequest.prepareUserAlbumsAPIRequest(
       path: path,
       username: username,
       parameters: parameters
@@ -112,7 +126,7 @@ enum RequestController {
     let topicsPath = topics.rawValue
     let id = topic.id
     let photosPath = photos.rawValue
-    let parameters = PrepareParameters.preparePhotoParameters()
+    let parameters = PrepareParameters.preparePhotosParameters()
     let request = try PrepareRequest.prepareTopicPhotosAPIRequest(
       topics: topicsPath,
       id: id,
@@ -127,7 +141,7 @@ enum RequestController {
     let albumsPath = albums.rawValue
     let id = album.id
     let photosPath = photos.rawValue
-    let parameters = PrepareParameters.preparePhotoParameters()
+    let parameters = PrepareParameters.preparePhotosParameters()
     let request = try PrepareRequest.prepareAlbumPhotosAPIRequest(
       albums: albumsPath,
       id: id,

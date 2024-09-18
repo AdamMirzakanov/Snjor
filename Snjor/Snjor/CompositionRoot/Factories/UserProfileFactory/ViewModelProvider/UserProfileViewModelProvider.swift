@@ -49,6 +49,18 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     )
   }
   
+  func createUserAlbumsViewModel(user: User) -> UserAlbumsViewModel {
+    let loadUserAlbumsUseCase = getUserAlbumsUseCase(
+      networkService,
+      user: user
+    )
+    return UserAlbumsViewModel(
+      loadUseCase: loadUserAlbumsUseCase,
+      lastPageValidationUseCase: lastPageValidationUseCase,
+      state: state
+    )
+  }
+  
   // MARK: Private Methods
   private func getUserProfileUseCase(
     _ networkService: NetworkService,
@@ -85,6 +97,19 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     )
     return LoadUserPhotosUseCase(
       repository: loadUserPhotosRepository,
+      user: user
+    )
+  }
+  
+  private func getUserAlbumsUseCase(
+    _ networkService: NetworkService,
+    user: User
+  ) -> LoadUserAlbumsUseCase {
+    let loadUserAlbumsRepository = LoadUserAlbumsRepository(
+      networkService: networkService
+    )
+    return LoadUserAlbumsUseCase(
+      repository: loadUserAlbumsRepository,
       user: user
     )
   }
