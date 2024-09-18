@@ -6,7 +6,6 @@
 //
 
 final class UserProfileCollectionView: MainCollectionView {
-  
   override func cellRegister() {
     register(
       FirstCell.self,
@@ -20,11 +19,5 @@ final class UserProfileCollectionView: MainCollectionView {
       ThirdCell.self,
       forCellWithReuseIdentifier: "horizontalCellC"
     )
-  }
-  
-  override func configureLayout() {
-    flowlayout.scrollDirection = .horizontal
-    isPagingEnabled = true
-    showsHorizontalScrollIndicator = false
   }
 }

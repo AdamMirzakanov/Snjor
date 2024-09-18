@@ -12,12 +12,14 @@ fileprivate typealias Const = UserProfileViewControllerRootViewConst
 final class UserProfileViewControllerRootView: UIView {
   // MARK: Private Properties
   private let screenWidth = UIScreen.main.bounds.width
+  private let layoutFactory = UserProfileLayoutFactory()
   
   // MARK: CollectinView
-  let userProfileCollectionView: UserProfileCollectionView = {
+  lazy var userProfileCollectionView: UserProfileCollectionView = {
     $0.heightAnchor.constraint(
       equalToConstant: Const.heightUserProfileCollectionView
     ).isActive = true
+    $0.collectionViewLayout = layoutFactory.createUserProfileCollecitonViewLayout()
     return $0
   }(UserProfileCollectionView())
   
@@ -60,7 +62,6 @@ final class UserProfileViewControllerRootView: UIView {
     ])
     return $0
   }(MainGradientView())
-  
   
   private let bottomGradientView: MainGradientView = {
     $0.isUserInteractionEnabled = false

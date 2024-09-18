@@ -8,5 +8,5 @@
 import CoreGraphics
 
 enum UserLikedPhotoCellConst {
-  static let mainViewCornerRadius: CGFloat = 12.0
+  static let mainViewCornerRadius: CGFloat = 15.0
 }
