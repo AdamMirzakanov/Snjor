@@ -129,7 +129,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   // MARK: Buttons
   private lazy var backBarButton: UIButton = {
-    let icon = UIImage(systemName: .backBarButtonImage)
+    let icon = UIImage(systemName: .backBarButtonIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.alpha = Const.defaultOpacity
@@ -138,7 +138,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIButton())
   
   lazy var downloadBarButton: UIButton = {
-    let icon = UIImage(systemName: .downloadBarButtonImage)
+    let icon = UIImage(systemName: .downloadBarButtonIcon)
     $0.setImage(icon, for: .normal)
     $0.setTitle(.jpeg, for: .normal)
     $0.titleLabel?.font = .systemFont(
@@ -153,7 +153,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIButton())
   
   private lazy var toggleContentModeButton: UIButton = {
-    let icon = UIImage(systemName: .toggleUp)
+    let icon = UIImage(systemName: .toggleUpIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
@@ -163,7 +163,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIButton())
   
   private let infoButton: UIButton = {
-    let icon = UIImage(systemName: .infoButtonImage)
+    let icon = UIImage(systemName: .infoButtonIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
     $0.alpha = Const.defaultOpacity
@@ -176,28 +176,28 @@ final class PhotoDetailViewControllerRootView: UIView {
   // MARK: ImageViews
   private let likesImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .heartImage)
+    $0.image = UIImage(systemName: .heartFillIcon)
     $0.tintColor = .systemPink
     return $0
   }(UIImageView())
   
   private let downloadsImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .downloadsImage)
+    $0.image = UIImage(systemName: .downloadsIcon)
     $0.tintColor = .white
     return $0
   }(UIImageView())
   
   private let createdImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .calendar)
+    $0.image = UIImage(systemName: .calendarIcon)
     $0.tintColor = .white
     return $0
   }(UIImageView())
   
   private let cameraImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .cameraImage)
+    $0.image = UIImage(systemName: .cameraIcon)
     $0.tintColor = .white
     return $0
   }(UIImageView())
@@ -834,11 +834,11 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   private func configToggleContentMode() {
     if self.isAspectFill {
-      let icon = UIImage(systemName: .toggleDown)
+      let icon = UIImage(systemName: .toggleDownIcon)
       photoView.mainImageView.contentMode = .scaleAspectFit
       toggleContentModeButton.setImage(icon, for: .normal)
     } else {
-      let icon = UIImage(systemName: .toggleUp)
+      let icon = UIImage(systemName: .toggleUpIcon)
       photoView.mainImageView.contentMode = .scaleAspectFill
       toggleContentModeButton.setImage(icon, for: .normal)
     }

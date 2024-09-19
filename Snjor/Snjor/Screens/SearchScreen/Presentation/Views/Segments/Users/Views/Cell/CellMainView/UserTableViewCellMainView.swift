@@ -20,7 +20,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
   
   private let chevronImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .rightChevron)
+    $0.image = UIImage(systemName: .rightChevronIcon)
     $0.tintColor = .systemGray
     return $0
   }(UIImageView())

@@ -74,7 +74,7 @@ final class PhotoCellMainView: MainImageContainerView {
   
   // MARK: Buttons
   lazy var downloadButton: UIButton = {
-    let icon = UIImage(systemName: .downloadCellButtonImage)
+    let icon = UIImage(systemName: .downloadCellButtonIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)

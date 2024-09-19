@@ -35,7 +35,12 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIView())
   
-  // MARK: UserProfilePhoto
+  // MARK: Main Background Photo
+//  var mainBackgroundPhotoView: UIView = {
+//    return $0
+//  }(UIView())
+  
+  // MARK: User Profile Photo
   private let profilePhotoView: UserProfilePhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.profilePhotoCircle
@@ -92,30 +97,42 @@ final class UserProfileViewControllerRootView: UIView {
   // MARK: ImageViews
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .locationImage)
+    $0.image = UIImage(systemName: .locationIcon)
     $0.tintColor = .white
     return $0
   }(UIImageView())
   
   // MARK: Buttons
   private let userLikedPhotosButton: UIButton = {
-    let icon = UIImage(systemName: .heartImage)
+    let icon = UIImage(systemName: .heartIcon)
     $0.setImage(icon, for: .normal)
-    $0.tintColor = .white
+    $0.tintColor = .systemPink
     $0.imageView?.contentMode = .scaleAspectFit
     return $0
   }(UIButton())
   
+//  private let userPhotosButton: UIButton = {
+//    let icon = UIImage(systemName: .photoIcon)
+//    $0.setImage(icon, for: .normal)
+//    $0.imageView?.contentMode = .scaleAspectFit
+//    $0.alpha = Const.defaultOpacity
+//    return $0
+//  }(UIButton())
+  
   private let userPhotosButton: UIButton = {
-    let icon = UIImage(named: .photosImage)
-    $0.setImage(icon, for: .normal)
-    $0.imageView?.contentMode = .scaleAspectFit
+    let icon = UIImage(named: .photosIcon)
+    let imageView = UIImageView(image: icon)
+    imageView.contentMode = .scaleAspectFit
     $0.alpha = Const.defaultOpacity
+    $0.tintColor = .white
+    $0.addSubview(imageView)
+    imageView.setConstraints(left: $0.leftAnchor, centerY: $0.centerYAnchor, pLeft: 10)
+    imageView.heightAnchor.constraint(equalToConstant: Const.iconSize).isActive = true
     return $0
   }(UIButton())
   
   private let userAlbumsButton: UIButton = {
-    let icon = UIImage(systemName: .albumsImage)
+    let icon = UIImage(systemName: .macroIcon)
     $0.setImage(icon, for: .normal)
     $0.imageView?.contentMode = .scaleAspectFit
     $0.tintColor = .white
@@ -260,17 +277,29 @@ final class UserProfileViewControllerRootView: UIView {
     let currentPage = round(contentOffsetX / pageWidth)
     switch Int(currentPage) {
     case .likedPhotos:
+//      let icon = UIImage(systemName: .heartFillIcon)
+//      userLikedPhotosButton.setImage(icon, for: .normal)
+//      userLikedPhotosButton.tintColor = .systemPink
       userLikedPhotosButton.alpha = Const.maxOpacity
       userPhotosButton.alpha = Const.defaultOpacity
       userAlbumsButton.alpha = Const.defaultOpacity
+      userAlbumsButton.tintColor = .white
     case .userHasPhotos:
+//      let icon = UIImage(systemName: .heartIcon)
+//      userLikedPhotosButton.setImage(icon, for: .normal)
+//      userLikedPhotosButton.tintColor = .white
       userLikedPhotosButton.alpha = Const.defaultOpacity
       userPhotosButton.alpha = Const.maxOpacity
       userAlbumsButton.alpha = Const.defaultOpacity
+      userAlbumsButton.tintColor = .white
     default:
+//      let icon = UIImage(systemName: .heartIcon)
+//      userLikedPhotosButton.setImage(icon, for: .normal)
+//      userLikedPhotosButton.tintColor = .white
       userLikedPhotosButton.alpha = Const.defaultOpacity
       userPhotosButton.alpha = Const.defaultOpacity
       userAlbumsButton.alpha = Const.maxOpacity
+      userAlbumsButton.tintColor = .systemGreen
     }
   }
   
@@ -291,6 +320,13 @@ final class UserProfileViewControllerRootView: UIView {
     } else {
       locationStackView.isHidden = false
     }
+    let userLikedPhotos = .spacer + viewModelItem.totalLikes
+    let userPhotos = .tab + viewModelItem.totalPhotos
+    let userAlbums = .spacer + viewModelItem.totalCollections
+    
+    userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
+    userPhotosButton.setTitle(userPhotos, for: .normal)
+    userAlbumsButton.setTitle(userAlbums, for: .normal)
   }
   
   // MARK: Setup Views
@@ -301,6 +337,7 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func addSubviews() {
+//    addSubview(mainBackgroundPhotoView)
     addSubview(gradientView)
     addSubview(mainStackView)
     addSubview(indicatorView)
@@ -309,16 +346,17 @@ final class UserProfileViewControllerRootView: UIView {
   
   private func setupConstraints() {
     setupGradientViewConstraints()
-    setupInfoStackViewConstraints()
+    setupMainStackViewConstraints()
     setupIndicatorViewConstraints()
     setupBottomGradientViewConstraints()
+    mainBackgroundPhotoConstraints()
   }
   
   private func setupGradientViewConstraints() {
     gradientView.fillSuperView()
   }
   
-  private func setupInfoStackViewConstraints() {
+  private func setupMainStackViewConstraints() {
     mainStackView.setConstraints(
       right: rightAnchor,
       bottom: bottomAnchor,
@@ -351,6 +389,16 @@ final class UserProfileViewControllerRootView: UIView {
       pBottom: Const.bottomGradientViewBottomPadding
     )
     bottomGradientView.transform = CGAffineTransform(rotationAngle: .pi)
+  }
+  
+  private func mainBackgroundPhotoConstraints() {
+//    mainBackgroundPhotoView.setConstraints(
+//      top: gradientView.topAnchor,
+//      right: gradientView.rightAnchor,
+//      bottom: gradientView.bottomAnchor,
+//      left: gradientView.leftAnchor,
+//      pBottom: 370
+//    )
   }
   
   private func setupTabIcons() {

@@ -29,7 +29,7 @@ final class AlbumCellMainView: MainImageContainerView {
   
   // MARK: Buttons
   lazy var infoButton: UIButton = {
-    let icon = UIImage(systemName: .cameraMacro)
+    let icon = UIImage(systemName: .cameraMacroIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
     $0.setTitleColor(.label, for: .normal)

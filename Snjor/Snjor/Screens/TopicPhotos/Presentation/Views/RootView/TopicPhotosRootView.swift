@@ -26,7 +26,7 @@ final class TopicPhotosRootView: UIView {
   }(UIView())
   
   private lazy var backBarButton: UIButton = {
-    let icon = UIImage(systemName: .backBarButtonImage)
+    let icon = UIImage(systemName: .backBarButtonIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .systemBackground
     $0.frame = backBarButtonBackgroundView.bounds

@@ -65,7 +65,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
   
   private let heartImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .heartImage)
+    $0.image = UIImage(systemName: .heartFillIcon)
     $0.tintColor = .white
     return $0
   }(UIImageView())

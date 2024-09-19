@@ -60,6 +60,8 @@ enum PhotoDetailViewControllerRootViewConst {
 // MARK: - String
 extension String {
   static let empty = String()
+  static let spacer = " "
+  static let tab = "       "
   static let defaultCamera = "iPhone 4"
   static let jpeg = " JPEG"
   static let iso = "ISO"
