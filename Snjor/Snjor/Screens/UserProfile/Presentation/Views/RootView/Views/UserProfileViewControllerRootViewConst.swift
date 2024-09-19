@@ -31,6 +31,7 @@ enum UserProfileViewControllerRootViewConst {
   static let indicatorHeightMultiplier: CGFloat = 0.7
   static let mainCollectionViewTopPadding: CGFloat = 10
   static let bottomGradientViewBottomPadding: CGFloat = -100
+  static let indicatorViewCornerRadius: CGFloat = 2.0
 }
 
 extension Int {

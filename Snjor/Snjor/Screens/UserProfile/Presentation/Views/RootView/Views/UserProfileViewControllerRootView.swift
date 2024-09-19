@@ -30,6 +30,8 @@ final class UserProfileViewControllerRootView: UIView {
   // MARK: Indicator
   lazy var indicatorView: UIView = {
     $0.backgroundColor = .white
+    $0.layer.cornerRadius = Const.indicatorViewCornerRadius
+    $0.clipsToBounds = true
     return $0
   }(UIView())
   
