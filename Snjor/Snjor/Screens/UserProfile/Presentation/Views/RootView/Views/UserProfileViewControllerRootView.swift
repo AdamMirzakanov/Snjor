@@ -126,6 +126,7 @@ final class UserProfileViewControllerRootView: UIView {
   // MARK: Labels
   private let nameLabel: UILabel = {
     $0.textColor = .white
+    $0.textAlignment = .center
     $0.numberOfLines = .zero
     $0.font = UIFont(
       name: .timesNewRomanBold,
