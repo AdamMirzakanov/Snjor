@@ -31,12 +31,4 @@ struct UserProfileViewModelItem {
   var location: String {
     user.location ?? .empty
   }
-  
-  var instagramUserName: String {
-    user.social?.instagramUsername ?? .empty
-  }
-  
-  var twitterUsername: String {
-    user.social?.twitterUsername ?? .empty
-  }
 }

@@ -147,6 +147,8 @@ final class UserProfileViewControllerRootView: UIView {
   
   private let locationLabel: UILabel = {
     $0.textColor = .white
+    $0.numberOfLines = .zero
+    $0.textAlignment = .center
     $0.font = .systemFont(
       ofSize: Const.defaultFontSize,
       weight: .medium
@@ -192,6 +194,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.spacing = Const.halfStackViewSpacing
     $0.addArrangedSubview(locationImageView)
     $0.addArrangedSubview(locationLabel)
+    $0.isHidden = true
     return $0
   }(UIStackView())
   
@@ -279,6 +282,14 @@ final class UserProfileViewControllerRootView: UIView {
     nameLabel.text = viewModelItem.displayName
     bioLabel.text = viewModelItem.userBio
     locationLabel.text = viewModelItem.location
+    if viewModelItem.userBio == .empty {
+      bioLabel.isHidden = true
+    }
+    if viewModelItem.location == .empty {
+      locationStackView.isHidden = true
+    } else {
+      locationStackView.isHidden = false
+    }
   }
   
   // MARK: Setup Views
