@@ -23,12 +23,6 @@ final class UserProfileCollectionView: MainCollectionView {
       ThirdCell.self,
       forCellWithReuseIdentifier: ThirdCell.reuseID
     )
-    
-    register(
-      HeaderView.self,
-      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-      withReuseIdentifier: HeaderView.reuseID
-    )
   }
   
   override func configureLayout() {
@@ -45,37 +39,5 @@ final class UserProfileCollectionView: MainCollectionView {
     decelerationRate = .fast
     isPagingEnabled = true
     collectionViewLayout = layout
-    
-    //    collectionViewLayout = layoutFactory.createUserProfileCollecitonViewLayout()
-  }
-}
-
-class HeaderView: UICollectionReusableView, Reusable {
-  
-  private let titleLabel = UILabel()
-  
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    setupView()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-    
-  }
-  
-  private func setupView() {
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    addSubview(titleLabel)
-    
-    NSLayoutConstraint.activate([
-      titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-      titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-      titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-    ])
-  }
-  
-  func setTitle(_ text: String) {
-    titleLabel.text = text
   }
 }

@@ -11,7 +11,13 @@ fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
 final class UserProfileViewControllerRootView: UIView {
   // MARK: Private Properties
-  private let screenWidth = UIScreen.main.bounds.width
+  private var screenWidth: CGFloat {
+    UIScreen.main.bounds.width
+  }
+  
+  private lazy var tabButtons = [
+    userLikedPhotosButton, userPhotosButton, userAlbumsButton
+  ]
   
   // MARK: CollectinView
   lazy var userProfileCollectionView: UserProfileCollectionView = {
@@ -82,40 +88,34 @@ final class UserProfileViewControllerRootView: UIView {
   }(MainGradientView())
   
   // MARK: ImageViews
-  private let totalLikesImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .heartImage)
-    $0.tintColor = .white
-    return $0
-  }(UIImageView())
-  
-  private let totalPhotosImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(named: .photosImage)
-    $0.widthAnchor.constraint(
-      equalToConstant: Const.socialIconSize
-    ).isActive = true
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.socialIconSize
-    ).isActive = true
-    $0.alpha = Const.defaultOpacity
-    return $0
-  }(UIImageView())
-  
-  private let totalAlbumsImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .albumsImage)
-    $0.tintColor = .white
-    $0.alpha = Const.defaultOpacity
-    return $0
-  }(UIImageView())
-  
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .locationImage)
     $0.tintColor = .white
     return $0
   }(UIImageView())
+  
+  // MARK: Buttons
+  private let userLikedPhotosButton: UIButton = {
+    let icon = UIImage(systemName: .heartImage)
+    $0.setImage(icon, for: .normal)
+    $0.tintColor = .white
+    return $0
+  }(UIButton())
+  
+  private let userPhotosButton: UIButton = {
+    let icon = UIImage(named: .photosImage)
+    $0.setImage(icon, for: .normal)
+    $0.imageView?.contentMode = .scaleAspectFit
+    return $0
+  }(UIButton())
+  
+  private let userAlbumsButton: UIButton = {
+    let icon = UIImage(systemName: .albumsImage)
+    $0.setImage(icon, for: .normal)
+    $0.tintColor = .white
+    return $0
+  }(UIButton())
   
   // MARK: Labels
   private let nameLabel: UILabel = {
@@ -135,15 +135,6 @@ final class UserProfileViewControllerRootView: UIView {
     $0.font = .systemFont(
       ofSize: Const.defaultFontSize,
       weight: .light
-    )
-    return $0
-  }(UILabel())
-  
-  private let indicatorPositionLabel: UILabel = {
-    $0.textColor = .white
-    $0.font = .systemFont(
-      ofSize: Const.indicatorPositionFontSize,
-      weight: .black
     )
     return $0
   }(UILabel())
@@ -200,15 +191,11 @@ final class UserProfileViewControllerRootView: UIView {
   
   private lazy var iconsStackView: UIStackView = {
     $0.axis = .horizontal
-    $0.distribution = .equalSpacing
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(totalLikesImageView)
-    $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(totalPhotosImageView)
-    $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(totalAlbumsImageView)
-    $0.addArrangedSubview(UIView())
+    $0.distribution = .fillEqually
+    $0.spacing = .zero
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.iconsStackViewHeight
+    ).isActive = true
     return $0
   }(UIStackView())
   
@@ -242,7 +229,6 @@ final class UserProfileViewControllerRootView: UIView {
     $0.addArrangedSubview(infoContainerStackView)
     $0.addArrangedSubview(iconsStackView)
     $0.addArrangedSubview(secondLine)
-//    $0.addArrangedSubview(indicatorPositionLabel)
     $0.addArrangedSubview(userProfileCollectionView)
     return $0
   }(UIStackView())
@@ -262,26 +248,13 @@ final class UserProfileViewControllerRootView: UIView {
     let pageWidth = userProfileCollectionView.bounds.size.width
     let contentOffsetX = userProfileCollectionView.contentOffset.x
     let currentPage = round(contentOffsetX / pageWidth)
-    guard let viewModelItem = viewModel.getUserProfileViewModelItem() else { return }
     switch Int(currentPage) {
     case .likedPhotos:
-      // Обновите UI в соответствии с `likedPhotos`
-//      indicatorPositionLabel.text = .liked + viewModelItem.totalLikes + .photos
-      totalLikesImageView.alpha = Const.maxOpacity
-      totalPhotosImageView.alpha = Const.defaultOpacity
-      totalAlbumsImageView.alpha = Const.defaultOpacity
+      print(#function)
     case .userHasPhotos:
-      // Обновите UI в соответствии с `userHasPhotos`
-//      indicatorPositionLabel.text = .userHas + viewModelItem.totalPhotos + .photos
-      totalLikesImageView.alpha = Const.defaultOpacity
-      totalPhotosImageView.alpha = Const.maxOpacity
-      totalAlbumsImageView.alpha = Const.defaultOpacity
+      print(#function)
     default:
-      // Обновите UI в соответствии с `default`
-//      indicatorPositionLabel.text = .userHas + viewModelItem.totalCollections + .albums
-      totalLikesImageView.alpha = Const.defaultOpacity
-      totalPhotosImageView.alpha = Const.defaultOpacity
-      totalAlbumsImageView.alpha = Const.maxOpacity
+      print(#function)
     }
   }
   
@@ -293,7 +266,6 @@ final class UserProfileViewControllerRootView: UIView {
     profilePhotoView.configure(with: user, url: profilePhotoURL)
     nameLabel.text = viewModelItem.displayName
     bioLabel.text = viewModelItem.userBio
-    indicatorPositionLabel.text = .liked + viewModelItem.totalLikes + .photos
     locationLabel.text = viewModelItem.location
   }
   
@@ -301,13 +273,13 @@ final class UserProfileViewControllerRootView: UIView {
   private func setupViews() {
     addSubviews()
     setupConstraints()
+    setupTabIcons()
   }
   
   private func addSubviews() {
     addSubview(gradientView)
     addSubview(mainStackView)
     addSubview(indicatorView)
-//    addSubview(userProfileCollectionView)
     addSubview(bottomGradientView)
   }
   
@@ -316,7 +288,6 @@ final class UserProfileViewControllerRootView: UIView {
     setupInfoStackViewConstraints()
     setupIndicatorViewConstraints()
     setupBottomGradientViewConstraints()
-//    setupMainHorizontalCollectionViewConstraints()
   }
   
   private func setupGradientViewConstraints() {
@@ -358,13 +329,26 @@ final class UserProfileViewControllerRootView: UIView {
     bottomGradientView.transform = CGAffineTransform(rotationAngle: .pi)
   }
   
-//  private func setupMainHorizontalCollectionViewConstraints() {
-//    userProfileCollectionView.setConstraints(
-//      top: mainStackView.bottomAnchor,
-//      right: rightAnchor,
-//      bottom: bottomAnchor,
-//      left: leftAnchor,
-//      pTop: Const.mainCollectionViewTopPadding
-//    )
-//  }
+  private func setupTabIcons() {
+    for (index, button) in tabButtons.enumerated() {
+      var tabButton = UIButton()
+      tabButton = button
+      tabButton.tag = index
+      tabButton.addTarget(
+        self,
+        action: #selector(tabButtonTapped(_:)),
+        for: .touchUpInside
+      )
+      iconsStackView.addArrangedSubview(tabButton)
+    }
+  }
+  
+  @objc private func tabButtonTapped(_ sender: UIButton) {
+    let indexPath = IndexPath(item: sender.tag, section: .zero)
+    userProfileCollectionView.scrollToItem(
+      at: indexPath,
+      at: .centeredHorizontally,
+      animated: true
+    )
+  }
 }

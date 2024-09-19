@@ -56,6 +56,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     rootView.userProfileCollectionView.dataSource = self
   }
   
+
   deinit {
     print(#function, Self.self, "🟤")
   }

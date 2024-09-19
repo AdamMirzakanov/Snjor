@@ -19,6 +19,5 @@ extension UserProfileViewController: UICollectionViewDelegate {
     rootView.indicatorView.frame.origin.x = position
     rootView.indicatorView.frame.size.width = indicatorWidth
     rootView.updateLabelBasedOnVisibleCell(viewModel: userProfileViewModel)
-    print("😄")
   }
 }
