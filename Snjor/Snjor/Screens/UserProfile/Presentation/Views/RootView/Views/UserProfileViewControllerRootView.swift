@@ -100,6 +100,7 @@ final class UserProfileViewControllerRootView: UIView {
     let icon = UIImage(systemName: .heartImage)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
+    $0.imageView?.contentMode = .scaleAspectFit
     return $0
   }(UIButton())
   
@@ -107,13 +108,16 @@ final class UserProfileViewControllerRootView: UIView {
     let icon = UIImage(named: .photosImage)
     $0.setImage(icon, for: .normal)
     $0.imageView?.contentMode = .scaleAspectFit
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UIButton())
   
   private let userAlbumsButton: UIButton = {
     let icon = UIImage(systemName: .albumsImage)
     $0.setImage(icon, for: .normal)
+    $0.imageView?.contentMode = .scaleAspectFit
     $0.tintColor = .white
+    $0.alpha = Const.defaultOpacity
     return $0
   }(UIButton())
   
@@ -250,11 +254,17 @@ final class UserProfileViewControllerRootView: UIView {
     let currentPage = round(contentOffsetX / pageWidth)
     switch Int(currentPage) {
     case .likedPhotos:
-      print(#function)
+      userLikedPhotosButton.alpha = Const.maxOpacity
+      userPhotosButton.alpha = Const.defaultOpacity
+      userAlbumsButton.alpha = Const.defaultOpacity
     case .userHasPhotos:
-      print(#function)
+      userLikedPhotosButton.alpha = Const.defaultOpacity
+      userPhotosButton.alpha = Const.maxOpacity
+      userAlbumsButton.alpha = Const.defaultOpacity
     default:
-      print(#function)
+      userLikedPhotosButton.alpha = Const.defaultOpacity
+      userPhotosButton.alpha = Const.defaultOpacity
+      userAlbumsButton.alpha = Const.maxOpacity
     }
   }
   
