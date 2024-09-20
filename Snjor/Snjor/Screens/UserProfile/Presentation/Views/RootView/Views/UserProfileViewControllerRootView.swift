@@ -343,11 +343,16 @@ final class UserProfileViewControllerRootView: UIView {
     setupMainStackViewConstraints()
     setupIndicatorViewConstraints()
     setupBottomGradientViewConstraints()
-    mainBackgroundPhotoConstraints()
+    backgroundPhotoConstraints()
   }
   
   private func setupGradientViewConstraints() {
-    gradientView.fillSuperView()
+    gradientView.setConstraints(
+      top: topAnchor,
+      right: rightAnchor,
+      bottom: userProfileCollectionView.topAnchor,
+      left: leftAnchor
+    )
   }
   
   private func setupMainStackViewConstraints() {
@@ -385,13 +390,12 @@ final class UserProfileViewControllerRootView: UIView {
     bottomGradientView.transform = CGAffineTransform(rotationAngle: .pi)
   }
   
-  private func mainBackgroundPhotoConstraints() {
+  private func backgroundPhotoConstraints() {
     backgroundPhotoView.setConstraints(
       top: gradientView.topAnchor,
       right: gradientView.rightAnchor,
       bottom: gradientView.bottomAnchor,
-      left: gradientView.leftAnchor,
-      pBottom: 370
+      left: gradientView.leftAnchor
     )
   }
   

@@ -50,7 +50,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
   // MARK: Setup Data
   func configure(with user: User, showsUsername: Bool = false, url: URL?) {
     super.configure(url: url, photoID: user.id)
-    userNameLabel.text = String(user.totalLikes)
+    userNameLabel.text = user.name
   }
   
   func prepareForReuse() {

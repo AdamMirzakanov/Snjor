@@ -8,9 +8,9 @@
 import CoreGraphics
 
 enum UserProfileViewControllerRootViewConst {
-  static let gradientOpacity: CGFloat = 0.8
-  static let gradientStartLocation: CGFloat = 0.9
-  static let gradientEndLocation: CGFloat = 0.1
+  static let gradientOpacity: CGFloat = 1.0
+  static let gradientStartLocation: CGFloat = 0.8
+  static let gradientEndLocation: CGFloat = 0.01
   static let defaultFontSize: CGFloat = 14.0
   static let indicatorPositionFontSize: CGFloat = 20.0
   static let userNameFontSize: CGFloat = 30.0
