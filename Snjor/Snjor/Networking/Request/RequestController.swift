@@ -121,6 +121,19 @@ enum RequestController {
     return request
   }
   
+  /// Случайная фотография пользователя
+  static func randomUserPhotoRequest(user: User) throws -> URLRequest {
+    let path = photos.rawValue
+    let username = user.username
+    let parameters = PrepareParameters.prepareRandomUserPhotoParameters(username: username)
+    let request = try PrepareRequest.prepareRandomUserPhotoAPIRequest(
+      path: path,
+      username: username,
+      parameters: parameters
+    )
+    return request
+  }
+  
   /// Фотографии внутри категории
   static func topicPhotosRequest(topic: Topic) throws -> URLRequest {
     let topicsPath = topics.rawValue

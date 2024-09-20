@@ -7,9 +7,8 @@
 
 import Combine
 
-final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
+final class PhotoDetailViewModel: BaseViewModel<Photo>, PhotoDetailViewModelProtocol {
   // MARK: Internal Properties
-  var state: PassthroughSubject<StateController, Never>
   var photo: Photo?
   
   // MARK: Private Properties
@@ -20,12 +19,12 @@ final class PhotoDetailViewModel: PhotoDetailViewModelProtocol {
     state: PassthroughSubject<StateController, Never>,
     loadUseCase: any LoadPhotoDetailUseCaseProtocol
   ) {
-    self.state = state
     self.loadUseCase = loadUseCase
+    super.init(state: state)
   }
   
   // MARK: Internal Methods
-  func viewDidLoad() {
+  override func viewDidLoad() {
     state.send(.loading)
     Task {
       await loadPhotoDetailUseCase()

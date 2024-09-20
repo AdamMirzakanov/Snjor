@@ -52,6 +52,13 @@ enum PrepareParameters {
     return parameters
   }
   
+  static func prepareRandomUserPhotoParameters(username: String) -> Parameters {
+    var parameters: Parameters = [:]
+    parameters[.username] = username
+    parameters[.orientation] = .portrait
+    return parameters
+  }
+  
   static func prepareUserAlbumsParameters() -> Parameters {
     nextUserAlbumsPage()
     var parameters: Parameters = [:]
@@ -128,6 +135,9 @@ extension String {
   static let query = "query"
   static let width = "w"
   static let devicePixelRatio = "dpr"
+  static let username = "username"
+  static let orientation = "orientation"
+  static let portrait = "portrait"
 }
 
 private extension Int {

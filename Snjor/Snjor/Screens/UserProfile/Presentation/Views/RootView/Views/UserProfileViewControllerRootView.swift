@@ -36,9 +36,9 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIView())
   
   // MARK: Main Background Photo
-//  var mainBackgroundPhotoView: UIView = {
-//    return $0
-//  }(UIView())
+  var backgroundPhotoView: UserProfilePhotoView = {
+    return $0
+  }(UserProfilePhotoView())
   
   // MARK: User Profile Photo
   private let profilePhotoView: UserProfilePhotoView = {
@@ -277,25 +277,16 @@ final class UserProfileViewControllerRootView: UIView {
     let currentPage = round(contentOffsetX / pageWidth)
     switch Int(currentPage) {
     case .likedPhotos:
-//      let icon = UIImage(systemName: .heartFillIcon)
-//      userLikedPhotosButton.setImage(icon, for: .normal)
-//      userLikedPhotosButton.tintColor = .systemPink
       userLikedPhotosButton.alpha = Const.maxOpacity
       userPhotosButton.alpha = Const.defaultOpacity
       userAlbumsButton.alpha = Const.defaultOpacity
       userAlbumsButton.tintColor = .white
     case .userHasPhotos:
-//      let icon = UIImage(systemName: .heartIcon)
-//      userLikedPhotosButton.setImage(icon, for: .normal)
-//      userLikedPhotosButton.tintColor = .white
       userLikedPhotosButton.alpha = Const.defaultOpacity
       userPhotosButton.alpha = Const.maxOpacity
       userAlbumsButton.alpha = Const.defaultOpacity
       userAlbumsButton.tintColor = .white
     default:
-//      let icon = UIImage(systemName: .heartIcon)
-//      userLikedPhotosButton.setImage(icon, for: .normal)
-//      userLikedPhotosButton.tintColor = .white
       userLikedPhotosButton.alpha = Const.defaultOpacity
       userPhotosButton.alpha = Const.defaultOpacity
       userAlbumsButton.alpha = Const.maxOpacity
@@ -306,8 +297,11 @@ final class UserProfileViewControllerRootView: UIView {
   func setupData(viewModel: any UserProfileViewModelProtocol) {
     let viewModelItem = viewModel.getUserProfileViewModelItem()
     guard let viewModelItem = viewModelItem else { return }
+    let photo = viewModelItem.photo
     let user = viewModelItem.user
+    let backgroundPhotoURL = photo.regularURL
     let profilePhotoURL = user.regularURL
+    backgroundPhotoView.configure(with: viewModelItem.photo, url: backgroundPhotoURL)
     profilePhotoView.configure(with: user, url: profilePhotoURL)
     nameLabel.text = viewModelItem.displayName
     bioLabel.text = viewModelItem.userBio
@@ -337,7 +331,7 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func addSubviews() {
-//    addSubview(mainBackgroundPhotoView)
+    addSubview(backgroundPhotoView)
     addSubview(gradientView)
     addSubview(mainStackView)
     addSubview(indicatorView)
@@ -392,13 +386,13 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func mainBackgroundPhotoConstraints() {
-//    mainBackgroundPhotoView.setConstraints(
-//      top: gradientView.topAnchor,
-//      right: gradientView.rightAnchor,
-//      bottom: gradientView.bottomAnchor,
-//      left: gradientView.leftAnchor,
-//      pBottom: 370
-//    )
+    backgroundPhotoView.setConstraints(
+      top: gradientView.topAnchor,
+      right: gradientView.rightAnchor,
+      bottom: gradientView.bottomAnchor,
+      left: gradientView.leftAnchor,
+      pBottom: 370
+    )
   }
   
   private func setupTabIcons() {

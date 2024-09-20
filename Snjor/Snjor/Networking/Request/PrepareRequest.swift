@@ -87,8 +87,21 @@ enum PrepareRequest {
       throw APIError.URLError
     }
     let profileURL = url.appending(component: username)
-    let likedURL = profileURL.appending(component: "likes")
+    let likedURL = profileURL.appending(component: Const.likesPathComponent)
     let request = prepareURLRequest(url: likedURL)
+    return request
+  }
+  
+  static func prepareRandomUserPhotoAPIRequest(
+    path: String,
+    username: String,
+    parameters: Parameters
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path, parameters: parameters) else {
+      throw APIError.URLError
+    }
+    let randomURL = url.appending(component: Const.randomPathComponent)
+    let request = prepareURLRequest(url: randomURL)
     return request
   }
   
@@ -101,8 +114,8 @@ enum PrepareRequest {
       throw APIError.URLError
     }
     let profileURL = url.appending(component: username)
-    let likedURL = profileURL.appending(component: "photos")
-    let request = prepareURLRequest(url: likedURL)
+    let photosURL = profileURL.appending(component: Const.photosPathComponent)
+    let request = prepareURLRequest(url: photosURL)
     return request
   }
   
@@ -115,8 +128,8 @@ enum PrepareRequest {
       throw APIError.URLError
     }
     let profileURL = url.appending(component: username)
-    let likedURL = profileURL.appending(component: "collections")
-    let request = prepareURLRequest(url: likedURL)
+    let collectionsURL = profileURL.appending(component: Const.collectionsPathComponent)
+    let request = prepareURLRequest(url: collectionsURL)
     return request
   }
   
@@ -177,7 +190,19 @@ enum PrepareRequest {
   
   private static func prepareHeaders() -> Parameters {
     var headers: Parameters = [:]
-    headers["Authorization"] = "Client-ID " + Authorization.accessKey
+    headers[Const.headerKey] = Const.сlientID + Authorization.accessKey
     return headers
   }
+}
+
+// MARK: - Const
+fileprivate typealias Const = PrepareRequestConst
+
+fileprivate enum PrepareRequestConst {
+  static let headerKey = "Authorization"
+  static let сlientID = "Client-ID" + .spacer
+  static let photosPathComponent = "photos"
+  static let likesPathComponent = "likes"
+  static let randomPathComponent = "random"
+  static let collectionsPathComponent = "collections"
 }

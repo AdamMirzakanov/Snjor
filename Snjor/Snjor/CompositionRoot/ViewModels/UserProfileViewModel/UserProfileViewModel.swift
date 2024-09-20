@@ -9,17 +9,21 @@ import Combine
 
 final class UserProfileViewModel: BaseViewModel<User>, UserProfileViewModelProtocol {
   // MARK: Internal Properties
-  var user: User?
+  private var user: User?
+  private var photo: Photo?
   
   // MARK: Private Properties
   private let loadUseCase: any LoadUserProfileUseCaseProtocol
+  private let loadRandomPhotoUseCase: any LoadRandomUserPhotoUseCaseProtocol
   
   // MARK: Initializers
   init(
     state: PassthroughSubject<StateController, Never>,
-    loadUseCase: any LoadUserProfileUseCaseProtocol
+    loadUseCase: any LoadUserProfileUseCaseProtocol,
+    loadRandomPhotoUseCase: any LoadRandomUserPhotoUseCaseProtocol
   ) {
     self.loadUseCase = loadUseCase
+    self.loadRandomPhotoUseCase = loadRandomPhotoUseCase
     super.init(state: state)
   }
   
@@ -28,12 +32,17 @@ final class UserProfileViewModel: BaseViewModel<User>, UserProfileViewModelProto
     state.send(.loading)
     Task {
       await loadUserProfileUseCase()
+      await loadRandomPhotoUseCase()
     }
   }
   
   func getUserProfileViewModelItem() -> UserProfileViewModelItem? {
-    guard let user = user else { return nil }
-    return UserProfileViewModelItem(user: user)
+    guard
+      let user = user,
+      let photo = photo else {
+      return nil
+    }
+    return UserProfileViewModelItem(user: user, photo: photo)
   }
   
   // MARK: Private Methods
@@ -41,6 +50,16 @@ final class UserProfileViewModel: BaseViewModel<User>, UserProfileViewModelProto
     do {
       let user = try await loadUseCase.execute()
       self.user = user
+      state.send(.success)
+    } catch {
+      state.send(.fail(error: error.localizedDescription))
+    }
+  }
+  
+  private func loadRandomPhotoUseCase() async {
+    do {
+      let photo = try await loadRandomPhotoUseCase.execute()
+      self.photo = photo
       state.send(.success)
     } catch {
       state.send(.fail(error: error.localizedDescription))

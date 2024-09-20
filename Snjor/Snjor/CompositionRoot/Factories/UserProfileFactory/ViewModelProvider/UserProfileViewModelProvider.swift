@@ -19,9 +19,14 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
       networkService,
       user: user
     )
+    let loadRandomPhotoUseCase = getRandomPhotoUseCase(
+      networkService,
+      user: user
+    )
     return UserProfileViewModel(
       state: state,
-      loadUseCase: loadUserProfileUseCase
+      loadUseCase: loadUserProfileUseCase,
+      loadRandomPhotoUseCase: loadRandomPhotoUseCase
     )
   }
   
@@ -71,6 +76,19 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     )
     return LoadUserProfileUseCase(
       repository: loadUserProfileRepository,
+      user: user
+    )
+  }
+  
+  private func getRandomPhotoUseCase(
+    _ networkService: NetworkService,
+    user: User
+  ) -> LoadRandomUserPhotoUseCase {
+    let loadRandomUserPhotoRepository = LoadRandomUserPhotoRepository(
+      networkService: networkService
+    )
+    return LoadRandomUserPhotoUseCase(
+      repository: loadRandomUserPhotoRepository,
       user: user
     )
   }
