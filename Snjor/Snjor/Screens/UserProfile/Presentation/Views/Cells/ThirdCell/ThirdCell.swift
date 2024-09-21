@@ -18,6 +18,7 @@ class ThirdCell: UICollectionViewCell {
   
   // MARK: Views
   private let userAlbumsCollectionView: UserAlbumsCollectionView = {
+    $0.backgroundColor = .black
     return $0
   }(UserAlbumsCollectionView())
   

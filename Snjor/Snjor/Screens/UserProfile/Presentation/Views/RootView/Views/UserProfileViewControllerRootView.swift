@@ -27,6 +27,7 @@ final class UserProfileViewControllerRootView: UIView {
   
   // MARK: Collectin View
   lazy var horizontalCollectionView: UserProfileCollectionView = {
+    $0.backgroundColor = .black
     $0.heightAnchor.constraint(
       equalToConstant: Const.heightUserProfileCollectionView
     ).isActive = true

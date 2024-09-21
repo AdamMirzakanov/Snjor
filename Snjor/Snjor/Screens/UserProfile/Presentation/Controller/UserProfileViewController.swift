@@ -51,7 +51,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     userLikedPhotosViewModel.viewDidLoad()
     userPhotosViewModel.viewDidLoad()
     userAlbumsViewModel.viewDidLoad()
-    rootView.backgroundColor = .systemBackground
+    rootView.backgroundColor = .black
     rootView.horizontalCollectionView.delegate = self
     rootView.horizontalCollectionView.dataSource = self
   }

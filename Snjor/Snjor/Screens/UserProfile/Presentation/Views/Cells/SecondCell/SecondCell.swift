@@ -15,6 +15,7 @@ final class SecondCell: UICollectionViewCell {
   
   // MARK: Views
   private let userPhotosCollectionView: UserPhotosCollectionView = {
+    $0.backgroundColor = .black
     return $0
   }(UserPhotosCollectionView())
   
