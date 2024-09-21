@@ -8,6 +8,7 @@
 import UIKit
 
 struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
+  
   // MARK: Private Properties
   private let viewModelProvider: any SearchScreenViewModelProviderProtocol
   private let layoutProvider: LayoutProvider
@@ -58,6 +59,19 @@ struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
       navigation: navigation,
       parentCoordinator: parentCoordinator
     )
+  }
+  
+  func makeUserProfileCoordinator(
+    user: User, navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable {
+    let factory = UserProfileFactory(user: user)
+    return UserProfileCoordinator(
+      factory: factory,
+      navigation: navigation,
+      parentCoordinator: parentCoordinator
+    )
+    
   }
   
   func makeSearchResultScreenCoordinator(

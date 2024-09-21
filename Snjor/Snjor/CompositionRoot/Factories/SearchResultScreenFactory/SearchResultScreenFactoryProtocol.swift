@@ -24,6 +24,12 @@ protocol SearchResultScreenFactoryProtocol {
     parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable
   
+  func makeUserProfileCoordinator(
+    user: User,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable
+  
   func makeSearchResultScreenCoordinator(
     currentScopeIndex: Int,
     with searchTerm: String,

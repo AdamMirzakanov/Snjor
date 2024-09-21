@@ -166,6 +166,7 @@
 		378171642C9F78800089E9DC /* ThirdCell + UserAlbumsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378171632C9F78800089E9DC /* ThirdCell + UserAlbumsCollectionViewDelegate.swift */; };
 		378171662C9F78B70089E9DC /* UserAlbumsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378171652C9F78B70089E9DC /* UserAlbumsCollectionViewDelegate.swift */; };
 		378171692C9F79140089E9DC /* UserAlbumsCollectionView + UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378171682C9F79140089E9DC /* UserAlbumsCollectionView + UICollectionViewDelegate.swift */; };
+		3781716B2C9F8C9F0089E9DC /* SearchResultViewController + UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3781716A2C9F8C9F0089E9DC /* SearchResultViewController + UITableViewDelegate.swift */; };
 		37860BE22C9A17370067FEDC /* UserProfileViewControllerConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37860BE12C9A17360067FEDC /* UserProfileViewControllerConst.swift */; };
 		37860BE42C9A18CF0067FEDC /* UserProfileCascadeLayoutConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37860BE32C9A18CF0067FEDC /* UserProfileCascadeLayoutConst.swift */; };
 		37860BE62C9A193C0067FEDC /* UserLikedPhotoCellConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37860BE52C9A193C0067FEDC /* UserLikedPhotoCellConst.swift */; };
@@ -575,6 +576,7 @@
 		378171632C9F78800089E9DC /* ThirdCell + UserAlbumsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThirdCell + UserAlbumsCollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		378171652C9F78B70089E9DC /* UserAlbumsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAlbumsCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		378171682C9F79140089E9DC /* UserAlbumsCollectionView + UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserAlbumsCollectionView + UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		3781716A2C9F8C9F0089E9DC /* SearchResultViewController + UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultViewController + UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		37860BE12C9A17360067FEDC /* UserProfileViewControllerConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewControllerConst.swift; sourceTree = "<group>"; };
 		37860BE32C9A18CF0067FEDC /* UserProfileCascadeLayoutConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCascadeLayoutConst.swift; sourceTree = "<group>"; };
 		37860BE52C9A193C0067FEDC /* UserLikedPhotoCellConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLikedPhotoCellConst.swift; sourceTree = "<group>"; };
@@ -2309,6 +2311,7 @@
 			children = (
 				37B203E52C7696400017E231 /* CollectionViewDataSource */,
 				37B203F02C76972E0017E231 /* SearchResultViewController + UICollectionViewDelegate.swift */,
+				3781716A2C9F8C9F0089E9DC /* SearchResultViewController + UITableViewDelegate.swift */,
 				37B203EE2C7697250017E231 /* SearchResultViewController + MessageDisplayable.swift */,
 				37B203EC2C76971C0017E231 /* SearchResultViewController + URLSessionDownloadDelegate.swift */,
 				37B203EA2C76970E0017E231 /* SearchResultViewController + SessionIdentifiable.swift */,
@@ -3571,6 +3574,7 @@
 				6680DF5B2C36ADE2001BAAD8 /* PhotoDetailViewControllerRootView.swift in Sources */,
 				37B204002C7699F60017E231 /* SearchResultScreenRootView.swift in Sources */,
 				372B345E2C88728E008FCC88 /* CascadeLayoutConformable.swift in Sources */,
+				3781716B2C9F8C9F0089E9DC /* SearchResultViewController + UITableViewDelegate.swift in Sources */,
 				37BE0ABF2C524A4500C8D45F /* PageScreenTopicPhotosFactory.swift in Sources */,
 				37A502B92C6E4822000221D1 /* SupplementaryViewKind.swift in Sources */,
 				370A00622C8765F1006B87DD /* LastPageValidationUseCaseConst.swift in Sources */,

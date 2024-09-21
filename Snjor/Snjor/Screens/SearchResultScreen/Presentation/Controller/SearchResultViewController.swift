@@ -142,7 +142,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   private func setupCollectionViewDelegate() {
     rootView.photosCollectionView.delegate = self
     rootView.albumsCollectionView.delegate = self
-//    rootView.usersTableViewView.delegate = self
+    rootView.usersTableViewView.delegate = self
   }
   
   private func setupDataSource() {

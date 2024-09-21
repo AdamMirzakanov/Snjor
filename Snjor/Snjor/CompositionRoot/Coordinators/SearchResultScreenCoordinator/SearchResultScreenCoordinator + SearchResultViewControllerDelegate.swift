@@ -24,6 +24,15 @@ extension SearchResultScreenCoordinator: SearchResultViewControllerDelegate {
     addAndStartChildCoordinator(coordinator)
   }
   
+  func userRowDidSelect(_ user: User) {
+    let coordinator = factory.makeUserProfileCoordinator(
+      user: user,
+      navigation: navigation,
+      parentCoordinator: self
+    )
+    addAndStartChildCoordinator(coordinator)
+  }
+  
   func tagCellDidSelect(
     _ tag: Tag,
     with searchTerm: String,
