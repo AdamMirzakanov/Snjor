@@ -73,6 +73,7 @@ extension UserProfileViewController: UICollectionViewDataSource {
     ) as? ThirdCell else {
       return UICollectionViewCell()
     }
+    cell.delegate = self
     cell.configure(with: userAlbumsViewModel)
     return cell
   }

@@ -20,3 +20,10 @@ extension UserProfileViewController: SecondCellDelegate {
     delegate?.didSelectLikedPhoto(photo)
   }
 }
+
+extension UserProfileViewController: ThirdCellDelegate {
+  func thirdCellDidSelectItem(at indexPath: IndexPath) {
+    let album = userAlbumsViewModel.getItem(at: indexPath.item)
+    delegate?.didSelectUserAlbum(album)
+  }
+}

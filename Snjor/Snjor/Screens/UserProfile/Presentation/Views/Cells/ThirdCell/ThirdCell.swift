@@ -12,6 +12,7 @@ class ThirdCell: UICollectionViewCell {
   var userAlbumsSections: [UserAlbumsSection] = []
   var userAlbumsDataSource: UserAlbumsDataSource?
   var userAlbumsViewModel: (any ContentManagingProtocol<Album>)?
+  weak var delegate: (any ThirdCellDelegate)?
   
   // MARK: Private Properties
   private let layoutFactory = UserAlbumsLayoutFactory()
@@ -28,6 +29,7 @@ class ThirdCell: UICollectionViewCell {
     setupViews()
     setupLayout()
     createAlbumsDataSource(for: userAlbumsCollectionView)
+    setupCollectionViewDelegate()
   }
   
   required init?(coder: NSCoder) {
@@ -49,5 +51,9 @@ class ThirdCell: UICollectionViewCell {
   private func setupLayout() {
     let layout = layoutFactory.createAlbumsLayout()
     userAlbumsCollectionView.collectionViewLayout = layout
+  }
+  
+  private func setupCollectionViewDelegate() {
+    userAlbumsCollectionView.userAlbumsDelegate = self
   }
 }
