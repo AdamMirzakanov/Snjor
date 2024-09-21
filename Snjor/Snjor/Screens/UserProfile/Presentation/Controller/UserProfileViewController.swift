@@ -47,13 +47,8 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     userLikedPhotosState()
     userPhotosState()
     userAlbumsState()
-    userProfileViewModel.viewDidLoad()
-    userLikedPhotosViewModel.viewDidLoad()
-    userPhotosViewModel.viewDidLoad()
-    userAlbumsViewModel.viewDidLoad()
-    rootView.backgroundColor = .black
-    rootView.horizontalCollectionView.delegate = self
-    rootView.horizontalCollectionView.dataSource = self
+    initializeViewModels()
+    setupCollectionViewDelegate()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +61,18 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   }
   
   // MARK: Private Methods
+  private func initializeViewModels() {
+    userProfileViewModel.viewDidLoad()
+    userLikedPhotosViewModel.viewDidLoad()
+    userPhotosViewModel.viewDidLoad()
+    userAlbumsViewModel.viewDidLoad()
+  }
+  
+  private func setupCollectionViewDelegate() {
+    rootView.horizontalCollectionView.delegate = self
+    rootView.horizontalCollectionView.dataSource = self
+  }
+  
   private func setupNavigationItems() {
     rootView.setupBarButtonItems(
       navigationItem: navigationItem,

@@ -287,6 +287,7 @@ final class UserProfileViewControllerRootView: UIView {
   // MARK: - Initializers
   init() {
     super.init(frame: .zero)
+    backgroundColor = .black
     setupViews()
   }
   
@@ -295,7 +296,9 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   // MARK: Setup Data
-  func updateButtonStatesForVisiblePage(for viewModel: any UserProfileViewModelProtocol) {
+  func updateButtonStatesForVisiblePage(
+    for viewModel: any UserProfileViewModelProtocol
+  ) {
     let pageWidth = horizontalCollectionView.bounds.size.width
     let contentOffsetX = horizontalCollectionView.contentOffset.x
     let currentPage = Int(round(contentOffsetX / pageWidth))
