@@ -12,6 +12,7 @@ final class FirstCell: UICollectionViewCell {
   var userLikedPhotosSections: [UserLikedPhotosSection] = []
   var userLikedPhotosDataSource: UserLikedPhotosDataSource?
   var userLikedPhotosViewModel: (any ContentManagingProtocol<Photo>)?
+  weak var delegate: (any FirstCellDelegate)?
   
   // MARK: Views
   private let userLikedPhotosCollectionView: UserLikedPhotosCollectionView = {
@@ -25,6 +26,7 @@ final class FirstCell: UICollectionViewCell {
     setupViews()
     setupLayout()
     createPhotosDataSource(for: userLikedPhotosCollectionView)
+    setupCollectionViewDelegate()
   }
   
   required init?(coder: NSCoder) {
@@ -46,5 +48,9 @@ final class FirstCell: UICollectionViewCell {
   private func setupLayout() {
     let cascadeLayout = UserProfileCascadeLayout(with: self)
     userLikedPhotosCollectionView.collectionViewLayout = cascadeLayout
+  }
+  
+  private func setupCollectionViewDelegate() {
+    userLikedPhotosCollectionView.userLikedPhotosCollectionViewDelegate = self
   }
 }

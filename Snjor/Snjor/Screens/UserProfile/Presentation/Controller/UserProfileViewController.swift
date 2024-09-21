@@ -8,13 +8,14 @@
 import UIKit
 import Combine
 
-final class UserProfileViewController: MainViewController<UserProfileViewControllerRootView> {  
+final class UserProfileViewController: MainViewController<UserProfileViewControllerRootView> {
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var userProfileViewModel: any UserProfileViewModelProtocol
   private(set) var userLikedPhotosViewModel: any ContentManagingProtocol<Photo>
   private(set) var userPhotosViewModel: any ContentManagingProtocol<Photo>
   private(set) var userAlbumsViewModel: any ContentManagingProtocol<Album>
+  private(set) weak var delegate: (any UserProfileViewControllerDelegate)?
   
   // MARK: Override Properties
   override var shouldShowTabBarOnScroll: Bool {
@@ -26,12 +27,14 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     userProfileViewModel: any UserProfileViewModelProtocol,
     userLikedPhotosViewModel: any ContentManagingProtocol<Photo>,
     userPhotosViewModel: any ContentManagingProtocol<Photo>,
-    userAlbumsViewModel: any ContentManagingProtocol<Album>
+    userAlbumsViewModel: any ContentManagingProtocol<Album>,
+    delegate: any UserProfileViewControllerDelegate
   ) {
     self.userProfileViewModel = userProfileViewModel
     self.userLikedPhotosViewModel = userLikedPhotosViewModel
     self.userPhotosViewModel = userPhotosViewModel
     self.userAlbumsViewModel = userAlbumsViewModel
+    self.delegate = delegate
     super.init(nibName: nil, bundle: nil)
   }
   

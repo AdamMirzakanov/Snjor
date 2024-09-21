@@ -8,5 +8,19 @@
 import UIKit
 
 protocol UserProfileFactoryProtocol {
-  func makeController() -> UIViewController
+  func makeController(
+    delegate: any UserProfileViewControllerDelegate
+  ) -> UIViewController
+  
+  func makePhotoDetailCoordinator(
+    photo: Photo,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable
+  
+  func makeAlbumPhotosCoordinator(
+    album: Album,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable
 }

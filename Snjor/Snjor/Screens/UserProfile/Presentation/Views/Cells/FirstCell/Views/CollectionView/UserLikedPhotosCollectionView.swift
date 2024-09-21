@@ -8,11 +8,18 @@
 import UIKit
 
 final class UserLikedPhotosCollectionView: MainCollectionView {
+  // MARK: Internal Properties
+  weak var userLikedPhotosCollectionViewDelegate: (any UserLikedPhotosCollectionViewDelegate)?
+  
   // MARK: Internal Methods
   override func cellRegister() {
     register(
       UserLikedPhotoCell.self,
       forCellWithReuseIdentifier: UserLikedPhotoCell.reuseID
     )
+  }
+  
+  override func setupDelegate() {
+    delegate = self
   }
 }
