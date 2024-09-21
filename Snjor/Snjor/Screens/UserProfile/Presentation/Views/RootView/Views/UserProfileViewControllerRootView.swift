@@ -11,6 +11,7 @@ fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
 final class UserProfileViewControllerRootView: UIView {
   // MARK: Private Properties
+  private var backBarButtonAction: (() -> Void)?
   private var screenWidth: CGFloat {
     UIScreen.main.bounds.width
   }
@@ -101,6 +102,15 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(MainGradientView())
   
+  // MARK: Blur Effects
+  private let backBarButtonBlurEffect: UIVisualEffectView = {
+    $0.frame.size.width = Const.fullValue
+    $0.frame.size.height = Const.fullValue
+    $0.layer.cornerRadius = Const.defaultCircle
+    $0.clipsToBounds = true
+    return $0
+  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
+  
   // MARK: ImageViews
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
@@ -110,6 +120,15 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIImageView())
   
   // MARK: Buttons
+  private lazy var backBarButton: UIButton = {
+    let icon = UIImage(systemName: .backBarButtonIcon)
+    $0.setImage(icon, for: .normal)
+    $0.tintColor = .label
+    $0.alpha = Const.defaultOpacity
+    $0.frame = backBarButtonBlurEffect.bounds
+    return $0
+  }(UIButton())
+  
   private let userLikedPhotosButton: UIButton = {
     let icon = UIImage(systemName: .heartFillIcon)
     $0.setImage(icon, for: .normal)
@@ -456,4 +475,55 @@ final class UserProfileViewControllerRootView: UIView {
       animated: true
     )
   }
+  
+  // MARK: Setup Navigation Items
+  func setupBarButtonItems(
+    navigationItem: UINavigationItem,
+    navigationController: UINavigationController?
+  ) {
+    setupBarButtons()
+    setupNavigationItems(navigationItem)
+    configBacBarButtonItem(navigationItem, navigationController)
+  }
+  
+  private func setupNavigationItems(_ navigationItem: UINavigationItem) {
+    navigationItem.leftBarButtonItems = makeLeftBarButtons()
+  }
+  
+  private func setupBarButtons() {
+    backBarButtonBlurEffect.contentView.addSubview(backBarButton)
+  }
+  
+  private func makeLeftBarButtons() -> [UIBarButtonItem] {
+    let backBarButton = UIBarButtonItem(customView: backBarButtonBlurEffect)
+    let barButtonItems = [backBarButton]
+    return barButtonItems
+  }
+  
+  @objc private func backBarButtonTapped() {
+    backBarButtonAction?()
+  }
+  
+  func configBacBarButtonItem(
+    _ navigationItem: UINavigationItem,
+    _ navigationController: UINavigationController?
+  ) {
+    setupBackButtonAction(navigationController)
+    setupBackBarButtonTarget()
+  }
+  
+  private func setupBackButtonAction(_ navigationController: UINavigationController?) {
+    backBarButtonAction = { [weak navigationController] in
+      navigationController?.popViewController(animated: true)
+    }
+  }
+  
+  private func setupBackBarButtonTarget() {
+    backBarButton.addTarget(
+      self,
+      action: #selector(backBarButtonTapped),
+      for: .touchUpInside
+    )
+  }
+  
 }

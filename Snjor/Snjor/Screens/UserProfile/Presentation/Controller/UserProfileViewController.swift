@@ -56,12 +56,23 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     rootView.horizontalCollectionView.dataSource = self
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setupNavigationItems()
+  }
 
   deinit {
     print(#function, Self.self, "🟤")
   }
   
   // MARK: Private Methods
+  private func setupNavigationItems() {
+    rootView.setupBarButtonItems(
+      navigationItem: navigationItem,
+      navigationController: navigationController
+    )
+  }
+  
   private func resetPage() {
     PrepareParameters.userPhotosPage = .zero
     PrepareParameters.userLikedPhotosPage = .zero

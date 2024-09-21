@@ -17,8 +17,8 @@ enum UserProfileViewControllerRootViewConst {
   static let profilePhotoSize: CGFloat = 70.0
   static let iconsStackViewHeight: CGFloat = 17.0
   static let iconSize: CGFloat = 17.0
-  static let profilePhotoCircle: CGFloat = profilePhotoSize / 2
-  static let halfStackViewSpacing: CGFloat = stackViewSpacing / 2
+  static let profilePhotoCircle: CGFloat = profilePhotoSize / 2.0
+  static let halfStackViewSpacing: CGFloat = stackViewSpacing / 2.0
   static let stackViewSpacing: CGFloat = 16.0
   static let defaultOpacity: CGFloat = 0.4
   static let maxOpacity: CGFloat = 1.0
@@ -29,11 +29,13 @@ enum UserProfileViewControllerRootViewConst {
   static let infoStackViewPadding: CGFloat = 40.0
   static let indicatorWidthDivision: CGFloat = 3.0
   static let indicatorHeightMultiplier: CGFloat = 0.7
-  static let mainCollectionViewTopPadding: CGFloat = 10
-  static let bottomGradientViewBottomPadding: CGFloat = -100
+  static let mainCollectionViewTopPadding: CGFloat = 10.0
+  static let bottomGradientViewBottomPadding: CGFloat = -100.0
   static let indicatorViewCornerRadius: CGFloat = 2.0
-  static let backgroundGradientViewBottomPadding: CGFloat = 20
-  static let userPhotosButtonLeftPadding: CGFloat = 10
+  static let backgroundGradientViewBottomPadding: CGFloat = 20.0
+  static let userPhotosButtonLeftPadding: CGFloat = 10.0
+  static let fullValue = 32.0
+  static let defaultCircle = fullValue / 2.0
 }
 
 extension Int {
