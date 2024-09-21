@@ -51,6 +51,6 @@ final class FirstCell: UICollectionViewCell {
   }
   
   private func setupCollectionViewDelegate() {
-    userLikedPhotosCollectionView.userLikedPhotosCollectionViewDelegate = self
+    userLikedPhotosCollectionView.likedPhotosDelegate = self
   }
 }

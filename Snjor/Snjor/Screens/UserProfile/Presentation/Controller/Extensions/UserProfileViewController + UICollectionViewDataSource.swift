@@ -58,6 +58,7 @@ extension UserProfileViewController: UICollectionViewDataSource {
     ) as? SecondCell else {
       return UICollectionViewCell()
     }
+    cell.delegate = self
     cell.configure(with: userPhotosViewModel)
     return cell
   }
@@ -74,12 +75,5 @@ extension UserProfileViewController: UICollectionViewDataSource {
     }
     cell.configure(with: userAlbumsViewModel)
     return cell
-  }
-}
-
-extension UserProfileViewController: FirstCellDelegate {
-  func firstCellDidSelectItem(at indexPath: IndexPath) {
-    let photo = userLikedPhotosViewModel.getItem(at: indexPath.item)
-    delegate?.didSelectLikedPhoto(photo)
   }
 }

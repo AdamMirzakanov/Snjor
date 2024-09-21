@@ -1,5 +1,5 @@
 //
-//  UserLikedPhotosCollectionView + UICollectionViewDelegate.swift
+//  UserPhotosCollectionView + UICollectionViewDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 21.09.2024.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-extension UserLikedPhotosCollectionView: UICollectionViewDelegate {
+extension UserPhotosCollectionView: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-    likedPhotosDelegate?.collectionViewDidSelectItem(at: indexPath)
+    userPhotosDelegate?.collectionViewDidSelectItem(at: indexPath)
   }
 }

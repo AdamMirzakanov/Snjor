@@ -9,7 +9,7 @@ import UIKit
 
 final class UserLikedPhotosCollectionView: MainCollectionView {
   // MARK: Internal Properties
-  weak var userLikedPhotosCollectionViewDelegate: (any UserLikedPhotosCollectionViewDelegate)?
+  weak var likedPhotosDelegate: (any UserLikedPhotosCollectionViewDelegate)?
   
   // MARK: Internal Methods
   override func cellRegister() {

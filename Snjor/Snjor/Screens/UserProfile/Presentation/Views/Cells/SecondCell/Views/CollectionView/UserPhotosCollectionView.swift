@@ -8,6 +8,9 @@
 import UIKit
 
 final class UserPhotosCollectionView: MainCollectionView {
+  // MARK: Internal Properties
+  weak var userPhotosDelegate: (any UserPhotosCollectionViewDelegate)?
+  
   // MARK: Internal Methods
   override func cellRegister() {
     register(
@@ -15,5 +18,8 @@ final class UserPhotosCollectionView: MainCollectionView {
       forCellWithReuseIdentifier: UserPhotoCell.reuseID
     )
   }
+  
+  override func setupDelegate() {
+    delegate = self
+  }
 }
-
