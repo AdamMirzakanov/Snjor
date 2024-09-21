@@ -52,8 +52,8 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     userPhotosViewModel.viewDidLoad()
     userAlbumsViewModel.viewDidLoad()
     rootView.backgroundColor = .systemBackground
-    rootView.userProfileCollectionView.delegate = self
-    rootView.userProfileCollectionView.dataSource = self
+    rootView.horizontalCollectionView.delegate = self
+    rootView.horizontalCollectionView.dataSource = self
   }
   
 
@@ -89,7 +89,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
         guard let self = self else { return }
         self.handleState(state) {
           print(#function, Self.self)
-          self.rootView.userProfileCollectionView.reloadData()
+          self.rootView.horizontalCollectionView.reloadData()
         }
       }
       .store(in: &cancellable)
@@ -103,7 +103,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
         guard let self = self else { return }
         self.handleState(state) {
           print(#function, Self.self)
-          self.rootView.userProfileCollectionView.reloadData()
+          self.rootView.horizontalCollectionView.reloadData()
         }
       }
       .store(in: &cancellable)
@@ -116,7 +116,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
       .sink { [weak self] state in
         guard let self = self else { return }
         self.handleState(state) {
-          self.rootView.userProfileCollectionView.reloadData()
+          self.rootView.horizontalCollectionView.reloadData()
         }
       }
       .store(in: &cancellable)

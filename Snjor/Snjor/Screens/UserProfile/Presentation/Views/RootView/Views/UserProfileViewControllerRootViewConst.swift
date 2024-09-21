@@ -9,8 +9,8 @@ import CoreGraphics
 
 enum UserProfileViewControllerRootViewConst {
   static let gradientOpacity: CGFloat = 1.0
-  static let gradientStartLocation: CGFloat = 0.8
-  static let gradientEndLocation: CGFloat = 0.01
+  static let gradientStartLocation: CGFloat = 1.0
+  static let gradientEndLocation: CGFloat = 0.1
   static let defaultFontSize: CGFloat = 14.0
   static let indicatorPositionFontSize: CGFloat = 20.0
   static let userNameFontSize: CGFloat = 30.0
@@ -25,13 +25,15 @@ enum UserProfileViewControllerRootViewConst {
   static let lineWidth: CGFloat = 1.0
   static let rightPadding: CGFloat = 0.0
   static let leftPadding: CGFloat = 0.0
-  static let heightUserProfileCollectionView: CGFloat = 300.0
+  static let heightUserProfileCollectionView: CGFloat = 350.0
   static let infoStackViewPadding: CGFloat = 40.0
   static let indicatorWidthDivision: CGFloat = 3.0
   static let indicatorHeightMultiplier: CGFloat = 0.7
   static let mainCollectionViewTopPadding: CGFloat = 10
   static let bottomGradientViewBottomPadding: CGFloat = -100
   static let indicatorViewCornerRadius: CGFloat = 2.0
+  static let backgroundGradientViewBottomPadding: CGFloat = 20
+  static let userPhotosButtonLeftPadding: CGFloat = 10
 }
 
 extension Int {

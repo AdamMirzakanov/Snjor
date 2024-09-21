@@ -18,6 +18,6 @@ extension UserProfileViewController: UICollectionViewDelegate {
     let position = progress * indicatorWidth
     rootView.indicatorView.frame.origin.x = position
     rootView.indicatorView.frame.size.width = indicatorWidth
-    rootView.updateLabelBasedOnVisibleCell(viewModel: userProfileViewModel)
+    rootView.updateButtonStatesForVisiblePage(for: userProfileViewModel)
   }
 }

@@ -26,18 +26,15 @@ final class UserProfileCollectionView: MainCollectionView {
   }
   
   override func configureLayout() {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
+    flowlayout.scrollDirection = .horizontal
     let screenWidth = UIScreen.main.bounds.width
-    layout.itemSize = CGSize(
+    flowlayout.itemSize = CGSize(
       width: screenWidth,
       height: UserProfileViewControllerRootViewConst.heightUserProfileCollectionView
     )
-    layout.sectionInset = .zero
-    layout.minimumLineSpacing = .zero
-    layout.minimumInteritemSpacing = .zero
-    decelerationRate = .fast
+    flowlayout.minimumLineSpacing = .zero
+    flowlayout.minimumInteritemSpacing = .zero
     isPagingEnabled = true
-    collectionViewLayout = layout
+    collectionViewLayout = flowlayout
   }
 }
