@@ -27,6 +27,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     configureWindow(with: windowScene)
     initializeAppCoordinator()
     startAppCoordinator()
+    setAppThemeToDarkMode(for: window)
   }
   
   // MARK: Private Methods
@@ -51,5 +52,11 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   private func startAppCoordinator() {
     appCoordinator?.start()
+  }
+  
+  private func setAppThemeToDarkMode(for window: UIWindow?) {
+    if #available(iOS 13.0, *) {
+      window?.overrideUserInterfaceStyle = .dark
+    }
   }
 }
