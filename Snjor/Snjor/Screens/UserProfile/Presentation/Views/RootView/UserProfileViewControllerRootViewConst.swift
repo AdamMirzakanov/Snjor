@@ -36,11 +36,13 @@ enum UserProfileViewControllerRootViewConst {
   static let userPhotosButtonLeftPadding: CGFloat = 10.0
   static let fullValue = 32.0
   static let defaultCircle = fullValue / 2.0
+  static let duration: CGFloat = 0.12
+  static let scale: CGFloat = 1.4
 }
 
 extension Int {
   static let likedPhotos = 0
-  static let userHasPhotos = 1
+  static let userPhotos = 1
 }
 
 extension String {

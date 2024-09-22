@@ -21,7 +21,7 @@ extension String {
   static let photoListSelectedItemIcon = "photo.fill.on.rectangle.fill"
   static let calendarIcon = "calendar"
   static let rightChevronIcon = "chevron.right"
-  static let photosIcon = "photos"
+  static let customPhotoIcon = "photos"
   static let photoFillIcon = "photo.fill"
   static let photoIcon = "photo"
   static let photoStackFillIcon = "photo.stack.fill"

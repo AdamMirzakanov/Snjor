@@ -139,20 +139,10 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton())
   
   private let userPhotosButton: UIButton = {
-    let icon = UIImage(named: .photosIcon)
-    let imageView = UIImageView(image: icon)
-    imageView.contentMode = .scaleAspectFit
-    $0.alpha = Const.defaultOpacity
+    let icon = UIImage(systemName: .photoIcon)
+    $0.setImage(icon, for: .normal)
     $0.tintColor = .white
-    $0.addSubview(imageView)
-    imageView.setConstraints(
-      left: $0.leftAnchor,
-      centerY: $0.centerYAnchor,
-      pLeft: Const.userPhotosButtonLeftPadding
-    )
-    imageView.heightAnchor.constraint(
-      equalToConstant: Const.iconSize
-    ).isActive = true
+    $0.imageView?.contentMode = .scaleAspectFit
     return $0
   }(UIButton())
   
@@ -161,7 +151,6 @@ final class UserProfileViewControllerRootView: UIView {
     $0.setImage(icon, for: .normal)
     $0.imageView?.contentMode = .scaleAspectFit
     $0.tintColor = .white
-    $0.alpha = Const.defaultOpacity
     return $0
   }(UIButton())
   
@@ -305,7 +294,7 @@ final class UserProfileViewControllerRootView: UIView {
     switch currentPage {
     case .likedPhotos:
       updateUserLikedPhotosButtonState()
-    case .userHasPhotos:
+    case .userPhotos:
       updateUserPhotosButtonState()
     default:
       updateUserAlbumsButtonState()
@@ -315,25 +304,30 @@ final class UserProfileViewControllerRootView: UIView {
   private func updateUserLikedPhotosButtonState() {
     let userLikedIcon = UIImage(systemName: .heartFillIcon)
     userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    userLikedPhotosButton.alpha = Const.maxOpacity
-    userPhotosButton.alpha = Const.defaultOpacity
-    userAlbumsButton.alpha = Const.defaultOpacity
+    
+    let userPhotosIcon = UIImage(systemName: .photoIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
     userAlbumsButton.tintColor = .white
   }
   
   private func updateUserPhotosButtonState() {
     let userLikedIcon = UIImage(systemName: .heartIcon)
     userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    userPhotosButton.alpha = Const.maxOpacity
-    userAlbumsButton.alpha = Const.defaultOpacity
+    
+    let userPhotosIcon = UIImage(systemName: .photoFillIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
     userAlbumsButton.tintColor = .white
   }
   
   private func updateUserAlbumsButtonState() {
     let userLikedIcon = UIImage(systemName: .heartIcon)
     userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    userPhotosButton.alpha = Const.defaultOpacity
-    userAlbumsButton.alpha = Const.maxOpacity
+    
+    let userPhotosIcon = UIImage(systemName: .photoIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
     userAlbumsButton.tintColor = .systemGreen
   }
   
@@ -361,7 +355,7 @@ final class UserProfileViewControllerRootView: UIView {
   
   private func configureButtons(viewModelItem: UserProfileViewModelItem) {
     let userLikedPhotos = .spacer + viewModelItem.totalLikes
-    let userPhotos = .tab + viewModelItem.totalPhotos
+    let userPhotos = .spacer + viewModelItem.totalPhotos
     let userAlbums = .spacer + viewModelItem.totalCollections
     userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
     userPhotosButton.setTitle(userPhotos, for: .normal)
@@ -478,6 +472,7 @@ final class UserProfileViewControllerRootView: UIView {
       at: .centeredHorizontally,
       animated: true
     )
+    animateButton(sender)
   }
   
   // MARK: Setup Navigation Items
@@ -530,4 +525,18 @@ final class UserProfileViewControllerRootView: UIView {
     )
   }
   
+  // MARK: Animate Buttons
+  private func animateButton(_ sender: UIButton) {
+    UIView.animate(withDuration: Const.duration) {
+      let scaleTransform = CGAffineTransform(
+        scaleX: Const.scale,
+        y: Const.scale
+      )
+      sender.transform = scaleTransform
+    } completion: { _ in
+      UIView.animate(withDuration: Const.duration) {
+        sender.transform = .identity
+      }
+    }
+  }
 }
