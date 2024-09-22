@@ -31,4 +31,5 @@ extension String {
   static let instIcon = "inst"
   static let twitIcon = "twit"
   static let photoCap = "photoCap"
+  static let heartSlash = "heart.slash"
 }

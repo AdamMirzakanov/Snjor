@@ -45,6 +45,14 @@ extension UserProfileViewController: UICollectionViewDataSource {
     }
     cell.delegate = self
     cell.configure(with: userLikedPhotosViewModel)
+    if cell.userLikedPhotosViewModel?.itemsCount == .zero {
+      rootView.noLikedPhotosStackView.isHidden = false
+      rootView.userLikedPhotosButton.setTitle(.empty, for: .normal)
+      rootView.userLikedPhotosButton.tintColor = .systemGray
+    } else {
+      rootView.noLikedPhotosStackView.isHidden = true
+      rootView.userLikedPhotosButton.tintColor = .systemPink
+    }
     return cell
   }
   

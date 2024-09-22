@@ -120,6 +120,20 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
+  private let heartSlashImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(systemName: .heartSlash)
+    $0.tintColor = .white
+    $0.alpha = Const.defaultOpacity
+    $0.heightAnchor.constraint(
+      equalToConstant: 100
+    ).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: 100
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
   // MARK: Buttons
   private lazy var backBarButton: UIButton = {
     let icon = UIImage(systemName: .backBarButtonIcon)
@@ -130,7 +144,7 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIButton())
   
-  private let userLikedPhotosButton: UIButton = {
+  let userLikedPhotosButton: UIButton = {
     let icon = UIImage(systemName: .heartFillIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .systemPink
@@ -155,6 +169,19 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton())
   
   // MARK: Labels
+  private let noLikedPhotosLabel: UILabel = {
+    $0.text = "No likes yet!"
+    $0.textColor = .white
+    $0.alpha = Const.defaultOpacity
+    $0.textAlignment = .center
+    $0.numberOfLines = .zero
+    $0.font = .systemFont(
+      ofSize: Const.userNameFontSize,
+      weight: .bold
+    )
+    return $0
+  }(UILabel())
+  
   private let nameLabel: UILabel = {
     $0.textColor = .white
     $0.textAlignment = .center
@@ -208,6 +235,17 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIView())
   
   // MARK: StackViews
+  lazy var noLikedPhotosStackView: UIStackView = {
+    $0.isHidden = true
+    $0.axis = .vertical
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.stackViewSpacing
+    $0.addArrangedSubview(heartSlashImageView)
+    $0.addArrangedSubview(noLikedPhotosLabel)
+    return $0
+  }(UIStackView())
+  
   private lazy var profilePhotoAndNameLabelStackView: UIStackView = {
     $0.axis = .vertical
     $0.distribution = .fill
@@ -309,6 +347,12 @@ final class UserProfileViewControllerRootView: UIView {
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = .white
+    
+    if userLikedPhotosButton.tintColor == .systemGray {
+      noLikedPhotosStackView.isHidden = false
+    } else {
+      noLikedPhotosStackView.isHidden = true
+    }
   }
   
   private func updateUserPhotosButtonState() {
@@ -319,6 +363,7 @@ final class UserProfileViewControllerRootView: UIView {
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = .white
+    noLikedPhotosStackView.isHidden = true
   }
   
   private func updateUserAlbumsButtonState() {
@@ -329,6 +374,7 @@ final class UserProfileViewControllerRootView: UIView {
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = .systemGreen
+    noLikedPhotosStackView.isHidden = true
   }
   
   func setupData(viewModel: any UserProfileViewModelProtocol) {
@@ -377,6 +423,7 @@ final class UserProfileViewControllerRootView: UIView {
     mainView.addSubview(mainStackView)
     mainView.addSubview(indicatorView)
     mainView.addSubview(bottomGradientView)
+    mainView.addSubview(noLikedPhotosStackView)
   }
   
   private func setupConstraints() {
@@ -387,6 +434,7 @@ final class UserProfileViewControllerRootView: UIView {
     setupBottomGradientViewConstraints()
     backgroundPhotoConstraints()
     setupUserProfileCollectionViewConstraints()
+    noLikesStackViewConstraints()
   }
   
   private func setupGradientViewConstraints() {
@@ -448,6 +496,14 @@ final class UserProfileViewControllerRootView: UIView {
       right: rightAnchor,
       bottom: backgroundGradientView.bottomAnchor,
       left: leftAnchor
+    )
+  }
+  
+  private func noLikesStackViewConstraints() {
+    noLikedPhotosStackView.setConstraints(
+      centerY: horizontalCollectionView.centerYAnchor,
+      centerX: horizontalCollectionView.centerXAnchor,
+      pCenterY: -35
     )
   }
   
