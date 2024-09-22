@@ -1,5 +1,5 @@
 //
-//  UserProfileLayoutFactory.swift
+//  UserProfileCollectionViewLayoutFactory.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 18.09.2024.
@@ -7,13 +7,15 @@
 
 import UIKit
 
-fileprivate typealias Const = UserProfileLayoutFactoryConst
+fileprivate typealias Const = UserProfileCollectionViewLayoutFactoryConst
 
+// MARK: - Section
 enum UserProfileSection: Hashable {
   case main
 }
 
-struct UserProfileLayoutFactory {
+// MARK: - Class
+struct UserProfileCollectionViewLayoutFactory {
   // MARK: Internal Properties
   var userProfileSection: [UserProfileSection] = [.main]
 

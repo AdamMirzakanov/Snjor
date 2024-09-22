@@ -46,7 +46,7 @@ final class FirstCell: UICollectionViewCell {
   }
   
   private func setupLayout() {
-    let cascadeLayout = UserProfileCascadeLayout(with: self)
+    let cascadeLayout = UserPhotosCascadeLayout(with: self)
     userLikedPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
   

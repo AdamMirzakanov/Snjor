@@ -8,7 +8,7 @@
 import UIKit
 
 final class UserProfileCollectionView: MainCollectionView {
-  private let layoutFactory = UserProfileLayoutFactory()
+  private let layoutFactory = UserProfileCollectionViewLayoutFactory()
   
   override func cellRegister() {
     register(
