@@ -7,4 +7,5 @@
 
 protocol PhotoDetailRootViewDelegate: AnyObject {
   func didTapDownloadButton()
+  func didTapAvatar()
 }

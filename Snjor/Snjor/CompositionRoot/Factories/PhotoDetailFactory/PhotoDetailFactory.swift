@@ -52,4 +52,17 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
       parentCoordinator: parentCoordinator
     )
   }
+  
+  func makeUserProfileCoordinator(
+    user: User,
+    navigation: any Navigable,
+    parentCoordinator: any ParentCoordinator
+  ) -> any Coordinatable {
+    let factory = UserProfileFactory(user: user)
+    return UserProfileCoordinator(
+      factory: factory,
+      navigation: navigation,
+      parentCoordinator: parentCoordinator
+    )
+  }
 }

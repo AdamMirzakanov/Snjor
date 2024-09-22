@@ -19,4 +19,13 @@ extension PhotoDetailCoordinator: PhotoDetailViewControllerDelegate {
     )
     addAndStartChildCoordinator(coordinator)
   }
+  
+  func didRequestProfileScreen(_ user: User) {
+    let coordinator = factory.makeUserProfileCoordinator(
+      user: user,
+      navigation: navigation,
+      parentCoordinator: self
+    )
+    addAndStartChildCoordinator(coordinator)
+  }
 }

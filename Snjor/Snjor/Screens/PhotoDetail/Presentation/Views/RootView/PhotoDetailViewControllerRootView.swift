@@ -79,7 +79,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   @objc private func openProfile(_ recognizer: UITapGestureRecognizer) {
     switch recognizer.state {
     case .ended:
-      print("😁")
+      delegate?.didTapAvatar()
     default:
       break
     }
