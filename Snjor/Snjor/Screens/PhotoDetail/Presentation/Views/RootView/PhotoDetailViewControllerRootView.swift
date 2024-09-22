@@ -35,7 +35,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(PhotoDetailPhotoView())
   
-  let profilePhotoView: UserProfilePhotoView = {
+  let avatarView: UserProfilePhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.profilePhotoCircle
     $0.clipsToBounds = true
@@ -49,7 +49,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UserProfilePhotoView())
   
   // MARK: Gesture
-  private lazy var tapGesture: UITapGestureRecognizer = {
+  private lazy var showAndHidePhotoInfoTapGesture: UITapGestureRecognizer = {
     return $0
   }(
     UITapGestureRecognizer(
@@ -62,6 +62,24 @@ final class PhotoDetailViewControllerRootView: UIView {
     switch recognizer.state {
     case .ended:
       showAndHidePhotoInfo()
+    default:
+      break
+    }
+  }
+  
+  private lazy var openProfileTapGesture: UITapGestureRecognizer = {
+    return $0
+  }(
+    UITapGestureRecognizer(
+      target: self,
+      action: #selector(openProfile(_:))
+    )
+  )
+  
+  @objc private func openProfile(_ recognizer: UITapGestureRecognizer) {
+    switch recognizer.state {
+    case .ended:
+      print("😁")
     default:
       break
     }
@@ -203,7 +221,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIImageView())
   
   // MARK: Labels
-  let nameLabel: UILabel = {
+  let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.numberOfLines = .zero
     $0.font = UIFont(
@@ -401,13 +419,22 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIView())
   
   // MARK: StackViews
+  private lazy var avatarAndUserNameLabelStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.middleValue
+    $0.addArrangedSubview(avatarView)
+    $0.addArrangedSubview(userNameLabel)
+    return $0
+  }(UIStackView())
+  
   private lazy var profileAndInfoButtonStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = Const.middleValue
-    $0.addArrangedSubview(profilePhotoView)
-    $0.addArrangedSubview(nameLabel)
+    $0.addArrangedSubview(avatarAndUserNameLabelStackView)
     let spacerView = UIView()
     $0.addArrangedSubview(spacerView)
     $0.addArrangedSubview(infoButton)
@@ -565,6 +592,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     super.init(frame: .zero)
     setupViews()
     hidePhotoInfo()
+    setupGestureRecognizers()
   }
   
   required init?(coder: NSCoder) {
@@ -579,8 +607,8 @@ final class PhotoDetailViewControllerRootView: UIView {
     let regularURL = photo.regularURL
     let profileImageURL = photo.profileImageURL
     photoView.configure(with: photo, url: regularURL)
-    profilePhotoView.configure(with: photo, url: profileImageURL)
-    nameLabel.text = viewModelItem.displayName
+    avatarView.configure(with: photo, url: profileImageURL)
+    userNameLabel.text = viewModelItem.displayName
     likesLabel.text = viewModelItem.likes
     createdAt(from: viewModelItem.createdAt)
     resolutionLabel.text = viewModelItem.resolution
@@ -617,7 +645,11 @@ final class PhotoDetailViewControllerRootView: UIView {
     addSubview(leftStackView)
     addSubview(centerLine)
     addSubview(rightStackView)
-    photoView.addGestureRecognizer(tapGesture)
+  }
+  
+  private func setupGestureRecognizers() {
+    photoView.addGestureRecognizer(showAndHidePhotoInfoTapGesture)
+    avatarAndUserNameLabelStackView.addGestureRecognizer(openProfileTapGesture)
   }
   
   private func setupConstraints() {
