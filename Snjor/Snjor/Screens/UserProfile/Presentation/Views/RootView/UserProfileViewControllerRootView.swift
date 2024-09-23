@@ -266,7 +266,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.textAlignment = .center
     $0.numberOfLines = .zero
     $0.font = UIFont(
-      name: .timesNewRomanBold,
+      name: .impact,
       size: Const.userNameFontSize
     )
     return $0

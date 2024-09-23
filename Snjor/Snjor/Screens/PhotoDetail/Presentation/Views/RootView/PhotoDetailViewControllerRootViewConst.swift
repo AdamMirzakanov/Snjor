@@ -23,7 +23,7 @@ enum PhotoDetailViewControllerRootViewConst {
   static let gradientStartLocation: CGFloat = 0.9
   static let gradientEndLocation: CGFloat = 0.1
   static let gradientOpacity: CGFloat = 0.8
-  static let userNameFontSize: CGFloat = 20.0
+  static let userNameFontSize: CGFloat = 22.0
   static let leftPadding: CGFloat = 20.0
   static let rightPadding: CGFloat = 20.0
   static let halfRightPadding: CGFloat = -10.0
@@ -43,18 +43,16 @@ enum PhotoDetailViewControllerRootViewConst {
   static let middleOpacity: CGFloat = 0.6
   static let maxOpacity: CGFloat = 1.0
   static let defaultFontSize: CGFloat = 14.0
-  static let middleFontSize: CGFloat = 16.0
-  static let fullFontSize: CGFloat = 24.0
   static let tagFontSize: CGFloat = 11.0
   static let profitStackViewSpacing: CGFloat = 20.0
-  static let smallValue = half * half                             // 4
-  static let defaultValue = smallValue * half                     // 8
-  static let middleValue = defaultValue * half                    // 16
-  static let fullValue = middleValue * half                       // 32
-  static let maxValue = fullValue + smallValue                    // 36
+  static let smallValue = half * half                         // 4
+  static let defaultValue = smallValue * half                 // 8
+  static let middleValue = defaultValue * half                // 16
+  static let fullValue = middleValue * half                   // 32
+  static let maxValue = fullValue + smallValue                // 36
   static let profilePhotoSize = maxValue + defaultValue       // 44
-  static let defaultCircle = fullValue / half                     // 16
-  static let profilePhotoCircle = profilePhotoSize / half // 20
+  static let defaultCircle = fullValue / half                 // 16
+  static let profilePhotoCircle = profilePhotoSize / half     // 20
 }
 
 // MARK: - String
@@ -77,5 +75,6 @@ extension String {
   static let qhd2K = "2K QHD"
   static let fullHD = "Full HD"
   static let hd = "HD"
+  static let impact = "Impact"
   static let timesNewRomanBold = "Times New Roman Bold"
 }

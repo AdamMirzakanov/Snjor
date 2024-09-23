@@ -225,7 +225,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.textColor = .white
     $0.numberOfLines = .zero
     $0.font = UIFont(
-      name: .timesNewRomanBold,
+      name: .impact,
       size: Const.userNameFontSize
     )
     return $0
