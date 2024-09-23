@@ -35,6 +35,7 @@ extension ThirdCell {
       albumsSnapshot,
       animatingDifferences: true
     )
+    checkCollectionViewState()
   }
   
   // MARK: Create Data Source
@@ -92,5 +93,10 @@ extension ThirdCell {
     let viewModelItem = userAlbumsViewModel.getViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
+  }
+  
+  private func checkCollectionViewState() {
+    let numberOfItems = userAlbumsCollectionView.numberOfItems(inSection: .zero)
+    noAlbumsStackView.isHidden = numberOfItems > .zero
   }
 }

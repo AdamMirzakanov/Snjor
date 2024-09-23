@@ -35,6 +35,7 @@ extension SecondCell {
       discoverSnapshot,
       animatingDifferences: true
     )
+    checkCollectionViewState()
   }
   
   // MARK: Create Data Source
@@ -92,5 +93,10 @@ extension SecondCell {
     let viewModelItem = viewModel.getViewModelItem(at: indexPath.item)
     cell.configure(viewModelItem: viewModelItem)
     return cell
+  }
+  
+  private func checkCollectionViewState() {
+    let numberOfItems = userPhotosCollectionView.numberOfItems(inSection: .zero)
+    noPhotosStackView.isHidden = numberOfItems > .zero
   }
 }

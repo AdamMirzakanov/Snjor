@@ -156,45 +156,6 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
-  private let noLikedImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .heartCircleIcon)
-    $0.tintColor = .systemPink
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.bigIconSize
-    ).isActive = true
-    $0.widthAnchor.constraint(
-      equalToConstant: Const.bigIconSize
-    ).isActive = true
-    return $0
-  }(UIImageView())
-  
-  private let noPhotoImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .photoCircleIcon)
-    $0.tintColor = .systemOrange
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.bigIconSize
-    ).isActive = true
-    $0.widthAnchor.constraint(
-      equalToConstant: Const.bigIconSize
-    ).isActive = true
-    return $0
-  }(UIImageView())
-  
-  private let noAlbumImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .macroCircleIcon)
-    $0.tintColor = .systemGreen
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.bigIconSize
-    ).isActive = true
-    $0.widthAnchor.constraint(
-      equalToConstant: Const.bigIconSize
-    ).isActive = true
-    return $0
-  }(UIImageView())
-  
   // MARK: Buttons
   private lazy var backBarButton: UIButton = {
     let icon = UIImage(systemName: .backBarButtonIcon)
@@ -242,41 +203,6 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   // MARK: Labels
-  private let noLikedPhotosLabel: UILabel = {
-    $0.text = .noLikes
-    $0.textColor = .white
-    $0.textAlignment = .center
-    $0.numberOfLines = .zero
-    $0.font = UIFont(
-      name: Const.bigIconFontName,
-      size: Const.bigIconFontSize
-    )
-    return $0
-  }(UILabel())
-  
-  private let noPhotosLabel: UILabel = {
-    $0.text = .noPhotos
-    $0.textAlignment = .center
-    $0.numberOfLines = .zero
-    $0.font = UIFont(
-      name: Const.bigIconFontName,
-      size: Const.bigIconFontSize
-    )
-    return $0
-  }(UILabel())
-  
-  private let noAlbumsLabel: UILabel = {
-    $0.text = .noAlbums
-    $0.textColor = .white
-    $0.textAlignment = .center
-    $0.numberOfLines = .zero
-    $0.font = UIFont(
-      name: Const.bigIconFontName,
-      size: Const.bigIconFontSize
-    )
-    return $0
-  }(UILabel())
-  
   private let nameLabel: UILabel = {
     $0.textColor = .white
     $0.textAlignment = .center
@@ -330,45 +256,6 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIView())
   
   // MARK: StackViews
-  lazy var noLikedPhotosStackView: UIStackView = {
-    $0.alpha = Const.bigIconOpacity
-    $0.isUserInteractionEnabled = false
-    $0.isHidden = true
-    $0.axis = .vertical
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(noLikedImageView)
-    $0.addArrangedSubview(noLikedPhotosLabel)
-    return $0
-  }(UIStackView())
-  
-  lazy var noPhotosStackView: UIStackView = {
-    $0.alpha = Const.bigIconOpacity
-    $0.isUserInteractionEnabled = false
-    $0.isHidden = true
-    $0.axis = .vertical
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(noPhotoImageView)
-    $0.addArrangedSubview(noPhotosLabel)
-    return $0
-  }(UIStackView())
-  
-  lazy var noAlbumsStackView: UIStackView = {
-    $0.alpha = Const.bigIconOpacity
-    $0.isUserInteractionEnabled = false
-    $0.isHidden = true
-    $0.axis = .vertical
-    $0.distribution = .fill
-    $0.alignment = .center
-    $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(noAlbumImageView)
-    $0.addArrangedSubview(noAlbumsLabel)
-    return $0
-  }(UIStackView())
-  
   private lazy var avatarAndNameLabelStackView: UIStackView = {
     $0.axis = .vertical
     $0.distribution = .fill
@@ -535,9 +422,6 @@ final class UserProfileViewControllerRootView: UIView {
     mainView.addSubview(mainStackView)
     mainView.addSubview(indicatorView)
     mainView.addSubview(bottomGradientView)
-    horizontalCollectionView.addSubview(noLikedPhotosStackView)
-    horizontalCollectionView.addSubview(noPhotosStackView)
-    horizontalCollectionView.addSubview(noAlbumsStackView)
     mainView.addSubview(avatarView)
     avatarMulticolorBackgroundView.addSubview(avatarBlackBackgroundView)
     avatarBlackBackgroundView.addSubview(avatarView)
@@ -550,9 +434,6 @@ final class UserProfileViewControllerRootView: UIView {
     setupIndicatorViewConstraints()
     setupBottomGradientViewConstraints()
     backgroundPhotoConstraints()
-    noLikesStackViewConstraints()
-    noPhotosStackViewConstraints()
-    noAlbumsStackViewConstraints()
     setupAvatarViewConstraints()
     setupAvatarBlackBackgroundViewConstraints()
     
@@ -617,30 +498,6 @@ final class UserProfileViewControllerRootView: UIView {
       right: rightAnchor,
       bottom: backgroundGradientView.bottomAnchor,
       left: leftAnchor
-    )
-  }
-  
-  private func noLikesStackViewConstraints() {
-    noLikedPhotosStackView.setConstraints(
-      centerY: horizontalCollectionView.centerYAnchor,
-      centerX: horizontalCollectionView.centerXAnchor,
-      pCenterY: Const.stackViewCenterYOffset
-    )
-  }
-  
-  private func noPhotosStackViewConstraints() {
-    noPhotosStackView.setConstraints(
-      centerY: horizontalCollectionView.centerYAnchor,
-      centerX: horizontalCollectionView.centerXAnchor,
-      pCenterY: Const.stackViewCenterYOffset
-    )
-  }
-  
-  private func noAlbumsStackViewConstraints() {
-    noAlbumsStackView.setConstraints(
-      centerY: horizontalCollectionView.centerYAnchor,
-      centerX: horizontalCollectionView.centerXAnchor,
-      pCenterY: Const.stackViewCenterYOffset
     )
   }
   
