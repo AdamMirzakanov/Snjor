@@ -67,6 +67,11 @@ final class PhotoDetailViewControllerRootView: UIView {
     }
   }
   
+  private func showAndHidePhotoInfo() {
+    isPhotoInfo ? showPhotoInfo() : hidePhotoInfo()
+    isPhotoInfo.toggle()
+  }
+  
   private lazy var openProfileTapGesture: UITapGestureRecognizer = {
     return $0
   }(
@@ -962,10 +967,5 @@ final class PhotoDetailViewControllerRootView: UIView {
     dateFormatter.timeStyle = .short
     let readableDate = dateFormatter.string(from: date)
     createdLabel.text = readableDate
-  }
-  
-  private func showAndHidePhotoInfo() {
-    isPhotoInfo ? showPhotoInfo() : hidePhotoInfo()
-    isPhotoInfo.toggle()
   }
 }

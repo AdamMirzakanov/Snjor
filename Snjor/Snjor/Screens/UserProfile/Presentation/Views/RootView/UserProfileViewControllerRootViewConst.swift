@@ -14,12 +14,13 @@ enum UserProfileViewControllerRootViewConst {
   static let defaultFontSize: CGFloat = 14.0
   static let indicatorPositionFontSize: CGFloat = 20.0
   static let userNameFontSize: CGFloat = 30.0
-  static let profilePhotoSize: CGFloat = 70.0
-  static let profilePhotoBackgroundViewSize: CGFloat = 76.0
-  static let iconsStackViewHeight: CGFloat = 17.0
+  static let avatarSize: CGFloat = 70.0
+  static let avatarBlackBackgroundViewSize: CGFloat = 76.0
+  static let avatarMulticolorBackgroundViewSize: CGFloat = 81.0
   static let iconSize: CGFloat = 17.0
-  static let profilePhotoCircle: CGFloat = profilePhotoSize / 2.0
-  static let profilePhotoBackgroundViewCircle: CGFloat = profilePhotoBackgroundViewSize / 2.0
+  static let avatarCircle: CGFloat = avatarSize / 2.0
+  static let avatarBlackBackgroundViewCircle: CGFloat = avatarBlackBackgroundViewSize / 2.0
+  static let avatarMulticolorBackgroundViewCircle: CGFloat = avatarMulticolorBackgroundViewSize / 2.0
   static let halfStackViewSpacing: CGFloat = stackViewSpacing / 2.0
   static let stackViewSpacing: CGFloat = 16.0
   static let defaultOpacity: CGFloat = 0.4
@@ -28,7 +29,7 @@ enum UserProfileViewControllerRootViewConst {
   static let lineWidth: CGFloat = 1.0
   static let rightPadding: CGFloat = 0.0
   static let leftPadding: CGFloat = 0.0
-  static let heightUserProfileCollectionView: CGFloat = 350.0
+  static let heightUserProfileCollectionView: CGFloat = 320.0
   static let infoStackViewPadding: CGFloat = 40.0
   static let indicatorWidthDivision: CGFloat = 3.0
   static let indicatorHeightMultiplier: CGFloat = 0.7
@@ -41,7 +42,7 @@ enum UserProfileViewControllerRootViewConst {
   static let defaultValue = 8.0
   static let defaultCircle = fullValue / 2.0
   static let duration: CGFloat = 0.12
-  static let scale: CGFloat = 1.4
+  static let pressingScale: CGFloat = 1.2
   static let bigIconSize: CGFloat = 150.0
   static let bigIconFontSize: CGFloat = 40.0
   static let stackViewCenterYOffset: CGFloat = -35

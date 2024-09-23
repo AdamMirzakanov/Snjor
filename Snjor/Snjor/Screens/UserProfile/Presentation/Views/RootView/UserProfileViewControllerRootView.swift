@@ -51,29 +51,42 @@ final class UserProfileViewControllerRootView: UIView {
   }(UserProfilePhotoView())
   
   // MARK: User Profile Photo
-  private let avatarBackgroundView: UIImageView = {
+  private let avatarMulticolorBackgroundView: UIImageView = {
     $0.image = UIImage(named: .avatarBackgroundImage)
     $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = Const.profilePhotoBackgroundViewCircle
+    $0.layer.cornerRadius = Const.avatarMulticolorBackgroundViewCircle
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: Const.profilePhotoBackgroundViewSize
+      equalToConstant: Const.avatarMulticolorBackgroundViewSize
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: Const.profilePhotoBackgroundViewSize
+      equalToConstant: Const.avatarMulticolorBackgroundViewSize
     ).isActive = true
     return $0
   }(UIImageView())
   
-  private let avatarView: UserProfilePhotoView = {
-    $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = Const.profilePhotoCircle
+  private let avatarBlackBackgroundView: UIView = {
+    $0.backgroundColor = .black
+    $0.layer.cornerRadius = Const.avatarBlackBackgroundViewCircle
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: Const.profilePhotoSize
+      equalToConstant: Const.avatarBlackBackgroundViewSize
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: Const.profilePhotoSize
+      equalToConstant: Const.avatarBlackBackgroundViewSize
+    ).isActive = true
+    return $0
+  }(UIView())
+  
+  private let avatarView: UserProfilePhotoView = {
+    $0.contentMode = .scaleAspectFill
+    $0.layer.cornerRadius = Const.avatarCircle
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.avatarSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.avatarSize
     ).isActive = true
     return $0
   }(UserProfilePhotoView())
@@ -146,7 +159,7 @@ final class UserProfileViewControllerRootView: UIView {
   private let noLikedImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .heartCircleIcon)
-    $0.tintColor = .white
+    $0.tintColor = .systemPink
     $0.heightAnchor.constraint(
       equalToConstant: Const.bigIconSize
     ).isActive = true
@@ -159,7 +172,7 @@ final class UserProfileViewControllerRootView: UIView {
   private let noPhotoImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .photoCircleIcon)
-    $0.tintColor = .white
+    $0.tintColor = .systemOrange
     $0.heightAnchor.constraint(
       equalToConstant: Const.bigIconSize
     ).isActive = true
@@ -172,7 +185,7 @@ final class UserProfileViewControllerRootView: UIView {
   private let noAlbumImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .macroCircleIcon)
-    $0.tintColor = .white
+    $0.tintColor = .systemGreen
     $0.heightAnchor.constraint(
       equalToConstant: Const.bigIconSize
     ).isActive = true
@@ -204,26 +217,29 @@ final class UserProfileViewControllerRootView: UIView {
   let userLikedPhotosButton: UIButton = {
     let icon = UIImage(systemName: .heartFillIcon)
     $0.setImage(icon, for: .normal)
+    $0.setTitleColor(.white, for: .normal)
     $0.tintColor = .systemPink
     $0.imageView?.contentMode = .scaleAspectFit
     return $0
-  }(UIButton())
+  }(UIButton(type: .system))
   
   let userPhotosButton: UIButton = {
     let icon = UIImage(systemName: .photoIcon)
     $0.setImage(icon, for: .normal)
+    $0.setTitleColor(.white, for: .normal)
     $0.tintColor = .white
     $0.imageView?.contentMode = .scaleAspectFit
     return $0
-  }(UIButton())
+  }(UIButton(type: .system))
   
   let userAlbumsButton: UIButton = {
     let icon = UIImage(systemName: .macroIcon)
     $0.setImage(icon, for: .normal)
+    $0.setTitleColor(.white, for: .normal)
     $0.imageView?.contentMode = .scaleAspectFit
     $0.tintColor = .white
     return $0
-  }(UIButton())
+  }(UIButton(type: .system))
   
   // MARK: Labels
   private let noLikedPhotosLabel: UILabel = {
@@ -353,12 +369,12 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIStackView())
   
-  private lazy var profilePhotoAndNameLabelStackView: UIStackView = {
+  private lazy var avatarAndNameLabelStackView: UIStackView = {
     $0.axis = .vertical
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(avatarBackgroundView)
+    $0.addArrangedSubview(avatarMulticolorBackgroundView)
     $0.addArrangedSubview(nameLabel)
     $0.addArrangedSubview(locationStackView)
     return $0
@@ -379,9 +395,6 @@ final class UserProfileViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fillEqually
     $0.spacing = .zero
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.iconsStackViewHeight
-    ).isActive = true
     return $0
   }(UIStackView())
   
@@ -389,7 +402,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.axis = .vertical
     $0.distribution = .equalSpacing
     $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(profilePhotoAndNameLabelStackView)
+    $0.addArrangedSubview(avatarAndNameLabelStackView)
     $0.addArrangedSubview(bioLabel)
     $0.addArrangedSubview(firstLine)
     $0.widthAnchor.constraint(
@@ -415,6 +428,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.addArrangedSubview(userInfoStackContainerStackView)
     $0.addArrangedSubview(iconsStackView)
     $0.addArrangedSubview(secondLine)
+    $0.addArrangedSubview(horizontalCollectionView)
     return $0
   }(UIStackView())
   
@@ -568,15 +582,15 @@ final class UserProfileViewControllerRootView: UIView {
     addSubview(mainView)
     mainView.addSubview(backgroundPhotoView)
     mainView.addSubview(backgroundGradientView)
-    mainView.addSubview(horizontalCollectionView)
     mainView.addSubview(mainStackView)
     mainView.addSubview(indicatorView)
     mainView.addSubview(bottomGradientView)
-    mainView.addSubview(noLikedPhotosStackView)
-    mainView.addSubview(noPhotosStackView)
-    mainView.addSubview(noAlbumsStackView)
+    horizontalCollectionView.addSubview(noLikedPhotosStackView)
+    horizontalCollectionView.addSubview(noPhotosStackView)
+    horizontalCollectionView.addSubview(noAlbumsStackView)
     mainView.addSubview(avatarView)
-    avatarBackgroundView.addSubview(avatarView)
+    avatarMulticolorBackgroundView.addSubview(avatarBlackBackgroundView)
+    avatarBlackBackgroundView.addSubview(avatarView)
   }
   
   private func setupConstraints() {
@@ -586,11 +600,16 @@ final class UserProfileViewControllerRootView: UIView {
     setupIndicatorViewConstraints()
     setupBottomGradientViewConstraints()
     backgroundPhotoConstraints()
-    setupUserProfileCollectionViewConstraints()
     noLikesStackViewConstraints()
     noPhotosStackViewConstraints()
     noAlbumsStackViewConstraints()
     setupAvatarViewConstraints()
+    setupAvatarBlackBackgroundViewConstraints()
+    
+  }
+  
+  private func setupAvatarBlackBackgroundViewConstraints() {
+    avatarBlackBackgroundView.centerXY()
   }
   
   private func setupAvatarViewConstraints() {
@@ -610,7 +629,7 @@ final class UserProfileViewControllerRootView: UIView {
   private func setupMainStackViewConstraints() {
     mainStackView.setConstraints(
       right: rightAnchor,
-      bottom: backgroundGradientView.bottomAnchor,
+      bottom: bottomAnchor,
       left: leftAnchor,
       pRight: Const.rightPadding,
       pLeft: Const.leftPadding
@@ -629,14 +648,6 @@ final class UserProfileViewControllerRootView: UIView {
     indicatorView.widthAnchor.constraint(
       equalToConstant: screenWidth / Const.indicatorWidthDivision
     ).isActive = true
-  }
-  
-  private func setupUserProfileCollectionViewConstraints() {
-    horizontalCollectionView.setConstraints(
-      right: rightAnchor,
-      bottom: bottomAnchor,
-      left: leftAnchor
-    )
   }
   
   private func setupBottomGradientViewConstraints() {
@@ -797,8 +808,8 @@ final class UserProfileViewControllerRootView: UIView {
   private func animateButton(_ sender: UIButton) {
     UIView.animate(withDuration: Const.duration) {
       let scaleTransform = CGAffineTransform(
-        scaleX: Const.scale,
-        y: Const.scale
+        scaleX: Const.pressingScale,
+        y: Const.pressingScale
       )
       sender.transform = scaleTransform
     } completion: { _ in
