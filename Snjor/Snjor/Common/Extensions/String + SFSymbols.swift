@@ -8,6 +8,7 @@
 extension String {
   static let downloadCellButtonIcon = "arrow.down.circle.fill"
   static let backBarButtonIcon = "chevron.backward"
+  static let globeEuropeAfricaFillIcon = "globe.europe.africa.fill"
   static let downloadBarButtonIcon = "arrow.down.app.fill"
   static let infoButtonIcon = "info.circle"
   static let cameraIcon = "camera.aperture"

@@ -12,6 +12,7 @@ fileprivate typealias Const = UserProfileViewControllerRootViewConst
 final class UserProfileViewControllerRootView: UIView {
   // MARK: Private Properties
   private var backBarButtonAction: (() -> Void)?
+  private var portfolioBarButtonAction: (() -> Void)?
   private var screenWidth: CGFloat {
     UIScreen.main.bounds.width
   }
@@ -112,6 +113,14 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
   
+  private let portfolioBarButtonBlurEffect: UIVisualEffectView = {
+    $0.frame.size.width = Const.fullValue
+    $0.frame.size.height = Const.fullValue
+    $0.layer.cornerRadius = Const.defaultValue
+    $0.clipsToBounds = true
+    return $0
+  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
+  
   // MARK: ImageViews
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
@@ -168,6 +177,15 @@ final class UserProfileViewControllerRootView: UIView {
     $0.frame = backBarButtonBlurEffect.bounds
     return $0
   }(UIButton())
+  
+  private lazy var portfolioBarButton: UIButton = {
+    let icon = UIImage(systemName: .globeEuropeAfricaFillIcon)
+    $0.setImage(icon, for: .normal)
+    $0.tintColor = .label
+    $0.alpha = Const.defaultOpacity
+    $0.frame = portfolioBarButtonBlurEffect.bounds
+    return $0
+  }(UIButton(type: .system))
   
   let userLikedPhotosButton: UIButton = {
     let icon = UIImage(systemName: .heartFillIcon)
@@ -676,14 +694,17 @@ final class UserProfileViewControllerRootView: UIView {
     setupBarButtons()
     setupNavigationItems(navigationItem)
     configBacBarButtonItem(navigationItem, navigationController)
+    configPortfolioBarButtonItem(navigationItem, navigationController)
   }
   
   private func setupNavigationItems(_ navigationItem: UINavigationItem) {
     navigationItem.leftBarButtonItems = makeLeftBarButtons()
+    navigationItem.rightBarButtonItems = makeRightBarButtons()
   }
   
   private func setupBarButtons() {
     backBarButtonBlurEffect.contentView.addSubview(backBarButton)
+    portfolioBarButtonBlurEffect.contentView.addSubview(portfolioBarButton)
   }
   
   private func makeLeftBarButtons() -> [UIBarButtonItem] {
@@ -692,8 +713,18 @@ final class UserProfileViewControllerRootView: UIView {
     return barButtonItems
   }
   
+  private func makeRightBarButtons() -> [UIBarButtonItem] {
+    let portfolioBarButton = UIBarButtonItem(customView: portfolioBarButtonBlurEffect)
+    let barButtonItems = [portfolioBarButton]
+    return barButtonItems
+  }
+  
   @objc private func backBarButtonTapped() {
     backBarButtonAction?()
+  }
+  
+  @objc private func portfolioBarButtonTapped() {
+    portfolioBarButtonAction?()
   }
   
   func configBacBarButtonItem(
@@ -704,9 +735,24 @@ final class UserProfileViewControllerRootView: UIView {
     setupBackBarButtonTarget()
   }
   
+  func configPortfolioBarButtonItem(
+    _ navigationItem: UINavigationItem,
+    _ navigationController: UINavigationController?
+  ) {
+    setupPortfolioButtonAction(navigationController)
+    setupPortfolioButtonTarget()
+  }
+  
   private func setupBackButtonAction(_ navigationController: UINavigationController?) {
     backBarButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
+    }
+  }
+  
+  private func setupPortfolioButtonAction(_ navigationController: UINavigationController?) {
+    portfolioBarButtonAction = { [weak navigationController] in
+      navigationController?.popViewController(animated: true)
+      print("FYUGIHOJPIJHUGY")
     }
   }
   
@@ -718,7 +764,15 @@ final class UserProfileViewControllerRootView: UIView {
     )
   }
   
-  // MARK: Animate Buttons
+  private func setupPortfolioButtonTarget() {
+    portfolioBarButton.addTarget(
+      self,
+      action: #selector(portfolioBarButtonTapped),
+      for: .touchUpInside
+    )
+  }
+  
+  // MARK: Animate Tab Buttons
   private func animateButton(_ sender: UIButton) {
     UIView.animate(withDuration: Const.duration) {
       let scaleTransform = CGAffineTransform(
