@@ -460,6 +460,36 @@ final class UserProfileViewControllerRootView: UIView {
     }
   }
   
+  private func updateUserLikedPhotosButtonState() {
+    let userLikedIcon = UIImage(systemName: .heartFillIcon)
+    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    
+    let userPhotosIcon = UIImage(systemName: .photoIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
+    userAlbumsButton.tintColor = .white
+  }
+  
+  private func updateUserPhotosButtonState() {
+    let userLikedIcon = UIImage(systemName: .heartIcon)
+    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    
+    let userPhotosIcon = UIImage(systemName: .photoFillIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
+    userAlbumsButton.tintColor = .white
+  }
+  
+  private func updateUserAlbumsButtonState() {
+    let userLikedIcon = UIImage(systemName: .heartIcon)
+    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    
+    let userPhotosIcon = UIImage(systemName: .photoIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
+    userAlbumsButton.tintColor = .systemGreen
+  }
+  
   func setupData(viewModel: any UserProfileViewModelProtocol) {
     guard let viewModelItem = viewModel.getUserProfileViewModelItem() else { return }
     configurePhotos(viewModelItem: viewModelItem)
@@ -483,92 +513,12 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func configureButtons(viewModelItem: UserProfileViewModelItem) {
-    configureLikedPhotosButton(viewModelItem: viewModelItem)
-    configureUserPhotosButton(viewModelItem: viewModelItem)
-    configureUserAlbumsButton(viewModelItem: viewModelItem)
-  }
-  
-  private func configureLikedPhotosButton(viewModelItem: UserProfileViewModelItem) {
-    if viewModelItem.user.totalLikes == .zero {
-      userLikedPhotosButton.setTitle(.empty, for: .normal)
-      userLikedPhotosButton.tintColor = .systemGray
-      noLikedPhotosStackView.isHidden = false
-    } else {
-      let userLikedPhotos = .spacer + viewModelItem.totalLikes
-      userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
-      noLikedPhotosStackView.isHidden = true
-    }
-  }
-  
-  private func configureUserPhotosButton(viewModelItem: UserProfileViewModelItem) {
-    if viewModelItem.user.totalPhotos == .zero {
-      userPhotosButton.setTitle(.empty, for: .normal)
-      userPhotosButton.tintColor = .systemGray
-    } else {
-      let userPhotos = .spacer + viewModelItem.totalPhotos
-      userPhotosButton.setTitle(userPhotos, for: .normal)
-    }
-  }
-  
-  private func configureUserAlbumsButton(viewModelItem: UserProfileViewModelItem) {
-    if viewModelItem.user.totalCollections == .zero {
-      userAlbumsButton.setTitle(.empty, for: .normal)
-      userAlbumsButton.tintColor = .systemGray
-    } else {
-      let userAlbums = .spacer + viewModelItem.totalCollections
-      userAlbumsButton.setTitle(userAlbums, for: .normal)
-    }
-  }
-  
-  private func updateUserAlbumsButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    
-    let userPhotosIcon = UIImage(systemName: .photoIcon)
-    userPhotosButton.setImage(userPhotosIcon, for: .normal)
-    
-    noLikedPhotosStackView.isHidden = true
-    noPhotosStackView.isHidden = true
-    
-    if userAlbumsButton.tintColor == .systemGray {
-      noAlbumsStackView.isHidden = false
-    } else {
-      userAlbumsButton.tintColor = .systemGreen
-    }
-  }
-  
-  private func updateUserPhotosButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    
-    let userPhotosIcon = UIImage(systemName: .photoFillIcon)
-    userPhotosButton.setImage(userPhotosIcon, for: .normal)
-    
-    noLikedPhotosStackView.isHidden = true
-    noAlbumsStackView.isHidden = true
-    
-    if userPhotosButton.tintColor == .systemGray {
-      noPhotosStackView.isHidden = false
-    } else {
-      userPhotosButton.tintColor = .white
-    }
-    
-    if userAlbumsButton.tintColor == .systemGreen {
-      userAlbumsButton.tintColor = .white
-    }
-  }
-  
-  private func updateUserLikedPhotosButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartFillIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    
-    let userPhotosIcon = UIImage(systemName: .photoIcon)
-    userPhotosButton.setImage(userPhotosIcon, for: .normal)
-    
-    noPhotosStackView.isHidden = true
-    noAlbumsStackView.isHidden = true
-    
-    noLikedPhotosStackView.isHidden = userLikedPhotosButton.tintColor != .systemGray
+    let userLikedPhotos = .spacer + viewModelItem.totalLikes
+    let userPhotos = .spacer + viewModelItem.totalPhotos
+    let userAlbums = .spacer + viewModelItem.totalCollections
+    userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
+    userPhotosButton.setTitle(userPhotos, for: .normal)
+    userAlbumsButton.setTitle(userAlbums, for: .normal)
   }
   
   // MARK: Setup Views
