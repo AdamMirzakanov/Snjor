@@ -51,7 +51,21 @@ final class UserProfileViewControllerRootView: UIView {
   }(UserProfilePhotoView())
   
   // MARK: User Profile Photo
-  private let profilePhotoView: UserProfilePhotoView = {
+  private let avatarBackgroundView: UIImageView = {
+    $0.image = UIImage(named: .avatarBackgroundImage)
+    $0.contentMode = .scaleAspectFill
+    $0.layer.cornerRadius = Const.profilePhotoBackgroundViewCircle
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.profilePhotoBackgroundViewSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.profilePhotoBackgroundViewSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
+  private let avatarView: UserProfilePhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.profilePhotoCircle
     $0.clipsToBounds = true
@@ -344,7 +358,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(profilePhotoView)
+    $0.addArrangedSubview(avatarBackgroundView)
     $0.addArrangedSubview(nameLabel)
     $0.addArrangedSubview(locationStackView)
     return $0
@@ -443,7 +457,7 @@ final class UserProfileViewControllerRootView: UIView {
     let backgroundPhotoURL = viewModelItem.photo.regularURL
     let profilePhotoURL = viewModelItem.user.regularURL
     backgroundPhotoView.configure(with: viewModelItem.photo, url: backgroundPhotoURL)
-    profilePhotoView.configure(with: viewModelItem.user, url: profilePhotoURL)
+    avatarView.configure(with: viewModelItem.user, url: profilePhotoURL)
   }
   
   private func configureLabels(viewModelItem: UserProfileViewModelItem) {
@@ -561,6 +575,8 @@ final class UserProfileViewControllerRootView: UIView {
     mainView.addSubview(noLikedPhotosStackView)
     mainView.addSubview(noPhotosStackView)
     mainView.addSubview(noAlbumsStackView)
+    mainView.addSubview(avatarView)
+    avatarBackgroundView.addSubview(avatarView)
   }
   
   private func setupConstraints() {
@@ -574,6 +590,11 @@ final class UserProfileViewControllerRootView: UIView {
     noLikesStackViewConstraints()
     noPhotosStackViewConstraints()
     noAlbumsStackViewConstraints()
+    setupAvatarViewConstraints()
+  }
+  
+  private func setupAvatarViewConstraints() {
+    avatarView.centerXY()
   }
   
   private func setupGradientViewConstraints() {

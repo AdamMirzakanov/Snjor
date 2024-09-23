@@ -27,6 +27,7 @@ extension String {
   static let photoFillIcon = "photo.fill"
   static let photoIcon = "photo"
   static let photoCircleIcon = "photo.circle"
+  static let avatarBackgroundImage = "colors"
   static let photoStackFillIcon = "photo.stack.fill"
   static let photoStackIcon = "photo.stack"
   static let macroIcon = "camera.macro"

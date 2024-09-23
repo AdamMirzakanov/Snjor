@@ -15,9 +15,11 @@ enum UserProfileViewControllerRootViewConst {
   static let indicatorPositionFontSize: CGFloat = 20.0
   static let userNameFontSize: CGFloat = 30.0
   static let profilePhotoSize: CGFloat = 70.0
+  static let profilePhotoBackgroundViewSize: CGFloat = 76.0
   static let iconsStackViewHeight: CGFloat = 17.0
   static let iconSize: CGFloat = 17.0
   static let profilePhotoCircle: CGFloat = profilePhotoSize / 2.0
+  static let profilePhotoBackgroundViewCircle: CGFloat = profilePhotoBackgroundViewSize / 2.0
   static let halfStackViewSpacing: CGFloat = stackViewSpacing / 2.0
   static let stackViewSpacing: CGFloat = 16.0
   static let defaultOpacity: CGFloat = 0.4
