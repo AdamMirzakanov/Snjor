@@ -21,6 +21,7 @@ enum UserProfileViewControllerRootViewConst {
   static let halfStackViewSpacing: CGFloat = stackViewSpacing / 2.0
   static let stackViewSpacing: CGFloat = 16.0
   static let defaultOpacity: CGFloat = 0.4
+  static let bigIconOpacity: CGFloat = 0.3
   static let maxOpacity: CGFloat = 1.0
   static let lineWidth: CGFloat = 1.0
   static let rightPadding: CGFloat = 0.0
@@ -38,6 +39,10 @@ enum UserProfileViewControllerRootViewConst {
   static let defaultCircle = fullValue / 2.0
   static let duration: CGFloat = 0.12
   static let scale: CGFloat = 1.4
+  static let bigIconSize: CGFloat = 150.0
+  static let bigIconFontSize: CGFloat = 40.0
+  static let stackViewCenterYOffset: CGFloat = -35
+  static let bigIconFontName: String = "Impact"
 }
 
 extension Int {
@@ -46,8 +51,7 @@ extension Int {
 }
 
 extension String {
-  static let liked = "Liked "
-  static let userHas = "User has "
-  static let photos = " photos"
-  static let albums = " albums "
+  static let noLikes: String = "No likes!".uppercased()
+  static let noPhotos: String = "No photos!".uppercased()
+  static let noAlbums: String = "No albums!".uppercased()
 }

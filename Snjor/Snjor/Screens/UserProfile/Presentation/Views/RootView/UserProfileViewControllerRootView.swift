@@ -120,16 +120,41 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
-  private let heartSlashImageView: UIImageView = {
+  private let noLikedImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .heartSlash)
+    $0.image = UIImage(systemName: .heartCircleIcon)
     $0.tintColor = .white
-    $0.alpha = Const.defaultOpacity
     $0.heightAnchor.constraint(
-      equalToConstant: 100
+      equalToConstant: Const.bigIconSize
     ).isActive = true
     $0.widthAnchor.constraint(
-      equalToConstant: 100
+      equalToConstant: Const.bigIconSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
+  private let noPhotoImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(systemName: .photoCircleIcon)
+    $0.tintColor = .white
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.bigIconSize
+    ).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.bigIconSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
+  private let noAlbumImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(systemName: .macroCircleIcon)
+    $0.tintColor = .white
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.bigIconSize
+    ).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.bigIconSize
     ).isActive = true
     return $0
   }(UIImageView())
@@ -152,7 +177,7 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIButton())
   
-  private let userPhotosButton: UIButton = {
+  let userPhotosButton: UIButton = {
     let icon = UIImage(systemName: .photoIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
@@ -160,7 +185,7 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIButton())
   
-  private let userAlbumsButton: UIButton = {
+  let userAlbumsButton: UIButton = {
     let icon = UIImage(systemName: .macroIcon)
     $0.setImage(icon, for: .normal)
     $0.imageView?.contentMode = .scaleAspectFit
@@ -170,14 +195,36 @@ final class UserProfileViewControllerRootView: UIView {
   
   // MARK: Labels
   private let noLikedPhotosLabel: UILabel = {
-    $0.text = "No likes yet!"
+    $0.text = .noLikes
     $0.textColor = .white
-    $0.alpha = Const.defaultOpacity
     $0.textAlignment = .center
     $0.numberOfLines = .zero
-    $0.font = .systemFont(
-      ofSize: Const.userNameFontSize,
-      weight: .bold
+    $0.font = UIFont(
+      name: Const.bigIconFontName,
+      size: Const.bigIconFontSize
+    )
+    return $0
+  }(UILabel())
+  
+  private let noPhotosLabel: UILabel = {
+    $0.text = .noPhotos
+    $0.textAlignment = .center
+    $0.numberOfLines = .zero
+    $0.font = UIFont(
+      name: Const.bigIconFontName,
+      size: Const.bigIconFontSize
+    )
+    return $0
+  }(UILabel())
+  
+  private let noAlbumsLabel: UILabel = {
+    $0.text = .noAlbums
+    $0.textColor = .white
+    $0.textAlignment = .center
+    $0.numberOfLines = .zero
+    $0.font = UIFont(
+      name: Const.bigIconFontName,
+      size: Const.bigIconFontSize
     )
     return $0
   }(UILabel())
@@ -236,13 +283,41 @@ final class UserProfileViewControllerRootView: UIView {
   
   // MARK: StackViews
   lazy var noLikedPhotosStackView: UIStackView = {
+    $0.alpha = Const.bigIconOpacity
+    $0.isUserInteractionEnabled = false
     $0.isHidden = true
     $0.axis = .vertical
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(heartSlashImageView)
+    $0.addArrangedSubview(noLikedImageView)
     $0.addArrangedSubview(noLikedPhotosLabel)
+    return $0
+  }(UIStackView())
+  
+  lazy var noPhotosStackView: UIStackView = {
+    $0.alpha = Const.bigIconOpacity
+    $0.isUserInteractionEnabled = false
+    $0.isHidden = true
+    $0.axis = .vertical
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.stackViewSpacing
+    $0.addArrangedSubview(noPhotoImageView)
+    $0.addArrangedSubview(noPhotosLabel)
+    return $0
+  }(UIStackView())
+  
+  lazy var noAlbumsStackView: UIStackView = {
+    $0.alpha = Const.bigIconOpacity
+    $0.isUserInteractionEnabled = false
+    $0.isHidden = true
+    $0.axis = .vertical
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.stackViewSpacing
+    $0.addArrangedSubview(noAlbumImageView)
+    $0.addArrangedSubview(noAlbumsLabel)
     return $0
   }(UIStackView())
   
@@ -339,44 +414,6 @@ final class UserProfileViewControllerRootView: UIView {
     }
   }
   
-  private func updateUserLikedPhotosButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartFillIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    
-    let userPhotosIcon = UIImage(systemName: .photoIcon)
-    userPhotosButton.setImage(userPhotosIcon, for: .normal)
-    
-    userAlbumsButton.tintColor = .white
-    
-    if userLikedPhotosButton.tintColor == .systemGray {
-      noLikedPhotosStackView.isHidden = false
-    } else {
-      noLikedPhotosStackView.isHidden = true
-    }
-  }
-  
-  private func updateUserPhotosButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    
-    let userPhotosIcon = UIImage(systemName: .photoFillIcon)
-    userPhotosButton.setImage(userPhotosIcon, for: .normal)
-    
-    userAlbumsButton.tintColor = .white
-    noLikedPhotosStackView.isHidden = true
-  }
-  
-  private func updateUserAlbumsButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    
-    let userPhotosIcon = UIImage(systemName: .photoIcon)
-    userPhotosButton.setImage(userPhotosIcon, for: .normal)
-    
-    userAlbumsButton.tintColor = .systemGreen
-    noLikedPhotosStackView.isHidden = true
-  }
-  
   func setupData(viewModel: any UserProfileViewModelProtocol) {
     guard let viewModelItem = viewModel.getUserProfileViewModelItem() else { return }
     configurePhotos(viewModelItem: viewModelItem)
@@ -400,12 +437,92 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func configureButtons(viewModelItem: UserProfileViewModelItem) {
-    let userLikedPhotos = .spacer + viewModelItem.totalLikes
-    let userPhotos = .spacer + viewModelItem.totalPhotos
-    let userAlbums = .spacer + viewModelItem.totalCollections
-    userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
-    userPhotosButton.setTitle(userPhotos, for: .normal)
-    userAlbumsButton.setTitle(userAlbums, for: .normal)
+    configureLikedPhotosButton(viewModelItem: viewModelItem)
+    configureUserPhotosButton(viewModelItem: viewModelItem)
+    configureUserAlbumsButton(viewModelItem: viewModelItem)
+  }
+  
+  private func configureLikedPhotosButton(viewModelItem: UserProfileViewModelItem) {
+    if viewModelItem.user.totalLikes == .zero {
+      userLikedPhotosButton.setTitle(.empty, for: .normal)
+      userLikedPhotosButton.tintColor = .systemGray
+      noLikedPhotosStackView.isHidden = false
+    } else {
+      let userLikedPhotos = .spacer + viewModelItem.totalLikes
+      userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
+      noLikedPhotosStackView.isHidden = true
+    }
+  }
+  
+  private func configureUserPhotosButton(viewModelItem: UserProfileViewModelItem) {
+    if viewModelItem.user.totalPhotos == .zero {
+      userPhotosButton.setTitle(.empty, for: .normal)
+      userPhotosButton.tintColor = .systemGray
+    } else {
+      let userPhotos = .spacer + viewModelItem.totalPhotos
+      userPhotosButton.setTitle(userPhotos, for: .normal)
+    }
+  }
+  
+  private func configureUserAlbumsButton(viewModelItem: UserProfileViewModelItem) {
+    if viewModelItem.user.totalCollections == .zero {
+      userAlbumsButton.setTitle(.empty, for: .normal)
+      userAlbumsButton.tintColor = .systemGray
+    } else {
+      let userAlbums = .spacer + viewModelItem.totalCollections
+      userAlbumsButton.setTitle(userAlbums, for: .normal)
+    }
+  }
+  
+  private func updateUserAlbumsButtonState() {
+    let userLikedIcon = UIImage(systemName: .heartIcon)
+    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    
+    let userPhotosIcon = UIImage(systemName: .photoIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
+    noLikedPhotosStackView.isHidden = true
+    noPhotosStackView.isHidden = true
+    
+    if userAlbumsButton.tintColor == .systemGray {
+      noAlbumsStackView.isHidden = false
+    } else {
+      userAlbumsButton.tintColor = .systemGreen
+    }
+  }
+  
+  private func updateUserPhotosButtonState() {
+    let userLikedIcon = UIImage(systemName: .heartIcon)
+    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    
+    let userPhotosIcon = UIImage(systemName: .photoFillIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
+    noLikedPhotosStackView.isHidden = true
+    noAlbumsStackView.isHidden = true
+    
+    if userPhotosButton.tintColor == .systemGray {
+      noPhotosStackView.isHidden = false
+    } else {
+      userPhotosButton.tintColor = .white
+    }
+    
+    if userAlbumsButton.tintColor == .systemGreen {
+      userAlbumsButton.tintColor = .white
+    }
+  }
+  
+  private func updateUserLikedPhotosButtonState() {
+    let userLikedIcon = UIImage(systemName: .heartFillIcon)
+    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    
+    let userPhotosIcon = UIImage(systemName: .photoIcon)
+    userPhotosButton.setImage(userPhotosIcon, for: .normal)
+    
+    noPhotosStackView.isHidden = true
+    noAlbumsStackView.isHidden = true
+    
+    noLikedPhotosStackView.isHidden = userLikedPhotosButton.tintColor != .systemGray
   }
   
   // MARK: Setup Views
@@ -424,6 +541,8 @@ final class UserProfileViewControllerRootView: UIView {
     mainView.addSubview(indicatorView)
     mainView.addSubview(bottomGradientView)
     mainView.addSubview(noLikedPhotosStackView)
+    mainView.addSubview(noPhotosStackView)
+    mainView.addSubview(noAlbumsStackView)
   }
   
   private func setupConstraints() {
@@ -435,6 +554,8 @@ final class UserProfileViewControllerRootView: UIView {
     backgroundPhotoConstraints()
     setupUserProfileCollectionViewConstraints()
     noLikesStackViewConstraints()
+    noPhotosStackViewConstraints()
+    noAlbumsStackViewConstraints()
   }
   
   private func setupGradientViewConstraints() {
@@ -503,7 +624,23 @@ final class UserProfileViewControllerRootView: UIView {
     noLikedPhotosStackView.setConstraints(
       centerY: horizontalCollectionView.centerYAnchor,
       centerX: horizontalCollectionView.centerXAnchor,
-      pCenterY: -35
+      pCenterY: Const.stackViewCenterYOffset
+    )
+  }
+  
+  private func noPhotosStackViewConstraints() {
+    noPhotosStackView.setConstraints(
+      centerY: horizontalCollectionView.centerYAnchor,
+      centerX: horizontalCollectionView.centerXAnchor,
+      pCenterY: Const.stackViewCenterYOffset
+    )
+  }
+  
+  private func noAlbumsStackViewConstraints() {
+    noAlbumsStackView.setConstraints(
+      centerY: horizontalCollectionView.centerYAnchor,
+      centerX: horizontalCollectionView.centerXAnchor,
+      pCenterY: Const.stackViewCenterYOffset
     )
   }
   
