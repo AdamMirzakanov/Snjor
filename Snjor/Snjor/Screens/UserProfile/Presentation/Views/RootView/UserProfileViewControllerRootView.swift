@@ -354,7 +354,8 @@ final class UserProfileViewControllerRootView: UIView {
     let userPhotosIcon = UIImage(systemName: .photoIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
-    userAlbumsButton.tintColor = .white
+    userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .white
+    userPhotosButton.tintColor = userPhotosButton.tintColor == .systemGray ? .systemGray : .white
   }
   
   private func updateUserPhotosButtonState() {
@@ -364,7 +365,8 @@ final class UserProfileViewControllerRootView: UIView {
     let userPhotosIcon = UIImage(systemName: .photoFillIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
-    userAlbumsButton.tintColor = .white
+    userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .white
+    userPhotosButton.tintColor = userPhotosButton.tintColor == .systemGray ? .systemGray : .white
   }
   
   private func updateUserAlbumsButtonState() {
@@ -374,7 +376,8 @@ final class UserProfileViewControllerRootView: UIView {
     let userPhotosIcon = UIImage(systemName: .photoIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
-    userAlbumsButton.tintColor = .systemGreen
+    userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .systemGreen
+    userPhotosButton.tintColor = userPhotosButton.tintColor == .systemGray ? .systemGray : .white
   }
   
   func setupData(viewModel: any UserProfileViewModelProtocol) {
@@ -403,9 +406,27 @@ final class UserProfileViewControllerRootView: UIView {
     let userLikedPhotos = .spacer + viewModelItem.totalLikes
     let userPhotos = .spacer + viewModelItem.totalPhotos
     let userAlbums = .spacer + viewModelItem.totalCollections
-    userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
-    userPhotosButton.setTitle(userPhotos, for: .normal)
-    userAlbumsButton.setTitle(userAlbums, for: .normal)
+    
+    if viewModelItem.user.totalLikes == .zero {
+      userLikedPhotosButton.setTitle(.empty, for: .normal)
+      userLikedPhotosButton.tintColor = .systemGray
+    } else {
+      userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
+    }
+    
+    if viewModelItem.user.totalPhotos == .zero {
+      userPhotosButton.setTitle(.empty, for: .normal)
+      userPhotosButton.tintColor = .systemGray
+    } else {
+      userPhotosButton.setTitle(userPhotos, for: .normal)
+    }
+    
+    if viewModelItem.user.totalCollections == .zero {
+      userAlbumsButton.setTitle(.empty, for: .normal)
+      userAlbumsButton.tintColor = .systemGray
+    } else {
+      userAlbumsButton.setTitle(userAlbums, for: .normal)
+    }
   }
   
   // MARK: Setup Views
