@@ -334,8 +334,16 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func updateUserLikedPhotosButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartFillIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    //    let userLikedIcon = UIImage(systemName: .heartFillIcon)
+    //    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    
+    if userLikedPhotosButton.tintColor == .systemGray {
+      let userLikedSlashIcon = UIImage(systemName: .heartSlashFill)
+      userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
+    } else {
+      let userLikedIcon = UIImage(systemName: .heartFillIcon)
+      userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    }
     
     let userPhotosIcon = UIImage(systemName: .photoIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
@@ -345,8 +353,13 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func updateUserPhotosButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    if userLikedPhotosButton.tintColor == .systemGray {
+      let userLikedSlashIcon = UIImage(systemName: .heartSlash)
+      userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
+    } else {
+      let userLikedIcon = UIImage(systemName: .heartIcon)
+      userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    }
     
     let userPhotosIcon = UIImage(systemName: .photoFillIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
@@ -356,8 +369,14 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func updateUserAlbumsButtonState() {
-    let userLikedIcon = UIImage(systemName: .heartIcon)
-    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    if userLikedPhotosButton.tintColor == .systemGray {
+      let userLikedSlashIcon = UIImage(systemName: .heartSlash)
+      userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
+    } else {
+      let userLikedIcon = UIImage(systemName: .heartIcon)
+      userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
+    }
+    
     
     let userPhotosIcon = UIImage(systemName: .photoIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
@@ -396,6 +415,7 @@ final class UserProfileViewControllerRootView: UIView {
     if viewModelItem.user.totalLikes == .zero {
       userLikedPhotosButton.setTitle(.empty, for: .normal)
       userLikedPhotosButton.tintColor = .systemGray
+      userLikedPhotosButton.setImage(UIImage(systemName: .heartSlashFill), for: .normal)
     } else {
       userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
     }
@@ -410,6 +430,7 @@ final class UserProfileViewControllerRootView: UIView {
     if viewModelItem.user.totalCollections == .zero {
       userAlbumsButton.setTitle(.empty, for: .normal)
       userAlbumsButton.tintColor = .systemGray
+      userAlbumsButton.setImage(UIImage(systemName: .macroSlash), for: .normal)
     } else {
       userAlbumsButton.setTitle(userAlbums, for: .normal)
     }

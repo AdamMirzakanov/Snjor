@@ -37,6 +37,7 @@ extension String {
   static let twitIcon = "twit"
   static let photoCap = "photoCap"
   static let heartSlash = "heart.slash"
-  static let photoSlash = "photo.slash"
-  static let macroSlash = "macro.slash"
+  static let heartSlashFill = "heart.slash.fill"
+  static let photoSlash = "rectangle.slash.fill"
+  static let macroSlash = "camera.macro.slash"
 }
