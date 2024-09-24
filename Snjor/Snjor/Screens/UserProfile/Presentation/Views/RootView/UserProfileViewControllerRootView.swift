@@ -23,12 +23,12 @@ final class UserProfileViewControllerRootView: UIView {
   
   // MARK: Container View
   private let mainView: UIView = {
+    $0.backgroundColor = .black
     return $0
   }(UIView())
   
   // MARK: Collectin View
   lazy var horizontalCollectionView: UserProfileCollectionView = {
-    $0.backgroundColor = .black
     $0.heightAnchor.constraint(
       equalToConstant: Const.heightUserProfileCollectionView
     ).isActive = true
@@ -64,19 +64,6 @@ final class UserProfileViewControllerRootView: UIView {
     ).isActive = true
     return $0
   }(UIImageView())
-  
-  private let avatarBlackBackgroundView: UIView = {
-    $0.backgroundColor = .black
-    $0.layer.cornerRadius = Const.avatarBlackBackgroundViewCircle
-    $0.clipsToBounds = true
-    $0.widthAnchor.constraint(
-      equalToConstant: Const.avatarBlackBackgroundViewSize
-    ).isActive = true
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.avatarBlackBackgroundViewSize
-    ).isActive = true
-    return $0
-  }(UIView())
   
   private let avatarView: UserProfilePhotoView = {
     $0.contentMode = .scaleAspectFill
@@ -322,7 +309,6 @@ final class UserProfileViewControllerRootView: UIView {
   // MARK: - Initializers
   init() {
     super.init(frame: .zero)
-    backgroundColor = .black
     setupViews()
   }
   
@@ -444,8 +430,7 @@ final class UserProfileViewControllerRootView: UIView {
     mainView.addSubview(indicatorView)
     mainView.addSubview(bottomGradientView)
     mainView.addSubview(avatarView)
-    avatarMulticolorBackgroundView.addSubview(avatarBlackBackgroundView)
-    avatarBlackBackgroundView.addSubview(avatarView)
+    avatarMulticolorBackgroundView.addSubview(avatarView)
   }
   
   private func setupConstraints() {
@@ -461,7 +446,7 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func setupAvatarBlackBackgroundViewConstraints() {
-    avatarBlackBackgroundView.centerXY()
+    avatarView.centerXY()
   }
   
   private func setupAvatarViewConstraints() {
