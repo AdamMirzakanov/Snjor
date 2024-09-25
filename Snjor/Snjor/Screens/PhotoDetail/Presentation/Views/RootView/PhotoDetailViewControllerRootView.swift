@@ -225,12 +225,26 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
+  private let checkmarkIconImageView: UIImageView = {
+    $0.image = UIImage(systemName: .checkmarkIcon)
+    $0.tintColor = .systemBlue
+    $0.contentMode = .scaleAspectFill
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.checkmarkIconSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.checkmarkIconSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
   // MARK: Labels
   let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.numberOfLines = .zero
     $0.font = UIFont(
-      name: .impact,
+      name: .timesNewRomanBold,
       size: Const.userNameFontSize
     )
     return $0
@@ -431,6 +445,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.spacing = Const.middleValue
     $0.addArrangedSubview(avatarView)
     $0.addArrangedSubview(userNameLabel)
+    $0.addArrangedSubview(checkmarkIconImageView)
     return $0
   }(UIStackView())
   
@@ -440,8 +455,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.alignment = .center
     $0.spacing = Const.middleValue
     $0.addArrangedSubview(avatarAndUserNameLabelStackView)
-    let spacerView = UIView()
-    $0.addArrangedSubview(spacerView)
+    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(infoButton)
     return $0
   }(UIStackView())

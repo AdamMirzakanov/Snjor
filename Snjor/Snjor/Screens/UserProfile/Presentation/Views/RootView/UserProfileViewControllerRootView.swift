@@ -50,21 +50,7 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UserProfilePhotoView())
   
-  // MARK: User Profile Photo
-  private let avatarMulticolorBackgroundView: UIImageView = {
-    $0.image = UIImage(named: .avatarBackgroundImage)
-    $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = Const.avatarMulticolorBackgroundViewCircle
-    $0.clipsToBounds = true
-    $0.widthAnchor.constraint(
-      equalToConstant: Const.avatarMulticolorBackgroundViewSize
-    ).isActive = true
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.avatarMulticolorBackgroundViewSize
-    ).isActive = true
-    return $0
-  }(UIImageView())
-  
+  // MARK: Avatar
   private let avatarView: UserProfilePhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.avatarCircle
@@ -136,6 +122,34 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
   
   // MARK: ImageViews
+  private let avatarMulticolorBackgroundImageView: UIImageView = {
+    $0.image = UIImage(named: .avatarBackgroundImage)
+    $0.contentMode = .scaleAspectFill
+    $0.layer.cornerRadius = Const.avatarMulticolorBackgroundViewCircle
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.avatarMulticolorBackgroundViewSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.avatarMulticolorBackgroundViewSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
+  private let checkmarkIconImageView: UIImageView = {
+    $0.image = UIImage(systemName: .checkmarkIcon)
+    $0.tintColor = .systemBlue
+    $0.contentMode = .scaleAspectFill
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.checkmarkIconSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.checkmarkIconSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .locationIcon)
@@ -172,7 +186,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   let userPhotosButton: UIButton = {
-    let icon = UIImage(systemName: .photoIcon)
+    let icon = UIImage(systemName: .photoAngledIcon)
     $0.setImage(icon, for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.tintColor = .white
@@ -190,12 +204,12 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   // MARK: Labels
-  private let nameLabel: UILabel = {
+  private let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.textAlignment = .center
     $0.numberOfLines = .zero
     $0.font = UIFont(
-      name: .impact,
+      name: .timesNewRomanBold,
       size: Const.userNameFontSize
     )
     return $0
@@ -243,13 +257,24 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIView())
   
   // MARK: StackViews
+  private lazy var userNameAndCheckmarkIconStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.halfStackViewSpacing
+    $0.addArrangedSubview(UIView())
+    $0.addArrangedSubview(userNameLabel)
+    $0.addArrangedSubview(checkmarkIconImageView)
+    return $0
+  }(UIStackView())
+  
   private lazy var avatarAndNameLabelStackView: UIStackView = {
     $0.axis = .vertical
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = Const.stackViewSpacing
-    $0.addArrangedSubview(avatarMulticolorBackgroundView)
-    $0.addArrangedSubview(nameLabel)
+    $0.addArrangedSubview(avatarMulticolorBackgroundImageView)
+    $0.addArrangedSubview(userNameAndCheckmarkIconStackView)
     $0.addArrangedSubview(locationStackView)
     return $0
   }(UIStackView())
@@ -345,7 +370,7 @@ final class UserProfileViewControllerRootView: UIView {
       userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
     }
     
-    let userPhotosIcon = UIImage(systemName: .photoIcon)
+    let userPhotosIcon = UIImage(systemName: .photoAngledIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .white
@@ -361,7 +386,7 @@ final class UserProfileViewControllerRootView: UIView {
       userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
     }
     
-    let userPhotosIcon = UIImage(systemName: .photoFillIcon)
+    let userPhotosIcon = UIImage(systemName: .photoAngledFillIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .white
@@ -378,7 +403,7 @@ final class UserProfileViewControllerRootView: UIView {
     }
     
     
-    let userPhotosIcon = UIImage(systemName: .photoIcon)
+    let userPhotosIcon = UIImage(systemName: .photoAngledIcon)
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .systemGreen
@@ -400,7 +425,7 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func configureLabels(viewModelItem: UserProfileViewModelItem) {
-    nameLabel.text = viewModelItem.displayName
+    userNameLabel.text = viewModelItem.displayName
     bioLabel.text = viewModelItem.userBio
     locationLabel.text = viewModelItem.location
     bioLabel.isHidden = viewModelItem.userBio == .empty
@@ -451,7 +476,7 @@ final class UserProfileViewControllerRootView: UIView {
     mainView.addSubview(indicatorView)
     mainView.addSubview(bottomGradientView)
     mainView.addSubview(avatarView)
-    avatarMulticolorBackgroundView.addSubview(avatarView)
+    avatarMulticolorBackgroundImageView.addSubview(avatarView)
   }
   
   private func setupConstraints() {
@@ -463,7 +488,6 @@ final class UserProfileViewControllerRootView: UIView {
     backgroundPhotoConstraints()
     setupAvatarViewConstraints()
     setupAvatarBlackBackgroundViewConstraints()
-    
   }
   
   private func setupAvatarBlackBackgroundViewConstraints() {
