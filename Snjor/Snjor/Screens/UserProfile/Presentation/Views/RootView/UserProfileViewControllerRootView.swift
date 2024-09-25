@@ -294,6 +294,9 @@ final class UserProfileViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fillEqually
     $0.spacing = .zero
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.userInfoStackViewHeight
+    ).isActive = true
     return $0
   }(UIStackView())
   

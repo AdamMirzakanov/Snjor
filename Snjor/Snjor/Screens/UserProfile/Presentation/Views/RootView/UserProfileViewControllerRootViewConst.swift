@@ -30,6 +30,7 @@ enum UserProfileViewControllerRootViewConst {
   static let leftPadding: CGFloat = 0.0
   static let heightUserProfileCollectionView: CGFloat = 320.0
   static let infoStackViewPadding: CGFloat = 40.0
+  static let userInfoStackViewHeight: CGFloat = 25.0
   static let indicatorWidthDivision: CGFloat = 3.0
   static let indicatorHeightMultiplier: CGFloat = 0.7
   static let mainCollectionViewTopPadding: CGFloat = 10.0
