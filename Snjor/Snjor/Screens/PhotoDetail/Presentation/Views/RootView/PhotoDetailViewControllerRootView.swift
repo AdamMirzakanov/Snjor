@@ -438,14 +438,23 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIView())
   
   // MARK: StackViews
+  private lazy var userNameLabelAndCheckmarkIconStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.defaultValue
+    $0.addArrangedSubview(userNameLabel)
+    $0.addArrangedSubview(checkmarkIconImageView)
+    return $0
+  }(UIStackView())
+  
   private lazy var avatarAndUserNameLabelStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = Const.middleValue
     $0.addArrangedSubview(avatarView)
-    $0.addArrangedSubview(userNameLabel)
-    $0.addArrangedSubview(checkmarkIconImageView)
+    $0.addArrangedSubview(userNameLabelAndCheckmarkIconStackView)
     return $0
   }(UIStackView())
   
