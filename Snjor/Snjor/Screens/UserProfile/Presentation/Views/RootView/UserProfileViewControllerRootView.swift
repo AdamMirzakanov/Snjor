@@ -286,6 +286,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.spacing = Const.halfStackViewSpacing
     $0.addArrangedSubview(locationImageView)
     $0.addArrangedSubview(locationLabel)
+    $0.addArrangedSubview(UIView())
     $0.isHidden = true
     return $0
   }(UIStackView())
