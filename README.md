@@ -4,8 +4,6 @@ A mobile application built with Swift, utilizing the Unsplash API to search and 
 
 ## Features:
 - Search for images via the Unsplash API
-- Filter images by various categories
-- Save images to favorites
 
 ## Technologies:
 - Swift
@@ -19,8 +17,8 @@ A mobile application built with Swift, utilizing the Unsplash API to search and 
 ## Installation:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/AdamMirzakanov/snjør.git
+   git clone https://github.com/AdamMirzakanov/Snjor
    ```
 
 ## Screenshots:
-![App Cover](assets/snjor_cover.png)
+![App Cover](assets/cover.png)
