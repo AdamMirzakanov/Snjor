@@ -9,12 +9,21 @@ import UIKit
 
 final class UserTableViewCellMainView: MainImageContainerView {
   // MARK: Private Views
+  private let nameLabel: UILabel = {
+    $0.font = UIFont.systemFont(
+      ofSize: UserTableViewCellMainViewConst.nameFontSize,
+      weight: .medium
+    )
+    $0.textColor = .label
+    return $0
+  }(UILabel())
+  
   private let userNameLabel: UILabel = {
     $0.font = UIFont.systemFont(
       ofSize: UserTableViewCellMainViewConst.userNameFontSize,
       weight: .medium
     )
-    $0.textColor = .label
+    $0.textColor = .systemGray
     return $0
   }(UILabel())
   
@@ -25,12 +34,21 @@ final class UserTableViewCellMainView: MainImageContainerView {
     return $0
   }(UIImageView())
   
+  lazy var userNameStackView: UIStackView = {
+    $0.axis = .vertical
+    $0.spacing = UserTableViewCellMainViewConst.stackViewSpacing
+    $0.alignment = .leading
+    $0.addArrangedSubview(nameLabel)
+    $0.addArrangedSubview(userNameLabel)
+    return $0
+  }(UIStackView())
+  
   lazy var mainStackView: UIStackView = {
     $0.axis = .horizontal
     $0.spacing = UserTableViewCellMainViewConst.stackViewSpacing
     $0.alignment = .center
     $0.addArrangedSubview(mainImageView)
-    $0.addArrangedSubview(userNameLabel)
+    $0.addArrangedSubview(userNameStackView)
     $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(chevronImageView)
     return $0
@@ -50,7 +68,8 @@ final class UserTableViewCellMainView: MainImageContainerView {
   // MARK: Setup Data
   func configure(with user: User, showsUsername: Bool = false, url: URL?) {
     super.configure(url: url, photoID: user.id)
-    userNameLabel.text = user.name
+    nameLabel.text = user.name
+    userNameLabel.text = "@" + user.username
   }
   
   func prepareForReuse() {
@@ -60,6 +79,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
   private func reset() {
     currentPhotoID = nil
     mainImageView.image = nil
+    nameLabel.text = nil
     userNameLabel.text = nil
     imageDownloader.cancel()
   }

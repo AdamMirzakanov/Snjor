@@ -15,5 +15,6 @@ enum UserTableViewCellMainViewConst {
   static let stackViewSpacing: CGFloat = 10.0
   static let mainImageViewCornerRadius: CGFloat = 30.0
   static let mainImageViewSize: CGFloat = 60.0
-  static let userNameFontSize: CGFloat = 16.0
+  static let nameFontSize: CGFloat = 16.0
+  static let userNameFontSize: CGFloat = 14.0
 }
