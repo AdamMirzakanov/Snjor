@@ -7,11 +7,17 @@
 
 import UIKit
 
-final class UserTableViewCellMainView: MainImageContainerView {
+fileprivate typealias Const = UserTableViewCellMainViewConst
+
+final class UserTableViewCellMainView: UIView {
   // MARK: Private Views
+  private let avatarView: AvatarView = {
+    return $0
+  }(AvatarView())
+  
   private let nameLabel: UILabel = {
     $0.font = UIFont.systemFont(
-      ofSize: UserTableViewCellMainViewConst.nameFontSize,
+      ofSize: Const.nameFontSize,
       weight: .medium
     )
     $0.textColor = .label
@@ -20,7 +26,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
   
   private let userNameLabel: UILabel = {
     $0.font = UIFont.systemFont(
-      ofSize: UserTableViewCellMainViewConst.userNameFontSize,
+      ofSize: Const.userNameFontSize,
       weight: .medium
     )
     $0.textColor = .systemGray
@@ -36,18 +42,18 @@ final class UserTableViewCellMainView: MainImageContainerView {
   
   lazy var userNameStackView: UIStackView = {
     $0.axis = .vertical
-    $0.spacing = UserTableViewCellMainViewConst.stackViewSpacing
+    $0.spacing = Const.stackViewSpacing
     $0.alignment = .leading
     $0.addArrangedSubview(nameLabel)
     $0.addArrangedSubview(userNameLabel)
     return $0
   }(UIStackView())
   
-  lazy var mainStackView: UIStackView = {
+  lazy var avatarAndUserNameStackView: UIStackView = {
     $0.axis = .horizontal
-    $0.spacing = UserTableViewCellMainViewConst.stackViewSpacing
+    $0.spacing = Const.stackViewSpacing
     $0.alignment = .center
-    $0.addArrangedSubview(mainImageView)
+    $0.addArrangedSubview(avatarView)
     $0.addArrangedSubview(userNameStackView)
     $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(chevronImageView)
@@ -55,8 +61,8 @@ final class UserTableViewCellMainView: MainImageContainerView {
   }(UIStackView())
   
   // MARK: - Initializers
-  override init() {
-    super.init()
+  init() {
+    super.init(frame: .zero)
     setupViews()
     configImage()
   }
@@ -67,7 +73,7 @@ final class UserTableViewCellMainView: MainImageContainerView {
   
   // MARK: Setup Data
   func configure(with user: User, showsUsername: Bool = false, url: URL?) {
-    super.configure(url: url, photoID: user.id)
+    avatarView.configure(url: url, photoID: user.id)
     nameLabel.text = user.name
     userNameLabel.text = "@" + user.username
   }
@@ -77,40 +83,40 @@ final class UserTableViewCellMainView: MainImageContainerView {
   }
   
   private func reset() {
-    currentPhotoID = nil
-    mainImageView.image = nil
+    avatarView.currentPhotoID = nil
+    avatarView.mainImageView.image = nil
     nameLabel.text = nil
     userNameLabel.text = nil
-    imageDownloader.cancel()
+    avatarView.imageDownloader.cancel()
   }
   
   // MARK: Setup Views
   private func setupViews() {
-    addSubview(mainStackView)
+    addSubview(avatarAndUserNameStackView)
     setupConstraints()
   }
   
   private func setupConstraints() {
-    mainStackView.setConstraints(
+    avatarAndUserNameStackView.setConstraints(
       top: topAnchor,
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pTop: UserTableViewCellMainViewConst.topPadding,
-      pRight: UserTableViewCellMainViewConst.rightPadding,
-      pBottom: UserTableViewCellMainViewConst.bottomPadding,
-      pLeft: UserTableViewCellMainViewConst.leftPadding)
+      pTop: Const.topPadding,
+      pRight: Const.rightPadding,
+      pBottom: Const.bottomPadding,
+      pLeft: Const.leftPadding)
   }
   
   private func configImage() {
-    let cornerRadius = UserTableViewCellMainViewConst.mainImageViewCornerRadius
-    mainImageView.layer.cornerRadius = cornerRadius
-    mainImageView.widthAnchor.constraint(
-      equalToConstant: UserTableViewCellMainViewConst.mainImageViewSize
+    let cornerRadius = Const.mainImageViewCornerRadius
+    avatarView.layer.cornerRadius = cornerRadius
+    avatarView.widthAnchor.constraint(
+      equalToConstant: Const.mainImageViewSize
     ).isActive = true
-    mainImageView.heightAnchor.constraint(
-      equalToConstant: UserTableViewCellMainViewConst.mainImageViewSize
+    avatarView.heightAnchor.constraint(
+      equalToConstant: Const.mainImageViewSize
     ).isActive = true
-    mainImageView.clipsToBounds = true
+    avatarView.clipsToBounds = true
   }
 }
