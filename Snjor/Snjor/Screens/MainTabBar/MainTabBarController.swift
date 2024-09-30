@@ -26,17 +26,17 @@ final class MainTabBarController: UITabBarController {
     action: action
   )
 
-  private lazy var profileButton = getButton(
-    icon: "search",
+  private lazy var settingsButton = getButton(
+    icon: "slider",
     tag: 2,
     action: action
   )
 
-  private lazy var settingButton = getButton(
-    icon: "slider.horizontal.below.square.filled.and.square",
-    tag: 3,
-    action: action
-  )
+//  private lazy var settingsButton = getButton(
+//    icon: "slider.horizontal.below.square.filled.and.square",
+//    tag: 3,
+//    action: action
+//  )
 
   private lazy var action = UIAction { [weak self] sender in
     guard let sender = sender.sender as? UIButton, let self = self
@@ -60,8 +60,7 @@ final class MainTabBarController: UITabBarController {
     $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(photoListButton)
     $0.addArrangedSubview(searchButton)
-    $0.addArrangedSubview(profileButton)
-    $0.addArrangedSubview(settingButton)
+    $0.addArrangedSubview(settingsButton)
     $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
@@ -154,7 +153,7 @@ final class MainTabBarController: UITabBarController {
   }
 
   private func setOpacity(tag: Int) {
-    [photoListButton, searchButton, profileButton, settingButton].forEach { button in
+    [photoListButton, searchButton, settingsButton].forEach { button in
       if button.tag != tag {
         button.layer.opacity = 0.4
       } else {
