@@ -31,15 +31,20 @@ final class MainTabBarController: UITabBarController {
     tag: 2,
     action: action
   )
-
+  
   private lazy var action = UIAction { [weak self] sender in
-    guard let sender = sender.sender as? UIButton, let self = self
-    else { return }
+    guard
+      let sender = sender.sender as? UIButton,
+      let self = self
+    else {
+      return
+    }
     self.selectedIndex = sender.tag
     self.selected = self.selectedIndex
     self.setOpacity(tag: sender.tag)
   }
-
+  
+  // MARK: Views
   private lazy var customBar: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .equalSpacing
@@ -94,10 +99,8 @@ final class MainTabBarController: UITabBarController {
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.addSubview(gradientView)
-    view.addSubview(blurView)
-    view.addSubview(customBar)
-    tabBar.isHidden = true
+    addSubviews()
+    defaultTabBarConfigurations()
   }
 
   // MARK: Internal  Methods
@@ -130,6 +133,16 @@ final class MainTabBarController: UITabBarController {
   }
   
   // MARK: Private Methods
+  private func addSubviews() {
+    view.addSubview(gradientView)
+    view.addSubview(blurView)
+    view.addSubview(customBar)
+  }
+  
+  private func defaultTabBarConfigurations() {
+    tabBar.isHidden = true
+  }
+  
   private func getButton(
     icon: String,
     tag: Int,
