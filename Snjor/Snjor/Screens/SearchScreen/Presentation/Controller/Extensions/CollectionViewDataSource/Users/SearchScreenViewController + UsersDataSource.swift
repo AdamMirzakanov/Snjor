@@ -41,32 +41,28 @@ extension SearchScreenViewController {
       }
       return self.configureCell(
         tableView: tableView,
-        indexPath: indexPath,
-        user: user
+        indexPath: indexPath
       )
     }
   }
   
   private func configureCell(
     tableView: UITableView,
-    indexPath: IndexPath,
-    user: User
+    indexPath: IndexPath
   ) -> UITableViewCell {
     let section = usersSections[indexPath.section]
     switch section {
     case .main:
       return configureUserCell(
         tableView: tableView,
-        indexPath: indexPath,
-        user: user
+        indexPath: indexPath
       )
     }
   }
   
   private func configureUserCell(
     tableView: UITableView,
-    indexPath: IndexPath,
-    user: User
+    indexPath: IndexPath
   ) -> UITableViewCell {
     guard
       let cell = tableView.dequeueReusableCell(

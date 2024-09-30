@@ -13,9 +13,7 @@ class SearchViewModel<Element: ElementProtocol>: BaseViewModel<Element>, SearchV
     }
   }
   
-  func searchUseCase(with searchTerm: String) async {
-    fatalError("This method must be overridden in a subclass")
-  }
+  func searchUseCase(with searchTerm: String) async { }
   
   func checkAndLoadMoreSearchItems(at index: Int, with searchTerm: String) {
     lastPageValidationUseCase?.checkAndLoadMoreItems(
