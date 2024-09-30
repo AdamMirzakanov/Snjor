@@ -32,12 +32,6 @@ final class MainTabBarController: UITabBarController {
     action: action
   )
 
-//  private lazy var settingsButton = getButton(
-//    icon: "slider.horizontal.below.square.filled.and.square",
-//    tag: 3,
-//    action: action
-//  )
-
   private lazy var action = UIAction { [weak self] sender in
     guard let sender = sender.sender as? UIButton, let self = self
     else { return }
@@ -51,9 +45,9 @@ final class MainTabBarController: UITabBarController {
     $0.distribution = .equalSpacing
     $0.alignment = .center
     $0.frame = CGRect(
-      x: 16,
+      x: 70,
       y: view.bounds.height - 70,
-      width: view.bounds.width - 32,
+      width: view.bounds.width - 140,
       height: 50
     )
     $0.layer.cornerRadius = tabBar.bounds.height / 2
@@ -103,15 +97,20 @@ final class MainTabBarController: UITabBarController {
     view.addSubview(gradientView)
     view.addSubview(blurView)
     view.addSubview(customBar)
-    
     tabBar.isHidden = true
   }
 
   // MARK: Internal  Methods
   func hideCustomTabBar() {
     UIView.animate(withDuration: 0.8) {
-      self.customBar.transform = CGAffineTransform(translationX: 0, y: self.view.bounds.height)
-      self.blurView.transform = CGAffineTransform(translationX: 0, y: self.view.bounds.height)
+      self.customBar.transform = CGAffineTransform(
+        translationX: 0,
+        y: self.view.bounds.height
+      )
+      self.blurView.transform = CGAffineTransform(
+        translationX: 0,
+        y: self.view.bounds.height
+      )
     }
     
     UIView.animate(withDuration: 0.6) {
@@ -153,7 +152,12 @@ final class MainTabBarController: UITabBarController {
   }
 
   private func setOpacity(tag: Int) {
-    [photoListButton, searchButton, settingsButton].forEach { button in
+    [
+      photoListButton,
+      searchButton,
+      settingsButton
+    ].forEach { button in
+
       if button.tag != tag {
         button.layer.opacity = 0.4
       } else {
