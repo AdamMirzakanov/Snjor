@@ -682,7 +682,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     photoView.configure(with: photo, url: regularURL)
     avatarView.configure(with: photo, url: profileImageURL)
     userNameLabel.text = viewModelItem.displayName
-    likesLabel.text = viewModelItem.likes
+    setupLikes(viewModelItem: viewModelItem)
     createdAt(from: viewModelItem.createdAt)
     resolutionLabel.text = viewModelItem.resolution
     pxLabel.text = viewModelItem.pixels
@@ -699,6 +699,16 @@ final class PhotoDetailViewControllerRootView: UIView {
     exposureTimeValueLabel.text = viewModelItem.exposureTime
     setupLocation(viewModelItem: viewModelItem)
     getTags(viewModelItem)
+  }
+  
+  private func setupLikes(viewModelItem: PhotoDetailViewModelItem) {
+    if viewModelItem.likes == .noLikesValue {
+      likesImageView.image = UIImage(systemName: .noLikesIcon)
+      likesImageView.tintColor = .systemGray
+      likesLabel.isHidden = true
+    } else {
+      likesLabel.text = viewModelItem.likes
+    }
   }
   
   private func setupLocation(viewModelItem: PhotoDetailViewModelItem) {
