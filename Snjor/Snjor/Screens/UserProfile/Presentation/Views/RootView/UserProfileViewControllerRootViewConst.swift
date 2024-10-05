@@ -26,6 +26,7 @@ enum UserProfileViewControllerRootViewConst {
   static let middleOpacity: CGFloat = 0.7
   static let bigIconOpacity: CGFloat = 0.3
   static let maxOpacity: CGFloat = 1.0
+  static let loacationIconSize: CGFloat = 13.0
   static let lineWidth: CGFloat = 1.0
   static let rightPadding: CGFloat = 0.0
   static let leftPadding: CGFloat = 0.0

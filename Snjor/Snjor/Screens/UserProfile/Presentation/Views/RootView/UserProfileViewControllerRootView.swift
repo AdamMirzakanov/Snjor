@@ -153,8 +153,12 @@ final class UserProfileViewControllerRootView: UIView {
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(named: .locationIcon)
-    $0.heightAnchor.constraint(equalToConstant: 13).isActive = true
-    $0.widthAnchor.constraint(equalToConstant: 13).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.loacationIconSize
+    ).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.loacationIconSize
+    ).isActive = true
     return $0
   }(UIImageView())
   
