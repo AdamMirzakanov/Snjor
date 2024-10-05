@@ -63,6 +63,11 @@ struct PhotoDetailViewModelItem {
     return time == .dash ? time : time + .second
   }
   
+  var location: String {
+    let syty = photo.location?.city
+    return syty ?? .empty
+  }
+  
   var tags: [Tag]? {
     let tags = photo.tags
     return tags

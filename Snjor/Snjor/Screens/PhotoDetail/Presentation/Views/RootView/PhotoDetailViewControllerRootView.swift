@@ -239,6 +239,18 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
+  private let locationImageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.image = UIImage(named: .locationIcon)
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.loacationIconSize
+    ).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.loacationIconSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
   // MARK: Labels
   let userNameLabel: UILabel = {
     $0.textColor = .white
@@ -397,6 +409,17 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(UILabel())
   
+  private let locationLabel: UILabel = {
+    $0.textColor = .white
+    $0.numberOfLines = .zero
+    $0.textAlignment = .center
+    $0.font = .systemFont(
+      ofSize: Const.defaultFontSize,
+      weight: .medium
+    )
+    return $0
+  }(UILabel())
+  
   // MARK: Lines
   private let firstLine: UIView = {
     $0.backgroundColor = .white
@@ -448,13 +471,35 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(UIStackView())
   
+  private lazy var locationStackView: UIStackView = {
+    $0.isHidden = true
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.defaultValue
+    $0.addArrangedSubview(locationImageView)
+    $0.addArrangedSubview(locationLabel)
+    $0.alpha = Const.middleOpacity
+    return $0
+  }(UIStackView())
+  
+  private lazy var userNameLabelAndCheckmarkIconAndLocationStackView: UIStackView = {
+    $0.axis = .vertical
+    $0.distribution = .fill
+    $0.alignment = .leading
+    $0.spacing = Const.defaultValue
+    $0.addArrangedSubview(userNameLabelAndCheckmarkIconStackView)
+    $0.addArrangedSubview(locationStackView)
+    return $0
+  }(UIStackView())
+  
   private lazy var avatarAndUserNameLabelStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = Const.middleValue
     $0.addArrangedSubview(avatarView)
-    $0.addArrangedSubview(userNameLabelAndCheckmarkIconStackView)
+    $0.addArrangedSubview(userNameLabelAndCheckmarkIconAndLocationStackView)
     return $0
   }(UIStackView())
   
@@ -652,7 +697,17 @@ final class PhotoDetailViewControllerRootView: UIView {
     focalLengthValueLabel.text = viewModelItem.focalLength
     apertureValueLabel.text = viewModelItem.aperture
     exposureTimeValueLabel.text = viewModelItem.exposureTime
+    setupLocation(viewModelItem: viewModelItem)
     getTags(viewModelItem)
+  }
+  
+  private func setupLocation(viewModelItem: PhotoDetailViewModelItem) {
+    if viewModelItem.location == .empty {
+      locationStackView.isHidden = true
+    } else {
+      locationStackView.isHidden = false
+      locationLabel.text = viewModelItem.location
+    }
   }
   
   private func getTags(_ viewModelItem: PhotoDetailViewModelItem) {
