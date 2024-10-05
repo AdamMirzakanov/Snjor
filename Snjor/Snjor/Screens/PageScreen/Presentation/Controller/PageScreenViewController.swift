@@ -56,7 +56,6 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     setNavigationBarHidden(false, animated: animated)
-    hideCustomTabBar()
   }
   
   // MARK: Internal Methods

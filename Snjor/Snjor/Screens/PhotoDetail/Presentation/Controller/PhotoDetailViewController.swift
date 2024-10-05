@@ -43,6 +43,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailViewControl
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    hideCustomTabBar()
     setupNavigationItems()
     configureDownloadSession()
   }

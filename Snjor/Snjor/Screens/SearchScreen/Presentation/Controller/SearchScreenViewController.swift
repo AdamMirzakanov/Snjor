@@ -73,7 +73,6 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    hideCustomTabBar()
     deactivateSearchController()
   }
   
