@@ -745,7 +745,22 @@ final class PhotoDetailViewControllerRootView: UIView {
   }
   
   private func getTags(_ viewModelItem: PhotoDetailViewModelItem) {
-    tagsCollectionView.tags = viewModelItem.tags ?? []
+    if viewModelItem.tags?.isEmpty == true {
+      hideTags()
+      setNoTagsConstraints()
+    } else {
+      setTagsConstraints()
+      updateTagsCollectionView(with: viewModelItem.tags ?? [])
+    }
+  }
+  
+  private func hideTags() {
+    tagsCollectionView.isHidden = true
+  }
+  
+  private func updateTagsCollectionView(with tags: [Tag]) {
+    tagsCollectionView.tags = tags
+    tagsCollectionView.isHidden = false
     tagsCollectionView.reloadData()
   }
   
@@ -789,19 +804,41 @@ final class PhotoDetailViewControllerRootView: UIView {
     )
   }
   
-  private func setupCenterLineConstraints() {
-    centerLine.centerX()
+  private func setNoTagsConstraints() {
+    leftStackView.setConstraints(
+      centerY: mainStackView.centerYAnchor,
+      pCenterY: Const.leftStackViewCenterYOffsetNoTags
+    )
+    rightStackView.setConstraints(
+      centerY: mainStackView.centerYAnchor,
+      pCenterY: Const.rightStackViewCenterYOffsetNoTags
+    )
+    centerLine.setConstraints(
+      top: mainStackView.topAnchor,
+      pTop: Const.centerLineTopOffsetNoTags
+    )
+  }
+  
+  private func setTagsConstraints() {
+    leftStackView.setConstraints(
+      centerY: mainStackView.centerYAnchor,
+      pCenterY: Const.leftStackViewCenterYOffset
+    )
+    rightStackView.setConstraints(
+      centerY: mainStackView.centerYAnchor,
+      pCenterY: Const.rightStackViewCenterYOffset
+    )
     centerLine.setConstraints(
       top: mainStackView.topAnchor,
       pTop: Const.centerLineTopOffset
     )
   }
   
+  private func setupCenterLineConstraints() {
+    centerLine.centerX()
+  }
+  
   private func setupLeftStackViewConstraints() {
-    leftStackView.setConstraints(
-      centerY: mainStackView.centerYAnchor,
-      pCenterY: Const.leftStackViewCenterYOffset
-    )
     leftStackView.setConstraints(
       right: centerLine.rightAnchor,
       left: leftAnchor,
@@ -811,10 +848,6 @@ final class PhotoDetailViewControllerRootView: UIView {
   }
   
   private func setupRightStackViewConstraints() {
-    rightStackView.setConstraints(
-      centerY: mainStackView.centerYAnchor,
-      pCenterY: Const.rightStackViewCenterYOffset
-    )
     rightStackView.setConstraints(
       right: rightAnchor,
       left: centerLine.leftAnchor,

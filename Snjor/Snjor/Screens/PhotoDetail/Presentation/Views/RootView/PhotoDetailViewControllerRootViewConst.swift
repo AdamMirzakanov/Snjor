@@ -12,8 +12,11 @@ enum PhotoDetailViewControllerRootViewConst {
   static let centerYOffset: CGFloat = 120.0
   static let leftStackViewCenterYOffset: CGFloat = 148.0
   static let rightStackViewCenterYOffset: CGFloat = 148.0
+  static let leftStackViewCenterYOffsetNoTags: CGFloat = 137.0
+  static let rightStackViewCenterYOffsetNoTags: CGFloat = 137.0
   static let tagsCollectionViewHeight: CGFloat = 22.0
   static let centerLineTopOffset: CGFloat = 179.0
+  static let centerLineTopOffsetNoTags: CGFloat = 150.0
   static let downloadButtonWidth: CGFloat = 75.0
   static let resolutionLabelWidth: CGFloat = 66.0
   static let resolutionLabelHeight: CGFloat = resolutionLabelWidth / 3
