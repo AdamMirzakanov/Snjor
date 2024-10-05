@@ -82,7 +82,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     photosViewModel.viewDidLoad()
     albumsViewModel.viewDidLoad()
     topicsViewModel.viewDidLoad()
-    usersViewModel.executeSearch(with: .initialUserSearchQuery)
+//    usersViewModel.executeSearch(with: .initialUserSearchQuery)
   }
   
   private func setupSearchController() {
@@ -96,7 +96,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     searchController.searchBar.scopeButtonTitles = [
       .discoverTitle,
       .topicsAndAlbumsTitle,
-      .usersTitle
+//      .usersTitle
     ]
   }
   
@@ -136,7 +136,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
       for: rootView.albumsCollectionView,
       delegate: self
     )
-    createUsersDataSource(for: rootView.usersTableViewView)
+//    createUsersDataSource(for: rootView.usersTableViewView)
   }
   
   private func configureDownloadSession() {
@@ -150,7 +150,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     photosState()
     topicsState()
     albumsState()
-    usersState()
+//    usersState()
   }
   
   private func photosState() {
