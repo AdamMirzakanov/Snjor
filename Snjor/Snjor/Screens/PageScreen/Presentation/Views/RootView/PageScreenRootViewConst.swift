@@ -8,8 +8,8 @@
 import CoreGraphics
 
 enum PageScreenRootViewConst {
-  static let gradientStartLocation: CGFloat = 0.1
-  static let gradientEndLocation: CGFloat = 0.25
+  static let gradientStartLocation: CGFloat = 0.11
+  static let gradientEndLocation: CGFloat = 0.27
   static let gradientOpacity: CGFloat = 1.0
   static let topicsCollectionViewHeight: CGFloat = 40.0
   static let appNameLabelFontSize: CGFloat = 20.0

@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = PageScreenPhotosRootViewConst
+
 final class PageScreenPhotosRootView: UIView {
   // MARK: Views
   let pageScreenPhotosCollectionView: PageScreenPhotosCollectionView = {
@@ -38,7 +40,8 @@ final class PageScreenPhotosRootView: UIView {
       top: topAnchor,
       right: rightAnchor,
       bottom: bottomAnchor,
-      left: leftAnchor
+      left: leftAnchor,
+      pTop: Const.collectionViewTopAnchor
     )
   }
 }
