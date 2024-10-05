@@ -152,8 +152,9 @@ final class UserProfileViewControllerRootView: UIView {
   
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .locationIcon)
-    $0.tintColor = .white
+    $0.image = UIImage(named: .locationIcon)
+    $0.heightAnchor.constraint(equalToConstant: 13).isActive = true
+    $0.widthAnchor.constraint(equalToConstant: 13).isActive = true
     return $0
   }(UIImageView())
   
@@ -288,6 +289,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.addArrangedSubview(locationLabel)
     $0.addArrangedSubview(UIView())
     $0.isHidden = true
+    $0.alpha = Const.middleOpacity
     return $0
   }(UIStackView())
   

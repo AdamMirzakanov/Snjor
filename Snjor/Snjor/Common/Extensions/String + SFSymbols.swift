@@ -33,7 +33,7 @@ extension String {
   static let photoStackIcon = "photo.stack"
   static let macroIcon = "camera.macro"
   static let macroCircleIcon = "camera.macro.circle"
-  static let locationIcon = "scope"
+  static let locationIcon = "location"
   static let instIcon = "inst"
   static let twitIcon = "twit"
   static let photoCap = "photoCap"
