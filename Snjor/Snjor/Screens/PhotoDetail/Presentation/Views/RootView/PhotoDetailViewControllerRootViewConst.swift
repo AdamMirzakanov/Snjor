@@ -53,6 +53,7 @@ enum PhotoDetailViewControllerRootViewConst {
   static let iconSize: CGFloat = 21.0
   static let loacationIconSize: CGFloat = 13.0
   static let resolutionLabelFrameCornerRadius: CGFloat = 6.0
+  static let middleStackViewSpacing: CGFloat = 12.0
   static let smallValue = half * half                         // 4
   static let defaultValue = smallValue * half                 // 8
   static let middleValue = defaultValue * half                // 16

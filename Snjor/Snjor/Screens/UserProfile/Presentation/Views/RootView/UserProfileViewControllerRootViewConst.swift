@@ -21,7 +21,7 @@ enum UserProfileViewControllerRootViewConst {
   static let iconSize: CGFloat = 17.0
   static let avatarCircle: CGFloat = avatarSize / 2.0
   static let avatarMulticolorBackgroundViewCircle: CGFloat = avatarMulticolorBackgroundViewSize / 2.0
-  static let halfStackViewSpacing: CGFloat = stackViewSpacing / 2.0
+  static let middleStackViewSpacing: CGFloat = 12.0
   static let stackViewSpacing: CGFloat = 16.0
   static let defaultOpacity: CGFloat = 0.4
   static let middleOpacity: CGFloat = 0.7

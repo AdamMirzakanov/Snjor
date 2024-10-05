@@ -493,7 +493,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = Const.defaultValue
+    $0.spacing = Const.middleStackViewSpacing
     $0.addArrangedSubview(userNameLabel)
     $0.addArrangedSubview(checkmarkIconBackgroundView)
     return $0
