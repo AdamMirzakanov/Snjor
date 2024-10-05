@@ -59,6 +59,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setupNavigationItems()
+    hideCustomTabBar()
   }
   
   override func viewWillDisappear(_ animated: Bool) {

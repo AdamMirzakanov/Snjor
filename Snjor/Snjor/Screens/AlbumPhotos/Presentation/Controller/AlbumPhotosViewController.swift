@@ -60,6 +60,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     super.viewWillAppear(animated)
     setupNavigationItems()
     setupNavigationTitle()
+    hideCustomTabBar()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
