@@ -2136,36 +2136,6 @@
 			path = ReusableViews;
 			sourceTree = "<group>";
 		};
-		37A502DB2C6EB84C000221D1 /* Topics */ = {
-			isa = PBXGroup;
-			children = (
-				3723E38A2C4F0E5B00C3AE3E /* Topic.swift */,
-				37A502952C6B9D35000221D1 /* TopicCoverPhoto.swift */,
-				37A502972C6B9DE5000221D1 /* TopicCoverPhotoURL.swift */,
-			);
-			path = Topics;
-			sourceTree = "<group>";
-		};
-		37A502DC2C6EB85D000221D1 /* Albums */ = {
-			isa = PBXGroup;
-			children = (
-				379476262C64F7DE004AFF0E /* Album.swift */,
-				37F292AE2C660F5B00890DAC /* AlbumPreviewPhoto.swift */,
-				37A502992C6B9E96000221D1 /* AlbumPreviewPhotoURL.swift */,
-			);
-			path = Albums;
-			sourceTree = "<group>";
-		};
-		37A502DD2C6EB868000221D1 /* Collections */ = {
-			isa = PBXGroup;
-			children = (
-				37A502AD2C6CA419000221D1 /* TopicsAndAlbumsItem.swift */,
-				37A502DB2C6EB84C000221D1 /* Topics */,
-				37A502DC2C6EB85D000221D1 /* Albums */,
-			);
-			path = Collections;
-			sourceTree = "<group>";
-		};
 		37AF3C352C90B2210048FB9C /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -2972,7 +2942,6 @@
 		664A515D2C1E458F003491BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				37A502DD2C6EB868000221D1 /* Collections */,
 				664A515B2C1E458A003491BA /* Photo.swift */,
 				660DB6642C317F8800514738 /* Location.swift */,
 				66BE9C702C20791B0006011A /* User.swift */,
@@ -2982,6 +2951,13 @@
 				379476282C64F81B004AFF0E /* Tag.swift */,
 				37ED5DDC2C7FDAAD00891811 /* SearchAlbums.swift */,
 				37CF7D8A2C8DC10200724A58 /* SearchUsers.swift */,
+				37A502AD2C6CA419000221D1 /* TopicsAndAlbumsItem.swift */,
+				3723E38A2C4F0E5B00C3AE3E /* Topic.swift */,
+				37A502952C6B9D35000221D1 /* TopicCoverPhoto.swift */,
+				37A502972C6B9DE5000221D1 /* TopicCoverPhotoURL.swift */,
+				379476262C64F7DE004AFF0E /* Album.swift */,
+				37F292AE2C660F5B00890DAC /* AlbumPreviewPhoto.swift */,
+				37A502992C6B9E96000221D1 /* AlbumPreviewPhotoURL.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
