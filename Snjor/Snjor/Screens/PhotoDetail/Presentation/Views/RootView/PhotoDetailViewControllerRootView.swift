@@ -199,7 +199,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   // MARK: ImageViews
   private let likesImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .heartFillIcon)
+    $0.image = UIImage(systemName: .suitHeartIcon)
     $0.tintColor = .systemPink
     $0.heightAnchor.constraint(
       equalToConstant: Const.iconSize
