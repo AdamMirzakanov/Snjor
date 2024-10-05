@@ -74,6 +74,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     super.viewWillAppear(animated)
     setupNavigationItems()
     setupNavigationTitle()
+    hideCustomTabBar()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
