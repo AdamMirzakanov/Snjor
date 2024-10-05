@@ -14,7 +14,7 @@ extension String {
   static let cameraIcon = "camera.aperture"
   static let heartFillIcon = "suit.heart"
   static let noLikesIcon = "heart.slash"
-  static let noLikesValue = "0"
+  static let zero = "0"
   static let heartIcon = "heart"
   static let heartCircleIcon = "heart.circle"
   static let downloadsIcon = "tray.and.arrow.down.fill"

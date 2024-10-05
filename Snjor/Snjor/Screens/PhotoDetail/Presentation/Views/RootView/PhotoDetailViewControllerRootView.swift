@@ -201,6 +201,12 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .heartFillIcon)
     $0.tintColor = .systemPink
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.iconSize
+    ).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.iconSize
+    ).isActive = true
     return $0
   }(UIImageView())
   
@@ -208,6 +214,12 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .downloadsIcon)
     $0.tintColor = .white
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.iconSize
+    ).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.iconSize
+    ).isActive = true
     return $0
   }(UIImageView())
   
@@ -215,6 +227,12 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.contentMode = .scaleAspectFill
     $0.image = UIImage(systemName: .calendarIcon)
     $0.tintColor = .white
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.iconSize
+    ).isActive = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.iconSize
+    ).isActive = true
     return $0
   }(UIImageView())
   
@@ -691,23 +709,29 @@ final class PhotoDetailViewControllerRootView: UIView {
   func setupPhotoInfoData(viewModel: any PhotoDetailViewModelProtocol) {
     let viewModelItem = viewModel.getPhotoDetailViewModelItem()
     guard let viewModelItem = viewModelItem else { return }
-    downloadsLabel.text = viewModelItem.downloads
     cameraModelLabel.text = viewModelItem.cameraModel
     isoValueLabel.text = viewModelItem.iso
     focalLengthValueLabel.text = viewModelItem.focalLength
     apertureValueLabel.text = viewModelItem.aperture
     exposureTimeValueLabel.text = viewModelItem.exposureTime
+    setupDownloads(viewModelItem: viewModelItem)
     setupLocation(viewModelItem: viewModelItem)
     getTags(viewModelItem)
   }
   
   private func setupLikes(viewModelItem: PhotoDetailViewModelItem) {
-    if viewModelItem.likes == .noLikesValue {
-      likesImageView.image = UIImage(systemName: .noLikesIcon)
-      likesImageView.tintColor = .systemGray
-      likesLabel.isHidden = true
+    if viewModelItem.likes == .zero {
+      likesStackView.isHidden = true
     } else {
       likesLabel.text = viewModelItem.likes
+    }
+  }
+  
+  private func setupDownloads(viewModelItem: PhotoDetailViewModelItem) {
+    if viewModelItem.downloads == .zero {
+      downloadStackView.isHidden = true
+    } else {
+      downloadsLabel.text = viewModelItem.downloads
     }
   }
   
