@@ -298,7 +298,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = Const.middleStackViewSpacing
+    $0.spacing = Const.smallValue
     $0.addArrangedSubview(locationImageView)
     $0.addArrangedSubview(locationLabel)
     $0.addArrangedSubview(UIView())
