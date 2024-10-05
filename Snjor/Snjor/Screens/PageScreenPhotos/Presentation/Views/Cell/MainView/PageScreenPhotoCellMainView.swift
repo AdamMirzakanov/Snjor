@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = PageScreenPhotoCellMainViewConst
+
 final class PageScreenPhotoCellMainView: MainImageContainerView {
   // MARK: Private Properties
   private var screenScale: CGFloat {
@@ -15,8 +17,8 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
   
   private var showsUsername = true {
     didSet {
-      userNameLabel.alpha = showsUsername ? PageScreenPhotoCellMainViewConst.maxOpacity : .zero
-      gradientView.alpha = showsUsername ? PageScreenPhotoCellMainViewConst.maxOpacity : .zero
+      userNameLabel.alpha = showsUsername ? Const.maxOpacity : .zero
+      gradientView.alpha = showsUsername ? Const.maxOpacity : .zero
     }
   }
   
@@ -24,16 +26,16 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
   private let gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: PageScreenPhotoCellMainViewConst.gradientOpacity
+      alpha: Const.gradientOpacity
     )
     $0.setColors([
       MainGradientView.Color(
         color: .clear,
-        location: PageScreenPhotoCellMainViewConst.gradientStartLocation
+        location: Const.gradientStartLocation
       ),
       MainGradientView.Color(
         color: color,
-        location: PageScreenPhotoCellMainViewConst.gradientEndLocation
+        location: Const.gradientEndLocation
       )
     ])
     return $0
@@ -41,42 +43,60 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
   
   private let profilePhotoView: PhotoDetailPhotoView = {
     $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = PageScreenPhotoCellMainViewConst.profilePhotoViewCircle
+    $0.layer.cornerRadius = Const.profilePhotoViewCircle
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
-      equalToConstant: PageScreenPhotoCellMainViewConst.profilePhotoViewSize
+      equalToConstant: Const.profilePhotoViewSize
     ).isActive = true
     $0.heightAnchor.constraint(
-      equalToConstant: PageScreenPhotoCellMainViewConst.profilePhotoViewSize
+      equalToConstant: Const.profilePhotoViewSize
     ).isActive = true
     $0.backgroundColor = .systemPurple
     return $0
   }(PhotoDetailPhotoView())
   
+  private let checkmarkIconImageView: UIImageView = {
+    $0.image = UIImage(systemName: .checkmarkIcon)
+    $0.tintColor = .white
+    $0.contentMode = .scaleAspectFill
+    $0.clipsToBounds = true
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.checkmarkIconSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.checkmarkIconSize
+    ).isActive = true
+    return $0
+  }(UIImageView())
+  
   private let userNameLabel: UILabel = {
     $0.textColor = .white
     $0.numberOfLines = .zero
     $0.font = .systemFont(
-      ofSize: PageScreenPhotoCellMainViewConst.userNameLabelFontSize,
+      ofSize: Const.userNameLabelFontSize,
       weight: .medium
     )
     return $0
   }(UILabel())
   
-  private let heartImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .heartFillIcon)
-    $0.tintColor = .white
+  private lazy var userNameLabelAndcheckmarkIconStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.distribution = .fill
+    $0.alignment = .center
+    $0.spacing = Const.defaultValue
+    $0.addArrangedSubview(userNameLabel)
+    $0.addArrangedSubview(checkmarkIconImageView)
+    $0.addArrangedSubview(UIView())
     return $0
-  }(UIImageView())
+  }(UIStackView())
   
   private lazy var profileStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fill
     $0.alignment = .center
-    $0.spacing = PageScreenPhotoCellMainViewConst.defaultValue
+    $0.spacing = Const.middleValue
     $0.addArrangedSubview(profilePhotoView)
-    $0.addArrangedSubview(userNameLabel)
+    $0.addArrangedSubview(userNameLabelAndcheckmarkIconStackView)
     return $0
   }(UIStackView())
 
@@ -152,9 +172,9 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pRight: PageScreenPhotoCellMainViewConst.defaultValue,
-      pBottom: PageScreenPhotoCellMainViewConst.defaultValue,
-      pLeft: PageScreenPhotoCellMainViewConst.defaultValue
+      pRight: Const.middleValue,
+      pBottom: Const.middleValue,
+      pLeft: Const.middleValue
     )
   }
 

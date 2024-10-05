@@ -15,6 +15,8 @@ enum PageScreenPhotoCellMainViewConst {
   static let maxOpacity: CGFloat = 1.0
   static let profilePhotoViewSize: CGFloat = 40.0
   static let profilePhotoViewCircle: CGFloat = profilePhotoViewSize / 2
-  static let defaultValue: CGFloat = 16.0
+  static let defaultValue: CGFloat = 8.0
+  static let middleValue: CGFloat = 16.0
   static let userNameLabelFontSize: CGFloat = 17.0
+  static let checkmarkIconSize: CGFloat = 17.0
 }
