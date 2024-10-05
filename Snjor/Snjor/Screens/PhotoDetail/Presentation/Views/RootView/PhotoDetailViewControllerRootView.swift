@@ -969,7 +969,6 @@ final class PhotoDetailViewControllerRootView: UIView {
       self.downloadBarButtonBlurEffect.frame.size.width = Const.fullValue
       self.downloadBarButtonBlurEffect.frame.size.height = Const.fullValue
       self.downloadBarButton.alpha = .zero
-      self.downloadBarButtonBlurEffect.layer.cornerRadius = Const.defaultCircle
     } completion: { _ in
       self.downloadBarButton.removeFromSuperview()
       self.downloadBarButtonBlurEffect.contentView.addSubview(self.spinner)
