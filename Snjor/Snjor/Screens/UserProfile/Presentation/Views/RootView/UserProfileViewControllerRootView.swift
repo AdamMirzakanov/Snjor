@@ -136,11 +136,21 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
+  private let checkmarkIconBackgroundView: UIView = {
+    $0.backgroundColor = .white
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.checkmarkIconBackgroundViewSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.checkmarkIconBackgroundViewSize
+    ).isActive = true
+    return $0
+  }(UIView())
+  
   private let checkmarkIconImageView: UIImageView = {
     $0.image = UIImage(systemName: .checkmarkIcon)
     $0.tintColor = .systemBlue
     $0.contentMode = .scaleAspectFill
-    $0.clipsToBounds = true
     $0.widthAnchor.constraint(
       equalToConstant: Const.checkmarkIconSize
     ).isActive = true
@@ -269,7 +279,7 @@ final class UserProfileViewControllerRootView: UIView {
     $0.spacing = Const.halfStackViewSpacing
     $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(userNameLabel)
-    $0.addArrangedSubview(checkmarkIconImageView)
+    $0.addArrangedSubview(checkmarkIconBackgroundView)
     return $0
   }(UIStackView())
   
@@ -487,6 +497,7 @@ final class UserProfileViewControllerRootView: UIView {
     mainView.addSubview(bottomGradientView)
     mainView.addSubview(avatarView)
     avatarMulticolorBackgroundImageView.addSubview(avatarView)
+    checkmarkIconBackgroundView.addSubview(checkmarkIconImageView)
   }
   
   private func setupConstraints() {
@@ -498,6 +509,14 @@ final class UserProfileViewControllerRootView: UIView {
     backgroundPhotoConstraints()
     setupAvatarViewConstraints()
     setupAvatarBlackBackgroundViewConstraints()
+    checkmarkIconImageViewConstraints()
+  }
+  
+  private func checkmarkIconImageViewConstraints() {
+    checkmarkIconImageView.setConstraints(
+      centerY: checkmarkIconBackgroundView.centerYAnchor,
+      centerX: checkmarkIconBackgroundView.centerXAnchor
+    )
   }
   
   private func setupAvatarBlackBackgroundViewConstraints() {

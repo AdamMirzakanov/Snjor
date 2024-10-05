@@ -243,11 +243,21 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(UIImageView())
   
+  private let checkmarkIconBackgroundView: UIView = {
+    $0.backgroundColor = .white
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.checkmarkIconBackgroundViewSize
+    ).isActive = true
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.checkmarkIconBackgroundViewSize
+    ).isActive = true
+    return $0
+  }(UIView())
+  
   private let checkmarkIconImageView: UIImageView = {
     $0.image = UIImage(systemName: .checkmarkIcon)
     $0.tintColor = .systemBlue
     $0.contentMode = .scaleAspectFill
-    $0.clipsToBounds = true
     $0.widthAnchor.constraint(
       equalToConstant: Const.checkmarkIconSize
     ).isActive = true
@@ -485,7 +495,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.alignment = .center
     $0.spacing = Const.defaultValue
     $0.addArrangedSubview(userNameLabel)
-    $0.addArrangedSubview(checkmarkIconImageView)
+    $0.addArrangedSubview(checkmarkIconBackgroundView)
     return $0
   }(UIStackView())
   
@@ -777,6 +787,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     addSubview(leftStackView)
     addSubview(centerLine)
     addSubview(rightStackView)
+    checkmarkIconBackgroundView.addSubview(checkmarkIconImageView)
   }
   
   private func setupGestureRecognizers() {
@@ -791,6 +802,14 @@ final class PhotoDetailViewControllerRootView: UIView {
     setupCenterLineConstraints()
     setupLeftStackViewConstraints()
     setupRightStackViewConstraints()
+    checkmarkIconImageViewConstraints()
+  }
+  
+  private func checkmarkIconImageViewConstraints() {
+    checkmarkIconImageView.setConstraints(
+      centerY: checkmarkIconBackgroundView.centerYAnchor,
+      centerX: checkmarkIconBackgroundView.centerXAnchor
+    )
   }
   
   private func setupMainStackViewConstraints() {

@@ -49,6 +49,7 @@ enum PhotoDetailViewControllerRootViewConst {
   static let tagFontSize: CGFloat = 11.0
   static let profitStackViewSpacing: CGFloat = 20.0
   static let checkmarkIconSize: CGFloat = 19.0
+  static let checkmarkIconBackgroundViewSize: CGFloat = 10.0
   static let iconSize: CGFloat = 21.0
   static let loacationIconSize: CGFloat = 13.0
   static let resolutionLabelFrameCornerRadius: CGFloat = 6.0
