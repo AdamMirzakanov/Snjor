@@ -308,7 +308,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.textAlignment = .center
     $0.backgroundColor = .darkGray
     $0.alpha = Const.defaultOpacity
-    $0.layer.cornerRadius = Const.smallValue
+    $0.layer.cornerRadius = Const.resolutionLabelFrameCornerRadius
     $0.clipsToBounds = true
     $0.widthAnchor.constraint(
       equalToConstant: Const.resolutionLabelWidth
