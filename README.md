@@ -8,7 +8,7 @@ A mobile application built with Swift, utilizing the Unsplash API to search and 
 ## Technologies:
 - Swift
 - UIKit
-- Unsplash API
+- [Unsplash](https://unsplash.com) API
 
 ## Architecture:
 - MVVM (Model-View-ViewModel)
