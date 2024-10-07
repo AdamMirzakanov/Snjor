@@ -42,9 +42,11 @@ extension NetworkService: Requestable {
       return try decodeResponse(data: request.data)
     case HTTPResponseStatus.clientError:
       print(#function, "code:", httpResponse.statusCode)
+      APIError.statusCode = httpResponse.statusCode
       throw APIError.clientError
     case HTTPResponseStatus.serverError:
       print(#function, "code:", httpResponse.statusCode)
+      APIError.statusCode = httpResponse.statusCode
       throw APIError.serverError
     default:
       throw APIError.unknownError

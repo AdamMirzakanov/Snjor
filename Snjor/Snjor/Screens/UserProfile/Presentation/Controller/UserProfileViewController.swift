@@ -58,7 +58,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     super.viewWillAppear(animated)
     setupNavigationItems()
   }
-
+  
   deinit {
     print(#function, Self.self, "🟤")
   }
@@ -150,9 +150,15 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     switch state {
     case .success:
       successAction()
-    case .loading: break
+    case .loading:
+      break
     case .fail(error: let error):
-      presentAlert(message: error, title: AppLocalized.error)
+      guard let navigationController = navigationController else { return }
+      navigationItem.rightBarButtonItem?.isHidden = true
+      navigationItem.leftBarButtonItem?.isHidden = true
+      showError(error: error, navigationController: navigationController)
     }
   }
 }
+
+extension UserProfileViewController: ErrorDisplayable { }

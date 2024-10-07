@@ -22,7 +22,7 @@ final class UserProfileViewControllerRootView: UIView {
   ]
   
   // MARK: Container View
-  private let mainView: UIView = {
+  let mainView: UIView = {
     $0.backgroundColor = .black
     return $0
   }(UIView())
@@ -379,11 +379,8 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func updateUserLikedPhotosButtonState() {
-    //    let userLikedIcon = UIImage(systemName: .heartFillIcon)
-    //    userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
-    
     if userLikedPhotosButton.tintColor == .systemGray {
-      let userLikedSlashIcon = UIImage(systemName: .heartSlashFill)
+      let userLikedSlashIcon = UIImage(systemName: .heartSlashFillIcon)
       userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
     } else {
       let userLikedIcon = UIImage(systemName: .heartFillIcon)
@@ -399,7 +396,7 @@ final class UserProfileViewControllerRootView: UIView {
   
   private func updateUserPhotosButtonState() {
     if userLikedPhotosButton.tintColor == .systemGray {
-      let userLikedSlashIcon = UIImage(systemName: .heartSlash)
+      let userLikedSlashIcon = UIImage(systemName: .heartSlashIcon)
       userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
     } else {
       let userLikedIcon = UIImage(systemName: .heartIcon)
@@ -415,7 +412,7 @@ final class UserProfileViewControllerRootView: UIView {
   
   private func updateUserAlbumsButtonState() {
     if userLikedPhotosButton.tintColor == .systemGray {
-      let userLikedSlashIcon = UIImage(systemName: .heartSlash)
+      let userLikedSlashIcon = UIImage(systemName: .heartSlashIcon)
       userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
     } else {
       let userLikedIcon = UIImage(systemName: .heartIcon)
@@ -460,7 +457,7 @@ final class UserProfileViewControllerRootView: UIView {
     if viewModelItem.user.totalLikes == .zero {
       userLikedPhotosButton.setTitle(.empty, for: .normal)
       userLikedPhotosButton.tintColor = .systemGray
-      userLikedPhotosButton.setImage(UIImage(systemName: .heartSlashFill), for: .normal)
+      userLikedPhotosButton.setImage(UIImage(systemName: .heartSlashFillIcon), for: .normal)
     } else {
       userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
     }
@@ -475,7 +472,7 @@ final class UserProfileViewControllerRootView: UIView {
     if viewModelItem.user.totalCollections == .zero {
       userAlbumsButton.setTitle(.empty, for: .normal)
       userAlbumsButton.tintColor = .systemGray
-      userAlbumsButton.setImage(UIImage(systemName: .macroSlash), for: .normal)
+      userAlbumsButton.setImage(UIImage(systemName: .macroSlashIcon), for: .normal)
     } else {
       userAlbumsButton.setTitle(userAlbums, for: .normal)
     }
@@ -506,13 +503,13 @@ final class UserProfileViewControllerRootView: UIView {
     setupMainStackViewConstraints()
     setupIndicatorViewConstraints()
     setupBottomGradientViewConstraints()
-    backgroundPhotoConstraints()
+    setupBackgroundPhotoConstraints()
     setupAvatarViewConstraints()
     setupAvatarBlackBackgroundViewConstraints()
-    checkmarkIconImageViewConstraints()
+    setupCheckmarkIconImageViewConstraints()
   }
   
-  private func checkmarkIconImageViewConstraints() {
+  private func setupCheckmarkIconImageViewConstraints() {
     checkmarkIconImageView.setConstraints(
       centerY: checkmarkIconBackgroundView.centerYAnchor,
       centerX: checkmarkIconBackgroundView.centerXAnchor
@@ -572,7 +569,7 @@ final class UserProfileViewControllerRootView: UIView {
     bottomGradientView.transform = CGAffineTransform(rotationAngle: .pi)
   }
   
-  private func backgroundPhotoConstraints() {
+  private func setupBackgroundPhotoConstraints() {
     backgroundPhotoView.setConstraints(
       top: topAnchor,
       right: rightAnchor,

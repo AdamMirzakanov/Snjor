@@ -8,6 +8,8 @@
 import Foundation
 
 enum APIError: Error {
+  static var statusCode: Int = .zero
+  
   case clientError
   case serverError
   case unknownError
@@ -21,9 +23,9 @@ extension APIError: LocalizedError {
   var errorDescription: String? {
     switch self {
     case .clientError:
-      return NSLocalizedString("Client Error", comment: .empty)
+      return NSLocalizedString("Content Not Available", comment: .empty)
     case .serverError:
-      return NSLocalizedString("Server Error", comment: .empty)
+      return NSLocalizedString("Server Issue", comment: .empty)
     case .unknownError:
       return NSLocalizedString("Unknown Error", comment: .empty)
     case .URLError:

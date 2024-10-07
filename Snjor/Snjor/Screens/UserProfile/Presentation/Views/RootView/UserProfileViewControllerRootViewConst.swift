@@ -8,6 +8,7 @@
 import CoreGraphics
 
 enum UserProfileViewControllerRootViewConst {
+  static let pressingScale: CGFloat = 0.8
   static let gradientOpacity: CGFloat = 1.0
   static let gradientStartLocation: CGFloat = 1.0
   static let gradientEndLocation: CGFloat = 0.1
@@ -41,12 +42,11 @@ enum UserProfileViewControllerRootViewConst {
   static let indicatorViewCornerRadius: CGFloat = 2.0
   static let backgroundGradientViewBottomPadding: CGFloat = 20.0
   static let userPhotosButtonLeftPadding: CGFloat = 10.0
-  static let fullValue = 32.0
-  static let defaultValue = 8.0
-  static let smallValue = 4.0
+  static let fullValue: CGFloat = 32.0
+  static let defaultValue: CGFloat = 8.0
+  static let smallValue: CGFloat = 4.0
   static let defaultCircle = fullValue / 2.0
   static let duration: CGFloat = 0.12
-  static let pressingScale: CGFloat = 1.2
   static let bigIconSize: CGFloat = 150.0
   static let bigIconFontSize: CGFloat = 40.0
   static let stackViewCenterYOffset: CGFloat = -35
