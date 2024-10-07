@@ -41,7 +41,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     return $0
   }(MainGradientView())
   
-  private let profilePhotoView: PhotoDetailPhotoView = {
+  private let avatarView: UserProfilePhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.profilePhotoViewCircle
     $0.clipsToBounds = true
@@ -51,9 +51,8 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     $0.heightAnchor.constraint(
       equalToConstant: Const.profilePhotoViewSize
     ).isActive = true
-    $0.backgroundColor = .systemPurple
     return $0
-  }(PhotoDetailPhotoView())
+  }(UserProfilePhotoView())
   
   private let checkmarkIconImageView: UIImageView = {
     $0.image = UIImage(systemName: .checkmarkIcon)
@@ -95,7 +94,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     $0.distribution = .fill
     $0.alignment = .center
     $0.spacing = Const.middleValue
-    $0.addArrangedSubview(profilePhotoView)
+    $0.addArrangedSubview(avatarView)
     $0.addArrangedSubview(userNameLabelAndcheckmarkIconStackView)
     return $0
   }(UIStackView())
@@ -141,7 +140,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
     )
     self.showsUsername = showsUsername
     userNameLabel.text = photo.user.displayName
-    profilePhotoView.configure(
+    avatarView.configure(
       with: photo,
       url: photo.profileImageURL
     )
