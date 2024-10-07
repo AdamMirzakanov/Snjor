@@ -70,7 +70,7 @@ final class PageScreenPhotosViewController: MainViewController<PageScreenPhotosR
           self.applySnapshot()
         case .loading: break
         case .fail(error: let error):
-          presentAlert(message: error, title: AppLocalized.error)
+          showError(error: error)
         }
       }
       .store(in: &cancellable)

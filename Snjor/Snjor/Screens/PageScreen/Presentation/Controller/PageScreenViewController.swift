@@ -105,7 +105,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
           setFirstPage()
         case .loading: break
         case .fail(error: let error):
-          presentAlert(message: error, title: AppLocalized.error)
+          showError(error: error)
         }
       }
       .store(in: &cancellable)

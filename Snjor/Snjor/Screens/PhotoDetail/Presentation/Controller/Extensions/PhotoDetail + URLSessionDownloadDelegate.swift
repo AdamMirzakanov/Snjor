@@ -23,9 +23,8 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
       try fileManager.copyItem(at: location, to: destinationURL)
       saveImageToGallery(at: destinationURL)
     } catch let error {
-      self.presentAlert(
-        message: "\(error.localizedDescription)",
-        title: AppLocalized.error
+      self.showError(
+        error: error.localizedDescription
       )
     }
   }
@@ -41,7 +40,9 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
           self.hideSpinnerAndReverseAnimateDownloadButton()
           print(#function, "🏳️ Successfully saved image to gallery.")
         } else if let error = error {
-          self.presentAlert(message: "\(error.localizedDescription)", title: AppLocalized.error)
+          self.showError(
+            error: error.localizedDescription
+          )
         }
       }
     }

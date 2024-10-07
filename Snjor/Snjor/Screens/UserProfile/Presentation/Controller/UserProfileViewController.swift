@@ -153,12 +153,15 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     case .loading:
       break
     case .fail(error: let error):
-      guard let navigationController = navigationController else { return }
-      navigationItem.rightBarButtonItem?.isHidden = true
-      navigationItem.leftBarButtonItem?.isHidden = true
-      showError(error: error, navigationController: navigationController)
+      showError(error: error)
     }
   }
+  
+  private func showError(error: String) {
+    guard let navigationController = navigationController else { return }
+    navigationItem.rightBarButtonItem?.isHidden = true
+    navigationItem.leftBarButtonItem?.isHidden = true
+    rootView.mainView.isHidden = true
+    showError(error: error, navigationController: navigationController)
+  }
 }
-
-extension UserProfileViewController: ErrorDisplayable { }

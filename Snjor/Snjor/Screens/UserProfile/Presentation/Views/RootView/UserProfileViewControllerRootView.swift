@@ -22,7 +22,7 @@ final class UserProfileViewControllerRootView: UIView {
   ]
   
   // MARK: Container View
-  private let mainView: UIView = {
+  let mainView: UIView = {
     $0.backgroundColor = .black
     return $0
   }(UIView())

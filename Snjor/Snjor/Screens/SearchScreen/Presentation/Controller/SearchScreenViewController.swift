@@ -213,7 +213,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
       successAction()
     case .loading: break
     case .fail(error: let error):
-      presentAlert(message: error, title: AppLocalized.error)
+      showError(error: error)
     }
   }
 }

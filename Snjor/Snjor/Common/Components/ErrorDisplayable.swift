@@ -10,7 +10,7 @@ import UIKit
 fileprivate typealias Const = ErrorDisplayableConst
 
 protocol ErrorDisplayable: AnyObject {
-  func showError(error: String, navigationController: UINavigationController)
+  func showError(error: String, navigationController: UINavigationController?)
   func hideError()
 }
 
@@ -20,7 +20,7 @@ extension ErrorDisplayable where Self: UIViewController {
   // MARK: Internal Methods
   func showError(
     error: String,
-    navigationController: UINavigationController
+    navigationController: UINavigationController? = nil
   ) {
     guard doesNotExistAnotherError else { return }
     configureError(
@@ -31,7 +31,11 @@ extension ErrorDisplayable where Self: UIViewController {
   
   func hideError(){
     if let foundView = parentView.viewWithTag(Const.tagIdentifierError) {
-      foundView.removeFromSuperview()
+      UIView.animate(withDuration: Const.hideErrorAnimateDuration) {
+        foundView.alpha = .zero
+      } completion: { _ in
+        foundView.removeFromSuperview()
+      }
     }
   }
   
@@ -46,7 +50,7 @@ extension ErrorDisplayable where Self: UIViewController {
   
   private func configureError(
     error: String,
-    navigationController: UINavigationController
+    navigationController: UINavigationController? = nil
   ) {
     let containerView = UIView()
     containerView.tag = Const.tagIdentifierError
@@ -106,7 +110,7 @@ extension ErrorDisplayable where Self: UIViewController {
   }
   
   private func createCloseButton(
-    navigationController: UINavigationController,
+    navigationController: UINavigationController? = nil,
     closeIconImageView: UIImageView,
     closeIconBAckgroundView: UIView
   ) -> UIButton {
@@ -125,7 +129,8 @@ extension ErrorDisplayable where Self: UIViewController {
       DispatchQueue.main.asyncAfter(
         deadline: .now() + Const.navigationPopDelay
       ) {
-        navigationController.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
+        self?.hideError()
       }
     }
     
@@ -237,7 +242,7 @@ extension ErrorDisplayable where Self: UIViewController {
   private func addErrorViewToContainer(
     containerView: UIView,
     error: String,
-    navigationController: UINavigationController
+    navigationController: UINavigationController? = nil
   ) {
     let errorImageView = createErrorImageView()
     let errorCodeLabel = createErrorCodeLabel()
@@ -371,6 +376,7 @@ private enum ErrorDisplayableConst {
   static let duration: CGFloat = 0.12
   static let stackViewSpacing: CGFloat = 16.0
   static let bigIconOpacity: CGFloat = 0.3
+  static let hideErrorAnimateDuration: CGFloat = 0.15
   
   static let bigIconFontName: String = "Impact"
   static let errorTitleFormat: String = "Error %@".uppercased()

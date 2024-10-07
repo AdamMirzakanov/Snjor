@@ -82,12 +82,20 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailViewControl
           rootView.setupPhotoInfoData(viewModel: viewModel)
         case .loading: break
         case .fail(error: let error):
-          presentAlert(message: error, title: AppLocalized.error)
+          showError(error: error)
         }
       }
       .store(in: &cancellable)
   }
 
+  private func showError(error: String) {
+    guard let navigationController = navigationController else { return }
+    navigationItem.leftBarButtonItem?.isHidden = true
+    navigationItem.rightBarButtonItems?.forEach { $0.isHidden = true }
+    rootView.mainView.isHidden = true
+    showError(error: error, navigationController: navigationController)
+  }
+  
   private func setupNavigationItems() {
     rootView.setupData(viewModel: viewModel)
     rootView.setupBarButtonItems(

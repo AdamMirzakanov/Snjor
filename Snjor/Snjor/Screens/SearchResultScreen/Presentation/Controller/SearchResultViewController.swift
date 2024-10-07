@@ -221,8 +221,19 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
       successAction()
     case .loading: break
     case .fail(error: let error):
-      presentAlert(message: error, title: AppLocalized.error)
+      showError(error: error)
     }
+  }
+  
+  private func showError(error: String) {
+    guard let navigationController = navigationController else { return }
+    navigationItem.rightBarButtonItem?.isHidden = true
+    navigationItem.leftBarButtonItem?.isHidden = true
+    navigationItem.title = .empty
+    rootView.photosCollectionView.isHidden = true
+    rootView.albumsCollectionView.isHidden = true
+    rootView.usersTableViewView.isHidden = true
+    showError(error: error, navigationController: navigationController)
   }
   
   private func setupNavigationItems() {

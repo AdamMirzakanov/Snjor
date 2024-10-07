@@ -102,10 +102,19 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
           self.applySnapshot()
         case .loading: break
         case .fail(error: let error):
-          presentAlert(message: error, title: AppLocalized.error)
+          showError(error: error)
         }
       }
       .store(in: &cancellable)
+  }
+  
+  private func showError(error: String) {
+    guard let navigationController = navigationController else { return }
+    navigationItem.rightBarButtonItem?.isHidden = true
+    navigationItem.leftBarButtonItem?.isHidden = true
+    navigationItem.title = .empty
+    rootView.topicPhotosCollectionView.isHidden = true
+    showError(error: error, navigationController: navigationController)
   }
   
   private func configCollectionView() {

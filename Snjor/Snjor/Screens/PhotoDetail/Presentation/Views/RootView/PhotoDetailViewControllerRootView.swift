@@ -22,6 +22,12 @@ final class PhotoDetailViewControllerRootView: UIView {
   private var toggleContentModeBarButtonAction: (() -> Void)?
   private var infoButtonAction: (() -> Void)?
   
+  // MARK: Container View
+  let mainView: UIView = {
+    $0.backgroundColor = .black
+    return $0
+  }(UIView())
+  
   // MARK: - Tags Collection View
   let tagsCollectionView: PhotoDetailTagsCollectionView = {
     $0.heightAnchor.constraint(
@@ -781,12 +787,13 @@ final class PhotoDetailViewControllerRootView: UIView {
   }
   
   private func addSubviews() {
-    addSubview(photoView)
-    addSubview(gradientView)
-    addSubview(mainStackView)
-    addSubview(leftStackView)
-    addSubview(centerLine)
-    addSubview(rightStackView)
+    addSubview(mainView)
+    mainView.addSubview(photoView)
+    mainView.addSubview(gradientView)
+    mainView.addSubview(mainStackView)
+    mainView.addSubview(leftStackView)
+    mainView.addSubview(centerLine)
+    mainView.addSubview(rightStackView)
     checkmarkIconBackgroundView.addSubview(checkmarkIconImageView)
   }
   
@@ -796,6 +803,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }
   
   private func setupConstraints() {
+    mainView.fillSuperView()
     gradientView.fillSuperView()
     photoView.fillSuperView()
     setupMainStackViewConstraints()
