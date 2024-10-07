@@ -1149,12 +1149,12 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		3723E3622C4F0D5A00C3AE3E /* PageScreenPhotos */ = {
+		3723E3622C4F0D5A00C3AE3E /* PageScreenPhotosSubScreen */ = {
 			isa = PBXGroup;
 			children = (
 				3723E3612C4F0D5A00C3AE3E /* Presentation */,
 			);
-			path = PageScreenPhotos;
+			path = PageScreenPhotosSubScreen;
 			sourceTree = "<group>";
 		};
 		3723E3652C4F0D5A00C3AE3E /* Domain */ = {
@@ -1383,13 +1383,13 @@
 			path = SearchResultScreenCoordinator;
 			sourceTree = "<group>";
 		};
-		3770E1312C6FFB830017ECBB /* TopicPhotos */ = {
+		3770E1312C6FFB830017ECBB /* TopicPhotosScreen */ = {
 			isa = PBXGroup;
 			children = (
 				3770E1322C6FFB910017ECBB /* Presentation */,
 				3723E3592C4F0D5A00C3AE3E /* Domain */,
 			);
-			path = TopicPhotos;
+			path = TopicPhotosScreen;
 			sourceTree = "<group>";
 		};
 		3770E1322C6FFB910017ECBB /* Presentation */ = {
@@ -1501,13 +1501,13 @@
 			path = CollectionViewDataSource;
 			sourceTree = "<group>";
 		};
-		3770E1662C7202270017ECBB /* AlbumPhotos */ = {
+		3770E1662C7202270017ECBB /* AlbumPhotosScreen */ = {
 			isa = PBXGroup;
 			children = (
 				3770E1682C7202420017ECBB /* Presentation */,
 				3770E1672C72023A0017ECBB /* Domain */,
 			);
-			path = AlbumPhotos;
+			path = AlbumPhotosScreen;
 			sourceTree = "<group>";
 		};
 		3770E1672C72023A0017ECBB /* Domain */ = {
@@ -2136,13 +2136,13 @@
 			path = ReusableViews;
 			sourceTree = "<group>";
 		};
-		37AF3C352C90B2210048FB9C /* UserProfile */ = {
+		37AF3C352C90B2210048FB9C /* UserProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
 				37AF3C372C90B2580048FB9C /* Presentation */,
 				37AF3C362C90B2520048FB9C /* Domain */,
 			);
-			path = UserProfile;
+			path = UserProfileScreen;
 			sourceTree = "<group>";
 		};
 		37AF3C362C90B2520048FB9C /* Domain */ = {
@@ -3074,14 +3074,14 @@
 		664BF2F82BF67DF000C9D29E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				37AF3C352C90B2210048FB9C /* UserProfile */,
+				37AF3C352C90B2210048FB9C /* UserProfileScreen */,
+				665993572C20E11200BA8C85 /* PhotoDetailScreen */,
+				3770E1662C7202270017ECBB /* AlbumPhotosScreen */,
+				3770E1312C6FFB830017ECBB /* TopicPhotosScreen */,
 				37B203DD2C7695AB0017E231 /* SearchResultScreen */,
 				371EE7C72C63B374007538C2 /* SearchScreen */,
-				3770E1662C7202270017ECBB /* AlbumPhotos */,
-				3770E1312C6FFB830017ECBB /* TopicPhotos */,
-				3723E3622C4F0D5A00C3AE3E /* PageScreenPhotos */,
+				3723E3622C4F0D5A00C3AE3E /* PageScreenPhotosSubScreen */,
 				3723E3892C4F0D5A00C3AE3E /* PageScreen */,
-				665993572C20E11200BA8C85 /* PhotoDetail */,
 				667A598B2C1EF64300FE4985 /* MainTabBar */,
 			);
 			path = Screens;
@@ -3104,13 +3104,13 @@
 			path = Factories;
 			sourceTree = "<group>";
 		};
-		665993572C20E11200BA8C85 /* PhotoDetail */ = {
+		665993572C20E11200BA8C85 /* PhotoDetailScreen */ = {
 			isa = PBXGroup;
 			children = (
 				6637692E2C4569E1006AB620 /* Presentation */,
 				663769322C456B5C006AB620 /* Domain */,
 			);
-			path = PhotoDetail;
+			path = PhotoDetailScreen;
 			sourceTree = "<group>";
 		};
 		667579FB2C3446A800A7DCC9 /* DownloadService */ = {
