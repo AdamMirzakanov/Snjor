@@ -54,9 +54,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailViewControl
   }
   
   func resetSearchState() {
-    if self.isMovingFromParent {
-      downloadService.invalidateSession(withID: Self.sessionID)
-    }
+    downloadService.invalidateSession(withID: Self.sessionID)
   }
   
   deinit {
