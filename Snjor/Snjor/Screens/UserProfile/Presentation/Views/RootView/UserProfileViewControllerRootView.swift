@@ -22,7 +22,7 @@ final class UserProfileViewControllerRootView: UIView {
   ]
   
   // MARK: Container View
-  let mainView: UIView = {
+  private let mainView: UIView = {
     $0.backgroundColor = .black
     return $0
   }(UIView())
@@ -191,7 +191,7 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIButton(type: .system))
   
-  let userLikedPhotosButton: UIButton = {
+  private let userLikedPhotosButton: UIButton = {
     let icon = UIImage(systemName: .heartFillIcon)
     $0.setImage(icon, for: .normal)
     $0.setTitleColor(.white, for: .normal)
@@ -200,7 +200,7 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIButton(type: .system))
   
-  let userPhotosButton: UIButton = {
+  private let userPhotosButton: UIButton = {
     let icon = UIImage(systemName: .photoAngledIcon)
     $0.setImage(icon, for: .normal)
     $0.setTitleColor(.white, for: .normal)
@@ -209,7 +209,7 @@ final class UserProfileViewControllerRootView: UIView {
     return $0
   }(UIButton(type: .system))
   
-  let userAlbumsButton: UIButton = {
+  private let userAlbumsButton: UIButton = {
     let icon = UIImage(systemName: .macroIcon)
     $0.setImage(icon, for: .normal)
     $0.setTitleColor(.white, for: .normal)
@@ -457,7 +457,8 @@ final class UserProfileViewControllerRootView: UIView {
     if viewModelItem.user.totalLikes == .zero {
       userLikedPhotosButton.setTitle(.empty, for: .normal)
       userLikedPhotosButton.tintColor = .systemGray
-      userLikedPhotosButton.setImage(UIImage(systemName: .heartSlashFillIcon), for: .normal)
+      let heartSlashFillIcon = UIImage(systemName: .heartSlashFillIcon)
+      userLikedPhotosButton.setImage(heartSlashFillIcon, for: .normal)
     } else {
       userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
     }
@@ -472,7 +473,8 @@ final class UserProfileViewControllerRootView: UIView {
     if viewModelItem.user.totalCollections == .zero {
       userAlbumsButton.setTitle(.empty, for: .normal)
       userAlbumsButton.tintColor = .systemGray
-      userAlbumsButton.setImage(UIImage(systemName: .macroSlashIcon), for: .normal)
+      let macroSlashIcon = UIImage(systemName: .macroSlashIcon)
+      userAlbumsButton.setImage(macroSlashIcon, for: .normal)
     } else {
       userAlbumsButton.setTitle(userAlbums, for: .normal)
     }
@@ -659,13 +661,17 @@ final class UserProfileViewControllerRootView: UIView {
     setupPortfolioButtonTarget()
   }
   
-  private func setupBackButtonAction(_ navigationController: UINavigationController?) {
+  private func setupBackButtonAction(
+    _ navigationController: UINavigationController?
+  ) {
     backBarButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
     }
   }
   
-  private func setupPortfolioButtonAction(_ navigationController: UINavigationController?) {
+  private func setupPortfolioButtonAction(
+    _ navigationController: UINavigationController?
+  ) {
     portfolioBarButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
       print("FYUGIHOJPIJHUGY")
