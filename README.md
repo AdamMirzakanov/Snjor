@@ -1,14 +1,14 @@
 # Snjør
 
-A mobile application built with Swift, utilizing the [Unsplash](https://unsplash.com) API to search and display images. It follows the MVVM architecture and uses Coordinators for navigation.
+A mobile application built with Swift, utilizing the [Unsplash](https://unsplash.com) [API Documentation](https://unsplash.com/documentation) to search and display images. It follows the MVVM architecture and uses Coordinators for navigation.
 
 ## Features:
-- Search for images via the Unsplash API
+- Image search on Unsplash
 
 ## Technologies:
 - Swift
 - UIKit
-- [Unsplash](https://unsplash.com) API
+- [Unsplash](https://unsplash.com) [API Documentation](https://unsplash.com/documentation)
 
 ## Architecture:
 - MVVM (Model-View-ViewModel)
