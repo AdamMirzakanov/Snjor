@@ -50,7 +50,6 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     super.viewDidLoad()
     configCollectionView()
     setupDataSource()
-    configureDownloadSession()
     resetPage()
     viewModel.viewDidLoad()
     stateController()
@@ -61,6 +60,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     setupNavigationItems()
     setupNavigationTitle()
     hideCustomTabBar()
+    configureDownloadSession()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -73,8 +73,8 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     if self.isMovingFromParent {
       albumPhotosDataSource = nil
       cancellable.removeAll()
-      downloadService.invalidateSession(withID: Self.sessionID)
     }
+    downloadService.invalidateSession(withID: Self.sessionID)
   }
   
   private func setupDataSource() {

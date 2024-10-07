@@ -51,7 +51,6 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
     super.viewDidLoad()
     configCollectionView()
     setupDataSource()
-    configureDownloadSession()
     viewModel.viewDidLoad()
     stateController()
   }
@@ -60,6 +59,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
     super.viewWillAppear(animated)
     setupNavigationItems()
     hideCustomTabBar()
+    configureDownloadSession()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -73,8 +73,8 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
       PrepareParameters.photosPage = .zero
       topicPhotosDataSource = nil
       cancellable.removeAll()
-      downloadService.invalidateSession(withID: Self.sessionID)
     }
+    downloadService.invalidateSession(withID: Self.sessionID)
   }
   
   private func setupDataSource() {

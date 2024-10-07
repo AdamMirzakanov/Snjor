@@ -12,13 +12,13 @@ final class SearchResultScreenRootView: UIView {
   private var backButtonAction: (() -> Void)?
   
   // MARK: Views
-  let photosCollectionView: PhotosCollectionView = {
+  let photosCollectionView: SearchResultPhotosCollectionView = {
     return $0
-  }(PhotosCollectionView())
+  }(SearchResultPhotosCollectionView())
   
-  let albumsCollectionView: AlbumsCollectionView = {
+  let albumsCollectionView: SearchResulAlbumsCollectionView = {
     return $0
-  }(AlbumsCollectionView())
+  }(SearchResulAlbumsCollectionView())
   
   let usersTableViewView: UsersTableView = {
     return $0

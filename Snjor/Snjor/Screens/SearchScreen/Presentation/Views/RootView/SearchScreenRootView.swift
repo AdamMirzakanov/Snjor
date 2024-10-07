@@ -9,9 +9,9 @@ import UIKit
 
 final class SearchScreenRootView: UIView {
   // MARK: Views
-  let photosCollectionView: PhotosCollectionView = {
+  let photosCollectionView: SearchScreenPhotosCollectionView = {
     return $0
-  }(PhotosCollectionView())
+  }(SearchScreenPhotosCollectionView())
   
   let albumsCollectionView: TopicsAndAlbumsCollectionView = {
     return $0

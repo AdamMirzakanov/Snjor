@@ -47,7 +47,7 @@ extension SearchResultViewController: URLSessionDownloadDelegate {
       }
     }
   }
-
+  
   private func localFilePath(for url: URL) -> URL {
     let component = url.lastPathComponent
     var destinationURL = documentsPath.appendingPathComponent(component)
@@ -60,7 +60,7 @@ extension SearchResultViewController: URLSessionDownloadDelegate {
   private func hideSpinner() {
     DispatchQueue.main.async {
       self.rootView.photosCollectionView.visibleCells
-        .compactMap { $0 as? SearchScreenPhotoCell }
+        .compactMap { $0 as? SearchResultPhotoCell }
         .forEach { cell in
           cell.mainView.spinner.stopAnimating()
           cell.mainView.spinner.isHidden = true

@@ -66,12 +66,12 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     setupCollectionViewDelegate()
     stateController()
     setupDataSource()
-    configureDownloadSession()
     setupVisibleContainers()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    configureDownloadSession()
     setupNavigationItems()
     setupNavigationTitle()
     hideCustomTabBar()
@@ -91,8 +91,8 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
       photosSections.removeAll()
       currentScopeIndex = .zero
       cancellable.removeAll()
-      downloadService.invalidateSession(withID: Self.sessionID)
     }
+    downloadService.invalidateSession(withID: Self.sessionID)
   }
   
   func fetchMatchingItems(with searchTerm: String) {
