@@ -553,7 +553,7 @@ final class UserProfileViewControllerRootView: UIView {
     )
     indicatorView.heightAnchor.constraint(
       equalTo: secondLine.heightAnchor,
-      constant: traitCollection.displayScale * Const.indicatorHeightMultiplier
+      constant: Const.indicatorBaseHeight / traitCollection.displayScale
     ).isActive = true
     indicatorView.widthAnchor.constraint(
       equalToConstant: screenWidth / Const.indicatorWidthDivision
