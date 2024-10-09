@@ -1,21 +1,21 @@
 //
-//  SearchScreenCoordinator.swift
+//  SettingsScreenCoordinator.swift
 //  Snjor
 //
-//  Created by Адам Мирзаканов on 07.08.2024.
+//  Created by Адам Мирзаканов on 09.10.2024.
 //
 
-final class SearchScreenCoordinator: Coordinatable {
+final class SettingsScreenCoordinator: Coordinatable {
   // MARK: Internal Properties
   var navigation: any Navigable
   var childCoordinators: [any Coordinatable] = []
   
   // MARK: Private Properties
-  private(set) var factory: any SearchScreenFactoryProtocol
+  private(set) var factory: any SettingsScreenFactoryProtocol
   
   // MARK: Initializers
   init(
-    factory: any SearchScreenFactoryProtocol,
+    factory: any SettingsScreenFactoryProtocol,
     navigation: any Navigable
   ) {
     self.factory = factory
@@ -24,9 +24,10 @@ final class SearchScreenCoordinator: Coordinatable {
   
   // MARK: Internal Methods
   func start() {
-    let controller = factory.makeController(delegate: self)
+    let controller = factory.makeController()
     navigation.navigationBar.prefersLargeTitles = true
     navigation.pushViewController(controller, animated: true)
     
   }
 }
+

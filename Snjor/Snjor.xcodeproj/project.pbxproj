@@ -12,6 +12,12 @@
 		3701F2382CB491C00071E8DE /* SearchResultPhotoCell + Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2372CB491C00071E8DE /* SearchResultPhotoCell + Reusable.swift */; };
 		3701F23A2CB492240071E8DE /* SearchResultPhotoCell + PhotoCellMainViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2392CB492240071E8DE /* SearchResultPhotoCell + PhotoCellMainViewDelegate.swift */; };
 		3701F23C2CB493260071E8DE /* SearchResultPhotosCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F23B2CB493260071E8DE /* SearchResultPhotosCollectionView.swift */; };
+		3701F23F2CB5DB610071E8DE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F23E2CB5DB610071E8DE /* SettingsViewController.swift */; };
+		3701F2412CB5DBC80071E8DE /* SettingsViewControllerRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2402CB5DBC80071E8DE /* SettingsViewControllerRootView.swift */; };
+		3701F2442CB5DEE90071E8DE /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2432CB5DEE90071E8DE /* SettingsScreenFactory.swift */; };
+		3701F2462CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2452CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift */; };
+		3701F2492CB5DF370071E8DE /* SettingsScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */; };
+		3701F24B2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F24A2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift */; };
 		370A005B2C874F3E006B87DD /* String + MessageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A005A2C874F3E006B87DD /* String + MessageDisplayable.swift */; };
 		370A005D2C874F84006B87DD /* String + DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A005C2C874F84006B87DD /* String + DownloadService.swift */; };
 		370A00622C8765F1006B87DD /* LastPageValidationUseCaseConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A00612C8765F1006B87DD /* LastPageValidationUseCaseConst.swift */; };
@@ -431,6 +437,12 @@
 		3701F2372CB491C00071E8DE /* SearchResultPhotoCell + Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultPhotoCell + Reusable.swift"; sourceTree = "<group>"; };
 		3701F2392CB492240071E8DE /* SearchResultPhotoCell + PhotoCellMainViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultPhotoCell + PhotoCellMainViewDelegate.swift"; sourceTree = "<group>"; };
 		3701F23B2CB493260071E8DE /* SearchResultPhotosCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultPhotosCollectionView.swift; sourceTree = "<group>"; };
+		3701F23E2CB5DB610071E8DE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3701F2402CB5DBC80071E8DE /* SettingsViewControllerRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerRootView.swift; sourceTree = "<group>"; };
+		3701F2432CB5DEE90071E8DE /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
+		3701F2452CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactoryProtocol.swift; sourceTree = "<group>"; };
+		3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenCoordinator.swift; sourceTree = "<group>"; };
+		3701F24A2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsScreenCoordinator + ParentCoordinator.swift"; sourceTree = "<group>"; };
 		370A005A2C874F3E006B87DD /* String + MessageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + MessageDisplayable.swift"; sourceTree = "<group>"; };
 		370A005C2C874F84006B87DD /* String + DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + DownloadService.swift"; sourceTree = "<group>"; };
 		370A00612C8765F1006B87DD /* LastPageValidationUseCaseConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastPageValidationUseCaseConst.swift; sourceTree = "<group>"; };
@@ -874,6 +886,33 @@
 				3701F2392CB492240071E8DE /* SearchResultPhotoCell + PhotoCellMainViewDelegate.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3701F23D2CB5DB270071E8DE /* SettingsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3701F23E2CB5DB610071E8DE /* SettingsViewController.swift */,
+				3701F2402CB5DBC80071E8DE /* SettingsViewControllerRootView.swift */,
+			);
+			path = SettingsScreen;
+			sourceTree = "<group>";
+		};
+		3701F2422CB5DED20071E8DE /* SettingsScreenFactory */ = {
+			isa = PBXGroup;
+			children = (
+				3701F2452CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift */,
+				3701F2432CB5DEE90071E8DE /* SettingsScreenFactory.swift */,
+			);
+			path = SettingsScreenFactory;
+			sourceTree = "<group>";
+		};
+		3701F2472CB5DF150071E8DE /* SettingsScreenCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */,
+				3701F24A2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift */,
+			);
+			path = SettingsScreenCoordinator;
 			sourceTree = "<group>";
 		};
 		370A00602C8751D3006B87DD /* Extensions */ = {
@@ -3088,6 +3127,7 @@
 		664BF2EB2BF6632400C9D29E /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				3701F2472CB5DF150071E8DE /* SettingsScreenCoordinator */,
 				37AF3C532C91BF880048FB9C /* UserProfileCoordinator */,
 				376785A62C8CAE1E009B9BA6 /* MainTabBarCoordinator */,
 				376785A72C8CAE26009B9BA6 /* AppCoordinator */,
@@ -3104,6 +3144,7 @@
 		664BF2F82BF67DF000C9D29E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3701F23D2CB5DB270071E8DE /* SettingsScreen */,
 				37AF3C352C90B2210048FB9C /* UserProfileScreen */,
 				665993572C20E11200BA8C85 /* PhotoDetailScreen */,
 				3770E1662C7202270017ECBB /* AlbumPhotosScreen */,
@@ -3120,6 +3161,7 @@
 		664BF2FB2BF681DF00C9D29E /* Factories */ = {
 			isa = PBXGroup;
 			children = (
+				3701F2422CB5DED20071E8DE /* SettingsScreenFactory */,
 				37AF3C4E2C91BA530048FB9C /* UserProfileFactory */,
 				37A502BF2C6E48FB000221D1 /* AppFactory */,
 				37A502BE2C6E48D0000221D1 /* MainTabBarFactory */,
@@ -3390,6 +3432,7 @@
 				370A006A2C877155006B87DD /* AlbumCellConst.swift in Sources */,
 				376785C52C8CB058009B9BA6 /* SearchScreenCoordinator + SearchScreenViewControllerDelegate.swift in Sources */,
 				378171562C9F68290089E9DC /* SecondCellDelegate.swift in Sources */,
+				3701F2442CB5DEE90071E8DE /* SettingsScreenFactory.swift in Sources */,
 				3794762F2C652220004AFF0E /* AlbumCellMainView.swift in Sources */,
 				376785C72C8CB08A009B9BA6 /* SearchResultScreenCoordinator + ParentCoordinator.swift in Sources */,
 				3739C9652C53CF8C00C657DE /* PageScreenRootView.swift in Sources */,
@@ -3494,6 +3537,7 @@
 				664BF3052BF6AEA300C9D29E /* AppCoordinator.swift in Sources */,
 				37C00CAA2C8A4FB700F63CEC /* PhotoDetailViewController + PhotoDetailTagsCollectionViewDelegate.swift in Sources */,
 				3701F2352CB491740071E8DE /* SearchResultPhotoCellDelegate.swift in Sources */,
+				3701F2492CB5DF370071E8DE /* SettingsScreenCoordinator.swift in Sources */,
 				37A502CD2C6E4D6D000221D1 /* SearchScreenViewModelProviderProtocol.swift in Sources */,
 				66BE9C712C20791B0006011A /* User.swift in Sources */,
 				37A5028A2C6B8D6F000221D1 /* SearchScreenViewController + UISearchBarDelegate.swift in Sources */,
@@ -3527,6 +3571,7 @@
 				378B83612C860C7A001463FE /* PageScreenPhotos + PageScreenPhotosDataSource.swift in Sources */,
 				37ED5DDB2C7FDA1E00891811 /* LoadSearchAlbumsUseCase.swift in Sources */,
 				664BF2E42BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift in Sources */,
+				3701F2462CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift in Sources */,
 				371EE7CF2C63B8D8007538C2 /* SearchScreenViewController.swift in Sources */,
 				37A5028C2C6B8D8F000221D1 /* SearchScreenViewController + ErrorDisplayable.swift in Sources */,
 				370A00662C876964006B87DD /* SearchScreenViewControllerConst.swift in Sources */,
@@ -3618,6 +3663,7 @@
 				3741E4002C95BEE300138C65 /* LoadUserLikedPhotosUseCase.swift in Sources */,
 				378B83662C86299B001463FE /* BaseViewModelProtocols.swift in Sources */,
 				37C00C842C89D21500F63CEC /* AlbumPhotosViewControllerConst.swift in Sources */,
+				3701F24B2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift in Sources */,
 				3770E1402C6FFDF40017ECBB /* TopicPhotosCollectionView.swift in Sources */,
 				3793F70A2C5AEDF400CFE54D /* PageScreenPhotosCollectionView.swift in Sources */,
 				378B836C2C862A33001463FE /* BaseViewModelItem.swift in Sources */,
@@ -3699,6 +3745,7 @@
 				378171512C9F64620089E9DC /* UserLikedPhotosCollectionViewDelegate.swift in Sources */,
 				37BE0AD12C52720C00C8D45F /* PageScreenPhotos + UIScrollViewDelegate.swift in Sources */,
 				37ECB3852C95DFFD003E063E /* UserProfileViewModelProviderProtocol.swift in Sources */,
+				3701F2412CB5DBC80071E8DE /* SettingsViewControllerRootView.swift in Sources */,
 				37ECB3822C95D94A003E063E /* UserLakedPhotosViewModel.swift in Sources */,
 				37C00C972C8A034200F63CEC /* PhotoDetailTagCell.swift in Sources */,
 				667A59922C1EF98300FE4985 /* AppLocalized.swift in Sources */,
@@ -3721,6 +3768,7 @@
 				37B203ED2C76971C0017E231 /* SearchResultViewController + URLSessionDownloadDelegate.swift in Sources */,
 				667A59882C1EE63C00FE4985 /* LoadPhotosUseCase.swift in Sources */,
 				669861442C44880D0085D789 /* MainImageContainerViewConst.swift in Sources */,
+				3701F23F2CB5DB610071E8DE /* SettingsViewController.swift in Sources */,
 				66D082462C24D8D0000574A7 /* LoadPhotoDetailUseCase.swift in Sources */,
 				37F292AF2C660F5B00890DAC /* AlbumPreviewPhoto.swift in Sources */,
 				3776D9F32C8370E40021CE8C /* SearchResulAlbumsCollectionView.swift in Sources */,

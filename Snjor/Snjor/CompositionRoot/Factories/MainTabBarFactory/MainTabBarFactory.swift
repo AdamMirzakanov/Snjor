@@ -17,10 +17,11 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
   func makeChildCoordinators() -> [any Coordinatable] {
     let topicsPageCoordinator = makeTopicsPageCoordinator()
     let searchScreenCoordinator = makeSearchScreenCoordinator()
+    let settingsScreenCoordinator = makeSettingsScreenCoordinator()
     return [
       topicsPageCoordinator,
       searchScreenCoordinator,
-      
+      settingsScreenCoordinator
     ]
   }
 
@@ -40,6 +41,17 @@ struct MainTabBarFactory: MainTabBarFactoryProtocol {
     let navigationController = UINavigationController()
     let navigation = Navigation(rootViewController: navigationController)
     let coordinator = SearchScreenCoordinator(
+      factory: factory,
+      navigation: navigation
+    )
+    return coordinator
+  }
+  
+  private func makeSettingsScreenCoordinator() -> any Coordinatable {
+    let factory = SettingsScreenFactory()
+    let navigationController = UINavigationController()
+    let navigation = Navigation(rootViewController: navigationController)
+    let coordinator = SettingsScreenCoordinator(
       factory: factory,
       navigation: navigation
     )
