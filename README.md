@@ -21,4 +21,10 @@ A mobile application built with Swift, utilizing the [Unsplash](https://unsplash
    ```
 
 ## Screenshots:
-![App Cover](assets/cover.png)
+![App Cover](assets/screenshots/1.png)
+![App Cover](assets/screenshots/2.png)
+![App Cover](assets/screenshots/3.png)
+![App Cover](assets/screenshots/4.png)
+![App Cover](assets/screenshots/5.png)
+![App Cover](assets/screenshots/6.png)
+![App Cover](assets/screenshots/7.png)
