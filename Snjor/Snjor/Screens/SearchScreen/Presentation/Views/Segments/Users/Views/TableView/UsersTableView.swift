@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UsersTableView: UITableView {
+final class UsersTableView: UITableView {
   
   override init(frame: CGRect, style: UITableView.Style) {
     super.init(frame: frame, style: style)

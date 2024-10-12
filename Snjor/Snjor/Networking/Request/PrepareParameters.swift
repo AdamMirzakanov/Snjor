@@ -5,6 +5,8 @@
 //  Created by Адам on 15.06.2024.
 //
 
+import Foundation
+
 enum PrepareParameters {
   // MARK: Internal Properties
   static var photosPage: Int = .page
@@ -73,6 +75,10 @@ enum PrepareParameters {
     parameters[.query] = searchTerm
     parameters[.page] = String(searchPhotosPage)
     parameters[.perPage] = String(perPage)
+    if let orientation = UserDefaults.standard.string(forKey: "photoOrientation") {
+      parameters[.orientation] = orientation
+      print(orientation)
+    }
     return parameters
   }
   

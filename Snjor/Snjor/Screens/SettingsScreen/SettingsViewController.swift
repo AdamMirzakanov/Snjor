@@ -9,7 +9,7 @@ import UIKit
 
 typealias RootView = SettingsViewControllerRootView
 
-class SettingsViewController: MainViewController<RootView> {
+final class SettingsViewController: MainViewController<RootView> {
   
   // MARK: Private Properties
   // MARK: Initializers

@@ -11,6 +11,7 @@ final class SettingsViewControllerRootView: UIView {
   
   // MARK: Views
   private let switcher: UISwitch = {
+    $0.onTintColor = .systemRed
     return $0
   }(UISwitch())
   
@@ -45,11 +46,12 @@ final class SettingsViewControllerRootView: UIView {
   }
   
   @objc private func switchChanged(_ sender: UISwitch) {
+    let selectedOrientation: String
     if sender.isOn {
-      backgroundColor = .white
+      selectedOrientation = "landscape"
     } else {
-      backgroundColor = .black
+      selectedOrientation = "squarish"
     }
+    UserDefaults.standard.set(selectedOrientation, forKey: "photoOrientation")
   }
-  
 }
