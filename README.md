@@ -8,11 +8,11 @@ A mobile application built with Swift, utilizing the [Unsplash](https://unsplash
 ## Technologies:
 - Swift
 - UIKit
-- [Unsplash](https://unsplash.com) • [API Documentation](https://unsplash.com/documentation)
+- Combine
+- async/await for handling asynchronous operations
 
 ## Architecture:
-- MVVM (Model-View-ViewModel)
-- Coordinators for navigation
+- MVVM + Coordinators
 
 ## Installation:
 1. Clone the repository:
