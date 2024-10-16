@@ -12,6 +12,11 @@ fileprivate typealias Const = SettingsViewControllerRootViewConst
 final class SettingsViewControllerRootView: UIView {
   
   // MARK: Views
+  private let scrollView: UIScrollView = {
+    $0.alwaysBounceVertical = true
+    return $0
+  }(UIScrollView())
+  
   private let switcher: UISwitch = {
     $0.onTintColor = .systemRed
     return $0
@@ -99,15 +104,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UILabel())
   
   private let numberOfColumnsLabel: UILabel = {
-    $0.text = "Number of columns"
-    $0.textColor = Const.systemGray
-    $0.textAlignment = Const.standartTextAlignment
-    $0.font = Const.standardFont
-    return $0
-  }(UILabel())
-  
-  private let chooseColorLabel: UILabel = {
-    $0.text = "Choose"
+    $0.text = "Columns"
     $0.textColor = Const.systemGray
     $0.textAlignment = Const.standartTextAlignment
     $0.font = Const.standardFont
@@ -366,31 +363,31 @@ final class SettingsViewControllerRootView: UIView {
   // MARK: UIStackView
   private lazy var colorsStackView: UIStackView = {
     $0.axis = .horizontal
-    $0.spacing = 15
+    $0.distribution = .equalSpacing
     $0.addArrangedSubview(blackAndWhiteCircleButton)
     $0.addArrangedSubview(greenCircleButton)
     $0.addArrangedSubview(yellowCircleButton)
     $0.addArrangedSubview(orangeCircleButton)
     $0.addArrangedSubview(redCircleButton)
     $0.addArrangedSubview(purpleCircleButton)
-    $0.addArrangedSubview(tealCircleButton)
     $0.addArrangedSubview(blueCircleButton)
+    $0.addArrangedSubview(tealCircleButton)
     return $0
   }(UIStackView())
+  
+//  private lazy var colorsSectionStackView: UIStackView = {
+//    $0.axis = .horizontal
+//    $0.alignment = .center
+////    $0.addArrangedSubview(chooseColorLabel)
+//    $0.addArrangedSubview(colorsStackView)
+//    return $0
+//  }(UIStackView())
   
   private lazy var colorsSectionStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.alignment = .center
-    $0.addArrangedSubview(chooseColorLabel)
-    $0.addArrangedSubview(colorsStackView)
-    return $0
-  }(UIStackView())
-  
-  private lazy var mainColorsSectionStackView: UIStackView = {
     $0.axis = .vertical
     $0.spacing = 20
     $0.addArrangedSubview(colorFiltersLabel)
-    $0.addArrangedSubview(colorsSectionStackView)
+    $0.addArrangedSubview(colorsStackView)
     return $0
   }(UIStackView())
   
@@ -437,23 +434,18 @@ final class SettingsViewControllerRootView: UIView {
   private lazy var mainStackView: UIStackView = {
     $0.axis = .vertical
     $0.spacing = 20
-    $0.widthAnchor.constraint(
-      equalToConstant: UIScreen.main.bounds.width - 40
-    ).isActive = true
-    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(searchFiltersLabel)
     $0.addArrangedSubview(contentFilterStackView)
     $0.addArrangedSubview(orientationStackView)
     $0.addArrangedSubview(sortingPhotosStackView)
     $0.addArrangedSubview(firstLineView)
-    $0.addArrangedSubview(mainColorsSectionStackView)
+    $0.addArrangedSubview(colorsSectionStackView)
     $0.addArrangedSubview(secondLineView)
     $0.addArrangedSubview(layoutLabel)
     $0.addArrangedSubview(numberOfColumnsStackView)
     $0.addArrangedSubview(thirdLineView)
     $0.addArrangedSubview(languageLabel)
     $0.addArrangedSubview(languageStackView)
-    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(resetButton)
     return $0
   }(UIStackView())
@@ -468,6 +460,8 @@ final class SettingsViewControllerRootView: UIView {
       action: #selector(switchChanged),
       for: .valueChanged
     )
+    
+//    backgroundColor = .white
   }
   
   required init?(coder: NSCoder) {
@@ -481,11 +475,42 @@ final class SettingsViewControllerRootView: UIView {
   }
   
   private func addSubviews() {
-    addSubview(mainStackView)
+    addSubview(scrollView)
+    scrollView.addSubview(mainStackView)
   }
   
   private func setupConstraints() {
-    mainStackView.centerXY()
+    scrollView.translatesAutoresizingMaskIntoConstraints = false
+    mainStackView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+      scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+      scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+      scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+    ])
+    
+    NSLayoutConstraint.activate([
+      mainStackView.topAnchor.constraint(
+        equalTo: scrollView.topAnchor,
+        constant: 15
+      ),
+      mainStackView.leadingAnchor.constraint(
+        equalTo: scrollView.leadingAnchor,
+        constant: 20
+      ),
+      mainStackView.trailingAnchor.constraint(
+        equalTo: scrollView.trailingAnchor,
+        constant: -20
+      ),
+      mainStackView.bottomAnchor.constraint(
+        equalTo: scrollView.bottomAnchor
+      ),
+      mainStackView.widthAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.widthAnchor,
+        constant: -40
+      )
+    ])
   }
   
   @objc private func switchChanged(_ sender: UISwitch) {
@@ -538,7 +563,7 @@ enum SettingsViewControllerRootViewConst {
   static let colorCirclOpasity: CGFloat = 1.0
   static let pressingResetButtonScale: CGFloat = 0.95
   static let pressingColorCircleButtonScale: CGFloat = 0.9
-  static let colorCircleButtonScale: CGFloat = 1.3
+  static let colorCircleButtonScale: CGFloat = 1.2
   static let duration: CGFloat = 0.12
   static let selectedSegmentTintColor: UIColor = .systemBlue
   static let resetButtonColor: UIColor = .systemPink
