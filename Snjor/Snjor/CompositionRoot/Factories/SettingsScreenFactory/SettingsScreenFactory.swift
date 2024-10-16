@@ -7,9 +7,13 @@
 
 import UIKit
 
+fileprivate typealias Const = SettinsScreenFactoryConst
+
 struct SettingsScreenFactory: SettingsScreenFactoryProtocol {
   // MARK: Internal Methods
   func makeController() -> UIViewController {
-    return SettingsViewController()
+    let controller = SettingsViewController()
+    controller.navigationItem.title = Const.settingsTitle
+    return controller
   }
 }
