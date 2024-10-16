@@ -354,6 +354,7 @@
 		37F54FE02C8BB4BD002215FD /* SearchScreenViewController + AlbumCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F54FDF2C8BB4BD002215FD /* SearchScreenViewController + AlbumCellDelegate.swift */; };
 		37F54FE22C8BB4F4002215FD /* AlbumCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F54FE12C8BB4F4002215FD /* AlbumCellDelegate.swift */; };
 		37F54FE42C8BBB1E002215FD /* SearchResultViewController + AlbumCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F54FE32C8BBB1E002215FD /* SearchResultViewController + AlbumCellDelegate.swift */; };
+		37FDC81E2CC0254C0020548B /* SettingsViewControllerRootViewConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FDC81D2CC0254C0020548B /* SettingsViewControllerRootViewConst.swift */; };
 		660DB6652C317F8800514738 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DB6642C317F8800514738 /* Location.swift */; };
 		6636E3D22C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6636E3D12C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift */; };
 		663769212C45283B006AB620 /* String + SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663769202C45283B006AB620 /* String + SFSymbols.swift */; };
@@ -780,6 +781,7 @@
 		37F54FDF2C8BB4BD002215FD /* SearchScreenViewController + AlbumCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchScreenViewController + AlbumCellDelegate.swift"; sourceTree = "<group>"; };
 		37F54FE12C8BB4F4002215FD /* AlbumCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCellDelegate.swift; sourceTree = "<group>"; };
 		37F54FE32C8BBB1E002215FD /* SearchResultViewController + AlbumCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultViewController + AlbumCellDelegate.swift"; sourceTree = "<group>"; };
+		37FDC81D2CC0254C0020548B /* SettingsViewControllerRootViewConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerRootViewConst.swift; sourceTree = "<group>"; };
 		660DB6642C317F8800514738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6636E3D12C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer + Extensions.swift"; sourceTree = "<group>"; };
 		663769202C45283B006AB620 /* String + SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + SFSymbols.swift"; sourceTree = "<group>"; };
@@ -895,6 +897,7 @@
 			children = (
 				3701F23E2CB5DB610071E8DE /* SettingsViewController.swift */,
 				3701F2402CB5DBC80071E8DE /* SettingsViewControllerRootView.swift */,
+				37FDC81D2CC0254C0020548B /* SettingsViewControllerRootViewConst.swift */,
 			);
 			path = SettingsScreen;
 			sourceTree = "<group>";
@@ -3386,6 +3389,7 @@
 				376785B32C8CAEC4009B9BA6 /* PhotoDetailCoordinator + PhotoDetailViewControllerDelegate.swift in Sources */,
 				37BE0ACF2C5271D500C8D45F /* PageScreenPhotos + UICollectionViewDelegate.swift in Sources */,
 				3770E13C2C6FFD3E0017ECBB /* TopicPhotosViewController.swift in Sources */,
+				37FDC81E2CC0254C0020548B /* SettingsViewControllerRootViewConst.swift in Sources */,
 				37A502AE2C6CA419000221D1 /* TopicsAndAlbumsItem.swift in Sources */,
 				37F54FDE2C8BA2F7002215FD /* AlbumTagsCollectionViewDelegate.swift in Sources */,
 				3723E38F2C4F0FF600C3AE3E /* PageScreen + UIPageViewControllerDataSource.swift in Sources */,

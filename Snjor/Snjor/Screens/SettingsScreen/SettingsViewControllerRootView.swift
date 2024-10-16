@@ -10,6 +10,18 @@ import UIKit
 fileprivate typealias Const = SettingsViewControllerRootViewConst
 
 final class SettingsViewControllerRootView: UIView {
+  // MARK: Private Properties
+  private var buttonStates: [Bool] = [true, true, true, true, true, true, true, true]
+  private lazy var buttonsArray: [UIButton] = [
+    blackAndWhiteCircleButton,
+    greenCircleButton,
+    yellowCircleButton,
+    orangeCircleButton,
+    redCircleButton,
+    purpleCircleButton,
+    blueCircleButton,
+    tealCircleButton
+  ]
   
   // MARK: Views
   private let scrollView: UIScrollView = {
@@ -25,7 +37,7 @@ final class SettingsViewControllerRootView: UIView {
   private let firstLineView: UIView = {
     $0.backgroundColor = .systemGray
     $0.heightAnchor.constraint(
-      equalToConstant: 1
+      equalToConstant: Const.lineHeight
     ).isActive = true
     return $0
   }(UIView())
@@ -33,7 +45,7 @@ final class SettingsViewControllerRootView: UIView {
   private let secondLineView: UIView = {
     $0.backgroundColor = .systemGray
     $0.heightAnchor.constraint(
-      equalToConstant: 1
+      equalToConstant: Const.lineHeight
     ).isActive = true
     return $0
   }(UIView())
@@ -41,14 +53,14 @@ final class SettingsViewControllerRootView: UIView {
   private let thirdLineView: UIView = {
     $0.backgroundColor = .systemGray
     $0.heightAnchor.constraint(
-      equalToConstant: 1
+      equalToConstant: Const.lineHeight
     ).isActive = true
     return $0
   }(UIView())
   
   // MARK: UILabel
   private let searchFiltersLabel: UILabel = {
-    $0.text = "Search filters"
+    $0.text = Const.searchFiltersLabel
     $0.textColor = Const.colorOfTheSectionTitle
     $0.textAlignment = Const.sectionTitleTextAlignment
     $0.font = Const.fontOfTheSectionTitle
@@ -56,7 +68,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UILabel())
   
   private let colorFiltersLabel: UILabel = {
-    $0.text = "Color filters"
+    $0.text = Const.colorFiltersLabelText
     $0.textColor = Const.colorOfTheSectionTitle
     $0.textAlignment = Const.sectionTitleTextAlignment
     $0.font = Const.fontOfTheSectionTitle
@@ -64,7 +76,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UILabel())
   
   private let layoutLabel: UILabel = {
-    $0.text = "Layout"
+    $0.text = Const.layoutLabel
     $0.textColor = Const.colorOfTheSectionTitle
     $0.textAlignment = Const.sectionTitleTextAlignment
     $0.font = Const.fontOfTheSectionTitle
@@ -72,7 +84,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UILabel())
   
   private let languageLabel: UILabel = {
-    $0.text = "Language"
+    $0.text = Const.languageLabelText
     $0.textColor = Const.colorOfTheSectionTitle
     $0.textAlignment = Const.sectionTitleTextAlignment
     $0.font = Const.fontOfTheSectionTitle
@@ -80,7 +92,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UILabel())
   
   private let orientationLabel: UILabel = {
-    $0.text = "Orientation"
+    $0.text = Const.orientationLabelText
     $0.textColor = Const.systemGray
     $0.textAlignment = Const.standartTextAlignment
     $0.font = Const.standardFont
@@ -88,7 +100,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UILabel())
   
   private let contentFilterLabel: UILabel = {
-    $0.text = "Content"
+    $0.text = Const.contentFilterLabelText
     $0.textColor = Const.systemGray
     $0.textAlignment = Const.standartTextAlignment
     $0.font = Const.standardFont
@@ -96,7 +108,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UILabel())
   
   private let sortingPhotosLabel: UILabel = {
-    $0.text = "Sorting"
+    $0.text = Const.sortingPhotosLabelText
     $0.textColor = Const.systemGray
     $0.textAlignment = Const.standartTextAlignment
     $0.font = Const.standardFont
@@ -104,15 +116,15 @@ final class SettingsViewControllerRootView: UIView {
   }(UILabel())
   
   private let numberOfColumnsLabel: UILabel = {
-    $0.text = "Columns"
+    $0.text = Const.numberOfColumnsLabelText
     $0.textColor = Const.systemGray
     $0.textAlignment = Const.standartTextAlignment
     $0.font = Const.standardFont
     return $0
   }(UILabel())
-  
+ 
   private let chooseLanguageLabel: UILabel = {
-    $0.text = "Select a language"
+    $0.text = Const.chooseLanguageLabelText
     $0.textColor = Const.systemGray
     $0.textAlignment = Const.standartTextAlignment
     $0.font = Const.standardFont
@@ -126,7 +138,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.tintColor = .systemPurple
     $0.addTarget(
       self,
-      action: #selector(colorCircleButtonTapped),
+      action: #selector(purpleCircleButtonTapped),
       for: .touchUpInside
     )
     let scaleTransform = CGAffineTransform(
@@ -142,7 +154,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.tintColor = .systemGreen
     $0.addTarget(
       self,
-      action: #selector(colorCircleButtonTapped),
+      action: #selector(greenrCircleButtonTapped),
       for: .touchUpInside
     )
     let scaleTransform = CGAffineTransform(
@@ -159,7 +171,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.tintColor = .systemYellow
     $0.addTarget(
       self,
-      action: #selector(colorCircleButtonTapped),
+      action: #selector(yellowCircleButtonTapped),
       for: .touchUpInside
     )
     let scaleTransform = CGAffineTransform(
@@ -176,7 +188,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.tintColor = .systemOrange
     $0.addTarget(
       self,
-      action: #selector(colorCircleButtonTapped),
+      action: #selector(orangeCircleButtonTapped),
       for: .touchUpInside
     )
     let scaleTransform = CGAffineTransform(
@@ -193,7 +205,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.tintColor = .systemPink
     $0.addTarget(
       self,
-      action: #selector(colorCircleButtonTapped),
+      action: #selector(redCircleButtonTapped),
       for: .touchUpInside
     )
     let scaleTransform = CGAffineTransform(
@@ -210,7 +222,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.tintColor = .systemTeal
     $0.addTarget(
       self,
-      action: #selector(colorCircleButtonTapped),
+      action: #selector(tealCircleButtonTapped),
       for: .touchUpInside
     )
     let scaleTransform = CGAffineTransform(
@@ -227,7 +239,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.tintColor = .systemBlue
     $0.addTarget(
       self,
-      action: #selector(colorCircleButtonTapped),
+      action: #selector(blueCircleButtonTapped),
       for: .touchUpInside
     )
     let scaleTransform = CGAffineTransform(
@@ -244,7 +256,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.tintColor = .white
     $0.addTarget(
       self,
-      action: #selector(colorCircleButtonTapped),
+      action: #selector(whiteCircleButtonTapped),
       for: .touchUpInside
     )
     let scaleTransform = CGAffineTransform(
@@ -256,11 +268,13 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let resetButton: UIButton = {
-    $0.setTitle("Reset", for: .normal)
+    $0.setTitle(Const.resetButtonTitle, for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.titleLabel?.font = Const.standardFont
-    $0.layer.cornerRadius = 10
-    $0.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+    $0.layer.cornerRadius = Const.resetButtonCornerRadius
+    $0.heightAnchor.constraint(
+      equalToConstant: Const.resetButtonHeight
+    ).isActive = true
     $0.clipsToBounds = true
     $0.backgroundColor = Const.resetButtonColor
     $0.addTarget(
@@ -270,15 +284,6 @@ final class SettingsViewControllerRootView: UIView {
     )
     return $0
   }(UIButton())
-  
-  @objc private func colorCircleButtonTapped(_ sender: UIButton) {
-    animateColorCircleButton(sender)
-  }
-  
-  @objc private func resetButtonTapped(_ sender: UIButton) {
-    print(3456789)
-    animateResetButton(sender)
-  }
   
   // MARK: UISegmentedControl
   private lazy var orientationSegmentControl: UISegmentedControl = {
@@ -292,10 +297,10 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UISegmentedControl(
     items: [
-      "All",
-      UIImage(systemName: "rectangle.ratio.4.to.3")!,
-      UIImage(systemName: "rectangle.ratio.3.to.4")!,
-      UIImage(systemName: "square")!
+      Const.all,
+      Const.landscapeRectIcon,
+      Const.portraitRectIcon,
+      Const.squarishRectIcon
     ]
   ))
   
@@ -305,8 +310,8 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UISegmentedControl(
     items: [
-      "Low",
-      "High"
+      Const.lowContent,
+      Const.highContent
     ]
   ))
   
@@ -316,8 +321,8 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UISegmentedControl(
     items: [
-      "Relevant",
-      "Latest"
+      Const.relevarntSort,
+      Const.latestSort
     ]
   ))
   
@@ -327,9 +332,9 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UISegmentedControl(
     items: [
-      "2",
-      "3",
-      "4"
+      Const.twoColumn,
+      Const.treeColumn,
+      Const.fourColumn
     ]
   ))
   
@@ -339,9 +344,9 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UISegmentedControl(
     items: [
-      "English",
-      "Русский",
-      "한국어"
+      Const.english,
+      Const.russian,
+      Const.korean
     ]
   ))
   
@@ -372,22 +377,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.addArrangedSubview(purpleCircleButton)
     $0.addArrangedSubview(blueCircleButton)
     $0.addArrangedSubview(tealCircleButton)
-    return $0
-  }(UIStackView())
-  
-//  private lazy var colorsSectionStackView: UIStackView = {
-//    $0.axis = .horizontal
-//    $0.alignment = .center
-////    $0.addArrangedSubview(chooseColorLabel)
-//    $0.addArrangedSubview(colorsStackView)
-//    return $0
-//  }(UIStackView())
-  
-  private lazy var colorsSectionStackView: UIStackView = {
-    $0.axis = .vertical
-    $0.spacing = 20
-    $0.addArrangedSubview(colorFiltersLabel)
-    $0.addArrangedSubview(colorsStackView)
     return $0
   }(UIStackView())
   
@@ -423,29 +412,22 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UIStackView())
   
-  private lazy var languageStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.distribution = .fillEqually
-//    $0.addArrangedSubview(chooseLanguageLabel)
-    $0.addArrangedSubview(languageSegmentControl)
-    return $0
-  }(UIStackView())
-  
   private lazy var mainStackView: UIStackView = {
     $0.axis = .vertical
-    $0.spacing = 20
+    $0.spacing = Const.mainStackViewSpacing
     $0.addArrangedSubview(searchFiltersLabel)
     $0.addArrangedSubview(contentFilterStackView)
     $0.addArrangedSubview(orientationStackView)
     $0.addArrangedSubview(sortingPhotosStackView)
     $0.addArrangedSubview(firstLineView)
-    $0.addArrangedSubview(colorsSectionStackView)
+    $0.addArrangedSubview(colorFiltersLabel)
+    $0.addArrangedSubview(colorsStackView)
     $0.addArrangedSubview(secondLineView)
     $0.addArrangedSubview(layoutLabel)
     $0.addArrangedSubview(numberOfColumnsStackView)
     $0.addArrangedSubview(thirdLineView)
     $0.addArrangedSubview(languageLabel)
-    $0.addArrangedSubview(languageStackView)
+    $0.addArrangedSubview(languageSegmentControl)
     $0.addArrangedSubview(resetButton)
     return $0
   }(UIStackView())
@@ -454,14 +436,11 @@ final class SettingsViewControllerRootView: UIView {
   init() {
     super.init(frame: .zero)
     setupViews()
-    
     switcher.addTarget(
       self,
       action: #selector(switchChanged),
       for: .valueChanged
     )
-    
-//    backgroundColor = .white
   }
   
   required init?(coder: NSCoder) {
@@ -493,22 +472,22 @@ final class SettingsViewControllerRootView: UIView {
     NSLayoutConstraint.activate([
       mainStackView.topAnchor.constraint(
         equalTo: scrollView.topAnchor,
-        constant: 15
+        constant: Const.stackViewTopInset
       ),
       mainStackView.leadingAnchor.constraint(
         equalTo: scrollView.leadingAnchor,
-        constant: 20
+        constant: Const.stackViewHorizontalInset
       ),
       mainStackView.trailingAnchor.constraint(
         equalTo: scrollView.trailingAnchor,
-        constant: -20
+        constant: -Const.stackViewHorizontalInset
       ),
       mainStackView.bottomAnchor.constraint(
         equalTo: scrollView.bottomAnchor
       ),
       mainStackView.widthAnchor.constraint(
         equalTo: safeAreaLayoutGuide.widthAnchor,
-        constant: -40
+        constant: Const.stackViewWidthAdjustment
       )
     ])
   }
@@ -555,22 +534,74 @@ final class SettingsViewControllerRootView: UIView {
       }
     }
   }
-}
-
-enum SettingsViewControllerRootViewConst {
-  static let colorImageViewSize: CGFloat = 30.0
-  static let colorImageView: UIImage = UIImage(systemName: "circle")!
-  static let colorCirclOpasity: CGFloat = 1.0
-  static let pressingResetButtonScale: CGFloat = 0.95
-  static let pressingColorCircleButtonScale: CGFloat = 0.9
-  static let colorCircleButtonScale: CGFloat = 1.2
-  static let duration: CGFloat = 0.12
-  static let selectedSegmentTintColor: UIColor = .systemBlue
-  static let resetButtonColor: UIColor = .systemPink
-  static let fontOfTheSectionTitle: UIFont = .systemFont(ofSize: 25, weight: .bold)
-  static let standardFont: UIFont = .systemFont(ofSize: 20, weight: .medium)
-  static let colorOfTheSectionTitle: UIColor = .systemGray3
-  static let systemGray: UIColor = .systemGray
-  static let sectionTitleTextAlignment: NSTextAlignment = .left
-  static let standartTextAlignment: NSTextAlignment = .left
+  
+  private func updateCircleButtonImage(for index: Int) {
+    let button = buttonsArray[index]
+    if buttonStates[index] {
+      button.setImage(Const.checkedCircleImage, for: .normal)
+    } else {
+      button.setImage(Const.colorImageView, for: .normal)
+    }
+    buttonStates[index].toggle()
+  }
+  
+  // MARK: Objc Methods
+  @objc private func whiteCircleButtonTapped(_ sender: UIButton) {
+    animateColorCircleButton(sender)
+    guard let index = buttonsArray.firstIndex(of: sender) else { return }
+    updateCircleButtonImage(for: index)
+  }
+  
+  @objc private func greenrCircleButtonTapped(_ sender: UIButton) {
+    animateColorCircleButton(sender)
+    guard let index = buttonsArray.firstIndex(of: sender) else { return }
+    updateCircleButtonImage(for: index)
+  }
+  
+  @objc private func yellowCircleButtonTapped(_ sender: UIButton) {
+    animateColorCircleButton(sender)
+    guard let index = buttonsArray.firstIndex(of: sender) else { return }
+    updateCircleButtonImage(for: index)
+  }
+  
+  @objc private func orangeCircleButtonTapped(_ sender: UIButton) {
+    animateColorCircleButton(sender)
+    guard let index = buttonsArray.firstIndex(of: sender) else { return }
+    updateCircleButtonImage(for: index)
+  }
+  
+  @objc private func redCircleButtonTapped(_ sender: UIButton) {
+    animateColorCircleButton(sender)
+    guard let index = buttonsArray.firstIndex(of: sender) else { return }
+    updateCircleButtonImage(for: index)
+  }
+  
+  @objc private func purpleCircleButtonTapped(_ sender: UIButton) {
+    animateColorCircleButton(sender)
+    guard let index = buttonsArray.firstIndex(of: sender) else { return }
+    updateCircleButtonImage(for: index)
+  }
+  
+  @objc private func blueCircleButtonTapped(_ sender: UIButton) {
+    animateColorCircleButton(sender)
+    guard let index = buttonsArray.firstIndex(of: sender) else { return }
+    updateCircleButtonImage(for: index)
+  }
+  
+  @objc private func tealCircleButtonTapped(_ sender: UIButton) {
+    animateColorCircleButton(sender)
+    guard let index = buttonsArray.firstIndex(of: sender) else { return }
+    updateCircleButtonImage(for: index)
+  }
+  
+  @objc private func resetButtonTapped(_ sender: UIButton) {
+    animateResetButton(sender)
+    contentFilterSegmentControl.selectedSegmentIndex = .zero
+    orientationSegmentControl.selectedSegmentIndex = .zero
+    sortingPhotosSegmentControl.selectedSegmentIndex = .zero
+    numberOfColumnsSegmentControl.selectedSegmentIndex = .zero
+    languageSegmentControl.selectedSegmentIndex = .zero
+    
+    
+  }
 }
