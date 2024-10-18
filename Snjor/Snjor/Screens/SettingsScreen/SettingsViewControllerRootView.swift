@@ -11,6 +11,7 @@ fileprivate typealias Const = SettingsViewControllerRootViewConst
 
 final class SettingsViewControllerRootView: UIView {
   // MARK: Private Properties
+  private let storage: any StorageManagerProtocol = StorageManager()
   private var buttonStates: [Bool] = [true, true, true, true, true, true, true, true]
   private lazy var buttonsArray: [UIButton] = [
     blackAndWhiteCircleButton,
@@ -28,11 +29,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.alwaysBounceVertical = true
     return $0
   }(UIScrollView())
-  
-  private let switcher: UISwitch = {
-    $0.onTintColor = .systemRed
-    return $0
-  }(UISwitch())
   
   private let firstLineView: UIView = {
     $0.backgroundColor = .systemGray
@@ -122,7 +118,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.font = Const.standardFont
     return $0
   }(UILabel())
- 
+  
   private let chooseLanguageLabel: UILabel = {
     $0.text = Const.chooseLanguageLabelText
     $0.textColor = Const.systemGray
@@ -291,7 +287,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.selectedSegmentIndex = .zero
     $0.addTarget(
       self,
-      action: #selector(aspectRatioChanged),
+      action: #selector(orientationChanged),
       for: .valueChanged
     )
     return $0
@@ -350,21 +346,6 @@ final class SettingsViewControllerRootView: UIView {
     ]
   ))
   
-  @objc private func aspectRatioChanged(_ sender: UISegmentedControl) {
-    switch sender.selectedSegmentIndex {
-    case 0:
-      print("All")
-    case 1:
-      print("Landscape")
-    case 2:
-      print("Portrait")
-    case 3:
-      print("Squarish")
-    default:
-      break
-    }
-  }
-
   // MARK: UIStackView
   private lazy var colorsStackView: UIStackView = {
     $0.axis = .horizontal
@@ -436,11 +417,8 @@ final class SettingsViewControllerRootView: UIView {
   init() {
     super.init(frame: .zero)
     setupViews()
-    switcher.addTarget(
-      self,
-      action: #selector(switchChanged),
-      for: .valueChanged
-    )
+    restoreSelectedSegment()
+    layoutIfNeeded()
   }
   
   required init?(coder: NSCoder) {
@@ -490,16 +468,6 @@ final class SettingsViewControllerRootView: UIView {
         constant: Const.stackViewWidthAdjustment
       )
     ])
-  }
-  
-  @objc private func switchChanged(_ sender: UISwitch) {
-    let selectedOrientation: String
-    if sender.isOn {
-      selectedOrientation = "landscape"
-    } else {
-      selectedOrientation = "squarish"
-    }
-    UserDefaults.standard.set(selectedOrientation, forKey: "photoOrientation")
   }
   
   // MARK: Animate Buttons
@@ -603,5 +571,41 @@ final class SettingsViewControllerRootView: UIView {
     languageSegmentControl.selectedSegmentIndex = .zero
     
     
+  }
+  
+  @objc private func orientationChanged(_ sender: UISegmentedControl) {
+    // сохранить индекс ползунка в ключ
+    storage.set(
+      sender.selectedSegmentIndex,
+      forKey: .photoOrientationSegmentIndexKey
+    )
+    
+    if sender.selectedSegmentIndex == Const.allOrientations {
+      storage.remove(forKey: .photoOrientationKey)
+    } else {
+      let selectedOrientation: String
+      switch sender.selectedSegmentIndex {
+      case Const.landscapeOrientation:
+        selectedOrientation = .landscape
+      case Const.portraitOrientation:
+        selectedOrientation = .portrait
+      case Const.squarishOrientation:
+        selectedOrientation = .squarish
+      default:
+        return
+      }
+      // сохранить параметр запроса
+      storage.set(
+        selectedOrientation,
+        forKey: .photoOrientationKey
+      )
+    }
+  }
+  
+  // MARK: State Restoration
+  private func restoreSelectedSegment() {
+    // получить индекс ползунка
+    let selectedIndex = storage.int(forKey: .photoOrientationSegmentIndexKey) ?? .zero
+    orientationSegmentControl.selectedSegmentIndex = selectedIndex
   }
 }
