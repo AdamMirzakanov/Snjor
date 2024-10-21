@@ -10,9 +10,6 @@ import Foundation
 final class StorageManager {
   // MARK: Public Enum
   public enum Key: String {
-    case contentFilterSegmentIndexKey
-    case contentFilterKey
-    
     case photoOrientationKey
     case photoOrientationSegmentIndexKey
     

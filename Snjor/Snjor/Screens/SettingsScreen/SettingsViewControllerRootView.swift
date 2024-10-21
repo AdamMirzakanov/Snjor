@@ -95,14 +95,6 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UILabel())
   
-  private let contentFilterLabel: UILabel = {
-    $0.text = Const.contentFilterLabelText
-    $0.textColor = Const.systemGray
-    $0.textAlignment = Const.standartTextAlignment
-    $0.font = Const.standardFont
-    return $0
-  }(UILabel())
-  
   private let sortingPhotosLabel: UILabel = {
     $0.text = Const.sortingPhotosLabelText
     $0.textColor = Const.systemGray
@@ -300,22 +292,6 @@ final class SettingsViewControllerRootView: UIView {
     ]
   ))
   
-  private lazy var contentFilterSegmentControl: UISegmentedControl = {
-    $0.selectedSegmentTintColor = Const.selectedSegmentTintColor
-    $0.selectedSegmentIndex = .zero
-    $0.addTarget(
-      self,
-      action: #selector(contentFilterChanged),
-      for: .valueChanged
-    )
-    return $0
-  }(UISegmentedControl(
-    items: [
-      Const.lowContent,
-      Const.highContent
-    ]
-  ))
-  
   private lazy var sortingPhotosSegmentControl: UISegmentedControl = {
     $0.selectedSegmentTintColor = Const.selectedSegmentTintColor
     $0.selectedSegmentIndex = .zero
@@ -379,14 +355,6 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UIStackView())
   
-  private lazy var contentFilterStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.distribution = .fillEqually
-    $0.addArrangedSubview(contentFilterLabel)
-    $0.addArrangedSubview(contentFilterSegmentControl)
-    return $0
-  }(UIStackView())
-  
   private lazy var sortingPhotosStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .fillEqually
@@ -407,7 +375,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.axis = .vertical
     $0.spacing = Const.mainStackViewSpacing
     $0.addArrangedSubview(searchFiltersLabel)
-    $0.addArrangedSubview(contentFilterStackView)
     $0.addArrangedSubview(orientationStackView)
     $0.addArrangedSubview(sortingPhotosStackView)
     $0.addArrangedSubview(firstLineView)
@@ -574,7 +541,6 @@ final class SettingsViewControllerRootView: UIView {
   
   @objc private func resetButtonTapped(_ sender: UIButton) {
     animateResetButton(sender)
-    contentFilterSegmentControl.selectedSegmentIndex = .zero
     orientationSegmentControl.selectedSegmentIndex = .zero
     sortingPhotosSegmentControl.selectedSegmentIndex = .zero
     numberOfColumnsSegmentControl.selectedSegmentIndex = .zero
@@ -612,25 +578,6 @@ final class SettingsViewControllerRootView: UIView {
     }
   }
   
-  @objc private func contentFilterChanged(_ sender: UISegmentedControl) {
-    storage.set(
-      sender.selectedSegmentIndex,
-      forKey: .contentFilterSegmentIndexKey
-    )
-    if sender.selectedSegmentIndex == Const.low {
-      storage.remove(forKey: .contentFilterKey)
-    }
-    
-    let selectedContentFilter: String
-    switch sender.selectedSegmentIndex {
-    case Const.high:
-      selectedContentFilter = .high
-    default:
-      return
-    }
-    storage.set(selectedContentFilter, forKey: .contentFilterKey)
-  }
-  
   @objc private func sortingPhotosChanged(_ sender: UISegmentedControl) {
     storage.set(
       sender.selectedSegmentIndex,
@@ -659,11 +606,6 @@ final class SettingsViewControllerRootView: UIView {
       forKey: .photoOrientationSegmentIndexKey
     ) ?? .zero
     orientationSegmentControl.selectedSegmentIndex = selectedOrientationSegmentIndex
-    
-    let selectedContentFilterSegmentIndex = storage.int(
-      forKey: .contentFilterSegmentIndexKey
-    ) ?? .zero
-    contentFilterSegmentControl.selectedSegmentIndex = selectedContentFilterSegmentIndex
     
     let selectedSortingPhotosSegmentIndex = storage.int(
       forKey: .sortingPhotosSegmentIndexKey

@@ -80,12 +80,10 @@ enum PrepareParameters {
     if let orientation = storage.string(forKey: .photoOrientationKey) {
       parameters[.orientation] = orientation
     }
-    if let contentFilter = storage.string(forKey: .contentFilterKey) {
-      parameters[.contentFilter] = contentFilter
-    }
     if let contentFilter = storage.string(forKey: .sortingPhotosKey) {
       parameters[.orderBy] = contentFilter
     }
+    
     return parameters
   }
   
@@ -151,11 +149,9 @@ extension String {
   static let username = "username"
   static let orientation = "orientation"
   static let orderBy = "order_by"
-  static let contentFilter = "content_filter"
   static let landscape = "landscape"
   static let portrait = "portrait"
   static let squarish = "squarish"
-  static let high = "high"
   static let latest = "latest"
 }
 
