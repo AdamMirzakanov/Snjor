@@ -37,6 +37,9 @@ enum SettingsViewControllerRootViewConst {
   static let low: Int = 0
   static let high: Int = 1
   
+  static let relevarnt: Int = 0
+  static let latest: Int = 1
+  
   static let allOrientations: Int = 0
   static let landscapeOrientation: Int = 1
   static let portraitOrientation: Int = 2

@@ -319,6 +319,11 @@ final class SettingsViewControllerRootView: UIView {
   private lazy var sortingPhotosSegmentControl: UISegmentedControl = {
     $0.selectedSegmentTintColor = Const.selectedSegmentTintColor
     $0.selectedSegmentIndex = .zero
+    $0.addTarget(
+      self,
+      action: #selector(sortingPhotosChanged),
+      for: .valueChanged
+    )
     return $0
   }(UISegmentedControl(
     items: [
@@ -626,13 +631,43 @@ final class SettingsViewControllerRootView: UIView {
     storage.set(selectedContentFilter, forKey: .contentFilterKey)
   }
   
+  @objc private func sortingPhotosChanged(_ sender: UISegmentedControl) {
+    storage.set(
+      sender.selectedSegmentIndex,
+      forKey: .sortingPhotosSegmentIndexKey
+    )
+    
+    if sender.selectedSegmentIndex == Const.relevarnt {
+      storage.remove(forKey: .sortingPhotosKey)
+    }
+    
+    let selectedSortingPhotos: String
+    switch sender.selectedSegmentIndex {
+    case Const.latest:
+      selectedSortingPhotos = .latest
+    default:
+      return
+    }
+    
+    storage.set(selectedSortingPhotos, forKey: .sortingPhotosKey)
+  }
+  
   // MARK: State Restoration
   private func restoreSelectedSegment() {
     // получить индексы ползунков
-    let selectedOrientationSegmentIndex = storage.int(forKey: .photoOrientationSegmentIndexKey) ?? .zero
+    let selectedOrientationSegmentIndex = storage.int(
+      forKey: .photoOrientationSegmentIndexKey
+    ) ?? .zero
     orientationSegmentControl.selectedSegmentIndex = selectedOrientationSegmentIndex
     
-    let selectedContentFilterSegmentIndex = storage.int(forKey: .contentFilterSegmentIndexKey) ?? .zero
+    let selectedContentFilterSegmentIndex = storage.int(
+      forKey: .contentFilterSegmentIndexKey
+    ) ?? .zero
     contentFilterSegmentControl.selectedSegmentIndex = selectedContentFilterSegmentIndex
+    
+    let selectedSortingPhotosSegmentIndex = storage.int(
+      forKey: .sortingPhotosSegmentIndexKey
+    ) ?? .zero
+    sortingPhotosSegmentControl.selectedSegmentIndex = selectedSortingPhotosSegmentIndex
   }
 }

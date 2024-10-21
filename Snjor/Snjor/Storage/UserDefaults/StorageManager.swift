@@ -12,9 +12,12 @@ final class StorageManager {
   public enum Key: String {
     case contentFilterSegmentIndexKey
     case contentFilterKey
+    
     case photoOrientationKey
     case photoOrientationSegmentIndexKey
     
+    case sortingPhotosSegmentIndexKey
+    case sortingPhotosKey
   }
   
   // MARK: Private Properties
