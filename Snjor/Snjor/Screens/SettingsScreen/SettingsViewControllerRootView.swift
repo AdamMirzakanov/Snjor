@@ -303,6 +303,11 @@ final class SettingsViewControllerRootView: UIView {
   private lazy var contentFilterSegmentControl: UISegmentedControl = {
     $0.selectedSegmentTintColor = Const.selectedSegmentTintColor
     $0.selectedSegmentIndex = .zero
+    $0.addTarget(
+      self,
+      action: #selector(contentFilterChanged),
+      for: .valueChanged
+    )
     return $0
   }(UISegmentedControl(
     items: [
@@ -602,10 +607,32 @@ final class SettingsViewControllerRootView: UIView {
     }
   }
   
+  @objc private func contentFilterChanged(_ sender: UISegmentedControl) {
+    storage.set(
+      sender.selectedSegmentIndex,
+      forKey: .contentFilterSegmentIndexKey
+    )
+    if sender.selectedSegmentIndex == Const.low {
+      storage.remove(forKey: .contentFilterKey)
+    }
+    
+    let selectedContentFilter: String
+    switch sender.selectedSegmentIndex {
+    case Const.high:
+      selectedContentFilter = .high
+    default:
+      return
+    }
+    storage.set(selectedContentFilter, forKey: .contentFilterKey)
+  }
+  
   // MARK: State Restoration
   private func restoreSelectedSegment() {
-    // получить индекс ползунка
-    let selectedIndex = storage.int(forKey: .photoOrientationSegmentIndexKey) ?? .zero
-    orientationSegmentControl.selectedSegmentIndex = selectedIndex
+    // получить индексы ползунков
+    let selectedOrientationSegmentIndex = storage.int(forKey: .photoOrientationSegmentIndexKey) ?? .zero
+    orientationSegmentControl.selectedSegmentIndex = selectedOrientationSegmentIndex
+    
+    let selectedContentFilterSegmentIndex = storage.int(forKey: .contentFilterSegmentIndexKey) ?? .zero
+    contentFilterSegmentControl.selectedSegmentIndex = selectedContentFilterSegmentIndex
   }
 }

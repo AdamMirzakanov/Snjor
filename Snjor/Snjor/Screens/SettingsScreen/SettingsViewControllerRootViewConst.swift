@@ -34,6 +34,9 @@ enum SettingsViewControllerRootViewConst {
   static let colorCircleButtonScale: CGFloat = 1.2
   static let duration: CGFloat = 0.12
   
+  static let low: Int = 0
+  static let high: Int = 1
+  
   static let allOrientations: Int = 0
   static let landscapeOrientation: Int = 1
   static let portraitOrientation: Int = 2

@@ -9,9 +9,12 @@ import Foundation
 
 final class StorageManager {
   // MARK: Public Enum
-  public enum Keys: String {
+  public enum Key: String {
+    case contentFilterSegmentIndexKey
+    case contentFilterKey
     case photoOrientationKey
     case photoOrientationSegmentIndexKey
+    
   }
   
   // MARK: Private Properties
@@ -30,47 +33,47 @@ final class StorageManager {
 
 // MARK: - StorageManagerProtocol
 extension StorageManager: StorageManagerProtocol {
-  func set(_ object: Any?, forKey key: Keys) {
+  func set(_ object: Any?, forKey key: Key) {
     store(object, key: key.rawValue)
   }
   
-  func set<T: Encodable>(object: T?, forKey key: Keys) {
+  func set<T: Encodable>(object: T?, forKey key: Key) {
     let jsonData = try? JSONEncoder().encode(object)
     store(jsonData, key: key.rawValue)
   }
   
-  func int(forKey key: Keys) -> Int? {
+  func int(forKey key: Key) -> Int? {
     restore(forKey: key.rawValue) as? Int
   }
   
-  func string(forKey key: Keys) -> String? {
+  func string(forKey key: Key) -> String? {
     restore(forKey: key.rawValue) as? String
   }
   
-  func dict(forKey key: Keys) -> [String : Any]? {
+  func dict(forKey key: Key) -> [String : Any]? {
     restore(forKey: key.rawValue) as?  [String : Any]
   }
   
-  func date(forKey key: Keys) -> Date? {
+  func date(forKey key: Key) -> Date? {
     restore(forKey: key.rawValue) as? Date
   }
   
-  func bool(forKey key: Keys) -> Bool? {
+  func bool(forKey key: Key) -> Bool? {
     restore(forKey: key.rawValue) as? Bool
   }
   
-  func data(forKey key: Keys) -> Data? {
+  func data(forKey key: Key) -> Data? {
     restore(forKey: key.rawValue) as? Data
   }
   
-  func codableData<T: Decodable>(forKey key: Keys) -> T? {
+  func codableData<T: Decodable>(forKey key: Key) -> T? {
     guard let data = restore(forKey: key.rawValue) as? Data else {
       return nil
     }
     return try? JSONDecoder().decode(T.self, from: data)
   }
   
-  func remove(forKey key: Keys) {
+  func remove(forKey key: Key) {
     userDefaults.removeObject(forKey: key.rawValue)
   }
 }

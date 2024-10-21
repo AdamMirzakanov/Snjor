@@ -76,8 +76,12 @@ enum PrepareParameters {
     parameters[.query] = searchTerm
     parameters[.page] = String(searchPhotosPage)
     parameters[.perPage] = String(perPage)
+    
     if let orientation = storage.string(forKey: .photoOrientationKey) {
       parameters[.orientation] = orientation
+    }
+    if let contentFilter = storage.string(forKey: .contentFilterKey) {
+      parameters[.contentFilter] = contentFilter
     }
     return parameters
   }
@@ -143,9 +147,11 @@ extension String {
   static let devicePixelRatio = "dpr"
   static let username = "username"
   static let orientation = "orientation"
+  static let contentFilter = "content_filter"
   static let landscape = "landscape"
   static let portrait = "portrait"
   static let squarish = "squarish"
+  static let high = "high"
 }
 
 private extension Int {
