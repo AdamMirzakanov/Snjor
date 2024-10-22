@@ -278,6 +278,7 @@ final class SettingsViewControllerRootView: UIView {
     $0.addArrangedSubview(colorFiltersLabel)
     $0.addArrangedSubview(circleButtonsStackView)
     $0.addArrangedSubview(secondLineView)
+    $0.addArrangedSubview(UIView())
     $0.addArrangedSubview(resetButton)
     return $0
   }(UIStackView())

@@ -31,7 +31,7 @@ enum SettingsViewControllerRootViewConst {
   static let colorCirclOpasity: CGFloat = 1.0
   static let pressingResetButtonScale: CGFloat = 0.95
   static let pressingColorCircleButtonScale: CGFloat = 0.9
-  static let colorCircleButtonScale: CGFloat = 1.2
+  static let colorCircleButtonScale: CGFloat = 1.4
   static let duration: CGFloat = 0.12
   
   static let relevarntSegmentIndex: Int = 0
