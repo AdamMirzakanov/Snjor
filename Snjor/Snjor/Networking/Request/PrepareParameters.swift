@@ -177,7 +177,7 @@ extension String {
   static let latest = "latest"
   
   static let color = "color"
-  static let white = "white"
+  static let white = "black_and_white"
   static let green = "green"
   static let yellow = "yellow"
   static let orange = "orange"
