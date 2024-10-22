@@ -42,15 +42,17 @@ enum SettingsViewControllerRootViewConst {
   static let portraitOrientationSegmentIndex: Int = 2
   static let squarishOrientationSegmentIndex: Int = 3
   
-  static let whiteButton: Int = 0
-  static let greenButton: Int = 1
-  static let yellowButton: Int = 2
-  static let orangeButton: Int = 3
-  static let redButton: Int = 4
-  static let purpleButton: Int = 5
-  static let blueButton: Int = 6
-  static let tealButton: Int = 7
+  static let unColoerButton: Int = 0
+  static let whiteButton: Int = 1
+  static let greenButton: Int = 2
+  static let yellowButton: Int = 3
+  static let orangeButton: Int = 4
+  static let redButton: Int = 5
+  static let purpleButton: Int = 6
+  static let blueButton: Int = 7
+  static let tealButton: Int = 8
 
+  static let unColorCheckedCircleImage = UIImage(systemName: "circle.bottomrighthalf.pattern.checkered")
   static let checkedCircleImage = UIImage(systemName: "checkmark.circle.fill")
   static let uncheckedCircleImage: UIImage = UIImage(systemName: "circle")!
   static let landscapeRectIcon: UIImage = UIImage(systemName: "rectangle.ratio.4.to.3")!

@@ -12,8 +12,9 @@ fileprivate typealias Const = SettingsViewControllerRootViewConst
 final class SettingsViewControllerRootView: UIView {
   // MARK: Private Properties
   private let storage: any StorageManagerProtocol = StorageManager()
-  private var buttonStates: [Bool] = [true, true, true, true, true, true, true, true]
+  private var buttonStates: [Bool] = [true, true, true, true, true, true, true, true, true]
   private lazy var buttonsArray: [UIButton] = [
+    unColorCircleButton,
     blackAndWhiteCircleButton,
     greenCircleButton,
     yellowCircleButton,
@@ -79,24 +80,23 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UILabel())
   
-  private let chooseLanguageLabel: UILabel = {
-    $0.text = Const.chooseLanguageLabelText
-    $0.textColor = Const.systemGray
-    $0.textAlignment = Const.standartTextAlignment
-    $0.font = Const.standardFont
-    return $0
-  }(UILabel())
-  
   // MARK: Bottons
+  private let unColorCircleButton: UIButton = {
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.alpha = Const.colorCirclOpasity
+    $0.tintColor = Const.colorOfTheSectionTitle
+    let scaleTransform = CGAffineTransform(
+      scaleX: Const.colorCircleButtonScale,
+      y: Const.colorCircleButtonScale
+    )
+    $0.transform = scaleTransform
+    return $0
+  }(UIButton(type: .system))
+  
   private let purpleCircleButton: UIButton = {
     $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemPurple
-    $0.addTarget(
-      self,
-      action: #selector(purpleCircleButtonTapped),
-      for: .touchUpInside
-    )
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
       y: Const.colorCircleButtonScale
@@ -108,11 +108,6 @@ final class SettingsViewControllerRootView: UIView {
   private let greenCircleButton: UIButton = {
     $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.tintColor = .systemGreen
-    $0.addTarget(
-      self,
-      action: #selector(greenrCircleButtonTapped),
-      for: .touchUpInside
-    )
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
       y: Const.colorCircleButtonScale
@@ -125,11 +120,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemYellow
-    $0.addTarget(
-      self,
-      action: #selector(yellowCircleButtonTapped),
-      for: .touchUpInside
-    )
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
       y: Const.colorCircleButtonScale
@@ -142,11 +132,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemOrange
-    $0.addTarget(
-      self,
-      action: #selector(orangeCircleButtonTapped),
-      for: .touchUpInside
-    )
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
       y: Const.colorCircleButtonScale
@@ -159,11 +144,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemPink
-    $0.addTarget(
-      self,
-      action: #selector(redCircleButtonTapped),
-      for: .touchUpInside
-    )
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
       y: Const.colorCircleButtonScale
@@ -176,11 +156,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemTeal
-    $0.addTarget(
-      self,
-      action: #selector(tealCircleButtonTapped),
-      for: .touchUpInside
-    )
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
       y: Const.colorCircleButtonScale
@@ -193,11 +168,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemBlue
-    $0.addTarget(
-      self,
-      action: #selector(blueCircleButtonTapped),
-      for: .touchUpInside
-    )
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
       y: Const.colorCircleButtonScale
@@ -210,11 +180,6 @@ final class SettingsViewControllerRootView: UIView {
     $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .white
-    $0.addTarget(
-      self,
-      action: #selector(whiteCircleButtonTapped),
-      for: .touchUpInside
-    )
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
       y: Const.colorCircleButtonScale
@@ -233,11 +198,6 @@ final class SettingsViewControllerRootView: UIView {
     ).isActive = true
     $0.clipsToBounds = true
     $0.backgroundColor = Const.resetButtonColor
-    $0.addTarget(
-      self,
-      action: #selector(resetButtonTapped),
-      for: .touchUpInside
-    )
     return $0
   }(UIButton())
   
@@ -280,6 +240,7 @@ final class SettingsViewControllerRootView: UIView {
   private lazy var circleButtonsStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .equalSpacing
+    $0.addArrangedSubview(unColorCircleButton)
     $0.addArrangedSubview(blackAndWhiteCircleButton)
     $0.addArrangedSubview(greenCircleButton)
     $0.addArrangedSubview(yellowCircleButton)
@@ -326,10 +287,24 @@ final class SettingsViewControllerRootView: UIView {
     super.init(frame: .zero)
     setupViews()
     restoreSelectedUIElement()
+    setupButtonTargets()
   }
   
   required init?(coder: NSCoder) {
     fatalError(.requiredInitFatalErrorText)
+  }
+  
+  private func setupButtonTargets() {
+    buttonsArray.forEach { $0.addTarget(
+      self,
+      action: #selector(circleButtonTapped),
+      for: .touchUpInside)
+    }
+    resetButton.addTarget(
+      self,
+      action: #selector(resetButtonTapped),
+      for: .touchUpInside
+    )
   }
   
   // MARK: Setup Views
@@ -417,8 +392,14 @@ final class SettingsViewControllerRootView: UIView {
         button.setImage(Const.uncheckedCircleImage, for: .normal)
         buttonStates[buttonIndex] = false
       } else {
-        button.setImage(Const.checkedCircleImage, for: .normal)
-        buttonStates[buttonIndex] = true
+        if buttonIndex == .zero {
+          button.setImage(Const.unColorCheckedCircleImage, for: .normal)
+          buttonStates[buttonIndex] = true
+        } else {
+          button.setImage(Const.checkedCircleImage, for: .normal)
+          buttonStates[buttonIndex] = true
+        }
+        
       }
     }
     storage.set(index, forKey: .selectedCircleButtonIndexKey)
@@ -442,56 +423,15 @@ final class SettingsViewControllerRootView: UIView {
     case Const.tealButton:
       queryParameter = .teal
     default:
-      return
+      queryParameter = .empty
+      storage.remove(forKey: .selectedCircleButtonKey)
     }
     
     storage.set(queryParameter, forKey: .selectedCircleButtonKey)
   }
   
   // MARK: Objc Methods
-  @objc private func whiteCircleButtonTapped(_ sender: UIButton) {
-    animateColorCircleButton(sender)
-    guard let index = buttonsArray.firstIndex(of: sender) else { return }
-    updateCircleButtonImage(for: index)
-  }
-  
-  @objc private func greenrCircleButtonTapped(_ sender: UIButton) {
-    animateColorCircleButton(sender)
-    guard let index = buttonsArray.firstIndex(of: sender) else { return }
-    updateCircleButtonImage(for: index)
-  }
-  
-  @objc private func yellowCircleButtonTapped(_ sender: UIButton) {
-    animateColorCircleButton(sender)
-    guard let index = buttonsArray.firstIndex(of: sender) else { return }
-    updateCircleButtonImage(for: index)
-  }
-  
-  @objc private func orangeCircleButtonTapped(_ sender: UIButton) {
-    animateColorCircleButton(sender)
-    guard let index = buttonsArray.firstIndex(of: sender) else { return }
-    updateCircleButtonImage(for: index)
-  }
-  
-  @objc private func redCircleButtonTapped(_ sender: UIButton) {
-    animateColorCircleButton(sender)
-    guard let index = buttonsArray.firstIndex(of: sender) else { return }
-    updateCircleButtonImage(for: index)
-  }
-  
-  @objc private func purpleCircleButtonTapped(_ sender: UIButton) {
-    animateColorCircleButton(sender)
-    guard let index = buttonsArray.firstIndex(of: sender) else { return }
-    updateCircleButtonImage(for: index)
-  }
-  
-  @objc private func blueCircleButtonTapped(_ sender: UIButton) {
-    animateColorCircleButton(sender)
-    guard let index = buttonsArray.firstIndex(of: sender) else { return }
-    updateCircleButtonImage(for: index)
-  }
-  
-  @objc private func tealCircleButtonTapped(_ sender: UIButton) {
+  @objc private func circleButtonTapped(_ sender: UIButton) {
     animateColorCircleButton(sender)
     guard let index = buttonsArray.firstIndex(of: sender) else { return }
     updateCircleButtonImage(for: index)
@@ -507,10 +447,16 @@ final class SettingsViewControllerRootView: UIView {
     storage.remove(forKey: .sortingPhotosKey)
     storage.remove(forKey: .selectedCircleButtonKey)
     storage.remove(forKey: .selectedCircleButtonIndexKey)
+    buttonsArray.enumerated().forEach { index, button in
+      if index == .zero {
+        button.setImage(Const.unColorCheckedCircleImage, for: .normal)
+      } else {
+        button.setImage(Const.uncheckedCircleImage, for: .normal)
+      }
+    }
   }
   
   @objc private func orientationChanged(_ sender: UISegmentedControl) {
-    // сохранить индекс ползунка в ключ
     storage.set(
       sender.selectedSegmentIndex,
       forKey: .photoOrientationSegmentIndexKey
@@ -530,7 +476,6 @@ final class SettingsViewControllerRootView: UIView {
       default:
         return
       }
-      // сохранить параметр запроса
       storage.set(
         queryParameter,
         forKey: .photoOrientationKey
@@ -561,7 +506,6 @@ final class SettingsViewControllerRootView: UIView {
   
   // MARK: State Restoration
   private func restoreSelectedUIElement() {
-    // получить индексы ползунков
     let selectedOrientationSegmentIndex = storage.int(
       forKey: .photoOrientationSegmentIndexKey
     ) ?? .zero
