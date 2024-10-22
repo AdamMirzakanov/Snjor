@@ -121,7 +121,7 @@ final class SettingsViewControllerRootView: UIView {
   
   // MARK: Bottons
   private let purpleCircleButton: UIButton = {
-    $0.setImage(Const.colorImageView, for: .normal)
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemPurple
     $0.addTarget(
@@ -138,7 +138,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let greenCircleButton: UIButton = {
-    $0.setImage(Const.colorImageView, for: .normal)
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.tintColor = .systemGreen
     $0.addTarget(
       self,
@@ -154,7 +154,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let yellowCircleButton: UIButton = {
-    $0.setImage(Const.colorImageView, for: .normal)
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemYellow
     $0.addTarget(
@@ -171,7 +171,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let orangeCircleButton: UIButton = {
-    $0.setImage(Const.colorImageView, for: .normal)
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemOrange
     $0.addTarget(
@@ -188,7 +188,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let redCircleButton: UIButton = {
-    $0.setImage(Const.colorImageView, for: .normal)
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemPink
     $0.addTarget(
@@ -205,7 +205,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let tealCircleButton: UIButton = {
-    $0.setImage(Const.colorImageView, for: .normal)
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemTeal
     $0.addTarget(
@@ -222,7 +222,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let blueCircleButton: UIButton = {
-    $0.setImage(Const.colorImageView, for: .normal)
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemBlue
     $0.addTarget(
@@ -239,7 +239,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let blackAndWhiteCircleButton: UIButton = {
-    $0.setImage(Const.colorImageView, for: .normal)
+    $0.setImage(Const.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .white
     $0.addTarget(
@@ -394,7 +394,7 @@ final class SettingsViewControllerRootView: UIView {
   init() {
     super.init(frame: .zero)
     setupViews()
-    restoreSelectedSegment()
+    restoreSelectedUIElement()
     layoutIfNeeded()
   }
   
@@ -481,13 +481,41 @@ final class SettingsViewControllerRootView: UIView {
   }
   
   private func updateCircleButtonImage(for index: Int) {
-    let button = buttonsArray[index]
-    if buttonStates[index] {
-      button.setImage(Const.checkedCircleImage, for: .normal)
-    } else {
-      button.setImage(Const.colorImageView, for: .normal)
-    }
     buttonStates[index].toggle()
+    buttonsArray.enumerated().forEach { buttonIndex, button in
+      if buttonIndex != index {
+        button.setImage(Const.uncheckedCircleImage, for: .normal)
+        buttonStates[buttonIndex] = false
+      } else {
+        button.setImage(Const.checkedCircleImage, for: .normal)
+        buttonStates[buttonIndex] = true
+      }
+    }
+    storage.set(index, forKey: .selectedCircleButtonIndexKey)
+    
+    let queryParameter: String
+    switch index {
+    case Const.whiteButton:
+      queryParameter = .white
+    case Const.greenButton:
+      queryParameter = .green
+    case Const.yellowButton:
+      queryParameter = .yellow
+    case Const.orangeButton:
+      queryParameter = .orange
+    case Const.redButton:
+      queryParameter = .red
+    case Const.purpleButton:
+      queryParameter = .purple
+    case Const.blueButton:
+      queryParameter = .blue
+    case Const.tealButton:
+      queryParameter = .teal
+    default:
+      return
+    }
+    
+    storage.set(queryParameter, forKey: .selectedCircleButtonKey)
   }
   
   // MARK: Objc Methods
@@ -545,8 +573,6 @@ final class SettingsViewControllerRootView: UIView {
     sortingPhotosSegmentControl.selectedSegmentIndex = .zero
     numberOfColumnsSegmentControl.selectedSegmentIndex = .zero
     languageSegmentControl.selectedSegmentIndex = .zero
-    
-    
   }
   
   @objc private func orientationChanged(_ sender: UISegmentedControl) {
@@ -556,23 +582,23 @@ final class SettingsViewControllerRootView: UIView {
       forKey: .photoOrientationSegmentIndexKey
     )
     
-    if sender.selectedSegmentIndex == Const.allOrientations {
+    if sender.selectedSegmentIndex == Const.allOrientationsSegmentIndex {
       storage.remove(forKey: .photoOrientationKey)
     } else {
-      let selectedOrientation: String
+      let queryParameter: String
       switch sender.selectedSegmentIndex {
-      case Const.landscapeOrientation:
-        selectedOrientation = .landscape
-      case Const.portraitOrientation:
-        selectedOrientation = .portrait
-      case Const.squarishOrientation:
-        selectedOrientation = .squarish
+      case Const.landscapeOrientationSegmentIndex:
+        queryParameter = .landscape
+      case Const.portraitOrientationSegmentIndex:
+        queryParameter = .portrait
+      case Const.squarishOrientationSegmentIndex:
+        queryParameter = .squarish
       default:
         return
       }
       // сохранить параметр запроса
       storage.set(
-        selectedOrientation,
+        queryParameter,
         forKey: .photoOrientationKey
       )
     }
@@ -584,23 +610,23 @@ final class SettingsViewControllerRootView: UIView {
       forKey: .sortingPhotosSegmentIndexKey
     )
     
-    if sender.selectedSegmentIndex == Const.relevarnt {
+    if sender.selectedSegmentIndex == Const.relevarntSegmentIndex {
       storage.remove(forKey: .sortingPhotosKey)
     }
     
-    let selectedSortingPhotos: String
+    let queryParameter: String
     switch sender.selectedSegmentIndex {
-    case Const.latest:
-      selectedSortingPhotos = .latest
+    case Const.latestSegmentIndex:
+      queryParameter = .latest
     default:
       return
     }
     
-    storage.set(selectedSortingPhotos, forKey: .sortingPhotosKey)
+    storage.set(queryParameter, forKey: .sortingPhotosKey)
   }
   
   // MARK: State Restoration
-  private func restoreSelectedSegment() {
+  private func restoreSelectedUIElement() {
     // получить индексы ползунков
     let selectedOrientationSegmentIndex = storage.int(
       forKey: .photoOrientationSegmentIndexKey
@@ -611,5 +637,10 @@ final class SettingsViewControllerRootView: UIView {
       forKey: .sortingPhotosSegmentIndexKey
     ) ?? .zero
     sortingPhotosSegmentControl.selectedSegmentIndex = selectedSortingPhotosSegmentIndex
+    
+    let selectedCircleButtonIndex = storage.int(
+      forKey: .selectedCircleButtonIndexKey
+    ) ?? .zero
+    updateCircleButtonImage(for: selectedCircleButtonIndex)
   }
 }

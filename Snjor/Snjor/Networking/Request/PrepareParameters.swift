@@ -84,6 +84,28 @@ enum PrepareParameters {
       parameters[.orderBy] = contentFilter
     }
     
+    if let color = storage.string(forKey: .selectedCircleButtonKey) {
+      switch color {
+      case .white:
+        parameters[.color] = color
+      case .green:
+        parameters[.color] = color
+      case .yellow:
+        parameters[.color] = color
+      case .orange:
+        parameters[.color] = color
+      case .red:
+        parameters[.color] = color
+      case .purple:
+        parameters[.color] = color
+      case .blue:
+        parameters[.color] = color
+      case .teal:
+        parameters[.color] = color
+      default:
+        storage.remove(forKey: .selectedCircleButtonKey)
+      }
+    }
     return parameters
   }
   
@@ -153,6 +175,16 @@ extension String {
   static let portrait = "portrait"
   static let squarish = "squarish"
   static let latest = "latest"
+  
+  static let color = "color"
+  static let white = "white"
+  static let green = "green"
+  static let yellow = "yellow"
+  static let orange = "orange"
+  static let red = "red"
+  static let purple = "purple"
+  static let blue = "blue"
+  static let teal = "teal"
 }
 
 private extension Int {

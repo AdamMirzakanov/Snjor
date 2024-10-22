@@ -15,6 +15,9 @@ final class StorageManager {
     
     case sortingPhotosSegmentIndexKey
     case sortingPhotosKey
+    
+    case selectedCircleButtonKey
+    case selectedCircleButtonIndexKey
   }
   
   // MARK: Private Properties

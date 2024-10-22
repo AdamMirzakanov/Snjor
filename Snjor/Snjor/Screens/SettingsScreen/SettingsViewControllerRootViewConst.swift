@@ -34,19 +34,25 @@ enum SettingsViewControllerRootViewConst {
   static let colorCircleButtonScale: CGFloat = 1.2
   static let duration: CGFloat = 0.12
   
-  static let low: Int = 0
-  static let high: Int = 1
+  static let relevarntSegmentIndex: Int = 0
+  static let latestSegmentIndex: Int = 1
   
-  static let relevarnt: Int = 0
-  static let latest: Int = 1
+  static let allOrientationsSegmentIndex: Int = 0
+  static let landscapeOrientationSegmentIndex: Int = 1
+  static let portraitOrientationSegmentIndex: Int = 2
+  static let squarishOrientationSegmentIndex: Int = 3
   
-  static let allOrientations: Int = 0
-  static let landscapeOrientation: Int = 1
-  static let portraitOrientation: Int = 2
-  static let squarishOrientation: Int = 3
-  
+  static let whiteButton: Int = 0
+  static let greenButton: Int = 1
+  static let yellowButton: Int = 2
+  static let orangeButton: Int = 3
+  static let redButton: Int = 4
+  static let purpleButton: Int = 5
+  static let blueButton: Int = 6
+  static let tealButton: Int = 7
+
   static let checkedCircleImage = UIImage(systemName: "checkmark.circle.fill")
-  static let colorImageView: UIImage = UIImage(systemName: "circle")!
+  static let uncheckedCircleImage: UIImage = UIImage(systemName: "circle")!
   static let landscapeRectIcon: UIImage = UIImage(systemName: "rectangle.ratio.4.to.3")!
   static let portraitRectIcon: UIImage = UIImage(systemName: "rectangle.ratio.3.to.4")!
   static let squarishRectIcon: UIImage = UIImage(systemName: "square")!
