@@ -46,14 +46,6 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UIView())
   
-  private let thirdLineView: UIView = {
-    $0.backgroundColor = .systemGray
-    $0.heightAnchor.constraint(
-      equalToConstant: Const.lineHeight
-    ).isActive = true
-    return $0
-  }(UIView())
-  
   // MARK: UILabel
   private let searchFiltersLabel: UILabel = {
     $0.text = Const.searchFiltersLabel
@@ -71,22 +63,6 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UILabel())
   
-  private let layoutLabel: UILabel = {
-    $0.text = Const.layoutLabel
-    $0.textColor = Const.colorOfTheSectionTitle
-    $0.textAlignment = Const.sectionTitleTextAlignment
-    $0.font = Const.fontOfTheSectionTitle
-    return $0
-  }(UILabel())
-  
-  private let languageLabel: UILabel = {
-    $0.text = Const.languageLabelText
-    $0.textColor = Const.colorOfTheSectionTitle
-    $0.textAlignment = Const.sectionTitleTextAlignment
-    $0.font = Const.fontOfTheSectionTitle
-    return $0
-  }(UILabel())
-  
   private let orientationLabel: UILabel = {
     $0.text = Const.orientationLabelText
     $0.textColor = Const.systemGray
@@ -97,14 +73,6 @@ final class SettingsViewControllerRootView: UIView {
   
   private let sortingPhotosLabel: UILabel = {
     $0.text = Const.sortingPhotosLabelText
-    $0.textColor = Const.systemGray
-    $0.textAlignment = Const.standartTextAlignment
-    $0.font = Const.standardFont
-    return $0
-  }(UILabel())
-  
-  private let numberOfColumnsLabel: UILabel = {
-    $0.text = Const.numberOfColumnsLabelText
     $0.textColor = Const.systemGray
     $0.textAlignment = Const.standartTextAlignment
     $0.font = Const.standardFont
@@ -308,32 +276,8 @@ final class SettingsViewControllerRootView: UIView {
     ]
   ))
   
-  private lazy var numberOfColumnsSegmentControl: UISegmentedControl = {
-    $0.selectedSegmentTintColor = Const.selectedSegmentTintColor
-    $0.selectedSegmentIndex = .zero
-    return $0
-  }(UISegmentedControl(
-    items: [
-      Const.twoColumn,
-      Const.treeColumn,
-      Const.fourColumn
-    ]
-  ))
-  
-  private lazy var languageSegmentControl: UISegmentedControl = {
-    $0.selectedSegmentTintColor = Const.selectedSegmentTintColor
-    $0.selectedSegmentIndex = .zero
-    return $0
-  }(UISegmentedControl(
-    items: [
-      Const.english,
-      Const.russian,
-      Const.korean
-    ]
-  ))
-  
   // MARK: UIStackView
-  private lazy var colorsStackView: UIStackView = {
+  private lazy var circleButtonsStackView: UIStackView = {
     $0.axis = .horizontal
     $0.distribution = .equalSpacing
     $0.addArrangedSubview(blackAndWhiteCircleButton)
@@ -363,14 +307,6 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UIStackView())
   
-  private lazy var numberOfColumnsStackView: UIStackView = {
-    $0.axis = .horizontal
-    $0.distribution = .fillEqually
-    $0.addArrangedSubview(numberOfColumnsLabel)
-    $0.addArrangedSubview(numberOfColumnsSegmentControl)
-    return $0
-  }(UIStackView())
-  
   private lazy var mainStackView: UIStackView = {
     $0.axis = .vertical
     $0.spacing = Const.mainStackViewSpacing
@@ -379,13 +315,8 @@ final class SettingsViewControllerRootView: UIView {
     $0.addArrangedSubview(sortingPhotosStackView)
     $0.addArrangedSubview(firstLineView)
     $0.addArrangedSubview(colorFiltersLabel)
-    $0.addArrangedSubview(colorsStackView)
+    $0.addArrangedSubview(circleButtonsStackView)
     $0.addArrangedSubview(secondLineView)
-    $0.addArrangedSubview(layoutLabel)
-    $0.addArrangedSubview(numberOfColumnsStackView)
-    $0.addArrangedSubview(thirdLineView)
-    $0.addArrangedSubview(languageLabel)
-    $0.addArrangedSubview(languageSegmentControl)
     $0.addArrangedSubview(resetButton)
     return $0
   }(UIStackView())
@@ -395,7 +326,6 @@ final class SettingsViewControllerRootView: UIView {
     super.init(frame: .zero)
     setupViews()
     restoreSelectedUIElement()
-    layoutIfNeeded()
   }
   
   required init?(coder: NSCoder) {
@@ -571,8 +501,12 @@ final class SettingsViewControllerRootView: UIView {
     animateResetButton(sender)
     orientationSegmentControl.selectedSegmentIndex = .zero
     sortingPhotosSegmentControl.selectedSegmentIndex = .zero
-    numberOfColumnsSegmentControl.selectedSegmentIndex = .zero
-    languageSegmentControl.selectedSegmentIndex = .zero
+    storage.remove(forKey: .photoOrientationKey)
+    storage.remove(forKey: .photoOrientationSegmentIndexKey)
+    storage.remove(forKey: .sortingPhotosSegmentIndexKey)
+    storage.remove(forKey: .sortingPhotosKey)
+    storage.remove(forKey: .selectedCircleButtonKey)
+    storage.remove(forKey: .selectedCircleButtonIndexKey)
   }
   
   @objc private func orientationChanged(_ sender: UISegmentedControl) {
