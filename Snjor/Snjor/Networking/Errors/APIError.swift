@@ -8,7 +8,7 @@
 import Foundation
 
 enum APIError: Error {
-  static var statusCode: Int = .zero
+  static var statusCode: Int = -1009
   
   case clientError
   case serverError
