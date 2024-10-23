@@ -16,10 +16,12 @@ protocol ViewLoadable {
 extension ViewLoadable where Self: UIViewController {
   var rootView: RootView {
     guard let customView = view as? RootView else {
-      fatalError(
-        "Expected view to be of type \(RootView.self) but got \(type(of: view)) instead"
-      )
+      fatalError(errorMessage)
     }
     return customView
+  }
+  
+  private var errorMessage: String {
+    "Expected view to be of type \(RootView.self) but got \(type(of: view)) instead"
   }
 }
