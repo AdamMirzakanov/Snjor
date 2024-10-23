@@ -7,28 +7,30 @@
 
 import UIKit
 
+fileprivate typealias Const = MainTabBarControllerConst
+
 final class MainTabBarController: UITabBarController {
   
   // MARK: Private Properties
   private var selected: Int = .zero
-
+  
   // Buttons
-  private lazy var photoListButton = getButton(
-    icon: "photos",
-    tag: .zero,
+  private lazy var photosButton = getButton(
+    icon: Const.photosButtonIcon,
+    tag: Const.photoListButtonTag,
     action: action,
-    opacity: 1
+    opacity: Float(Const.maxOpacity)
   )
-
+  
   private lazy var searchButton = getButton(
-    icon: "search",
-    tag: 1,
+    icon: Const.searchButtonIcon,
+    tag: Const.searchButtonTag,
     action: action
   )
-
+  
   private lazy var settingsButton = getButton(
-    icon: "slider",
-    tag: 2,
+    icon: Const.settingsButtonIcon,
+    tag: Const.settingsButtonTag,
     action: action
   )
   
@@ -50,20 +52,20 @@ final class MainTabBarController: UITabBarController {
     $0.distribution = .equalSpacing
     $0.alignment = .center
     $0.frame = CGRect(
-      x: 70,
-      y: view.bounds.height - 70,
-      width: view.bounds.width - 140,
-      height: 50
+      x: Const.customBarHorizontalInset,
+      y: view.bounds.height - Const.customBarVerticalInset,
+      width: view.bounds.width - 2 * Const.customBarHorizontalInset,
+      height: Const.customBarHeight
     )
-    $0.layer.cornerRadius = tabBar.bounds.height / 2
+    $0.layer.cornerRadius = $0.bounds.height / 2
     $0.addArrangedSubview(UIView())
-    $0.addArrangedSubview(photoListButton)
+    $0.addArrangedSubview(photosButton)
     $0.addArrangedSubview(searchButton)
     $0.addArrangedSubview(settingsButton)
     $0.addArrangedSubview(UIView())
     return $0
   }(UIStackView())
-
+  
   private lazy var blurView: UIVisualEffectView = {
     $0.frame = customBar.frame
     $0.layer.cornerRadius = customBar.layer.cornerRadius
@@ -74,61 +76,60 @@ final class MainTabBarController: UITabBarController {
   private lazy var gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: 1
+      alpha: Const.maxOpacity
     )
     $0.isUserInteractionEnabled = false
     $0.frame = CGRect(
-      x: 0,
-      y: view.bounds.height - 150,
-      width: view.bounds.width ,
-      height: 250
+      x: .zero,
+      y: view.bounds.height - Const.gradientViewYPosition,
+      width: view.bounds.width,
+      height: Const.gradientViewHeight
     )
     $0.setColors([
       MainGradientView.Color(
         color: .clear,
-        location: 0.05
+        location: Const.firstColorLocation
       ),
       MainGradientView.Color(
         color: color,
-        location: 0.7
+        location: Const.secondColorLocation
       )
     ])
     return $0
   }(MainGradientView())
-
+  
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     addSubviews()
     defaultTabBarConfigurations()
   }
-
+  
   // MARK: Internal  Methods
   func hideCustomTabBar() {
-    UIView.animate(withDuration: 0.8) {
+    UIView.animate(withDuration: Const.hideTabBarAnimationDuration) {
       self.customBar.transform = CGAffineTransform(
-        translationX: 0,
+        translationX: .zero,
         y: self.view.bounds.height
       )
       self.blurView.transform = CGAffineTransform(
-        translationX: 0,
+        translationX: .zero,
         y: self.view.bounds.height
       )
     }
     
-    UIView.animate(withDuration: 0.6) {
-      self.gradientView.alpha = 0
+    UIView.animate(withDuration: Const.showTabBarAnimationDuration) {
+      self.gradientView.alpha = .zero
     }
   }
-
+  
   func showCustomTabBar() {
-    UIView.animate(withDuration: 0.8) {
+    UIView.animate(withDuration: Const.hideTabBarAnimationDuration) {
       self.customBar.transform = .identity
       self.blurView.transform = .identity
     }
-    
-    UIView.animate(withDuration: 1) {
-      self.gradientView.alpha = 1
+    UIView.animate(withDuration: Const.gradientViewShowDuration) {
+      self.gradientView.alpha = Const.maxOpacity
     }
   }
   
@@ -147,34 +148,29 @@ final class MainTabBarController: UITabBarController {
     icon: String,
     tag: Int,
     action: UIAction,
-    opacity: Float = 0.4
+    opacity: Float = Float(Const.defaultOpacity)
   ) -> UIButton {
     return {
       $0.setImage(UIImage(named: icon), for: .normal)
-      $0.widthAnchor.constraint(
-        equalToConstant: 22
-      ).isActive = true
-      $0.heightAnchor.constraint(
-        equalToConstant: 22
-      ).isActive = true
+      $0.widthAnchor.constraint(equalToConstant: Const.buttonSize).isActive = true
+      $0.heightAnchor.constraint(equalToConstant: Const.buttonSize).isActive = true
       $0.tintColor = .label
       $0.layer.opacity = opacity
       $0.tag = tag
       return $0
     }(UIButton(primaryAction: action))
   }
-
+  
   private func setOpacity(tag: Int) {
     [
-      photoListButton,
+      photosButton,
       searchButton,
       settingsButton
-    ].forEach { button in
-
-      if button.tag != tag {
-        button.layer.opacity = 0.4
+    ].forEach {
+      if $0.tag != tag {
+        $0.layer.opacity = Float(Const.defaultOpacity)
       } else {
-        button.layer.opacity = 1.0
+        $0.layer.opacity = Float(Const.maxOpacity)
       }
     }
   }
