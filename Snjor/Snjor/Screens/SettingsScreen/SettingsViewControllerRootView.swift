@@ -408,21 +408,21 @@ final class SettingsViewControllerRootView: UIView {
     let queryParameter: String
     switch index {
     case Const.whiteButton:
-      queryParameter = .white
+      queryParameter = ParamValue.blackAndWhite.rawValue
     case Const.greenButton:
-      queryParameter = .green
+      queryParameter = ParamValue.green.rawValue
     case Const.yellowButton:
-      queryParameter = .yellow
+      queryParameter = ParamValue.yellow.rawValue
     case Const.orangeButton:
-      queryParameter = .orange
+      queryParameter = ParamValue.orange.rawValue
     case Const.redButton:
-      queryParameter = .red
+      queryParameter = ParamValue.red.rawValue
     case Const.purpleButton:
-      queryParameter = .purple
+      queryParameter = ParamValue.purple.rawValue
     case Const.blueButton:
-      queryParameter = .blue
+      queryParameter = ParamValue.blue.rawValue
     case Const.tealButton:
-      queryParameter = .teal
+      queryParameter = ParamValue.teal.rawValue
     default:
       queryParameter = .empty
       storage.remove(forKey: .selectedCircleButtonKey)
@@ -469,11 +469,11 @@ final class SettingsViewControllerRootView: UIView {
       let queryParameter: String
       switch sender.selectedSegmentIndex {
       case Const.landscapeOrientationSegmentIndex:
-        queryParameter = .landscape
+        queryParameter = ParamValue.landscape.rawValue
       case Const.portraitOrientationSegmentIndex:
-        queryParameter = .portrait
+        queryParameter = ParamValue.portrait.rawValue
       case Const.squarishOrientationSegmentIndex:
-        queryParameter = .squarish
+        queryParameter = ParamValue.squarish.rawValue
       default:
         return
       }
@@ -497,7 +497,7 @@ final class SettingsViewControllerRootView: UIView {
     let queryParameter: String
     switch sender.selectedSegmentIndex {
     case Const.latestSegmentIndex:
-      queryParameter = .latest
+      queryParameter = ParamValue.latest.rawValue
     default:
       return
     }

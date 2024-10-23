@@ -49,9 +49,9 @@ enum SFSymbol {
   static let unColorCheckedCircleImage = UIImage(systemName: "circle.bottomrighthalf.pattern.checkered")
   static let checkedCircleImage = UIImage(systemName: "checkmark.circle.fill")
   static let uncheckedCircleImage = UIImage(systemName: "circle")
-  static let landscapeRectIcon = UIImage(systemName: "rectangle.ratio.4.to.3")
-  static let portraitRectIcon = UIImage(systemName: "rectangle.ratio.3.to.4")
-  static let squarishRectIcon = UIImage(systemName: "square")
+  static let landscapeRectIcon = UIImage(systemName: "rectangle.ratio.4.to.3")!
+  static let portraitRectIcon = UIImage(systemName: "rectangle.ratio.3.to.4")!
+  static let squarishRectIcon = UIImage(systemName: "square")!
   
   static let instIcon = UIImage(named: "inst")
   static let twitIcon = UIImage(named: "twit")

@@ -55,11 +55,11 @@ final class TopicCellMainView: MainImageContainerView {
     let widthValue = String(describing: frame.width)
     let screenScaleValue = String(describing: Int(screenScale))
     let widthQueryItem = URLQueryItem(
-      name: .width,
+      name: ParamKey.width.rawValue,
       value: widthValue
     )
     let screenScaleQueryItem = URLQueryItem(
-      name: .devicePixelRatio,
+      name: ParamKey.devicePixelRatio.rawValue,
       value: screenScaleValue
     )
     return url.appending(

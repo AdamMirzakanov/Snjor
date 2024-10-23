@@ -26,82 +26,82 @@ enum PrepareParameters {
   static func preparePhotosParameters() -> Parameters {
     nextPhotosPage()
     var parameters: Parameters = [:]
-    parameters[.page] = String(photosPage)
-    parameters[.perPage] = String(perPage)
+    parameters[ParamKey.page.rawValue] = String(photosPage)
+    parameters[ParamKey.perPage.rawValue] = String(perPage)
     return parameters
   }
   
   static func prepareAlbumParameters() -> Parameters {
     nextAlbumsPage()
     var parameters: Parameters = [:]
-    parameters[.page] = String(albumsPage)
-    parameters[.perPage] = String(perPage)
+    parameters[ParamKey.page.rawValue] = String(albumsPage)
+    parameters[ParamKey.perPage.rawValue] = String(perPage)
     return parameters
   }
   
   static func prepareUserLikedPhotosParameters() -> Parameters {
     nextUserLikedPhotosPage()
     var parameters: Parameters = [:]
-    parameters[.page] = String(userLikedPhotosPage)
-    parameters[.perPage] = String(perPage)
+    parameters[ParamKey.page.rawValue] = String(userLikedPhotosPage)
+    parameters[ParamKey.perPage.rawValue] = String(perPage)
     return parameters
   }
   
   static func prepareUserPhotosParameters() -> Parameters {
     nextUserPhotosPage()
     var parameters: Parameters = [:]
-    parameters[.page] = String(userPhotosPage)
-    parameters[.perPage] = String(perPage)
+    parameters[ParamKey.page.rawValue] = String(userPhotosPage)
+    parameters[ParamKey.perPage.rawValue] = String(perPage)
     return parameters
   }
   
   static func prepareRandomUserPhotoParameters(username: String) -> Parameters {
     var parameters: Parameters = [:]
-    parameters[.username] = username
-    parameters[.orientation] = .portrait
+    parameters[ParamKey.username.rawValue] = username
+    parameters[ParamKey.orientation.rawValue] = ParamValue.portrait.rawValue
     return parameters
   }
   
   static func prepareUserAlbumsParameters() -> Parameters {
     nextUserAlbumsPage()
     var parameters: Parameters = [:]
-    parameters[.page] = String(userAlbumsPage)
-    parameters[.perPage] = String(perPage)
+    parameters[ParamKey.page.rawValue] = String(userAlbumsPage)
+    parameters[ParamKey.perPage.rawValue] = String(perPage)
     return parameters
   }
-
+  
   static func prepareSearchPhotoParameters(with searchTerm: String) -> Parameters {
     nextSearchPhotosPage()
     var parameters: Parameters = [:]
-    parameters[.query] = searchTerm
-    parameters[.page] = String(searchPhotosPage)
-    parameters[.perPage] = String(perPage)
+    parameters[ParamKey.query.rawValue] = searchTerm
+    parameters[ParamKey.page.rawValue] = String(searchPhotosPage)
+    parameters[ParamKey.perPage.rawValue] = String(perPage)
     
     if let orientation = storage.string(forKey: .photoOrientationKey) {
-      parameters[.orientation] = orientation
+      parameters[ParamKey.orientation.rawValue] = orientation
     }
     if let contentFilter = storage.string(forKey: .sortingPhotosKey) {
-      parameters[.orderBy] = contentFilter
+      parameters[ParamKey.orderBy.rawValue] = contentFilter
     }
     
     if let color = storage.string(forKey: .selectedCircleButtonKey) {
       switch color {
-      case .white:
-        parameters[.color] = color
-      case .green:
-        parameters[.color] = color
-      case .yellow:
-        parameters[.color] = color
-      case .orange:
-        parameters[.color] = color
-      case .red:
-        parameters[.color] = color
-      case .purple:
-        parameters[.color] = color
-      case .blue:
-        parameters[.color] = color
-      case .teal:
-        parameters[.color] = color
+      case ParamValue.blackAndWhite.rawValue:
+        parameters[ParamKey.color.rawValue] = color
+      case ParamValue.green.rawValue:
+        parameters[ParamKey.color.rawValue] = color
+      case ParamValue.yellow.rawValue:
+        parameters[ParamKey.color.rawValue] = color
+      case ParamValue.orange.rawValue:
+        parameters[ParamKey.color.rawValue] = color
+      case ParamValue.red.rawValue:
+        parameters[ParamKey.color.rawValue] = color
+      case ParamValue.purple.rawValue:
+        parameters[ParamKey.color.rawValue] = color
+      case ParamValue.blue.rawValue:
+        parameters[ParamKey.color.rawValue] = color
+      case ParamValue.teal.rawValue:
+        parameters[ParamKey.color.rawValue] = color
       default:
         storage.remove(forKey: .selectedCircleButtonKey)
       }
@@ -112,18 +112,18 @@ enum PrepareParameters {
   static func prepareSearchAlbumsParameters(with searchTerm: String) -> Parameters {
     nextSearchAlbumsPage()
     var parameters: Parameters = [:]
-    parameters[.query] = searchTerm
-    parameters[.page] = String(searchAlbumsPage)
-    parameters[.perPage] = String(perPage)
+    parameters[ParamKey.query.rawValue] = searchTerm
+    parameters[ParamKey.page.rawValue] = String(searchAlbumsPage)
+    parameters[ParamKey.perPage.rawValue] = String(perPage)
     return parameters
   }
   
   static func prepareSearchUsersParameters(with searchTerm: String) -> Parameters {
     nextSearchUsersPage()
     var parameters: Parameters = [:]
-    parameters[.query] = searchTerm
-    parameters[.page] = String(searchUsersPage)
-    parameters[.perPage] = String(perPage)
+    parameters[ParamKey.query.rawValue] = searchTerm
+    parameters[ParamKey.page.rawValue] = String(searchUsersPage)
+    parameters[ParamKey.perPage.rawValue] = String(perPage)
     return parameters
   }
   
@@ -161,32 +161,7 @@ enum PrepareParameters {
   }
 }
 
-// MARK: - Extensions
-extension String {
-  static let page = "page"
-  static let perPage = "per_page"
-  static let query = "query"
-  static let width = "w"
-  static let devicePixelRatio = "dpr"
-  static let username = "username"
-  static let orientation = "orientation"
-  static let orderBy = "order_by"
-  static let landscape = "landscape"
-  static let portrait = "portrait"
-  static let squarish = "squarish"
-  static let latest = "latest"
-  
-  static let color = "color"
-  static let white = "black_and_white"
-  static let green = "green"
-  static let yellow = "yellow"
-  static let orange = "orange"
-  static let red = "red"
-  static let purple = "purple"
-  static let blue = "blue"
-  static let teal = "teal"
-}
-
+// MARK: - Int
 private extension Int {
   static var page = 1
   static let perPage = 30
