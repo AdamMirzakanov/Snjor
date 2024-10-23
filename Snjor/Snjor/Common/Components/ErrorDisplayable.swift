@@ -333,7 +333,7 @@ extension ErrorDisplayable where Self: UIViewController {
       )
     default:
       return (
-        title: String(format: Const.errorTitleFormat, "\(code)"),
+        title: String(format: Const.errorTitleFormat, ""),
         color: Const.redColor,
         message: error,
         detail: Const.defaultErrorDetail,
