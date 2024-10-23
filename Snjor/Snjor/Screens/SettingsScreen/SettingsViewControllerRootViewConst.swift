@@ -51,13 +51,6 @@ enum SettingsViewControllerRootViewConst {
   static let purpleButton: Int = 6
   static let blueButton: Int = 7
   static let tealButton: Int = 8
-
-  static let unColorCheckedCircleImage = UIImage(systemName: "circle.bottomrighthalf.pattern.checkered")
-  static let checkedCircleImage = UIImage(systemName: "checkmark.circle.fill")
-  static let uncheckedCircleImage: UIImage = UIImage(systemName: "circle")!
-  static let landscapeRectIcon: UIImage = UIImage(systemName: "rectangle.ratio.4.to.3")!
-  static let portraitRectIcon: UIImage = UIImage(systemName: "rectangle.ratio.3.to.4")!
-  static let squarishRectIcon: UIImage = UIImage(systemName: "square")!
   
   static let resetButtonTitle: String = "Reset"
   static let colorFiltersLabelText: String = "Color filters"

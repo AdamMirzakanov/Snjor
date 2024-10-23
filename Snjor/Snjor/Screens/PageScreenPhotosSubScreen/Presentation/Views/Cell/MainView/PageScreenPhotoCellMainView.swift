@@ -55,7 +55,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
   }(UserProfilePhotoView())
   
   private let checkmarkIconImageView: UIImageView = {
-    $0.image = UIImage(systemName: .checkmarkIcon)
+    $0.image = SFSymbol.checkmarkIcon
     $0.tintColor = .white
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true

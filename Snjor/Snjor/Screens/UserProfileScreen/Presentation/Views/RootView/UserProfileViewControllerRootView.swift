@@ -123,7 +123,7 @@ final class UserProfileViewControllerRootView: UIView {
   
   // MARK: ImageViews
   private let avatarMulticolorBackgroundImageView: UIImageView = {
-    $0.image = UIImage(named: .avatarBackgroundImage)
+    $0.image = SFSymbol.avatarBackgroundImage
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.avatarMulticolorBackgroundViewCircle
     $0.clipsToBounds = true
@@ -148,7 +148,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIView())
   
   private let checkmarkIconImageView: UIImageView = {
-    $0.image = UIImage(systemName: .checkmarkIcon)
+    $0.image = SFSymbol.checkmarkIcon
     $0.tintColor = .systemBlue
     $0.contentMode = .scaleAspectFill
     $0.widthAnchor.constraint(
@@ -162,7 +162,7 @@ final class UserProfileViewControllerRootView: UIView {
   
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(named: .locationIcon)
+    $0.image = SFSymbol.locationIcon
     $0.heightAnchor.constraint(
       equalToConstant: Const.loacationIconSize
     ).isActive = true
@@ -174,7 +174,7 @@ final class UserProfileViewControllerRootView: UIView {
   
   // MARK: Buttons
   private lazy var backBarButton: UIButton = {
-    let icon = UIImage(systemName: .backBarButtonIcon)
+    let icon = SFSymbol.backBarButtonIcon
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.alpha = Const.defaultOpacity
@@ -183,7 +183,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton())
   
   private lazy var portfolioBarButton: UIButton = {
-    let icon = UIImage(systemName: .globeEuropeAfricaFillIcon)
+    let icon = SFSymbol.globeEuropeAfricaFillIcon
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.alpha = Const.defaultOpacity
@@ -192,7 +192,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let userLikedPhotosButton: UIButton = {
-    let icon = UIImage(systemName: .heartFillIcon)
+    let icon = SFSymbol.heartFillIcon
     $0.setImage(icon, for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.tintColor = .systemPink
@@ -201,7 +201,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let userPhotosButton: UIButton = {
-    let icon = UIImage(systemName: .photoAngledIcon)
+    let icon = SFSymbol.photoAngledIcon
     $0.setImage(icon, for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.tintColor = .white
@@ -210,7 +210,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let userAlbumsButton: UIButton = {
-    let icon = UIImage(systemName: .macroIcon)
+    let icon = SFSymbol.macroIcon
     $0.setImage(icon, for: .normal)
     $0.setTitleColor(.white, for: .normal)
     $0.imageView?.contentMode = .scaleAspectFit
@@ -380,14 +380,14 @@ final class UserProfileViewControllerRootView: UIView {
   
   private func updateUserLikedPhotosButtonState() {
     if userLikedPhotosButton.tintColor == .systemGray {
-      let userLikedSlashIcon = UIImage(systemName: .heartSlashFillIcon)
+      let userLikedSlashIcon = SFSymbol.heartSlashFillIcon
       userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
     } else {
-      let userLikedIcon = UIImage(systemName: .heartFillIcon)
+      let userLikedIcon = SFSymbol.heartFillIcon
       userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
     }
     
-    let userPhotosIcon = UIImage(systemName: .photoAngledIcon)
+    let userPhotosIcon = SFSymbol.photoAngledIcon
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .white
@@ -396,14 +396,14 @@ final class UserProfileViewControllerRootView: UIView {
   
   private func updateUserPhotosButtonState() {
     if userLikedPhotosButton.tintColor == .systemGray {
-      let userLikedSlashIcon = UIImage(systemName: .heartSlashIcon)
+      let userLikedSlashIcon = SFSymbol.heartSlashIcon
       userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
     } else {
-      let userLikedIcon = UIImage(systemName: .heartIcon)
+      let userLikedIcon = SFSymbol.heartIcon
       userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
     }
     
-    let userPhotosIcon = UIImage(systemName: .photoAngledFillIcon)
+    let userPhotosIcon = SFSymbol.photoAngledFillIcon
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .white
@@ -412,15 +412,15 @@ final class UserProfileViewControllerRootView: UIView {
   
   private func updateUserAlbumsButtonState() {
     if userLikedPhotosButton.tintColor == .systemGray {
-      let userLikedSlashIcon = UIImage(systemName: .heartSlashIcon)
+      let userLikedSlashIcon = SFSymbol.heartSlashIcon
       userLikedPhotosButton.setImage(userLikedSlashIcon, for: .normal)
     } else {
-      let userLikedIcon = UIImage(systemName: .heartIcon)
+      let userLikedIcon = SFSymbol.heartIcon
       userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
     }
     
     
-    let userPhotosIcon = UIImage(systemName: .photoAngledIcon)
+    let userPhotosIcon = SFSymbol.photoAngledIcon
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .systemGreen
@@ -457,7 +457,7 @@ final class UserProfileViewControllerRootView: UIView {
     if viewModelItem.user.totalLikes == .zero {
       userLikedPhotosButton.setTitle(.empty, for: .normal)
       userLikedPhotosButton.tintColor = .systemGray
-      let heartSlashFillIcon = UIImage(systemName: .heartSlashFillIcon)
+      let heartSlashFillIcon = SFSymbol.heartSlashFillIcon
       userLikedPhotosButton.setImage(heartSlashFillIcon, for: .normal)
     } else {
       userLikedPhotosButton.setTitle(userLikedPhotos, for: .normal)
@@ -473,7 +473,7 @@ final class UserProfileViewControllerRootView: UIView {
     if viewModelItem.user.totalCollections == .zero {
       userAlbumsButton.setTitle(.empty, for: .normal)
       userAlbumsButton.tintColor = .systemGray
-      let macroSlashIcon = UIImage(systemName: .macroSlashIcon)
+      let macroSlashIcon = SFSymbol.macroSlashIcon
       userAlbumsButton.setImage(macroSlashIcon, for: .normal)
     } else {
       userAlbumsButton.setTitle(userAlbums, for: .normal)

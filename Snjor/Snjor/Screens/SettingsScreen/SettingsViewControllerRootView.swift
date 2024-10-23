@@ -82,7 +82,7 @@ final class SettingsViewControllerRootView: UIView {
   
   // MARK: Bottons
   private let unColorCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = Const.colorOfTheSectionTitle
     let scaleTransform = CGAffineTransform(
@@ -94,7 +94,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let purpleCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemPurple
     let scaleTransform = CGAffineTransform(
@@ -106,7 +106,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let greenCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.tintColor = .systemGreen
     let scaleTransform = CGAffineTransform(
       scaleX: Const.colorCircleButtonScale,
@@ -117,7 +117,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let yellowCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemYellow
     let scaleTransform = CGAffineTransform(
@@ -129,7 +129,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let orangeCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemOrange
     let scaleTransform = CGAffineTransform(
@@ -141,7 +141,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let redCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemPink
     let scaleTransform = CGAffineTransform(
@@ -153,7 +153,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let tealCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemTeal
     let scaleTransform = CGAffineTransform(
@@ -165,7 +165,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let blueCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .systemBlue
     let scaleTransform = CGAffineTransform(
@@ -177,7 +177,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIButton(type: .system))
   
   private let blackAndWhiteCircleButton: UIButton = {
-    $0.setImage(Const.uncheckedCircleImage, for: .normal)
+    $0.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
     $0.alpha = Const.colorCirclOpasity
     $0.tintColor = .white
     let scaleTransform = CGAffineTransform(
@@ -214,9 +214,9 @@ final class SettingsViewControllerRootView: UIView {
   }(UISegmentedControl(
     items: [
       Const.all,
-      Const.landscapeRectIcon,
-      Const.portraitRectIcon,
-      Const.squarishRectIcon
+      SFSymbol.landscapeRectIcon,
+      SFSymbol.portraitRectIcon,
+      SFSymbol.squarishRectIcon
     ]
   ))
   
@@ -390,14 +390,14 @@ final class SettingsViewControllerRootView: UIView {
     buttonStates[index].toggle()
     buttonsArray.enumerated().forEach { buttonIndex, button in
       if buttonIndex != index {
-        button.setImage(Const.uncheckedCircleImage, for: .normal)
+        button.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
         buttonStates[buttonIndex] = false
       } else {
         if buttonIndex == .zero {
-          button.setImage(Const.unColorCheckedCircleImage, for: .normal)
+          button.setImage(SFSymbol.unColorCheckedCircleImage, for: .normal)
           buttonStates[buttonIndex] = true
         } else {
-          button.setImage(Const.checkedCircleImage, for: .normal)
+          button.setImage(SFSymbol.checkedCircleImage, for: .normal)
           buttonStates[buttonIndex] = true
         }
         
@@ -450,9 +450,9 @@ final class SettingsViewControllerRootView: UIView {
     storage.remove(forKey: .selectedCircleButtonIndexKey)
     buttonsArray.enumerated().forEach { index, button in
       if index == .zero {
-        button.setImage(Const.unColorCheckedCircleImage, for: .normal)
+        button.setImage(SFSymbol.unColorCheckedCircleImage, for: .normal)
       } else {
-        button.setImage(Const.uncheckedCircleImage, for: .normal)
+        button.setImage(SFSymbol.uncheckedCircleImage, for: .normal)
       }
     }
   }

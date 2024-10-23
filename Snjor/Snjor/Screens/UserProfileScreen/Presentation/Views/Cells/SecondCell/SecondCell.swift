@@ -31,7 +31,7 @@ final class SecondCell: UICollectionViewCell {
   
   private let noPhotoImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .photoCircleIcon)
+    $0.image = SFSymbol.photoCircleIcon
     $0.tintColor = .systemOrange
     $0.heightAnchor.constraint(
       equalToConstant: Const.bigIconSize

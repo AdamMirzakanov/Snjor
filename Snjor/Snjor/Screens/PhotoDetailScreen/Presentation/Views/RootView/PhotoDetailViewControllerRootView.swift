@@ -158,7 +158,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   // MARK: Buttons
   private lazy var backBarButton: UIButton = {
-    let icon = UIImage(systemName: .backBarButtonIcon)
+    let icon = SFSymbol.backBarButtonIcon
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.alpha = Const.defaultOpacity
@@ -167,7 +167,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIButton())
   
   lazy var downloadBarButton: UIButton = {
-    let icon = UIImage(systemName: .downloadBarButtonIcon)
+    let icon = SFSymbol.downloadBarButtonIcon
     $0.setImage(icon, for: .normal)
     $0.setTitle(.jpeg, for: .normal)
     $0.titleLabel?.font = .systemFont(
@@ -182,7 +182,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIButton())
   
   private lazy var toggleContentModeButton: UIButton = {
-    let icon = UIImage(systemName: .toggleUpIcon)
+    let icon = SFSymbol.toggleUpIcon
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.setTitleColor(.label, for: .normal)
@@ -192,7 +192,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIButton())
   
   private let infoButton: UIButton = {
-    let icon = UIImage(systemName: .infoButtonIcon)
+    let icon = SFSymbol.infoButtonIcon
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
     $0.alpha = Const.defaultOpacity
@@ -205,7 +205,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   // MARK: ImageViews
   private let likesImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .suitHeartIcon)
+    $0.image = SFSymbol.suitHeartIcon
     $0.tintColor = .systemPink
     $0.heightAnchor.constraint(
       equalToConstant: Const.iconSize
@@ -218,7 +218,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   private let downloadsImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .downloadsIcon)
+    $0.image = SFSymbol.downloadsIcon
     $0.tintColor = .white
     $0.heightAnchor.constraint(
       equalToConstant: Const.iconSize
@@ -231,7 +231,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   private let createdImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .calendarIcon)
+    $0.image = SFSymbol.calendarIcon
     $0.tintColor = .white
     $0.heightAnchor.constraint(
       equalToConstant: Const.iconSize
@@ -244,7 +244,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   private let cameraImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .cameraIcon)
+    $0.image = SFSymbol.cameraIcon
     $0.tintColor = .white
     return $0
   }(UIImageView())
@@ -261,7 +261,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIView())
   
   private let checkmarkIconImageView: UIImageView = {
-    $0.image = UIImage(systemName: .checkmarkIcon)
+    $0.image = SFSymbol.checkmarkIcon
     $0.tintColor = .systemBlue
     $0.contentMode = .scaleAspectFill
     $0.widthAnchor.constraint(
@@ -275,7 +275,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   private let locationImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(named: .locationIcon)
+    $0.image = SFSymbol.locationIcon
     $0.heightAnchor.constraint(
       equalToConstant: Const.loacationIconSize
     ).isActive = true
@@ -1043,11 +1043,11 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   private func configToggleContentMode() {
     if self.isAspectFill {
-      let icon = UIImage(systemName: .toggleDownIcon)
+      let icon = SFSymbol.toggleDownIcon
       photoView.mainImageView.contentMode = .scaleAspectFit
       toggleContentModeButton.setImage(icon, for: .normal)
     } else {
-      let icon = UIImage(systemName: .toggleUpIcon)
+      let icon = SFSymbol.toggleUpIcon
       photoView.mainImageView.contentMode = .scaleAspectFill
       toggleContentModeButton.setImage(icon, for: .normal)
     }

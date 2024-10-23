@@ -29,7 +29,7 @@ final class AlbumCellMainView: MainImageContainerView {
   
   // MARK: Buttons
   private lazy var macroIconButton: UIButton = {
-    let icon = UIImage(systemName: .cameraMacroIcon)
+    let icon = SFSymbol.cameraMacroIcon
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
     $0.setTitleColor(.label, for: .normal)
@@ -115,7 +115,7 @@ final class AlbumCellMainView: MainImageContainerView {
       photoID: album.id
     )
     if album.previewPhotos == nil {
-      mainImageView.image = UIImage(named: .photoCap)
+      mainImageView.image = SFSymbol.photoCap
     }
     titleLabel.text = album.title.uppercased()
     secondBackgroundView.backgroundColor = .systemGray3

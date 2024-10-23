@@ -7,4 +7,5 @@
 
 extension String {
   static let ok = "Ok"
+  static let zero = "0"
 }

@@ -34,7 +34,7 @@ class ThirdCell: UICollectionViewCell {
   
   private let noAlbumImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .macroCircleIcon)
+    $0.image = SFSymbol.macroCircleIcon
     $0.tintColor = .systemGreen
     $0.heightAnchor.constraint(
       equalToConstant: Const.bigIconSize

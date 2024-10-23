@@ -154,7 +154,7 @@ extension ErrorDisplayable where Self: UIViewController {
   private func createCloseIconImageView() -> UIImageView {
     let closeIconImageView = UIImageView()
     closeIconImageView.isUserInteractionEnabled = false
-    closeIconImageView.image = UIImage(systemName: .xmarkCircleIcon)
+    closeIconImageView.image = SFSymbol.xmarkCircleIcon
     closeIconImageView.tintColor = .systemGray4
     closeIconImageView.heightAnchor.constraint(
       equalToConstant: Const.closeIconSize
@@ -310,7 +310,7 @@ extension ErrorDisplayable where Self: UIViewController {
         color: Const.orangeColor,
         message: error,
         detail: Const.error404Message,
-        image: UIImage(systemName: .wifiExclamationmarkIcon),
+        image: SFSymbol.wifiExclamationmarkIcon,
         tintColor: Const.orangeColor
       )
     case Const.statusCode403:
@@ -319,7 +319,7 @@ extension ErrorDisplayable where Self: UIViewController {
         color: Const.redColor,
         message: Const.requestLimitExceeded,
         detail: Const.error403Message,
-        image: UIImage(systemName: .exclamationmarkLockFillIcon),
+        image: SFSymbol.exclamationmarkLockFillIcon,
         tintColor: Const.redColor
       )
     case Const.serverErrorCode:
@@ -328,7 +328,7 @@ extension ErrorDisplayable where Self: UIViewController {
         color: Const.tealColor,
         message: error,
         detail: Const.serverErrorMessage,
-        image: UIImage(systemName: .exclamationmarkIcloudIcon),
+        image: SFSymbol.exclamationmarkIcloudIcon,
         tintColor: Const.tealColor
       )
     default:
@@ -337,7 +337,7 @@ extension ErrorDisplayable where Self: UIViewController {
         color: Const.redColor,
         message: error,
         detail: Const.defaultErrorDetail,
-        image: UIImage(systemName: .ladybugFillIcon),
+        image: SFSymbol.ladybugFillIcon,
         tintColor: Const.redColor
       )
     }

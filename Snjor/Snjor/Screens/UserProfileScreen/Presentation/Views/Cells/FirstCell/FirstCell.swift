@@ -31,7 +31,7 @@ final class FirstCell: UICollectionViewCell {
   
   private let noLikedImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
-    $0.image = UIImage(systemName: .heartCircleIcon)
+    $0.image = SFSymbol.heartCircleIcon
     $0.tintColor = .systemPink
     $0.heightAnchor.constraint(
       equalToConstant: Const.bigIconSize
