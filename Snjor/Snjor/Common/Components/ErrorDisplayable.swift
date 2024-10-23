@@ -333,7 +333,7 @@ extension ErrorDisplayable where Self: UIViewController {
       )
     default:
       return (
-        title: String(format: Const.errorTitleFormat, ""),
+        title: String(format: Const.errorTitleFormat, Const.empty),
         color: Const.redColor,
         message: error,
         detail: Const.defaultErrorDetail,
@@ -380,6 +380,7 @@ private enum ErrorDisplayableConst {
   
   static let bigIconFontName: String = "Impact"
   static let errorTitleFormat: String = "Error %@".uppercased()
+  static let empty: String = .empty
   
   // Error Messages
   static let error404Message: String = """
