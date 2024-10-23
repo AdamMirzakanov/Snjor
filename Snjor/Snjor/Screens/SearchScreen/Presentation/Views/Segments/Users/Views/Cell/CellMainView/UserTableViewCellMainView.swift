@@ -40,7 +40,7 @@ final class UserTableViewCellMainView: UIView {
     return $0
   }(UIImageView())
   
-  lazy var userNameStackView: UIStackView = {
+  private lazy var userNameStackView: UIStackView = {
     $0.axis = .vertical
     $0.spacing = Const.stackViewSpacing
     $0.alignment = .leading
@@ -49,7 +49,7 @@ final class UserTableViewCellMainView: UIView {
     return $0
   }(UIStackView())
   
-  lazy var avatarAndUserNameStackView: UIStackView = {
+  private lazy var avatarAndUserNameStackView: UIStackView = {
     $0.axis = .horizontal
     $0.spacing = Const.stackViewSpacing
     $0.alignment = .center

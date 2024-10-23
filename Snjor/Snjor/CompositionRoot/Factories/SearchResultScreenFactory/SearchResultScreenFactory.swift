@@ -8,7 +8,6 @@
 import UIKit
 
 struct SearchResultScreenFactory: SearchResultScreenFactoryProtocol {
-  
   // MARK: Private Properties
   private let viewModelProvider: any SearchScreenViewModelProviderProtocol
   private let layoutProvider: LayoutProvider

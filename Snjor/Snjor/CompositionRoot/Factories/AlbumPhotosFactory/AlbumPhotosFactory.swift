@@ -67,5 +67,3 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     controller.rootView.albumPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }
-
-

@@ -27,7 +27,5 @@ final class SettingsScreenCoordinator: Coordinatable {
     let controller = factory.makeController()
     navigation.navigationBar.prefersLargeTitles = true
     navigation.pushViewController(controller, animated: true)
-    
   }
 }
-

@@ -76,8 +76,5 @@ enum SettingsViewControllerRootViewConst {
   static let twoColumn: String = "2"
   static let treeColumn: String = "3"
   static let fourColumn: String = "4"
-  static let english: String = "English"
-  static let russian: String = "Русский"
-  static let korean: String = "한국어"
   static let all: String = "All"
 }

@@ -57,4 +57,3 @@ extension AlbumTagsCollectionView: UICollectionViewDelegateFlowLayout {
     return width
   }
 }
-

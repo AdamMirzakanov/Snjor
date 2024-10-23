@@ -9,7 +9,7 @@ import UIKit
 
 final class PageScreenPhotoCell: UICollectionViewCell {
   // MARK: Views
-  let mainView: PageScreenPhotoCellMainView = {
+  private let mainView: PageScreenPhotoCellMainView = {
     return $0
   }(PageScreenPhotoCellMainView())
   

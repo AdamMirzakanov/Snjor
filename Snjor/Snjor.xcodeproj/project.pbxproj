@@ -17,7 +17,6 @@
 		3701F2442CB5DEE90071E8DE /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2432CB5DEE90071E8DE /* SettingsScreenFactory.swift */; };
 		3701F2462CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2452CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift */; };
 		3701F2492CB5DF370071E8DE /* SettingsScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */; };
-		3701F24B2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F24A2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift */; };
 		370A005B2C874F3E006B87DD /* String + MessageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A005A2C874F3E006B87DD /* String + MessageDisplayable.swift */; };
 		370A005D2C874F84006B87DD /* String + DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A005C2C874F84006B87DD /* String + DownloadService.swift */; };
 		370A00622C8765F1006B87DD /* LastPageValidationUseCaseConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A00612C8765F1006B87DD /* LastPageValidationUseCaseConst.swift */; };
@@ -294,7 +293,6 @@
 		37BE0AC52C52571200C8D45F /* LoadTopicsPhotoListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE0AC42C52571200C8D45F /* LoadTopicsPhotoListRepository.swift */; };
 		37BE0AC92C52711300C8D45F /* PageScreenPhotos + ErrorDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE0AC82C52711300C8D45F /* PageScreenPhotos + ErrorDisplayable.swift */; };
 		37BE0ACF2C5271D500C8D45F /* PageScreenPhotos + UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE0ACE2C5271D500C8D45F /* PageScreenPhotos + UICollectionViewDelegate.swift */; };
-		37BE0AD12C52720C00C8D45F /* PageScreenPhotos + UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE0AD02C52720C00C8D45F /* PageScreenPhotos + UIScrollViewDelegate.swift */; };
 		37BE0AD32C52723B00C8D45F /* PageScreenPhotos + CascadeLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE0AD22C52723B00C8D45F /* PageScreenPhotos + CascadeLayoutDelegate.swift */; };
 		37BE0AD72C52F8EB00C8D45F /* MultiColumnCascadeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE0AD62C52F8EB00C8D45F /* MultiColumnCascadeLayout.swift */; };
 		37BE0AD92C52F91F00C8D45F /* SingleColumnCascadeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE0AD82C52F91F00C8D45F /* SingleColumnCascadeLayout.swift */; };
@@ -446,7 +444,6 @@
 		3701F2432CB5DEE90071E8DE /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
 		3701F2452CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactoryProtocol.swift; sourceTree = "<group>"; };
 		3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenCoordinator.swift; sourceTree = "<group>"; };
-		3701F24A2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsScreenCoordinator + ParentCoordinator.swift"; sourceTree = "<group>"; };
 		370A005A2C874F3E006B87DD /* String + MessageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + MessageDisplayable.swift"; sourceTree = "<group>"; };
 		370A005C2C874F84006B87DD /* String + DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + DownloadService.swift"; sourceTree = "<group>"; };
 		370A00612C8765F1006B87DD /* LastPageValidationUseCaseConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastPageValidationUseCaseConst.swift; sourceTree = "<group>"; };
@@ -723,7 +720,6 @@
 		37BE0AC42C52571200C8D45F /* LoadTopicsPhotoListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTopicsPhotoListRepository.swift; sourceTree = "<group>"; };
 		37BE0AC82C52711300C8D45F /* PageScreenPhotos + ErrorDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreenPhotos + ErrorDisplayable.swift"; sourceTree = "<group>"; };
 		37BE0ACE2C5271D500C8D45F /* PageScreenPhotos + UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreenPhotos + UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
-		37BE0AD02C52720C00C8D45F /* PageScreenPhotos + UIScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreenPhotos + UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
 		37BE0AD22C52723B00C8D45F /* PageScreenPhotos + CascadeLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageScreenPhotos + CascadeLayoutDelegate.swift"; sourceTree = "<group>"; };
 		37BE0AD62C52F8EB00C8D45F /* MultiColumnCascadeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiColumnCascadeLayout.swift; sourceTree = "<group>"; };
 		37BE0AD82C52F91F00C8D45F /* SingleColumnCascadeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleColumnCascadeLayout.swift; sourceTree = "<group>"; };
@@ -920,7 +916,6 @@
 			isa = PBXGroup;
 			children = (
 				3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */,
-				3701F24A2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift */,
 			);
 			path = SettingsScreenCoordinator;
 			sourceTree = "<group>";
@@ -1182,7 +1177,6 @@
 				378B835D2C860BBE001463FE /* CollectionViewDataSource */,
 				37BE0AC82C52711300C8D45F /* PageScreenPhotos + ErrorDisplayable.swift */,
 				37BE0ACE2C5271D500C8D45F /* PageScreenPhotos + UICollectionViewDelegate.swift */,
-				37BE0AD02C52720C00C8D45F /* PageScreenPhotos + UIScrollViewDelegate.swift */,
 				37BE0AD22C52723B00C8D45F /* PageScreenPhotos + CascadeLayoutDelegate.swift */,
 			);
 			path = Extensions;
@@ -3687,7 +3681,6 @@
 				3741E4002C95BEE300138C65 /* LoadUserLikedPhotosUseCase.swift in Sources */,
 				378B83662C86299B001463FE /* BaseViewModelProtocols.swift in Sources */,
 				37C00C842C89D21500F63CEC /* AlbumPhotosViewControllerConst.swift in Sources */,
-				3701F24B2CB5DF540071E8DE /* SettingsScreenCoordinator + ParentCoordinator.swift in Sources */,
 				3770E1402C6FFDF40017ECBB /* TopicPhotosCollectionView.swift in Sources */,
 				3793F70A2C5AEDF400CFE54D /* PageScreenPhotosCollectionView.swift in Sources */,
 				378B836C2C862A33001463FE /* BaseViewModelItem.swift in Sources */,
@@ -3767,7 +3760,6 @@
 				376785A12C8C9CCE009B9BA6 /* TopicPhotosViewController + Typealias.swift in Sources */,
 				37C00CA32C8A41AC00F63CEC /* PhotoDetailTagsCollectionViewDelegate.swift in Sources */,
 				378171512C9F64620089E9DC /* UserLikedPhotosCollectionViewDelegate.swift in Sources */,
-				37BE0AD12C52720C00C8D45F /* PageScreenPhotos + UIScrollViewDelegate.swift in Sources */,
 				37ECB3852C95DFFD003E063E /* UserProfileViewModelProviderProtocol.swift in Sources */,
 				3701F2412CB5DBC80071E8DE /* SettingsViewControllerRootView.swift in Sources */,
 				37ECB3822C95D94A003E063E /* UserLakedPhotosViewModel.swift in Sources */,

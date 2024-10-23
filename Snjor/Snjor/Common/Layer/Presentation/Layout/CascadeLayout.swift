@@ -132,7 +132,6 @@ class CascadeLayout: UICollectionViewLayout {
     let numberOfColumns = self.numberOfColumns
     let columnWidth = self.columnWidth
     
-    // начало коллекции
     var columnHeights = [CGFloat](
       repeating: topInset,
       count: numberOfColumns

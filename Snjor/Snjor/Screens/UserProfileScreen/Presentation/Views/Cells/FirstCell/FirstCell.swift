@@ -42,7 +42,6 @@ final class FirstCell: UICollectionViewCell {
     return $0
   }(UIImageView())
   
-  
   lazy var noLikedPhotosStackView: UIStackView = {
     $0.alpha = Const.bigIconOpacity
     $0.isUserInteractionEnabled = false

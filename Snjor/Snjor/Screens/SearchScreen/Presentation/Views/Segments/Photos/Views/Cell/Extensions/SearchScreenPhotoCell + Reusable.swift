@@ -6,4 +6,3 @@
 //
 
 extension SearchScreenPhotoCell: Reusable { }
-

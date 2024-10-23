@@ -38,7 +38,6 @@ extension SearchScreenViewController: URLSessionDownloadDelegate {
       } completionHandler: { success, error in
         if success {
           self.hideSpinner()
-          print(#function, "🇧🇷 Successfully saved image to gallery.")
         } else if let error = error {
           self.showError(
             error: error.localizedDescription

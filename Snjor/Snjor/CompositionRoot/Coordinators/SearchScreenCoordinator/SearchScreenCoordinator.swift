@@ -27,6 +27,5 @@ final class SearchScreenCoordinator: Coordinatable {
     let controller = factory.makeController(delegate: self)
     navigation.navigationBar.prefersLargeTitles = true
     navigation.pushViewController(controller, animated: true)
-    
   }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 final class SectionHeaderView: UICollectionReusableView {
   // MARK: Internal Properties
-  let titleLabel: UILabel = {
+  private let titleLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.font = UIFont.systemFont(

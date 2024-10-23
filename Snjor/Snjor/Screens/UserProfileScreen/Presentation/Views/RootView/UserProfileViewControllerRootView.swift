@@ -674,7 +674,6 @@ final class UserProfileViewControllerRootView: UIView {
   ) {
     portfolioBarButtonAction = { [weak navigationController] in
       navigationController?.popViewController(animated: true)
-      print("FYUGIHOJPIJHUGY")
     }
   }
   

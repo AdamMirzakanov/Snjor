@@ -9,7 +9,7 @@ import UIKit
 
 final class UserTableViewCell: UITableViewCell {
   // MARK: Main View
-  let mainView: UserTableViewCellMainView = {
+  private let mainView: UserTableViewCellMainView = {
     return $0
   }(UserTableViewCellMainView())
   

@@ -54,14 +54,14 @@ enum PhotoDetailViewControllerRootViewConst {
   static let loacationIconSize: CGFloat = 13.0
   static let resolutionLabelFrameCornerRadius: CGFloat = 6.0
   static let middleStackViewSpacing: CGFloat = 12.0
-  static let smallValue = half * half                         // 4
-  static let defaultValue = smallValue * half                 // 8
-  static let middleValue = defaultValue * half                // 16
-  static let fullValue = middleValue * half                   // 32
-  static let maxValue = fullValue + smallValue                // 36
-  static let profilePhotoSize = maxValue + middleValue        // 52
-  static let defaultCircle = fullValue / half                 // 16
-  static let profilePhotoCircle = profilePhotoSize / half     // 20
+  static let smallValue = half * half
+  static let defaultValue = smallValue * half
+  static let middleValue = defaultValue * half
+  static let fullValue = middleValue * half
+  static let maxValue = fullValue + smallValue
+  static let profilePhotoSize = maxValue + middleValue
+  static let defaultCircle = fullValue / half
+  static let profilePhotoCircle = profilePhotoSize / half     
 }
 
 // MARK: - String

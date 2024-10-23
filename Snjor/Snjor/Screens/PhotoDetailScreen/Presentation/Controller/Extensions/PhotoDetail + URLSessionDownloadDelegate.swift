@@ -38,7 +38,6 @@ extension PhotoDetailViewController: URLSessionDownloadDelegate {
       } completionHandler: { success, error in
         if success {
           self.hideSpinnerAndReverseAnimateDownloadButton()
-          print(#function, "🏳️ Successfully saved image to gallery.")
         } else if let error = error {
           self.showError(
             error: error.localizedDescription

@@ -29,10 +29,6 @@ class MainImageContainerView: UIView {
   }
 
   // MARK: Setup Data
-  /// Configure the view with a photo, url, and optional blur hash.
-  /// - Parameters:
-  ///   - url: The URL of the photo.
-  ///   - blurHash: The optional blur hash of the photo.
   func configure(
     url: URL?,
     blurHash: String? = nil,
@@ -55,9 +51,6 @@ class MainImageContainerView: UIView {
   }
 
   // MARK: Download Image
-  /// Override this method to provide a custom sized image URL.
-  /// - Parameter url: The original URL of the image.
-  /// - Returns: The sized image URL.
   func sizedImageURL(from url: URL) -> URL {
     return url
   }

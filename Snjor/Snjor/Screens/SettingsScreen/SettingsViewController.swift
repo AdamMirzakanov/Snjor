@@ -10,14 +10,8 @@ import UIKit
 typealias RootView = SettingsViewControllerRootView
 
 final class SettingsViewController: MainViewController<RootView> {
-  
-  // MARK: Private Properties
-  // MARK: Initializers
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-  
-  // MARK: Private Methods
-  
 }

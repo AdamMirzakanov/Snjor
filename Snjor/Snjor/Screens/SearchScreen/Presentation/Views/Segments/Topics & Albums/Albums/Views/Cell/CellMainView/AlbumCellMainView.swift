@@ -13,14 +13,14 @@ final class AlbumCellMainView: MainImageContainerView {
     UIScreen.main.scale
   }
 
-  let secondBackgroundView: UIView = {
+  private let secondBackgroundView: UIView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = AlbumCellMainViewConst.secondBackgroundViewCornerRadius
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
   
-  let thirdBackgroundView: UIView = {
+  private let thirdBackgroundView: UIView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = AlbumCellMainViewConst.thirdBackgroundViewCornerRadius
     $0.clipsToBounds = true
@@ -28,7 +28,7 @@ final class AlbumCellMainView: MainImageContainerView {
   }(UIImageView())
   
   // MARK: Buttons
-  lazy var macroIconButton: UIButton = {
+  private lazy var macroIconButton: UIButton = {
     let icon = UIImage(systemName: .cameraMacroIcon)
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
@@ -38,7 +38,7 @@ final class AlbumCellMainView: MainImageContainerView {
   }(UIButton(type: .system))
   
   // MARK: Gradient
-  let gradientView: MainGradientView = {
+  private let gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
       alpha: AlbumCellMainViewConst.gradientOpacity
@@ -57,7 +57,7 @@ final class AlbumCellMainView: MainImageContainerView {
   }(MainGradientView())
   
   // MARK: Labels
-  let titleLabel: UILabel = {
+  private let titleLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
       ofSize: AlbumCellMainViewConst.titleLabelFontSize,

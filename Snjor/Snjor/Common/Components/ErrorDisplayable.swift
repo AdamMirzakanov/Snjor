@@ -14,7 +14,7 @@ protocol ErrorDisplayable: AnyObject {
   func hideError()
 }
 
-// MARK: - Extension
+// MARK: - Default method implementation
 extension ErrorDisplayable where Self: UIViewController {
   
   // MARK: Internal Methods

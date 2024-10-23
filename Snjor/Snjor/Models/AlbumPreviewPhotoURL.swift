@@ -8,10 +8,10 @@
 import Foundation
 
 struct AlbumPreviewPhotoURL: Decodable, Hashable {
-    let raw: URL
-    let full: URL
-    let thumb: URL
-    let smallS3: URL
-    let regular: URL
-    let small: URL
+  let raw: URL
+  let full: URL
+  let thumb: URL
+  let smallS3: URL
+  let regular: URL
+  let small: URL
 }
