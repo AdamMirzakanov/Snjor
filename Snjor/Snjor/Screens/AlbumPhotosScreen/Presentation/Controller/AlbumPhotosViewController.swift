@@ -41,10 +41,6 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     fatalError(.requiredInitFatalErrorText)
   }
   
-  deinit {
-    print(#function, Self.self, "🟠")
-  }
-  
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()

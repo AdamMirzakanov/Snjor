@@ -38,14 +38,11 @@ extension NetworkService: Requestable {
 
     switch httpResponse.statusCode {
     case HTTPResponseStatus.success:
-      print(#function, "code:", httpResponse.statusCode)
       return try decodeResponse(data: request.data)
     case HTTPResponseStatus.clientError:
-      print(#function, "code:", httpResponse.statusCode)
       APIError.statusCode = httpResponse.statusCode
       throw APIError.clientError
     case HTTPResponseStatus.serverError:
-      print(#function, "code:", httpResponse.statusCode)
       APIError.statusCode = httpResponse.statusCode
       throw APIError.serverError
     default:
@@ -58,7 +55,6 @@ extension NetworkService: Requestable {
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     let model = try? decoder.decode(T.self, from: data)
     guard let model = model else {
-      print(#function, APIError.decodingError)
       throw APIError.decodingError
     }
     return model

@@ -19,7 +19,7 @@ extension SearchResultViewController: UICollectionViewDelegate {
     case .topicAndAlbums:
       handleAlbumSelection(at: indexPath, delegate: delegate)
     default:
-      handleUserSelection()
+      break
     }
   }
 
@@ -66,9 +66,5 @@ extension SearchResultViewController: UICollectionViewDelegate {
   ) {
     let album = albumsViewModel.getItem(at: indexPath.item)
     delegate.searchAlbumcCellDidSelect(album)
-  }
-  
-  private func handleUserSelection() {
-    print(#function, Self.self)
   }
 }

@@ -57,10 +57,6 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailViewControl
     downloadService.invalidateSession(withID: Self.sessionID)
   }
   
-  deinit {
-    print(#function, Self.self, "🟢")
-  }
-  
   // MARK: Private Methods
   private func configureDownloadSession() {
     downloadService.configureSession(

@@ -59,10 +59,6 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     setupNavigationItems()
   }
   
-  deinit {
-    print(#function, Self.self, "🟤")
-  }
-  
   // MARK: Private Methods
   private func initializeViewModels() {
     userProfileViewModel.viewDidLoad()
@@ -109,7 +105,6 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
       .sink { [weak self] state in
         guard let self = self else { return }
         self.handleState(state) {
-          print(#function, Self.self)
           self.rootView.horizontalCollectionView.reloadData()
         }
       }
@@ -123,7 +118,6 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
       .sink { [weak self] state in
         guard let self = self else { return }
         self.handleState(state) {
-          print(#function, Self.self)
           self.rootView.horizontalCollectionView.reloadData()
         }
       }

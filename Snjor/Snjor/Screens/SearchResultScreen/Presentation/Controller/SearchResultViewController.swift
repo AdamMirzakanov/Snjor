@@ -56,10 +56,6 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
     fatalError(.requiredInitFatalErrorText)
   }
   
-  deinit {
-    print(#function, Self.self, "🔴")
-  }
-  
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
