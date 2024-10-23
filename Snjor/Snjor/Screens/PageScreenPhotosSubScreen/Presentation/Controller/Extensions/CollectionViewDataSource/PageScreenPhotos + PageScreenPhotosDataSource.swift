@@ -32,8 +32,8 @@ extension PageScreenPhotosViewController {
     pageScreenPhotosDataSource = PageScreenPhotosDataSource(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, photo in
-      guard let strongSelf = self else { return UICollectionViewCell() }
-      return strongSelf.configureCell(
+      guard let self = self else { return UICollectionViewCell() }
+      return self.configureCell(
         collectionView: collectionView,
         indexPath: indexPath,
         photo: photo
