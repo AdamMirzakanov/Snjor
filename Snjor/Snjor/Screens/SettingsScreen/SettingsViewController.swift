@@ -7,9 +7,7 @@
 
 import UIKit
 
-typealias RootView = SettingsViewControllerRootView
-
-final class SettingsViewController: MainViewController<RootView> {
+final class SettingsViewController: MainViewController<SettingsViewControllerRootView> {
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
