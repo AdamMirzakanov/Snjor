@@ -7,14 +7,16 @@
 
 import UIKit
 
+fileprivate typealias Const = CascadeLayoutConst
+
 class CascadeLayout: UICollectionViewLayout {
   // MARK: Internal Properties
   var contentHeight: CGFloat = .zero
   var numberOfColumns: Int = .zero
   var isSingleColumn: Bool { numberOfColumns == .zero }
-  var topInset: CGFloat = CascadeLayoutConst.topInset
-  var headerHeight: CGFloat = CascadeLayoutConst.headerHeight
-  var columnSpacing: CGFloat = CascadeLayoutConst.columnSpacing
+  var topInset: CGFloat = Const.topInset
+  var headerHeight: CGFloat = Const.headerHeight
+  var columnSpacing: CGFloat = Const.columnSpacing
   
   var itemSpacing: CGFloat {
     let zero = CGFloat.zero
@@ -188,8 +190,8 @@ class CascadeLayout: UICollectionViewLayout {
   
   // MARK: Private Methods
   func setUpDefaultOfColumns() {
-    let iPad = CascadeLayoutConst.iPadColumns
-    let iPhone = CascadeLayoutConst.iPhoneColumns
+    let iPad = Const.iPadColumns
+    let iPhone = Const.iPhoneColumns
     let userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
     let device = userInterfaceIdiom == .pad ? iPad : iPhone
     numberOfColumns = device

@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = PreloadedConst
+
 extension UIImage {
   func preloadedImage() -> UIImage {
     guard let imageRef = self.cgImage else {
@@ -27,8 +29,8 @@ extension UIImage {
         data: nil,
         width: width,
         height: height,
-        bitsPerComponent: PreloadedConst.bitsPerComponent,
-        bytesPerRow: width * PreloadedConst.bytesPerRow,
+        bitsPerComponent: Const.bitsPerComponent,
+        bytesPerRow: width * Const.bytesPerRow,
         space: colourSpace,
         bitmapInfo: bitmapInfo
       )

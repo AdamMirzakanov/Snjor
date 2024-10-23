@@ -7,13 +7,15 @@
 
 import UIKit
 
+fileprivate typealias Const = SectionHeaderViewConst
+
 final class SectionHeaderView: UICollectionReusableView {
   // MARK: Internal Properties
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.font = UIFont.systemFont(
-      ofSize: SectionHeaderViewConst.titleLabelFontSize,
+      ofSize: Const.titleLabelFontSize,
       weight: .bold
     )
     label.textColor = .label
@@ -47,8 +49,8 @@ final class SectionHeaderView: UICollectionReusableView {
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pTop: SectionHeaderViewConst.defaultMargins,
-      pBottom: SectionHeaderViewConst.defaultMargins
+      pTop: Const.defaultMargins,
+      pBottom: Const.defaultMargins
     )
   }
 }

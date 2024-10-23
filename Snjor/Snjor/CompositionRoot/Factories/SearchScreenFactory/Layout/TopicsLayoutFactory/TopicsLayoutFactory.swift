@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = TopicsLayoutFactoryConst
+
 struct TopicsLayoutFactory {
   // MARK: Internal Methods
   func createTopicLayout() -> NSCollectionLayoutSection {
@@ -19,15 +21,15 @@ struct TopicsLayoutFactory {
   // MARK: Private Methods
   private func makeItem() -> NSCollectionLayoutItem {
     let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(TopicsLayoutFactoryConst.itemWidthDimension),
-      heightDimension: .fractionalHeight(TopicsLayoutFactoryConst.itemHeightDimension)
+      widthDimension: .fractionalWidth(Const.itemWidthDimension),
+      heightDimension: .fractionalHeight(Const.itemHeightDimension)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(
       top: .zero,
-      leading: TopicsLayoutFactoryConst.smallValue,
+      leading: Const.smallValue,
       bottom: .zero,
-      trailing: TopicsLayoutFactoryConst.smallValue
+      trailing: Const.smallValue
     )
     return item
   }
@@ -36,8 +38,8 @@ struct TopicsLayoutFactory {
     item: NSCollectionLayoutItem
   ) -> NSCollectionLayoutGroup {
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(TopicsLayoutFactoryConst.groupWidthDimension),
-      heightDimension: .estimated(TopicsLayoutFactoryConst.groupHeightDimension)
+      widthDimension: .fractionalWidth(Const.groupWidthDimension),
+      heightDimension: .estimated(Const.groupHeightDimension)
     )
     let group = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
@@ -52,10 +54,10 @@ struct TopicsLayoutFactory {
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .groupPagingCentered
     section.contentInsets = NSDirectionalEdgeInsets(
-      top: TopicsLayoutFactoryConst.topSection,
-      leading: TopicsLayoutFactoryConst.smallValue,
-      bottom: TopicsLayoutFactoryConst.bottomSection,
-      trailing: TopicsLayoutFactoryConst.smallValue
+      top: Const.topSection,
+      leading: Const.smallValue,
+      bottom: Const.bottomSection,
+      trailing: Const.smallValue
     )
     return section
   }

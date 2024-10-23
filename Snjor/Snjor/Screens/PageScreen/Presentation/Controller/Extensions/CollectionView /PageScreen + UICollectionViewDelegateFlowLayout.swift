@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = PageScreenViewControllerConst
+
 extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(
     _ collectionView: UICollectionView,
@@ -28,9 +30,9 @@ extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
   ) -> UIEdgeInsets {
     return UIEdgeInsets(
       top: .zero,
-      left: PageScreenViewControllerConst.middleValue,
+      left: Const.middleValue,
       bottom: .zero,
-      right: PageScreenViewControllerConst.middleValue
+      right: Const.middleValue
     )
   }
   
@@ -39,7 +41,7 @@ extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     minimumInteritemSpacingForSectionAt section: Int
   ) -> CGFloat {
-    return PageScreenViewControllerConst.middleValue
+    return Const.middleValue
   }
   
   // MARK: Private Methods
@@ -48,10 +50,10 @@ extension PageScreenViewController: UICollectionViewDelegateFlowLayout {
     let width = topicsPageViewModelItem.itemTitle.size(
       withAttributes: [
         NSAttributedString.Key.font: UIFont.systemFont(
-          ofSize: PageScreenViewControllerConst.middleValue
+          ofSize: Const.middleValue
         )
       ]
-    ).width + PageScreenViewControllerConst.middleValue
+    ).width + Const.middleValue
     return width
   }
 }

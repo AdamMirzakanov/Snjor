@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = AlbumPhotosRootViewConst
+
 final class SearchResultScreenRootView: UIView {
   // MARK: Private Properties
   private var backButtonAction: (() -> Void)?
@@ -25,9 +27,9 @@ final class SearchResultScreenRootView: UIView {
   }(UsersTableView())
   
   private let backBarButtonBackgroundView: UIView = {
-    $0.frame.size.width = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
-    $0.frame.size.height = AlbumPhotosRootViewConst.backBarButtonBackgroundViewSize
-    $0.layer.cornerRadius = AlbumPhotosRootViewConst.backBarButtonBackgroundViewCircle
+    $0.frame.size.width = Const.backBarButtonBackgroundViewSize
+    $0.frame.size.height = Const.backBarButtonBackgroundViewSize
+    $0.layer.cornerRadius = Const.backBarButtonBackgroundViewCircle
     $0.clipsToBounds = true
     $0.backgroundColor = .label
     return $0

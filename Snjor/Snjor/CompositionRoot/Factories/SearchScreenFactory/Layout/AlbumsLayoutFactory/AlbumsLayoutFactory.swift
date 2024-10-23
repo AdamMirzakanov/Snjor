@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = AlbumsLayoutFactoryConst
+
 struct AlbumsLayoutFactory {
   // MARK: Internal Methods
   func createAlbumLayout() -> NSCollectionLayoutSection {
@@ -19,14 +21,14 @@ struct AlbumsLayoutFactory {
   // MARK: Private Methods
   private func makeItem() -> NSCollectionLayoutItem {
     let itemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(AlbumsLayoutFactoryConst.itemWidthDimension),
-      heightDimension: .fractionalHeight(AlbumsLayoutFactoryConst.itemHeightDimension)
+      widthDimension: .fractionalWidth(Const.itemWidthDimension),
+      heightDimension: .fractionalHeight(Const.itemHeightDimension)
     )
     let item = NSCollectionLayoutItem(layoutSize: itemSize)
     item.contentInsets = NSDirectionalEdgeInsets(
       top: .zero,
       leading: .zero,
-      bottom: AlbumsLayoutFactoryConst.itemBottomMargin,
+      bottom: Const.itemBottomMargin,
       trailing: .zero
     )
     return item
@@ -36,15 +38,15 @@ struct AlbumsLayoutFactory {
     item: NSCollectionLayoutItem
   ) -> NSCollectionLayoutGroup {
     let groupSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(AlbumsLayoutFactoryConst.groupWidthDimension),
-      heightDimension: .fractionalWidth(AlbumsLayoutFactoryConst.groupHeightDimension)
+      widthDimension: .fractionalWidth(Const.groupWidthDimension),
+      heightDimension: .fractionalWidth(Const.groupHeightDimension)
     )
     let horizontalGroup = NSCollectionLayoutGroup.horizontal(
       layoutSize: groupSize,
       subitems: [item]
     )
     horizontalGroup.interItemSpacing = .fixed(
-      AlbumsLayoutFactoryConst.horizontalGroupInterItemSpacing
+      Const.horizontalGroupInterItemSpacing
     )
     let verticalGroup = NSCollectionLayoutGroup.vertical(
       layoutSize: groupSize,
@@ -58,10 +60,10 @@ struct AlbumsLayoutFactory {
   ) -> NSCollectionLayoutSection {
     let section = NSCollectionLayoutSection(group: group)
     section.contentInsets = NSDirectionalEdgeInsets(
-      top: AlbumsLayoutFactoryConst.sectionTopMargin,
-      leading: AlbumsLayoutFactoryConst.sectionMargin,
+      top: Const.sectionTopMargin,
+      leading: Const.sectionMargin,
       bottom: .zero,
-      trailing: AlbumsLayoutFactoryConst.sectionMargin
+      trailing: Const.sectionMargin
     )
     return section
   }

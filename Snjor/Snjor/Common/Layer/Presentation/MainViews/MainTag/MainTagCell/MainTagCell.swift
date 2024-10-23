@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = MainTagCellConst
+
 class MainTagCell: UICollectionViewCell {
   // MARK: Views
   var tagLabel = UILabel()
@@ -29,10 +31,10 @@ class MainTagCell: UICollectionViewCell {
   
   func configTagLabel() {
     tagLabel.textAlignment = .center
-    tagLabel.layer.cornerRadius = MainTagCellConst.tagLabelCornerRadius
+    tagLabel.layer.cornerRadius = Const.tagLabelCornerRadius
     tagLabel.layer.masksToBounds = true
     tagLabel.font = .systemFont(
-      ofSize: MainTagCellConst.tagFontSize,
+      ofSize: Const.tagFontSize,
       weight: .regular
     )
   }

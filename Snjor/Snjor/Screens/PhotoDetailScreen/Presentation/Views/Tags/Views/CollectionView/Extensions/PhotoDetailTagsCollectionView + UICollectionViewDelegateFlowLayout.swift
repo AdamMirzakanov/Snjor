@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = TagsCollectionViewConst
+
 extension PhotoDetailTagsCollectionView: UICollectionViewDelegateFlowLayout {
   func collectionView(
     _ collectionView: UICollectionView,
@@ -26,7 +28,7 @@ extension PhotoDetailTagsCollectionView: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     minimumInteritemSpacingForSectionAt section: Int
   ) -> CGFloat {
-    return TagsCollectionViewConst.tagsInsets
+    return Const.tagsInsets
   }
   
   // MARK: Private Methods
@@ -37,10 +39,10 @@ extension PhotoDetailTagsCollectionView: UICollectionViewDelegateFlowLayout {
         NSAttributedString
           .Key
           .font: UIFont.systemFont(
-            ofSize: TagsCollectionViewConst.attributedStringFontSize
+            ofSize: Const.attributedStringFontSize
           )
       ]
-    ).width + TagsCollectionViewConst.tagsWidthPadding
+    ).width + Const.tagsWidthPadding
     return width
   }
 }

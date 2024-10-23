@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = TagsCollectionViewConst
+
 extension AlbumTagsCollectionView: UICollectionViewDelegateFlowLayout {
   func collectionView(
     _ collectionView: UICollectionView,
@@ -28,9 +30,9 @@ extension AlbumTagsCollectionView: UICollectionViewDelegateFlowLayout {
   ) -> UIEdgeInsets {
     return UIEdgeInsets(
       top: .zero,
-      left: TagsCollectionViewConst.tagsInsets,
+      left: Const.tagsInsets,
       bottom: .zero,
-      right: TagsCollectionViewConst.tagsInsets
+      right: Const.tagsInsets
     )
   }
   
@@ -39,7 +41,7 @@ extension AlbumTagsCollectionView: UICollectionViewDelegateFlowLayout {
     layout collectionViewLayout: UICollectionViewLayout,
     minimumInteritemSpacingForSectionAt section: Int
   ) -> CGFloat {
-    return TagsCollectionViewConst.tagsInsets
+    return Const.tagsInsets
   }
   
   // MARK: Private Methods
@@ -50,10 +52,10 @@ extension AlbumTagsCollectionView: UICollectionViewDelegateFlowLayout {
         NSAttributedString
           .Key
           .font: UIFont.systemFont(
-            ofSize: TagsCollectionViewConst.attributedStringFontSize
+            ofSize: Const.attributedStringFontSize
           )
       ]
-    ).width + TagsCollectionViewConst.tagsWidthPadding
+    ).width + Const.tagsWidthPadding
     return width
   }
 }

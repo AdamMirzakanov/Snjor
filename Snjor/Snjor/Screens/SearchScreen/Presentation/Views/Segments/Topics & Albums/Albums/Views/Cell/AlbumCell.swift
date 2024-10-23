@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = AlbumCellConst
+
 final class AlbumCell: UICollectionViewCell {
   // MARK: Internal Properties
   weak var delegate: (any AlbumCellDelegate)?
@@ -18,7 +20,7 @@ final class AlbumCell: UICollectionViewCell {
   
   let tagsCollectionView: AlbumTagsCollectionView = {
     $0.heightAnchor.constraint(
-      equalToConstant: AlbumCellConst.gradientWidthSize
+      equalToConstant: Const.gradientWidthSize
     ).isActive = true
     return $0
   }(AlbumTagsCollectionView())
@@ -27,10 +29,10 @@ final class AlbumCell: UICollectionViewCell {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.isUserInteractionEnabled = false
     $0.widthAnchor.constraint(
-      equalToConstant: AlbumCellConst.gradientWidthSize
+      equalToConstant: Const.gradientWidthSize
     ).isActive = true
     $0.transform = CGAffineTransform(
-      rotationAngle: .pi / AlbumCellConst.rightGradientViewRotationAngle
+      rotationAngle: .pi / Const.rightGradientViewRotationAngle
     )
     return $0
   }(MainGradientView())
@@ -38,10 +40,10 @@ final class AlbumCell: UICollectionViewCell {
   private let leftGradientView: MainGradientView = {
     $0.isUserInteractionEnabled = false
     $0.widthAnchor.constraint(
-      equalToConstant: AlbumCellConst.gradientWidthSize
+      equalToConstant: Const.gradientWidthSize
     ).isActive = true
     $0.transform = CGAffineTransform(
-      rotationAngle: .pi * AlbumCellConst.leftGradientViewRotationAngle
+      rotationAngle: .pi * Const.leftGradientViewRotationAngle
     )
     return $0
   }(MainGradientView())
@@ -50,7 +52,7 @@ final class AlbumCell: UICollectionViewCell {
     $0.axis = .vertical
     $0.addArrangedSubview(mainView)
     $0.addArrangedSubview(tagsCollectionView)
-    $0.spacing = AlbumCellConst.stackViewSpacing
+    $0.spacing = Const.stackViewSpacing
     return $0
   }(UIStackView())
   
@@ -131,12 +133,12 @@ final class AlbumCell: UICollectionViewCell {
   private func createGradientColors() -> [MainGradientView.Color] {
     return [
       MainGradientView.Color(
-        color: UIColor.systemBackground.withAlphaComponent(AlbumCellConst.maxOpacity),
-        location: AlbumCellConst.gradientStartLocation
+        color: UIColor.systemBackground.withAlphaComponent(Const.maxOpacity),
+        location: Const.gradientStartLocation
       ),
       MainGradientView.Color(
         color: UIColor.systemBackground.withAlphaComponent(.zero),
-        location: AlbumCellConst.gradientEndLocation
+        location: Const.gradientEndLocation
       )
     ]
   }

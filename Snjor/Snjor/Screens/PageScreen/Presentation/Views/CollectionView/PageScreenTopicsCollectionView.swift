@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = PageScreenTopicsCollectionViewConst
+
 final class PageScreenTopicsCollectionView: UICollectionView {
   // MARK: Private Properties
   private let flowlayout = UICollectionViewFlowLayout()
@@ -14,7 +16,7 @@ final class PageScreenTopicsCollectionView: UICollectionView {
   // MARK: Views
   private let lineView: UIView = {
     $0.backgroundColor = .white
-    $0.alpha = PageScreenTopicsCollectionViewConst.lineViewOpacity
+    $0.alpha = Const.lineViewOpacity
     return $0
   }(UIView())
   
@@ -44,7 +46,7 @@ final class PageScreenTopicsCollectionView: UICollectionView {
   // MARK: Internal Methods
   func updateIndicatorPosition(for cell: UICollectionViewCell) {
     let cellFrame = cell.frame
-    let indicatorHeight: CGFloat = traitCollection.displayScale * PageScreenTopicsCollectionViewConst.indicatorHeightMultiplier
+    let indicatorHeight: CGFloat = traitCollection.displayScale * Const.indicatorHeightMultiplier
     let xPosition = cellFrame.origin.x
     let yPosition = cellFrame.maxY - indicatorHeight
     let newFrame = CGRect(
@@ -84,7 +86,7 @@ final class PageScreenTopicsCollectionView: UICollectionView {
   }
   
   private func updateLineViewAndIndicatorPosition() {
-    let indicatorHeight: CGFloat = PageScreenTopicsCollectionViewConst.indicatorBaseHeight / traitCollection.displayScale
+    let indicatorHeight: CGFloat = Const.indicatorBaseHeight / traitCollection.displayScale
     lineView.frame = CGRect(
       x: .zero,
       y: bounds.height - indicatorHeight,

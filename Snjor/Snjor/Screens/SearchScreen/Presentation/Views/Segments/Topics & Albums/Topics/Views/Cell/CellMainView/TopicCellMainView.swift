@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = TopicCellMainViewConst
+
 final class TopicCellMainView: MainImageContainerView {
   // MARK: Private Properties
   private var screenScale: CGFloat {
@@ -18,11 +20,11 @@ final class TopicCellMainView: MainImageContainerView {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.font = UIFont.systemFont(
-      ofSize: TopicCellMainViewConst.titleLabelFontSize,
+      ofSize: Const.titleLabelFontSize,
       weight: .regular
     )
     label.textColor = .white
-    label.alpha = TopicCellMainViewConst.titleLabelOpacity
+    label.alpha = Const.titleLabelOpacity
     label.setContentHuggingPriority(.required, for: .vertical)
     return label
   }()
@@ -33,7 +35,7 @@ final class TopicCellMainView: MainImageContainerView {
     )
     visualEffectView.translatesAutoresizingMaskIntoConstraints = false
     visualEffectView.heightAnchor.constraint(
-      equalToConstant: TopicCellMainViewConst.visualEffectViewHeight
+      equalToConstant: Const.visualEffectViewHeight
     ).isActive = true
     return visualEffectView
   }()
@@ -41,7 +43,7 @@ final class TopicCellMainView: MainImageContainerView {
   // MARK: Initializers
   override init() {
     super.init()
-    mainImageView.layer.cornerRadius = TopicCellMainViewConst.cellCornerRadius
+    mainImageView.layer.cornerRadius = Const.cellCornerRadius
     setupTopicCellViews()
   }
   

@@ -7,6 +7,8 @@
 
 import Foundation
 
+fileprivate typealias Const = UserLikedPhotoCellConst
+
 final class UserPhotoCell: MainPhotoCell {
   
   override init(frame: CGRect) {
@@ -19,7 +21,7 @@ final class UserPhotoCell: MainPhotoCell {
   }
   
   private func configUserPhotoCell() {
-    mainView.layer.cornerRadius = UserLikedPhotoCellConst.mainViewCornerRadius
+    mainView.layer.cornerRadius = Const.mainViewCornerRadius
     mainView.clipsToBounds = true
     mainView.downloadButtonBlurEffect.isHidden = true
     mainView.userNameLabel.isHidden = true

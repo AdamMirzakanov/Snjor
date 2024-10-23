@@ -5,9 +5,11 @@
 //  Created by Адам on 15.06.2024.
 //
 
+fileprivate typealias Const = LastPageValidationUseCaseConst
+
 struct LastPageValidationUseCase: LastPageValidationUseCaseProtocol {
   // MARK: Private Properties
-  private var threshold: Int = LastPageValidationUseCaseConst.thresholdValue
+  private var threshold: Int = Const.thresholdValue
   private(set) var lastPage = false
 
   // MARK: Internal Methods

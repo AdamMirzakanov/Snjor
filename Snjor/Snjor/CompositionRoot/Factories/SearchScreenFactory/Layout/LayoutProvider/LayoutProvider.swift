@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = LayoutProviderConst
+
 struct LayoutProvider {
   // MARK: Private Properties
   private let albumsLayoutFactory = AlbumsLayoutFactory()
@@ -59,7 +61,7 @@ struct LayoutProvider {
   ) -> NSCollectionLayoutBoundarySupplementaryItem {
     let lineItemHeight = 1 / layoutEnvironment.traitCollection.displayScale
     let lineItemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(LayoutProviderConst.lineItemWidthDimension),
+      widthDimension: .fractionalWidth(Const.lineItemWidthDimension),
       heightDimension: .absolute(lineItemHeight)
     )
     return NSCollectionLayoutBoundarySupplementaryItem(
@@ -71,8 +73,8 @@ struct LayoutProvider {
   
   private func makeHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
     let headerItemSize = NSCollectionLayoutSize(
-      widthDimension: .fractionalWidth(LayoutProviderConst.headerItemWidthDimension),
-      heightDimension: .estimated(LayoutProviderConst.headerItemHeightDimension)
+      widthDimension: .fractionalWidth(Const.headerItemWidthDimension),
+      heightDimension: .estimated(Const.headerItemHeightDimension)
     )
     return NSCollectionLayoutBoundarySupplementaryItem(
       layoutSize: headerItemSize,

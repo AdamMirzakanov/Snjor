@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = UserProfileViewControllerRootViewConst
+
 final class UserProfileCollectionView: MainCollectionView {
   private let layoutFactory = UserProfileCollectionViewLayoutFactory()
   
@@ -30,7 +32,7 @@ final class UserProfileCollectionView: MainCollectionView {
     let screenWidth = UIScreen.main.bounds.width
     flowlayout.itemSize = CGSize(
       width: screenWidth,
-      height: UserProfileViewControllerRootViewConst.heightUserProfileCollectionView
+      height: Const.heightUserProfileCollectionView
     )
     flowlayout.minimumLineSpacing = .zero
     flowlayout.minimumInteritemSpacing = .zero

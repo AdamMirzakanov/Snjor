@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = AlbumCellMainViewConst
+
 final class AlbumCellMainView: MainImageContainerView {
   // MARK: Private Properties
   private var screenScale: CGFloat {
@@ -15,14 +17,14 @@ final class AlbumCellMainView: MainImageContainerView {
 
   private let secondBackgroundView: UIView = {
     $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = AlbumCellMainViewConst.secondBackgroundViewCornerRadius
+    $0.layer.cornerRadius = Const.secondBackgroundViewCornerRadius
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
   
   private let thirdBackgroundView: UIView = {
     $0.contentMode = .scaleAspectFill
-    $0.layer.cornerRadius = AlbumCellMainViewConst.thirdBackgroundViewCornerRadius
+    $0.layer.cornerRadius = Const.thirdBackgroundViewCornerRadius
     $0.clipsToBounds = true
     return $0
   }(UIImageView())
@@ -33,7 +35,7 @@ final class AlbumCellMainView: MainImageContainerView {
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
     $0.setTitleColor(.label, for: .normal)
-    $0.alpha = AlbumCellMainViewConst.infoButtonOpacity
+    $0.alpha = Const.infoButtonOpacity
     return $0
   }(UIButton(type: .system))
   
@@ -41,16 +43,16 @@ final class AlbumCellMainView: MainImageContainerView {
   private let gradientView: MainGradientView = {
     let color = UIColor(
       white: .zero,
-      alpha: AlbumCellMainViewConst.gradientOpacity
+      alpha: Const.gradientOpacity
     )
     $0.setColors([
       MainGradientView.Color(
         color: .clear,
-        location: AlbumCellMainViewConst.gradientStartLocation
+        location: Const.gradientStartLocation
       ),
       MainGradientView.Color(
         color: color,
-        location: AlbumCellMainViewConst.gradientEndLocation
+        location: Const.gradientEndLocation
       )
     ])
     return $0
@@ -60,18 +62,18 @@ final class AlbumCellMainView: MainImageContainerView {
   private let titleLabel: UILabel = {
     $0.textColor = .white
     $0.font = .systemFont(
-      ofSize: AlbumCellMainViewConst.titleLabelFontSize,
+      ofSize: Const.titleLabelFontSize,
       weight: .black
     )
-    $0.numberOfLines = AlbumCellMainViewConst.titleLabelNumberOfLines
-    $0.alpha = AlbumCellMainViewConst.titleLabelOpacity
+    $0.numberOfLines = Const.titleLabelNumberOfLines
+    $0.alpha = Const.titleLabelOpacity
     $0.layer.shadowColor = UIColor.black.cgColor
-    $0.layer.shadowOpacity = AlbumCellMainViewConst.titleLabelShadowOpacity
+    $0.layer.shadowOpacity = Const.titleLabelShadowOpacity
     $0.layer.shadowOffset = CGSize(
-      width: AlbumCellMainViewConst.shadowOffset,
-      height: AlbumCellMainViewConst.shadowOffset
+      width: Const.shadowOffset,
+      height: Const.shadowOffset
     )
-    $0.layer.shadowRadius = AlbumCellMainViewConst.shadowRadius
+    $0.layer.shadowRadius = Const.shadowRadius
     $0.layer.masksToBounds = false
     return $0
   }(UILabel())
@@ -137,7 +139,7 @@ final class AlbumCellMainView: MainImageContainerView {
   private func setupViews() {
     addSubviews()
     setupConstraints()
-    mainImageView.layer.cornerRadius = AlbumCellMainViewConst.mainImageViewCornerRadius
+    mainImageView.layer.cornerRadius = Const.mainImageViewCornerRadius
   }
   
   private func addSubviews() {
@@ -161,8 +163,8 @@ final class AlbumCellMainView: MainImageContainerView {
     macroIconButton.setConstraints(
       right: rightAnchor,
       bottom: bottomAnchor,
-      pRight: AlbumCellMainViewConst.defaultValue,
-      pBottom: AlbumCellMainViewConst.defaultValue
+      pRight: Const.defaultValue,
+      pBottom: Const.defaultValue
     )
   }
   
@@ -171,9 +173,9 @@ final class AlbumCellMainView: MainImageContainerView {
       top: mainImageView.topAnchor,
       right: mainImageView.rightAnchor,
       left: mainImageView.leftAnchor,
-      pTop: AlbumCellMainViewConst.defaultValue,
-      pRight: AlbumCellMainViewConst.defaultValue,
-      pLeft: AlbumCellMainViewConst.defaultValue
+      pTop: Const.defaultValue,
+      pRight: Const.defaultValue,
+      pLeft: Const.defaultValue
     )
   }
   
@@ -187,9 +189,9 @@ final class AlbumCellMainView: MainImageContainerView {
       right: mainImageView.rightAnchor,
       bottom: mainImageView.bottomAnchor,
       left: mainImageView.leftAnchor,
-      pTop: AlbumCellMainViewConst.topAnchor,
-      pRight: AlbumCellMainViewConst.secondBackgroundViewMargins,
-      pLeft: AlbumCellMainViewConst.secondBackgroundViewMargins
+      pTop: Const.topAnchor,
+      pRight: Const.secondBackgroundViewMargins,
+      pLeft: Const.secondBackgroundViewMargins
     )
   }
   
@@ -199,9 +201,9 @@ final class AlbumCellMainView: MainImageContainerView {
       right: secondBackgroundView.rightAnchor,
       bottom: secondBackgroundView.bottomAnchor,
       left: secondBackgroundView.leftAnchor,
-      pTop: AlbumCellMainViewConst.topAnchor,
-      pRight: AlbumCellMainViewConst.thirdBackgroundViewMargins,
-      pLeft: AlbumCellMainViewConst.thirdBackgroundViewMargins
+      pTop: Const.topAnchor,
+      pRight: Const.thirdBackgroundViewMargins,
+      pLeft: Const.thirdBackgroundViewMargins
     )
   }
 }

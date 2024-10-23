@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = TopicPhotosRootViewConst
+
 final class TopicPhotosRootView: UIView {
   // MARK: Private Properties
   private var backButtonAction: (() -> Void)?
@@ -17,9 +19,9 @@ final class TopicPhotosRootView: UIView {
   }(TopicPhotosCollectionView())
   
   private let backBarButtonBackgroundView: UIView = {
-    $0.frame.size.width = TopicPhotosRootViewConst.backBarButtonBackgroundViewSize
-    $0.frame.size.height = TopicPhotosRootViewConst.backBarButtonBackgroundViewSize
-    $0.layer.cornerRadius = TopicPhotosRootViewConst.backBarButtonBackgroundViewCircle
+    $0.frame.size.width = Const.backBarButtonBackgroundViewSize
+    $0.frame.size.height = Const.backBarButtonBackgroundViewSize
+    $0.layer.cornerRadius = Const.backBarButtonBackgroundViewCircle
     $0.clipsToBounds = true
     $0.backgroundColor = .label
     return $0

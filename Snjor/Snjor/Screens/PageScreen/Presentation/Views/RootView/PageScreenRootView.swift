@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = PageScreenRootViewConst
+
 final class PageScreenRootView: UIView {
   // MARK: Internal Views
   let pageViewController: UIPageViewController = {
@@ -20,7 +22,7 @@ final class PageScreenRootView: UIView {
   
   let topicsCollectionView: PageScreenTopicsCollectionView = {
     $0.heightAnchor.constraint(
-      equalToConstant: PageScreenRootViewConst.topicsCollectionViewHeight
+      equalToConstant: Const.topicsCollectionViewHeight
     ).isActive = true
     return $0
   }(PageScreenTopicsCollectionView())
@@ -29,11 +31,11 @@ final class PageScreenRootView: UIView {
   private let appNameLabel: UILabel = {
     let text = "Snjør".uppercased()
     let fontSize = UIFont.systemFont(
-      ofSize: PageScreenRootViewConst.appNameLabelFontSize,
+      ofSize: Const.appNameLabelFontSize,
       weight: .bold
     )
     let attributes: [NSAttributedString.Key: Any] = [
-      .kern: PageScreenRootViewConst.appNameLabelTextKern,
+      .kern: Const.appNameLabelTextKern,
       .font: fontSize
     ]
     $0.attributedText = NSAttributedString(string: text, attributes: attributes)
@@ -46,13 +48,13 @@ final class PageScreenRootView: UIView {
       MainGradientView.Color(
         color: UIColor(
           white: .zero,
-          alpha: PageScreenRootViewConst.gradientOpacity
+          alpha: Const.gradientOpacity
         ),
-        location: PageScreenRootViewConst.gradientStartLocation
+        location: Const.gradientStartLocation
       ),
       MainGradientView.Color(
         color: .clear,
-        location: PageScreenRootViewConst.gradientEndLocation
+        location: Const.gradientEndLocation
       ),
     ])
     $0.isUserInteractionEnabled = false
@@ -94,7 +96,7 @@ final class PageScreenRootView: UIView {
       top: safeAreaLayoutGuide.topAnchor,
       right: rightAnchor,
       left: leftAnchor,
-      pTop: PageScreenRootViewConst.topicsCollectionViewTopAnchor
+      pTop: Const.topicsCollectionViewTopAnchor
     )
   }
   
@@ -108,7 +110,7 @@ final class PageScreenRootView: UIView {
       right: rightAnchor,
       bottom: bottomAnchor,
       left: leftAnchor,
-      pTop: PageScreenRootViewConst.gradientViewTopAnchor
+      pTop: Const.gradientViewTopAnchor
     )
   }
   
@@ -116,7 +118,7 @@ final class PageScreenRootView: UIView {
     appNameLabel.centerX()
     appNameLabel.setConstraints(
       top: safeAreaLayoutGuide.topAnchor,
-      pTop: PageScreenRootViewConst.appNameLabelTopAnchor
+      pTop: Const.appNameLabelTopAnchor
     )
   }
 }

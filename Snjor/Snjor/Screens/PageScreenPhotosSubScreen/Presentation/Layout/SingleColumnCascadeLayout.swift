@@ -7,9 +7,11 @@
 
 import UIKit
 
-final class SingleColumnCascadeLayout: CascadeLayout {  
+fileprivate typealias Const = CascadeLayoutConst
+
+final class SingleColumnCascadeLayout: CascadeLayout {
   override func setUpDefaultOfColumns() {
-    numberOfColumns = CascadeLayoutConst.singleColumns
-    columnSpacing = CascadeLayoutConst.columnSpacing
+    numberOfColumns = Const.singleColumns
+    columnSpacing = Const.columnSpacing
   }
 }

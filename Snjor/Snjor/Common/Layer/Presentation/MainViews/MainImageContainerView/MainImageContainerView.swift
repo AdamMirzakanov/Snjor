@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = MainImageContainerViewConst
+
 class MainImageContainerView: UIView {
   // MARK: Internal Properties
   var currentPhotoID: String?
@@ -35,7 +37,7 @@ class MainImageContainerView: UIView {
     photoID: String? = nil
   ) {
     currentPhotoID = photoID
-    let blurSize = MainImageContainerViewConst.blurSize
+    let blurSize = Const.blurSize
     if let blurHash = blurHash {
       self.mainImageView.image = UIImage(blurHash: blurHash, size: blurSize)
       self.downloadImage(url, photoID)
@@ -81,7 +83,7 @@ class MainImageContainerView: UIView {
   private func animateImageView(_ imageView: UIImageView, _ image: UIImage?) {
     UIView.transition(
       with: self,
-      duration: MainImageContainerViewConst.duration,
+      duration: Const.duration,
       options: [.transitionCrossDissolve]
     ) {
       imageView.image = image
