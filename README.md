@@ -2,17 +2,29 @@
 
 A mobile application built with Swift, utilizing the [Unsplash](https://unsplash.com) • [API Documentation](https://unsplash.com/documentation) to search and display images. It follows the MVVM architecture and uses Coordinators for navigation.
 
-## Features:
-- Image search on Unsplash
+## No Storyboards or XIBs
 
-## Technologies:
-- Swift
-- UIKit
-- Combine
-- async/await for handling asynchronous operations
+This project is implemented entirely programmatically without using Storyboards or XIB files.
+
+## Requirements
+- iOS 16.0 +
+- Swift 5.5 +
 
 ## Architecture:
 - MVVM + Coordinators
+
+## Technologies:
+- **Languages & Frameworks**:
+  - Swift
+  - UIKit
+  - Combine
+  - Photos (for managing photos and albums)
+
+- **Data Storage**:
+  - UserDefaults
+
+- **Concurrency**:
+  - async/await for handling asynchronous operations
 
 ## Installation:
 1. Clone the repository:
