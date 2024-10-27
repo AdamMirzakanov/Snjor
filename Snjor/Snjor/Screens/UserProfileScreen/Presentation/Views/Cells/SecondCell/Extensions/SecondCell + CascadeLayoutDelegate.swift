@@ -9,7 +9,6 @@ import Foundation
 
 extension SecondCell: CascadeLayoutDelegate {
   func cascadeLayout(
-    _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     guard let viewModel = userPhotosViewModel else { return .zero }

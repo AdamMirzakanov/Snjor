@@ -9,7 +9,6 @@ import Foundation
 
 extension SearchResultViewController: CascadeLayoutDelegate {
   func cascadeLayout(
-    _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     let photo = photosViewModel.getItem(at: indexPath.item)

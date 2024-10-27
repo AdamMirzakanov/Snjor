@@ -9,7 +9,6 @@ import Foundation
 
 extension PageScreenPhotosViewController: CascadeLayoutDelegate {
   func cascadeLayout(
-    _ layout: any CascadeLayoutConformable,
     sizeForItemAt indexPath: IndexPath
   ) -> CGSize {
     let photo = viewModel.getItem(at: indexPath.item)

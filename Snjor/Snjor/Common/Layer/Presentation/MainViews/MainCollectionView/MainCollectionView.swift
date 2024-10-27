@@ -25,17 +25,9 @@ class MainCollectionView: UICollectionView {
   }
   
   // MARK: Internal Methods
-  func cellRegister() {
-
-  }
-  
-  func reusableViewRegister() {
-    
-  }
-  
-  func setupDelegate() {
-    
-  }
+  func cellRegister() { }
+  func reusableViewRegister() { }
+  func setupDelegate() { }
   
   func configureLayout() {
     flowlayout.scrollDirection = .vertical
