@@ -7,94 +7,154 @@
 
 import Foundation
 
+/// Перечисление `PrepareRequest` содержит статические методы для подготовки URL-запросов к API.
+///
+/// - Note: Методы в этом перечислении создают запросы для
+/// различных конечных точек API, используя заданные параметры и пути.
+/// Все методы выбрасывают ошибку `APIError.URLError`, если не удается создать URL.
 enum PrepareRequest {
+
   // MARK: Private Properties
+  /// Возвращает HTTP-метод для запросов.
+  ///
+  /// Используется для указания, что метод HTTP для запроса будет "GET".
   private static var getHTTP: HTTPMethod { .get }
-  private static var scheme: API { .scheme }
+  
+  /// Возвращает схему API.
+  ///
+  /// Используется для получения схемы (например, "http" или "https") для формирования URL.
+  private static var scheme: API { .https }
+  
+  /// Возвращает хост API.
+  ///
+  /// Используется для получения хоста, на который будут отправлены запросы.
   private static var host: API { .host }
   
   // MARK: Internal Methods
+  /// Подготавливает запрос для получения заголовков тем.
+  ///
+  /// - Parameters:
+  ///   - path: Строка, представляющая базовый путь для запроса.
   static func prepareTopicsTitleAPIRequest(
-    topics: String
+    path: String
   ) throws -> URLRequest {
-    guard let url = prepareURL(from: topics) else {
+    guard let url = prepareURL(from: path) else {
       throw APIError.URLError
     }
     let request = prepareURLRequest(url: url)
     return request
   }
   
+  /// Подготавливает запрос для получения фотографий Топика.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - idSegment: Строка, представляющая подкатолог идентификатора топика.
+  ///   - pohtosSegment: Строка, представляющая подкаталог для фотографий.
+  ///   - parameters: Параметры запроса, которые будут добавлены к URL.
   static func prepareTopicPhotosAPIRequest(
-    topics: String,
-    id: String,
-    phtos: String,
-    parameters: Parameters
-  ) throws -> URLRequest {
-    guard let url = prepareURL(from: topics, parameters: parameters) else {
-      throw APIError.URLError
-    }
-    let topicsIdURL = url.appending(path: id)
-    let topicsPhotosURL = topicsIdURL.appending(path: phtos)
-    let request = prepareURLRequest(url: topicsPhotosURL)
-    return request
-  }
-  
-  static func prepareAlbumPhotosAPIRequest(
-    albums: String,
-    id: String,
-    phtos: String,
-    parameters: Parameters
-  ) throws -> URLRequest {
-    guard let url = prepareURL(from: albums, parameters: parameters) else {
-      throw APIError.URLError
-    }
-    let albumIdURL = url.appending(path: id)
-    let albumPhotosURL = albumIdURL.appending(path: phtos)
-    let request = prepareURLRequest(url: albumPhotosURL)
-    return request
-  }
-  
-  static func preparePhotoInfoAPIRequest(
     path: String,
-    id: String
-  ) throws -> URLRequest {
-    guard let url = prepareURL(from: path) else {
-      throw APIError.URLError
-    }
-    let photoInfoURL = url.appending(component: id)
-    let request = prepareURLRequest(url: photoInfoURL)
-    return request
-  }
-  
-  static func prepareUserProfileAPIRequest(
-    path: String,
-    username: String
-  ) throws -> URLRequest {
-    guard let url = prepareURL(from: path) else {
-      throw APIError.URLError
-    }
-    let profileURL = url.appending(component: username)
-    let request = prepareURLRequest(url: profileURL)
-    return request
-  }
-  
-  static func prepareUserLikedPhotosAPIRequest(
-    path: String,
-    username: String,
+    idSegment: String,
+    photosSegment: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-    let profileURL = url.appending(component: username)
+    let topicsIdURL = url.appending(path: idSegment)
+    let topicsPhotosURL = topicsIdURL.appending(path: photosSegment)
+    let request = prepareURLRequest(url: topicsPhotosURL)
+    return request
+  }
+  
+  /// Подготавливает запрос для получения фотографий Альбома.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - idSegment: Строка, представляющая подкатолог идентификатора альбома.
+  ///   - pohtosSegment: Строка, представляющая подкаталог для фотографий альбома.
+  ///   - parameters: Параметры запроса, которые будут добавлены к URL.
+  static func prepareAlbumPhotosAPIRequest(
+    path: String,
+    idSegment: String,
+    phtosSegment: String,
+    parameters: Parameters
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path, parameters: parameters) else {
+      throw APIError.URLError
+    }
+    let albumIdURL = url.appending(path: idSegment)
+    let albumPhotosURL = albumIdURL.appending(path: phtosSegment)
+    let request = prepareURLRequest(url: albumPhotosURL)
+    return request
+  }
+ 
+  /// Подготавливает запрос для получения фотографии а так же информации о фотографии.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - idSegment: Строка, представляющая подкатолог идентификатора фотографии,
+  ///   информацию о которой нужно получить.
+  ///
+  /// - Note: Сюда нужно совершить отдельный запрос так как фотография получаемая
+  ///   в ячейке содержит ограниченную информацию о фотографии.
+  static func preparePhotoInfoAPIRequest(
+    path: String,
+    idSegment: String
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path) else {
+      throw APIError.URLError
+    }
+    let photoInfoURL = url.appending(component: idSegment)
+    let request = prepareURLRequest(url: photoInfoURL)
+    return request
+  }
+  
+  /// Подготавливает запрос для получения профиля пользователя.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - usernameSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
+  static func prepareUserProfileAPIRequest(
+    path: String,
+    usernameSegment: String
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path) else {
+      throw APIError.URLError
+    }
+    let profileURL = url.appending(component: usernameSegment)
+    let request = prepareURLRequest(url: profileURL)
+    return request
+  }
+  
+  /// Подготавливает запрос для получения фотографий которые лайкал пользователь.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - usernameSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
+  ///   - parameters: Параметры запроса, которые будут добавлены к URL.
+  static func prepareUserLikedPhotosAPIRequest(
+    path: String,
+    usernameSegment: String,
+    parameters: Parameters
+  ) throws -> URLRequest {
+    guard let url = prepareURL(from: path, parameters: parameters) else {
+      throw APIError.URLError
+    }
+    let profileURL = url.appending(component: usernameSegment)
     let likedURL = profileURL.appending(component: Const.likesPathComponent)
     let request = prepareURLRequest(url: likedURL)
     return request
   }
   
+  /// Подготавливает запрос для получения случайной фотографии из числа фотографий пользователя.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - parameters: Параметры запроса, которые будут добавлены к URL.
+  /// - Note: Запрашиается вертикальная фотография.
   static func prepareRandomUserPhotoAPIRequest(
     path: String,
-    username: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
@@ -105,34 +165,53 @@ enum PrepareRequest {
     return request
   }
   
+  /// Подготавливает запрос для получения фотографий которые загрузил пользователь.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - usernameSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
+  ///   - parameters: Параметры запроса, которые будут добавлены к URL.
   static func prepareUserPhotosAPIRequest(
     path: String,
-    username: String,
+    usernameSegment: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-    let profileURL = url.appending(component: username)
+    let profileURL = url.appending(component: usernameSegment)
     let photosURL = profileURL.appending(component: Const.photosPathComponent)
     let request = prepareURLRequest(url: photosURL)
     return request
   }
   
+  /// Подготавливает запрос для получения альбомов которые создал пользователь.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - usernameSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
+  ///   - parameters: Параметры запроса, которые будут добавлены к URL.
   static func prepareUserAlbumsAPIRequest(
     path: String,
-    username: String,
+    usernameSegment: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-    let profileURL = url.appending(component: username)
+    let profileURL = url.appending(component: usernameSegment)
     let collectionsURL = profileURL.appending(component: Const.collectionsPathComponent)
     let request = prepareURLRequest(url: collectionsURL)
     return request
   }
   
+  /// Подготавливает общий запрос к API.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь для формирования запроса.
+  ///   - parameters: Параметры, которые будут добавлены к URL запроса.
+  /// - Note: Этот метод может быть использован для получения фотографий,
+  /// альбомов, пользователей, а также для выполнения поисковых запросов по этим категориям.
   static func prepareAPIRequest(
     path: String,
     parameters: Parameters
@@ -145,6 +224,13 @@ enum PrepareRequest {
   }
   
   // MARK: Private Methods
+  /// Подготавливает объект `URLRequest` для заданного URL.
+  ///
+  /// - Parameters:
+  ///   - url: URL для которого будет создан запрос.
+  /// - Returns: Настроенный объект `URLRequest` с заголовками и HTTP-методом.
+  /// - Note: Этот метод устанавливает стандартные заголовки и метод запроса,
+  /// которые могут быть изменены в зависимости от требований API.
   private static func prepareURLRequest(url: URL) -> URLRequest {
     var request = URLRequest(url: url)
     request.allHTTPHeaderFields = prepareHeaders()
@@ -152,6 +238,15 @@ enum PrepareRequest {
     return request
   }
   
+  /// Подготавливает объект `URL` на основе заданного пути и параметров.
+  ///
+  /// - Parameters:
+  ///   - path: Строка, представляющая базовый путь для формирования URL.
+  ///   - parameters: Опциональные параметры, которые будут добавлены к URL (по умолчанию `nil`).
+  /// - Returns: Опциональный объект `URL`, сформированный из заданного пути и параметров,
+  /// или `nil`, если не удалось создать URL.
+  /// - Note: Метод использует вспомогательную функцию `prepareURLComponents`
+  /// для формирования компонентов URL.
   private static func prepareURL(
     from path: String,
     parameters: Parameters? = nil
@@ -165,6 +260,15 @@ enum PrepareRequest {
     }
   }
   
+  /// Подготавливает объект `URLComponents` на основе заданного пути и опциональных параметров.
+  ///
+  /// - Parameters:
+  ///   - path: Строка, представляющая путь для формирования URL.
+  ///   - parameters: Опциональные параметры, которые будут добавлены в
+  ///   качестве `query items` (по умолчанию `nil`).
+  /// - Returns: Объект `URLComponents`, содержащий схему, хост, путь и, при наличии, параметры запроса.
+  /// - Note: Метод использует вспомогательную функцию `prepareQueryItems`
+  /// для преобразования параметров в формат `query items.
   private static func prepareURLComponents(
     from path: String,
     parameters: Parameters? = nil
@@ -179,6 +283,14 @@ enum PrepareRequest {
     return components
   }
   
+  /// Подготавливает массив `URLQueryItem` на основе заданных параметров.
+  ///
+  /// - Parameters:
+  ///   - parameters: Словарь параметров, где ключи
+  ///   представляют имена параметров, а значения — их значения.
+  ///   - Returns: Массив объектов `URLQueryItem`, соответствующих заданным параметрам.
+  ///   - Note: Метод используется для преобразования параметров в формат,
+  /// подходящий для добавления в URL в качестве query items.
   private static func prepareQueryItems(
     parameters: Parameters
   ) -> [URLQueryItem] {
@@ -188,6 +300,12 @@ enum PrepareRequest {
     }
   }
   
+  /// Подготавливает заголовки для HTTP-запроса.
+  ///
+  /// - Returns: Словарь `Parameters`, содержащий заголовки для запроса,
+  /// включая авторизационные данные.
+  /// - Note: Метод устанавливает ключи заголовков, используя константы для ключа и
+  /// идентификатора клиента, а также добавляет токен доступа для авторизации.
   private static func prepareHeaders() -> Parameters {
     var headers: Parameters = [:]
     headers[Const.headerKey] = Const.сlientID + Authorization.accessKey

@@ -7,10 +7,16 @@
 
 import Foundation
 
+/// Протокол, определяющий функциональность для выполнения сетевых запросов.
 protocol Requestable {
-  func request<T>(
+  /// Выполняет асинхронный сетевой запрос и возвращает декодированные данные.
+  ///
+  /// - Parameters:
+  ///   - request: `URLRequest`, содержащий параметры запроса (URL, метод, заголовки и т. д.).
+  ///   - type: Тип данных, который будет декодирован из ответа сервера.
+  ///   Этот тип должен соответствовать протоколу `Decodable`.
+  func request<T: Decodable>(
     request: URLRequest,
     type: T.Type
   ) async throws -> T
-  where T: Decodable
 }

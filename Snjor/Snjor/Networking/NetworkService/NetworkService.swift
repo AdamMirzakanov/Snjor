@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Служба сети, которая отвечает за выполнение запросов.
 struct NetworkService {
   // MARK: Internal Properties
   let session: URLSession

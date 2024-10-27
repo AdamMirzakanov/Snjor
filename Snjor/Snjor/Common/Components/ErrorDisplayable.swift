@@ -10,7 +10,34 @@ import UIKit
 fileprivate typealias Const = ErrorDisplayableConst
 
 protocol ErrorDisplayable: AnyObject {
+  /// Метод `showError(error:navigationController:)` отображает сообщение об ошибке,
+  /// если в данный момент не существует другого сообщения об ошибке.
+  ///
+  /// Параметры:
+  /// - `error`: строка, представляющая сообщение об ошибке, которое нужно отобразить.
+  /// - `navigationController`: опциональный объект `UINavigationController`,
+  ///   который может быть использован для управления навигацией при показе ошибки.
+  ///
+  /// Логика работы:
+  /// - Метод проверяет, существует ли уже активное сообщение об ошибке с помощью
+  ///    свойства `doesNotExistAnotherError`. Если активное сообщение об ошибке есть,
+  ///    выполнение метода прекращается.
+  /// - Если активного сообщения об ошибке нет, вызывается метод `configureError`,
+  ///    который настраивает отображение ошибки с переданными параметрами.
   func showError(error: String, navigationController: UINavigationController?)
+  
+  /// Метод `hideError()` скрывает отображаемое сообщение об ошибке,
+  /// если оно существует в родительском представлении.
+  ///
+  /// Логика работы:
+  /// - Метод ищет представление с тегом,
+  ///    в родительском представлении `parentView`.
+  ///    Если представление с таким тегом найдено, оно сохраняется в переменной `foundView`.
+  /// - Если `foundView` существует, запускается анимация изменения прозрачности
+  ///    с продолжительностью, определенной в `Const.hideErrorAnimateDuration`.
+  ///    Прозрачность представления устанавливается в `zero`, что делает его невидимым.
+  /// - После завершения анимации вызывается замыкание, в котором `foundView`
+  ///    удаляется из иерархии представлений с помощью метода `removeFromSuperview()`.
   func hideError()
 }
 
@@ -40,14 +67,45 @@ extension ErrorDisplayable where Self: UIViewController {
   }
   
   // MARK: Private Methods
+  /// Свойство `doesNotExistAnotherError` проверяет, существует ли уже
+  /// отображаемое сообщение об ошибке в родительском представлении.
+  ///
+  /// Логика работы:
+  /// - Свойство возвращает `true`, если в родительском представлении `parentView`
+  ///   не найдено представление с тегом, определенным в `Const.tagIdentifierError`.
+  ///   Это означает, что в текущий момент нет активного сообщения об ошибке.
+  /// - Если представление с таким тегом существует, свойство возвращает `false`,
+  ///   указывая на то, что сообщение об ошибке уже активно.
   private var doesNotExistAnotherError: Bool {
     parentView.viewWithTag(Const.tagIdentifierError) == nil
   }
   
+  /// Свойство `parentView` возвращает родительское представление,
+  /// которое используется для отображения сообщений об ошибках.
   private var parentView: UIView {
     return view
   }
   
+  /// Метод `configureError(error:navigationController:)` настраивает и отображает
+  /// сообщение об ошибке в родительском представлении.
+  ///
+  /// Параметры:
+  /// - `error`: строка, содержащая текст сообщения об ошибке,
+  ///   которое будет отображено пользователю.
+  /// - `navigationController`: опциональный объект `UINavigationController`,
+  ///   который может использоваться для управления навигацией, если это необходимо.
+  ///
+  /// Логика работы:
+  /// - Создается новый контейнер `containerView` типа `UIView`, который будет использоваться
+  ///   для отображения сообщения об ошибке.
+  /// - Тег контейнера устанавливается в значение, определенное в `Const.tagIdentifierError`,
+  ///   что позволяет легко идентифицировать его позже.
+  /// - Контейнер добавляется в родительское представление `parentView`,
+  ///   занимая всю доступную область с помощью метода `fillSuperView()`.
+  /// - Фоновый цвет контейнера устанавливается в черныйю
+  /// - Метод `addErrorViewToContainer` вызывается для добавления
+  ///   конкретного представления ошибки в контейнер с передачей параметров `error`
+  ///   и `navigationController`, чтобы настроить его внешний вид и поведение.
   private func configureError(
     error: String,
     navigationController: UINavigationController? = nil
@@ -64,6 +122,7 @@ extension ErrorDisplayable where Self: UIViewController {
     )
   }
   
+  /// Метод создает и настраивает изображения для отображения ошибки.
   private func createErrorImageView() -> UIImageView {
     let errorImageView = UIImageView()
     errorImageView.contentMode = .scaleAspectFill
@@ -77,6 +136,7 @@ extension ErrorDisplayable where Self: UIViewController {
     return errorImageView
   }
   
+  /// Метод создает и  метку для отображения кода ошибки.
   private func createErrorCodeLabel() -> UILabel {
     let errorCodeLabel = UILabel()
     errorCodeLabel.textAlignment = .center
@@ -85,6 +145,7 @@ extension ErrorDisplayable where Self: UIViewController {
     return errorCodeLabel
   }
   
+  /// Метод создает и настраивает метку для отображения сообщения об ошибке.
   private func createErrorLabel() -> UILabel {
     let errorLabel = UILabel()
     errorLabel.textColor = .white
@@ -97,6 +158,7 @@ extension ErrorDisplayable where Self: UIViewController {
     return errorLabel
   }
   
+  /// Метод создает и настраивает метку для отображения дополнительных деталей ошибки.
   private func createErrorDetailLabel() -> UILabel {
     let errorDetailLabel = UILabel()
     errorDetailLabel.textColor = .white
@@ -109,6 +171,15 @@ extension ErrorDisplayable where Self: UIViewController {
     return errorDetailLabel
   }
   
+  /// Метод создает и настраивает кнопку закрытия, которая позволяет
+  /// пользователю закрыть текущее представление.
+  ///
+  /// Параметры:
+  /// - `navigationController`: Опциональный объект `UINavigationController`,
+  ///   который используется для навигации при закрытии текущего представления.
+  /// - `closeIconImageView`: Изображение значка, которое будет отображаться
+  ///   на кнопке закрытия.
+  /// - `closeIconBAckgroundView`: Фоновое представление для значка закрытия.
   private func createCloseButton(
     navigationController: UINavigationController? = nil,
     closeIconImageView: UIImageView,
@@ -126,6 +197,7 @@ extension ErrorDisplayable where Self: UIViewController {
         icon: closeIconImageView,
         iconBackground: closeIconBAckgroundView
       )
+      // небольшая задержка, для того что бы анимация кнопки успела визуализироваться
       DispatchQueue.main.asyncAfter(
         deadline: .now() + Const.navigationPopDelay
       ) {
@@ -138,6 +210,7 @@ extension ErrorDisplayable where Self: UIViewController {
     return closeButton
   }
   
+  /// Метод создает и настраивает фоновое представление (светоло-серая подложка) для значка закрытия.
   private func createCloseIconBackgroundView() -> UIView {
     let closeIconBAckgroundView = UIView()
     closeIconBAckgroundView.isUserInteractionEnabled = false
@@ -151,6 +224,7 @@ extension ErrorDisplayable where Self: UIViewController {
     return closeIconBAckgroundView
   }
   
+  /// Метод создает и настраивает иконку значка закрытия.
   private func createCloseIconImageView() -> UIImageView {
     let closeIconImageView = UIImageView()
     closeIconImageView.isUserInteractionEnabled = false
@@ -239,6 +313,31 @@ extension ErrorDisplayable where Self: UIViewController {
     errorImageView.tintColor = errorInfo.tintColor
   }
   
+  /// Метод добавляет представление ошибки в указанный контейнер.
+  ///
+  /// Параметры:
+  /// - `containerView`: `UIView`, в который будет добавлено представление ошибки.
+  /// - `error`: `String`, сообщение об ошибке, которое нужно отобразить.
+  /// - `navigationController`: `UINavigationController?`, опциональный навигационный контроллер
+  /// для обработки навигации при нажатии на кнопку закрытия.
+  ///
+  /// Логика работы:
+  /// - Создает все необходимые элементы для отображения ошибки, включая :
+  ///   - `errorImageView`,
+  ///   - `errorCodeLabel`,
+  ///   - `errorLabel`,
+  ///   - `errorDetailLabel`,
+  ///   - `closeButton`,
+  ///   - `closeIconBackgroundView`
+  ///   - `closeIconImageView`,
+  /// - Создает стек-вью `errorStackView`, который включает в себя все элементы для отображения
+  ///    информации об ошибке, а также основной стек-вью `mainStackView`, который включает
+  ///    `errorStackView` и кнопку закрытия.
+  /// - Добавляет `mainStackView` в `containerView` и
+  /// `closeIconImageView` в `closeIconBackgroundView`.
+  /// - Настраивает ограничения для всех элементов, чтобы правильно расположить их на экране.
+  /// - Получает код ошибки из `APIError.statusCode` и настраивает текстовые метки ошибок,
+  /// используя метод `configureErrorLabels`.
   private func addErrorViewToContainer(
     containerView: UIView,
     error: String,
@@ -292,6 +391,27 @@ extension ErrorDisplayable where Self: UIViewController {
   }
   
   // MARK: Handle Error
+  /// Метод `getErrorInfo(for:error:)` возвращает информацию об ошибке на основе кода состояния.
+  ///
+  /// Параметры:
+  /// - `code`: `Int`, код состояния ошибки.
+  /// - `error`: `String`, сообщение об ошибке.
+  ///
+  /// Возвращает кортеж с информацией об ошибке, включая:
+  /// - `title`: `String`, заголовок ошибки, форматированный с использованием кода состояния.
+  /// - `color`: `UIColor`, цвет, ассоциированный с ошибкой.
+  /// - `message`: `String`, общее сообщение об ошибке.
+  /// - `detail`: `String`, детальное сообщение об ошибке.
+  /// - `image`: `UIImage?`, изображение, ассоциированное с ошибкой.
+  /// - `tintColor`: `UIColor`, цвет для оттенка, связанного с изображением.
+  ///
+  /// Логика работы:
+  /// - В зависимости от значения `code`, метод выбирает
+  /// соответствующие параметры для возвращаемого кортежа.
+  /// - Для каждого известного кода состояния (например, 404, 403, 500)
+  /// возвращаются специфичные сообщения, цвета и изображения.
+  /// - Если код состояния не распознан, возвращаются стандартные
+  /// значения для заголовка, цвета и сообщения.
   private func getErrorInfo(
     for code: Int,
     error: String

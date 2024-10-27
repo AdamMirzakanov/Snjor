@@ -6,6 +6,6 @@
 //
 
 enum API: String {
-  case scheme = "https"
+  case https = "https"
   case host = "api.unsplash.com"
 }
