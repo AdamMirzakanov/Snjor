@@ -7,28 +7,44 @@
 
 import Foundation
 
+/// Менеджер для работы с UserDefaults, обеспечивающий сохранение и
+/// восстановление данных различных типов.
+/// - Конформит к `StorageManagerProtocol` для предоставления
+/// необходимого функционала хранения данных.
 final class StorageManager {
+  
   // MARK: Public Enum
+  /// Перечисление, представляющее ключи для доступа к сохранённым данным.
   public enum Key: String {
+    
+    /// Ключ для ориентации фотографии.
     case photoOrientationKey
+    /// Ключ для индекса сегмента ориентации фотографии.
     case photoOrientationSegmentIndexKey
     
+    /// Ключ для индекса сегмента сортировки фотографий.
     case sortingPhotosSegmentIndexKey
+    /// Ключ для параметров сортировки фотографий.
     case sortingPhotosKey
     
+    /// Ключ для выбранной кнопки круга.
     case selectedCircleButtonKey
+    /// Ключ для индекса выбранной кнопки круга.
     case selectedCircleButtonIndexKey
   }
   
   // MARK: Private Properties
+  /// Стандартный экземпляр `UserDefaults` для хранения данных.
   private let userDefaults = UserDefaults.standard
   
+  /// Асинхронно сохраняет объект по указанному ключу.
   private func store(_ object: Any?, key: String) {
     DispatchQueue.global(qos: .userInteractive).async {
       self.userDefaults.set(object, forKey: key)
     }
   }
   
+  /// Восстанавливает объект по указанному ключу.
   private func restore(forKey key: String) -> Any? {
     userDefaults.object(forKey: key)
   }
@@ -36,6 +52,8 @@ final class StorageManager {
 
 // MARK: - StorageManagerProtocol
 extension StorageManager: StorageManagerProtocol {
+  
+  // MARK: Store Object
   func set(_ object: Any?, forKey key: Key) {
     store(object, key: key.rawValue)
   }
@@ -45,6 +63,7 @@ extension StorageManager: StorageManagerProtocol {
     store(jsonData, key: key.rawValue)
   }
   
+  // MARK: Restore Object
   func int(forKey key: Key) -> Int? {
     restore(forKey: key.rawValue) as? Int
   }
@@ -76,6 +95,7 @@ extension StorageManager: StorageManagerProtocol {
     return try? JSONDecoder().decode(T.self, from: data)
   }
   
+  // MARK: Remove Object
   func remove(forKey key: Key) {
     userDefaults.removeObject(forKey: key.rawValue)
   }

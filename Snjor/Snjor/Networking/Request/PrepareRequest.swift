@@ -49,20 +49,20 @@ enum PrepareRequest {
   ///
   /// - Parameters:
   ///   - path: Базовый путь для формирования запроса.
-  ///   - idSegment: Строка, представляющая подкатолог идентификатора топика.
-  ///   - pohtosSegment: Строка, представляющая подкаталог для фотографий.
+  ///   - idPathSegment: Строка, представляющая подкатолог идентификатора топика.
+  ///   - pohtosPathSegment: Строка, представляющая подкаталог для фотографий.
   ///   - parameters: Параметры запроса, которые будут добавлены к URL.
   static func prepareTopicPhotosAPIRequest(
     path: String,
-    idSegment: String,
-    photosSegment: String,
+    idPathSegment: String,
+    photosPathSegment: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-    let topicsIdURL = url.appending(path: idSegment)
-    let topicsPhotosURL = topicsIdURL.appending(path: photosSegment)
+    let topicsIdURL = url.appending(path: idPathSegment)
+    let topicsPhotosURL = topicsIdURL.appending(path: photosPathSegment)
     let request = prepareURLRequest(url: topicsPhotosURL)
     return request
   }
@@ -71,20 +71,20 @@ enum PrepareRequest {
   ///
   /// - Parameters:
   ///   - path: Базовый путь для формирования запроса.
-  ///   - idSegment: Строка, представляющая подкатолог идентификатора альбома.
-  ///   - pohtosSegment: Строка, представляющая подкаталог для фотографий альбома.
+  ///   - idPathSegment: Строка, представляющая подкатолог идентификатора альбома.
+  ///   - pohtosPathSegment: Строка, представляющая подкаталог для фотографий альбома.
   ///   - parameters: Параметры запроса, которые будут добавлены к URL.
   static func prepareAlbumPhotosAPIRequest(
     path: String,
-    idSegment: String,
-    phtosSegment: String,
+    idPathSegment: String,
+    phtosPathSegment: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-    let albumIdURL = url.appending(path: idSegment)
-    let albumPhotosURL = albumIdURL.appending(path: phtosSegment)
+    let albumIdURL = url.appending(path: idPathSegment)
+    let albumPhotosURL = albumIdURL.appending(path: phtosPathSegment)
     let request = prepareURLRequest(url: albumPhotosURL)
     return request
   }
@@ -93,19 +93,19 @@ enum PrepareRequest {
   ///
   /// - Parameters:
   ///   - path: Базовый путь для формирования запроса.
-  ///   - idSegment: Строка, представляющая подкатолог идентификатора фотографии,
+  ///   - idPathSegment: Строка, представляющая подкатолог идентификатора фотографии,
   ///   информацию о которой нужно получить.
   ///
   /// - Note: Сюда нужно совершить отдельный запрос так как фотография получаемая
   ///   в ячейке содержит ограниченную информацию о фотографии.
   static func preparePhotoInfoAPIRequest(
     path: String,
-    idSegment: String
+    idPathSegment: String
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path) else {
       throw APIError.URLError
     }
-    let photoInfoURL = url.appending(component: idSegment)
+    let photoInfoURL = url.appending(component: idPathSegment)
     let request = prepareURLRequest(url: photoInfoURL)
     return request
   }
@@ -114,15 +114,15 @@ enum PrepareRequest {
   ///
   /// - Parameters:
   ///   - path: Базовый путь для формирования запроса.
-  ///   - usernameSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
+  ///   - usernamePathSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
   static func prepareUserProfileAPIRequest(
     path: String,
-    usernameSegment: String
+    usernamePathSegment: String
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path) else {
       throw APIError.URLError
     }
-    let profileURL = url.appending(component: usernameSegment)
+    let profileURL = url.appending(component: usernamePathSegment)
     let request = prepareURLRequest(url: profileURL)
     return request
   }
@@ -131,17 +131,17 @@ enum PrepareRequest {
   ///
   /// - Parameters:
   ///   - path: Базовый путь для формирования запроса.
-  ///   - usernameSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
+  ///   - usernamePathSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
   ///   - parameters: Параметры запроса, которые будут добавлены к URL.
   static func prepareUserLikedPhotosAPIRequest(
     path: String,
-    usernameSegment: String,
+    usernamePathSegment: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-    let profileURL = url.appending(component: usernameSegment)
+    let profileURL = url.appending(component: usernamePathSegment)
     let likedURL = profileURL.appending(component: Const.likesPathComponent)
     let request = prepareURLRequest(url: likedURL)
     return request
@@ -169,17 +169,17 @@ enum PrepareRequest {
   ///
   /// - Parameters:
   ///   - path: Базовый путь для формирования запроса.
-  ///   - usernameSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
+  ///   - usernamePathSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
   ///   - parameters: Параметры запроса, которые будут добавлены к URL.
   static func prepareUserPhotosAPIRequest(
     path: String,
-    usernameSegment: String,
+    usernamePathSegment: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-    let profileURL = url.appending(component: usernameSegment)
+    let profileURL = url.appending(component: usernamePathSegment)
     let photosURL = profileURL.appending(component: Const.photosPathComponent)
     let request = prepareURLRequest(url: photosURL)
     return request
@@ -189,17 +189,17 @@ enum PrepareRequest {
   ///
   /// - Parameters:
   ///   - path: Базовый путь для формирования запроса.
-  ///   - usernameSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
+  ///   - usernamePathSegment: Строка, представляющая подкаталог, представляющий имя пользователя.
   ///   - parameters: Параметры запроса, которые будут добавлены к URL.
   static func prepareUserAlbumsAPIRequest(
     path: String,
-    usernameSegment: String,
+    usernamePathSegment: String,
     parameters: Parameters
   ) throws -> URLRequest {
     guard let url = prepareURL(from: path, parameters: parameters) else {
       throw APIError.URLError
     }
-    let profileURL = url.appending(component: usernameSegment)
+    let profileURL = url.appending(component: usernamePathSegment)
     let collectionsURL = profileURL.appending(component: Const.collectionsPathComponent)
     let request = prepareURLRequest(url: collectionsURL)
     return request

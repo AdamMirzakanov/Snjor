@@ -134,7 +134,7 @@ enum RequestController {
   static func photoDetailRequest(photo: Photo) throws -> URLRequest {
     let path = photos.rawValue
     let id = photo.id
-    let request = try PrepareRequest.preparePhotoInfoAPIRequest(    path: path, idSegment: id)
+    let request = try PrepareRequest.preparePhotoInfoAPIRequest(    path: path, idPathSegment: id)
     return request
   }
   
@@ -154,7 +154,7 @@ enum RequestController {
     let username = user.username
     let request = try PrepareRequest.prepareUserProfileAPIRequest(
       path: path,
-      usernameSegment: username
+      usernamePathSegment: username
     )
     return request
   }
@@ -177,7 +177,7 @@ enum RequestController {
     let parameters = PrepareParameters.prepareUserLikedPhotosParameters()
     let request = try PrepareRequest.prepareUserLikedPhotosAPIRequest(
       path: path,
-      usernameSegment: username, 
+      usernamePathSegment: username, 
       parameters: parameters
     )
     return request
@@ -201,7 +201,7 @@ enum RequestController {
     let parameters = PrepareParameters.prepareUserPhotosParameters()
     let request = try PrepareRequest.prepareUserPhotosAPIRequest(
       path: path,
-      usernameSegment: username,
+      usernamePathSegment: username,
       parameters: parameters
     )
     return request
@@ -225,7 +225,7 @@ enum RequestController {
     let parameters = PrepareParameters.prepareUserAlbumsParameters()
     let request = try PrepareRequest.prepareUserAlbumsAPIRequest(
       path: path,
-      usernameSegment: username,
+      usernamePathSegment: username,
       parameters: parameters
     )
     return request
@@ -273,8 +273,8 @@ enum RequestController {
     let parameters = PrepareParameters.preparePhotosParameters()
     let request = try PrepareRequest.prepareTopicPhotosAPIRequest(
           path: topicsPath,
-      idSegment: id,
-      photosSegment: photosPath,
+      idPathSegment: id,
+      photosPathSegment: photosPath,
       parameters: parameters
     )
     return request
@@ -299,8 +299,8 @@ enum RequestController {
     let parameters = PrepareParameters.preparePhotosParameters()
     let request = try PrepareRequest.prepareAlbumPhotosAPIRequest(
           path: albumsPath,
-      idSegment: id,
-      phtosSegment: photosPath,
+      idPathSegment: id,
+      phtosPathSegment: photosPath,
       parameters: parameters
     )
     return request
