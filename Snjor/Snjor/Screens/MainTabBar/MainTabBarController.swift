@@ -9,12 +9,16 @@ import UIKit
 
 fileprivate typealias Const = MainTabBarControllerConst
 
+/// `MainTabBarController` является кастомным таб-бар контроллером, который управляет
+/// пользовательским интерфейсом навигации между основными экранами приложения.
+/// В этом классе реализованы методы для отображения и скрытия кастомного таб-бара,
+/// а также управления его состоянием.
 final class MainTabBarController: UITabBarController {
   
   // MARK: Private Properties
-  private var selected: Int = .zero
+  private var selected: Int = .zero // Индекс выбранной вкладки
   
-  // Buttons
+  // Кнопки таб-бара
   private lazy var photosButton = getButton(
     icon: Const.photosButtonIcon,
     tag: Const.photoListButtonTag,
@@ -34,6 +38,7 @@ final class MainTabBarController: UITabBarController {
     action: action
   )
   
+  // Действие, выполняемое при нажатии на кнопку
   private lazy var action = UIAction { [weak self] sender in
     guard
       let sender = sender.sender as? UIButton,
@@ -41,9 +46,9 @@ final class MainTabBarController: UITabBarController {
     else {
       return
     }
-    self.selectedIndex = sender.tag
+    self.selectedIndex = sender.tag     // Апдейт выбранного индекса
     self.selected = self.selectedIndex
-    self.setOpacity(tag: sender.tag)
+    self.setOpacity(tag: sender.tag)    // Задать прозрачность кнопок
   }
   
   // MARK: Views
@@ -58,11 +63,11 @@ final class MainTabBarController: UITabBarController {
       height: Const.customBarHeight
     )
     $0.layer.cornerRadius = $0.bounds.height / 2
-    $0.addArrangedSubview(UIView())
+    $0.addArrangedSubview(UIView())       // Распорка слева
     $0.addArrangedSubview(photosButton)
     $0.addArrangedSubview(searchButton)
     $0.addArrangedSubview(settingsButton)
-    $0.addArrangedSubview(UIView())
+    $0.addArrangedSubview(UIView())       // Распорка справа
     return $0
   }(UIStackView())
   
@@ -105,7 +110,8 @@ final class MainTabBarController: UITabBarController {
     defaultTabBarConfigurations()
   }
   
-  // MARK: Internal  Methods
+  // MARK: Internal Methods
+  /// Скрывает кастомный таб-бар с анимацией.
   func hideCustomTabBar() {
     UIView.animate(withDuration: Const.hideTabBarAnimationDuration) {
       self.customBar.transform = CGAffineTransform(
@@ -123,6 +129,7 @@ final class MainTabBarController: UITabBarController {
     }
   }
   
+  /// Показывает кастомный таб-бар с анимацией.
   func showCustomTabBar() {
     UIView.animate(withDuration: Const.hideTabBarAnimationDuration) {
       self.customBar.transform = .identity
@@ -141,9 +148,17 @@ final class MainTabBarController: UITabBarController {
   }
   
   private func defaultTabBarConfigurations() {
-    tabBar.isHidden = true
+    tabBar.isHidden = true // Скрыть стандартный таб-бар
   }
   
+  /// Создает кнопку с заданным иконкой, тегом и действием.
+  ///
+  /// - Parameters:
+  ///   - icon: Имя изображения для иконки кнопки (сторонние иконки добавлены в ресурсы).
+  ///   - tag: Тег кнопки, используемый для определения выбранного индекса.
+  ///   - action: Действие, выполняемое при нажатии на кнопку.
+  ///   - opacity: Прозрачность кнопки (по умолчанию `defaultOpacity`).
+  /// - Returns: Настроенная кнопка.
   private func getButton(
     icon: String,
     tag: Int,
@@ -161,6 +176,9 @@ final class MainTabBarController: UITabBarController {
     }(UIButton(primaryAction: action))
   }
   
+  /// Устанавливает прозрачность кнопок в зависимости от выбранного тега.
+  ///
+  /// - Parameter tag: Текущий тег выбранной кнопки.
   private func setOpacity(tag: Int) {
     [
       photosButton,
