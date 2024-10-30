@@ -9,6 +9,8 @@ import UIKit
 
 fileprivate typealias Const = LayoutProviderConst
 
+/// `LayoutProvider` отвечает за предоставление
+/// композитных макетов для коллекционных представлений в приложении..
 struct LayoutProvider {
   // MARK: Private Properties
   private let albumsLayoutFactory = AlbumsLayoutFactory()

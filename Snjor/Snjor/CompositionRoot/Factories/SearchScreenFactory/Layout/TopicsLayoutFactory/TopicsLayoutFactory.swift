@@ -9,6 +9,8 @@ import UIKit
 
 fileprivate typealias Const = TopicsLayoutFactoryConst
 
+/// `TopicsLayoutFactory` отвечает за создание
+/// композитных макетов раздела Топиков для коллекционных представлений.
 struct TopicsLayoutFactory {
   // MARK: Internal Methods
   func createTopicLayout() -> NSCollectionLayoutSection {

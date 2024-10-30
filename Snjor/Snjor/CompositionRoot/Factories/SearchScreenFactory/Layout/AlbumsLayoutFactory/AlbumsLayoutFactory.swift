@@ -9,6 +9,8 @@ import UIKit
 
 fileprivate typealias Const = AlbumsLayoutFactoryConst
 
+/// `AlbumsLayoutFactory` отвечает за создание
+/// композитных макетов альбомов для коллекционных представлений.
 struct AlbumsLayoutFactory {
   // MARK: Internal Methods
   func createAlbumLayout() -> NSCollectionLayoutSection {
