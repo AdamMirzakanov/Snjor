@@ -7,7 +7,17 @@
 
 import Combine
 
+/// Протокол `BaseViewModelProtocol` определяет основные
+/// свойства и методы для базовых `ViewModel`.
+///
+/// Протокол включает состояние и метод, вызываемый при загрузке представления.
 protocol BaseViewModelProtocol {
-  var state: PassthroughSubject <StateController, Never> { get }
+  // MARK: - Internal Properties
+  /// Свойство, представляющее состояние ViewModel через `PassthroughSubject`.
+  var state: PassthroughSubject<StateController, Never> { get }
+  
+  // MARK: - Internal Methods
+  /// Метод, вызываемый при загрузке представления (например, для инициализации данных).
   func viewDidLoad()
 }
+

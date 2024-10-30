@@ -8,7 +8,6 @@
 import Foundation
 
 /// Протокол, который определяет свойство, предоставляющее URL для загрузки.
-///
 protocol Downloadable {
   /// `URL`, по которому можно загрузить ресурс.
   var downloadURL: URL? { get }

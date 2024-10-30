@@ -2846,8 +2846,6 @@
 		6637693A2C457530006AB620 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				378B83792C862BDF001463FE /* BaseViewModel */,
-				378B83762C862BA5001463FE /* SearchViewModel */,
 				378B83752C862B99001463FE /* DiscoverViewModel */,
 				378B83742C862B91001463FE /* AlbumsViewModel */,
 				37AF3C432C90EB550048FB9C /* UserProfileViewModel */,
@@ -2859,6 +2857,8 @@
 				378B83722C862B81001463FE /* TopicsViewModel */,
 				378B83712C862B73001463FE /* TopicPhotosViewModel */,
 				378B836E2C862B42001463FE /* PhotoDetailViewModel */,
+				378B83762C862BA5001463FE /* SearchViewModel */,
+				378B83792C862BDF001463FE /* BaseViewModel */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3121,14 +3121,14 @@
 			children = (
 				3701F2472CB5DF150071E8DE /* SettingsScreenCoordinator */,
 				37AF3C532C91BF880048FB9C /* UserProfileCoordinator */,
-				376785A62C8CAE1E009B9BA6 /* MainTabBarCoordinator */,
-				376785A72C8CAE26009B9BA6 /* AppCoordinator */,
 				376785A82C8CAE2D009B9BA6 /* PhotoDetailCoordinator */,
 				376785A92C8CAE3E009B9BA6 /* TopicPhotosCoordinator */,
 				376785AA2C8CAE4C009B9BA6 /* TopicsPageCoordinator */,
 				376785AB2C8CAE55009B9BA6 /* AlbumPhotosCoordinator */,
 				376785AC2C8CAE5D009B9BA6 /* SearchScreenCoordinator */,
 				376785AD2C8CAE65009B9BA6 /* SearchResultScreenCoordinator */,
+				376785A62C8CAE1E009B9BA6 /* MainTabBarCoordinator */,
+				376785A72C8CAE26009B9BA6 /* AppCoordinator */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -3155,8 +3155,6 @@
 			children = (
 				3701F2422CB5DED20071E8DE /* SettingsScreenFactory */,
 				37AF3C4E2C91BA530048FB9C /* UserProfileFactory */,
-				37A502BF2C6E48FB000221D1 /* AppFactory */,
-				37A502BE2C6E48D0000221D1 /* MainTabBarFactory */,
 				37A502BD2C6E48C7000221D1 /* PhotoDetailFactory */,
 				37A502BC2C6E48BD000221D1 /* PageScreenFactory */,
 				3770E14F2C70A9890017ECBB /* TopicPhotosFactory */,
@@ -3164,6 +3162,8 @@
 				37A502BB2C6E48B3000221D1 /* PageScreenTopicPhotosFactory */,
 				37B203F82C7697E40017E231 /* SearchResultScreenFactory */,
 				37A502BA2C6E4877000221D1 /* SearchScreenFactory */,
+				37A502BE2C6E48D0000221D1 /* MainTabBarFactory */,
+				37A502BF2C6E48FB000221D1 /* AppFactory */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
