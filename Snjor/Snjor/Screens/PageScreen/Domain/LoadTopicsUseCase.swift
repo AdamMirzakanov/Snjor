@@ -18,12 +18,10 @@ protocol LoadTopicsUseCaseProtocol {
 }
 
 // MARK: - Struct
-/// Сценарий использования для загрузки списка тем.
-/// Реализует протокол `LoadTopicsUseCaseProtocol`.
 struct LoadTopicsUseCase: LoadTopicsUseCaseProtocol {
   
   /// Репозиторий, реализующий протокол `LoadTopicsPageRepositoryProtocol`,
-  /// используемый для загрузки тем.
+  /// используемый для загрузки топиков.
   let repository: any LoadTopicsPageRepositoryProtocol
   
   func execute() async -> Result<[Topic], any Error> {
