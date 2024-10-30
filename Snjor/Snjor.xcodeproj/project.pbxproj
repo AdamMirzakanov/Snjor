@@ -2913,14 +2913,14 @@
 			path = ImageDataService;
 			sourceTree = "<group>";
 		};
-		664A511C2C1CE25B003491BA /* Core */ = {
+		664A511C2C1CE25B003491BA /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				664BF2DB2BF65B9B00C9D29E /* Navigable.swift */,
 				664BF2ED2BF6634500C9D29E /* Coordinatable.swift */,
 				664BF2F12BF6676E00C9D29E /* ParentCoordinator.swift */,
 			);
-			path = Core;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		664A511D2C1DCE5B003491BA /* Storage */ = {
@@ -3107,7 +3107,7 @@
 		664BF2DE2BF65BB400C9D29E /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				664A511C2C1CE25B003491BA /* Core */,
+				664A511C2C1CE25B003491BA /* Protocols */,
 				664BF2DF2BF65C5900C9D29E /* Navigation.swift */,
 				664BF2E12BF65D0C00C9D29E /* Navigation + Navigable.swift */,
 				664BF2E32BF65E4E00C9D29E /* Navigation + UIAdaptivePresentationControllerDelegate.swift */,
