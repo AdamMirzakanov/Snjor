@@ -14,7 +14,7 @@ extension PageScreenPhotosViewController: UICollectionViewDelegate {
   ) {
     guard let delegate = delegate else { return }
     let photo = viewModel.getItem(at: indexPath.item)
-    delegate.didSelect(photo)
+    delegate.didSelectCell(photo)
   }
   
   func collectionView(

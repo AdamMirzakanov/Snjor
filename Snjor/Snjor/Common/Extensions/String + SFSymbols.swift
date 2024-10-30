@@ -42,7 +42,6 @@ enum SFSymbol {
   static let heartSlashFillIcon = UIImage(systemName: "heart.slash.fill")
   static let photoSlashIcon = UIImage(systemName: "rectangle.slash.fill")
   static let macroSlashIcon = UIImage(systemName: "camera.macro.slash")
-  static let wifiExclamationmarkIcon = UIImage(systemName: "wifi.exclamationmark")
   static let exclamationmarkLockFillIcon = UIImage(systemName: "exclamationmark.lock.fill")
   static let exclamationmarkIcloudIcon = UIImage(systemName: "exclamationmark.icloud")
   static let ladybugFillIcon = UIImage(systemName: "ladybug.fill")

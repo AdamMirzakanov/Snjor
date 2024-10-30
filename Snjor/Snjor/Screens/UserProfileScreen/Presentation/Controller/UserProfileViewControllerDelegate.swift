@@ -6,7 +6,7 @@
 //
 
 protocol UserProfileViewControllerDelegate: AnyObject {
-  func didSelectLikedPhoto(_ photo: Photo)
+  func didSelectUserLikedPhoto(_ photo: Photo)
   func didSelectUserPhoto(_ photo: Photo)
   func didSelectUserAlbum(_ album: Album)
 }

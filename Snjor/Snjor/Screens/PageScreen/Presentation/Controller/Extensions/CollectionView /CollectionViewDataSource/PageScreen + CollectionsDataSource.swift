@@ -9,8 +9,8 @@ import UIKit
 
 extension PageScreenViewController {
   // MARK: Private Properties
-  private var snapshot: СategoriesSnapshot {
-    var snapshot = СategoriesSnapshot()
+  private var snapshot: TopicsSnapshot {
+    var snapshot = TopicsSnapshot()
     snapshot.appendSections([.main])
     snapshot.appendItems(viewModel.items)
     return snapshot
@@ -18,7 +18,7 @@ extension PageScreenViewController {
   
   // MARK: Internal Methods
   func applySnapshot() {
-    guard let dataSource = categoriesdataSource else { return }
+    guard let dataSource = topicsDataSource else { return }
     dataSource.apply(
       snapshot,
       animatingDifferences: true
@@ -29,7 +29,7 @@ extension PageScreenViewController {
   func createDataSource(
     for collectionView: UICollectionView
   ) {
-    categoriesdataSource = СategoriesDataSource(
+    topicsDataSource = TopicsDataSource(
       collectionView: collectionView
     ) { [weak self] collectionView, indexPath, topicItem in
       return self?.configureCell(

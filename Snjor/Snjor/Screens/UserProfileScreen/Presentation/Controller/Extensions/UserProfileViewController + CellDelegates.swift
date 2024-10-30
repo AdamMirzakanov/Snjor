@@ -10,14 +10,14 @@ import Foundation
 extension UserProfileViewController: FirstCellDelegate {
   func firstCellDidSelectItem(at indexPath: IndexPath) {
     let photo = userLikedPhotosViewModel.getItem(at: indexPath.item)
-    delegate?.didSelectLikedPhoto(photo)
+    delegate?.didSelectUserLikedPhoto(photo)
   }
 }
 
 extension UserProfileViewController: SecondCellDelegate {
   func secondCellDidSelectItem(at indexPath: IndexPath) {
     let photo = userPhotosViewModel.getItem(at: indexPath.item)
-    delegate?.didSelectLikedPhoto(photo)
+    delegate?.didSelectUserLikedPhoto(photo)
   }
 }
 

@@ -10,16 +10,16 @@ import Combine
 
 final class PageScreenViewController: MainViewController<PageScreenRootView> {
   // MARK: Internal Properties
-  var categoriesdataSource: СategoriesDataSource?
+  var topicsDataSource: TopicsDataSource?
   
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
-  private(set) var viewModel: any ContentManagingProtocol <Topic>
+  private(set) var viewModel: any ContentManagingProtocol<Topic>
   private(set) var coordinator: any PageScreenPhotosViewControllerDelegate
   
   // MARK: Initializers
   init(
-    viewModel: any ContentManagingProtocol <Topic>,
+    viewModel: any ContentManagingProtocol<Topic>,
     coordinator: any PageScreenPhotosViewControllerDelegate
   ) {
     self.viewModel = viewModel
@@ -37,7 +37,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     setupDataSource()
     setFirstPage()
     configPageViewController()
-    configCategoryCollectionView()
+    configTopicsCollectionView()
     viewModel.viewDidLoad()
     stateController()
   }
@@ -50,6 +50,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
+    // Обновление индикатора до начальной позиции после изменения расположения подвидов.
     updateIndicatorToInitialPosition()
   }
   
@@ -59,30 +60,51 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   }
   
   // MARK: Internal Methods
+  /// Возвращает контроллер для отображения фотографий определенного топика.
+  /// - Parameters:
+  ///   - index: Индекс топика, для которогор требуется создать контроллер.
+  ///   - delegate: Делегат, реализующий `PageScreenPhotosViewControllerDelegate`.
+  /// - Returns: Контроллер `UIViewController?`, представляющий выбранный топик, или `nil`,
+  /// если индекс выходит за пределы допустимых значений.
   func viewControllerForTopic(
     at index: Int,
     delegate: any PageScreenPhotosViewControllerDelegate
   ) -> UIViewController? {
+    
+    // Проверка, что индекс находится в допустимом диапазоне.
     guard
       index >= .zero,
       index < viewModel.items.count else {
       return nil
     }
     
+    // Получение элемента ViewModel по индексу.
     let topicsPageViewModelItem = viewModel.getViewModelItem(at: index)
+    
+    // Получение объекта топика и фабрики для создания контроллера.
     let topic = topicsPageViewModelItem.item
     let topicPhotoListFactory = PageScreenTopicPhotosFactory(topic: topic)
+    
+    // Получение идентификатора топика.
     let topicID = topicsPageViewModelItem.itemID
+    
+    // Создание контроллера с помощью фабрики.
     let viewController = topicPhotoListFactory.makeController(delegate: coordinator)
     
+    // Проверка, является ли созданный контроллер
+    // типом `PageScreenPhotosViewController`.
     guard let topicPhotoListCollectionViewController = (
       viewController as? PageScreenPhotosViewController
     ) else {
+      // Возврат базового контроллера, если тип не совпал.
       return viewController
     }
     
+    // Настройка свойств контроллера с идентификатором топика и индексом.
     topicPhotoListCollectionViewController.topicID = topicID
     topicPhotoListCollectionViewController.pageIndex = index
+    
+    // Возврат настроенного контроллера.
     return topicPhotoListCollectionViewController
   }
   
@@ -111,12 +133,18 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
       .store(in: &cancellable)
   }
   
+  /// Устанавливает первый экран в качестве текущего для `pageViewController`.
+  /// Метод получает контроллер для первой темы и устанавливает его как первый отображаемый контроллер.
+  /// Если контроллер не удается создать, метод ничего не делает.
   private func setFirstPage() {
-    guard 
+    // Получение контроллера для первой страницы с проверкой на существование.
+    guard
       let firstPage = self.viewControllerForTopic(at: .zero, delegate: coordinator)
     else {
       return
     }
+    
+    // Установка первого контроллера в `pageViewController` с анимацией.
     rootView.pageViewController.setViewControllers(
       [firstPage],
       direction: .forward,
@@ -132,7 +160,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     rootView.backgroundColor = .systemBackground
   }
   
-  private func configCategoryCollectionView() {
+  private func configTopicsCollectionView() {
     rootView.topicsCollectionView.delegate = self
   }
   
@@ -140,13 +168,24 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     self.navigationController?.setNavigationBarHidden(hidden, animated: animated)
   }
   
+  /// Устанавливает индикатор на первую ячейку топика.
+  ///
+  /// Метод находит первую ячейку коллекции и устанавливает индикатор в её положение.
+  /// Если первая ячейка не найдена, метод ничего не делает.
+  /// - Note: Метод следует вызываеть в `viewDidLayoutSubviews()`
+  /// так как в других методах жизненого цикла индикатор при первом запуске проекта может не отобразится
   private func updateIndicatorToInitialPosition() {
+    // Создание `IndexPath` для первого элемента.
     let firstItemIndexPath = IndexPath(item: .zero, section: .zero)
-    guard 
+    
+    // Получение первой ячейки коллекции с проверкой на существование.
+    guard
       let cell = rootView.topicsCollectionView.cellForItem(at: firstItemIndexPath)
     else {
       return
     }
+    
+    // Обновление позиции индикатора для найденной ячейки.
     rootView.topicsCollectionView.updateIndicatorPosition(for: cell)
   }
 }

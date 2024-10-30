@@ -42,20 +42,36 @@ final class PageScreenTopicsCollectionView: UICollectionView {
     super.layoutSubviews()
     updateLineViewAndIndicatorPosition()
   }
-
+  
   // MARK: Internal Methods
+  /// Обновляет позицию индикатора в зависимости от положения указанной ячейки.
+  /// - Parameter cell: Ячейка, для которой необходимо обновить позицию индикатора.
+  ///
+  /// Расчитывает новую позицию индикатора на основе положения ячейки и её размеров.
+  /// Индикатор располагается внизу ячейки, и его высота вычисляется с учетом разрешения дисплея.
   func updateIndicatorPosition(for cell: UICollectionViewCell) {
+    // Получение фрейма ячейки.
     let cellFrame = cell.frame
+    
+    // Толщина индикатора с учетом разрешения дисплея.
     let indicatorHeight: CGFloat = traitCollection.displayScale * Const.indicatorHeightMultiplier
+    
+    // Определение новых координат для индикатора.
     let xPosition = cellFrame.origin.x
     let yPosition = cellFrame.maxY - indicatorHeight
+    
+    // Создание нового фрейма для индикатора.
     let newFrame = CGRect(
       x: xPosition,
       y: yPosition,
       width: cellFrame.width,
       height: indicatorHeight
     )
+    
+    // Проверка, изменилась ли позиция индикатора.
     guard indicatorView.frame != newFrame else { return }
+    
+    // Анимация изменения позиции индикатора.
     animateCellIndicator(indicatorView: indicatorView, newFrame: newFrame)
   }
   
@@ -85,20 +101,32 @@ final class PageScreenTopicsCollectionView: UICollectionView {
     }
   }
   
+  /// Обновляет положение линии и индикатора на основе текущих размеров и состояния представления.
+  ///
+  /// Устанавливает размеры `lineView` в соответствии с высотой индикатора и
+  /// обновляет позицию индикатора, основываясь на выбранной ячейке в коллекции.
+  /// Если нет выбранной ячейки, метод завершает выполнение.
   private func updateLineViewAndIndicatorPosition() {
+    // Высота индикатора с учетом разрешения дисплея.
     let indicatorHeight: CGFloat = Const.indicatorBaseHeight / traitCollection.displayScale
+    
+    // Установка фрейма для `lineView`, который находится внизу представления.
     lineView.frame = CGRect(
       x: .zero,
       y: bounds.height - indicatorHeight,
       width: contentSize.width,
       height: indicatorHeight
     )
+    
+    // Получение индекса выбранной ячейки и самой ячейки.
     guard
       let selectedIndexPath = indexPathsForSelectedItems?.first,
       let cell = cellForItem(at: selectedIndexPath)
     else {
       return
     }
+    
+    // Обновление позиции индикатора для выбранной ячейки.
     updateIndicatorPosition(for: cell)
   }
 }

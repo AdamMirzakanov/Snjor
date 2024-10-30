@@ -85,13 +85,13 @@ final class PageScreenRootView: UIView {
   }
   
   private func setupConstraints() {
-    setupCategoryCollectionViewConstraints()
+    setupTopicsCollectionViewConstraints()
     setupPageViewControllerViewConstraints()
     setupGradientViewConstraints()
     setupAppNameLabelConstraints()
   }
   
-  private func setupCategoryCollectionViewConstraints() {
+  private func setupTopicsCollectionViewConstraints() {
     topicsCollectionView.setConstraints(
       top: safeAreaLayoutGuide.topAnchor,
       right: rightAnchor,

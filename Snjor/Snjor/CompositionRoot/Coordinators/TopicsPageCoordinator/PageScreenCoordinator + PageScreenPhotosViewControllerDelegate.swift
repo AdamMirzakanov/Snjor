@@ -6,7 +6,7 @@
 //
 
 extension PageScreenCoordinator: PageScreenPhotosViewControllerDelegate {
-  func didSelect(_ photo: Photo) {
+  func didSelectCell(_ photo: Photo) {
     let photoDetailCoordinator = factory.makePhotoDetailCoordinator(
       navigation: navigation,
       photo: photo,

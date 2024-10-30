@@ -430,7 +430,7 @@ extension ErrorDisplayable where Self: UIViewController {
         color: Const.orangeColor,
         message: error,
         detail: Const.error404Message,
-        image: SFSymbol.wifiExclamationmarkIcon,
+        image: SFSymbol.ladybugFillIcon,
         tintColor: Const.orangeColor
       )
     case Const.statusCode403:

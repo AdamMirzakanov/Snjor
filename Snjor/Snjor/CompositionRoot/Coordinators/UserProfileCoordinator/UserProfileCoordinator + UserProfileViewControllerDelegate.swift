@@ -6,7 +6,7 @@
 //
 
 extension UserProfileCoordinator: UserProfileViewControllerDelegate {
-  func didSelectLikedPhoto(_ photo: Photo) {
+  func didSelectUserLikedPhoto(_ photo: Photo) {
     let coordinator = factory.makePhotoDetailCoordinator(
       photo: photo,
       navigation: navigation,

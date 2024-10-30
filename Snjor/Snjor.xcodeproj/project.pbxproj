@@ -1999,7 +1999,7 @@
 		37A502802C6B8044000221D1 /* Segments */ = {
 			isa = PBXGroup;
 			children = (
-				37DABC462C6AA199009044D4 /* Photos */,
+				37DABC462C6AA199009044D4 /* Discover */,
 				37A5029B2C6BA099000221D1 /* Topics & Albums */,
 				37DABC482C6AA1A8009044D4 /* Users */,
 			);
@@ -2585,13 +2585,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		37DABC462C6AA199009044D4 /* Photos */ = {
+		37DABC462C6AA199009044D4 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
 				667A598D2C1EF69700FE4985 /* Views */,
 				66BE9C5E2C1F10C30006011A /* Layout */,
 			);
-			path = Photos;
+			path = Discover;
 			sourceTree = "<group>";
 		};
 		37DABC472C6AA1A1009044D4 /* Albums */ = {

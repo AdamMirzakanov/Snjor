@@ -16,7 +16,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any TopicPhotosViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any ContentManagingProtocol <Photo>
+  private(set) var viewModel: any ContentManagingProtocol<Photo>
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
