@@ -6,12 +6,22 @@
 //
 
 // MARK: - Protocol
+/// Протокол, определяющий функциональность для загрузки списка юзеров по поисковому запросу.
 protocol LoadSearchUsersUseCaseProtocol {
+  
+  /// Асинхронная функция, выполняющая загрузку фотографий.
+  ///
+  /// - Parameter searchTerm: Текст поискового запроса.
+  /// - Returns: Возвращает результат типа `Result<[User], any Error>`,
+  /// содержащий массив объектов `[User]` в случае успеха или ошибку в случае неудачи.
   func execute(with searchTerm: String) async -> Result<[User], any Error>
 }
 
 // MARK: - Struct
 struct LoadSearchUsersUseCase: LoadSearchUsersUseCaseProtocol {
+  
+  /// Репозиторий, реализующий протокол `LoadSearchUsersRepositoryProtocol`,
+  /// используемый для загрузки списка фотографий по поисковому запросу.
   let repository: any LoadSearchUsersRepositoryProtocol
   
   func execute(with searchTerm: String) async -> Result<[User], any Error> {

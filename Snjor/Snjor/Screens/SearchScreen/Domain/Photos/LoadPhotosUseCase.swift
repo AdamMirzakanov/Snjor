@@ -6,12 +6,20 @@
 //
 
 // MARK: - Protocol
+/// Протокол, определяющий функциональность для загрузки списка фотографий в сегменте Discover.
 protocol LoadPhotosUseCaseProtocol {
+  
+  /// Асинхронная функция, выполняющая загрузку фотографий.
+  /// - Returns: Возвращает результат типа `Result<[Photo], any Error>`,
+  /// содержащий массив объектов `[Photo]` в случае успеха или ошибку в случае неудачи.
   func execute() async -> Result<[Photo], any Error>
 }
 
 // MARK: - Struct
 struct LoadPhotosUseCase: LoadPhotosUseCaseProtocol {
+  
+  /// Репозиторий, реализующий протокол `LoadPhotosRepositoryProtocol`,
+  /// используемый для загрузки списка фотографий в сегменте Discover.
   let repository: any LoadPhotosRepositoryProtocol
 
   func execute() async -> Result<[Photo], any Error> {

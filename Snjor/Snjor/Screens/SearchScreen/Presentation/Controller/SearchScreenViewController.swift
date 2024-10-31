@@ -108,13 +108,13 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   }
   
   private func setupVisibleContainers() {
-    rootView.albumsCollectionView.removeFromSuperview()
+    rootView.topicsAndAlbumsCollectionView.removeFromSuperview()
     rootView.usersTableViewView.removeFromSuperview()
   }
   
   private func setupCollectionViewDelegate() {
     rootView.photosCollectionView.delegate = self
-    rootView.albumsCollectionView.delegate = self
+    rootView.topicsAndAlbumsCollectionView.delegate = self
     rootView.usersTableViewView.delegate = self
   }
   
@@ -134,7 +134,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
       delegate: self
     )
     createTopicsAndAlbumsDataSource(
-      for: rootView.albumsCollectionView,
+      for: rootView.topicsAndAlbumsCollectionView,
       delegate: self
     )
     // отключить источник данных для юзеров

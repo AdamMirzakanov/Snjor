@@ -8,7 +8,13 @@
 import Foundation
 
 // MARK: - Protocol
-/// Протокол, определяющий функциональность для загрузки списка топиков.
+/// Протокол, определяющий функциональность для загрузки списка топиков (Шапка топиков без содержимого).
+///
+/// - Для экрана `PageScreenViewController` -  Метки с названиями топиков
+///   - Первая вкладка `MainTabBArController`
+///
+/// - Для экрана `SearchScreenViewController` в сегменте Topic & Albums - Метки с названиями топиков + обложки
+///   - Вторая вкладка `MainTabBArController`
 protocol LoadTopicsUseCaseProtocol {
   
   /// Асинхронная функция, выполняющая загрузку топиков.
@@ -21,7 +27,7 @@ protocol LoadTopicsUseCaseProtocol {
 struct LoadTopicsUseCase: LoadTopicsUseCaseProtocol {
   
   /// Репозиторий, реализующий протокол `LoadTopicsPageRepositoryProtocol`,
-  /// используемый для загрузки топиков.
+  /// используемый для загрузки списка топиков (Шапка топиков без содержимого).
   let repository: any LoadTopicsPageRepositoryProtocol
   
   func execute() async -> Result<[Topic], any Error> {

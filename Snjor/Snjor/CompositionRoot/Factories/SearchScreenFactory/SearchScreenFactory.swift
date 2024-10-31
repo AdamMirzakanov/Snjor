@@ -120,6 +120,6 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
     let cascadeLayout = MultiColumnCascadeLayout(with: controller)
     controller.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
     let collectionsLayout = layoutProvider.createCollectionsLayout(controller)
-    controller.rootView.albumsCollectionView.collectionViewLayout = collectionsLayout
+    controller.rootView.topicsAndAlbumsCollectionView.collectionViewLayout = collectionsLayout
   }
 }

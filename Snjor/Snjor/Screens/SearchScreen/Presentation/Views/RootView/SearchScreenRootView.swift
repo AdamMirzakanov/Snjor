@@ -13,7 +13,7 @@ final class SearchScreenRootView: UIView {
     return $0
   }(SearchScreenPhotosCollectionView())
   
-  let albumsCollectionView: TopicsAndAlbumsCollectionView = {
+  let topicsAndAlbumsCollectionView: TopicsAndAlbumsCollectionView = {
     return $0
   }(TopicsAndAlbumsCollectionView())
   
@@ -40,13 +40,13 @@ final class SearchScreenRootView: UIView {
   
   private func addSubviews() {
     addSubview(photosCollectionView)
-    addSubview(albumsCollectionView)
+    addSubview(topicsAndAlbumsCollectionView)
     addSubview(usersTableViewView)
   }
   
   private func setupConstraints() {
     photosCollectionView.fillSuperView()
-    albumsCollectionView.fillSuperView()
+    topicsAndAlbumsCollectionView.fillSuperView()
     usersTableViewView.fillSuperView()
   }
 }
