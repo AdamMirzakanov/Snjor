@@ -32,7 +32,7 @@ class SearchViewModel<Element: ElementProtocol>: BaseViewModel<Element>, SearchV
   func getSearchItemsViewModelItem(
     at index: Int,
     with searchTerm: String
-  ) -> BaseViewModelItem <Element> {
+  ) -> BaseViewModelItem<Element> {
     checkAndLoadMoreSearchItems(at: index, with: searchTerm)
     return makeViewModelItem(at: index)
   }

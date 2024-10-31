@@ -39,8 +39,8 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   // MARK: Initializers
   init(
     currentScopeIndex: Int,
-    photosViewModel: any SearchViewModelProtocol <Photo>,
-    albumsViewModel: any SearchViewModelProtocol <Album>,
+    photosViewModel: any SearchViewModelProtocol<Photo>,
+    albumsViewModel: any SearchViewModelProtocol<Album>,
     usersViewModel: any SearchViewModelProtocol<User>,
     delegate: any SearchResultViewControllerDelegate
   ) {

@@ -7,5 +7,5 @@
 
 import UIKit
 
-typealias TopicsDataSource = UICollectionViewDiffableDataSource <TopicsSection, Topic>
-typealias TopicsSnapshot = NSDiffableDataSourceSnapshot <TopicsSection, Topic>
+typealias TopicsDataSource = UICollectionViewDiffableDataSource<TopicsSection, Topic>
+typealias TopicsSnapshot = NSDiffableDataSourceSnapshot<TopicsSection, Topic>

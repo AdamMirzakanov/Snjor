@@ -29,7 +29,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   
   // MARK: Initializers
   init(
-    viewModel: any ContentManagingProtocol <Photo>,
+    viewModel: any ContentManagingProtocol<Photo>,
     delegate: any TopicPhotosViewControllerDelegate,
     layout: UICollectionViewLayout
   ) {

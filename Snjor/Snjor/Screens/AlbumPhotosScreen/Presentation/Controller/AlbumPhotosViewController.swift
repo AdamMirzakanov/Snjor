@@ -16,7 +16,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any AlbumPhotosViewControllerDelegate)?
   private(set) var downloadService = DownloadService()
-  private(set) var viewModel: any ContentManagingProtocol <Photo>
+  private(set) var viewModel: any ContentManagingProtocol<Photo>
   private(set) var documentsPath = FileManager.default.urls(
     for: .documentDirectory,
     in: .userDomainMask
@@ -29,7 +29,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   
   // MARK: Initializers
   init(
-    viewModel: any ContentManagingProtocol <Photo>,
+    viewModel: any ContentManagingProtocol<Photo>,
     delegate: any AlbumPhotosViewControllerDelegate
   ) {
     self.viewModel = viewModel
