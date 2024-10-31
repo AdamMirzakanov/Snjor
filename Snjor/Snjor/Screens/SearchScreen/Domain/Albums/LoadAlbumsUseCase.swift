@@ -6,10 +6,10 @@
 //
 
 // MARK: - Protocol
-/// Протокол, определяющий функциональность для загрузки списка фотографий в сегменте Topic & Albums.
+/// Протокол, определяющий функциональность для загрузки альбомов в сегменте Topic & Albums.
 protocol LoadAlbumsUseCaseProtocol {
   
-  /// Асинхронная функция, выполняющая загрузку фотографий.
+  /// Асинхронная функция, выполняющая загрузку альбомов.
   /// - Returns: Возвращает результат типа `Result<[Album], any Error>`,
   /// содержащий массив объектов `[Album]` в случае успеха или ошибку в случае неудачи.
   func execute() async -> Result<[Album], any Error>
@@ -19,7 +19,7 @@ protocol LoadAlbumsUseCaseProtocol {
 struct LoadAlbumsUseCase: LoadAlbumsUseCaseProtocol {
   
   /// Репозиторий, реализующий протокол `LoadAlbumsRepositoryProtocol`,
-  /// используемый для загрузки списка фотографий в сегменте Topic & Albums.
+  /// используемый для загрузки списка альбомов в сегменте Topic & Albums.
   let repository: any LoadAlbumsRepositoryProtocol
   
   func execute() async -> Result<[Album], any Error> {

@@ -6,12 +6,20 @@
 //
 
 // MARK: - Protocol
+/// Протокол, определяющий функциональность для загрузки фотографий отдельно взятого альбома.
 protocol LoadAlbumPhotosUseCaseProtocol {
+  
+  /// Асинхронная функция, выполняющая загрузку фотографий.
+  /// - Returns: Возвращает результат типа `Result<[Photo], any Error>`,
+  /// содержащий массив объектов `[Photo]` в случае успеха или ошибку в случае неудачи.
   func execute() async -> Result<[Photo], any Error>
 }
 
 // MARK: - Struct
 struct LoadAlbumPhotosUseCase: LoadAlbumPhotosUseCaseProtocol {
+  
+  /// Репозиторий, реализующий протокол `LoadAlbumPhotosRepositoryProtocol`,
+  /// используемый для загрузки списка фотографий отдельно взятого альбома.
   let repository: any LoadAlbumPhotosRepositoryProtocol
   let album: Album
   

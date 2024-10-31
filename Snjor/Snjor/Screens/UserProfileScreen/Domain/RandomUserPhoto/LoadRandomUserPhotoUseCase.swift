@@ -6,12 +6,19 @@
 //
 
 // MARK: - Protocol
+/// Протокол, определяющий функциональность для загрузки случайной фотографии
 protocol LoadRandomUserPhotoUseCaseProtocol {
+  
+  /// Асинхронная функция, выполняющая загрузку случайной фотографии.
+  /// - Returns: Возвращает объект типа `Photo`.
   func execute() async throws -> Photo
 }
 
 // MARK: - Struct
 struct LoadRandomUserPhotoUseCase: LoadRandomUserPhotoUseCaseProtocol {
+  
+  /// Репозиторий, реализующий протокол `LoadRandomUserPhotoRepositoryProtocol`,
+  /// используемый для загрузки случайной фотографии
   let repository: any LoadRandomUserPhotoRepositoryProtocol
   let user: User
   

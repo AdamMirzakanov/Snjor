@@ -6,12 +6,20 @@
 //
 
 // MARK: - Protocol
+/// Протокол, определяющий функциональность для загрузки фотографий пользователя.
 protocol LoadUserPhotosUseCaseProtocol {
+  
+  /// Асинхронная функция, выполняющая загрузку фотографий пользователя.
+  /// - Returns: Возвращает результат типа `Result<[Photo], any Error>`,
+  /// содержащий массив объектов `[Photo]` в случае успеха или ошибку в случае неудачи.
   func execute() async -> Result<[Photo], any Error>
 }
 
 // MARK: - Struct
 struct LoadUserPhotosUseCase: LoadUserPhotosUseCaseProtocol {
+  
+  /// Репозиторий, реализующий протокол `LoadUserPhotosRepositoryProtocol`,
+  /// используемый для загрузки списка фотографий пользователя.
   let repository: any LoadUserPhotosRepositoryProtocol
   let user: User
   

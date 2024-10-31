@@ -8,12 +8,21 @@
 import Foundation
 
 // MARK: - Protocol
+/// Протокол для репозитория, отвечающего за загрузку списка фотографий пользователя.
 protocol LoadUserPhotosRepositoryProtocol {
+  
+  /// Асинхронная функция, выполняющая загрузку списка фотографий пользователя.
+  /// - Parameter request: Объект типа `URLRequest`,
+  ///  содержащий параметры и информацию для запроса.
+  /// - Returns: Возвращает массив объектов типа `[Photo]`.
+  /// - Throws: При выполнении сетевого запроса может быть выброшена ошибка.
   func fetchPhotos(request: URLRequest) async throws -> [Photo]
 }
 
 // MARK: - Struct
 struct LoadUserPhotosRepository: LoadUserPhotosRepositoryProtocol {
+  
+  /// Сервис сети, который выполняет запросы.
   let networkService: any Requestable
   
   func fetchPhotos(request: URLRequest) async throws -> [Photo] {

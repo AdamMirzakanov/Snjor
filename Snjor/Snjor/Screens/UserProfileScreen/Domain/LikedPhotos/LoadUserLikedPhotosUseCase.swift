@@ -6,12 +6,20 @@
 //
 
 // MARK: - Protocol
+/// Протокол, определяющий функциональность для загрузки фотографий лайкнутых пользователем.
 protocol LoadUserLikedPhotosUseCaseProtocol {
+  
+  /// Асинхронная функция, выполняющая загрузку фотографий лайкнутых пользователем.
+  /// - Returns: Возвращает результат типа `Result<[Photo], any Error>`,
+  /// содержащий массив объектов `[Photo]` в случае успеха или ошибку в случае неудачи.
   func execute() async -> Result<[Photo], any Error>
 }
 
 // MARK: - Struct
 struct LoadUserLikedPhotosUseCase: LoadUserLikedPhotosUseCaseProtocol {
+  
+  /// Репозиторий, реализующий протокол `LoadUserLikedPhotosRepositoryProtocol`,
+  /// используемый для загрузки списка фотографий лайкнутых пользователем.
   let repository: any LoadUserLikedPhotosRepositoryProtocol
   let user: User
   
