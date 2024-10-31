@@ -8,6 +8,11 @@
 import UIKit
 import Combine
 
+/// Для достижения эффекта скролла по вкладкам  в данный экран было помещено
+/// горизонтальное колекционное представление которое содержит три ячейки (количество вкладок),
+/// каждое из этих ячеек содержит по вертикальному коллекционному представлению для отображения
+/// фотографий лайкнутых пользователем, фотографий загруженных пользователем и альбомов которые
+/// создал пользователь.
 final class UserProfileViewController: MainViewController<UserProfileViewControllerRootView> {
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()

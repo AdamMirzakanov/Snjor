@@ -362,12 +362,22 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   // MARK: Setup Data
+  /// Обновляет состояния кнопок в зависимости от текущей
+  /// видимой страницы в `horizontalCollectionView`.
+  ///
+  /// - Parameter viewModel: Модель представления,
+  /// соответствующая протоколу `UserProfileViewModelProtocol`.
   func updateButtonStatesForVisiblePage(
     for viewModel: any UserProfileViewModelProtocol
   ) {
+    // Получаем ширину страницы и текущую позицию прокрутки по оси X.
     let pageWidth = horizontalCollectionView.bounds.size.width
     let contentOffsetX = horizontalCollectionView.contentOffset.x
+    
+    // Вычисляем текущую страницу, округляя значение смещения по ширине страницы.
     let currentPage = Int(round(contentOffsetX / pageWidth))
+    
+    // Изменяем состояние кнопок на основе текущей страницы.
     switch currentPage {
     case .likedPhotos:
       updateUserLikedPhotosButtonState()
@@ -378,6 +388,9 @@ final class UserProfileViewControllerRootView: UIView {
     }
   }
   
+  /// Обновляет состояние кнопки, отображающей понравившиеся пользователю фотографии.
+  /// В зависимости от текущего цвета кнопки (серый или нет), изменяет иконку и цвет других кнопок,
+  /// чтобы отобразить актуальное состояние раздела "Понравившиеся".
   private func updateUserLikedPhotosButtonState() {
     if userLikedPhotosButton.tintColor == .systemGray {
       let userLikedSlashIcon = SFSymbol.heartSlashFillIcon
@@ -390,10 +403,14 @@ final class UserProfileViewControllerRootView: UIView {
     let userPhotosIcon = SFSymbol.photoAngledIcon
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
+    // Обновляет цвет кнопок "Альбомы" и "Фото" в зависимости от текущего цвета
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .white
     userPhotosButton.tintColor = userPhotosButton.tintColor == .systemGray ? .systemGray : .white
   }
   
+  /// Обновляет состояние кнопки, отображающей личные фотографии пользователя.
+  /// В зависимости от текущего цвета кнопки "Понравившиеся", изменяет иконку и цвет других кнопок,
+  /// чтобы отобразить активное состояние раздела "Фотографии".
   private func updateUserPhotosButtonState() {
     if userLikedPhotosButton.tintColor == .systemGray {
       let userLikedSlashIcon = SFSymbol.heartSlashIcon
@@ -406,10 +423,13 @@ final class UserProfileViewControllerRootView: UIView {
     let userPhotosIcon = SFSymbol.photoAngledFillIcon
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
+    // Обновляет цвет кнопок "Альбомы" и "Фото" в зависимости от текущего цвета
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .white
     userPhotosButton.tintColor = userPhotosButton.tintColor == .systemGray ? .systemGray : .white
   }
   
+  /// Обновляет состояние кнопки, отображающей альбомы пользователя.
+  /// Изменяет иконки и цвета других кнопок в соответствии с текущим активным разделом "Альбомы".
   private func updateUserAlbumsButtonState() {
     if userLikedPhotosButton.tintColor == .systemGray {
       let userLikedSlashIcon = SFSymbol.heartSlashIcon
@@ -419,10 +439,10 @@ final class UserProfileViewControllerRootView: UIView {
       userLikedPhotosButton.setImage(userLikedIcon, for: .normal)
     }
     
-    
     let userPhotosIcon = SFSymbol.photoAngledIcon
     userPhotosButton.setImage(userPhotosIcon, for: .normal)
     
+    // Устанавливает цвет кнопок "Альбомы" и "Фото" в зависимости от текущего активного состояния
     userAlbumsButton.tintColor = userAlbumsButton.tintColor == .systemGray ? .systemGray : .systemGreen
     userPhotosButton.tintColor = userPhotosButton.tintColor == .systemGray ? .systemGray : .white
   }
