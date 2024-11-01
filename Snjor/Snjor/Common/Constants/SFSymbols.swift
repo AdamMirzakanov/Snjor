@@ -10,7 +10,8 @@ import UIKit
 enum SFSymbol {
   static let downloadCellButtonIcon = UIImage(systemName: "arrow.down.circle.fill")
   static let backBarButtonIcon = UIImage(systemName: "chevron.backward")
-  static let globeEuropeAfricaFillIcon = UIImage(systemName: "globe.europe.africa.fill")
+  static let portfolioIcon = UIImage(systemName: "network")
+  static let noPortfolioIcon = UIImage(systemName: "network.slash")
   static let downloadBarButtonIcon = UIImage(systemName: "arrow.down.app.fill")
   static let infoButtonIcon = UIImage(systemName: "info.circle")
   static let cameraIcon = UIImage(systemName: "camera.aperture")

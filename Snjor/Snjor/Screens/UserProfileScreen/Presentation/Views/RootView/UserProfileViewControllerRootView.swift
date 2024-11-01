@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import SafariServices
 
 fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
 final class UserProfileViewControllerRootView: UIView {
+  // MARK: Internal Properties
+  var portfolioURL: URL?
+  
   // MARK: Private Properties
   private var backBarButtonAction: (() -> Void)?
   private var portfolioBarButtonAction: (() -> Void)?
@@ -183,7 +187,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIButton())
   
   private lazy var portfolioBarButton: UIButton = {
-    let icon = SFSymbol.globeEuropeAfricaFillIcon
+    let icon = SFSymbol.portfolioIcon
     $0.setImage(icon, for: .normal)
     $0.tintColor = .label
     $0.alpha = Const.defaultOpacity
@@ -452,6 +456,7 @@ final class UserProfileViewControllerRootView: UIView {
     configurePhotos(viewModelItem: viewModelItem)
     configureLabels(viewModelItem: viewModelItem)
     configureButtons(viewModelItem: viewModelItem)
+    configurePorfolioButton(viewModelItem: viewModelItem)
   }
   
   private func configurePhotos(viewModelItem: UserProfileViewModelItem) {
@@ -467,6 +472,17 @@ final class UserProfileViewControllerRootView: UIView {
     locationLabel.text = viewModelItem.location
     bioLabel.isHidden = viewModelItem.userBio == .empty
     locationStackView.isHidden = viewModelItem.location == .empty ? true : false
+  }
+  
+  private func configurePorfolioButton(viewModelItem: UserProfileViewModelItem) {
+    if viewModelItem.user.portfolioURL != nil {
+      let icon = SFSymbol.portfolioIcon
+      portfolioBarButton.setImage(icon, for: .normal)
+    } else {
+      let icon = SFSymbol.noPortfolioIcon
+      portfolioBarButton.setImage(icon, for: .normal)
+      portfolioBarButton.isEnabled = false
+    }
   }
   
   private func configureButtons(viewModelItem: UserProfileViewModelItem) {
@@ -693,7 +709,9 @@ final class UserProfileViewControllerRootView: UIView {
     _ navigationController: UINavigationController?
   ) {
     portfolioBarButtonAction = { [weak navigationController] in
-      navigationController?.popViewController(animated: true)
+      guard let url = self.portfolioURL else { return }
+      let safariViewController = SFSafariViewController(url: url)
+      navigationController?.present(safariViewController, animated: true)
     }
   }
   

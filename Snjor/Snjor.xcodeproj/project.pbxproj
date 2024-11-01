@@ -356,7 +356,7 @@
 		37FDC81E2CC0254C0020548B /* SettingsViewControllerRootViewConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FDC81D2CC0254C0020548B /* SettingsViewControllerRootViewConst.swift */; };
 		660DB6652C317F8800514738 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660DB6642C317F8800514738 /* Location.swift */; };
 		6636E3D22C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6636E3D12C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift */; };
-		663769212C45283B006AB620 /* String + SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663769202C45283B006AB620 /* String + SFSymbols.swift */; };
+		663769212C45283B006AB620 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663769202C45283B006AB620 /* SFSymbols.swift */; };
 		664A511F2C1DCE6C003491BA /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A511E2C1DCE6C003491BA /* ImageCacheService.swift */; };
 		664A51272C1DD3FB003491BA /* UIImage + DecodeBlurHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51262C1DD3FB003491BA /* UIImage + DecodeBlurHash.swift */; };
 		664A512D2C1DD737003491BA /* UIImage + Preload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A512C2C1DD737003491BA /* UIImage + Preload.swift */; };
@@ -781,7 +781,7 @@
 		37FDC81D2CC0254C0020548B /* SettingsViewControllerRootViewConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerRootViewConst.swift; sourceTree = "<group>"; };
 		660DB6642C317F8800514738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6636E3D12C23767A00B0AC83 /* KeyedDecodingContainer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer + Extensions.swift"; sourceTree = "<group>"; };
-		663769202C45283B006AB620 /* String + SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + SFSymbols.swift"; sourceTree = "<group>"; };
+		663769202C45283B006AB620 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		664A511E2C1DCE6C003491BA /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		664A51262C1DD3FB003491BA /* UIImage + DecodeBlurHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + DecodeBlurHash.swift"; sourceTree = "<group>"; };
 		664A512C2C1DD737003491BA /* UIImage + Preload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Preload.swift"; sourceTree = "<group>"; };
@@ -919,7 +919,6 @@
 		370A00602C8751D3006B87DD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				663769202C45283B006AB620 /* String + SFSymbols.swift */,
 				370A005A2C874F3E006B87DD /* String + MessageDisplayable.swift */,
 				370A005C2C874F84006B87DD /* String + DownloadService.swift */,
 				37C00C7E2C88A4B100F63CEC /* Double + TabBarShowDelay.swift */,
@@ -2874,6 +2873,7 @@
 		6637693D2C457831006AB620 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				663769202C45283B006AB620 /* SFSymbols.swift */,
 				667A59912C1EF98300FE4985 /* AppLocalized.swift */,
 			);
 			path = Constants;
@@ -3601,7 +3601,7 @@
 				667A599C2C1F082900FE4985 /* SearchScreenPhotoCell.swift in Sources */,
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
 				37AF3C492C90EC0C0048FB9C /* UserProfileViewModelItem.swift in Sources */,
-				663769212C45283B006AB620 /* String + SFSymbols.swift in Sources */,
+				663769212C45283B006AB620 /* SFSymbols.swift in Sources */,
 				664AA5AF2C49B2B600A393BD /* SearchScreenPhotoCell + PhotoCellMainViewDelegate.swift in Sources */,
 				37860BE62C9A193C0067FEDC /* UserLikedPhotoCellConst.swift in Sources */,
 				37AF3C4B2C90EF500048FB9C /* LoadUserProfileUseCase.swift in Sources */,

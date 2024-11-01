@@ -98,6 +98,13 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
         guard let self = self else { return }
         self.handleState(state) {
           self.rootView.setupData(viewModel: self.userProfileViewModel)
+          guard
+            let viewModelItem = self.userProfileViewModel.getUserProfileViewModelItem()
+          else {
+            return
+          }
+          // передать URL-адрес портфолио
+          self.rootView.portfolioURL = viewModelItem.user.portfolioURL
         }
       }
       .store(in: &cancellable)
