@@ -21,7 +21,7 @@ enum SettingsViewControllerRootViewConst {
   static let sectionTitleTextAlignment: NSTextAlignment = .left
   static let standartTextAlignment: NSTextAlignment = .left
   
-  static let resetButtonCornerRadius: CGFloat = 10.0
+  static let resetButtonCornerRadius: CGFloat = 8.0
   static let resetButtonHeight: CGFloat = 40.0
   static let lineHeight: CGFloat = 1.0
   static let mainStackViewSpacing: CGFloat = 20.0
