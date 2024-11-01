@@ -22,7 +22,7 @@ enum MainTabBarControllerConst {
   static let secondColorLocation: CGFloat = 0.7
   static let buttonSize: CGFloat = 22.0
   static let customBarHorizontalInset: CGFloat = 70.0
-  static let customBarVerticalInset: CGFloat = 70.0
+  static let customBarVerticalInset: CGFloat = 90.0
   static let customBarWidthOffset: CGFloat = 140.0
   static let customBarHeight: CGFloat = 50.0
   static let photosButtonIcon: String = "photos"
