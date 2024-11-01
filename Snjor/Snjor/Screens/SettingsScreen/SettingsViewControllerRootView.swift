@@ -203,7 +203,6 @@ final class SettingsViewControllerRootView: UIView {
   
   // MARK: UISegmentedControl
   private lazy var orientationSegmentControl: UISegmentedControl = {
-    $0.selectedSegmentTintColor = Const.selectedSegmentTintColor
     $0.selectedSegmentIndex = .zero
     $0.addTarget(
       self,
@@ -221,7 +220,6 @@ final class SettingsViewControllerRootView: UIView {
   ))
   
   private lazy var sortingPhotosSegmentControl: UISegmentedControl = {
-    $0.selectedSegmentTintColor = Const.selectedSegmentTintColor
     $0.selectedSegmentIndex = .zero
     $0.addTarget(
       self,
