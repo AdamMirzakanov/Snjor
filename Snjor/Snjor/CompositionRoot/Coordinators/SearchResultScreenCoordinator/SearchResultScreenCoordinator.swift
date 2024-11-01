@@ -28,6 +28,7 @@ final class SearchResultScreenCoordinator: Coordinatable {
   // MARK: Internal Methods
   func start() {
     let controller = factory.makeController(delegate: self)
+    navigation.navigationBar.prefersLargeTitles = true
     navigation.pushViewController(controller, animated: true) { [weak self] in
       guard let self = self else { return }
       self.parentCoordinator?.removeChildCoordinator(self)

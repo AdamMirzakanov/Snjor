@@ -240,6 +240,6 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   }
   
   private func setupNavigationTitle() {
-    navigationItem.title = currentSearchTerm
+    navigationItem.title = .hash + (currentSearchTerm ?? .empty)
   }
 }
