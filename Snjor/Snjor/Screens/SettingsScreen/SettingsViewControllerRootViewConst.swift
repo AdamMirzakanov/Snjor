@@ -24,6 +24,7 @@ enum SettingsViewControllerRootViewConst {
   static let resetButtonCornerRadius: CGFloat = 8.0
   static let resetButtonHeight: CGFloat = 40.0
   static let lineHeight: CGFloat = 1.0
+  static let lineColor: UIColor = .systemGray
   static let mainStackViewSpacing: CGFloat = 20.0
   static let stackViewTopInset: CGFloat = 15.0
   static let stackViewHorizontalInset: CGFloat = 20.0

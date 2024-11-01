@@ -32,7 +32,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIScrollView())
   
   private let firstLineView: UIView = {
-    $0.backgroundColor = .systemGray
+    $0.backgroundColor = Const.lineColor
     $0.heightAnchor.constraint(
       equalToConstant: Const.lineHeight
     ).isActive = true
@@ -40,7 +40,7 @@ final class SettingsViewControllerRootView: UIView {
   }(UIView())
   
   private let secondLineView: UIView = {
-    $0.backgroundColor = .systemGray
+    $0.backgroundColor = Const.lineColor
     $0.heightAnchor.constraint(
       equalToConstant: Const.lineHeight
     ).isActive = true
