@@ -212,7 +212,7 @@ final class SettingsViewControllerRootView: UIView {
     return $0
   }(UISegmentedControl(
     items: [
-      Const.all,
+      Const.anyOrientation,
       SFSymbol.landscapeRectIcon,
       SFSymbol.portraitRectIcon,
       SFSymbol.squarishRectIcon

@@ -66,10 +66,10 @@ enum SettingsViewControllerRootViewConst {
   static let chooseLanguageLabelText: String = "Select a language"
   static let lowContent: String = "Low"
   static let highContent: String = "High"
-  static let relevarntSort: String = "Relevant"
-  static let latestSort: String = "Latest"
+  static let relevarntSort: String = "Relevance"
+  static let latestSort: String = "Newest"
   static let twoColumn: String = "2"
   static let treeColumn: String = "3"
   static let fourColumn: String = "4"
-  static let all: String = "All"
+  static let anyOrientation: String = "Any"
 }
