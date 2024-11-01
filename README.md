@@ -14,17 +14,20 @@ This project is implemented entirely programmatically without using Storyboards 
 - MVVM + Coordinators
 
 ## Technologies:
-- **Languages & Frameworks**:
+- **Languages**:
   - Swift
+  
+- **Frameworks**:
   - UIKit
   - Combine
   - Photos (for managing photos and albums)
+  - SafariServices (it is used to open external links)
 
 - **Data Storage**:
   - UserDefaults
 
 - **Concurrency**:
-  - async/await for handling asynchronous operations
+  - async/await
 
 ## Installation:
 1. Clone the repository:
