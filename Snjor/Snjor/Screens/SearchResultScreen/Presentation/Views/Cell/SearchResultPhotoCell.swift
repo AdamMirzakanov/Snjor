@@ -18,6 +18,6 @@ final class SearchResultPhotoCell: MainPhotoCell {
   }
 
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
 }

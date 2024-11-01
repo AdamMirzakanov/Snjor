@@ -39,7 +39,7 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: View Lifecycle

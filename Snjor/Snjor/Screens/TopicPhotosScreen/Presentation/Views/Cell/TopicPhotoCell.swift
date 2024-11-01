@@ -18,6 +18,6 @@ final class TopicPhotoCell: MainPhotoCell {
   }
 
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
 }

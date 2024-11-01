@@ -30,7 +30,7 @@ final class PhotoDetailViewController: MainViewController<PhotoDetailViewControl
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
 
   // MARK: View Lifecycle

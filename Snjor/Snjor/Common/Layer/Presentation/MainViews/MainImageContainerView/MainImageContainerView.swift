@@ -37,7 +37,7 @@ class MainImageContainerView: UIView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: Internal Methods

@@ -18,7 +18,7 @@ final class PageScreenPhotosCollectionView: UICollectionView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: Private Methods

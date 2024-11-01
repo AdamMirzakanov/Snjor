@@ -15,7 +15,7 @@ final class UsersTableView: UITableView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   private func registerCells() {

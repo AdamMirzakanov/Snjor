@@ -50,7 +50,7 @@ final class SearchResultScreenRootView: UIView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: Setup Views

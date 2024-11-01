@@ -28,7 +28,7 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: View Lifecycle

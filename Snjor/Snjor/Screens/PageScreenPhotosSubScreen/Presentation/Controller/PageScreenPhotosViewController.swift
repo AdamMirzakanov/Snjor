@@ -31,7 +31,7 @@ final class PageScreenPhotosViewController: MainViewController<PageScreenPhotosR
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: View Lifecycle

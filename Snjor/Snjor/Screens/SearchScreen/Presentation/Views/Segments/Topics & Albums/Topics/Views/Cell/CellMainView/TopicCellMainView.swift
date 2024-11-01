@@ -48,7 +48,7 @@ final class TopicCellMainView: MainImageContainerView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: Sized Image

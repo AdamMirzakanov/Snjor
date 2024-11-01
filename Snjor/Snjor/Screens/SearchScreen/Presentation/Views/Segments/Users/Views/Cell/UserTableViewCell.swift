@@ -26,7 +26,7 @@ final class UserTableViewCell: UITableViewCell {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: Override Methods

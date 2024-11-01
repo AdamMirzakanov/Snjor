@@ -53,7 +53,7 @@ final class SearchResultViewController: MainViewController<SearchResultScreenRoo
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: View Lifecycle

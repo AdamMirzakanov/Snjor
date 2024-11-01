@@ -36,7 +36,7 @@ final class PhotoDetailPhotoView: MainImageContainerView {
   }
 
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
 
   // MARK: Setup Data

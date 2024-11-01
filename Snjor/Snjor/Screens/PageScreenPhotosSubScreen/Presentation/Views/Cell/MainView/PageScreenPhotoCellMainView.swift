@@ -106,7 +106,7 @@ final class PageScreenPhotoCellMainView: MainImageContainerView {
   }
 
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: Sized Image

@@ -29,7 +29,7 @@ final class SectionHeaderView: UICollectionReusableView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: Internal Methods

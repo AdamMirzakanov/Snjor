@@ -14,7 +14,7 @@ class LineView: UICollectionReusableView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   func setColor(_ color: UIColor) {

@@ -6,5 +6,5 @@
 //
 
 enum AppLocalized {
-  static let error = "Error"
+  static let initCoderNotImplementedError = "init(coder:) has not been implemented"
 }

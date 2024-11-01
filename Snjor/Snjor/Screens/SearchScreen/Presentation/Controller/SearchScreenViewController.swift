@@ -49,7 +49,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   }
   
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
   
   // MARK: View Lifecycle

@@ -20,7 +20,7 @@ final class PageScreenPhotoCell: UICollectionViewCell {
   }
 
   required init?(coder: NSCoder) {
-    fatalError(.requiredInitFatalErrorText)
+    fatalError(AppLocalized.initCoderNotImplementedError)
   }
 
   // MARK: Override Methods
