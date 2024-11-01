@@ -190,8 +190,8 @@ final class SettingsViewControllerRootView: UIView {
   
   private let resetButton: UIButton = {
     $0.setTitle(Const.resetButtonTitle, for: .normal)
-    $0.setTitleColor(.white, for: .normal)
-    $0.titleLabel?.font = Const.standardFont
+    $0.setTitleColor(.black, for: .normal)
+    $0.titleLabel?.font = Const.resetButtonFont
     $0.layer.cornerRadius = Const.resetButtonCornerRadius
     $0.heightAnchor.constraint(
       equalToConstant: Const.resetButtonHeight

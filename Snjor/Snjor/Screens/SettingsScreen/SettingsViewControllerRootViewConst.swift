@@ -10,12 +10,13 @@ import UIKit
 enum SettingsViewControllerRootViewConst {
  
   static let selectedSegmentTintColor: UIColor = .systemBlue
-  static let resetButtonColor: UIColor = .systemPink
+  static let resetButtonColor: UIColor = .white
   static let colorOfTheSectionTitle: UIColor = .systemGray3
   static let systemGray: UIColor = .systemGray
   
   static let fontOfTheSectionTitle: UIFont = .systemFont(ofSize: 25, weight: .bold)
   static let standardFont: UIFont = .systemFont(ofSize: 20, weight: .medium)
+  static let resetButtonFont: UIFont = .systemFont(ofSize: 20, weight: .regular)
   
   static let sectionTitleTextAlignment: NSTextAlignment = .left
   static let standartTextAlignment: NSTextAlignment = .left
