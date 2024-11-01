@@ -13,6 +13,8 @@ enum MainTabBarControllerConst {
   static let gradientViewShowDuration: TimeInterval = 1.0
   static let searchButtonTag: Int = 1
   static let settingsButtonTag: Int = 2
+  static let pressingScale: CGFloat = 0.6
+  static let duration: CGFloat = 0.12
   static let defaultOpacity: CGFloat = 0.4
   static let maxOpacity: CGFloat = 1.0
   static let photoListButtonTag: Int = 0

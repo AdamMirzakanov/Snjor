@@ -49,6 +49,7 @@ final class MainTabBarController: UITabBarController {
     self.selectedIndex = sender.tag     // Апдейт выбранного индекса
     self.selected = self.selectedIndex
     self.setOpacity(tag: sender.tag)    // Задать прозрачность кнопок
+    self.animateButton(sender)
   }
   
   // MARK: Views
@@ -189,6 +190,21 @@ final class MainTabBarController: UITabBarController {
         $0.layer.opacity = Float(Const.defaultOpacity)
       } else {
         $0.layer.opacity = Float(Const.maxOpacity)
+      }
+    }
+  }
+  
+  // MARK: Animate TabBar Buttons
+  private func animateButton(_ sender: UIButton) {
+    UIView.animate(withDuration: Const.duration) {
+      let scaleTransform = CGAffineTransform(
+        scaleX: Const.pressingScale,
+        y: Const.pressingScale
+      )
+      sender.transform = scaleTransform
+    } completion: { _ in
+      UIView.animate(withDuration: Const.duration) {
+        sender.transform = .identity
       }
     }
   }
