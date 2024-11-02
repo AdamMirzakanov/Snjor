@@ -60,7 +60,7 @@ enum PhotoDetailViewControllerRootViewConst {
   static let fullValue = middleValue * half
   static let maxValue = fullValue + smallValue
   static let profilePhotoSize = maxValue + middleValue
-  static let defaultCircle = fullValue / half
+  static let barButtonCircle = fullValue / half
   static let profilePhotoCircle = profilePhotoSize / half     
 }
 

@@ -20,6 +20,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   private var backBarButtonAction: (() -> Void)?
   private var downloadBarButtonAction: (() -> Void)?
   private var toggleContentModeBarButtonAction: (() -> Void)?
+  private var shareBarButtonAction: (() -> Void)?
   private var infoButtonAction: (() -> Void)?
   
   // MARK: Container View
@@ -135,7 +136,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   private let backBarButtonBlurEffect: UIVisualEffectView = {
     $0.frame.size.width = Const.fullValue
     $0.frame.size.height = Const.fullValue
-    $0.layer.cornerRadius = Const.defaultCircle
+    $0.layer.cornerRadius = Const.barButtonCircle
     $0.clipsToBounds = true
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
@@ -156,6 +157,14 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
   
+  private let shareButtonBlurEffect: UIVisualEffectView = {
+    $0.frame.size.width = Const.fullValue
+    $0.frame.size.height = Const.fullValue
+    $0.layer.cornerRadius = Const.defaultValue
+    $0.clipsToBounds = true
+    return $0
+  }(UIVisualEffectView(effect: UIBlurEffect(style: .regular)))
+   
   // MARK: Buttons
   private lazy var backBarButton: UIButton = {
     let icon = SFSymbol.backBarButtonIcon
@@ -165,6 +174,15 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.frame = backBarButtonBlurEffect.bounds
     return $0
   }(UIButton())
+  
+  private lazy var shareBarButton: UIButton = {
+    let icon = SFSymbol.shareBarButtonIcon
+    $0.setImage(icon, for: .normal)
+    $0.tintColor = .label
+    $0.alpha = Const.defaultOpacity
+    $0.frame = shareButtonBlurEffect.bounds
+    return $0
+  }(UIButton(type: .system))
   
   lazy var downloadBarButton: UIButton = {
     let icon = SFSymbol.downloadBarButtonIcon
@@ -189,7 +207,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.alpha = Const.defaultOpacity
     $0.frame = toggleContentModePhotoButtonBlurEffect.bounds
     return $0
-  }(UIButton())
+  }(UIButton(type: .system))
   
   private let infoButton: UIButton = {
     let icon = SFSymbol.infoButtonIcon
@@ -894,6 +912,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     configToggleContentModeBarButtonItem(navigationItem)
     configDownloadBarButtonItem(navigationItem)
     configBacBarButtonItem(navigationItem, navigationController)
+    configShareBarButtonItem(navigationItem, navigationController)
   }
   
   private func setupNavigationItems(_ navigationItem: UINavigationItem) {
@@ -907,6 +926,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     toggleContentModePhotoButtonBlurEffect.contentView.addSubview(
       toggleContentModeButton
     )
+    shareButtonBlurEffect.contentView.addSubview(shareBarButton)
   }
   
   private func makeRightBarButtons() -> [UIBarButtonItem] {
@@ -914,7 +934,14 @@ final class PhotoDetailViewControllerRootView: UIView {
     let toggleContentModeButton = UIBarButtonItem(
       customView: toggleContentModePhotoButtonBlurEffect
     )
-    let barButtonItems = [toggleContentModeButton, downloadBarButton]
+    let shareBarButton = UIBarButtonItem(
+      customView: shareButtonBlurEffect
+    )
+    let barButtonItems = [
+      shareBarButton,
+      toggleContentModeButton,
+      downloadBarButton
+    ]
     return barButtonItems
   }
   
@@ -947,6 +974,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     )
   }
   
+  // Back Bar Button
   @objc private func backBarButtonTapped() {
     backBarButtonAction?()
   }
@@ -978,6 +1006,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     navigationItem.leftBarButtonItem = backBarButton
   }
   
+  // Download Bar Button
   @objc private func downloadBarButtonTapped() {
     downloadBarButtonAction?()
   }
@@ -1004,16 +1033,12 @@ final class PhotoDetailViewControllerRootView: UIView {
     )
   }
   
-  private func setupDownloadBarButton(_ navigationItem: UINavigationItem) {
-    let downloadButton = UIBarButtonItem(customView: downloadBarButtonBlurEffect)
-    navigationItem.rightBarButtonItem = downloadButton
-  }
-  
+  // Toggle Content Mode Bar Button
   @objc private func toggleContentModeBarButtonTapped() {
     toggleContentModeBarButtonAction?()
   }
   
-  func configToggleContentModeBarButtonItem(
+  private func configToggleContentModeBarButtonItem(
     _ navigationItem: UINavigationItem
   ) {
     setupToggleContentModeBarButtonAction()
@@ -1034,13 +1059,6 @@ final class PhotoDetailViewControllerRootView: UIView {
     )
   }
   
-  private func setupToggleContentModeBarButton(_ navigationItem: UINavigationItem) {
-    let toggleContentModeButton = UIBarButtonItem(
-      customView: toggleContentModePhotoButtonBlurEffect
-    )
-    navigationItem.rightBarButtonItem = toggleContentModeButton
-  }
-  
   private func configToggleContentMode() {
     if self.isAspectFill {
       let icon = SFSymbol.toggleDownIcon
@@ -1052,6 +1070,49 @@ final class PhotoDetailViewControllerRootView: UIView {
       toggleContentModeButton.setImage(icon, for: .normal)
     }
     self.isAspectFill.toggle()
+  }
+  
+  // Share Bar Button
+  @objc private func shareBarButtonTapped() {
+    shareBarButtonAction?()
+  }
+  
+  private func configShareBarButtonItem(
+    _ navigationItem: UINavigationItem,
+    _ navigationController: UINavigationController?
+  ) {
+    setupShareBarButtonAction(navigationController)
+    setupShareBarButtonTarget()
+  }
+  
+  private func setupShareBarButtonAction(
+    _ navigationController: UINavigationController?
+  ) {
+    shareBarButtonAction = { [
+      weak self,
+      weak navigationController
+    ] in
+      guard let image = self?.photoView.mainImageView.image else { return }
+      let activityController = UIActivityViewController(
+        activityItems: [image],
+        applicationActivities: nil
+      )
+      guard
+        let navigationController
+      else {
+        return
+      }
+      activityController.popoverPresentationController?.sourceView = self?.shareBarButton
+      navigationController.present(activityController, animated: true)
+    }
+  }
+  
+  private func setupShareBarButtonTarget() {
+    shareBarButton.addTarget(
+      self,
+      action: #selector(shareBarButtonTapped),
+      for: .touchUpInside
+    )
   }
   
   // MARK: Animate Buttons

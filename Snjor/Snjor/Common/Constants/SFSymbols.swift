@@ -10,6 +10,7 @@ import UIKit
 enum SFSymbol {
   static let downloadCellButtonIcon = UIImage(systemName: "arrow.down.circle.fill")
   static let backBarButtonIcon = UIImage(systemName: "chevron.backward")
+  static let shareBarButtonIcon = UIImage(systemName: "envelope.circle.fill")
   static let portfolioIcon = UIImage(systemName: "network")
   static let noPortfolioIcon = UIImage(systemName: "network.slash")
   static let downloadBarButtonIcon = UIImage(systemName: "arrow.down.app.fill")
@@ -22,8 +23,8 @@ enum SFSymbol {
   static let heartCircleIcon = UIImage(systemName: "heart.circle")
   static let errorIcon = UIImage(systemName: "exclamationmark.triangle")
   static let downloadsIcon = UIImage(systemName: "tray.and.arrow.down.fill")
-  static let toggleUpIcon = UIImage(systemName: "arrow.up.backward.and.arrow.down.forward")
-  static let toggleDownIcon = UIImage(systemName: "arrow.down.forward.and.arrow.up.backward")
+  static let toggleUpIcon = UIImage(systemName: "arrow.up.backward.and.arrow.down.forward.circle.fill")
+  static let toggleDownIcon = UIImage(systemName: "arrow.down.forward.and.arrow.up.backward.circle.fill")
   static let cameraMacroIcon = UIImage(systemName: "camera.macro")
   static let photoListItemIcon = UIImage(systemName: "photo.on.rectangle")
   static let photoListSelectedItemIcon = UIImage(systemName: "photo.fill.on.rectangle.fill")

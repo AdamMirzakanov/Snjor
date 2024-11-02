@@ -83,7 +83,7 @@ final class PhotoCellMainView: MainImageContainerView {
     $0.alpha = Const.defaultOpacity
     $0.frame = downloadButtonBlurEffect.bounds
     return $0
-  }(UIButton(type: .custom))
+  }(UIButton())
   
   // MARK: Labels
   let userNameLabel: UILabel = {
