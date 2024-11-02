@@ -1134,8 +1134,8 @@ final class PhotoDetailViewControllerRootView: UIView {
   private func createdAt(from date: String) {
     guard let date = ISO8601DateFormatter().date(from: date) else { return }
     let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .medium
-    dateFormatter.timeStyle = .short
+    dateFormatter.dateStyle = .long
+    dateFormatter.timeStyle = .none
     let readableDate = dateFormatter.string(from: date)
     createdLabel.text = readableDate
   }
