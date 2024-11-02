@@ -36,12 +36,6 @@ final class PageScreenPhotosRootView: UIView {
   }
   
   private func setupConstraints() {
-    pageScreenPhotosCollectionView.setConstraints(
-      top: topAnchor,
-      right: rightAnchor,
-      bottom: bottomAnchor,
-      left: leftAnchor,
-      pTop: Const.collectionViewTopAnchor
-    )
+    pageScreenPhotosCollectionView.fillSuperView()
   }
 }

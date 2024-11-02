@@ -1390,14 +1390,14 @@
 			path = TopicPhotosCoordinator;
 			sourceTree = "<group>";
 		};
-		376785AA2C8CAE4C009B9BA6 /* TopicsPageCoordinator */ = {
+		376785AA2C8CAE4C009B9BA6 /* PageScreenCoordinator */ = {
 			isa = PBXGroup;
 			children = (
 				3723E3572C4F0D3400C3AE3E /* PageScreenCoordinator.swift */,
 				376785BC2C8CAFA6009B9BA6 /* PageScreenCoordinator + ParentCoordinator.swift */,
 				376785BA2C8CAF81009B9BA6 /* PageScreenCoordinator + PageScreenPhotosViewControllerDelegate.swift */,
 			);
-			path = TopicsPageCoordinator;
+			path = PageScreenCoordinator;
 			sourceTree = "<group>";
 		};
 		376785AB2C8CAE55009B9BA6 /* AlbumPhotosCoordinator */ = {
@@ -3120,7 +3120,7 @@
 				37AF3C532C91BF880048FB9C /* UserProfileCoordinator */,
 				376785A82C8CAE2D009B9BA6 /* PhotoDetailCoordinator */,
 				376785A92C8CAE3E009B9BA6 /* TopicPhotosCoordinator */,
-				376785AA2C8CAE4C009B9BA6 /* TopicsPageCoordinator */,
+				376785AA2C8CAE4C009B9BA6 /* PageScreenCoordinator */,
 				376785AB2C8CAE55009B9BA6 /* AlbumPhotosCoordinator */,
 				376785AC2C8CAE5D009B9BA6 /* SearchScreenCoordinator */,
 				376785AD2C8CAE65009B9BA6 /* SearchResultScreenCoordinator */,

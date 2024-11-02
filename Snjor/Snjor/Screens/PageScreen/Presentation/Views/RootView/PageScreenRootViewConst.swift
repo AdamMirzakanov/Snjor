@@ -13,8 +13,8 @@ enum PageScreenRootViewConst {
   static let gradientOpacity: CGFloat = 1.0
   static let topicsCollectionViewHeight: CGFloat = 40.0
   static let appNameLabelFontSize: CGFloat = 20.0
-  static let appNameLabelTextKern: CGFloat = 0.5
-  static let topicsCollectionViewTopAnchor: CGFloat = 45.0
-  static let gradientViewTopAnchor: CGFloat = -40.0
-  static let appNameLabelTopAnchor: CGFloat = 15.0
+  static let appNameLabelTextKern: CGFloat = 2.5
+  static let topicsCollectionViewTopAnchor: CGFloat = 5.0
+  static let gradientViewTopAnchor: CGFloat = -15.0
+  static let appNameLabelTopAnchor: CGFloat = -30.0
 }

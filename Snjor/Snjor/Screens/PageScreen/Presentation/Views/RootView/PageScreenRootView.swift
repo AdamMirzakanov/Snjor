@@ -32,7 +32,7 @@ final class PageScreenRootView: UIView {
     let text = "Snjør".uppercased()
     let fontSize = UIFont.systemFont(
       ofSize: Const.appNameLabelFontSize,
-      weight: .bold
+      weight: .light
     )
     let attributes: [NSAttributedString.Key: Any] = [
       .kern: Const.appNameLabelTextKern,
@@ -101,7 +101,12 @@ final class PageScreenRootView: UIView {
   }
   
   private func setupPageViewControllerViewConstraints() {
-    pageViewController.view.fillSuperView()
+    pageViewController.view.setConstraints(
+      top: safeAreaLayoutGuide.topAnchor,
+      right: rightAnchor,
+      bottom: bottomAnchor,
+      left: leftAnchor
+    )
   }
   
   private func setupGradientViewConstraints() {

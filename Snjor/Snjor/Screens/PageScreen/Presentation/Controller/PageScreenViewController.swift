@@ -44,7 +44,6 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setNavigationBarHidden(true, animated: animated)
     showCustomTabBar()
   }
   
@@ -52,11 +51,6 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
     super.viewDidLayoutSubviews()
     // Обновление индикатора до начальной позиции после изменения расположения подвидов.
     updateIndicatorToInitialPosition()
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    setNavigationBarHidden(false, animated: animated)
   }
   
   // MARK: Internal Methods
@@ -162,10 +156,6 @@ final class PageScreenViewController: MainViewController<PageScreenRootView> {
   
   private func configTopicsCollectionView() {
     rootView.topicsCollectionView.delegate = self
-  }
-  
-  private func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
-    self.navigationController?.setNavigationBarHidden(hidden, animated: animated)
   }
   
   /// Устанавливает индикатор на первую ячейку топика.
