@@ -14,9 +14,6 @@ final class PhotoCellMainView: MainImageContainerView {
   weak var delegate: (any PhotoCellMainViewDelegate)?
 
   // MARK: Private Properties
-  private var screenScale: CGFloat {
-    UIScreen.main.scale
-  }
   private var showsUsername = true {
     didSet {
       userNameLabel.alpha = showsUsername ? Const.maxOpacity : .zero
@@ -105,24 +102,6 @@ final class PhotoCellMainView: MainImageContainerView {
 
   required init?(coder: NSCoder) {
     fatalError(AppLocalized.initCoderNotImplementedError)
-  }
-
-  // MARK: Sized Image
-  override func sizedImageURL(from url: URL) -> URL {
-    layoutIfNeeded()
-    let widthValue = String(describing: frame.width)
-    let screenScaleValue = String(describing: Int(screenScale))
-    let widthQueryItem = URLQueryItem(
-      name: ParamKey.width.rawValue,
-      value: widthValue
-    )
-    let screenScaleQueryItem = URLQueryItem(
-      name: ParamKey.devicePixelRatio.rawValue,
-      value: screenScaleValue
-    )
-    return url.appending(
-      queryItems: [widthQueryItem, screenScaleQueryItem]
-    )
   }
 
   // MARK: Setup Data

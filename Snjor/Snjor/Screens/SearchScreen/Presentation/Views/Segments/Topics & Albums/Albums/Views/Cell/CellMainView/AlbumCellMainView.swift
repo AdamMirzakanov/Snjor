@@ -10,11 +10,6 @@ import UIKit
 fileprivate typealias Const = AlbumCellMainViewConst
 
 final class AlbumCellMainView: MainImageContainerView {
-  // MARK: Private Properties
-  private var screenScale: CGFloat {
-    UIScreen.main.scale
-  }
-
   private let secondBackgroundView: UIView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.secondBackgroundViewCornerRadius
@@ -87,25 +82,7 @@ final class AlbumCellMainView: MainImageContainerView {
   required init?(coder: NSCoder) {
     fatalError(AppLocalized.initCoderNotImplementedError)
   }
-  
-  // MARK: Sized Image
-  override func sizedImageURL(from url: URL) -> URL {
-    layoutIfNeeded()
-    let widthValue = String(describing: frame.width)
-    let screenScaleValue = String(describing: Int(screenScale))
-    let widthQueryItem = URLQueryItem(
-      name: ParamKey.width.rawValue,
-      value: widthValue
-    )
-    let screenScaleQueryItem = URLQueryItem(
-      name: ParamKey.devicePixelRatio.rawValue,
-      value: screenScaleValue
-    )
-    return url.appending(
-      queryItems: [widthQueryItem, screenScaleQueryItem]
-    )
-  }
-  
+
   // MARK: Setup Data
   func configure(
     with album: Album,

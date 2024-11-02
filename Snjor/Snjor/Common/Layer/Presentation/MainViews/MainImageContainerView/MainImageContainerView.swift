@@ -24,6 +24,10 @@ class MainImageContainerView: UIView {
   /// и обработки изображений перед их отображением в представлении.
   let imageDownloader = ImageDownloader()
   
+  private var screenScale: CGFloat {
+    UIScreen.main.scale
+  }
+  
   let mainImageView: UIImageView = {
     $0.contentMode = .scaleAspectFill
     $0.clipsToBounds = true
@@ -69,10 +73,6 @@ class MainImageContainerView: UIView {
     }
   }
   
-  /// Метод `sizedImageURL(from:)`, который принимает URL изображения и возвращает его.
-  ///
-  /// Этот метод может быть переопределен в подклассах для изменения URL-адреса
-  ///
   /// Формирует URL изображения с учётом текущей ширины фрейма и масштаба экрана устройства.
   ///
   /// Метод добавляет параметры запроса к исходному URL изображения, включая текущую ширину
@@ -86,7 +86,20 @@ class MainImageContainerView: UIView {
   /// перед созданием URL. Использование метода позволяет динамически адаптировать изображение
   /// под текущие размеры фрейма и экран.
   func sizedImageURL(from url: URL) -> URL {
-    return url
+    layoutIfNeeded()
+    let widthValue = String(describing: frame.width)
+    let screenScaleValue = String(describing: Int(screenScale))
+    let widthQueryItem = URLQueryItem(
+      name: ParamKey.width.rawValue,
+      value: widthValue
+    )
+    let screenScaleQueryItem = URLQueryItem(
+      name: ParamKey.devicePixelRatio.rawValue,
+      value: screenScaleValue
+    )
+    return url.appending(
+      queryItems: [widthQueryItem, screenScaleQueryItem]
+    )
   }
   
   // MARK: Private Methods
