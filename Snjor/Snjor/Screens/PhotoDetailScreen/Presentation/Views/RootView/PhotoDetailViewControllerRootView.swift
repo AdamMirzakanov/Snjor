@@ -207,7 +207,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     $0.alpha = Const.defaultOpacity
     $0.frame = toggleContentModePhotoButtonBlurEffect.bounds
     return $0
-  }(UIButton(type: .system))
+  }(UIButton())
   
   private let infoButton: UIButton = {
     let icon = SFSymbol.infoButtonIcon
