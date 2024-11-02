@@ -54,7 +54,7 @@ extension Photo: ViewModelItemRepresentable {
   }
   
   var regularURL: URL? {
-    return self.urls[.regular]
+    return self.urls[.thumb]
   }
 }
 
