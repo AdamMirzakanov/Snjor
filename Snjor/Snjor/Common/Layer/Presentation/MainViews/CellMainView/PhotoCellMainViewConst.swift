@@ -20,6 +20,6 @@ enum PhotoCellMainViewConst {
   static let fullValue = middleValue * half       
   static let defaultOpacity: CGFloat = 0.4
   static let maxOpacity: CGFloat = 1.0
-  static let userNameLabelFontSize: CGFloat = 14.0
+  static let userNameLabelFontSize: CGFloat = 13.0
   static let spinnerScale: CGFloat = 0.75
 }

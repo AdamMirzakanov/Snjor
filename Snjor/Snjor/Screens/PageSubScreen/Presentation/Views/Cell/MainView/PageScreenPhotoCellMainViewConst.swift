@@ -18,5 +18,5 @@ enum PageScreenPhotoCellMainViewConst {
   static let defaultValue: CGFloat = 8.0
   static let middleValue: CGFloat = 16.0
   static let userNameLabelFontSize: CGFloat = 17.0
-  static let checkmarkIconSize: CGFloat = 17.0
+  static let checkmarkIconSize: CGFloat = 16.0
 }
