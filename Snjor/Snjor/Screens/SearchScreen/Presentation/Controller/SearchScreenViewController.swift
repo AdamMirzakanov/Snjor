@@ -57,7 +57,6 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
     super.viewDidLoad()
     setupSearchController()
     setupCollectionViewDelegate()
-    initializeViewModels()
     stateController()
     setupDataSource()
     configureDownloadSession()
@@ -68,6 +67,7 @@ final class SearchScreenViewController: MainViewController<SearchScreenRootView>
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    initializeViewModels()
     showCustomTabBar()
   }
   

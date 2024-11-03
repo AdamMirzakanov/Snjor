@@ -47,12 +47,12 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     configCollectionView()
     setupDataSource()
     resetPage()
-    viewModel.viewDidLoad()
     stateController()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    viewModel.viewDidLoad()
     setupNavigationItems()
     setupNavigationTitle()
     hideCustomTabBar()

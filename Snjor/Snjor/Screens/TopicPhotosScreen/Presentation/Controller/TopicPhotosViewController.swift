@@ -47,12 +47,12 @@ final class TopicPhotosViewController: MainViewController<TopicPhotosRootView> {
     super.viewDidLoad()
     configCollectionView()
     setupDataSource()
-    viewModel.viewDidLoad()
     stateController()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    viewModel.viewDidLoad()
     setupNavigationItems()
     hideCustomTabBar()
     configureDownloadSession()

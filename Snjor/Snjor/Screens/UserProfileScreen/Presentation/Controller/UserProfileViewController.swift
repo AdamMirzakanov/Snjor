@@ -55,12 +55,12 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
     userLikedPhotosState()
     userPhotosState()
     userAlbumsState()
-    initializeViewModels()
     setupCollectionViewDelegate()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    initializeViewModels()
     setupNavigationItems()
   }
   
