@@ -55,7 +55,7 @@ final class UserProfileViewControllerRootView: UIView {
   }(UserProfilePhotoView())
   
   // MARK: Avatar
-  private let avatarView: UserProfilePhotoView = {
+  private let avatarView: AvatarPhotoView = {
     $0.contentMode = .scaleAspectFill
     $0.layer.cornerRadius = Const.avatarCircle
     $0.clipsToBounds = true
@@ -66,7 +66,7 @@ final class UserProfileViewControllerRootView: UIView {
       equalToConstant: Const.avatarSize
     ).isActive = true
     return $0
-  }(UserProfilePhotoView())
+  }(AvatarPhotoView())
   
   // MARK: Gradient
   private let backgroundGradientView: MainGradientView = {

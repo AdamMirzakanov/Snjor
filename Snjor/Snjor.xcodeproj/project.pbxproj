@@ -151,6 +151,7 @@
 		3770E1A12C7208D70017ECBB /* AlbumPhotosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770E1A02C7208D70017ECBB /* AlbumPhotosCoordinator.swift */; };
 		3770E1A72C722E5A0017ECBB /* AlbumTagsCollectionView + UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770E1A62C722E5A0017ECBB /* AlbumTagsCollectionView + UICollectionViewDataSource.swift */; };
 		3770E1AF2C722F3F0017ECBB /* AlbumTagCell + Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770E1AE2C722F3F0017ECBB /* AlbumTagCell + Reusable.swift */; };
+		3775FA792CD7CE060040431B /* AvatarPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775FA782CD7CE060040431B /* AvatarPhotoView.swift */; };
 		3776D9E92C8352BE0021CE8C /* MainPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776D9E82C8352BE0021CE8C /* MainPhotoCell.swift */; };
 		3776D9EF2C836FA20021CE8C /* MainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776D9EE2C836FA20021CE8C /* MainCollectionView.swift */; };
 		3776D9F32C8370E40021CE8C /* SearchResulAlbumsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776D9F22C8370E40021CE8C /* SearchResulAlbumsCollectionView.swift */; };
@@ -575,6 +576,7 @@
 		3770E1A02C7208D70017ECBB /* AlbumPhotosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPhotosCoordinator.swift; sourceTree = "<group>"; };
 		3770E1A62C722E5A0017ECBB /* AlbumTagsCollectionView + UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumTagsCollectionView + UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		3770E1AE2C722F3F0017ECBB /* AlbumTagCell + Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumTagCell + Reusable.swift"; sourceTree = "<group>"; };
+		3775FA782CD7CE060040431B /* AvatarPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPhotoView.swift; sourceTree = "<group>"; };
 		3776D9E82C8352BE0021CE8C /* MainPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhotoCell.swift; sourceTree = "<group>"; };
 		3776D9EE2C836FA20021CE8C /* MainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionView.swift; sourceTree = "<group>"; };
 		3776D9F22C8370E40021CE8C /* SearchResulAlbumsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResulAlbumsCollectionView.swift; sourceTree = "<group>"; };
@@ -1695,6 +1697,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		3775FA7A2CD7CE230040431B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				37AF3C5A2C91D05E0048FB9C /* UserProfilePhotoView.swift */,
+				3775FA782CD7CE060040431B /* AvatarPhotoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3776D9F02C83707B0021CE8C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2240,6 +2251,7 @@
 		37AF3C3A2C90B2750048FB9C /* RootView */ = {
 			isa = PBXGroup;
 			children = (
+				3775FA7A2CD7CE230040431B /* Views */,
 				37AF3C3F2C90B3000048FB9C /* UserProfileViewControllerRootView.swift */,
 				37AF3C412C90B3230048FB9C /* UserProfileViewControllerRootViewConst.swift */,
 			);
@@ -3214,7 +3226,6 @@
 			isa = PBXGroup;
 			children = (
 				6684EF632C3F39A800498FE7 /* PhotoDetailPhotoView.swift */,
-				37AF3C5A2C91D05E0048FB9C /* UserProfilePhotoView.swift */,
 				370A00712C87B512006B87DD /* PhotoDetailPhotoViewConst.swift */,
 			);
 			path = Views;
@@ -3388,6 +3399,7 @@
 				37B81D652C8D09C800804304 /* SearchScreenViewController + UsersDataSource.swift in Sources */,
 				37BE0AC92C52711300C8D45F /* PageScreenPhotos + ErrorDisplayable.swift in Sources */,
 				37ECB3872C95E00E003E063E /* UserProfileViewModelProvider.swift in Sources */,
+				3775FA792CD7CE060040431B /* AvatarPhotoView.swift in Sources */,
 				37860BFE2C9A2E070067FEDC /* UserPhotoCell + Reusable.swift in Sources */,
 				3770E1422C6FFE320017ECBB /* TopicPhotoCell.swift in Sources */,
 				372B347A2C888B37008FCC88 /* PageScreenPhotosViewControllerDelegate.swift in Sources */,
