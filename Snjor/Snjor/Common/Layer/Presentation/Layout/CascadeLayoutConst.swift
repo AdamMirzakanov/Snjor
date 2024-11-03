@@ -14,7 +14,6 @@ enum CascadeLayoutConst {
   static let iPhoneColumns = 2
   static let iPadColumns = 3
   static let columnSpacing = getAdjustedSpacing()
-  static let singleColumnSpacing: CGFloat = 60.0
   
   /// Возвращает скорректированное значение зазора между столбцами в зависимости от ширины экрана.
   /// Если ширина экрана чётная, зазор составляет - 2, в противном случае - 3.
