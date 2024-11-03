@@ -475,7 +475,7 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   private func configurePorfolioButton(viewModelItem: UserProfileViewModelItem) {
-    if viewModelItem.user.portfolioURL != nil {
+    if viewModelItem.user.social?.portfolioUrl != nil {
       let icon = SFSymbol.portfolioIcon
       portfolioBarButton.setImage(icon, for: .normal)
     } else {

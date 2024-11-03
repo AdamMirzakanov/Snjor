@@ -104,7 +104,8 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
             return
           }
           // передать URL-адрес портфолио
-          self.rootView.portfolioURL = viewModelItem.user.portfolioURL
+          guard let url = viewModelItem.user.social?.portfolioUrl else { return }
+          self.rootView.portfolioURL = url
         }
       }
       .store(in: &cancellable)
