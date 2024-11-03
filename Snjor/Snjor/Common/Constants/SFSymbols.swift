@@ -25,7 +25,6 @@ enum SFSymbol {
   static let downloadsIcon = UIImage(systemName: "tray.and.arrow.down.fill")
   static let toggleUpIcon = UIImage(systemName: "arrow.up.backward.and.arrow.down.forward")
   static let toggleDownIcon = UIImage(systemName: "arrow.down.forward.and.arrow.up.backward")
-  static let cameraMacroIcon = UIImage(systemName: "camera.macro")
   static let photoListItemIcon = UIImage(systemName: "photo.on.rectangle")
   static let photoListSelectedItemIcon = UIImage(systemName: "photo.fill.on.rectangle.fill")
   static let calendarIcon = UIImage(systemName: "calendar")

@@ -26,7 +26,7 @@ final class AlbumCellMainView: MainImageContainerView {
   
   // MARK: Buttons
   private lazy var macroIconButton: UIButton = {
-    let icon = SFSymbol.cameraMacroIcon
+    let icon = SFSymbol.macroIcon
     $0.setImage(icon, for: .normal)
     $0.tintColor = .white
     $0.setTitleColor(.label, for: .normal)

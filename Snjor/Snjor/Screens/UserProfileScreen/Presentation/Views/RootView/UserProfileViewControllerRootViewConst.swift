@@ -15,7 +15,7 @@ enum UserProfileViewControllerRootViewConst {
   static let defaultFontSize: CGFloat = 14.0
   static let indicatorPositionFontSize: CGFloat = 20.0
   static let userNameFontSize: CGFloat = 30.0
-  static let avatarSize: CGFloat = 68.0
+  static let avatarSize: CGFloat = 67.0
   static let avatarMulticolorBackgroundViewSize: CGFloat = 79.0
   static let checkmarkIconSize: CGFloat = 22.0
   static let checkmarkIconBackgroundViewSize: CGFloat = 13.0
@@ -28,7 +28,7 @@ enum UserProfileViewControllerRootViewConst {
   static let middleOpacity: CGFloat = 0.7
   static let bigIconOpacity: CGFloat = 0.3
   static let maxOpacity: CGFloat = 1.0
-  static let loacationIconSize: CGFloat = 13.0
+  static let loacationIconSize: CGFloat = 10.0
   static let lineWidth: CGFloat = 1.0
   static let rightPadding: CGFloat = 0.0
   static let leftPadding: CGFloat = 0.0
@@ -44,7 +44,7 @@ enum UserProfileViewControllerRootViewConst {
   static let userPhotosButtonLeftPadding: CGFloat = 10.0
   static let fullValue: CGFloat = 32.0
   static let defaultValue: CGFloat = 8.0
-  static let smallValue: CGFloat = 4.0
+  static let locationStackViewSpacing: CGFloat = 7.0
   static let defaultCircle = fullValue / 2.0
   static let duration: CGFloat = 0.12
   static let bigIconSize: CGFloat = 150.0
