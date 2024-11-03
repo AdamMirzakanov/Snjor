@@ -20,7 +20,6 @@ protocol PhotoDetailFactoryProtocol {
   ) -> any Coordinatable
   
   func makeUserProfileCoordinator(
-    user: User,
     navigation: any Navigable,
     parentCoordinator: any ParentCoordinator
   ) -> any Coordinatable

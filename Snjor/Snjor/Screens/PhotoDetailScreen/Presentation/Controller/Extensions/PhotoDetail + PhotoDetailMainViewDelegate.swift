@@ -16,10 +16,6 @@ extension PhotoDetailViewController: PhotoDetailRootViewDelegate {
   }
   
   func didTapAvatar() {
-    let photoDetailViewModelItem = viewModel.getPhotoDetailViewModelItem()
-    guard let photoDetailViewModelItem = photoDetailViewModelItem else { return }
-    let photo = photoDetailViewModelItem.photo
-    let user = photo.user
-    delegate?.didRequestProfileScreen(user)
+    delegate?.didRequestProfileScreen()
   }
 }

@@ -61,7 +61,9 @@ struct UserProfileFactory: UserProfileFactoryProtocol {
   }
   
   // MARK: Private Methods
-  private func getController(delegate: any UserProfileViewControllerDelegate) -> UIViewController {
+  private func getController(
+    delegate: any UserProfileViewControllerDelegate
+  ) -> UIViewController {
     let userProfileViewModel = viewModelProvider.createUserProfileViewModel(user: user)
     let userLakedPhotosViewModel = viewModelProvider.createUserLakedPhotosViewModel(user: user)
     let userPhotosViewModel = viewModelProvider.createUserPhotosViewModel(user: user)

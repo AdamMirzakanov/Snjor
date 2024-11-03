@@ -12,5 +12,5 @@ protocol PhotoDetailViewControllerDelegate: AnyObject {
     currentScopeIndex: Int
   )
   
-  func didRequestProfileScreen(_ user: User)
+  func didRequestProfileScreen()
 }

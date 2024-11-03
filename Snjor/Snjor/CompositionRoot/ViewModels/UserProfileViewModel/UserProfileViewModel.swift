@@ -8,11 +8,9 @@
 import Combine
 
 final class UserProfileViewModel: BaseViewModel<User>, UserProfileViewModelProtocol {
-  // MARK: Internal Properties
+  // MARK: Private Properties
   private var user: User?
   private var photo: Photo?
-  
-  // MARK: Private Properties
   private let loadUseCase: any LoadUserProfileUseCaseProtocol
   private let loadRandomPhotoUseCase: any LoadRandomUserPhotoUseCaseProtocol
   

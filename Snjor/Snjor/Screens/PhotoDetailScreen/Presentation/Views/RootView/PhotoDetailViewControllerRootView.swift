@@ -741,8 +741,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }
   
   func setupPhotoInfoData(viewModel: any PhotoDetailViewModelProtocol) {
-    let viewModelItem = viewModel.getPhotoDetailViewModelItem()
-    guard let viewModelItem = viewModelItem else { return }
+    guard let viewModelItem = viewModel.getPhotoDetailViewModelItem() else { return }
     cameraModelLabel.text = viewModelItem.cameraModel
     isoValueLabel.text = viewModelItem.iso
     focalLengthValueLabel.text = viewModelItem.focalLength
