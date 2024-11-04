@@ -6,6 +6,7 @@
 //
 
 enum SupplementaryViewKind {
+  static let photosHeader = "photosHeader"
   static let header = "header"
   static let line = "line"
 }

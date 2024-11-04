@@ -12,7 +12,8 @@ extension AlbumPhotosViewController {
   private var albumPhotosSnapshot: AlbumPhotosSnapshot {
     var snapshot = AlbumPhotosSnapshot()
     snapshot.appendSections([.main])
-    snapshot.appendItems(viewModel.items)
+    snapshot.appendItems(viewModel.items, toSection: .main)
+    albumPhotosSections = snapshot.sectionIdentifiers
     return snapshot
   }
   
@@ -33,8 +34,9 @@ extension AlbumPhotosViewController {
     albumPhotosDataSource = AlbumPhotosDataSource(
       collectionView: collectionView
     ) { [weak self, weak delegate] collectionView, indexPath, photo in
-      guard let self = self,
-            let delegate = delegate
+      guard
+        let self = self,
+        let delegate = delegate
       else {
         return UICollectionViewCell()
       }
@@ -44,6 +46,34 @@ extension AlbumPhotosViewController {
         photo: photo,
         delegate: delegate
       )
+    }
+    
+    // Заголовок коллекции
+    albumPhotosDataSource?.supplementaryViewProvider = { (
+      collectionView,
+      kind,
+      indexPath
+    ) -> UICollectionReusableView? in
+      
+      guard kind == UICollectionView.elementKindSectionHeader else {
+        return nil
+      }
+      
+      let section = self.albumPhotosSections[indexPath.section]
+      let sectionImage: UIImage
+      switch section {
+      case .main:
+        sectionImage = SFSymbol.photoCap!
+      }
+      
+      let headerView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: kind,
+        withReuseIdentifier: AlbumPhotosSectionHeaderView.reuseID,
+        for: indexPath
+      ) as! AlbumPhotosSectionHeaderView
+      
+      headerView.setImage(sectionImage)
+      return headerView
     }
   }
   

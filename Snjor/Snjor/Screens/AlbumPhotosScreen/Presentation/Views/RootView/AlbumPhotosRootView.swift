@@ -37,6 +37,28 @@ final class AlbumPhotosRootView: UIView {
     return $0
   }(UIButton())
   
+  // MARK: Lable
+  let albumNameLable: UILabel = {
+    $0.font = Const.albumNameTextFont
+    $0.widthAnchor.constraint(
+      equalToConstant: Const.titleViewWidth
+    ).isActive = true
+    $0.numberOfLines = .zero
+    $0.textAlignment = .center
+    return $0
+  }(UILabel())
+  
+  // MARK: VIews
+  let titleView: UIView = {
+    $0.frame = CGRect(
+      x: .zero,
+      y: .zero,
+      width: Const.titleViewWidth,
+      height: Const.titleViewHeight
+    )
+    return $0
+  }(UIView())
+  
   // MARK: Initializers
   init() {
     super.init(frame: .zero)
@@ -56,10 +78,13 @@ final class AlbumPhotosRootView: UIView {
   private func addSubviews() {
     addSubview(albumPhotosCollectionView)
     backBarButtonBackgroundView.addSubview(backBarButton)
+    addSubview(titleView)
+    titleView.addSubview(albumNameLable)
   }
   
   private func setupConstraints() {
     albumPhotosCollectionView.fillSuperView()
+    albumNameLable.centerXY()
   }
   
   // MARK: Config Navigation Item Actions

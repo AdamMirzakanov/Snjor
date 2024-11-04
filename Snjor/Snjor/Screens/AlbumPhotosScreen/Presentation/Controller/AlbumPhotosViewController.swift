@@ -11,6 +11,7 @@ import Combine
 final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   // MARK: Internal Properties
   var albumPhotosDataSource: AlbumPhotosDataSource?
+  var albumPhotosSections: [AlbumPhotosSection] = []
   
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
@@ -49,12 +50,12 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
     resetPage()
     viewModel.viewDidLoad()
     stateController()
+    navigationItem.titleView = rootView.titleView
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setupNavigationItems()
-    setupNavigationTitle()
     hideCustomTabBar()
     configureDownloadSession()
   }
@@ -126,9 +127,5 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
       navigationItem: navigationItem,
       navigationController: navigationController
     )
-  }
-  
-  private func setupNavigationTitle() {
-    navigationItem.title = .albumPhotos
   }
 }

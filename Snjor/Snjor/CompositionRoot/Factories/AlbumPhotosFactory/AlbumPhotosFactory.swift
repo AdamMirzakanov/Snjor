@@ -17,7 +17,10 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     delegate: any AlbumPhotosViewControllerDelegate
   ) -> UIViewController {
     let viewModel = createViewModel()
-    return createViewController(viewModel: viewModel, delegate: delegate)
+    let controller =  createViewController(viewModel: viewModel, delegate: delegate)
+    controller.navigationItem.title = String(album.totalPhotos) + AlbumPhotosConst.photos
+    controller.rootView.albumNameLable.text = album.title.uppercased()
+    return controller
   }
   
   func makePhotoDetailCoordinator(
@@ -63,7 +66,12 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
   private func configureLayout(
     for controller: AlbumPhotosViewController
   ) {
-    let cascadeLayout = MultiColumnCascadeLayout(with: controller)
+    let cascadeLayout = AlbumPhotosCascadeLayout(with: controller)
     controller.rootView.albumPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
+}
+
+// MARK: - Const
+enum AlbumPhotosConst {
+  static let photos = " photos"
 }

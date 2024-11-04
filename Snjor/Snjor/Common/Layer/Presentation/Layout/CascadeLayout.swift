@@ -16,6 +16,8 @@ fileprivate typealias Const = CascadeLayoutConst
 class CascadeLayout: UICollectionViewLayout {
   
   // MARK: Internal Properties
+  var attributes: [UICollectionViewLayoutAttributes] = []
+  
   /// Свойство `contentHeight` представляет собой высоту содержимого макета в виде `CGFloat`.
   /// Оно инициализируется значением `.zero` и используется для вычисления общей высоты
   /// области прокрутки `UICollectionView`, что позволяет правильно отображать ячейки
@@ -33,8 +35,10 @@ class CascadeLayout: UICollectionViewLayout {
   var isSingleColumn: Bool { numberOfColumns == .zero }
   
   /// Свойство `topInset` определяет верхний отступ для макета в виде `CGFloat`.
-  var topInset: CGFloat = Const.topInset
-  
+  var topInset: CGFloat {
+    return .zero  
+  }
+
   /// Свойство `columnSpacing` определяет расстояние между столбцами в макете в виде `CGFloat`.
   var columnSpacing: CGFloat = Const.columnSpacing
   
@@ -65,7 +69,8 @@ class CascadeLayout: UICollectionViewLayout {
   // MARK: Private Properties
   private weak var delegate: (any CascadeLayoutDelegate)?
   
-  /// Свойство `layoutAttributes` представляет собой массив объектов `UICollectionViewLayoutAttributes`,
+  /// Свойство `layoutAttributes` представляет собой
+  /// массив объектов `UICollectionViewLayoutAttributes`,
   /// которые хранят информацию о позициях и размерах ячеек в макете.
   /// Оно инициализируется пустым массивом и используется для обновления и управления
   /// отображением ячеек в `UICollectionView` в соответствии с заданным макетом.
@@ -131,7 +136,6 @@ class CascadeLayout: UICollectionViewLayout {
   override func layoutAttributesForElements(
     in rect: CGRect
   ) -> [UICollectionViewLayoutAttributes]? {
-    var attributes: [UICollectionViewLayoutAttributes] = []
     var firstFrameIndex: Int = .zero
     var framesCount: Int = frames.count
     
@@ -174,8 +178,10 @@ class CascadeLayout: UICollectionViewLayout {
   /// координаты `CGPoint` для начала столбца в зависимости от его индекса.
   /// Параметры:
   /// - `columnIndex`: индекс столбца, для которого вычисляется позиция.
-  /// - `collectionView`: экземпляр `UICollectionView`, который может быть использован для получения дополнительных данных (можно использовать, если необходимо).
-  /// - `columnHeights`: массив высот столбцов, который хранит текущее значение высоты каждого столбца.
+  /// - `collectionView`: экземпляр `UICollectionView`, который может быть использован для
+  /// получения дополнительных данных (можно использовать, если необходимо).
+  /// - `columnHeights`: массив высот столбцов, который хранит текущее
+  /// значение высоты каждого столбца.
   ///
   /// Метод возвращает `CGPoint`, где `x` вычисляется на основе индекса столбца
   /// и ширины столбца с учетом отступов, а `y` устанавливается равным высоте
@@ -213,16 +219,19 @@ class CascadeLayout: UICollectionViewLayout {
   ///   - Проверяет наличие `collectionView`, делегата и установленного количества столбцов.
   ///     Если что-то из этого отсутствует, выполнение метода прекращается.
   ///   - Инициализирует значения `itemSpacing`, `numberOfColumns` и `columnWidth`.
-  ///   - Создает массив `columnHeights`, заполненный значением `topInset`, для отслеживания высот      столбцов.
+  ///   - Создает массив `columnHeights`, заполненный
+  ///   значением `topInset`, для отслеживания высот столбцов.
   ///   - Подсчитывает общее количество элементов в `UICollectionView`.
-  ///   - Определяет функцию `indexOfNextColumn()`, которая находит индекс столбца с минимальной          высотой.
+  ///   - Определяет функцию `indexOfNextColumn()`,
+  ///   которая находит индекс столбца с минимальной высотой.
   ///   - Для каждого элемента в `UICollectionView` вычисляет размер и положение ячейки:
   ///     - Создает `UICollectionViewLayoutAttributes` для текущей ячейки.
   ///     - Определяет индекс следующего столбца для размещения.
   ///     - Вычисляет положение ячейки с помощью метода `originForColumn(...)`.
   ///     - Получает размер ячейки, масштабируя его под ширину столбца.
   ///     - Обновляет высоту соответствующего столбца в массиве `columnHeights`.
-  ///     - Устанавливает рамку для атрибутов ячейки и добавляет их в массив `layoutAttributes` и `frames`.
+  ///     - Устанавливает рамку для атрибутов ячейки и
+  ///     добавляет их в массив `layoutAttributes` и `frames`.
   ///   - В конце обновляет `contentHeight`, устанавливая его равным максимальной высоте столбцов
   ///     плюс отступ между ячейками, что позволяет корректно задать высоту содержимого.
   override func prepare() {
@@ -305,7 +314,7 @@ class CascadeLayout: UICollectionViewLayout {
   ///   - Очищает массив `frames`, удаляя все сохраненные рамки элементов.
   ///   - Устанавливает `contentHeight` в ноль, подготавливая макет к новому расчету
   ///     высоты содержимого при следующем обновлении.
-  private func reset() {
+  func reset() {
     pagingViewAttributes = nil
     layoutAttributes.removeAll()
     frames.removeAll()

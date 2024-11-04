@@ -117,7 +117,7 @@ struct SearchScreenFactory: SearchScreenFactoryProtocol {
   }
   
   private func setupLayouts(_ controller: SearchScreenViewController) {
-    let cascadeLayout = MultiColumnCascadeLayout(with: controller)
+    let cascadeLayout = CascadeLayout(with: controller)
     controller.rootView.photosCollectionView.collectionViewLayout = cascadeLayout
     let collectionsLayout = layoutProvider.createCollectionsLayout(controller)
     controller.rootView.topicsAndAlbumsCollectionView.collectionViewLayout = collectionsLayout

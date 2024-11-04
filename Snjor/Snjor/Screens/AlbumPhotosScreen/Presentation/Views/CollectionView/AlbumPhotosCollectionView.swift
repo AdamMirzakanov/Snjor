@@ -13,5 +13,11 @@ final class AlbumPhotosCollectionView: MainCollectionView {
       AlbumPhotoCell.self,
       forCellWithReuseIdentifier: AlbumPhotoCell.reuseID
     )
+    
+    register(
+      AlbumPhotosSectionHeaderView.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: AlbumPhotosSectionHeaderView.reuseID
+    )
   }
 }

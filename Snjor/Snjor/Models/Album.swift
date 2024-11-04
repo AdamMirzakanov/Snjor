@@ -13,6 +13,7 @@ struct Album: Decodable, Hashable {
   let previewPhotos: [AlbumPreviewPhoto]?
   let totalPhotos: Int
   let tags: [Tag]?
+  let description: String?
 }
 
 // MARK: - ViewModelItemRepresentable

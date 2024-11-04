@@ -66,9 +66,9 @@ extension SearchScreenViewController {
       )
     }
   }
-  
-  private func configurePhotoCell(
-    collectionView: UICollectionView,
+    
+    private func configurePhotoCell(
+      collectionView: UICollectionView,
     indexPath: IndexPath,
     photo: Photo,
     delegate: any SearchScreenPhotoCellDelegate

@@ -68,7 +68,7 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
   private func configureLayout(
     for controller: TopicPhotosViewController
   ) {
-    let cascadeLayout = MultiColumnCascadeLayout(with: controller)
+    let cascadeLayout = CascadeLayout(with: controller)
     controller.rootView.topicPhotosCollectionView.collectionViewLayout = cascadeLayout
   }
 }
