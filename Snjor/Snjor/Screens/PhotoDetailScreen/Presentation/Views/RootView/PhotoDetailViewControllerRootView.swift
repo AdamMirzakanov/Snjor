@@ -851,30 +851,26 @@ final class PhotoDetailViewControllerRootView: UIView {
   
   private func setNoTagsConstraints() {
     leftStackView.setConstraints(
-      centerY: mainStackView.centerYAnchor,
-      pCenterY: Const.leftStackViewCenterYOffsetNoTags
+      centerY: centerLine.centerYAnchor
     )
     rightStackView.setConstraints(
-      centerY: mainStackView.centerYAnchor,
-      pCenterY: Const.rightStackViewCenterYOffsetNoTags
+      centerY: centerLine.centerYAnchor
     )
     centerLine.setConstraints(
-      top: mainStackView.topAnchor,
-      pTop: Const.centerLineTopOffsetNoTags
+      top: mainStackView.bottomAnchor,
+      pTop: Const.centerLineTopOffset
     )
   }
   
   private func setTagsConstraints() {
     leftStackView.setConstraints(
-      centerY: mainStackView.centerYAnchor,
-      pCenterY: Const.leftStackViewCenterYOffset
+      centerY: centerLine.centerYAnchor
     )
     rightStackView.setConstraints(
-      centerY: mainStackView.centerYAnchor,
-      pCenterY: Const.rightStackViewCenterYOffset
+      centerY: centerLine.centerYAnchor
     )
     centerLine.setConstraints(
-      top: mainStackView.topAnchor,
+      top: mainStackView.bottomAnchor,
       pTop: Const.centerLineTopOffset
     )
   }
