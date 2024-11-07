@@ -20,7 +20,7 @@ This project is implemented entirely programmatically without using Storyboards 
 - **Frameworks**:
   - UIKit
   - Combine
-  - Photos (for managing photos and albums)
+  - Photos (to interact with the gallery)
   - SafariServices (it is used to open external links)
 
 - **Data Storage**:
@@ -28,6 +28,9 @@ This project is implemented entirely programmatically without using Storyboards 
 
 - **Concurrency**:
   - async/await
+
+- **Data Handling**:
+  - UICollectionViewDiffableDataSource
 
 ## Installation:
 1. Clone the repository:
