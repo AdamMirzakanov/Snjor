@@ -1,4 +1,4 @@
-# Snjør
+# SNJØR
 
 A mobile application built with Swift, utilizing the [Unsplash](https://unsplash.com) • [API Documentation](https://unsplash.com/documentation) to search and display images. It follows the MVVM architecture and uses Coordinators for navigation.
 
@@ -42,7 +42,7 @@ This project is implemented entirely programmatically without using Storyboards 
    git clone https://github.com/AdamMirzakanov/Snjor
    ```
 
-## Screenshots:
+## Screenshots (iPhone 16 Pro Max)
 ![App Cover](assets/screenshots/1.png)
 ![App Cover](assets/screenshots/2.png)
 ![App Cover](assets/screenshots/3.png)
