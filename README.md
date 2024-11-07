@@ -1,5 +1,10 @@
 # SNJØR
 
+![Swift Version](https://img.shields.io/badge/Swift-5.5-orange)
+![Platform](https://img.shields.io/badge/Platform-iOS-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![GitHub stars](https://img.shields.io/github/stars/AdamMirzakanov/Snjor)
+
 A mobile application built with Swift, utilizing the [Unsplash](https://unsplash.com) • [API Documentation](https://unsplash.com/documentation) to search and display images. It follows the MVVM architecture and uses Coordinators for navigation.
 
 ## No Storyboards or XIBs
