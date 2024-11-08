@@ -1,15 +1,18 @@
 # SNJØR
 
-![Swift Version](https://img.shields.io/badge/Swift-5.5-orange)
-![Platform](https://img.shields.io/badge/Platform-iOS-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
-![GitHub stars](https://img.shields.io/github/stars/AdamMirzakanov/Snjor)
+<img src="https://img.shields.io/badge/Swift-5.5+-orange?logo=swift&logoColor=orange&color=orange&labelColor=white" height="30" />
+<img src="https://img.shields.io/badge/Platform-iOS%2016+-blue" height="30" />
+<img src="https://img.shields.io/badge/License-MIT-green" height="30" />
+
+---
 
 A mobile application built with Swift, utilizing the [Unsplash](https://unsplash.com) • [API Documentation](https://unsplash.com/documentation) to search and display images. It follows the MVVM architecture and uses Coordinators for navigation.
 
 ## No Storyboards or XIBs
 
 This project is implemented entirely programmatically without using Storyboards or XIB files.
+
+
 
 ## Development Tools
 - **Code Quality**:
@@ -55,3 +58,7 @@ This project is implemented entirely programmatically without using Storyboards 
 ![App Cover](assets/screenshots/5.png)
 ![App Cover](assets/screenshots/6.png)
 ![App Cover](assets/screenshots/7.png)
+
+## Contact
+
+- **Email**: adamirzakan@gmail.com
