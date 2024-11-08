@@ -12,8 +12,7 @@ A mobile application built with Swift, utilizing the [Unsplash](https://unsplash
 This project is implemented entirely programmatically without using Storyboards or XIB files.
 
 ## Development Tools
-- **Code Quality**:
-  - SwiftLint (used to enforce Swift style and conventions)
+- SwiftLint
 
 ## Architecture:
 - MVVM + Coordinators
@@ -55,3 +54,4 @@ This project is implemented entirely programmatically without using Storyboards 
 ## Contact
 
 - **Email**: adamirzakan@gmail.com
+
