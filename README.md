@@ -1,8 +1,7 @@
 # SNJØR
 
-<img src="https://img.shields.io/badge/Swift-5.5+-orange?logo=swift&logoColor=orange&color=orange&labelColor=white" height="30" />
-<img src="https://img.shields.io/badge/Platform-iOS%2016+-blue" height="30" />
-<img src="https://img.shields.io/badge/License-MIT-green" height="30" />
+<img src="https://img.shields.io/badge/Swift-5.5+-orange?logo=swift&logoColor=orange&color=orange&labelColor=white" height="35" />
+<img src="https://img.shields.io/badge/Platform-iOS%2016+-blue" height="35" />
 
 ---
 
