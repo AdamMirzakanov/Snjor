@@ -36,10 +36,10 @@ This project is implemented entirely programmatically without using Storyboards 
 - **Data Handling**:
   - UICollectionViewDiffableDataSource
 
-## Installation:
+## Clone:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/AdamMirzakanov/Snjor
+   git clone https://github.com/alvdalen/Snjor
    ```
 
 ## Screenshots (iPhone 16 Pro Max)
@@ -50,8 +50,3 @@ This project is implemented entirely programmatically without using Storyboards 
 ![App Cover](assets/screenshots/5.png)
 ![App Cover](assets/screenshots/6.png)
 ![App Cover](assets/screenshots/7.png)
-
-## Contact
-
-- **Email**: adamirzakan@gmail.com
-
