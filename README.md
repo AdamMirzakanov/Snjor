@@ -36,7 +36,6 @@ This project is implemented entirely programmatically without using Storyboards 
   - UICollectionViewDiffableDataSource
 
 ## Clone:
-1. Clone the repository:
    ```bash
    git clone https://github.com/alvdalen/Snjor-MVVM-Coordinators
    ```
