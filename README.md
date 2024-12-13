@@ -3,11 +3,10 @@
 <img src="https://img.shields.io/badge/Swift-5.5+-orange?logo=swift&logoColor=orange&color=orange&labelColor=white" height="35" />
 <img src="https://img.shields.io/badge/Platform-iOS%2016+-blue" height="35" />
 
----
-
+## 🚀 Overview
 A mobile application built with Swift, utilizing the [Unsplash](https://unsplash.com) • [API Documentation](https://unsplash.com/documentation) to search and display images. It follows the MVVM architecture and uses Coordinators for navigation.
 
-## No Storyboards or XIBs
+## No Storyboards or XIBs ❌
 
 This project is implemented entirely programmatically without using Storyboards or XIB files.
 
