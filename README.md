@@ -39,7 +39,7 @@ This project is implemented entirely programmatically without using Storyboards 
 ## Clone:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/alvdalen/Snjor
+   git clone https://github.com/alvdalen/Snjor-MVVM-Coordinators
    ```
 
 ## Screenshots (iPhone 16 Pro Max)
