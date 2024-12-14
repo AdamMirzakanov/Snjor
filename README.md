@@ -1,7 +1,7 @@
 # SNJØR
 
-<img src="https://img.shields.io/badge/Swift-5.5+-orange?logo=swift&logoColor=orange&color=orange&labelColor=white" height="35" />
-<img src="https://img.shields.io/badge/Platform-iOS%2016+-blue" height="35" />
+<img src="https://img.shields.io/badge/Swift-5.5+-orange?logo=swift&logoColor=orange&color=orange&labelColor=white" height="30" />
+<img src="https://img.shields.io/badge/Platform-iOS%2016+-blue" height="30" />
 
 ## 🚀 Overview
 A mobile application built with Swift, utilizing the [Unsplash](https://unsplash.com) • [API Documentation](https://unsplash.com/documentation) to search and display images. It follows the MVVM architecture and uses Coordinators for navigation.
@@ -10,13 +10,13 @@ A mobile application built with Swift, utilizing the [Unsplash](https://unsplash
 
 This project is implemented entirely programmatically without using Storyboards or XIB files.
 
-## Development Tools
+## 🧰 Development Tools
 - SwiftLint
 
-## Architecture:
+## 🏛️ Architecture:
 - MVVM + Coordinators
 
-## Technologies:
+## ⚙️ Technologies:
 - **Languages**:
   - Swift
   
@@ -40,7 +40,7 @@ This project is implemented entirely programmatically without using Storyboards 
    git clone https://github.com/alvdalen/Snjor-MVVM-Coordinators
    ```
 
-## Screenshots (iPhone 16 Pro Max)
+## 📸 Screenshots (iPhone 16 Pro Max)
 ![App Cover](assets/screenshots/1.png)
 ![App Cover](assets/screenshots/2.png)
 ![App Cover](assets/screenshots/3.png)
