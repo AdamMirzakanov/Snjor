@@ -9,10 +9,7 @@ import UIKit
 
 fileprivate typealias Const = PageScreenTopicsCollectionViewConst
 
-final class PageScreenTopicsCollectionView: UICollectionView {
-  // MARK: Private Properties
-  private let flowlayout = UICollectionViewFlowLayout()
-  
+final class PageScreenTopicsCollectionView: BaseCollectionView {
   // MARK: Views
   private let lineView: UIView = {
     $0.backgroundColor = .white
@@ -26,8 +23,8 @@ final class PageScreenTopicsCollectionView: UICollectionView {
   }(UIView())
   
   // MARK: Initializers
-  init() {
-    super.init(frame: .zero, collectionViewLayout: flowlayout)
+  override init() {
+    super.init()
     configureLayout()
     addSubviews()
     cellRegister()
@@ -81,14 +78,14 @@ final class PageScreenTopicsCollectionView: UICollectionView {
     addSubview(indicatorView)
   }
   
-  private func configureLayout() {
+  override func configureLayout() {
     flowlayout.scrollDirection = .horizontal
     backgroundColor = .clear
     bounces = false
     showsHorizontalScrollIndicator = false
   }
   
-  private func cellRegister() {
+  override func cellRegister() {
     register(
       PageScreenTopicCell.self,
       forCellWithReuseIdentifier: PageScreenTopicCell.reuseID

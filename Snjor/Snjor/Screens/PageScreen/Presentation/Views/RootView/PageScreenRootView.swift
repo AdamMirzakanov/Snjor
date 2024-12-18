@@ -9,7 +9,7 @@ import UIKit
 
 fileprivate typealias Const = PageScreenRootViewConst
 
-final class PageScreenRootView: UIView {
+final class PageScreenRootView: BaseView {
   // MARK: Internal Views
   let pageViewController: UIPageViewController = {
     $0.view.backgroundColor = .clear
@@ -62,13 +62,8 @@ final class PageScreenRootView: UIView {
   }(MainGradientView())
   
   // MARK: Initializers
-  init() {
-    super.init(frame: .zero)
+  override func initViews() {
     setupViews()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Setup Views
