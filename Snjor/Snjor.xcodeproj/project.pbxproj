@@ -920,10 +920,10 @@
 		370389982D12B506004A0D63 /* Base Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3703899A2D12B521004A0D63 /* BaseCollectionViewCell */,
 				370389992D12B516004A0D63 /* BaseView */,
 				663769332C45738A006AB620 /* BaseViewController */,
 				37C00C8B2C89FC7F00F63CEC /* BaseCollectionView */,
+				3703899A2D12B521004A0D63 /* BaseCollectionViewCell */,
 			);
 			path = "Base Classes";
 			sourceTree = "<group>";
@@ -2491,13 +2491,13 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
-		37C00C892C89FC4600F63CEC /* MainTag */ = {
+		37C00C892C89FC4600F63CEC /* MainTagViews */ = {
 			isa = PBXGroup;
 			children = (
 				37C00C8D2C89FEDD00F63CEC /* MainTagCell */,
 				37C00C8E2C89FEF600F63CEC /* MainTagCollectionView */,
 			);
-			path = MainTag;
+			path = MainTagViews;
 			sourceTree = "<group>";
 		};
 		37C00C8A2C89FC7700F63CEC /* MainPhotoCell */ = {
@@ -2873,13 +2873,13 @@
 		663769342C457457006AB620 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				663769352C457466006AB620 /* Protocols */,
 				370389982D12B506004A0D63 /* Base Classes */,
 				669861452C4488470085D789 /* MainViews */,
 				6637693B2C457589006AB620 /* Components */,
 				37EFC4A42C543E6B001D3581 /* Layout */,
-				370A00602C8751D3006B87DD /* Extensions */,
 				6637693D2C457831006AB620 /* Constants */,
-				663769352C457466006AB620 /* Protocols */,
+				370A00602C8751D3006B87DD /* Extensions */,
 				664A51252C1DD3DF003491BA /* Utils */,
 			);
 			path = Common;
@@ -3300,7 +3300,7 @@
 			isa = PBXGroup;
 			children = (
 				668AEDEB2C4A6776006DD6E8 /* MainImageContainerView */,
-				37C00C892C89FC4600F63CEC /* MainTag */,
+				37C00C892C89FC4600F63CEC /* MainTagViews */,
 				37C00C8A2C89FC7700F63CEC /* MainPhotoCell */,
 				37C00C8C2C89FCB600F63CEC /* MainGradientView */,
 				664AA5B02C49B32E00A393BD /* MainPhotoCellView */,
