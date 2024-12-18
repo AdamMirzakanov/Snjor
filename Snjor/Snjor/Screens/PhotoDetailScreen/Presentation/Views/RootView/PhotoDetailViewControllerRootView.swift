@@ -722,7 +722,7 @@ final class PhotoDetailViewControllerRootView: UIView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Setup Data

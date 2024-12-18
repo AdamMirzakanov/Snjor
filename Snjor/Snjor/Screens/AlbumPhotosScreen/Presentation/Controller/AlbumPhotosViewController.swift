@@ -39,7 +39,7 @@ final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: View Lifecycle

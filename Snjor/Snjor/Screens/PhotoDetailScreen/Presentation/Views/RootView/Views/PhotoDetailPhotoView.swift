@@ -36,7 +36,7 @@ final class PhotoDetailPhotoView: MainImageContainerView {
   }
 
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   func configure(

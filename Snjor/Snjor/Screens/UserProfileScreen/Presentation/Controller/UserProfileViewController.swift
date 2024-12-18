@@ -44,7 +44,7 @@ final class UserProfileViewController: MainViewController<UserProfileViewControl
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: View Lifecycle

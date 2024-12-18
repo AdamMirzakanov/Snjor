@@ -70,7 +70,7 @@ final class FirstCell: UICollectionViewCell {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Internal Methods

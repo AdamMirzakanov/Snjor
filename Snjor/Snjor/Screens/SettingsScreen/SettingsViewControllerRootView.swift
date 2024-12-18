@@ -290,7 +290,7 @@ final class SettingsViewControllerRootView: UIView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   private func setupButtonTargets() {

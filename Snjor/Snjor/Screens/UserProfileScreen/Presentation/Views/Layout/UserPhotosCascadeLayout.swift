@@ -17,6 +17,6 @@ final class UserPhotosCascadeLayout: CascadeLayout {
   }
   
   required init?(coder aDecoder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
 }

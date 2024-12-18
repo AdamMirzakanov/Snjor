@@ -22,7 +22,7 @@ final class PageScreenPhotosRootView: UIView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Setup Views

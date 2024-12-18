@@ -17,7 +17,7 @@ final class UserLikedPhotoCell: MainPhotoCell {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   private func configUserLikedPhotoCell() {

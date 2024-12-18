@@ -29,7 +29,7 @@ final class SectionHeaderView: UICollectionReusableView {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Internal Methods
@@ -81,7 +81,7 @@ final class AlbumPhotosSectionHeaderView: UICollectionReusableView, Reusable {
   }
   
   required init?(coder: NSCoder) {
-    fatalError(AppLocalized.initCoderNotImplementedError)
+    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   func setImage(_ image: UIImage) {
