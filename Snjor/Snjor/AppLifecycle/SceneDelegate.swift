@@ -7,39 +7,40 @@
 
 import UIKit
 
-final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder {
   // MARK: Internal Properties
   var window: UIWindow?
   
   // MARK: Private Properties
   private var appCoordinator: AppCoordinator?
   private var appFactory: (any AppFactoryProtocol)?
-  
-  // MARK: Internal Methods
+}
+
+// MARK: - UIWindowSceneDelegate
+extension SceneDelegate: UIWindowSceneDelegate {
   func scene(
     _ scene: UIScene,
     willConnectTo session: UISceneSession,
     options connectionOptions: UIScene.ConnectionOptions
   ) {
-    guard let windowScene = getWindowScene(from: scene) else {
-      return
-    }
-    configureWindow(with: windowScene)
+    sceneInit(scene)
+  }
+}
+
+// MARK: - Config Window
+private extension SceneDelegate {
+  func sceneInit(_ scene: UIScene) {
+    configWindow(with: scene)
     initializeAppCoordinator()
     startAppCoordinator()
-    setAppThemeToDarkMode(for: window)
   }
   
-  // MARK: Private Methods
-  private func getWindowScene(from scene: UIScene) -> UIWindowScene? {
-    return scene as? UIWindowScene
-  }
-  
-  private func configureWindow(with windowScene: UIWindowScene) {
+  func configWindow(with scene: UIScene) {
+    guard let windowScene = scene as? UIWindowScene else { return }
     window = UIWindow(windowScene: windowScene)
   }
   
-  private func initializeAppCoordinator() {
+  func initializeAppCoordinator() {
     appFactory = AppFactory()
     let navigationController = UINavigationController()
     let navigation = Navigation(rootViewController: navigationController)
@@ -50,13 +51,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     )
   }
   
-  private func startAppCoordinator() {
+  func startAppCoordinator() {
     appCoordinator?.start()
-  }
-  
-  private func setAppThemeToDarkMode(for window: UIWindow?) {
-    if #available(iOS 13.0, *) {
-      window?.overrideUserInterfaceStyle = .dark
-    }
   }
 }

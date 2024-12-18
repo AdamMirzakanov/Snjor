@@ -34,6 +34,7 @@ final class AppCoordinator: Coordinatable {
   // MARK: Private Methods
   private func configWindow() {
     window?.rootViewController = navigation.rootViewController
+    window?.overrideUserInterfaceStyle = .dark
     window?.makeKeyAndVisible()
   }
 
