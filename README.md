@@ -48,4 +48,3 @@ This project is implemented entirely programmatically without using Storyboards 
 ![App Cover](assets/screenshots/5.png)
 ![App Cover](assets/screenshots/6.png)
 ![App Cover](assets/screenshots/7.png)
-![App Cover](assets/screenshots/8.png)
