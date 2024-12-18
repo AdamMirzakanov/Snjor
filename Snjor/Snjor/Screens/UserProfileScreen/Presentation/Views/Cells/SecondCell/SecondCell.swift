@@ -17,8 +17,8 @@ final class SecondCell: BaseColletionViewCell<SecondCellRootView> {
   weak var delegate: (any SecondCellDelegate)?
   
   // MARK: Initializers
-  override func initViews() {
-    super.initViews()
+  override func initCell() {
+    super.initCell()
     setupLayout()
     createPhotosDataSource(for: rootView.userPhotosCollectionView)
     setupCollectionViewDelegate()

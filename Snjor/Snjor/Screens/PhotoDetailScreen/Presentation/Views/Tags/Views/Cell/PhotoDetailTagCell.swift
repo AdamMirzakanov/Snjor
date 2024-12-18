@@ -12,8 +12,8 @@ final class PhotoDetailTagCell: MainTagCell {
 //    tagLabel.textColor = .black
 //  }
   
-  override func initViews() {
-    super.initViews()
+  override func initCell() {
+    super.initCell()
     rootView.tagLabel.backgroundColor = .white
     rootView.tagLabel.textColor = .black
   }

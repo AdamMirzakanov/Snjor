@@ -17,8 +17,8 @@ final class FirstCell: BaseColletionViewCell<FirstCellRootView> {
   weak var delegate: (any FirstCellDelegate)?
 
   // MARK: Initializers
-  override func initViews() {
-    super.initViews()
+  override func initCell() {
+    super.initCell()
     setupLayout()
     createPhotosDataSource(for: rootView.userLikedPhotosCollectionView)
     setupCollectionViewDelegate()

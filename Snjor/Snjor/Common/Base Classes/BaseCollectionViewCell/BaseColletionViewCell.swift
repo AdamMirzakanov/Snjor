@@ -13,7 +13,7 @@ class BaseColletionViewCell<ViewType: UIView>: UICollectionViewCell {
   // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
-    initViews()
+    initCell()
     setupDelegate()
   }
 
@@ -25,7 +25,8 @@ class BaseColletionViewCell<ViewType: UIView>: UICollectionViewCell {
   /// Подклассы могут переопределять этот метод при надобности.
   func setupDelegate() { }
   
-  func initViews() {
+  /// Подкалссы должны вызывать `super.initCell()`
+  func initCell() {
     let customView = RootView()
     contentView.addSubview(customView)
     customView.fillSuperView()

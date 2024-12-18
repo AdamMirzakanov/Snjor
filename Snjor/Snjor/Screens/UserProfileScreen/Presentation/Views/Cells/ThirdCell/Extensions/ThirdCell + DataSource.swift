@@ -96,7 +96,7 @@ extension ThirdCell {
   }
   
   private func checkCollectionViewState() {
-    let numberOfItems = userAlbumsCollectionView.numberOfItems(inSection: .zero)
-    noAlbumsStackView.isHidden = numberOfItems > .zero
+    let numberOfItems = rootView.userAlbumsCollectionView.numberOfItems(inSection: .zero)
+    rootView.noAlbumsStackView.isHidden = numberOfItems > .zero
   }
 }

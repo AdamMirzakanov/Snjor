@@ -8,8 +8,8 @@
 fileprivate typealias Const = MainTagCellConst
 
 final class AlbumTagCell: MainTagCell {
-  override func initViews() {
-    super.initViews()
+  override func initCell() {
+    super.initCell()
     rootView.tagLabel.textColor = .label
     rootView.tagLabel.alpha = Const.tagLabelOpacity
     rootView.tagLabel.backgroundColor = .systemGray4
