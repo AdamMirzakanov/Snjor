@@ -8,6 +8,26 @@
 import Foundation
 
 protocol NetworkRequestServiceProtocol: AnyObject {
+  /// Подготавливает универсальный объект `URLRequest` для выполнения сетевого запроса.
+  ///
+  /// Этот метод формирует финальный URL на основе базового пути,
+  /// параметров запроса и дополнительных компонентов пути.
+  /// После успешного формирования URL создаётся объект `URLRequest`, готовый к использованию.
+  ///
+  /// - Parameters:
+  ///   - path: Базовый путь (строка), который будет преобразован в URL.
+  ///   - parameters: Словарь параметров, который будет добавлен к
+  ///   базовому пути в виде строки запроса (опционально).
+  ///   - additionalPathComponents: Массив дополнительных компонентов пути,
+  ///   которые последовательно добавляются к базовому URL.
+  /// - Throws: Ошибка типа `APIError.URLError`, если URL не удалось создать.
+  /// - Returns: Готовый объект `URLRequest`, сформированный на основе указанных параметров.
+  func prepareAPIRequest(
+    path: String,
+    parameters: Parameters?,
+    additionalPathComponents: [String]
+  ) throws -> URLRequest
+  
   /// Подготавливает запрос для получения заголовков топиков.
   ///
   /// - Parameters:
@@ -112,18 +132,6 @@ protocol NetworkRequestServiceProtocol: AnyObject {
   func prepareUserAlbumsAPIRequest(
     path: String,
     usernamePathSegment: String,
-    parameters: Parameters
-  ) throws -> URLRequest
-  
-  /// Подготавливает общий запрос к API.
-  ///
-  /// - Parameters:
-  ///   - path: Базовый путь для формирования запроса.
-  ///   - parameters: Параметры, которые будут добавлены к URL запроса.
-  /// - Note: Этот метод может быть использован для получения фотографий,
-  /// альбомов, пользователей, а также для выполнения поисковых запросов по этим категориям.
-  func prepareAPIRequest(
-    path: String,
     parameters: Parameters
   ) throws -> URLRequest
 }
