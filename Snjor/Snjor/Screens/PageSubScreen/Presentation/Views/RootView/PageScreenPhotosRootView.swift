@@ -9,20 +9,15 @@ import UIKit
 
 fileprivate typealias Const = PageScreenPhotosRootViewConst
 
-final class PageScreenPhotosRootView: UIView {
+final class PageScreenPhotosRootView: BaseView {
   // MARK: Views
   let pageScreenPhotosCollectionView: PageScreenPhotosCollectionView = {
     return $0
   }(PageScreenPhotosCollectionView())
   
   // MARK: Initializers
-  init() {
-    super.init(frame: .zero)
+  override func initViews() {
     setupViews()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Setup Views
