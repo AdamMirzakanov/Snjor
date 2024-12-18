@@ -7,22 +7,9 @@
 
 import UIKit
 
-final class PageScreenPhotosCollectionView: UICollectionView {
-  // MARK: Private Properties
-  private let flowlayout = UICollectionViewFlowLayout()
-  
-  // MARK: Initializers
-  init() {
-    super.init(frame: .zero, collectionViewLayout: flowlayout)
-    cellRegister()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
-  }
-  
+final class PageScreenPhotosCollectionView: BaseCollectionView {  
   // MARK: Private Methods
-  private func cellRegister() {
+  override func cellRegister() {
     register(
       PageScreenPhotoCell.self,
       forCellWithReuseIdentifier: PageScreenPhotoCell.reuseID
