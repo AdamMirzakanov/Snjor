@@ -8,17 +8,17 @@
 import UIKit
 
 @main
-final class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder { }
 
-  var backgroundSessionCompletionHandler: (() -> Void)?
-
+// MARK: - UIApplicationDelegate
+extension AppDelegate: UIApplicationDelegate {
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     return true
   }
-
+  
   // MARK: UISceneSession Lifecycle
   func application(
     _ application: UIApplication,
@@ -26,22 +26,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     options: UIScene.ConnectionOptions
   ) -> UISceneConfiguration {
     return UISceneConfiguration(
-      name: "Default Configuration",
+      name: AppDelegateConst.defaultConfiguration,
       sessionRole: connectingSceneSession.role
     )
   }
-
+  
   func application(
     _ application: UIApplication,
-    didDiscardSceneSessions sceneSessions: Set<UISceneSession>
-  ) {
-  }
+    didDiscardSceneSessions sceneSessions: Set<UISceneSession>) { }
+}
 
-  func application(
-    _ application: UIApplication,
-    handleEventsForBackgroundURLSession handleEventsForBackgroundURLSessionidentifier: String,
-    completionHandler: @escaping () -> Void
-  ) {
-    backgroundSessionCompletionHandler = completionHandler
-  }
+// MARK: - Constants
+private enum AppDelegateConst {
+  static let defaultConfiguration: String = "Default Configuration"
 }
