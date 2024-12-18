@@ -9,10 +9,14 @@ import UIKit
 
 fileprivate typealias Const = SettingsViewControllerRootViewConst
 
-final class SettingsViewControllerRootView: UIView {
+final class SettingsViewControllerRootView: BaseView {
   // MARK: Private Properties
   private let storage: any StorageManagerProtocol = StorageManager()
-  private var buttonStates: [Bool] = [true, true, true, true, true, true, true, true, true]
+  private var buttonStates: [Bool] = [
+    true, true, true,
+    true, true, true,
+    true, true, true
+  ]
   private lazy var buttonsArray: [UIButton] = [
     unColorCircleButton,
     blackAndWhiteCircleButton,
@@ -282,28 +286,10 @@ final class SettingsViewControllerRootView: UIView {
   }(UIStackView())
   
   // MARK: - Initializers
-  init() {
-    super.init(frame: .zero)
+  override func initViews() {
     setupViews()
     restoreSelectedUIElement()
     setupButtonTargets()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
-  }
-  
-  private func setupButtonTargets() {
-    buttonsArray.forEach { $0.addTarget(
-      self,
-      action: #selector(circleButtonTapped),
-      for: .touchUpInside)
-    }
-    resetButton.addTarget(
-      self,
-      action: #selector(resetButtonTapped),
-      for: .touchUpInside
-    )
   }
   
   // MARK: Setup Views
@@ -501,6 +487,19 @@ final class SettingsViewControllerRootView: UIView {
     }
     
     storage.set(queryParameter, forKey: .sortingPhotosKey)
+  }
+  
+  private func setupButtonTargets() {
+    buttonsArray.forEach { $0.addTarget(
+      self,
+      action: #selector(circleButtonTapped),
+      for: .touchUpInside)
+    }
+    resetButton.addTarget(
+      self,
+      action: #selector(resetButtonTapped),
+      for: .touchUpInside
+    )
   }
   
   // MARK: State Restoration
