@@ -8,16 +8,10 @@
 import UIKit
 
 final class SearchResultPhotoCell: MainPhotoCell {
-  // MARK: Delegate
   weak var delegate: (any SearchResultPhotoCellDelegate)?
   
-  // MARK: Initializers
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    mainView.delegate = self
+  override func setupDelegate() {
+    rootView.mainView.delegate = self
   }
-
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
-  }
+  
 }

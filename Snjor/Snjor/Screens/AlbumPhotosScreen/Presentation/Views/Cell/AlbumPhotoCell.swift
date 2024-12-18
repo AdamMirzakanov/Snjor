@@ -11,13 +11,7 @@ final class AlbumPhotoCell: MainPhotoCell {
   // MARK: Delegate
   weak var delegate: (any AlbumPhotoCellDelegate)?
   
-  // MARK: Initializers
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    mainView.delegate = self
-  }
-
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
+  override func setupDelegate() {
+    rootView.mainView.delegate = self
   }
 }

@@ -61,9 +61,9 @@ extension TopicPhotosViewController: URLSessionDownloadDelegate {
       self.rootView.topicPhotosCollectionView.visibleCells
         .compactMap { $0 as? TopicPhotoCell }
         .forEach { cell in
-          cell.mainView.spinner.stopAnimating()
-          cell.mainView.spinner.isHidden = true
-          cell.mainView.downloadButton.isHidden = false
+          cell.rootView.mainView.spinner.stopAnimating()
+          cell.rootView.mainView.spinner.isHidden = true
+          cell.rootView.mainView.downloadButton.isHidden = false
         }
     }
   }

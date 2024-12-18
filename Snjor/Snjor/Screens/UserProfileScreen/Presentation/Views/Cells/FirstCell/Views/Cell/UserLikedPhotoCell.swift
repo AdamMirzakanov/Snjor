@@ -21,10 +21,10 @@ final class UserLikedPhotoCell: MainPhotoCell {
   }
   
   private func configUserLikedPhotoCell() {
-    mainView.layer.cornerRadius = Const.mainViewCornerRadius
-    mainView.clipsToBounds = true
-    mainView.downloadButtonBlurEffect.isHidden = true
-    mainView.userNameLabel.isHidden = true
-    mainView.gradientView.isHidden = true
+    rootView.mainView.layer.cornerRadius = Const.mainViewCornerRadius
+    rootView.mainView.clipsToBounds = true
+    rootView.mainView.downloadButtonBlurEffect.isHidden = true
+    rootView.mainView.userNameLabel.isHidden = true
+    rootView.mainView.gradientView.isHidden = true
   }
 }

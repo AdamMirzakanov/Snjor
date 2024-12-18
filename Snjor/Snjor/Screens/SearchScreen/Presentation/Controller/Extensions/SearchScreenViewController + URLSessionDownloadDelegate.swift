@@ -61,9 +61,9 @@ extension SearchScreenViewController: URLSessionDownloadDelegate {
       self.rootView.photosCollectionView.visibleCells
         .compactMap { $0 as? SearchScreenPhotoCell }
         .forEach { cell in
-          cell.mainView.spinner.stopAnimating()
-          cell.mainView.spinner.isHidden = true
-          cell.mainView.downloadButton.isHidden = false
+          cell.rootView.mainView.spinner.stopAnimating()
+          cell.rootView.mainView.spinner.isHidden = true
+          cell.rootView.mainView.downloadButton.isHidden = false
         }
     }
   }
