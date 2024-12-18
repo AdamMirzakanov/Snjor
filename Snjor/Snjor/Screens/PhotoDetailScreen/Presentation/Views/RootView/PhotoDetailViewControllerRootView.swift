@@ -393,7 +393,7 @@ final class PhotoDetailViewControllerRootView: BaseView {
   }(UILabel())
   
   private let isoLabel: UILabel = {
-    $0.text = .iso
+    $0.text = Const.iso
     $0.textColor = .white
     $0.font = .systemFont(
       ofSize: Const.defaultFontSize,
@@ -413,7 +413,7 @@ final class PhotoDetailViewControllerRootView: BaseView {
   }(UILabel())
   
   private let apertureLabel: UILabel = {
-    $0.text = .aperture
+    $0.text = Const.aperture
     $0.textColor = .white
     $0.font = .systemFont(
       ofSize: Const.defaultFontSize,
@@ -433,7 +433,7 @@ final class PhotoDetailViewControllerRootView: BaseView {
   }(UILabel())
   
   private let focalLengthLabel: UILabel = {
-    $0.text = .focalLengt
+    $0.text = Const.focalLengt
     $0.textColor = .white
     $0.font = .systemFont(
       ofSize: Const.defaultFontSize,
@@ -453,7 +453,7 @@ final class PhotoDetailViewControllerRootView: BaseView {
   }(UILabel())
   
   private let exposureTimeLabel: UILabel = {
-    $0.text = .exposure
+    $0.text = Const.exposure
     $0.textColor = .white
     $0.font = .systemFont(
       ofSize: Const.defaultFontSize,

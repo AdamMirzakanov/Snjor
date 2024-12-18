@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = SearchScreenViewControllerConst
+
 extension SearchScreenViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
@@ -37,8 +39,8 @@ extension SearchScreenViewController: UISearchBarDelegate {
     rootView.usersTableViewView.removeFromSuperview()
     rootView.addSubview(rootView.photosCollectionView)
     rootView.photosCollectionView.fillSuperView()
-    searchBar.placeholder = .searchPhotos
-    navigationItem.title = .discoverTitle
+    searchBar.placeholder = Const.searchPhotos
+    navigationItem.title = Const.discoverTitle
   }
   
   private func configureForTopicAndAlbumsMode(_ searchBar: UISearchBar) {
@@ -46,8 +48,8 @@ extension SearchScreenViewController: UISearchBarDelegate {
     rootView.usersTableViewView.removeFromSuperview()
     rootView.addSubview(rootView.topicsAndAlbumsCollectionView)
     rootView.topicsAndAlbumsCollectionView.fillSuperView()
-    searchBar.placeholder = .searchAlbums
-    navigationItem.title = .topicsAndAlbumsTitle
+    searchBar.placeholder = Const.searchAlbums
+    navigationItem.title = Const.topicsAndAlbumsTitle
   }
   
   private func configureForUsersMode(_ searchBar: UISearchBar) {
@@ -55,7 +57,7 @@ extension SearchScreenViewController: UISearchBarDelegate {
     rootView.topicsAndAlbumsCollectionView.removeFromSuperview()
     rootView.addSubview(rootView.usersTableViewView)
     rootView.usersTableViewView.fillSuperView()
-    searchBar.placeholder = .searchUsers
-    navigationItem.title = .usersTitle
+    searchBar.placeholder = Const.searchUsers
+    navigationItem.title = Const.usersTitle
   }
 }

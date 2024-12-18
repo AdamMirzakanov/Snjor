@@ -5,7 +5,7 @@
 //  Created by Адам Мирзаканов on 04.09.2024.
 //
 
-import CoreGraphics
+import Foundation
 
 enum PhotoDetailViewControllerRootViewConst {
   static let verticalTranslation: CGFloat = -120.0
@@ -61,7 +61,36 @@ enum PhotoDetailViewControllerRootViewConst {
   static let maxValue = fullValue + locationStackViewSpacing
   static let profilePhotoSize = maxValue + middleValue
   static let barButtonCircle = fullValue / half
-  static let profilePhotoCircle = profilePhotoSize / half     
+  static let profilePhotoCircle = profilePhotoSize / half
+  
+  // Localizable
+  static var iso: String {
+    Key.iso.localizeString()
+  }
+  
+  static var focalLengt: String {
+    Key.focalLengt.localizeString()
+  }
+  
+  static var aperture: String {
+    Key.aperture.localizeString()
+  }
+  
+  static var exposure: String {
+    Key.exposure.localizeString()
+  }
+}
+
+// MARK: - Localizable Keys
+private enum Key: String, CaseIterable {
+  case iso = "iso_key"
+  case focalLengt = "focal_Lengt_Key"
+  case aperture = "aperture_Key"
+  case exposure = "exposure_Key"
+  
+  func localizeString() -> String {
+    NSLocalizedString(self.rawValue, comment: .empty )
+  }
 }
 
 // MARK: - String
@@ -70,10 +99,6 @@ extension String {
   static let spacer = " "
   static let defaultCamera = "iPhone 4"
   static let jpeg = " JPEG"
-  static let iso = "ISO"
-  static let focalLengt = "Focal"
-  static let aperture = "Aperture"
-  static let exposure = "Exposure"
   static let mm = " mm"
   static let 𝑓 = "𝑓 "
   static let second = " s"

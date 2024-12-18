@@ -7,12 +7,14 @@
 
 import UIKit
 
+fileprivate typealias Const = SearchScreenViewControllerConst
+
 extension SearchScreenViewController {
   // MARK: Private Properties
   private var topicsAndAlbumsSnapshot: TopicsAndAlbumsSnapshot {
     var snapshot = TopicsAndAlbumsSnapshot()
     let topicSection = TopicsAndAlbumsSection.topics
-    let albumSection = TopicsAndAlbumsSection.albums(.albumsSectionName)
+    let albumSection = TopicsAndAlbumsSection.albums(Const.albumsSectionName)
     snapshot.appendSections([topicSection, albumSection])
     snapshot.appendItems(TopicsAndAlbumsItem.topics, toSection: topicSection)
     snapshot.appendItems(TopicsAndAlbumsItem.albums, toSection: albumSection)

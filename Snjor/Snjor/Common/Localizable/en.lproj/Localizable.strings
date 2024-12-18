@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  Snjor
+
+  Created by Адам Мирзаканов on 18.12.2024.
+  
+*/
+
+// Search Screen
+"discover_Title_Key" = "Discover";
+"topics_AndAlbums_Title_Key" = "Topics & Albums";
+"users_Title_Key" = "Users";
+"search_Photos_Key" = "Search photos";
+"search_Albums_Key" = "Search albums";
+"search_Users_Key" = "Search users";
+"initial_User_Search_Query_Key" = "Adam";
+"albums_Section_Name_Key" = "Albums";
+
+// Photo Detail Screen
+"iso_key" = "ISO";
+"focal_Lengt_Key" = "Focal";
+"aperture_Key" = "Aperture";
+"exposure_Key" = "Exposure";
+
+// Settings Screen
+"reset_Button_Title_Key" = "Reset";
+"color_Filters_Label_Text_Key" = "Color filters";
+"search_Filters_Label_Key" = "Search filters";
+"orientation_Label_Text_Key" = "Orientation";
+"sorting_Photos_Label_Text_Key" = "Sorting";
+"relevarnt_Sort_Key" = "Relevance";
+"latest_Sort_Key" = "Newest";
+"any_Orientation_Key" = "Any";

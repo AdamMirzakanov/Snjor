@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate typealias Const = SearchScreenViewControllerConst
+
 extension SearchScreenViewController {
   // MARK: Private Properties
   private var usersSnapshot: UsersSnapshot {
@@ -75,7 +77,7 @@ extension SearchScreenViewController {
     
     let viewModelItem = usersViewModel.getSearchItemsViewModelItem(
       at: indexPath.row,
-      with: .initialUserSearchQuery
+      with: Const.initialUserSearchQuery
     )
     cell.configure(viewModelItem: viewModelItem)
     return cell

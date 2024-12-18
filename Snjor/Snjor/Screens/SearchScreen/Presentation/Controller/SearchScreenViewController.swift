@@ -8,6 +8,8 @@
 import UIKit
 import Combine
 
+fileprivate typealias Const = SearchScreenViewControllerConst
+
 final class SearchScreenViewController: BaseViewController<SearchScreenRootView> {
   // MARK: Internal Properties
   var discoverDataSource: DiscoverDataSource?
@@ -92,12 +94,12 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
     searchController.searchBar.delegate = self
     searchController.searchBar.autocapitalizationType = .none
     searchController.searchBar.autocapitalizationType = .sentences
-    searchController.searchBar.placeholder = .searchPhotos
+    searchController.searchBar.placeholder = Const.searchPhotos
     searchController.searchBar.scopeButtonTitles = [
-      .discoverTitle,
-      .topicsAndAlbumsTitle,
+      Const.discoverTitle,
+      Const.topicsAndAlbumsTitle,
       // отключить сегмент для юзеров
-      // .usersTitle
+      // Const.usersTitle
     ]
   }
   
@@ -124,7 +126,7 @@ final class SearchScreenViewController: BaseViewController<SearchScreenRootView>
   
   private func setupNavigationItem() {
     navigationItem.hidesSearchBarWhenScrolling = false
-    navigationItem.title = .discoverTitle
+    navigationItem.title = Const.discoverTitle
     navigationItem.searchController = searchController
   }
   

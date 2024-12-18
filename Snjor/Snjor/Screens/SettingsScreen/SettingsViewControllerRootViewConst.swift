@@ -54,22 +54,52 @@ enum SettingsViewControllerRootViewConst {
   static let blueButton: Int = 7
   static let tealButton: Int = 8
   
-  static let resetButtonTitle: String = "Reset"
-  static let colorFiltersLabelText: String = "Color filters"
-  static let searchFiltersLabel: String = "Search filters"
-  static let layoutLabel: String = "Layout"
-  static let languageLabelText: String = "Language"
-  static let orientationLabelText: String = "Orientation"
-  static let contentFilterLabelText: String = "Content"
-  static let sortingPhotosLabelText: String = "Sorting"
-  static let numberOfColumnsLabelText: String = "Columns"
-  static let chooseLanguageLabelText: String = "Select a language"
-  static let lowContent: String = "Low"
-  static let highContent: String = "High"
-  static let relevarntSort: String = "Relevance"
-  static let latestSort: String = "Newest"
-  static let twoColumn: String = "2"
-  static let treeColumn: String = "3"
-  static let fourColumn: String = "4"
-  static let anyOrientation: String = "Any"
+  // Localizable
+  static var resetButtonTitle: String {
+    Key.resetButtonTitle.localizeString()
+  }
+  
+  static var colorFiltersLabelText: String {
+    Key.colorFiltersLabelText.localizeString()
+  }
+  
+  static var searchFiltersLabel: String {
+    Key.searchFiltersLabel.localizeString()
+  }
+  
+  static var orientationLabelText: String {
+    Key.orientationLabelText.localizeString()
+  }
+  
+  static var sortingPhotosLabelText: String {
+    Key.sortingPhotosLabelText.localizeString()
+  }
+  
+  static var relevarntSort: String {
+    Key.relevarntSort.localizeString()
+  }
+  
+  static var latestSort: String {
+    Key.latestSort.localizeString()
+  }
+  
+  static var anyOrientation: String {
+    Key.anyOrientation.localizeString()
+  }
+}
+
+// MARK: - Localizable Keys
+private enum Key: String, CaseIterable {
+  case resetButtonTitle = "reset_Button_Title_Key"
+  case colorFiltersLabelText = "color_Filters_Label_Text_Key"
+  case searchFiltersLabel = "search_Filters_Label_Key"
+  case orientationLabelText = "orientation_Label_Text_Key"
+  case sortingPhotosLabelText = "sorting_Photos_Label_Text_Key"
+  case relevarntSort = "relevarnt_Sort_Key"
+  case latestSort = "latest_Sort_Key"
+  case anyOrientation = "any_Orientation_Key"
+  
+  func localizeString() -> String {
+    NSLocalizedString(self.rawValue, comment: .empty )
+  }
 }
