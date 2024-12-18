@@ -9,7 +9,7 @@ import UIKit
 
 fileprivate typealias Const = AlbumPhotosRootViewConst
 
-final class AlbumPhotosRootView: UIView {
+final class AlbumPhotosRootView: BaseView {
   // MARK: Private Properties
   private var backButtonAction: (() -> Void)?
   
@@ -60,13 +60,8 @@ final class AlbumPhotosRootView: UIView {
   }(UIView())
   
   // MARK: Initializers
-  init() {
-    super.init(frame: .zero)
+  override func initViews() {
     setupViews()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Setup Views

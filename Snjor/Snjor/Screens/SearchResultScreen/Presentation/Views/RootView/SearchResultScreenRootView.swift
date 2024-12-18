@@ -9,7 +9,7 @@ import UIKit
 
 fileprivate typealias Const = AlbumPhotosRootViewConst
 
-final class SearchResultScreenRootView: UIView {
+final class SearchResultScreenRootView: BaseView {
   // MARK: Private Properties
   private var backButtonAction: (() -> Void)?
   
@@ -44,13 +44,8 @@ final class SearchResultScreenRootView: UIView {
   }(UIButton())
   
   // MARK: Initializers
-  init() {
-    super.init(frame: .zero)
+  override func initViews() {
     setupViews()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Setup Views

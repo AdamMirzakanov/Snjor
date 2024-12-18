@@ -54,38 +54,3 @@ final class SectionHeaderView: UICollectionReusableView {
     )
   }
 }
-
-
-final class AlbumPhotosSectionHeaderView: UICollectionReusableView, Reusable {
-  
-  let label: UILabel = {
-    let label = UILabel()
-    label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-    label.textColor = .label
-    return label
-  }()
-  
-  let mainImageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.clipsToBounds = true
-    return $0
-  }(UIImageView())
-  
-  // MARK: - Применить конфигурации
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    addSubview(mainImageView)
-    addSubview(label)
-    mainImageView.fillSuperView()
-    label.fillSuperView()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
-  }
-  
-  func setImage(_ image: UIImage) {
-    mainImageView.image = image
-  }
-}
-

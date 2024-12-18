@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchScreenRootView: UIView {
+final class SearchScreenRootView: BaseView {
   // MARK: Views
   let photosCollectionView: SearchScreenPhotosCollectionView = {
     return $0
@@ -22,13 +22,8 @@ final class SearchScreenRootView: UIView {
   }(UsersTableView())
   
   // MARK: Initializers
-  init() {
-    super.init(frame: .zero)
+  override func initViews() {
     setupViews()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Setup Views

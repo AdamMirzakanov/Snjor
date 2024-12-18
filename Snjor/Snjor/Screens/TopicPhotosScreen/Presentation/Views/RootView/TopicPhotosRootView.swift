@@ -9,7 +9,7 @@ import UIKit
 
 fileprivate typealias Const = TopicPhotosRootViewConst
 
-final class TopicPhotosRootView: UIView {
+final class TopicPhotosRootView: BaseView {
   // MARK: Private Properties
   private var backButtonAction: (() -> Void)?
   
@@ -36,15 +36,10 @@ final class TopicPhotosRootView: UIView {
   }(UIButton())
   
   // MARK: Initializers
-  init() {
-    super.init(frame: .zero)
+  override func initViews() {
     setupViews()
   }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
-  }
-  
+
   // MARK: Setup Views
   private func setupViews() {
     addSubviews()

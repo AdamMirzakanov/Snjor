@@ -13,5 +13,4 @@ final class SearchResultPhotoCell: MainPhotoCell {
   override func setupDelegate() {
     rootView.mainView.delegate = self
   }
-  
 }
