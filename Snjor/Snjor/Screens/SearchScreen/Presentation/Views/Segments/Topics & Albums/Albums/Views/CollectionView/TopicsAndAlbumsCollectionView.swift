@@ -5,7 +5,7 @@
 //  Created by Адам Мирзаканов on 08.08.2024.
 //
 
-final class TopicsAndAlbumsCollectionView: MainCollectionView {
+final class TopicsAndAlbumsCollectionView: BaseCollectionView {
   override func cellRegister() {
     register(
       AlbumCell.self,

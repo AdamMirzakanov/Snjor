@@ -1,5 +1,5 @@
 //
-//  MainCollectionView.swift
+//  BaseCollectionView.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 31.08.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainCollectionView: UICollectionView {
+class BaseCollectionView: UICollectionView {
   // MARK: Private Properties
   var flowlayout = UICollectionViewFlowLayout()
   

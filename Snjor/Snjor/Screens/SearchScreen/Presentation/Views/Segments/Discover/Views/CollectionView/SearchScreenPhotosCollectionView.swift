@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchScreenPhotosCollectionView: MainCollectionView {
+final class SearchScreenPhotosCollectionView: BaseCollectionView {
   override func cellRegister() {
     register(
       SearchScreenPhotoCell.self,

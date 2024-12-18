@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class UserLikedPhotosCollectionView: MainCollectionView {
+final class UserLikedPhotosCollectionView: BaseCollectionView {
   // MARK: Internal Properties
   weak var likedPhotosDelegate: (any UserLikedPhotosCollectionViewDelegate)?
   

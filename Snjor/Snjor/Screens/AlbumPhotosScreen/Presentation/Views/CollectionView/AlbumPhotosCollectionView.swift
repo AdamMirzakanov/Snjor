@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AlbumPhotosCollectionView: MainCollectionView {
+final class AlbumPhotosCollectionView: BaseCollectionView {
   override func cellRegister() {
     register(
       AlbumPhotoCell.self,

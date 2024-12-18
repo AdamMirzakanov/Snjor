@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TopicPhotosCollectionView: MainCollectionView {
+final class TopicPhotosCollectionView: BaseCollectionView {
   override func cellRegister() {
     register(
       TopicPhotoCell.self,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTagsCollectionView: MainCollectionView {
+class MainTagsCollectionView: BaseCollectionView {
   // MARK: Internal Properties
   var tags: [Tag] = []
   

@@ -9,7 +9,7 @@ import UIKit
 
 fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
-final class UserProfileCollectionView: MainCollectionView {
+final class UserProfileCollectionView: BaseCollectionView {
   private let layoutFactory = UserProfileCollectionViewLayoutFactory()
   
   override func cellRegister() {

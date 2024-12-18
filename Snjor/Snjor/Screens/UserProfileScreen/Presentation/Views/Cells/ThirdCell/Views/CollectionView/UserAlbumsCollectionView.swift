@@ -5,7 +5,7 @@
 //  Created by Адам Мирзаканов on 18.09.2024.
 //
 
-final class UserAlbumsCollectionView: MainCollectionView {
+final class UserAlbumsCollectionView: BaseCollectionView {
   // MARK: Internal Properties
   weak var userAlbumsDelegate: (any UserAlbumsCollectionViewDelegate)?
   
