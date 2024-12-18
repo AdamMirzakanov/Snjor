@@ -7,8 +7,6 @@
 
 import UIKit
 
-fileprivate typealias Const = UserProfileViewControllerRootViewConst
-
 final class ThirdCell: BaseColletionViewCell<ThirdCellRootView> {
   // MARK: Internal Properties
   var userAlbumsSections: [UserAlbumsSection] = []

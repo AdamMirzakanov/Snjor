@@ -7,8 +7,6 @@
 
 import UIKit
 
-fileprivate typealias Const = UserProfileViewControllerRootViewConst
-
 final class FirstCell: BaseColletionViewCell<FirstCellRootView> {
   // MARK: Internal Properties
   var userLikedPhotosSections: [UserLikedPhotosSection] = []
