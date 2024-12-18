@@ -11,7 +11,7 @@ fileprivate typealias Const = MainImageContainerViewConst
 
 /// Класс `MainImageContainerView` представляет собой пользовательский `UIView`,
 /// отвечающее за отображение изображения с поддержкой загрузки.
-class MainImageContainerView: UIView {
+class MainImageContainerView: BaseView {
   
   // MARK: Internal Properties
   /// Идентификатор текущей фотографии, используемый для отслеживания
@@ -35,13 +35,9 @@ class MainImageContainerView: UIView {
   }(UIImageView())
   
   // MARK: Initializers
-  init() {
-    super.init(frame: .zero)
-    setupViews()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
+  override func initViews() {
+    addSubview(mainImageView)
+    mainImageView.fillSuperView()
   }
   
   // MARK: Internal Methods
@@ -103,11 +99,6 @@ class MainImageContainerView: UIView {
   }
   
   // MARK: Private Methods
-  private func setupViews() {
-    addSubview(mainImageView)
-    mainImageView.fillSuperView()
-  }
-  
   /// Метод `downloadImage`, который инициирует загрузку изображения по указанному URL.
   ///
   /// - Параметры:
