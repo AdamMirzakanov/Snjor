@@ -25,9 +25,11 @@ class BaseCollectionView: UICollectionView {
   }
   
   // MARK: Internal Methods
-  func cellRegister() { }
-  func reusableViewRegister() { }
   func setupDelegate() { }
+  func reusableViewRegister() { }
+  func cellRegister() {
+    fatalError(ErrorMessage.mustOverrideCellRegister)
+  }
   
   func configureLayout() {
     flowlayout.scrollDirection = .vertical

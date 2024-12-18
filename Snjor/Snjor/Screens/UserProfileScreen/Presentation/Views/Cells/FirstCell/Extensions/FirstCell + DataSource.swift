@@ -96,7 +96,9 @@ extension FirstCell {
   }
   
   private func checkCollectionViewState() {
-    let numberOfItems = userLikedPhotosCollectionView.numberOfItems(inSection: .zero)
-    noLikedPhotosStackView.isHidden = numberOfItems > .zero
+    let numberOfItems = rootView.userLikedPhotosCollectionView.numberOfItems(
+      inSection: .zero
+    )
+    rootView.noLikedPhotosStackView.isHidden = numberOfItems > .zero
   }
 }

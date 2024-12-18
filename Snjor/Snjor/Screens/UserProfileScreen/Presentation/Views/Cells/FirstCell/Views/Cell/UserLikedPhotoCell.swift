@@ -11,13 +11,9 @@ fileprivate typealias Const = UserLikedPhotoCellConst
 
 final class UserLikedPhotoCell: MainPhotoCell {
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
+  override func initViews() {
+    super.initViews()
     configUserLikedPhotoCell()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   private func configUserLikedPhotoCell() {
