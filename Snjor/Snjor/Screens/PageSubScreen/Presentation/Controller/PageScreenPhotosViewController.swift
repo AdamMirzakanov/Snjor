@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PageScreenPhotosViewController: MainViewController<PageScreenPhotosRootView> {
+final class PageScreenPhotosViewController: BaseViewController<PageScreenPhotosRootView> {
   // MARK: Internal Properties
   var topicID: String?
   var pageIndex: Int?

@@ -13,7 +13,7 @@ import Combine
 /// каждое из этих ячеек содержит по вертикальному коллекционному представлению для отображения
 /// фотографий лайкнутых пользователем, фотографий загруженных пользователем и альбомов которые
 /// создал пользователь.
-final class UserProfileViewController: MainViewController<UserProfileViewControllerRootView> {
+final class UserProfileViewController: BaseViewController<UserProfileViewControllerRootView> {
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) var userProfileViewModel: any UserProfileViewModelProtocol

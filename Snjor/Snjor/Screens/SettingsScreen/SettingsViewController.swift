@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SettingsViewController: MainViewController<SettingsViewControllerRootView> {
+final class SettingsViewController: BaseViewController<SettingsViewControllerRootView> {
   // MARK: View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()

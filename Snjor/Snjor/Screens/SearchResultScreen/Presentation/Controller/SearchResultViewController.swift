@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class SearchResultViewController: MainViewController<SearchResultScreenRootView> {
+final class SearchResultViewController: BaseViewController<SearchResultScreenRootView> {
   // MARK: Internal Properties
   var photosDataSource: SearchResultPhotosDataSource?
   var albumsDataSource: SearchResultAlbumsDataSource?

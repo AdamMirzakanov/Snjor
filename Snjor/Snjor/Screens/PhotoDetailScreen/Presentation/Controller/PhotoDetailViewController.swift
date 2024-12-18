@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PhotoDetailViewController: MainViewController<PhotoDetailViewControllerRootView> {
+final class PhotoDetailViewController: BaseViewController<PhotoDetailViewControllerRootView> {
   // MARK: Private Properties
   private var cancellable = Set<AnyCancellable>()
   private(set) weak var delegate: (any PhotoDetailViewControllerDelegate)?

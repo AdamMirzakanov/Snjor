@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class AlbumPhotosViewController: MainViewController<AlbumPhotosRootView> {
+final class AlbumPhotosViewController: BaseViewController<AlbumPhotosRootView> {
   // MARK: Internal Properties
   var albumPhotosDataSource: AlbumPhotosDataSource?
   var albumPhotosSections: [AlbumPhotosSection] = []

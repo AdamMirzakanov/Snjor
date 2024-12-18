@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PageScreenViewController: MainViewController<PageScreenRootView> {
+final class PageScreenViewController: BaseViewController<PageScreenRootView> {
   // MARK: Internal Properties
   var topicsDataSource: TopicsDataSource?
   

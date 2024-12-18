@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  BaseViewController.swift
 //  Snjor
 //
 //  Created by Адам on 04.07.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController<ViewType: UIView>: UIViewController, UIScrollViewDelegate {
+class BaseViewController<ViewType: UIView>: UIViewController, UIScrollViewDelegate {
   
   typealias RootView = ViewType
   
