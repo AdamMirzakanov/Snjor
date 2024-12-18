@@ -96,7 +96,7 @@ extension SecondCell {
   }
   
   private func checkCollectionViewState() {
-    let numberOfItems = userPhotosCollectionView.numberOfItems(inSection: .zero)
-    noPhotosStackView.isHidden = numberOfItems > .zero
+    let numberOfItems = rootView.userPhotosCollectionView.numberOfItems(inSection: .zero)
+    rootView.noPhotosStackView.isHidden = numberOfItems > .zero
   }
 }
