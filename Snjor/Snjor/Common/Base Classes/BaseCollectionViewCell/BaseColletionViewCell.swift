@@ -13,15 +13,15 @@ class BaseColletionViewCell<ViewType: UIView>: UICollectionViewCell {
   // MARK: Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupViews()
+    initViews()
   }
 
   required init?(coder: NSCoder) {
     fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
-  // MARK: Private Methods
-  private func setupViews() {
+  // MARK: Internal Methods
+  func initViews() {
     let customView = RootView()
     contentView.addSubview(customView)
     customView.fillSuperView()
