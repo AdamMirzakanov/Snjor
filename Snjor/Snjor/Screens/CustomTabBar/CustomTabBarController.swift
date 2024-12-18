@@ -1,5 +1,5 @@
 //
-//  MainTabBarController.swift
+//  CustomTabBarController.swift
 //  Snjor
 //
 //  Created by Адам on 16.05.2024.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-fileprivate typealias Const = MainTabBarControllerConst
+fileprivate typealias Const = CustomTabBarControllerConst
 
-/// `MainTabBarController` является кастомным таб-бар контроллером, который управляет
+/// `CustomTabBarController` является кастомным таб-бар контроллером, который управляет
 /// пользовательским интерфейсом навигации между основными экранами приложения.
 /// В этом классе реализованы методы для отображения и скрытия кастомного таб-бара,
 /// а также управления его состоянием.
-final class MainTabBarController: UITabBarController {
+final class CustomTabBarController: UITabBarController {
   
   // MARK: Private Properties
   private var selected: Int = .zero // Индекс выбранной вкладки

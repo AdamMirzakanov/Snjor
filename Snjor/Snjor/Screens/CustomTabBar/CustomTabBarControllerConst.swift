@@ -1,5 +1,5 @@
 //
-//  MainTabBarControllerConst.swift
+//  CustomTabBarControllerConst.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 23.10.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MainTabBarControllerConst {
+enum CustomTabBarControllerConst {
   static let hideTabBarAnimationDuration: TimeInterval = 0.8
   static let showTabBarAnimationDuration: TimeInterval = 0.6
   static let gradientViewShowDuration: TimeInterval = 1.0

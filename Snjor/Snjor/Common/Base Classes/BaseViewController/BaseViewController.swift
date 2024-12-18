@@ -28,21 +28,21 @@ class BaseViewController<ViewType: UIView>: UIViewController, UIScrollViewDelega
   }
   
   /// Метод `hideCustomTabBar`, который скрывает пользовательскую панель вкладок.
-  /// Он проверяет, является ли `tabBarController` экземпляром `MainTabBarController`
+  /// Он проверяет, является ли `tabBarController` экземпляром `CustomTabBarController`
   /// и вызывает метод `hideCustomTabBar()` этого контроллера, если проверка успешна.
   /// Это позволяет управлять видимостью пользовательской панели вкладок из текущего контекста.
   func hideCustomTabBar() {
-    if let tabBar = tabBarController as? MainTabBarController {
+    if let tabBar = tabBarController as? CustomTabBarController {
       tabBar.hideCustomTabBar()
     }
   }
   
   /// Метод `showCustomTabBar`, который отображает пользовательскую панель вкладок.
-  /// Проверяет, является ли `tabBarController` экземпляром `MainTabBarController`,
+  /// Проверяет, является ли `tabBarController` экземпляром `CustomTabBarController`,
   /// и вызывает метод `showCustomTabBar()` этого контроллера, если проверка успешна.
   /// Это позволяет управлять видимостью пользовательской панели вкладок из текущего контекста.
   func showCustomTabBar() {
-    if let tabBar = self.tabBarController as? MainTabBarController {
+    if let tabBar = self.tabBarController as? CustomTabBarController {
       tabBar.showCustomTabBar()
     }
   }
