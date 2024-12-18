@@ -11,7 +11,7 @@ class BaseView: UIView {
   // MARK: Initializers
   init() {
     super.init(frame: .zero)
-    setupViews()
+    initViews()
   }
   
   required init?(coder: NSCoder) {
@@ -20,5 +20,5 @@ class BaseView: UIView {
   
   // MARK: Internal Methods
   /// Подклассы должны переопределять этот метод.
-  func setupViews() { }
+  func initViews() { }
 }
