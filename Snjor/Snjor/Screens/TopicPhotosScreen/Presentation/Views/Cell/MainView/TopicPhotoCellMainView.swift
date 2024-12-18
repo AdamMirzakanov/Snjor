@@ -206,8 +206,8 @@ final class TopicPhotoCellMainView: MainImageContainerView {
   private func animateButton() {
     UIView.animate(withDuration: Const.duration) {
       let scaleTransform = CGAffineTransform(
-        scaleX: PhotoCellMainViewConst.scale,
-        y: PhotoCellMainViewConst.scale
+        scaleX: MainPhotoCellViewConst.scale,
+        y: MainPhotoCellViewConst.scale
       )
       self.downloadButtonBlurEffect.transform = scaleTransform
     } completion: { _ in

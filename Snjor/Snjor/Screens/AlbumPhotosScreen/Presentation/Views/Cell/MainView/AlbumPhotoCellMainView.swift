@@ -7,7 +7,7 @@
 
 import UIKit
 
-fileprivate typealias Const = PhotoCellMainViewConst
+fileprivate typealias Const = MainPhotoCellViewConst
 
 final class AlbumPhotoCellMainView: MainImageContainerView {
   // MARK: Delegate

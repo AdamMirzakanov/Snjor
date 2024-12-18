@@ -9,9 +9,9 @@ import UIKit
 
 final class MainPhotoCellRootView: BaseView {
   // MARK: Main View
-  let mainView: PhotoCellMainView = {
+  let mainView: MainPhotoCellView = {
     return $0
-  }(PhotoCellMainView())
+  }(MainPhotoCellView())
   
   // MARK: Setup Views
   override func initViews() {

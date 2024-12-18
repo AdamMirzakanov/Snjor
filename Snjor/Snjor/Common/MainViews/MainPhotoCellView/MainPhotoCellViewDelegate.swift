@@ -1,5 +1,5 @@
 //
-//  PhotoCellMainViewDelegate.swift
+//  MainPhotoCellViewDelegate.swift
 //  Snjor
 //
 //  Created by Адам Мирзаканов on 04.09.2024.
@@ -7,7 +7,7 @@
 
 /// Протокол для делегата основного представления ячейки фото.
 /// Обеспечивает метод для обработки события нажатия на кнопку загрузки.
-protocol PhotoCellMainViewDelegate: AnyObject {
+protocol MainPhotoCellViewDelegate: AnyObject {
   /// Метод, вызываемый при нажатии на кнопку загрузки.
   /// Делегат должен реализовать этот метод для обработки события загрузки.
   func downloadTapped()

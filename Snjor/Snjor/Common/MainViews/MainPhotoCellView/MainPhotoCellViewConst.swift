@@ -1,5 +1,5 @@
 //
-//  PhotoCellMainViewConst.swift
+//  MainPhotoCellViewConst.swift
 //  Snjor
 //
 //  Created by Адам on 14.07.2024.
@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-enum PhotoCellMainViewConst {
+enum MainPhotoCellViewConst {
   static let gradientStartLocation: CGFloat = 0.7
   static let gradientEndLocation: CGFloat = 1.0
   static let gradientOpacity: CGFloat = 0.5

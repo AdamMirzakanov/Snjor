@@ -1,5 +1,5 @@
 //
-//  PhotoCellMainView.swift
+//  MainPhotoCellView.swift
 //  Snjor
 //
 //  Created by Адам on 08.07.2024.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-fileprivate typealias Const = PhotoCellMainViewConst
+fileprivate typealias Const = MainPhotoCellViewConst
 
-final class PhotoCellMainView: MainImageContainerView {
+final class MainPhotoCellView: MainImageContainerView {
   // MARK: Delegate
-  weak var delegate: (any PhotoCellMainViewDelegate)?
+  weak var delegate: (any MainPhotoCellViewDelegate)?
 
   // MARK: Private Properties
   private var showsUsername = true {
