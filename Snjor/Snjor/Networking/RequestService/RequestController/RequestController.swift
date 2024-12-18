@@ -5,8 +5,6 @@
 //  Created by Адам on 15.06.2024.
 //
 
-import Foundation
-
 /// `RequestController` управляет формированием запросов к API для получения
 /// различных данных, таких как фотографии, альбомы, пользователи топики и т.д.
 final class RequestController {
@@ -19,4 +17,5 @@ final class RequestController {
   var userProfile: Endpoints { .userProfile }
   
   let networkRequestService = NetworkRequestService()
+  let prepareParameters = PrepareParameters()
 }

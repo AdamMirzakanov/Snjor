@@ -1,5 +1,5 @@
 //
-//  NetworkService + Requestable.swift
+//  NetworkService + NetworkServiceProtocol.swift
 //  Snjor
 //
 //  Created by Адам on 15.06.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NetworkService: Requestable {
+extension NetworkService: NetworkServiceProtocol {
   
   typealias NetworkResponse = (data: Data, httpResponse: URLResponse)
   

@@ -21,7 +21,7 @@ final class NetworkRequestService {
   
   /// Возвращает схему API.
   ///
-  /// Используется для получения схемы (например, "http" или "https") для формирования URL.
+  /// Используется для получения схемы (например "https") для формирования URL.
   private var scheme: API { .https }
   
   /// Возвращает хост API.

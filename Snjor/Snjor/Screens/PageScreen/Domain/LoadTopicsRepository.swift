@@ -39,7 +39,7 @@ protocol LoadTopicsPageRepositoryProtocol {
 struct LoadTopicsPageRepository: LoadTopicsPageRepositoryProtocol {
   
   /// Сервис сети, который выполняет запросы.
-  let networkService: any Requestable
+  let networkService: any NetworkServiceProtocol
   
   func fetchTopic(request: URLRequest) async throws -> [Topic] {
     return try await networkService.request(

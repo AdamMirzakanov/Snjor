@@ -15,7 +15,7 @@ protocol LoadUserProfileRepositoryProtocol {
 
 // MARK: - Struct
 struct LoadUserProfileRepository: LoadUserProfileRepositoryProtocol {
-  let networkService: any Requestable
+  let networkService: any NetworkServiceProtocol
   
   func fetchUser(request: URLRequest) async throws -> User {
     return try await networkService.request(

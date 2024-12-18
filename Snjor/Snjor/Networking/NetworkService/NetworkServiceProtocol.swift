@@ -1,5 +1,5 @@
 //
-//  Requestable.swift
+//  NetworkServiceProtocol.swift
 //  Snjor
 //
 //  Created by Адам on 15.06.2024.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Протокол, определяющий функциональность для выполнения сетевых запросов.
-protocol Requestable {
+protocol NetworkServiceProtocol {
   /// Выполняет асинхронный запрос к API и возвращает декодированный ответ.
   ///
   /// Этот метод использует переданный объект `URLRequest` для выполнения запроса,

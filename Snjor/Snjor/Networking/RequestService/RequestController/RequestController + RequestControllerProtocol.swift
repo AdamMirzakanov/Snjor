@@ -10,7 +10,7 @@ import Foundation
 extension RequestController: RequestControllerProtocol {
   func photosRequest() throws -> URLRequest {
     let path = photos.rawValue
-    let parameters = PrepareParameters.preparePhotosParameters()
+    let parameters = prepareParameters.preparePhotosParameters()
     let request = try networkRequestService.prepareAPIRequest(
       path: path,
       parameters: parameters
@@ -20,7 +20,7 @@ extension RequestController: RequestControllerProtocol {
   
   func albumsRequest() throws -> URLRequest {
     let path = albums.rawValue
-    let parameters = PrepareParameters.prepareAlbumParameters()
+    let parameters = prepareParameters.prepareAlbumParameters()
     let request = try networkRequestService.prepareAPIRequest(
       path: path,
       parameters: parameters
@@ -30,7 +30,7 @@ extension RequestController: RequestControllerProtocol {
   
   func searchPhotosRequest(with searchTerm: String) throws -> URLRequest {
     let path = searchPhotos.rawValue
-    let parameters = PrepareParameters.prepareSearchPhotoParameters(with: searchTerm)
+    let parameters = prepareParameters.prepareSearchPhotoParameters(with: searchTerm)
     let request = try networkRequestService.prepareAPIRequest(
       path: path,
       parameters: parameters
@@ -40,7 +40,7 @@ extension RequestController: RequestControllerProtocol {
   
   func searchAlbumsRequest(with searchTerm: String) throws -> URLRequest {
     let path = searchCollections.rawValue
-    let parameters = PrepareParameters.prepareSearchAlbumsParameters(with: searchTerm)
+    let parameters = prepareParameters.prepareSearchAlbumsParameters(with: searchTerm)
     let request = try networkRequestService.prepareAPIRequest(
       path: path,
       parameters: parameters
@@ -50,7 +50,7 @@ extension RequestController: RequestControllerProtocol {
   
   func searchUsersRequest(with searchTerm: String) throws -> URLRequest {
     let path = searchUsers.rawValue
-    let parameters = PrepareParameters.prepareSearchUsersParameters(with: searchTerm)
+    let parameters = prepareParameters.prepareSearchUsersParameters(with: searchTerm)
     let request = try networkRequestService.prepareAPIRequest(
       path: path,
       parameters: parameters
@@ -81,7 +81,7 @@ extension RequestController: RequestControllerProtocol {
   func userLikedPhotosRequest(user: User) throws -> URLRequest {
     let path = userProfile.rawValue
     let username = user.username
-    let parameters = PrepareParameters.prepareUserLikedPhotosParameters()
+    let parameters = prepareParameters.prepareUserLikedPhotosParameters()
     let request = try networkRequestService.prepareUserLikedPhotosAPIRequest(
       path: path,
       usernamePathSegment: username,
@@ -93,7 +93,7 @@ extension RequestController: RequestControllerProtocol {
   func userPhotosRequest(user: User) throws -> URLRequest {
     let path = userProfile.rawValue
     let username = user.username
-    let parameters = PrepareParameters.prepareUserPhotosParameters()
+    let parameters = prepareParameters.prepareUserPhotosParameters()
     let request = try networkRequestService.prepareUserPhotosAPIRequest(
       path: path,
       usernamePathSegment: username,
@@ -105,7 +105,7 @@ extension RequestController: RequestControllerProtocol {
   func userAlbumsRequest(user: User) throws -> URLRequest {
     let path = userProfile.rawValue
     let username = user.username
-    let parameters = PrepareParameters.prepareUserAlbumsParameters()
+    let parameters = prepareParameters.prepareUserAlbumsParameters()
     let request = try networkRequestService.prepareUserAlbumsAPIRequest(
       path: path,
       usernamePathSegment: username,
@@ -117,7 +117,7 @@ extension RequestController: RequestControllerProtocol {
   func randomUserPhotoRequest(user: User) throws -> URLRequest {
     let path = photos.rawValue
     let username = user.username
-    let parameters = PrepareParameters.prepareRandomUserPhotoParameters(
+    let parameters = prepareParameters.prepareRandomUserPhotoParameters(
       username: username
     )
     let request = try networkRequestService.prepareRandomUserPhotoAPIRequest(
@@ -131,7 +131,7 @@ extension RequestController: RequestControllerProtocol {
     let topicsPath = topics.rawValue
     let id = topic.id
     let photosPath = photos.rawValue
-    let parameters = PrepareParameters.preparePhotosParameters()
+    let parameters = prepareParameters.preparePhotosParameters()
     let request = try networkRequestService.prepareTopicPhotosAPIRequest(
       path: topicsPath,
       idPathSegment: id,
@@ -145,7 +145,7 @@ extension RequestController: RequestControllerProtocol {
     let albumsPath = albums.rawValue
     let id = album.id
     let photosPath = photos.rawValue
-    let parameters = PrepareParameters.preparePhotosParameters()
+    let parameters = prepareParameters.preparePhotosParameters()
     let request = try networkRequestService.prepareAlbumPhotosAPIRequest(
       path: albumsPath,
       idPathSegment: id,

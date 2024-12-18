@@ -23,7 +23,7 @@ protocol LoadSearchUsersRepositoryProtocol {
 struct LoadSearchUsersRepository: LoadSearchUsersRepositoryProtocol {
   
   /// Сервис сети, который выполняет запросы.
-  let networkService: any Requestable
+  let networkService: any NetworkServiceProtocol
   
   func fetchSearchUsers(request: URLRequest) async throws -> SearchUsers {
     return try await networkService.request(

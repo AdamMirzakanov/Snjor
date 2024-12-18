@@ -23,7 +23,7 @@ protocol LoadPhotosRepositoryProtocol {
 struct LoadPhotosRepository: LoadPhotosRepositoryProtocol {
   
   /// Сервис сети, который выполняет запросы.
-  let networkService: any Requestable
+  let networkService: any NetworkServiceProtocol
 
   func fetchPhotos(request: URLRequest) async throws -> [Photo] {
     return try await networkService.request(

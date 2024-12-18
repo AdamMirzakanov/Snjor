@@ -23,7 +23,7 @@ protocol LoadSearchAlbumsRepositoryProtocol {
 struct LoadSearchAlbumsRepository: LoadSearchAlbumsRepositoryProtocol {
   
   /// Сервис сети, который выполняет запросы.
-  let networkService: any Requestable
+  let networkService: any NetworkServiceProtocol
   
   func fetchSearchAlbums(request: URLRequest) async throws -> SearchAlbums {
     return try await networkService.request(
