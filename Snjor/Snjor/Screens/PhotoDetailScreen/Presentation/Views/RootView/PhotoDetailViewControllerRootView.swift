@@ -10,8 +10,8 @@ import UIKit
 fileprivate typealias Const = PhotoDetailViewControllerRootViewConst
 
 // swiftlint:disable all
-final class PhotoDetailViewControllerRootView: UIView {
-  // MARK: - Delegate
+final class PhotoDetailViewControllerRootView: BaseView {
+  // MARK: Delegate
   weak var delegate: PhotoDetailRootViewDelegate?
   
   // MARK: Private Properties
@@ -29,7 +29,7 @@ final class PhotoDetailViewControllerRootView: UIView {
     return $0
   }(UIView())
   
-  // MARK: - Tags Collection View
+  // MARK: Tags Collection View
   let tagsCollectionView: PhotoDetailTagsCollectionView = {
     $0.heightAnchor.constraint(
       equalToConstant: Const.tagsCollectionViewHeight
@@ -714,15 +714,10 @@ final class PhotoDetailViewControllerRootView: UIView {
   }(UIStackView())
   
   // MARK: - Initializers
-  init() {
-    super.init(frame: .zero)
+  override func initViews() {
     setupViews()
     hidePhotoInfo()
     setupGestureRecognizers()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
   }
   
   // MARK: Setup Data
