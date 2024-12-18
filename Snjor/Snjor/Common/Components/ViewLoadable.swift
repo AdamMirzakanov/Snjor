@@ -7,25 +7,55 @@
 
 import UIKit
 
-// MARK: - Protocol
-/// Протокол `ViewLoadable`, который определяет ассоциированный тип `RootView`,
+/// Протокол который определяет ассоциированный тип `RootView`,
 /// представляющий собой корневое представление, наследуемое от `UIView`.
 protocol ViewLoadable {
   associatedtype RootView: UIView
+  func resolveRootView() -> RootView?
 }
 
-// MARK: - Protocol Extension
-extension ViewLoadable where Self: UIViewController {
-  /// Свойство `rootView`, обеспечивающее доступ к корневому представлению
-  /// типа `RootView`, которое должно быть установлено в контроллере.
+// MARK: - Default Implementation
+extension ViewLoadable {
+  /// Свойство `rootView`, обеспечивающее доступ к корневому
+  /// представлению типа `RootView`, которое должно быть установлено.
   var rootView: RootView {
-    guard let customView = view as? RootView else {
+    guard let customView = resolveRootView() else {
       fatalError(errorMessage)
     }
     return customView
   }
+}
+
+// MARK: - UIViewController
+extension ViewLoadable where Self: UIViewController {
+  func resolveRootView() -> RootView? {
+    return view as? RootView
+  }
+}
+
+// MARK: - UICollectionViewCell
+extension ViewLoadable where Self: UICollectionViewCell {
+  func resolveRootView() -> RootView? {
+    return contentView.subviews.first as? RootView
+  }
+}
+
+// MARK: - Error Message
+private extension ViewLoadable {
+  /// Сообщение об ошибке при несоответствии типов.
+  var errorMessage: String {
+    String(
+      format: ErrorMessage.errorTemplate,
+      String(describing: RootView.self),
+      String(describing: resolveRootViewType())
+    )
+  }
   
-  private var errorMessage: String {
-    "Expected view to be of type \(RootView.self) but got \(type(of: view)) instead"
+  /// Получить тип `view` для описания ошибки.
+  func resolveRootViewType() -> Any.Type {
+    guard let resolvedView = resolveRootView() else {
+      return UIView.self
+    }
+    return type(of: resolvedView)
   }
 }

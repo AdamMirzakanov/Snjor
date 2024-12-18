@@ -17,6 +17,9 @@
 		3701F2442CB5DEE90071E8DE /* SettingsScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2432CB5DEE90071E8DE /* SettingsScreenFactory.swift */; };
 		3701F2462CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2452CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift */; };
 		3701F2492CB5DF370071E8DE /* SettingsScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */; };
+		3703899C2D12B56B004A0D63 /* BaseColletionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703899B2D12B56B004A0D63 /* BaseColletionViewCell.swift */; };
+		3703899E2D12B584004A0D63 /* BaseColletionViewCell + ViewLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703899D2D12B584004A0D63 /* BaseColletionViewCell + ViewLoadable.swift */; };
+		370389A02D12B5B6004A0D63 /* BaseColletionViewCell + Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703899F2D12B5B6004A0D63 /* BaseColletionViewCell + Reusable.swift */; };
 		370A005B2C874F3E006B87DD /* String + MessageDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A005A2C874F3E006B87DD /* String + MessageDisplayable.swift */; };
 		370A005D2C874F84006B87DD /* String + DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A005C2C874F84006B87DD /* String + DownloadService.swift */; };
 		370A00622C8765F1006B87DD /* LastPageValidationUseCaseConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370A00612C8765F1006B87DD /* LastPageValidationUseCaseConst.swift */; };
@@ -441,6 +444,9 @@
 		3701F2432CB5DEE90071E8DE /* SettingsScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactory.swift; sourceTree = "<group>"; };
 		3701F2452CB5DF030071E8DE /* SettingsScreenFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenFactoryProtocol.swift; sourceTree = "<group>"; };
 		3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenCoordinator.swift; sourceTree = "<group>"; };
+		3703899B2D12B56B004A0D63 /* BaseColletionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseColletionViewCell.swift; sourceTree = "<group>"; };
+		3703899D2D12B584004A0D63 /* BaseColletionViewCell + ViewLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseColletionViewCell + ViewLoadable.swift"; sourceTree = "<group>"; };
+		3703899F2D12B5B6004A0D63 /* BaseColletionViewCell + Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseColletionViewCell + Reusable.swift"; sourceTree = "<group>"; };
 		370A005A2C874F3E006B87DD /* String + MessageDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + MessageDisplayable.swift"; sourceTree = "<group>"; };
 		370A005C2C874F84006B87DD /* String + DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + DownloadService.swift"; sourceTree = "<group>"; };
 		370A00612C8765F1006B87DD /* LastPageValidationUseCaseConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastPageValidationUseCaseConst.swift; sourceTree = "<group>"; };
@@ -912,6 +918,33 @@
 				3701F2482CB5DF370071E8DE /* SettingsScreenCoordinator.swift */,
 			);
 			path = SettingsScreenCoordinator;
+			sourceTree = "<group>";
+		};
+		370389982D12B506004A0D63 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3703899A2D12B521004A0D63 /* BaseCollectionViewCell */,
+				370389992D12B516004A0D63 /* BaseView */,
+				663769332C45738A006AB620 /* BaseViewController */,
+			);
+			path = "Base Classes";
+			sourceTree = "<group>";
+		};
+		370389992D12B516004A0D63 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		3703899A2D12B521004A0D63 /* BaseCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3703899B2D12B56B004A0D63 /* BaseColletionViewCell.swift */,
+				3703899F2D12B5B6004A0D63 /* BaseColletionViewCell + Reusable.swift */,
+				3703899D2D12B584004A0D63 /* BaseColletionViewCell + ViewLoadable.swift */,
+			);
+			path = BaseCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		370A00602C8751D3006B87DD /* Extensions */ = {
@@ -2840,7 +2873,7 @@
 		663769392C45750F006AB620 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				663769332C45738A006AB620 /* BaseViewController */,
+				370389982D12B506004A0D63 /* Base Classes */,
 				669861452C4488470085D789 /* MainViews */,
 				6637693B2C457589006AB620 /* Components */,
 				37EFC4A42C543E6B001D3581 /* Layout */,
@@ -3450,6 +3483,7 @@
 				370A00722C87B512006B87DD /* PhotoDetailPhotoViewConst.swift in Sources */,
 				372B34642C8881FF008FCC88 /* SearchResultViewControllerDelegate.swift in Sources */,
 				372B34582C8870D6008FCC88 /* BaseViewController + ViewLoadable.swift in Sources */,
+				3703899E2D12B584004A0D63 /* BaseColletionViewCell + ViewLoadable.swift in Sources */,
 				664A51522C1DFF61003491BA /* RequestController.swift in Sources */,
 				66625F4B2C488E5900166B30 /* SessionIdentifiable.swift in Sources */,
 				37AF3C402C90B3000048FB9C /* UserProfileViewControllerRootView.swift in Sources */,
@@ -3605,6 +3639,7 @@
 				37CF7D9B2C8DDAF700724A58 /* UserTableViewCell + Reusable.swift in Sources */,
 				37AF3C572C91BFB50048FB9C /* UserProfileCoordinator + ParentCoordinator.swift in Sources */,
 				667A599C2C1F082900FE4985 /* SearchScreenPhotoCell.swift in Sources */,
+				3703899C2D12B56B004A0D63 /* BaseColletionViewCell.swift in Sources */,
 				664A513A2C1DE87E003491BA /* APIError.swift in Sources */,
 				37AF3C492C90EC0C0048FB9C /* UserProfileViewModelItem.swift in Sources */,
 				663769212C45283B006AB620 /* SFSymbols.swift in Sources */,
@@ -3724,6 +3759,7 @@
 				3723E3A52C4F129500C3AE3E /* LoadTopicsUseCase.swift in Sources */,
 				6698613F2C43DB940085D789 /* PhotoDetail + ErrorDisplayable.swift in Sources */,
 				37ECB3942C96FC69003E063E /* UserLikedPhotoCell + Reusable.swift in Sources */,
+				370389A02D12B5B6004A0D63 /* BaseColletionViewCell + Reusable.swift in Sources */,
 				37BE0AC52C52571200C8D45F /* LoadTopicsPhotoListRepository.swift in Sources */,
 				37ECB3A02C986871003E063E /* FirstCell + DataSource.swift in Sources */,
 				370A00892C87CED9006B87DD /* SectionHeaderView + Reusable.swift in Sources */,
