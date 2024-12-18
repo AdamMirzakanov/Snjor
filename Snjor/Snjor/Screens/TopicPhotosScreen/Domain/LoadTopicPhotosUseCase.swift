@@ -32,11 +32,12 @@ struct LoadTopicPhotosUseCase: LoadTopicPhotosUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadTopicPhotosRepositoryProtocol`,
   /// используемый для загрузки списка фотографий отдельно взятого топика.
   let repository: any LoadTopicPhotosRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   let topic: Topic
   
   func execute() async -> Result<[Photo], any Error> {
     do {
-      let request = try RequestController.topicPhotosRequest(topic: topic)
+      let request = try requestController.topicPhotosRequest(topic: topic)
       let photos = try await repository.fetchTopicsPhotoList(request: request)
       return .success(photos)
     } catch {

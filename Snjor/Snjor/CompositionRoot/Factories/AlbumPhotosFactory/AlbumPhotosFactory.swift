@@ -43,7 +43,12 @@ struct AlbumPhotosFactory: AlbumPhotosFactoryProtocol {
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let repository = LoadAlbumPhotosRepository(networkService: networkService)
-    let loadUseCase = LoadAlbumPhotosUseCase(repository: repository, album: album)
+    let requestController = RequestController()
+    let loadUseCase = LoadAlbumPhotosUseCase(
+      repository: repository,
+      requestController: requestController,
+      album: album
+    )
     return AlbumPhotosViewModel(
       loadUseCase: loadUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase,

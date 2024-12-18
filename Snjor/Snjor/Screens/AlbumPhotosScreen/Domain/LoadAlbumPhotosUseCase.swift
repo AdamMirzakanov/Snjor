@@ -21,11 +21,12 @@ struct LoadAlbumPhotosUseCase: LoadAlbumPhotosUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadAlbumPhotosRepositoryProtocol`,
   /// используемый для загрузки списка фотографий отдельно взятого альбома.
   let repository: any LoadAlbumPhotosRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   let album: Album
   
   func execute() async -> Result<[Photo], any Error> {
     do {
-      let request = try RequestController.albumPhotosRequest(album: album)
+      let request = try requestController.albumPhotosRequest(album: album)
       let photos = try await repository.fetchAlbumPhotos(request: request)
       return .success(photos)
     } catch {

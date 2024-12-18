@@ -43,7 +43,12 @@ struct TopicPhotosFactory: TopicPhotosFactoryProtocol {
     let lastPageValidationUseCase = LastPageValidationUseCase()
     let state = PassthroughSubject<StateController, Never>()
     let repository = LoadTopicPhotosRepository(networkService: networkService)
-    let loadUseCase = LoadTopicPhotosUseCase(repository: repository, topic: topic)
+    let requestController = RequestController()
+    let loadUseCase = LoadTopicPhotosUseCase(
+      repository: repository,
+      requestController: requestController,
+      topic: topic
+    )
     return TopicPhotosViewModel(
       loadUseCase: loadUseCase,
       lastPageValidationUseCase: lastPageValidationUseCase,

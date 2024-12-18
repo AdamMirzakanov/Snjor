@@ -20,10 +20,11 @@ struct LoadRandomUserPhotoUseCase: LoadRandomUserPhotoUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadRandomUserPhotoRepositoryProtocol`,
   /// используемый для загрузки случайной фотографии
   let repository: any LoadRandomUserPhotoRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   let user: User
   
   func execute() async throws -> Photo {
-    let request = try RequestController.randomUserPhotoRequest(user: user)
+    let request = try requestController.randomUserPhotoRequest(user: user)
     return try await repository.fetchPhoto(request: request)
   }
 }

@@ -21,10 +21,11 @@ struct LoadPhotosUseCase: LoadPhotosUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadPhotosRepositoryProtocol`,
   /// используемый для загрузки списка фотографий в сегменте Discover.
   let repository: any LoadPhotosRepositoryProtocol
+  let requestController: any RequestControllerProtocol
 
   func execute() async -> Result<[Photo], any Error> {
     do {
-      let request = try RequestController.photosRequest()
+      let request = try requestController.photosRequest()
       let photos = try await repository.fetchPhotos(request: request)
       return .success(photos)
     } catch {

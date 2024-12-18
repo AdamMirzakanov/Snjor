@@ -16,7 +16,11 @@ struct PageScreenFactory: PageScreenFactoryProtocol {
     let state = PassthroughSubject<StateController, Never>()
     let networkService = NetworkService()
     let repository = LoadTopicsPageRepository(networkService: networkService)
-    let loadUseCase = LoadTopicsUseCase(repository: repository)
+    let requestController = RequestController()
+    let loadUseCase = LoadTopicsUseCase(
+      repository: repository,
+      requestController: requestController
+    )
     let viewModel = TopicsViewModel(
       loadUseCase: loadUseCase,
       state: state

@@ -23,10 +23,11 @@ struct LoadSearchAlbumsUseCase: LoadSearchAlbumsUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadSearchAlbumsRepositoryProtocol`,
   /// используемый для загрузки списка фотографий по поисковому запросу.
   let repository: any LoadSearchAlbumsRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   
   func execute(with searchTerm: String) async -> Result<[Album], any Error> {
     do {
-      let request = try RequestController.searchAlbumsRequest(with: searchTerm)
+      let request = try requestController.searchAlbumsRequest(with: searchTerm)
       let searchAlbums = try await repository.fetchSearchAlbums(request: request)
       let albums = searchAlbums.results
       return .success(albums)

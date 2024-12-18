@@ -18,11 +18,13 @@ struct PhotoDetailFactory: PhotoDetailFactoryProtocol {
   ) -> UIViewController {
     let state = PassthroughSubject<StateController, Never>()
     let networkService = NetworkService()
+    let requestController = RequestController()
     let repository = LoadPhotoDetailRepository(
       networkService: networkService
     )
     let loadUseCase = LoadPhotoDetailUseCase(
       repository: repository,
+      requestController: requestController,
       photo: photo
     )
     let viewModel = PhotoDetailViewModel(

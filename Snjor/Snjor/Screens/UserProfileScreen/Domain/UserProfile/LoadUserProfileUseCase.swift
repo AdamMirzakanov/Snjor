@@ -20,10 +20,11 @@ struct LoadUserProfileUseCase: LoadUserProfileUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadUserProfileRepositoryProtocol`,
   /// используемый для загрузки данных о пользователе.
   let repository: any LoadUserProfileRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   let user: User
   
   func execute() async throws -> User {
-    let request = try RequestController.userProfileRequest(user: user)
+    let request = try requestController.userProfileRequest(user: user)
     return try await repository.fetchUser(request: request)
   }
 }

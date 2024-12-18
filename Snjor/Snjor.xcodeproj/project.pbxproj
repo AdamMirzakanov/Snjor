@@ -164,6 +164,10 @@
 		377652262D12E1B500B4FBB9 /* PageScreenPhotoCellRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377652252D12E1B500B4FBB9 /* PageScreenPhotoCellRootView.swift */; };
 		377652292D12E44B00B4FBB9 /* PageScreenTopicCellRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377652282D12E44B00B4FBB9 /* PageScreenTopicCellRootView.swift */; };
 		3776522C2D12E76900B4FBB9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3776522A2D12E76900B4FBB9 /* Localizable.strings */; };
+		3776522F2D12F34B00B4FBB9 /* NetworkRequestServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776522E2D12F34B00B4FBB9 /* NetworkRequestServiceProtocol.swift */; };
+		377652322D12F52E00B4FBB9 /* NetworkRequestService + NetworkRequestServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377652312D12F52E00B4FBB9 /* NetworkRequestService + NetworkRequestServiceProtocol.swift */; };
+		377652342D12F74000B4FBB9 /* RequestControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377652332D12F74000B4FBB9 /* RequestControllerProtocol.swift */; };
+		377652372D12F84F00B4FBB9 /* RequestController + RequestControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377652362D12F84F00B4FBB9 /* RequestController + RequestControllerProtocol.swift */; };
 		3776D9E92C8352BE0021CE8C /* MainPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776D9E82C8352BE0021CE8C /* MainPhotoCell.swift */; };
 		3776D9EF2C836FA20021CE8C /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776D9EE2C836FA20021CE8C /* BaseCollectionView.swift */; };
 		3776D9F32C8370E40021CE8C /* SearchResulAlbumsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776D9F22C8370E40021CE8C /* SearchResulAlbumsCollectionView.swift */; };
@@ -375,7 +379,7 @@
 		664A51472C1DFA64003491BA /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51462C1DFA64003491BA /* Endpoints.swift */; };
 		664A51492C1DFA7A003491BA /* Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51482C1DFA7A003491BA /* Authorization.swift */; };
 		664A514E2C1DFE64003491BA /* PrepareParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A514D2C1DFE64003491BA /* PrepareParameters.swift */; };
-		664A51502C1DFEE8003491BA /* PrepareRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A514F2C1DFEE8003491BA /* PrepareRequest.swift */; };
+		664A51502C1DFEE8003491BA /* NetworkRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A514F2C1DFEE8003491BA /* NetworkRequestService.swift */; };
 		664A51522C1DFF61003491BA /* RequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51512C1DFF61003491BA /* RequestController.swift */; };
 		664A51562C1E40B2003491BA /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51552C1E40B2003491BA /* StateController.swift */; };
 		664A515A2C1E443E003491BA /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A51592C1E443E003491BA /* Reusable.swift */; };
@@ -591,6 +595,10 @@
 		377652252D12E1B500B4FBB9 /* PageScreenPhotoCellRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageScreenPhotoCellRootView.swift; sourceTree = "<group>"; };
 		377652282D12E44B00B4FBB9 /* PageScreenTopicCellRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageScreenTopicCellRootView.swift; sourceTree = "<group>"; };
 		3776522B2D12E76900B4FBB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3776522E2D12F34B00B4FBB9 /* NetworkRequestServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestServiceProtocol.swift; sourceTree = "<group>"; };
+		377652312D12F52E00B4FBB9 /* NetworkRequestService + NetworkRequestServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRequestService + NetworkRequestServiceProtocol.swift"; sourceTree = "<group>"; };
+		377652332D12F74000B4FBB9 /* RequestControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestControllerProtocol.swift; sourceTree = "<group>"; };
+		377652362D12F84F00B4FBB9 /* RequestController + RequestControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RequestController + RequestControllerProtocol.swift"; sourceTree = "<group>"; };
 		3776D9E82C8352BE0021CE8C /* MainPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPhotoCell.swift; sourceTree = "<group>"; };
 		3776D9EE2C836FA20021CE8C /* BaseCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		3776D9F22C8370E40021CE8C /* SearchResulAlbumsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResulAlbumsCollectionView.swift; sourceTree = "<group>"; };
@@ -802,7 +810,7 @@
 		664A51462C1DFA64003491BA /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		664A51482C1DFA7A003491BA /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		664A514D2C1DFE64003491BA /* PrepareParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareParameters.swift; sourceTree = "<group>"; };
-		664A514F2C1DFEE8003491BA /* PrepareRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareRequest.swift; sourceTree = "<group>"; };
+		664A514F2C1DFEE8003491BA /* NetworkRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestService.swift; sourceTree = "<group>"; };
 		664A51512C1DFF61003491BA /* RequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestController.swift; sourceTree = "<group>"; };
 		664A51552C1E40B2003491BA /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		664A51592C1E443E003491BA /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -1807,6 +1815,26 @@
 				3776522A2D12E76900B4FBB9 /* Localizable.strings */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		377652302D12F4BC00B4FBB9 /* RequestService */ = {
+			isa = PBXGroup;
+			children = (
+				3776522E2D12F34B00B4FBB9 /* NetworkRequestServiceProtocol.swift */,
+				664A514F2C1DFEE8003491BA /* NetworkRequestService.swift */,
+				377652312D12F52E00B4FBB9 /* NetworkRequestService + NetworkRequestServiceProtocol.swift */,
+			);
+			path = RequestService;
+			sourceTree = "<group>";
+		};
+		377652352D12F74800B4FBB9 /* RequestController */ = {
+			isa = PBXGroup;
+			children = (
+				377652332D12F74000B4FBB9 /* RequestControllerProtocol.swift */,
+				664A51512C1DFF61003491BA /* RequestController.swift */,
+				377652362D12F84F00B4FBB9 /* RequestController + RequestControllerProtocol.swift */,
+			);
+			path = RequestController;
 			sourceTree = "<group>";
 		};
 		3776D9F02C83707B0021CE8C /* Views */ = {
@@ -3057,10 +3085,10 @@
 		664A514C2C1DFE50003491BA /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				377652302D12F4BC00B4FBB9 /* RequestService */,
+				377652352D12F74800B4FBB9 /* RequestController */,
 				372B34612C887EB7008FCC88 /* Parameters.swift */,
 				664A514D2C1DFE64003491BA /* PrepareParameters.swift */,
-				664A514F2C1DFEE8003491BA /* PrepareRequest.swift */,
-				664A51512C1DFF61003491BA /* RequestController.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -3479,6 +3507,7 @@
 				664BF2F22BF6676E00C9D29E /* ParentCoordinator.swift in Sources */,
 				37ED5DD92C7FDA0200891811 /* LoadSearchAlbumsRepository.swift in Sources */,
 				37AF3C3D2C90B2B20048FB9C /* UserProfileViewController.swift in Sources */,
+				377652342D12F74000B4FBB9 /* RequestControllerProtocol.swift in Sources */,
 				3770E19D2C7208A50017ECBB /* AlbumPhotosFactory.swift in Sources */,
 				3770E1802C7205760017ECBB /* AlbumPhotoCellMainView.swift in Sources */,
 				376785C32C8CB03C009B9BA6 /* SearchScreenCoordinator + ParentCoordinator.swift in Sources */,
@@ -3526,6 +3555,7 @@
 				667579FD2C3446CB00A7DCC9 /* DownloadService.swift in Sources */,
 				379476292C64F81B004AFF0E /* Tag.swift in Sources */,
 				3776D9EF2C836FA20021CE8C /* BaseCollectionView.swift in Sources */,
+				377652322D12F52E00B4FBB9 /* NetworkRequestService + NetworkRequestServiceProtocol.swift in Sources */,
 				378B835A2C8607FE001463FE /* AlbumPhotosViewModel.swift in Sources */,
 				378171492C9F16800089E9DC /* UserProfileViewControllerDelegate.swift in Sources */,
 				370A00902C87CFB1006B87DD /* LineView + Reusable.swift in Sources */,
@@ -3572,6 +3602,7 @@
 				664A515F2C1E46A6003491BA /* SearchPhotos.swift in Sources */,
 				37F54FE42C8BBB1E002215FD /* SearchResultViewController + AlbumCellDelegate.swift in Sources */,
 				37B81D622C8CCAB400804304 /* AlbumCell + AlbumTagsCollectionViewDelegate.swift in Sources */,
+				3776522F2D12F34B00B4FBB9 /* NetworkRequestServiceProtocol.swift in Sources */,
 				3776521A2D12DD1F00B4FBB9 /* AlbumCellRootView.swift in Sources */,
 				664BF2F72BF67DC000C9D29E /* CustomTabBarController.swift in Sources */,
 				664A513C2C1DE8A0003491BA /* HTTPResponseStatus.swift in Sources */,
@@ -3802,7 +3833,7 @@
 				377651322D12C84A00B4FBB9 /* BaseView.swift in Sources */,
 				667A59922C1EF98300FE4985 /* ErrorMessage.swift in Sources */,
 				664AA5A62C494FFB00A393BD /* PhotoDetail + SessionIdentifiable.swift in Sources */,
-				664A51502C1DFEE8003491BA /* PrepareRequest.swift in Sources */,
+				664A51502C1DFEE8003491BA /* NetworkRequestService.swift in Sources */,
 				370A007A2C87BC60006B87DD /* PageScreenViewControllerConst.swift in Sources */,
 				664A514E2C1DFE64003491BA /* PrepareParameters.swift in Sources */,
 				371EE7DF2C641A5C007538C2 /* TopicsAndAlbumsCollectionView.swift in Sources */,
@@ -3815,6 +3846,7 @@
 				37B25C942C924CBB00DE4BE3 /* ThirdCell.swift in Sources */,
 				3770E18A2C72074D0017ECBB /* AlbumPhotos + TopicPhotoCellDelegate.swift in Sources */,
 				377652232D12DFE500B4FBB9 /* AlbumPhotosSectionHeaderViewConst.swift in Sources */,
+				377652372D12F84F00B4FBB9 /* RequestController + RequestControllerProtocol.swift in Sources */,
 				37BE0AC32C5256EF00C8D45F /* LoadTopicPhotosUseCase.swift in Sources */,
 				378B83582C85EC10001463FE /* TopicsViewModel.swift in Sources */,
 				378171452C9E10210089E9DC /* LoadRandomUserPhotoUseCase.swift in Sources */,

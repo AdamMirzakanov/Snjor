@@ -74,8 +74,10 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     let loadUserProfileRepository = LoadUserProfileRepository(
       networkService: networkService
     )
+    let requestController = RequestController()
     return LoadUserProfileUseCase(
       repository: loadUserProfileRepository,
+      requestController: requestController,
       user: user
     )
   }
@@ -87,8 +89,10 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     let loadRandomUserPhotoRepository = LoadRandomUserPhotoRepository(
       networkService: networkService
     )
+    let requestController = RequestController()
     return LoadRandomUserPhotoUseCase(
       repository: loadRandomUserPhotoRepository,
+      requestController: requestController,
       user: user
     )
   }
@@ -100,8 +104,10 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     let loadUserLakedPhotosRepository = LoadUserLikedPhotosRepository(
       networkService: networkService
     )
+    let requestController = RequestController()
     return LoadUserLikedPhotosUseCase(
       repository: loadUserLakedPhotosRepository,
+      requestController: requestController,
       user: user
     )
   }
@@ -113,8 +119,10 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     let loadUserPhotosRepository = LoadUserPhotosRepository(
       networkService: networkService
     )
+    let requestController = RequestController()
     return LoadUserPhotosUseCase(
       repository: loadUserPhotosRepository,
+      requestController: requestController,
       user: user
     )
   }
@@ -126,8 +134,10 @@ final class UserProfileViewModelProvider: UserProfileViewModelProviderProtocol {
     let loadUserAlbumsRepository = LoadUserAlbumsRepository(
       networkService: networkService
     )
+    let requestController = RequestController()
     return LoadUserAlbumsUseCase(
       repository: loadUserAlbumsRepository,
+      requestController: requestController,
       user: user
     )
   }

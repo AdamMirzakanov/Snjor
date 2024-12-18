@@ -21,11 +21,12 @@ struct LoadUserLikedPhotosUseCase: LoadUserLikedPhotosUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadUserLikedPhotosRepositoryProtocol`,
   /// используемый для загрузки списка фотографий лайкнутых пользователем.
   let repository: any LoadUserLikedPhotosRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   let user: User
   
   func execute() async -> Result<[Photo], any Error> {
     do {
-      let request = try RequestController.userLikedPhotosRequest(user: user)
+      let request = try requestController.userLikedPhotosRequest(user: user)
       let photos = try await repository.fetchPhotos(request: request)
       return .success(photos)
     } catch {

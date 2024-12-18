@@ -21,10 +21,11 @@ struct LoadAlbumsUseCase: LoadAlbumsUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadAlbumsRepositoryProtocol`,
   /// используемый для загрузки списка альбомов в сегменте Topic & Albums.
   let repository: any LoadAlbumsRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   
   func execute() async -> Result<[Album], any Error> {
     do {
-      let request = try RequestController.albumsRequest()
+      let request = try requestController.albumsRequest()
       let albums = try await repository.fetchAlbumList(request: request)
       return .success(albums)
     } catch {

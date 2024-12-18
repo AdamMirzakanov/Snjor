@@ -29,10 +29,11 @@ struct LoadTopicsUseCase: LoadTopicsUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadTopicsPageRepositoryProtocol`,
   /// используемый для загрузки списка топиков (Шапка топиков без содержимого).
   let repository: any LoadTopicsPageRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   
   func execute() async -> Result<[Topic], any Error> {
     do {
-      let request = try RequestController.topicsTitleRequest()
+      let request = try requestController.topicsTitleRequest()
       let topics = try await repository.fetchTopic(request: request)
       return .success(topics)
     } catch {

@@ -21,10 +21,11 @@ struct LoadPhotoDetailUseCase: LoadPhotoDetailUseCaseProtocol {
   /// Репозиторий, реализующий протокол `LoadPhotoDetailRepositoryProtocol`,
   /// используемый для за загрузку деталей о фотографии
   let repository: any LoadPhotoDetailRepositoryProtocol
+  let requestController: any RequestControllerProtocol
   let photo: Photo
 
   func execute() async throws -> Photo {
-    let request = try RequestController.photoDetailRequest(photo: photo)
+    let request = try requestController.photoDetailRequest(photo: photo)
     return try await repository.fetchPhoto(request: request)
   }
 }
