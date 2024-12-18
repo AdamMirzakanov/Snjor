@@ -10,7 +10,7 @@ import SafariServices
 
 fileprivate typealias Const = UserProfileViewControllerRootViewConst
 
-final class UserProfileViewControllerRootView: UIView {
+final class UserProfileViewControllerRootView: BaseView {
   // MARK: Internal Properties
   var portfolioURL: URL?
   
@@ -357,13 +357,10 @@ final class UserProfileViewControllerRootView: UIView {
   }(UIStackView())
   
   // MARK: - Initializers
-  init() {
-    super.init(frame: .zero)
-    setupViews()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError(ErrorMessage.initCoderNotImplementedError)
+  override func initViews() {
+    addSubviews()
+    setupConstraints()
+    setupTabIcons()
   }
   
   // MARK: Setup Data
@@ -518,12 +515,6 @@ final class UserProfileViewControllerRootView: UIView {
   }
   
   // MARK: Setup Views
-  private func setupViews() {
-    addSubviews()
-    setupConstraints()
-    setupTabIcons()
-  }
-  
   private func addSubviews() {
     addSubview(mainView)
     mainView.addSubview(backgroundPhotoView)

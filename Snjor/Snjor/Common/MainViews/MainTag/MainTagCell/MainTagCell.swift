@@ -10,7 +10,6 @@ import UIKit
 fileprivate typealias Const = MainTagCellConst
 
 class MainTagCell: BaseColletionViewCell<MainTagCellRootView> {
-  // MARK: Cell Config
   func configure(with tag: Tag) {
     rootView.tagLabel.text = .hash + tag.title
   }
